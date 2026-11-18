@@ -1,0 +1,2744 @@
+{
+  "books": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "book_bonus": [
+    0,
+    5,
+    10,
+    20,
+    30,
+    50
+  ],
+  "combinations": [
+    {
+      "number": 1,
+      "result": 7,
+      "ingredients": [
+        163,
+        177
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "result": 8,
+      "ingredients": [
+        7,
+        161
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "result": 9,
+      "ingredients": [
+        177,
+        250
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "result": 10,
+      "ingredients": [
+        9,
+        161
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "result": 11,
+      "ingredients": [
+        164,
+        177
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "result": 30,
+      "ingredients": [
+        170,
+        251
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "result": 31,
+      "ingredients": [
+        10,
+        182
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "result": 32,
+      "ingredients": [
+        12,
+        327
+      ],
+      "success_rate": 55,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "result": 33,
+      "ingredients": [
+        161,
+        251
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "result": 12,
+      "ingredients": [
+        33,
+        182
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "result": 13,
+      "ingredients": [
+        33,
+        47
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "result": 14,
+      "ingredients": [
+        48,
+        279
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "result": 34,
+      "ingredients": [
+        161,
+        162
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "result": 15,
+      "ingredients": [
+        33,
+        186
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "result": 16,
+      "ingredients": [
+        15,
+        280
+      ],
+      "success_rate": 55,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "result": 17,
+      "ingredients": [
+        12,
+        186
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "result": 18,
+      "ingredients": [
+        33,
+        187
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "result": 19,
+      "ingredients": [
+        18,
+        280
+      ],
+      "success_rate": 55,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "result": 20,
+      "ingredients": [
+        12,
+        187
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "result": 22,
+      "ingredients": [
+        171,
+        251
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "result": 51,
+      "ingredients": [
+        48,
+        171
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "result": 21,
+      "ingredients": [
+        219,
+        251
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "result": 52,
+      "ingredients": [
+        48,
+        219
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "result": 183,
+      "ingredients": [
+        171,
+        175
+      ],
+      "success_rate": 85,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "result": 193,
+      "ingredients": [
+        192,
+        219
+      ],
+      "success_rate": 85,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "result": 23,
+      "ingredients": [
+        165,
+        233
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "result": 44,
+      "ingredients": [
+        43,
+        180
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "trap": true
+    },
+    {
+      "number": 28,
+      "result": 45,
+      "ingredients": [
+        43,
+        179
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "trap": true
+    },
+    {
+      "number": 29,
+      "result": 46,
+      "ingredients": [
+        43,
+        167
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "trap": true
+    },
+    {
+      "number": 30,
+      "result": 63,
+      "ingredients": [
+        168,
+        200
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "result": 73,
+      "ingredients": [
+        63,
+        162
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "result": 70,
+      "ingredients": [
+        63,
+        166
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "result": 71,
+      "ingredients": [
+        63,
+        180
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "result": 65,
+      "ingredients": [
+        63,
+        252
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "result": 69,
+      "ingredients": [
+        63,
+        67
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "result": 64,
+      "ingredients": [
+        168,
+        185
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "result": 72,
+      "ingredients": [
+        63,
+        181
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "result": 35,
+      "ingredients": [
+        165,
+        178
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "bomb": true
+    },
+    {
+      "number": 39,
+      "result": 84,
+      "ingredients": [
+        82,
+        165
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "bomb": true
+    },
+    {
+      "number": 40,
+      "result": 85,
+      "ingredients": [
+        84,
+        235
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "bomb": true
+    },
+    {
+      "number": 41,
+      "result": 86,
+      "ingredients": [
+        35,
+        83
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "bomb": true
+    },
+    {
+      "number": 42,
+      "result": 87,
+      "ingredients": [
+        86,
+        234
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "bomb": true
+    },
+    {
+      "number": 43,
+      "result": 80,
+      "ingredients": [
+        235,
+        253
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "bomb": true
+    },
+    {
+      "number": 44,
+      "result": 88,
+      "ingredients": [
+        84,
+        660
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "bomb": true
+    },
+    {
+      "number": 45,
+      "result": 89,
+      "ingredients": [
+        88,
+        236
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "bomb": true
+    },
+    {
+      "number": 46,
+      "result": 66,
+      "ingredients": [
+        35,
+        266
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "bomb": true
+    },
+    {
+      "number": 47,
+      "result": 76,
+      "ingredients": [
+        75,
+        166
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "trap": true
+    },
+    {
+      "number": 48,
+      "result": 78,
+      "ingredients": [
+        76,
+        77
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "trap": true
+    },
+    {
+      "number": 49,
+      "result": 79,
+      "ingredients": [
+        77,
+        357
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "trap": true
+    },
+    {
+      "number": 50,
+      "result": 140,
+      "ingredients": [
+        137,
+        247
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "result": 141,
+      "ingredients": [
+        136,
+        248
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "result": 142,
+      "ingredients": [
+        138,
+        249
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "result": 144,
+      "ingredients": [
+        200,
+        292
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "result": 145,
+      "ingredients": [
+        202,
+        292
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "result": 146,
+      "ingredients": [
+        204,
+        292
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "result": 148,
+      "ingredients": [
+        76,
+        289
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "result": 149,
+      "ingredients": [
+        76,
+        281
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "result": 150,
+      "ingredients": [
+        76,
+        282
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "result": 218,
+      "ingredients": [
+        203,
+        251
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "result": 36,
+      "ingredients": [
+        250,
+        298
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "result": 37,
+      "ingredients": [
+        36,
+        299
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "result": 157,
+      "ingredients": [
+        37,
+        156
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "result": 158,
+      "ingredients": [
+        156,
+        218
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "result": 159,
+      "ingredients": [
+        16,
+        282
+      ],
+      "success_rate": 55,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "result": 160,
+      "ingredients": [
+        19,
+        282
+      ],
+      "success_rate": 55,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "result": 59,
+      "ingredients": [
+        58,
+        180
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "result": 60,
+      "ingredients": [
+        58,
+        167
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "result": 61,
+      "ingredients": [
+        58,
+        179
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "result": 57,
+      "ingredients": [
+        153,
+        281
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "result": 39,
+      "ingredients": [
+        38,
+        691
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "result": 41,
+      "ingredients": [
+        40,
+        691
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "result": 97,
+      "ingredients": [
+        93,
+        190
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 25
+        },
+        {
+          "amount": 3,
+          "chance": 50
+        },
+        {
+          "amount": 4,
+          "chance": 25
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "result": 98,
+      "ingredients": [
+        93,
+        233
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 25
+        },
+        {
+          "amount": 3,
+          "chance": 50
+        },
+        {
+          "amount": 4,
+          "chance": 25
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "result": 99,
+      "ingredients": [
+        93,
+        348
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 5
+        },
+        {
+          "amount": 2,
+          "chance": 85
+        },
+        {
+          "amount": 3,
+          "chance": 10
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "result": 100,
+      "ingredients": [
+        93,
+        232
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 5
+        },
+        {
+          "amount": 2,
+          "chance": 85
+        },
+        {
+          "amount": 3,
+          "chance": 10
+        }
+      ]
+    },
+    {
+      "number": 76,
+      "result": 101,
+      "ingredients": [
+        94,
+        232
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 70
+        },
+        {
+          "amount": 2,
+          "chance": 30
+        }
+      ]
+    },
+    {
+      "number": 77,
+      "result": 102,
+      "ingredients": [
+        93,
+        189
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 5
+        },
+        {
+          "amount": 2,
+          "chance": 85
+        },
+        {
+          "amount": 3,
+          "chance": 10
+        }
+      ]
+    },
+    {
+      "number": 78,
+      "result": 103,
+      "ingredients": [
+        93,
+        298
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 5
+        },
+        {
+          "amount": 2,
+          "chance": 85
+        },
+        {
+          "amount": 3,
+          "chance": 10
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "result": 104,
+      "ingredients": [
+        94,
+        298
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 5
+        },
+        {
+          "amount": 2,
+          "chance": 85
+        },
+        {
+          "amount": 3,
+          "chance": 10
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "result": 105,
+      "ingredients": [
+        93,
+        235
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "result": 106,
+      "ingredients": [
+        94,
+        235
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 82,
+      "result": 107,
+      "ingredients": [
+        95,
+        236
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 83,
+      "result": 108,
+      "ingredients": [
+        93,
+        191
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 84,
+      "result": 109,
+      "ingredients": [
+        94,
+        299
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 85,
+      "result": 110,
+      "ingredients": [
+        95,
+        234
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 86,
+      "result": 111,
+      "ingredients": [
+        93,
+        165
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 87,
+      "result": 112,
+      "ingredients": [
+        93,
+        229
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 5
+        },
+        {
+          "amount": 2,
+          "chance": 85
+        },
+        {
+          "amount": 3,
+          "chance": 10
+        }
+      ]
+    },
+    {
+      "number": 88,
+      "result": 113,
+      "ingredients": [
+        93,
+        252
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 25
+        },
+        {
+          "amount": 3,
+          "chance": 50
+        },
+        {
+          "amount": 4,
+          "chance": 25
+        }
+      ]
+    },
+    {
+      "number": 89,
+      "result": 114,
+      "ingredients": [
+        93,
+        219
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 5
+        },
+        {
+          "amount": 2,
+          "chance": 85
+        },
+        {
+          "amount": 3,
+          "chance": 10
+        }
+      ]
+    },
+    {
+      "number": 90,
+      "result": 115,
+      "ingredients": [
+        95,
+        188
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 91,
+      "result": 116,
+      "ingredients": [
+        93,
+        163
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 92,
+      "result": 117,
+      "ingredients": [
+        7,
+        93
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 93,
+      "result": 118,
+      "ingredients": [
+        93,
+        180
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 94,
+      "result": 119,
+      "ingredients": [
+        94,
+        365
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 95,
+      "result": 120,
+      "ingredients": [
+        93,
+        179
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 96,
+      "result": 121,
+      "ingredients": [
+        94,
+        357
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 97,
+      "result": 122,
+      "ingredients": [
+        93,
+        167
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 98,
+      "result": 123,
+      "ingredients": [
+        94,
+        231
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 99,
+      "result": 125,
+      "ingredients": [
+        93,
+        185
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 100,
+      "result": 126,
+      "ingredients": [
+        93,
+        186
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 101,
+      "result": 127,
+      "ingredients": [
+        93,
+        187
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 102,
+      "result": 129,
+      "ingredients": [
+        94,
+        153
+      ],
+      "success_rate": 85,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 70
+        },
+        {
+          "amount": 2,
+          "chance": 30
+        }
+      ]
+    },
+    {
+      "number": 103,
+      "result": 131,
+      "ingredients": [
+        129,
+        180
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 70
+        },
+        {
+          "amount": 2,
+          "chance": 30
+        }
+      ]
+    },
+    {
+      "number": 104,
+      "result": 132,
+      "ingredients": [
+        129,
+        179
+      ],
+      "success_rate": 85,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 70
+        },
+        {
+          "amount": 2,
+          "chance": 30
+        }
+      ]
+    },
+    {
+      "number": 105,
+      "result": 133,
+      "ingredients": [
+        129,
+        167
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 70
+        },
+        {
+          "amount": 2,
+          "chance": 30
+        }
+      ]
+    },
+    {
+      "number": 106,
+      "result": 130,
+      "ingredients": [
+        129,
+        178
+      ],
+      "success_rate": 85,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 70
+        },
+        {
+          "amount": 2,
+          "chance": 30
+        }
+      ]
+    },
+    {
+      "number": 107,
+      "result": 134,
+      "ingredients": [
+        129,
+        229
+      ],
+      "success_rate": 85,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 70
+        },
+        {
+          "amount": 2,
+          "chance": 30
+        }
+      ]
+    },
+    {
+      "number": 108,
+      "result": 135,
+      "ingredients": [
+        129,
+        185
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 70
+        },
+        {
+          "amount": 2,
+          "chance": 30
+        }
+      ]
+    },
+    {
+      "number": 109,
+      "result": 42,
+      "ingredients": [
+        167,
+        179
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 110,
+      "result": 62,
+      "ingredients": [
+        42,
+        58
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 111,
+      "result": 74,
+      "ingredients": [
+        42,
+        63
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 112,
+      "result": 124,
+      "ingredients": [
+        42,
+        94
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 113,
+      "result": 223,
+      "ingredients": [
+        204,
+        222
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 114,
+      "result": 223,
+      "ingredients": [
+        222,
+        257
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 115,
+      "result": 224,
+      "ingredients": [
+        205,
+        222
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 116,
+      "result": 224,
+      "ingredients": [
+        222,
+        258
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 117,
+      "result": 225,
+      "ingredients": [
+        206,
+        222
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 118,
+      "result": 225,
+      "ingredients": [
+        222,
+        255
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 119,
+      "result": 226,
+      "ingredients": [
+        217,
+        222
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 120,
+      "result": 227,
+      "ingredients": [
+        207,
+        222
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 121,
+      "result": 227,
+      "ingredients": [
+        222,
+        256
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 122,
+      "result": 228,
+      "ingredients": [
+        209,
+        222
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 123,
+      "result": 228,
+      "ingredients": [
+        222,
+        260
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 124,
+      "result": 201,
+      "ingredients": [
+        147,
+        201
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 5,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 125,
+      "result": 202,
+      "ingredients": [
+        147,
+        202
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 5,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 126,
+      "result": 203,
+      "ingredients": [
+        147,
+        203
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 3,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 127,
+      "result": 204,
+      "ingredients": [
+        147,
+        204
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 3,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 128,
+      "result": 205,
+      "ingredients": [
+        147,
+        205
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 3,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 129,
+      "result": 206,
+      "ingredients": [
+        147,
+        206
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 130,
+      "result": 207,
+      "ingredients": [
+        147,
+        207
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 131,
+      "result": 208,
+      "ingredients": [
+        147,
+        208
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 132,
+      "result": 209,
+      "ingredients": [
+        147,
+        209
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 133,
+      "result": 210,
+      "ingredients": [
+        147,
+        210
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 134,
+      "result": 211,
+      "ingredients": [
+        147,
+        211
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 135,
+      "result": 215,
+      "ingredients": [
+        147,
+        215
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 136,
+      "result": 216,
+      "ingredients": [
+        147,
+        216
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 137,
+      "result": 217,
+      "ingredients": [
+        147,
+        217
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 138,
+      "result": 284,
+      "ingredients": [
+        147,
+        284
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 3,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 139,
+      "result": 285,
+      "ingredients": [
+        147,
+        285
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 140,
+      "result": 286,
+      "ingredients": [
+        147,
+        286
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 141,
+      "result": 254,
+      "ingredients": [
+        147,
+        254
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 5,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 142,
+      "result": 257,
+      "ingredients": [
+        147,
+        257
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 3,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 143,
+      "result": 258,
+      "ingredients": [
+        147,
+        258
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 3,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 144,
+      "result": 259,
+      "ingredients": [
+        147,
+        259
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 145,
+      "result": 255,
+      "ingredients": [
+        147,
+        255
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 3,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 146,
+      "result": 256,
+      "ingredients": [
+        147,
+        256
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 147,
+      "result": 260,
+      "ingredients": [
+        147,
+        260
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 2,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 148,
+      "result": 1164,
+      "ingredients": [
+        1171,
+        1172
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 149,
+      "result": 1165,
+      "ingredients": [
+        1173,
+        1174
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 150,
+      "result": 1166,
+      "ingredients": [
+        1175,
+        1176
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 151,
+      "result": 1167,
+      "ingredients": [
+        1177,
+        1178
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 152,
+      "result": 1168,
+      "ingredients": [
+        1179,
+        1180
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 153,
+      "result": 1169,
+      "ingredients": [
+        1181,
+        1182
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 154,
+      "result": 1170,
+      "ingredients": [
+        1183,
+        1184
+      ],
+      "success_rate": 100,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ]
+    },
+    {
+      "number": 155,
+      "result": 161,
+      "ingredients": [
+        138,
+        175
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 156,
+      "result": 163,
+      "ingredients": [
+        168,
+        246
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 157,
+      "result": 165,
+      "ingredients": [
+        155,
+        171
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 158,
+      "result": 177,
+      "ingredients": [
+        164,
+        180
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 159,
+      "result": 43,
+      "ingredients": [
+        50,
+        246
+      ],
+      "success_rate": 95,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 160,
+      "result": 83,
+      "ingredients": [
+        166,
+        282
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 161,
+      "result": 82,
+      "ingredients": [
+        168,
+        281
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 162,
+      "result": 93,
+      "ingredients": [
+        93,
+        202
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 5,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 163,
+      "result": 190,
+      "ingredients": [
+        190,
+        203
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 5,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 164,
+      "result": 230,
+      "ingredients": [
+        164,
+        231
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 165,
+      "result": 47,
+      "ingredients": [
+        253,
+        351
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 166,
+      "result": 266,
+      "ingredients": [
+        139,
+        156
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 167,
+      "result": 25,
+      "ingredients": [
+        219,
+        271
+      ],
+      "success_rate": 55,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 168,
+      "result": 24,
+      "ingredients": [
+        170,
+        253
+      ],
+      "success_rate": 75,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 169,
+      "result": 279,
+      "ingredients": [
+        188,
+        308
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 170,
+      "result": 186,
+      "ingredients": [
+        191,
+        351
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 171,
+      "result": 187,
+      "ingredients": [
+        190,
+        342
+      ],
+      "success_rate": 65,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    },
+    {
+      "number": 172,
+      "result": 53,
+      "ingredients": [
+        56,
+        162
+      ],
+      "success_rate": 90,
+      "quantity": [
+        {
+          "amount": 1,
+          "chance": 100
+        }
+      ],
+      "alchemy": true
+    }
+  ]
+}

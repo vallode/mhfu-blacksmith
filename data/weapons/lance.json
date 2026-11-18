@@ -1,7 +1,7 @@
 {
   "weapons": [
     {
-      "name": "Iron Lance",
+      "id": 103,
       "attack": 138,
       "sharpness": [
         5,
@@ -18,7 +18,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 3,
           "type": "ore",
           "color": "gray"
@@ -26,9 +26,9 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Iron Lance+",
-        "Iron Gunlance",
-        "Snow Gunlance"
+        104,
+        110,
+        509
       ],
       "sharpness_plus": [
         5,
@@ -40,7 +40,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Iron Lance+",
+      "id": 104,
       "attack": 161,
       "sharpness": [
         5,
@@ -55,10 +55,10 @@
       "type": "lance",
       "create_cost": 650,
       "improve_cost": 650,
-      "improve_from": "Iron Lance",
+      "improve_from": 103,
       "create_mats": [
         {
-          "name": "Normal Ticket",
+          "item": 909,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -66,15 +66,15 @@
       ],
       "improve_mats": [
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 4,
           "type": "ore",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Steel Lance",
-        "Bone Javelin"
+        501,
+        120
       ],
       "sharpness_plus": [
         5,
@@ -86,7 +86,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Steel Lance",
+      "id": 501,
       "attack": 207,
       "sharpness": [
         5,
@@ -101,25 +101,25 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 1400,
-      "improve_from": "Iron Lance+",
+      "improve_from": 104,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 4,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Disk Stone",
+          "item": 201,
           "amount": 4,
           "type": "ore",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Paladin Lance",
-        "Estoc"
+        108,
+        225
       ],
       "sharpness_plus": [
         5,
@@ -131,7 +131,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Paladin Lance",
+      "id": 108,
       "attack": 253,
       "sharpness": [
         3,
@@ -146,22 +146,22 @@
       "type": "lance",
       "create_cost": 1750,
       "improve_cost": 1750,
-      "improve_from": "Steel Lance",
+      "improve_from": 501,
       "create_mats": [
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 15,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 6,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 15,
           "type": "ore",
           "color": "gray"
@@ -169,26 +169,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 10,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 4,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 5,
           "type": "ore",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Rampart"
+        109
       ],
       "sharpness_plus": [
         3,
@@ -200,7 +200,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Rampart",
+      "id": 109,
       "attack": 299,
       "sharpness": [
         5,
@@ -215,32 +215,32 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 3100,
-      "improve_from": "Paladin Lance",
+      "improve_from": 108,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Lightcrystal",
+          "item": 215,
           "amount": 2,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 8,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 15,
           "type": "ore",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Growling Wyvern",
-        "Gatling Lance",
-        "Naag Serpentblade"
+        106,
+        148,
+        502
       ],
       "sharpness_plus": [
         5,
@@ -252,7 +252,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Growling Wyvern",
+      "id": 106,
       "attack": 345,
       "sharpness": [
         5,
@@ -267,16 +267,16 @@
       "type": "lance",
       "create_cost": 4900,
       "improve_cost": 4900,
-      "improve_from": "Rampart",
+      "improve_from": 109,
       "create_mats": [
         {
-          "name": "Plus Class Tcket",
+          "item": 911,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Blk Gravios Shl",
+          "item": 629,
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -284,27 +284,27 @@
       ],
       "improve_mats": [
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 5,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 15,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Blk Gravios Shl",
+          "item": 629,
           "amount": 10,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Roaring Wyvern",
-        "Knight Lance"
+        443,
+        105
       ],
       "sharpness_plus": [
         5,
@@ -322,7 +322,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Roaring Wyvern",
+      "id": 443,
       "attack": 460,
       "sharpness": [
         5,
@@ -338,30 +338,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 60000,
-      "improve_from": "Growling Wyvern",
+      "improve_from": 106,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 20,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 10,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "Blk Gravios Cpc",
+          "item": 630,
           "amount": 10,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "SanctionedDrillLance"
+        737
       ],
       "sharpness_plus": [
         5,
@@ -380,7 +380,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "SanctionedDrillLance",
+      "id": 737,
       "attack": 529,
       "sharpness": [
         3,
@@ -396,28 +396,28 @@
       "type": "lance",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": "Roaring Wyvern",
+      "improve_from": 443,
       "create_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 10,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "Thunder Sac",
+          "item": 277,
           "amount": 8,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "Monster Essence",
+          "item": 27,
           "amount": 5,
           "type": "fluid",
           "color": "blue"
@@ -425,32 +425,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 5,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 15,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "DaoraDragonScal+",
+          "item": 718,
           "amount": 5,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Piercing Claw",
+          "item": 428,
           "amount": 6,
           "type": "claw",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Gravedigger"
+        738
       ],
       "sharpness_plus": [
         3,
@@ -464,7 +464,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gravedigger",
+      "id": 738,
       "attack": 644,
       "sharpness": [
         5,
@@ -481,29 +481,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 105000,
-      "improve_from": "SanctionedDrillLance",
+      "improve_from": 737,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 10,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 20,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Lightning Sac",
+          "item": 278,
           "amount": 5,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "StrBasariosWing",
+          "item": 591,
           "amount": 2,
           "type": "part",
           "color": "gray"
@@ -523,7 +523,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Knight Lance",
+      "id": 105,
       "attack": 437,
       "sharpness": [
         5,
@@ -538,28 +538,28 @@
       "type": "lance",
       "create_cost": 25000,
       "improve_cost": 25000,
-      "improve_from": "Growling Wyvern",
+      "improve_from": 106,
       "create_mats": [
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 5,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 50,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Velociprey Hide",
+          "item": 351,
           "amount": 15,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "Velocidrome Hide",
+          "item": 353,
           "amount": 10,
           "type": "pelt",
           "color": "blue"
@@ -567,13 +567,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Tcket",
+          "item": 911,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 1,
           "type": "ore",
           "color": "slate"
@@ -581,30 +581,30 @@
       ],
       "improve_mats": [
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 3,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 5,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Velociprey Scale",
+          "item": 349,
           "amount": 20,
           "type": "scale",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Knight Spear",
-        "Aqua Spear",
-        "Grayburg Javelin",
-        "Cold Icicle",
-        "Feather Gunlance"
+        107,
+        123,
+        216,
+        759,
+        762
       ],
       "sharpness_plus": [
         5,
@@ -615,7 +615,7 @@
       "elements": null
     },
     {
-      "name": "Knight Spear",
+      "id": 107,
       "attack": 460,
       "sharpness": [
         3,
@@ -630,30 +630,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": "Knight Lance",
+      "improve_from": 105,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 5,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 15,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Velociprey Hide+",
+          "item": 352,
           "amount": 10,
           "type": "pelt",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Babel Spear"
+        111
       ],
       "sharpness_plus": [
         3,
@@ -665,7 +665,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Babel Spear",
+      "id": 111,
       "attack": 529,
       "sharpness": [
         5,
@@ -680,33 +680,33 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": "Knight Spear",
+      "improve_from": 107,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Gld Rathian Scl+",
+          "item": 538,
           "amount": 8,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 30,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Genprey Scale+",
+          "item": 359,
           "amount": 20,
           "type": "scale",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Lost Babel",
-        "Sadalsuud",
-        "Ancient Destroyer",
-        "Spark Plug"
+        751,
+        752,
+        755,
+        757
       ],
       "sharpness_plus": [
         5,
@@ -719,7 +719,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Lost Babel",
+      "id": 751,
       "attack": 667,
       "sharpness": [
         9,
@@ -736,23 +736,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 110000,
-      "improve_from": "Babel Spear",
+      "improve_from": 111,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "ThckGldRathnScl",
+          "item": 539,
           "amount": 5,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "GoldRajangPelt+",
+          "item": 467,
           "amount": 1,
           "type": "pelt",
           "color": "yellow"
@@ -772,7 +772,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sadalsuud",
+      "id": 752,
       "attack": 506,
       "sharpness": [
         9,
@@ -788,28 +788,28 @@
       "type": "lance",
       "create_cost": 75000,
       "improve_cost": 75000,
-      "improve_from": "Babel Spear",
+      "improve_from": 111,
       "create_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 15,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 3,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Rathian Scale+",
+          "item": 521,
           "amount": 15,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 40,
           "type": "ore",
           "color": "white"
@@ -817,26 +817,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 1,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "HvyHermitaurShl",
+          "item": 497,
           "amount": 3,
           "type": "shell",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Sadalmelek"
+        753
       ],
       "sharpness_plus": [
         9,
@@ -855,7 +855,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sadalmelek",
+      "id": 753,
       "attack": 575,
       "sharpness": [
         9,
@@ -872,30 +872,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 95000,
-      "improve_from": "Sadalsuud",
+      "improve_from": 752,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 5,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "HvyCeanataurShl",
+          "item": 506,
           "amount": 3,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "HvyBasariosShell",
+          "item": 589,
           "amount": 3,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Aquarius"
+        754
       ],
       "sharpness_plus": [
         9,
@@ -915,7 +915,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Aquarius",
+      "id": 754,
       "attack": 621,
       "sharpness": [
         5,
@@ -932,23 +932,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": "Sadalmelek",
+      "improve_from": 753,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 3,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "HvyGaorenShell",
+          "item": 706,
           "amount": 3,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "HvyBlkGraviosShl",
+          "item": 631,
           "amount": 3,
           "type": "part",
           "color": "gray"
@@ -973,7 +973,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Spark Plug",
+      "id": 757,
       "attack": 506,
       "sharpness": [
         11,
@@ -989,28 +989,28 @@
       "type": "lance",
       "create_cost": 90000,
       "improve_cost": 90000,
-      "improve_from": "Babel Spear",
+      "improve_from": 111,
       "create_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 15,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "HrdPuGypcerosWng",
+          "item": 408,
           "amount": 8,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Thunderbug Juice",
+          "item": 28,
           "amount": 10,
           "type": "fluid",
           "color": "yellow"
         },
         {
-          "name": "Thunderbug",
+          "item": 253,
           "amount": 20,
           "type": "insect",
           "color": "yellow"
@@ -1018,26 +1018,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "HrdPuGypcerosWng",
+          "item": 408,
           "amount": 5,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Thunderbug Jelly",
+          "item": 29,
           "amount": 5,
           "type": "fluid",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "ThunderbugShockLance"
+        758
       ],
       "sharpness_plus": [
         11,
@@ -1056,7 +1056,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "ThunderbugShockLance",
+      "id": 758,
       "attack": 598,
       "sharpness": [
         16,
@@ -1073,29 +1073,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 110000,
-      "improve_from": "Spark Plug",
+      "improve_from": 757,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "LthrKirinThndrTl",
+          "item": 689,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Hard Rajang Horn",
+          "item": 457,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Thunderbug Jelly",
+          "item": 29,
           "amount": 10,
           "type": "fluid",
           "color": "yellow"
@@ -1120,7 +1120,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Aqua Spear",
+      "id": 123,
       "attack": 368,
       "sharpness": [
         5,
@@ -1135,28 +1135,28 @@
       "type": "lance",
       "create_cost": 40000,
       "improve_cost": 40000,
-      "improve_from": "Knight Lance",
+      "improve_from": 105,
       "create_mats": [
         {
-          "name": "Cephalos Fin+",
+          "item": 485,
           "amount": 3,
           "type": "part",
           "color": "cyan"
         },
         {
-          "name": "Plesioth Fin",
+          "item": 473,
           "amount": 12,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Plesioth Scale",
+          "item": 470,
           "amount": 15,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 5,
           "type": "ore",
           "color": "slate"
@@ -1164,26 +1164,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Plesioth Fin",
+          "item": 473,
           "amount": 10,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Cephalos Scale+",
+          "item": 483,
           "amount": 4,
           "type": "scale",
           "color": "cyan"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 10,
           "type": "ore",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Aqua Spear+"
+        140
       ],
       "sharpness_plus": [
         5,
@@ -1200,7 +1200,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Aqua Spear+",
+      "id": 140,
       "attack": 391,
       "sharpness": [
         5,
@@ -1215,30 +1215,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 50000,
-      "improve_from": "Aqua Spear",
+      "improve_from": 123,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Plesioth Fin+",
+          "item": 474,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Plesioth Scale+",
+          "item": 471,
           "amount": 8,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Cephalos Fin+",
+          "item": 485,
           "amount": 6,
           "type": "part",
           "color": "cyan"
         }
       ],
       "improve_to": [
-        "Emerald Spear"
+        447
       ],
       "sharpness_plus": [
         5,
@@ -1256,7 +1256,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Emerald Spear",
+      "id": 447,
       "attack": 414,
       "sharpness": [
         5,
@@ -1272,23 +1272,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": "Aqua Spear+",
+      "improve_from": 140,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Grn Plsioth Fin+",
+          "item": 480,
           "amount": 6,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Grn Plsioth Scl+",
+          "item": 477,
           "amount": 12,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Wyvern Stone",
+          "item": 300,
           "amount": 2,
           "type": "stone",
           "color": "cyan"
@@ -1312,7 +1312,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Grayburg Javelin",
+      "id": 216,
       "attack": 437,
       "sharpness": [
         3,
@@ -1327,30 +1327,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 60000,
-      "improve_from": "Knight Lance",
+      "improve_from": 105,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 8,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "DaoraDragonScale",
+          "item": 717,
           "amount": 8,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 8,
           "type": "ore",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Dragon Rider Spear"
+        320
       ],
       "sharpness_plus": [
         3,
@@ -1363,7 +1363,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragon Rider Spear",
+      "id": 320,
       "attack": 506,
       "sharpness": [
         5,
@@ -1379,30 +1379,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": "Grayburg Javelin",
+      "improve_from": 216,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 10,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "Daora Claw",
+          "item": 726,
           "amount": 3,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Daora Carapace",
+          "item": 715,
           "amount": 5,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Dragoon's Gáe Bulg"
+        765
       ],
       "sharpness_plus": [
         5,
@@ -1416,7 +1416,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragoon's Gáe Bulg",
+      "id": 765,
       "attack": 690,
       "sharpness": [
         5,
@@ -1433,29 +1433,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": "Dragon Rider Spear",
+      "improve_from": 320,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 10,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Daora Sharp Claw",
+          "item": 727,
           "amount": 5,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Hvy Daora Shell",
+          "item": 716,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 5,
           "type": "insect",
           "color": "white"
@@ -1475,7 +1475,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Cold Icicle",
+      "id": 759,
       "attack": 414,
       "sharpness": [
         3,
@@ -1490,28 +1490,28 @@
       "type": "lance",
       "create_cost": 40000,
       "improve_cost": 40000,
-      "improve_from": "Knight Lance",
+      "improve_from": 105,
       "create_mats": [
         {
-          "name": "Blangonga Fang+",
+          "item": 430,
           "amount": 3,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 10,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 15,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Rubbery Hide+",
+          "item": 402,
           "amount": 5,
           "type": "pelt",
           "color": "blue"
@@ -1519,32 +1519,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 5,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 10,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Rubbery Hide",
+          "item": 401,
           "amount": 8,
           "type": "hide",
           "color": "blue"
         },
         {
-          "name": "Blangonga Pelt+",
+          "item": 433,
           "amount": 10,
           "type": "pelt",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Frost Icicle"
+        760
       ],
       "sharpness_plus": [
         3,
@@ -1561,7 +1561,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Frost Icicle",
+      "id": 760,
       "attack": 483,
       "sharpness": [
         5,
@@ -1577,36 +1577,36 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 65000,
-      "improve_from": "Cold Icicle",
+      "improve_from": 759,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 20,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 20,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Daora Sharp Claw",
+          "item": 727,
           "amount": 5,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Blangonga Fang+",
+          "item": 430,
           "amount": 5,
           "type": "claw",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Icicle Blizzard"
+        761
       ],
       "sharpness_plus": [
         5,
@@ -1625,7 +1625,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Icicle Blizzard",
+      "id": 761,
       "attack": 575,
       "sharpness": [
         5,
@@ -1642,23 +1642,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Frost Icicle",
+      "improve_from": 760,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 20,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "HvyBlangongaFang",
+          "item": 431,
           "amount": 5,
           "type": "claw",
           "color": "white"
@@ -1683,7 +1683,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gatling Lance",
+      "id": 148,
       "attack": 322,
       "sharpness": [
         5,
@@ -1698,28 +1698,28 @@
       "type": "lance",
       "create_cost": 4250,
       "improve_cost": 4250,
-      "improve_from": "Rampart",
+      "improve_from": 109,
       "create_mats": [
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 4,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 12,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Flame Sac",
+          "item": 273,
           "amount": 2,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "Hercudrome",
+          "item": 258,
           "amount": 5,
           "type": "insect",
           "color": "red"
@@ -1727,26 +1727,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 2,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 5,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Gunpowder",
+          "item": 35,
           "amount": 10,
           "type": "sac",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Gatling Lance+"
+        149
       ],
       "sharpness_plus": [
         5,
@@ -1763,7 +1763,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gatling Lance+",
+      "id": 149,
       "attack": 391,
       "sharpness": [
         5,
@@ -1778,30 +1778,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 7150,
-      "improve_from": "Gatling Lance",
+      "improve_from": 148,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 6,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 15,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "FireWyvrn Marrow",
+          "item": 546,
           "amount": 2,
           "type": "part",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Sanctioned Gunlance"
+        319
       ],
       "sharpness_plus": [
         5,
@@ -1819,7 +1819,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sanctioned Gunlance",
+      "id": 319,
       "attack": 414,
       "sharpness": [
         5,
@@ -1835,23 +1835,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 65000,
-      "improve_from": "Gatling Lance+",
+      "improve_from": 149,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 6,
           "type": "ore",
           "color": "orange"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 25,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Inferno Sac",
+          "item": 274,
           "amount": 10,
           "type": "sac",
           "color": "red"
@@ -1875,7 +1875,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Naag Serpentblade",
+      "id": 502,
       "attack": 322,
       "sharpness": [
         3,
@@ -1890,28 +1890,28 @@
       "type": "lance",
       "create_cost": 5600,
       "improve_cost": 5600,
-      "improve_from": "Rampart",
+      "improve_from": 109,
       "create_mats": [
         {
-          "name": "Remobra Skull",
+          "item": 336,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Remobra Skin",
+          "item": 332,
           "amount": 8,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Poison Sac",
+          "item": 267,
           "amount": 10,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 15,
           "type": "ore",
           "color": "blue"
@@ -1919,26 +1919,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Remobra Skin",
+          "item": 332,
           "amount": 5,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Remobra Skull",
+          "item": 336,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 20,
           "type": "ore",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Devta Serpentblade"
+        503
       ],
       "sharpness_plus": [
         3,
@@ -1956,7 +1956,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Devta Serpentblade",
+      "id": 503,
       "attack": 368,
       "sharpness": [
         16,
@@ -1972,30 +1972,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 50000,
-      "improve_from": "Naag Serpentblade",
+      "improve_from": 502,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Remobra Skin+",
+          "item": 333,
           "amount": 5,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Remobra Skull",
+          "item": 336,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Toxin Sac",
+          "item": 268,
           "amount": 10,
           "type": "sac",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "OuroborosSerpntblade"
+        739
       ],
       "sharpness_plus": [
         16,
@@ -2014,7 +2014,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "OuroborosSerpntblade",
+      "id": 739,
       "attack": 506,
       "sharpness": [
         16,
@@ -2031,29 +2031,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": "Devta Serpentblade",
+      "improve_from": 503,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "SpecRemobraSkin+",
+          "item": 334,
           "amount": 3,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "DeadlyPoisonSac",
+          "item": 269,
           "amount": 5,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Novacrystal",
+          "item": 216,
           "amount": 5,
           "type": "ore",
           "color": "white"
@@ -2078,7 +2078,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Estoc",
+      "id": 225,
       "attack": 230,
       "sharpness": [
         5,
@@ -2093,30 +2093,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 2150,
-      "improve_from": "Steel Lance",
+      "improve_from": 501,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Black Pearl",
+          "item": 198,
           "amount": 3,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 4,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 6,
           "type": "ore",
           "color": "cyan"
         }
       ],
       "improve_to": [
-        "Valhalla"
+        231
       ],
       "sharpness_plus": [
         5,
@@ -2128,7 +2128,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Valhalla",
+      "id": 231,
       "attack": 345,
       "sharpness": [
         3,
@@ -2143,23 +2143,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 5600,
-      "improve_from": "Estoc",
+      "improve_from": 225,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Lightcrystal",
+          "item": 215,
           "amount": 5,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 7,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 15,
           "type": "ore",
           "color": "cyan"
@@ -2176,7 +2176,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bone Javelin",
+      "id": 120,
       "attack": 230,
       "sharpness": [
         3,
@@ -2191,30 +2191,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 1400,
-      "improve_from": "Iron Lance+",
+      "improve_from": 104,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Sm Monster Bone",
+          "item": 281,
           "amount": 4,
           "type": "bone",
           "color": "yellow"
         },
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 4,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 4,
           "type": "ore",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Spiked Spear"
+        122
       ],
       "sharpness_plus": [
         3,
@@ -2226,7 +2226,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Spiked Spear",
+      "id": 122,
       "attack": 276,
       "sharpness": [
         3,
@@ -2241,31 +2241,31 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 2150,
-      "improve_from": "Bone Javelin",
+      "improve_from": 120,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Med Monster Bone",
+          "item": 282,
           "amount": 3,
           "type": "bone",
           "color": "yellow"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 3,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 2,
           "type": "insect",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Lullaby Spear",
-        "Paralyzer"
+        125,
+        118
       ],
       "sharpness_plus": [
         3,
@@ -2277,7 +2277,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Lullaby Spear",
+      "id": 125,
       "attack": 184,
       "sharpness": [
         3,
@@ -2292,28 +2292,28 @@
       "type": "lance",
       "create_cost": 1750,
       "improve_cost": 1750,
-      "improve_from": "Spiked Spear",
+      "improve_from": 122,
       "create_mats": [
         {
-          "name": "Plesioth Fin",
+          "item": 473,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Cephalos Fin",
+          "item": 484,
           "amount": 4,
           "type": "part",
           "color": "cyan"
         },
         {
-          "name": "Sleepyfish",
+          "item": 231,
           "amount": 10,
           "type": "fish",
           "color": "cyan"
         },
         {
-          "name": "Springnight Carp",
+          "item": 244,
           "amount": 5,
           "type": "fish",
           "color": "pink"
@@ -2321,26 +2321,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Plesioth Scale",
+          "item": 470,
           "amount": 4,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Cephalos Scale",
+          "item": 482,
           "amount": 4,
           "type": "scale",
           "color": "cyan"
         },
         {
-          "name": "Sleep Herb",
+          "item": 167,
           "amount": 10,
           "type": "herb",
           "color": "cyan"
         }
       ],
       "improve_to": [
-        "Requiem Spear"
+        217
       ],
       "sharpness_plus": [
         3,
@@ -2358,7 +2358,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Requiem Spear",
+      "id": 217,
       "attack": 276,
       "sharpness": [
         3,
@@ -2374,23 +2374,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 4900,
-      "improve_from": "Lullaby Spear",
+      "improve_from": 125,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Plesioth Fin",
+          "item": 473,
           "amount": 6,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Sleep Sac",
+          "item": 271,
           "amount": 3,
           "type": "sac",
           "color": "blue"
         },
         {
-          "name": "Mega Demondrug",
+          "item": 16,
           "amount": 5,
           "type": "fluid",
           "color": "red"
@@ -2414,7 +2414,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Paralyzer",
+      "id": 118,
       "attack": 276,
       "sharpness": [
         11,
@@ -2429,32 +2429,32 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 3100,
-      "improve_from": "Spiked Spear",
+      "improve_from": 122,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 10,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Thunderbug",
+          "item": 253,
           "amount": 10,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Rubbery Hide",
+          "item": 401,
           "amount": 5,
           "type": "hide",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Trident",
-        "Venom Lance",
-        "Thunderspear"
+        119,
+        144,
+        328
       ],
       "sharpness_plus": [
         11,
@@ -2471,7 +2471,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Trident",
+      "id": 119,
       "attack": 299,
       "sharpness": [
         16,
@@ -2486,23 +2486,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 4250,
-      "improve_from": "Paralyzer",
+      "improve_from": 118,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 4,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Electro Sac",
+          "item": 276,
           "amount": 5,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "Rubbery Hide",
+          "item": 401,
           "amount": 7,
           "type": "hide",
           "color": "blue"
@@ -2525,7 +2525,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Venom Lance",
+      "id": 144,
       "attack": 299,
       "sharpness": [
         3,
@@ -2540,28 +2540,28 @@
       "type": "lance",
       "create_cost": 3100,
       "improve_cost": 3100,
-      "improve_from": "Paralyzer",
+      "improve_from": 118,
       "create_mats": [
         {
-          "name": "Basarios Wing",
+          "item": 590,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 20,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Toadstool",
+          "item": 180,
           "amount": 10,
           "type": "mushroom",
           "color": "slate"
@@ -2569,26 +2569,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 7,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 12,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Poison Sac",
+          "item": 267,
           "amount": 2,
           "type": "sac",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Basarios Venom Spear"
+        146
       ],
       "sharpness_plus": [
         3,
@@ -2605,7 +2605,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Basarios Venom Spear",
+      "id": 146,
       "attack": 322,
       "sharpness": [
         5,
@@ -2620,31 +2620,31 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 4250,
-      "improve_from": "Venom Lance",
+      "improve_from": 144,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Basarios Wing",
+          "item": 590,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Poison Sac",
+          "item": 267,
           "amount": 5,
           "type": "sac",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Gravios Spear",
-        "Black Gravios Spear"
+        147,
+        329
       ],
       "sharpness_plus": [
         5,
@@ -2661,7 +2661,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gravios Spear",
+      "id": 147,
       "attack": 345,
       "sharpness": [
         5,
@@ -2676,30 +2676,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 30000,
-      "improve_from": "Basarios Venom Spear",
+      "improve_from": 146,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Gravios Skl Shl",
+          "item": 627,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Gravios Shell",
+          "item": 623,
           "amount": 8,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Poison Sac",
+          "item": 267,
           "amount": 10,
           "type": "sac",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Gravios Venom Spear"
+        504
       ],
       "sharpness_plus": [
         5,
@@ -2717,7 +2717,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gravios Venom Spear",
+      "id": 504,
       "attack": 437,
       "sharpness": [
         5,
@@ -2733,30 +2733,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 70000,
-      "improve_from": "Gravios Spear",
+      "improve_from": 147,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Gravios Carapace",
+          "item": 624,
           "amount": 8,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Chameleos Tail",
+          "item": 738,
           "amount": 5,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Toxin Sac",
+          "item": 268,
           "amount": 10,
           "type": "sac",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Gravios Lance"
+        740
       ],
       "sharpness_plus": [
         5,
@@ -2775,7 +2775,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gravios Lance",
+      "id": 740,
       "attack": 552,
       "sharpness": [
         9,
@@ -2793,38 +2793,38 @@
       "create_cost": null,
       "improve_cost": 95000,
       "improve_from": [
-        "Void Gravios Spear",
-        "Gravios Venom Spear"
+        337,
+        504
       ],
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvyGraviosShell",
+          "item": 625,
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "HvyBlkGraviosShl",
+          "item": 631,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Gravios Skl Shl",
+          "item": 627,
           "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Tigrex Scale+",
+          "item": 594,
           "amount": 3,
           "type": "scale",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Gravios Fire Lance"
+        741
       ],
       "sharpness_plus": [
         9,
@@ -2844,7 +2844,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gravios Fire Lance",
+      "id": 741,
       "attack": 598,
       "sharpness": [
         5,
@@ -2861,23 +2861,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 110000,
-      "improve_from": "Gravios Lance",
+      "improve_from": 740,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvnlyGraviosShl",
+          "item": 626,
           "amount": 1,
           "type": "heavenly",
           "color": "white"
         },
         {
-          "name": "HvnlyBlkGraviShl",
+          "item": 632,
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
         },
         {
-          "name": "Blazing Fire Sac",
+          "item": 275,
           "amount": 5,
           "type": "sac",
           "color": "red"
@@ -2902,7 +2902,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Gravios Spear",
+      "id": 329,
       "attack": 368,
       "sharpness": [
         9,
@@ -2917,30 +2917,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 30000,
-      "improve_from": "Basarios Venom Spear",
+      "improve_from": 146,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Blk Gravios Skl",
+          "item": 633,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Blk Gravios Shl",
+          "item": 629,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 6,
           "type": "ore",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Void Gravios Spear"
+        337
       ],
       "sharpness_plus": [
         9,
@@ -2958,7 +2958,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Void Gravios Spear",
+      "id": 337,
       "attack": 414,
       "sharpness": [
         9,
@@ -2974,30 +2974,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 70000,
-      "improve_from": "Black Gravios Spear",
+      "improve_from": 329,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Blk Gravios Cpc",
+          "item": 630,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Gravios BrainStm",
+          "item": 628,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 6,
           "type": "ore",
           "color": "orange"
         }
       ],
       "improve_to": [
-        "Gravios Lance"
+        740
       ],
       "sharpness_plus": [
         9,
@@ -3016,7 +3016,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Thunderspear",
+      "id": 328,
       "attack": 322,
       "sharpness": [
         3,
@@ -3031,28 +3031,28 @@
       "type": "lance",
       "create_cost": 20000,
       "improve_cost": 20000,
-      "improve_from": "Paralyzer",
+      "improve_from": 118,
       "create_mats": [
         {
-          "name": "Kirin Horn",
+          "item": 682,
           "amount": 3,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Kirin Hide",
+          "item": 683,
           "amount": 8,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Rubbery Hide",
+          "item": 401,
           "amount": 5,
           "type": "hide",
           "color": "blue"
         },
         {
-          "name": "Thunderbug",
+          "item": 253,
           "amount": 16,
           "type": "insect",
           "color": "yellow"
@@ -3060,26 +3060,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Kirin Horn",
+          "item": 682,
           "amount": 1,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Kirin Mane",
+          "item": 686,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Thunderbug",
+          "item": 253,
           "amount": 8,
           "type": "insect",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Thunderlance"
+        444
       ],
       "sharpness_plus": [
         3,
@@ -3097,7 +3097,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Thunderlance",
+      "id": 444,
       "attack": 391,
       "sharpness": [
         3,
@@ -3113,30 +3113,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 60000,
-      "improve_from": "Thunderspear",
+      "improve_from": 328,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Kirin Azure Horn",
+          "item": 690,
           "amount": 3,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Kirin Hide+",
+          "item": 684,
           "amount": 5,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Thunderbug Juice",
+          "item": 28,
           "amount": 4,
           "type": "fluid",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Naar Thunderlance"
+        742
       ],
       "sharpness_plus": [
         3,
@@ -3155,7 +3155,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Naar Thunderlance",
+      "id": 742,
       "attack": 575,
       "sharpness": [
         3,
@@ -3172,23 +3172,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Thunderlance",
+      "improve_from": 444,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Platinum Mane",
+          "item": 687,
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "SpecialKirinHide",
+          "item": 685,
           "amount": 5,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Thunderbug Jelly",
+          "item": 29,
           "amount": 8,
           "type": "fluid",
           "color": "yellow"
@@ -3213,7 +3213,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Shell Claw Lance",
+      "id": 772,
       "attack": 529,
       "sharpness": [
         9,
@@ -3230,30 +3230,30 @@
       "create_cost": 85000,
       "improve_cost": 85000,
       "improve_from": [
-        "Scissor Cannon",
-        "Ceanataur Piercer"
+        407,
+        441
       ],
       "create_mats": [
         {
-          "name": "PlumD.HermitrShl",
+          "item": 501,
           "amount": 8,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "PlumD.HermitrClw",
+          "item": 502,
           "amount": 2,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 3,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Monster Broth",
+          "item": 26,
           "amount": 10,
           "type": "fluid",
           "color": "blue"
@@ -3261,26 +3261,26 @@
       ],
       "improve_mats": [
         {
-          "name": "PlumD.HermitrShl",
+          "item": 501,
           "amount": 5,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "PlumD.HermitrClw",
+          "item": 502,
           "amount": 1,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "Piercing Claw",
+          "item": 428,
           "amount": 5,
           "type": "claw",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "GiantHermitaurLance"
+        773
       ],
       "sharpness_plus": [
         9,
@@ -3294,7 +3294,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "GiantHermitaurLance",
+      "id": 773,
       "attack": 621,
       "sharpness": [
         9,
@@ -3311,29 +3311,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": "Shell Claw Lance",
+      "improve_from": 772,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "PlumD.HermitrClw",
+          "item": 502,
           "amount": 2,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "PlumD.HermitrShl",
+          "item": 501,
           "amount": 8,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "HvyCeanataurLeg",
+          "item": 508,
           "amount": 3,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 2,
           "type": "scale",
           "color": "gray"
@@ -3353,7 +3353,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Longhorn",
+      "id": 512,
       "attack": 161,
       "sharpness": [
         9,
@@ -3370,13 +3370,13 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Sm Monster Bone",
+          "item": 281,
           "amount": 2,
           "type": "bone",
           "color": "yellow"
         },
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 1,
           "type": "bone",
           "color": "white"
@@ -3384,8 +3384,8 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Longhorn+",
-        "Wild Bone Lance"
+        129,
+        516
       ],
       "sharpness_plus": [
         9,
@@ -3396,7 +3396,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Longhorn+",
+      "id": 129,
       "attack": 207,
       "sharpness": [
         5,
@@ -3410,26 +3410,26 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 1100,
-      "improve_from": "Longhorn",
+      "improve_from": 512,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 2,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Bone",
+          "item": 292,
           "amount": 3,
           "type": "bone",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Long Tusk",
-        "Dark Lance",
-        "Great Bone Gunlance"
+        131,
+        115,
+        523
       ],
       "sharpness_plus": [
         5,
@@ -3441,7 +3441,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Long Tusk",
+      "id": 131,
       "attack": 253,
       "sharpness": [
         5,
@@ -3456,16 +3456,16 @@
       "type": "lance",
       "create_cost": 1750,
       "improve_cost": 1750,
-      "improve_from": "Longhorn+",
+      "improve_from": 129,
       "create_mats": [
         {
-          "name": "Hard Ticket",
+          "item": 910,
           "amount": 1,
           "type": "ticket",
           "color": "green"
         },
         {
-          "name": "Bone",
+          "item": 292,
           "amount": 1,
           "type": "bone",
           "color": "white"
@@ -3473,29 +3473,29 @@
       ],
       "improve_mats": [
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 4,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Giant Bone",
+          "item": 295,
           "amount": 1,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Med Monster Bone",
+          "item": 282,
           "amount": 1,
           "type": "bone",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Barbaroi Tusk",
-        "Crimson Lance",
-        "Bone Claw Lance",
-        "Blade Stinger"
+        513,
+        514,
+        142,
+        145
       ],
       "sharpness_plus": [
         5,
@@ -3507,7 +3507,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Barbaroi Tusk",
+      "id": 513,
       "attack": 322,
       "sharpness": [
         9,
@@ -3522,28 +3522,28 @@
       "type": "lance",
       "create_cost": 3100,
       "improve_cost": 3100,
-      "improve_from": "Long Tusk",
+      "improve_from": 131,
       "create_mats": [
         {
-          "name": "Iodrome Skull",
+          "item": 371,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Ioprey Hide",
+          "item": 368,
           "amount": 10,
           "type": "pelt",
           "color": "red"
         },
         {
-          "name": "Lg Monster Bone",
+          "item": 283,
           "amount": 7,
           "type": "bone",
           "color": "yellow"
         },
         {
-          "name": "Demondrug",
+          "item": 15,
           "amount": 5,
           "type": "fluid",
           "color": "red"
@@ -3551,27 +3551,27 @@
       ],
       "improve_mats": [
         {
-          "name": "Lg Monster Bone",
+          "item": 283,
           "amount": 5,
           "type": "bone",
           "color": "yellow"
         },
         {
-          "name": "Iodrome Hide",
+          "item": 370,
           "amount": 5,
           "type": "pelt",
           "color": "red"
         },
         {
-          "name": "Monster Fluid",
+          "item": 25,
           "amount": 5,
           "type": "fluid",
           "color": "cyan"
         }
       ],
       "improve_to": [
-        "Ogre Tusk",
-        "Incessant Raven"
+        135,
+        321
       ],
       "sharpness_plus": [
         9,
@@ -3583,7 +3583,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ogre Tusk",
+      "id": 135,
       "attack": 414,
       "sharpness": [
         7,
@@ -3598,22 +3598,22 @@
       "type": "lance",
       "create_cost": 5600,
       "improve_cost": 5600,
-      "improve_from": "Barbaroi Tusk",
+      "improve_from": 513,
       "create_mats": [
         {
-          "name": "Hard Ticket",
+          "item": 910,
           "amount": 1,
           "type": "ticket",
           "color": "green"
         },
         {
-          "name": "Alluring Hide",
+          "item": 584,
           "amount": 1,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 1,
           "type": "bone",
           "color": "orange"
@@ -3621,27 +3621,27 @@
       ],
       "improve_mats": [
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 5,
           "type": "bone",
           "color": "orange"
         },
         {
-          "name": "Ioprey Hide",
+          "item": 368,
           "amount": 20,
           "type": "pelt",
           "color": "red"
         },
         {
-          "name": "Mega Demondrug",
+          "item": 16,
           "amount": 2,
           "type": "fluid",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Great Ogre Tusk",
-        "Hard Bone Lance"
+        485,
+        127
       ],
       "sharpness_plus": [
         7,
@@ -3654,7 +3654,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Great Ogre Tusk",
+      "id": 485,
       "attack": 483,
       "sharpness": [
         7,
@@ -3670,23 +3670,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": "Ogre Tusk",
+      "improve_from": 135,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 5,
           "type": "bone",
           "color": "red"
         },
         {
-          "name": "Ioprey Hide+",
+          "item": 369,
           "amount": 10,
           "type": "pelt",
           "color": "red"
         },
         {
-          "name": "Hercudrome",
+          "item": 258,
           "amount": 10,
           "type": "insect",
           "color": "red"
@@ -3705,7 +3705,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Hard Bone Lance",
+      "id": 127,
       "attack": 460,
       "sharpness": [
         9,
@@ -3720,22 +3720,22 @@
       "type": "lance",
       "create_cost": 25000,
       "improve_cost": 25000,
-      "improve_from": "Ogre Tusk",
+      "improve_from": 135,
       "create_mats": [
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 5,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Giant Bone",
+          "item": 295,
           "amount": 15,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 30,
           "type": "ore",
           "color": "gray"
@@ -3743,13 +3743,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Tcket",
+          "item": 911,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 1,
           "type": "bone",
           "color": "white"
@@ -3757,26 +3757,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 2,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 5,
           "type": "bone",
           "color": "orange"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 10,
           "type": "ore",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Hard Bone Lance+"
+        128
       ],
       "sharpness_plus": [
         9,
@@ -3787,7 +3787,7 @@
       "elements": null
     },
     {
-      "name": "Hard Bone Lance+",
+      "id": 128,
       "attack": 483,
       "sharpness": [
         9,
@@ -3802,32 +3802,32 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": "Hard Bone Lance",
+      "improve_from": 127,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Master's Skull",
+          "item": 291,
           "amount": 5,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Rare Scarab",
+          "item": 259,
           "amount": 10,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 8,
           "type": "bone",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Barbarian Tusk",
-        "Demon Lance",
-        "Full Voltage"
+        132,
+        155,
+        789
       ],
       "sharpness_plus": [
         9,
@@ -3840,7 +3840,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Barbarian Tusk",
+      "id": 132,
       "attack": 506,
       "sharpness": [
         16,
@@ -3856,31 +3856,31 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": "Hard Bone Lance+",
+      "improve_from": 128,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Diablos Carapace",
+          "item": 638,
           "amount": 3,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 6,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 30,
           "type": "insect",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Giant Tusk",
-        "Heavy Bone Gunlance"
+        785,
+        787
       ],
       "sharpness_plus": [
         16,
@@ -3894,7 +3894,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Giant Tusk",
+      "id": 785,
       "attack": 552,
       "sharpness": [
         11,
@@ -3910,28 +3910,28 @@
       "type": "lance",
       "create_cost": 75000,
       "improve_cost": 75000,
-      "improve_from": "Barbarian Tusk",
+      "improve_from": 132,
       "create_mats": [
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 5,
           "type": "bone",
           "color": "gray"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 5,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "RobustWyvernBone",
+          "item": 293,
           "amount": 8,
           "type": "bone",
           "color": "cyan"
         },
         {
-          "name": "ThkBullfangoPelt",
+          "item": 322,
           "amount": 5,
           "type": "pelt",
           "color": "orange"
@@ -3939,26 +3939,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 2,
           "type": "bone",
           "color": "gray"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 2,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Monster Essence",
+          "item": 27,
           "amount": 5,
           "type": "fluid",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Brutal Tusk"
+        786
       ],
       "sharpness_plus": [
         11,
@@ -3972,7 +3972,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Brutal Tusk",
+      "id": 786,
       "attack": 598,
       "sharpness": [
         11,
@@ -3989,23 +3989,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Giant Tusk",
+      "improve_from": 785,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "BigEDragonBone",
+          "item": 288,
           "amount": 3,
           "type": "bone",
           "color": "slate"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 5,
           "type": "bone",
           "color": "gray"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 5,
           "type": "bone",
           "color": "white"
@@ -4025,7 +4025,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Demon Lance",
+      "id": 155,
       "attack": 414,
       "sharpness": [
         9,
@@ -4040,28 +4040,28 @@
       "type": "lance",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": "Hard Bone Lance+",
+      "improve_from": 128,
       "create_mats": [
         {
-          "name": "Rajang Horn",
+          "item": 456,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Rajang Fang",
+          "item": 458,
           "amount": 4,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Blk Rajang Pelt",
+          "item": 460,
           "amount": 6,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Commendation",
+          "item": 903,
           "amount": 4,
           "type": "ticket",
           "color": "white"
@@ -4069,26 +4069,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Rajang Horn",
+          "item": 456,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Rajang Tail",
+          "item": 464,
           "amount": 2,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Blk Rajang Pelt",
+          "item": 460,
           "amount": 3,
           "type": "pelt",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Great Demon Lance"
+        230
       ],
       "sharpness_plus": [
         9,
@@ -4106,7 +4106,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Great Demon Lance",
+      "id": 230,
       "attack": 437,
       "sharpness": [
         9,
@@ -4122,30 +4122,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": "Demon Lance",
+      "improve_from": 155,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Gold Rajang Pelt",
+          "item": 466,
           "amount": 1,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "Rajang Claw",
+          "item": 462,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Gld Rathian Scl+",
+          "item": 538,
           "amount": 4,
           "type": "scale",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Demonlance Rajang"
+        792
       ],
       "sharpness_plus": [
         9,
@@ -4164,7 +4164,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Demonlance Rajang",
+      "id": 792,
       "attack": 621,
       "sharpness": [
         9,
@@ -4181,29 +4181,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 130000,
-      "improve_from": "Great Demon Lance",
+      "improve_from": 230,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hard Rajang Horn",
+          "item": 457,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Blk Rajang Pelt+",
+          "item": 461,
           "amount": 3,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Hard Rajang Claw",
+          "item": 463,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "GoldRajangPelt+",
+          "item": 467,
           "amount": 1,
           "type": "pelt",
           "color": "yellow"
@@ -4228,7 +4228,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Incessant Raven",
+      "id": 321,
       "attack": 368,
       "sharpness": [
         9,
@@ -4243,28 +4243,28 @@
       "type": "lance",
       "create_cost": 10000,
       "improve_cost": 10000,
-      "improve_from": "Barbaroi Tusk",
+      "improve_from": 513,
       "create_mats": [
         {
-          "name": "Garuga Tail",
+          "item": 421,
           "amount": 3,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Sharpened Beak",
+          "item": 417,
           "amount": 1,
           "type": "bone",
           "color": "slate"
         },
         {
-          "name": "Garuga Ear",
+          "item": 415,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 10,
           "type": "ore",
           "color": "blue"
@@ -4272,26 +4272,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Garuga Tail",
+          "item": 421,
           "amount": 1,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga Wing",
+          "item": 419,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga Scale",
+          "item": 409,
           "amount": 5,
           "type": "scale",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Incessant Wolf"
+        442
       ],
       "sharpness_plus": [
         9,
@@ -4309,7 +4309,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Incessant Wolf",
+      "id": 442,
       "attack": 460,
       "sharpness": [
         3,
@@ -4325,30 +4325,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 65000,
-      "improve_from": "Incessant Raven",
+      "improve_from": 321,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Garuga Scale+",
+          "item": 410,
           "amount": 4,
           "type": "scale",
           "color": "slate"
         },
         {
-          "name": "Long Garuga Ear",
+          "item": 416,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Toxin Sac",
+          "item": 268,
           "amount": 5,
           "type": "sac",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Incessant Crow"
+        766
       ],
       "sharpness_plus": [
         3,
@@ -4367,7 +4367,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Incessant Crow",
+      "id": 766,
       "attack": 621,
       "sharpness": [
         3,
@@ -4384,29 +4384,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 105000,
-      "improve_from": "Incessant Wolf",
+      "improve_from": 442,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "LethrGarugaTail",
+          "item": 422,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Str Garuga Wing",
+          "item": 420,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "ThickGarugaScale",
+          "item": 411,
           "amount": 5,
           "type": "scale",
           "color": "slate"
         },
         {
-          "name": "DeadlyPoisonSac",
+          "item": 269,
           "amount": 2,
           "type": "sac",
           "color": "slate"
@@ -4431,7 +4431,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crimson Lance",
+      "id": 514,
       "attack": 276,
       "sharpness": [
         11,
@@ -4446,28 +4446,28 @@
       "type": "lance",
       "create_cost": 3100,
       "improve_cost": 3100,
-      "improve_from": "Long Tusk",
+      "improve_from": 131,
       "create_mats": [
         {
-          "name": "Monoblos Spine",
+          "item": 673,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Blood Red Horn",
+          "item": 669,
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 8,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Monster Fluid",
+          "item": 25,
           "amount": 5,
           "type": "fluid",
           "color": "cyan"
@@ -4475,28 +4475,28 @@
       ],
       "improve_mats": [
         {
-          "name": "Blood Red Horn",
+          "item": 669,
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Flame Sac",
+          "item": 273,
           "amount": 2,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 4,
           "type": "ore",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Crimson War Pike",
-        "Ceramic Blos Lance",
-        "Diablo Horn"
+        143,
+        368,
+        139
       ],
       "sharpness_plus": [
         11,
@@ -4513,7 +4513,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crimson War Pike",
+      "id": 143,
       "attack": 368,
       "sharpness": [
         11,
@@ -4528,30 +4528,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 6350,
-      "improve_from": "Crimson Lance",
+      "improve_from": 514,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Monoblos Heart",
+          "item": 675,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Blood Red Horn",
+          "item": 669,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Monoblos Shell",
+          "item": 671,
           "amount": 6,
           "type": "part",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Crimson War Pike+"
+        767
       ],
       "sharpness_plus": [
         11,
@@ -4569,7 +4569,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crimson War Pike+",
+      "id": 767,
       "attack": 437,
       "sharpness": [
         11,
@@ -4585,23 +4585,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": "Crimson War Pike",
+      "improve_from": 143,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Top-GrdRedHorn",
+          "item": 670,
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "MonoblosCarapace",
+          "item": 672,
           "amount": 5,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Inferno Sac",
+          "item": 274,
           "amount": 5,
           "type": "sac",
           "color": "red"
@@ -4625,7 +4625,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ceramic Blos Lance",
+      "id": 368,
       "attack": 322,
       "sharpness": [
         3,
@@ -4640,30 +4640,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 4250,
-      "improve_from": "Crimson Lance",
+      "improve_from": 514,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Wht Monoblos Hrn",
+          "item": 676,
           "amount": 1,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Wht Monoblos Spn",
+          "item": 680,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Wht Monoblos Shl",
+          "item": 678,
           "amount": 4,
           "type": "part",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Ceramic Blos Lance+"
+        515
       ],
       "sharpness_plus": [
         3,
@@ -4680,7 +4680,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ceramic Blos Lance+",
+      "id": 515,
       "attack": 345,
       "sharpness": [
         3,
@@ -4695,30 +4695,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 8350,
-      "improve_from": "Ceramic Blos Lance",
+      "improve_from": 368,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Wht Monoblos Hrn",
+          "item": 676,
           "amount": 3,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Grn Plesioth Scl",
+          "item": 476,
           "amount": 5,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Diablos Spine",
+          "item": 640,
           "amount": 4,
           "type": "part",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "White Disaster"
+        263
       ],
       "sharpness_plus": [
         3,
@@ -4736,7 +4736,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "White Disaster",
+      "id": 263,
       "attack": 437,
       "sharpness": [
         3,
@@ -4752,30 +4752,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": "Ceramic Blos Lance+",
+      "improve_from": 515,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Top-GrdPlatHorn",
+          "item": 677,
           "amount": 1,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "WhtMonoblosThora",
+          "item": 681,
           "amount": 4,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Diablos Thoracic",
+          "item": 641,
           "amount": 6,
           "type": "part",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "White Catastrophe"
+        768
       ],
       "sharpness_plus": [
         3,
@@ -4794,7 +4794,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "White Catastrophe",
+      "id": 768,
       "attack": 460,
       "sharpness": [
         3,
@@ -4810,23 +4810,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 85000,
-      "improve_from": "White Disaster",
+      "improve_from": 263,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Top-GrdPlatHorn",
+          "item": 677,
           "amount": 2,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Wht Monoblos Cpc",
+          "item": 679,
           "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Monoblos Heart",
+          "item": 675,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -4850,7 +4850,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Diablo Horn",
+      "id": 139,
       "attack": 391,
       "sharpness": [
         5,
@@ -4865,30 +4865,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 4900,
-      "improve_from": "Crimson Lance",
+      "improve_from": 514,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Twisted Horn",
+          "item": 634,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Diablos Shell",
+          "item": 637,
           "amount": 4,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 4,
           "type": "ore",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Diablo Spear"
+        141
       ],
       "sharpness_plus": [
         5,
@@ -4900,7 +4900,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Diablo Spear",
+      "id": 141,
       "attack": 460,
       "sharpness": [
         9,
@@ -4915,30 +4915,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 30000,
-      "improve_from": "Diablo Horn",
+      "improve_from": 139,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Majestic Horn",
+          "item": 635,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Blos Fang",
+          "item": 645,
           "amount": 10,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Diablos Spine",
+          "item": 640,
           "amount": 5,
           "type": "part",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Black Tempest"
+        323
       ],
       "sharpness_plus": [
         9,
@@ -4951,7 +4951,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Tempest",
+      "id": 323,
       "attack": 552,
       "sharpness": [
         7,
@@ -4967,30 +4967,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": "Diablo Spear",
+      "improve_from": 141,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "TwstBlkBlosHrn",
+          "item": 646,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Blk Blos Thracic",
+          "item": 652,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Black Blos Cpc",
+          "item": 649,
           "amount": 8,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Rising Tempest"
+        769
       ],
       "sharpness_plus": [
         7,
@@ -5004,7 +5004,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Rising Tempest",
+      "id": 769,
       "attack": 736,
       "sharpness": [
         11,
@@ -5021,29 +5021,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": "Black Tempest",
+      "improve_from": 323,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "StoutBlkTwstdHrn",
+          "item": 647,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "HvyBlkBlosSpine",
+          "item": 653,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvyBlkBlosShell",
+          "item": 650,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 1,
           "type": "stone",
           "color": "blue"
@@ -5063,7 +5063,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bone Claw Lance",
+      "id": 142,
       "attack": 299,
       "sharpness": [
         3,
@@ -5077,28 +5077,28 @@
       "type": "lance",
       "create_cost": 3100,
       "improve_cost": 3100,
-      "improve_from": "Long Tusk",
+      "improve_from": 131,
       "create_mats": [
         {
-          "name": "Hermitaur Claw",
+          "item": 498,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Hermitaur Shell",
+          "item": 495,
           "amount": 5,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Sm Hermitaur Shl",
+          "item": 494,
           "amount": 7,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Monster Fluid",
+          "item": 25,
           "amount": 3,
           "type": "fluid",
           "color": "cyan"
@@ -5106,26 +5106,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Hermitaur Shell",
+          "item": 495,
           "amount": 4,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Sm Hermitaur Shl",
+          "item": 494,
           "amount": 5,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Sharp Claw",
+          "item": 427,
           "amount": 3,
           "type": "claw",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Bone Claw Lance+"
+        439
       ],
       "sharpness_plus": [
         3,
@@ -5137,7 +5137,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bone Claw Lance+",
+      "id": 439,
       "attack": 368,
       "sharpness": [
         9,
@@ -5152,31 +5152,31 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 5600,
-      "improve_from": "Bone Claw Lance",
+      "improve_from": 142,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hermitaur Claw",
+          "item": 498,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Hermitaur Shell",
+          "item": 495,
           "amount": 8,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 2,
           "type": "bone",
           "color": "orange"
         }
       ],
       "improve_to": [
-        "Scissor Gunlance",
-        "Ceanataur Piercer"
+        137,
+        441
       ],
       "sharpness_plus": [
         9,
@@ -5189,7 +5189,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ceanataur Piercer",
+      "id": 441,
       "attack": 460,
       "sharpness": [
         3,
@@ -5206,33 +5206,33 @@
       "create_cost": null,
       "improve_cost": 50000,
       "improve_from": [
-        "Ceanataur Stinger",
-        "Bone Claw Lance+"
+        152,
+        439
       ],
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Ceanataur Claw+",
+          "item": 511,
           "amount": 3,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Ceanataur Carpce",
+          "item": 505,
           "amount": 5,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Ceanataur Leg",
+          "item": 507,
           "amount": 8,
           "type": "shell",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Carmine Stinger",
-        "Shell Claw Lance"
+        774,
+        772
       ],
       "sharpness_plus": [
         3,
@@ -5246,7 +5246,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Carmine Stinger",
+      "id": 774,
       "attack": 575,
       "sharpness": [
         16,
@@ -5264,28 +5264,28 @@
       "type": "lance",
       "create_cost": 85000,
       "improve_cost": 85000,
-      "improve_from": "Ceanataur Piercer",
+      "improve_from": 441,
       "create_mats": [
         {
-          "name": "TerraCeanatrClaw",
+          "item": 514,
           "amount": 4,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "TerraCeanatrShl",
+          "item": 513,
           "amount": 8,
           "type": "shell",
           "color": "orange"
         },
         {
-          "name": "Ceanataur Leg",
+          "item": 507,
           "amount": 15,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Emperor Cricket",
+          "item": 256,
           "amount": 5,
           "type": "insect",
           "color": "orange"
@@ -5293,26 +5293,26 @@
       ],
       "improve_mats": [
         {
-          "name": "TerraCeanatrClaw",
+          "item": 514,
           "amount": 2,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "TerraCeanatrShl",
+          "item": 513,
           "amount": 5,
           "type": "shell",
           "color": "orange"
         },
         {
-          "name": "HrdHermitaurClaw",
+          "item": 500,
           "amount": 5,
           "type": "claw",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Shish Kabob Stick"
+        775
       ],
       "sharpness_plus": [
         16,
@@ -5327,7 +5327,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Shish Kabob Stick",
+      "id": 775,
       "attack": 598,
       "sharpness": [
         5,
@@ -5345,29 +5345,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": "Carmine Stinger",
+      "improve_from": 774,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "TerraCeanatrClaw",
+          "item": 514,
           "amount": 3,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "HvyCeanataurLeg",
+          "item": 508,
           "amount": 5,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "HvyGaorenShell",
+          "item": 706,
           "amount": 3,
           "type": "shell",
           "color": "gray"
@@ -5387,7 +5387,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blade Stinger",
+      "id": 145,
       "attack": 345,
       "sharpness": [
         5,
@@ -5403,30 +5403,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 3560,
-      "improve_from": "Long Tusk",
+      "improve_from": 131,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Ceanataur Pincer",
+          "item": 509,
           "amount": 2,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Sm Ceanataur Shl",
+          "item": 503,
           "amount": 10,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Black Pearl",
+          "item": 198,
           "amount": 3,
           "type": "scale",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Ceanataur Stinger"
+        152
       ],
       "sharpness_plus": [
         5,
@@ -5439,7 +5439,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ceanataur Stinger",
+      "id": 152,
       "attack": 391,
       "sharpness": [
         3,
@@ -5455,30 +5455,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 5600,
-      "improve_from": "Blade Stinger",
+      "improve_from": 145,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Ceanataur Claw",
+          "item": 510,
           "amount": 8,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Ceanataur Shell",
+          "item": 504,
           "amount": 10,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 3,
           "type": "bone",
           "color": "orange"
         }
       ],
       "improve_to": [
-        "Ceanataur Piercer"
+        441
       ],
       "sharpness_plus": [
         3,
@@ -5491,7 +5491,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dark Lance",
+      "id": 115,
       "attack": 230,
       "sharpness": [
         5,
@@ -5506,30 +5506,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 2150,
-      "improve_from": "Longhorn+",
+      "improve_from": 129,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hornetaur Shell",
+          "item": 663,
           "amount": 10,
           "type": "insect",
           "color": "gray"
         },
         {
-          "name": "Vespoid Abdomen",
+          "item": 656,
           "amount": 1,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Paralysis Sac",
+          "item": 270,
           "amount": 2,
           "type": "sac",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Dark Spear"
+        117
       ],
       "sharpness_plus": [
         5,
@@ -5546,7 +5546,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dark Spear",
+      "id": 117,
       "attack": 299,
       "sharpness": [
         5,
@@ -5561,30 +5561,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 4250,
-      "improve_from": "Dark Lance",
+      "improve_from": 115,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hornetaur Head",
+          "item": 665,
           "amount": 3,
           "type": "insect",
           "color": "gray"
         },
         {
-          "name": "Hercudrome",
+          "item": 258,
           "amount": 3,
           "type": "insect",
           "color": "red"
         },
         {
-          "name": "Gendrome Skull",
+          "item": 364,
           "amount": 2,
           "type": "part",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Dark"
+        318
       ],
       "sharpness_plus": [
         5,
@@ -5602,7 +5602,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dark",
+      "id": 318,
       "attack": 322,
       "sharpness": [
         9,
@@ -5619,30 +5619,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": "Dark Spear",
+      "improve_from": 117,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HornetaurInnrWng",
+          "item": 667,
           "amount": 5,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Hornetaur Crapce",
+          "item": 664,
           "amount": 8,
           "type": "insect",
           "color": "gray"
         },
         {
-          "name": "Gendrome Tail",
+          "item": 363,
           "amount": 5,
           "type": "pelt",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Darkness"
+        776
       ],
       "sharpness_plus": [
         9,
@@ -5662,7 +5662,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Darkness",
+      "id": 776,
       "attack": 506,
       "sharpness": [
         3,
@@ -5680,29 +5680,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Dark",
+      "improve_from": 318,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hornet Razorwing",
+          "item": 668,
           "amount": 5,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Vspoid Razorwing",
+          "item": 662,
           "amount": 5,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "Hornetaur Crapce",
+          "item": 664,
           "amount": 10,
           "type": "insect",
           "color": "gray"
         },
         {
-          "name": "Monster Essence",
+          "item": 27,
           "amount": 3,
           "type": "fluid",
           "color": "blue"
@@ -5727,7 +5727,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wild Bone Lance",
+      "id": 516,
       "attack": 230,
       "sharpness": [
         5,
@@ -5741,28 +5741,28 @@
       "type": "lance",
       "create_cost": 1400,
       "improve_cost": 1400,
-      "improve_from": "Longhorn",
+      "improve_from": 512,
       "create_mats": [
         {
-          "name": "Bullfango Pelt",
+          "item": 321,
           "amount": 5,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 3,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Anteka Antlers",
+          "item": 329,
           "amount": 2,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Carpenterbug",
+          "item": 254,
           "amount": 5,
           "type": "insect",
           "color": "gray"
@@ -5770,13 +5770,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Tcket",
+          "item": 911,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Bullfango Pelt",
+          "item": 321,
           "amount": 1,
           "type": "pelt",
           "color": "orange"
@@ -5784,27 +5784,27 @@
       ],
       "improve_mats": [
         {
-          "name": "Bullfango Pelt",
+          "item": 321,
           "amount": 3,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 3,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 2,
           "type": "ore",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Wild Bone Lance+",
-        "Fragrance"
+        517,
+        519
       ],
       "sharpness_plus": [
         5,
@@ -5815,7 +5815,7 @@
       "elements": null
     },
     {
-      "name": "Wild Bone Lance+",
+      "id": 517,
       "attack": 276,
       "sharpness": [
         7,
@@ -5829,31 +5829,31 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 2150,
-      "improve_from": "Wild Bone Lance",
+      "improve_from": 516,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Bulldrome Tusk",
+          "item": 324,
           "amount": 2,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Bullfango Head",
+          "item": 323,
           "amount": 1,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Bulldrome Hide",
+          "item": 325,
           "amount": 3,
           "type": "pelt",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Bulldrome Spear",
-        "Red Tail"
+        518,
+        136
       ],
       "sharpness_plus": [
         7,
@@ -5864,7 +5864,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bulldrome Spear",
+      "id": 518,
       "attack": 483,
       "sharpness": [
         3,
@@ -5879,23 +5879,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": "Wild Bone Lance+",
+      "improve_from": 517,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Bulldrome Tusk",
+          "item": 324,
           "amount": 6,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Bulldrome Hide+",
+          "item": 326,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 4,
           "type": "bone",
           "color": "white"
@@ -5913,7 +5913,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Red Tail",
+      "id": 136,
       "attack": 253,
       "sharpness": [
         5,
@@ -5928,28 +5928,28 @@
       "type": "lance",
       "create_cost": 2600,
       "improve_cost": 2600,
-      "improve_from": "Wild Bone Lance+",
+      "improve_from": 517,
       "create_mats": [
         {
-          "name": "Rathalos Scale",
+          "item": 548,
           "amount": 3,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Rathalos Shell",
+          "item": 554,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "FireWyvern Fluid",
+          "item": 545,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Flame Sac",
+          "item": 273,
           "amount": 2,
           "type": "sac",
           "color": "red"
@@ -5957,27 +5957,27 @@
       ],
       "improve_mats": [
         {
-          "name": "FireWyvern Fluid",
+          "item": 545,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Wyvern Claw",
+          "item": 299,
           "amount": 6,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Flame Sac",
+          "item": 273,
           "amount": 2,
           "type": "sac",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Spear of Prominence",
-        "Blue Tail"
+        218,
+        326
       ],
       "sharpness_plus": [
         5,
@@ -5994,7 +5994,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Spear of Prominence",
+      "id": 218,
       "attack": 345,
       "sharpness": [
         5,
@@ -6009,23 +6009,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": "Red Tail",
+      "improve_from": 136,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Rathalos Tail",
+          "item": 557,
           "amount": 5,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Rathalos Shell",
+          "item": 554,
           "amount": 7,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Rathalos Plate",
+          "item": 551,
           "amount": 1,
           "type": "scale",
           "color": "red"
@@ -6048,7 +6048,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blue Tail",
+      "id": 326,
       "attack": 322,
       "sharpness": [
         9,
@@ -6063,30 +6063,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 4900,
-      "improve_from": "Red Tail",
+      "improve_from": 136,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Azur Rthlos Tail",
+          "item": 568,
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Azure Rthlos Shl",
+          "item": 565,
           "amount": 5,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "FireWyvrn Marrow",
+          "item": 546,
           "amount": 1,
           "type": "part",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Blue Prominence"
+        327
       ],
       "sharpness_plus": [
         9,
@@ -6104,7 +6104,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blue Prominence",
+      "id": 327,
       "attack": 391,
       "sharpness": [
         9,
@@ -6120,30 +6120,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 70000,
-      "improve_from": "Blue Tail",
+      "improve_from": 326,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Azur Rthlos Tail",
+          "item": 568,
           "amount": 10,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Azure Rthlos Cpc",
+          "item": 566,
           "amount": 6,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Rathalos Ruby",
+          "item": 552,
           "amount": 1,
           "type": "stone",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Prominence Soul"
+        777
       ],
       "sharpness_plus": [
         9,
@@ -6162,7 +6162,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Prominence Soul",
+      "id": 777,
       "attack": 575,
       "sharpness": [
         9,
@@ -6179,23 +6179,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 120000,
-      "improve_from": "Blue Prominence",
+      "improve_from": 327,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "LthrAzrRthlsTail",
+          "item": 569,
           "amount": 2,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "HvyAzurRthlsShl",
+          "item": 567,
           "amount": 5,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "HvnlyRathalosScl",
+          "item": 553,
           "amount": 1,
           "type": "heavenly",
           "color": "red"
@@ -6220,7 +6220,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fragrance",
+      "id": 519,
       "attack": 207,
       "sharpness": [
         3,
@@ -6235,28 +6235,28 @@
       "type": "lance",
       "create_cost": 1400,
       "improve_cost": 1400,
-      "improve_from": "Wild Bone Lance",
+      "improve_from": 516,
       "create_mats": [
         {
-          "name": "Dosbiscus",
+          "item": 172,
           "amount": 4,
           "type": "herb",
           "color": "red"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 3,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Sap Plant",
+          "item": 168,
           "amount": 5,
           "type": "herb",
           "color": "white"
         },
         {
-          "name": "Godbug",
+          "item": 250,
           "amount": 1,
           "type": "insect",
           "color": "white"
@@ -6264,26 +6264,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Dosbiscus",
+          "item": 172,
           "amount": 2,
           "type": "herb",
           "color": "red"
         },
         {
-          "name": "Carpenterbug",
+          "item": 254,
           "amount": 3,
           "type": "insect",
           "color": "gray"
         },
         {
-          "name": "Sunset Herb",
+          "item": 162,
           "amount": 3,
           "type": "herb",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Fragrance+"
+        520
       ],
       "sharpness_plus": [
         3,
@@ -6295,7 +6295,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fragrance+",
+      "id": 520,
       "attack": 276,
       "sharpness": [
         3,
@@ -6310,30 +6310,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 3650,
-      "improve_from": "Fragrance",
+      "improve_from": 519,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Dosbiscus",
+          "item": 172,
           "amount": 6,
           "type": "herb",
           "color": "red"
         },
         {
-          "name": "Alluring Hide",
+          "item": 584,
           "amount": 3,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Black Pearl",
+          "item": 198,
           "amount": 5,
           "type": "scale",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Noble Fragrance"
+        521
       ],
       "sharpness_plus": [
         3,
@@ -6346,7 +6346,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Noble Fragrance",
+      "id": 521,
       "attack": 345,
       "sharpness": [
         3,
@@ -6362,23 +6362,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 45000,
-      "improve_from": "Fragrance+",
+      "improve_from": 520,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Dosbiscus",
+          "item": 172,
           "amount": 10,
           "type": "herb",
           "color": "red"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 5,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Conga Pelt+",
+          "item": 443,
           "amount": 10,
           "type": "pelt",
           "color": "pink"
@@ -6397,7 +6397,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Rusted Lance",
+      "id": 150,
       "attack": 207,
       "sharpness": [
         15
@@ -6412,7 +6412,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Ruststone Rod",
+          "item": 823,
           "amount": 1,
           "type": "ukwn",
           "color": "gray"
@@ -6420,7 +6420,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Tarnished Lance"
+        151
       ],
       "sharpness_plus": [
         16,
@@ -6430,7 +6430,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tarnished Lance",
+      "id": 151,
       "attack": 253,
       "sharpness": [
         16,
@@ -6443,19 +6443,19 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 2500,
-      "improve_from": "Rusted Lance",
+      "improve_from": 150,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 20,
           "type": "ore",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Undertaker",
-        "Steel Ice Spear"
+        153,
+        324
       ],
       "sharpness_plus": [
         16,
@@ -6466,7 +6466,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Undertaker",
+      "id": 153,
       "attack": 414,
       "sharpness": [
         16,
@@ -6481,17 +6481,17 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": "Tarnished Lance",
+      "improve_from": 151,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 40,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -6509,7 +6509,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Steel Ice Spear",
+      "id": 324,
       "attack": 322,
       "sharpness": [
         11,
@@ -6524,30 +6524,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": "Tarnished Lance",
+      "improve_from": 151,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Daora Tail",
+          "item": 724,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Daora Shell",
+          "item": 714,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "DaoraDragonScale",
+          "item": 717,
           "amount": 4,
           "type": "scale",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Steel Ice Spear+"
+        325
       ],
       "sharpness_plus": [
         11,
@@ -6564,7 +6564,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Steel Ice Spear+",
+      "id": 325,
       "attack": 345,
       "sharpness": [
         11,
@@ -6579,30 +6579,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 50000,
-      "improve_from": "Steel Ice Spear",
+      "improve_from": 324,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Daora Claw",
+          "item": 726,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Daora Shell",
+          "item": 714,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 2,
           "type": "part",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Daora's Fang"
+        440
       ],
       "sharpness_plus": [
         11,
@@ -6620,7 +6620,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Daora's Fang",
+      "id": 440,
       "attack": 437,
       "sharpness": [
         11,
@@ -6636,30 +6636,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": "Steel Ice Spear+",
+      "improve_from": 325,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Daora Sharp Claw",
+          "item": 727,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Daora Carapace",
+          "item": 715,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Daora Jewel",
+          "item": 728,
           "amount": 1,
           "type": "stone",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Daora's Regulus"
+        804
       ],
       "sharpness_plus": [
         11,
@@ -6678,7 +6678,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Daora's Regulus",
+      "id": 804,
       "attack": 621,
       "sharpness": [
         11,
@@ -6695,29 +6695,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 135000,
-      "improve_from": "Daora's Fang",
+      "improve_from": 440,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Lthr Daora Tail",
+          "item": 725,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Hvy Daora Shell",
+          "item": 716,
           "amount": 7,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Hard Daora Horn",
+          "item": 723,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
@@ -6742,7 +6742,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Worn Spear",
+      "id": 332,
       "attack": 299,
       "sharpness": [
         16,
@@ -6758,7 +6758,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Ancient StoneRod",
+          "item": 828,
           "amount": 1,
           "type": "ukwn",
           "color": "gray"
@@ -6766,7 +6766,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Weathered Spear"
+        333
       ],
       "sharpness_plus": [
         16,
@@ -6777,7 +6777,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Weathered Spear",
+      "id": 333,
       "attack": 345,
       "sharpness": [
         16,
@@ -6791,19 +6791,19 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 12500,
-      "improve_from": "Worn Spear",
+      "improve_from": 332,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 20,
           "type": "ore",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Matenro",
-        "Teostra's Howl"
+        335,
+        334
       ],
       "sharpness_plus": [
         16,
@@ -6815,7 +6815,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Matenro",
+      "id": 335,
       "attack": 483,
       "sharpness": [
         16,
@@ -6831,24 +6831,24 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 60000,
-      "improve_from": "Weathered Spear",
+      "improve_from": 333,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 40,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 5,
           "type": "part",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Sky Scraper"
+        805
       ],
       "sharpness_plus": [
         16,
@@ -6862,7 +6862,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sky Scraper",
+      "id": 805,
       "attack": 598,
       "sharpness": [
         16,
@@ -6879,23 +6879,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Matenro",
+      "improve_from": 335,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 8,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 10,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -6915,7 +6915,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Teostra's Howl",
+      "id": 334,
       "attack": 414,
       "sharpness": [
         11,
@@ -6930,30 +6930,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 80000,
-      "improve_from": "Weathered Spear",
+      "improve_from": 333,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Teostra Tail",
+          "item": 760,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Teostra Shell",
+          "item": 756,
           "amount": 8,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Fire Dragon Pwdr",
+          "item": 747,
           "amount": 2,
           "type": "sac",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Teostra's Roar"
+        445
       ],
       "sharpness_plus": [
         11,
@@ -6971,7 +6971,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Teostra's Roar",
+      "id": 445,
       "attack": 460,
       "sharpness": [
         11,
@@ -6987,30 +6987,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": "Teostra's Howl",
+      "improve_from": 334,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Teostra Horn+",
+          "item": 763,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Teostra Carapace",
+          "item": 757,
           "amount": 8,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Fire Drgn Jwl",
+          "item": 748,
           "amount": 1,
           "type": "stone",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Teostra's Fire"
+        806
       ],
       "sharpness_plus": [
         11,
@@ -7029,7 +7029,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Teostra's Fire",
+      "id": 806,
       "attack": 621,
       "sharpness": [
         11,
@@ -7046,23 +7046,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 130000,
-      "improve_from": "Teostra's Roar",
+      "improve_from": 445,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HardTeostraHorn",
+          "item": 764,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "LthrTeostraTail",
+          "item": 761,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
@@ -7087,7 +7087,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Belt Lance",
+      "id": 330,
       "attack": 345,
       "sharpness": [
         5,
@@ -7105,25 +7105,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Blackbelt Ticket",
+          "item": 925,
           "amount": 8,
           "type": "ticket",
           "color": "green"
         },
         {
-          "name": "Congalala Coin",
+          "item": 885,
           "amount": 10,
           "type": "coin",
           "color": "pink"
         },
         {
-          "name": "Plesioth Coin",
+          "item": 895,
           "amount": 10,
           "type": "coin",
           "color": "blue"
         },
         {
-          "name": "Kut-Ku Coin",
+          "item": 884,
           "amount": 15,
           "type": "coin",
           "color": "pink"
@@ -7131,7 +7131,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Expert Lance"
+        331
       ],
       "sharpness_plus": [
         5,
@@ -7143,7 +7143,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Expert Lance",
+      "id": 331,
       "attack": 460,
       "sharpness": [
         5,
@@ -7158,30 +7158,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 20000,
-      "improve_from": "Black Belt Lance",
+      "improve_from": 330,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Expert Ticket",
+          "item": 926,
           "amount": 15,
           "type": "ticket",
           "color": "green"
         },
         {
-          "name": "Kirin Coin",
+          "item": 893,
           "amount": 5,
           "type": "coin",
           "color": "white"
         },
         {
-          "name": "Slvr Rthlos Tail",
+          "item": 575,
           "amount": 2,
           "type": "part",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Warrior's Lance"
+        858
       ],
       "sharpness_plus": [
         5,
@@ -7199,7 +7199,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Warrior's Lance",
+      "id": 858,
       "attack": 598,
       "sharpness": [
         5,
@@ -7216,29 +7216,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": "Expert Lance",
+      "improve_from": 331,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "LthrSlvrRthlsTal",
+          "item": 576,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Warrior Coin G",
+          "item": 901,
           "amount": 4,
           "type": "coin",
           "color": "cyan"
         },
         {
-          "name": "Expert Coin G",
+          "item": 900,
           "amount": 5,
           "type": "coin",
           "color": "yellow"
         },
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -7263,7 +7263,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Lance",
+      "id": 154,
       "attack": 322,
       "sharpness": [
         5,
@@ -7281,19 +7281,19 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Dark Stone",
+          "item": 775,
           "amount": 1,
           "type": "egg",
           "color": "gray"
         },
         {
-          "name": "Dark Piece",
+          "item": 774,
           "amount": 4,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Pokke Ticket",
+          "item": 907,
           "amount": 1,
           "type": "ticket",
           "color": "cyan"
@@ -7301,8 +7301,8 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Black Dragon Spear",
-        "Black Ruiner Lance"
+        219,
+        322
       ],
       "sharpness_plus": [
         5,
@@ -7319,7 +7319,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Dragon Spear",
+      "id": 219,
       "attack": 483,
       "sharpness": [
         11,
@@ -7334,30 +7334,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Black Lance",
+      "improve_from": 154,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Fatalis Horn",
+          "item": 776,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Fatalis Eye",
+          "item": 782,
           "amount": 2,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Lao-Shan's Ruby",
+          "item": 696,
           "amount": 1,
           "type": "stone",
           "color": "red"
         }
       ],
       "improve_to": [
-        "True Blk Dragon Spr"
+        797
       ],
       "sharpness_plus": [
         11,
@@ -7375,7 +7375,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "True Blk Dragon Spr",
+      "id": 797,
       "attack": 644,
       "sharpness": [
         11,
@@ -7391,23 +7391,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 150000,
-      "improve_from": "Black Dragon Spear",
+      "improve_from": 219,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HardFatalisHorn",
+          "item": 777,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Fatalis Evil Eye",
+          "item": 783,
           "amount": 2,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
@@ -7431,7 +7431,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Ruiner Lance",
+      "id": 322,
       "attack": 460,
       "sharpness": [
         11,
@@ -7447,30 +7447,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Black Lance",
+      "improve_from": 154,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Fatalis CrmsnHrn",
+          "item": 786,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Fatalis CrmsnShl",
+          "item": 790,
           "amount": 5,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Chameleos Jewel",
+          "item": 740,
           "amount": 2,
           "type": "stone",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "True Blk Dragon Spr+"
+        798
       ],
       "sharpness_plus": [
         11,
@@ -7489,7 +7489,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "True Blk Dragon Spr+",
+      "id": 798,
       "attack": 598,
       "sharpness": [
         11,
@@ -7506,23 +7506,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 150000,
-      "improve_from": "Black Ruiner Lance",
+      "improve_from": 322,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HrdFatlisCrmHorn",
+          "item": 787,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "HvyFatalisCrmShl",
+          "item": 791,
           "amount": 5,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 2,
           "type": "stone",
           "color": "slate"
@@ -7547,7 +7547,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Native Spear",
+      "id": 232,
       "attack": 184,
       "sharpness": [
         5,
@@ -7565,25 +7565,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Unknown Skull",
+          "item": 290,
           "amount": 1,
           "type": "bone",
           "color": "yellow"
         },
         {
-          "name": "Wyvern Claw",
+          "item": 299,
           "amount": 1,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Bone",
+          "item": 292,
           "amount": 1,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Iodrome Skull",
+          "item": 371,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -7591,7 +7591,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Primal Spear"
+        531
       ],
       "sharpness_plus": [
         5,
@@ -7608,7 +7608,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Primal Spear",
+      "id": 531,
       "attack": 230,
       "sharpness": [
         5,
@@ -7624,23 +7624,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 45000,
-      "improve_from": "Native Spear",
+      "improve_from": 232,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Master's Skull",
+          "item": 291,
           "amount": 1,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Toxin Sac",
+          "item": 268,
           "amount": 5,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "FlynMealPassReg",
+          "item": 916,
           "amount": 10,
           "type": "ticket",
           "color": "pink"
@@ -7664,7 +7664,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tiger Stinger",
+      "id": 532,
       "attack": 391,
       "sharpness": [
         16,
@@ -7683,25 +7683,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Tigrex Scale",
+          "item": 593,
           "amount": 6,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Tail",
+          "item": 600,
           "amount": 1,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Claw",
+          "item": 602,
           "amount": 5,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Pokke Ticket",
+          "item": 907,
           "amount": 1,
           "type": "ticket",
           "color": "cyan"
@@ -7709,8 +7709,8 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Tigrex Lance",
-        "Hidden Stinger"
+        533,
+        808
       ],
       "sharpness_plus": [
         16,
@@ -7724,7 +7724,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tigrex Lance",
+      "id": 533,
       "attack": 506,
       "sharpness": [
         9,
@@ -7741,30 +7741,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 80000,
-      "improve_from": "Tiger Stinger",
+      "improve_from": 532,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Tigrex Scale+",
+          "item": 594,
           "amount": 6,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Tail",
+          "item": 600,
           "amount": 3,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Claw+",
+          "item": 603,
           "amount": 5,
           "type": "claw",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Great Tigrex Lance"
+        807
       ],
       "sharpness_plus": [
         9,
@@ -7779,7 +7779,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Great Tigrex Lance",
+      "id": 807,
       "attack": 667,
       "sharpness": [
         9,
@@ -7797,29 +7797,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 125000,
-      "improve_from": "Tigrex Lance",
+      "improve_from": 533,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "LeathrTigrexTail",
+          "item": 601,
           "amount": 1,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "ThickTigrexScale",
+          "item": 595,
           "amount": 6,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "Hard Tigrex Claw",
+          "item": 604,
           "amount": 5,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "HvnlyTigrexScale",
+          "item": 596,
           "amount": 1,
           "type": "heavenly",
           "color": "yellow"
@@ -7839,7 +7839,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Hidden Stinger",
+      "id": 808,
       "attack": 437,
       "sharpness": [
         5,
@@ -7856,28 +7856,28 @@
       "type": "lance",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": "Tiger Stinger",
+      "improve_from": 532,
       "create_mats": [
         {
-          "name": "Nargacuga Tail",
+          "item": 614,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "NargaCuttingWing",
+          "item": 618,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Nargacuga Fang+",
+          "item": 620,
           "amount": 10,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Narga Brain Stem",
+          "item": 622,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -7885,26 +7885,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Nargacuga Tail",
+          "item": 614,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "NargaCuttingWing",
+          "item": 618,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Nargacuga Fang+",
+          "item": 620,
           "amount": 6,
           "type": "claw",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Black Rain Darklance"
+        809
       ],
       "sharpness_plus": [
         5,
@@ -7919,7 +7919,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Rain Darklance",
+      "id": 809,
       "attack": 552,
       "sharpness": [
         5,
@@ -7937,28 +7937,28 @@
       "type": "lance",
       "create_cost": 120000,
       "improve_cost": 120000,
-      "improve_from": "Hidden Stinger",
+      "improve_from": 808,
       "create_mats": [
         {
-          "name": "LeatherNargaTail",
+          "item": 615,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "StrNargaCttngWng",
+          "item": 619,
           "amount": 7,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "ThickNargaScale",
+          "item": 610,
           "amount": 10,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "HvnlyNargaScale",
+          "item": 611,
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
@@ -7966,25 +7966,25 @@
       ],
       "improve_mats": [
         {
-          "name": "LeatherNargaTail",
+          "item": 615,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "StrNargaCttngWng",
+          "item": 619,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvyNargacugaFang",
+          "item": 621,
           "amount": 6,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Narga Brain Stem",
+          "item": 622,
           "amount": 2,
           "type": "part",
           "color": "red"
@@ -8004,7 +8004,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Vacuum Striker",
+      "id": 529,
       "attack": 184,
       "sharpness": [
         5,
@@ -8022,19 +8022,19 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Pale Bone",
+          "item": 581,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Rubbery Hide",
+          "item": 401,
           "amount": 1,
           "type": "hide",
           "color": "blue"
         },
         {
-          "name": "FlynMealPassReg",
+          "item": 916,
           "amount": 2,
           "type": "ticket",
           "color": "pink"
@@ -8042,7 +8042,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Hyper Vacuum"
+        530
       ],
       "sharpness_plus": [
         5,
@@ -8059,7 +8059,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Hyper Vacuum",
+      "id": 530,
       "attack": 253,
       "sharpness": [
         3,
@@ -8075,23 +8075,23 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 45000,
-      "improve_from": "Vacuum Striker",
+      "improve_from": 529,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Pale Khezu Steak",
+          "item": 582,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Dragonwood",
+          "item": 768,
           "amount": 2,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "FlynMealPassPlus",
+          "item": 917,
           "amount": 3,
           "type": "ticket",
           "color": "pink"
@@ -8115,7 +8115,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Vermillion Rim",
+      "id": 528,
       "attack": 368,
       "sharpness": [
         5,
@@ -8133,25 +8133,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Lao-Shan's Horn",
+          "item": 692,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Lao-Shan's Shell",
+          "item": 698,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Gaoren Shell",
+          "item": 704,
           "amount": 4,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Commendation",
+          "item": 903,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8159,7 +8159,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Dragonic Rim"
+        336
       ],
       "sharpness_plus": [
         5,
@@ -8176,7 +8176,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragonic Rim",
+      "id": 336,
       "attack": 414,
       "sharpness": [
         5,
@@ -8191,30 +8191,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 85000,
-      "improve_from": "Vermillion Rim",
+      "improve_from": 528,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Lao-ShanCarapace",
+          "item": 699,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Lao-Shan Scale+",
+          "item": 694,
           "amount": 6,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Gaoren Spine",
+          "item": 708,
           "amount": 6,
           "type": "shell",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Sealed Dragonlance"
+        446
       ],
       "sharpness_plus": [
         5,
@@ -8232,7 +8232,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sealed Dragonlance",
+      "id": 446,
       "attack": 437,
       "sharpness": [
         5,
@@ -8248,30 +8248,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 95000,
-      "improve_from": "Dragonic Rim",
+      "improve_from": 336,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Lao-Shan's Ruby",
+          "item": 696,
           "amount": 1,
           "type": "stone",
           "color": "red"
         },
         {
-          "name": "Gaoren Thoracic",
+          "item": 709,
           "amount": 4,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gaoren Claw",
+          "item": 712,
           "amount": 8,
           "type": "claw",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "DragonSealer\"Virtue\""
+        793
       ],
       "sharpness_plus": [
         5,
@@ -8290,7 +8290,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "DragonSealer\"Virtue\"",
+      "id": 793,
       "attack": 529,
       "sharpness": [
         5,
@@ -8307,30 +8307,30 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 120000,
-      "improve_from": "Sealed Dragonlance",
+      "improve_from": 446,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Lao-Shan'sHvyShl",
+          "item": 700,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Lao-Shan'sThkScl",
+          "item": 695,
           "amount": 6,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Gaoren Thoracic",
+          "item": 709,
           "amount": 4,
           "type": "shell",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "DragonSealer\"Null\""
+        794
       ],
       "sharpness_plus": [
         5,
@@ -8350,7 +8350,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "DragonSealer\"Null\"",
+      "id": 794,
       "attack": 575,
       "sharpness": [
         3,
@@ -8367,29 +8367,29 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 140000,
-      "improve_from": "DragonSealer\"Virtue\"",
+      "improve_from": 793,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Lao-ShanHvnlyScl",
+          "item": 697,
           "amount": 1,
           "type": "heavenly",
           "color": "red"
         },
         {
-          "name": "Azure LaoS Claw",
+          "item": 703,
           "amount": 4,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Hard Gaoren Claw",
+          "item": 713,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -8414,7 +8414,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ukanlos Calamity",
+      "id": 814,
       "attack": 805,
       "sharpness": [
         16,
@@ -8433,25 +8433,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "UkanlosUnderscl",
+          "item": 810,
           "amount": 8,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "HvyUkanlosShell",
+          "item": 809,
           "amount": 4,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Hvy Ukanlos Tail",
+          "item": 811,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Ukanlos Stone",
+          "item": 815,
           "amount": 1,
           "type": "heavenly",
           "color": "white"
@@ -8476,7 +8476,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Iron Lance G",
+      "id": 816,
       "attack": 644,
       "sharpness": [
         5,
@@ -8496,25 +8496,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 40,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Disk Stone",
+          "item": 201,
           "amount": 25,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
@@ -8535,7 +8535,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Long Tusk G",
+      "id": 837,
       "attack": 644,
       "sharpness": [
         9,
@@ -8555,25 +8555,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Lg Monster Bone",
+          "item": 283,
           "amount": 20,
           "type": "bone",
           "color": "yellow"
         },
         {
-          "name": "Bone",
+          "item": 292,
           "amount": 50,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 10,
           "type": "bone",
           "color": "gray"
@@ -8594,7 +8594,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tarnished Lance G",
+      "id": 860,
       "attack": 736,
       "sharpness": [
         16,
@@ -8611,13 +8611,13 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Ruststone Rod",
+          "item": 823,
           "amount": 5,
           "type": "ukwn",
           "color": "gray"
@@ -8635,7 +8635,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Spiked Spear G",
+      "id": 822,
       "attack": 644,
       "sharpness": [
         3,
@@ -8655,25 +8655,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 10,
           "type": "bone",
           "color": "gray"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 20,
           "type": "insect",
           "color": "green"
@@ -8694,7 +8694,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Rampart G",
+      "id": 817,
       "attack": 621,
       "sharpness": [
         5,
@@ -8714,25 +8714,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Lightcrystal",
+          "item": 215,
           "amount": 10,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 20,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 5,
           "type": "ore",
           "color": "white"
@@ -8753,7 +8753,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Valhalla G",
+      "id": 821,
       "attack": 598,
       "sharpness": [
         3,
@@ -8773,25 +8773,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 5,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 20,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 20,
           "type": "ore",
           "color": "cyan"
@@ -8812,7 +8812,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fragrance G",
+      "id": 848,
       "attack": 621,
       "sharpness": [
         3,
@@ -8831,25 +8831,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Dosbiscus",
+          "item": 172,
           "amount": 10,
           "type": "herb",
           "color": "red"
         },
         {
-          "name": "Giant Corn",
+          "item": 174,
           "amount": 5,
           "type": "seed",
           "color": "yellow"
         },
         {
-          "name": "AncientDrgnmoss",
+          "item": 767,
           "amount": 3,
           "type": "part",
           "color": "green"
@@ -8869,7 +8869,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Requiem Spear G",
+      "id": 823,
       "attack": 529,
       "sharpness": [
         3,
@@ -8889,25 +8889,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Sleep Sac",
+          "item": 271,
           "amount": 15,
           "type": "sac",
           "color": "blue"
         },
         {
-          "name": "SpecPlesiothFin+",
+          "item": 475,
           "amount": 8,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Sleepyfish",
+          "item": 231,
           "amount": 10,
           "type": "fish",
           "color": "cyan"
@@ -8933,7 +8933,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dark Spear G",
+      "id": 845,
       "attack": 529,
       "sharpness": [
         5,
@@ -8954,25 +8954,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Hornet Razorwing",
+          "item": 668,
           "amount": 5,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Hornetaur Head",
+          "item": 665,
           "amount": 5,
           "type": "insect",
           "color": "gray"
         },
         {
-          "name": "VespoidQn'sCrown",
+          "item": 657,
           "amount": 2,
           "type": "insect",
           "color": "yellow"
@@ -8998,7 +8998,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bulldrome Spear G",
+      "id": 846,
       "attack": 690,
       "sharpness": [
         3,
@@ -9017,25 +9017,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Bullfango Head",
+          "item": 323,
           "amount": 5,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Bulldrome Hide+",
+          "item": 326,
           "amount": 8,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "ThkBullfangoPelt",
+          "item": 322,
           "amount": 5,
           "type": "pelt",
           "color": "orange"
@@ -9055,7 +9055,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bone Claw Lance G",
+      "id": 842,
       "attack": 621,
       "sharpness": [
         9,
@@ -9075,25 +9075,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HrdHermitaurClaw",
+          "item": 500,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Hermitaur Claw+",
+          "item": 499,
           "amount": 6,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Piercing Claw",
+          "item": 428,
           "amount": 8,
           "type": "claw",
           "color": "gray"
@@ -9114,7 +9114,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Trident G",
+      "id": 824,
       "attack": 506,
       "sharpness": [
         16,
@@ -9134,25 +9134,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Thunder Sac",
+          "item": 277,
           "amount": 10,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "SpecRubberyHide+",
+          "item": 403,
           "amount": 7,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "Thunderbug",
+          "item": 253,
           "amount": 20,
           "type": "insect",
           "color": "yellow"
@@ -9178,7 +9178,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gatling Lance G",
+      "id": 819,
       "attack": 598,
       "sharpness": [
         5,
@@ -9198,25 +9198,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 15,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Gunpowder",
+          "item": 35,
           "amount": 20,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "FireWyvrn BrnStm",
+          "item": 547,
           "amount": 5,
           "type": "part",
           "color": "red"
@@ -9242,7 +9242,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Venom Lance G",
+      "id": 825,
       "attack": 598,
       "sharpness": [
         5,
@@ -9262,25 +9262,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Basarios Tears",
+          "item": 592,
           "amount": 5,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "HvyBasariosShell",
+          "item": 589,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "DeadlyPoisonSac",
+          "item": 269,
           "amount": 8,
           "type": "sac",
           "color": "slate"
@@ -9306,7 +9306,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crimson War Pike G",
+      "id": 839,
       "attack": 575,
       "sharpness": [
         11,
@@ -9326,25 +9326,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Top-GrdRedHorn",
+          "item": 670,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "MonoblosThoracic",
+          "item": 674,
           "amount": 5,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 15,
           "type": "ore",
           "color": "red"
@@ -9370,7 +9370,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Diablo Spear G",
+      "id": 841,
       "attack": 667,
       "sharpness": [
         9,
@@ -9390,25 +9390,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "StoutWarpedHorn",
+          "item": 636,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "HvyDiablosSpine",
+          "item": 642,
           "amount": 4,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 1,
           "type": "stone",
           "color": "blue"
@@ -9429,7 +9429,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Native Spear G",
+      "id": 856,
       "attack": 391,
       "sharpness": [
         16,
@@ -9450,25 +9450,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Master's Skull",
+          "item": 291,
           "amount": 3,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Iodrome Skull",
+          "item": 371,
           "amount": 5,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "DeadlyPoisonSac",
+          "item": 269,
           "amount": 10,
           "type": "sac",
           "color": "slate"
@@ -9494,7 +9494,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Belt Lance G",
+      "id": 857,
       "attack": 621,
       "sharpness": [
         5,
@@ -9514,25 +9514,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Expert Ticket",
+          "item": 926,
           "amount": 10,
           "type": "ticket",
           "color": "green"
         },
         {
-          "name": "Kirin Coin",
+          "item": 893,
           "amount": 6,
           "type": "coin",
           "color": "white"
         },
         {
-          "name": "Legend Coin G",
+          "item": 902,
           "amount": 1,
           "type": "coin",
           "color": "red"
@@ -9553,7 +9553,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Undertaker G",
+      "id": 861,
       "attack": 667,
       "sharpness": [
         16,
@@ -9573,25 +9573,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Ancient StoneRod",
+          "item": 828,
           "amount": 3,
           "type": "ukwn",
           "color": "gray"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 10,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 1,
           "type": "stone",
           "color": "blue"
@@ -9612,7 +9612,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Knight Spear G",
+      "id": 833,
       "attack": 621,
       "sharpness": [
         3,
@@ -9632,25 +9632,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 15,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 7,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Velociprey Hide+",
+          "item": 352,
           "amount": 10,
           "type": "pelt",
           "color": "blue"
@@ -9671,7 +9671,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Hard Bone Lance G",
+      "id": 852,
       "attack": 667,
       "sharpness": [
         9,
@@ -9690,25 +9690,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 7,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 7,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Giant Bone",
+          "item": 295,
           "amount": 20,
           "type": "bone",
           "color": "white"
@@ -9728,7 +9728,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Roaring Wyvern G",
+      "id": 818,
       "attack": 598,
       "sharpness": [
         5,
@@ -9748,25 +9748,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 15,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 10,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "HvyBlkGraviosShl",
+          "item": 631,
           "amount": 10,
           "type": "part",
           "color": "gray"
@@ -9792,7 +9792,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Great Ogre Tusk G",
+      "id": 838,
       "attack": 644,
       "sharpness": [
         7,
@@ -9812,25 +9812,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 8,
           "type": "bone",
           "color": "gray"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 15,
           "type": "bone",
           "color": "orange"
         },
         {
-          "name": "Ioprey Hide+",
+          "item": 369,
           "amount": 10,
           "type": "pelt",
           "color": "red"
@@ -9851,7 +9851,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Barbarian Tusk G",
+      "id": 853,
       "attack": 644,
       "sharpness": [
         16,
@@ -9871,25 +9871,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 10,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "HvyDiablosSpine",
+          "item": 642,
           "amount": 3,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 5,
           "type": "insect",
           "color": "white"
@@ -9910,7 +9910,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Noble Fragrance G",
+      "id": 849,
       "attack": 598,
       "sharpness": [
         3,
@@ -9930,25 +9930,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Dosbiscus",
+          "item": 172,
           "amount": 10,
           "type": "herb",
           "color": "red"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 8,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "HrdCongalalaPlt+",
+          "item": 446,
           "amount": 5,
           "type": "pelt",
           "color": "pink"
@@ -9969,7 +9969,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Hyper Vacuum G",
+      "id": 855,
       "attack": 368,
       "sharpness": [
         9,
@@ -9990,25 +9990,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "KhezuSpecialCut",
+          "item": 583,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "AncientDrgnwood",
+          "item": 770,
           "amount": 2,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "FlynMealPassPlus",
+          "item": 917,
           "amount": 10,
           "type": "ticket",
           "color": "pink"
@@ -10034,7 +10034,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Aqua Spear G",
+      "id": 834,
       "attack": 552,
       "sharpness": [
         5,
@@ -10054,25 +10054,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "SpecPlesiothFin+",
+          "item": 475,
           "amount": 6,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Plesioth Scale+",
+          "item": 471,
           "amount": 10,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Plesioth Fin",
+          "item": 473,
           "amount": 15,
           "type": "part",
           "color": "blue"
@@ -10098,7 +10098,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Emerald Spear G",
+      "id": 835,
       "attack": 529,
       "sharpness": [
         5,
@@ -10118,25 +10118,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "SpecGrnPlesioFn+",
+          "item": 481,
           "amount": 4,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Grn Plsioth Scl+",
+          "item": 477,
           "amount": 10,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Grn Plesioth Fin",
+          "item": 479,
           "amount": 15,
           "type": "part",
           "color": "green"
@@ -10162,7 +10162,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Grayburg Javelin G",
+      "id": 836,
       "attack": 644,
       "sharpness": [
         3,
@@ -10182,25 +10182,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "ThckDaoraDrgnScl",
+          "item": 719,
           "amount": 5,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 15,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 10,
           "type": "ore",
           "color": "red"
@@ -10221,7 +10221,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sanctioned Gunlance G",
+      "id": 820,
       "attack": 575,
       "sharpness": [
         5,
@@ -10241,25 +10241,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 10,
           "type": "ore",
           "color": "orange"
         },
         {
-          "name": "FireWyvrn Marrow",
+          "item": 546,
           "amount": 10,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Blazing Fire Sac",
+          "item": 275,
           "amount": 5,
           "type": "sac",
           "color": "red"
@@ -10285,7 +10285,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ceanataur Piercer G",
+      "id": 844,
       "attack": 575,
       "sharpness": [
         5,
@@ -10306,25 +10306,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HrdCeanataurClaw",
+          "item": 512,
           "amount": 3,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Ceanataur Claw+",
+          "item": 511,
           "amount": 6,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Ceanataur Leg",
+          "item": 507,
           "amount": 8,
           "type": "shell",
           "color": "blue"
@@ -10345,7 +10345,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ceramic Blos Lance G",
+      "id": 840,
       "attack": 575,
       "sharpness": [
         3,
@@ -10365,25 +10365,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Top-GrdPlatHorn",
+          "item": 677,
           "amount": 3,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "WhtMonoblosThora",
+          "item": 681,
           "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "HvyDiablosSpine",
+          "item": 642,
           "amount": 3,
           "type": "part",
           "color": "yellow"
@@ -10409,7 +10409,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gravios Spear G",
+      "id": 826,
       "attack": 575,
       "sharpness": [
         5,
@@ -10429,25 +10429,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HvyGraviosShell",
+          "item": 625,
           "amount": 8,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Poison Sac",
+          "item": 267,
           "amount": 20,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "Gravios BrainStm",
+          "item": 628,
           "amount": 5,
           "type": "part",
           "color": "red"
@@ -10473,7 +10473,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "BlackGraviousSpear G",
+      "id": 827,
       "attack": 552,
       "sharpness": [
         9,
@@ -10493,25 +10493,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HvyBlkGraviosShl",
+          "item": 631,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 15,
           "type": "ore",
           "color": "orange"
         },
         {
-          "name": "Gravios BrainStm",
+          "item": 628,
           "amount": 5,
           "type": "part",
           "color": "red"
@@ -10537,7 +10537,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Spear of Prominence G",
+      "id": 847,
       "attack": 529,
       "sharpness": [
         5,
@@ -10557,25 +10557,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "LthrRathalosTail",
+          "item": 558,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "HvyRathalosShl",
+          "item": 556,
           "amount": 5,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Rathalos Plate",
+          "item": 551,
           "amount": 5,
           "type": "scale",
           "color": "red"
@@ -10601,7 +10601,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sealed Dragonlance G",
+      "id": 854,
       "attack": 552,
       "sharpness": [
         5,
@@ -10621,25 +10621,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Lao-Shan's Shell",
+          "item": 698,
           "amount": 7,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Lao-Shan'sHvyShl",
+          "item": 700,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "HvyGaorenShell",
+          "item": 706,
           "amount": 3,
           "type": "shell",
           "color": "gray"

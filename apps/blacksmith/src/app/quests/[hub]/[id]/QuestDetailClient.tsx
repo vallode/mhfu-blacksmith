@@ -1,0 +1,334 @@
+"use client";
+
+import Link from "next/link";
+import { DetailBody, DetailCard, DetailRule, Stat, StatList } from "@/components/DetailPanel";
+import { QuestRewards, QuestSupplies } from "@/components/QuestRewards";
+import Tabs, { type Tab } from "@/components/Tabs";
+import { useLocale, useT } from "@/context/LanguageContext";
+import { usePreferences } from "@/context/PreferencesContext";
+import { useSave } from "@/context/SaveContext";
+import { useQuests } from "@/lib/client-data";
+import {
+  clearedQuestIds,
+  questHref,
+  questsOnHub,
+  questStarLevel,
+  type QuestHubSlug,
+  type QuestCrownChances,
+  type QuestMonster,
+  type QuestMonsterSize,
+  type QuestMonsterStats,
+} from "@/lib/quests";
+import QuestAreaMap from "@/components/AreaMap";
+import Loading from "@/components/Loading";
+import MapIcon from "@/components/MapIcon";
+import { cn } from "@/lib/cn";
+import { possibleCrowns } from "@/lib/crowns";
+import CrownIcon, { useFormatChance } from "@/components/CrownIcon";
+import StarMarks from "@/components/StarMarks";
+
+interface Props {
+  hub: QuestHubSlug;
+  id: number;
+}
+
+function MonsterLinks({ monsters }: { monsters: QuestMonster[] }) {
+  const { game } = useLocale();
+  return (
+    <span className="whitespace-normal text-white">
+      {monsters.map((m, i) => (
+        <span key={m.name}>
+          {i > 0 && ", "}
+          {m.href ? (
+            <Link href={m.href} className="text-white underline-offset-4 hover:underline">
+              {game.name("monster", m.name)}
+            </Link>
+          ) : (
+            game.name("monster", m.name)
+          )}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/** The monster whose attack and defense change mid-hunt, as the note says. */
+const FURIOUS_RAJANG = "Furious Rajang";
+
+/** A monster's crown chances, gold first, leaving out crowns it can't get. */
+function CrownChances({ chances }: { chances: QuestCrownChances }) {
+  const t = useT().quests.monsterStats;
+  const formatChance = useFormatChance();
+  const crowns = possibleCrowns([chances]);
+  if (crowns.length === 0) return <span className="text-white">{t.noCrowns}</span>;
+  return (
+    <span className="inline-flex flex-wrap items-center gap-x-[1.2rem] gap-y-[0.4rem] text-white tabular-nums">
+      {crowns.map((crown) => (
+        <span key={crown} className="inline-flex items-center gap-[0.4rem] whitespace-nowrap">
+          <CrownIcon crown={crown} />
+          {formatChance(chances[crown])}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/** Each large monster's HP and multipliers in this quest, and its size and crown chances. */
+function MonsterStats({
+  stats,
+  size,
+}: {
+  stats: QuestMonsterStats[];
+  size: QuestMonsterSize | null;
+}) {
+  const { t, game, formatNumber } = useLocale();
+  const m = t.quests.monsterStats;
+  const times = (n: number) => m.times(formatNumber(n));
+  return (
+    <div className="flex flex-col gap-6">
+      {stats.map((s, i) => (
+        <section key={i} className="flex flex-col gap-3">
+          <h3 className="m-0 leading-none font-normal text-warm">
+            {s.monster.href ? (
+              <Link href={s.monster.href} className="underline-offset-4 hover:underline">
+                {game.name("monster", s.monster.name)}
+              </Link>
+            ) : (
+              game.name("monster", s.monster.name)
+            )}
+          </h3>
+          <StatList>
+            {s.hp !== null && (
+              <Stat label={m.hp}>
+                <span className="text-white tabular-nums">{formatNumber(s.hp)}</span>
+              </Stat>
+            )}
+            <Stat label={m.attack}>
+              <span className="text-white tabular-nums">{times(s.attack)}</span>
+            </Stat>
+            <Stat label={m.defense}>
+              <span className="text-white tabular-nums">{times(s.defense)}</span>
+            </Stat>
+            <Stat label={m.stagger}>
+              <span className="text-white tabular-nums">{times(s.stagger)}</span>
+            </Stat>
+            {size && <MonsterSizeStats size={size} monster={s.monster.name} />}
+          </StatList>
+        </section>
+      ))}
+      <p className="text-fine leading-[1.4] whitespace-normal text-white/60">
+        {m.note}
+        {stats.some((s) => s.monster.name === FURIOUS_RAJANG) &&
+          ` ${m.changesDuringHunt(game.name("monster", FURIOUS_RAJANG))}`}
+        {size && size.crowns.length > 0 && ` ${m.sizeNote}`}
+        {size && size.crowns.length > 0 && size.fixedFirst && ` ${m.fixedFirstNote}`}
+      </p>
+    </div>
+  );
+}
+
+/** A crowned monster's size range and crown chances; nothing for a monster without crowns. */
+function MonsterSizeStats({ size, monster }: { size: QuestMonsterSize; monster: string }) {
+  const { t, formatNumber } = useLocale();
+  const m = t.quests.monsterStats;
+  const chances = size.crowns.find((c) => c.monster.name === monster);
+  if (!chances) return null;
+  return (
+    <>
+      <Stat label={m.size}>
+        <span className="text-white tabular-nums">
+          {size.min === size.max
+            ? m.sizePercent(formatNumber(size.min))
+            : m.sizeRange(formatNumber(size.min), formatNumber(size.max))}
+        </span>
+      </Stat>
+      <Stat label={t.quests.detail.crowns}>
+        <CrownChances chances={chances} />
+      </Stat>
+    </>
+  );
+}
+
+export default function QuestDetailClient({ hub, id }: Props) {
+  const { t, game, formatNumber } = useLocale();
+  const { quests, error } = useQuests();
+  const { save } = useSave();
+  const { markCleared } = usePreferences().prefs;
+  const onHub = quests ? questsOnHub(quests, hub) : [];
+  const quest = onHub.find((q) => q.id === id);
+  const cleared = markCleared && (clearedQuestIds(save)?.has(id) ?? false);
+  const requires =
+    quest?.requires == null ? undefined : quests?.find((q) => q.id === quest.requires);
+
+  if (!quest) {
+    return (
+      <DetailCard>
+        {error ? (
+          <p>{t.quests.loadError}</p>
+        ) : quests ? (
+          <p>{t.quests.notFound}</p>
+        ) : (
+          <Loading>{t.common.loading}</Loading>
+        )}
+      </DetailCard>
+    );
+  }
+
+  const d = t.quests.detail;
+  const zenny = (n: number) => t.common.zenny(formatNumber(n));
+  /** Board text in the site's language, falling back to the English. */
+  const text = (field: "title" | "goal" | "fail" | "details" | "client", english: string) =>
+    game.quest(quest.id, field, english);
+  const title = text("title", quest.title);
+  // The crowns any of the quest's monsters can roll here.
+  const crowns = possibleCrowns(quest.monsterSize?.crowns ?? []);
+
+  const tabs: Tab[] = [
+    {
+      id: "details",
+      label: d.tabs.details,
+      content: (
+        <StatList>
+          {quest.goal && (
+            <Stat label={d.goal}>
+              <span className="whitespace-pre-line text-white">{text("goal", quest.goal)}</span>
+            </Stat>
+          )}
+          {quest.fail && (
+            <Stat label={d.failure}>
+              <span className="whitespace-pre-line text-white">{text("fail", quest.fail)}</span>
+            </Stat>
+          )}
+          {quest.map && (
+            <Stat label={d.location}>
+              <span className="whitespace-normal text-white">{game.name("map", quest.map)}</span>
+            </Stat>
+          )}
+          <Stat label={d.timeLimit}>
+            <span className="text-white tabular-nums">
+              {d.minutes(formatNumber(quest.timeLimit))}
+            </span>
+          </Stat>
+          <Stat label={d.reward}>
+            <span className="text-white tabular-nums">{zenny(quest.reward)}</span>
+          </Stat>
+          <Stat label={d.fee}>
+            <span className="text-white tabular-nums">{zenny(quest.fee)}</span>
+          </Stat>
+          {requires && (
+            <Stat label={d.requires}>
+              <Link
+                href={questHref(requires)}
+                className="whitespace-normal text-white underline-offset-4 hover:underline"
+              >
+                {game.quest(requires.id, "title", requires.title)} ({t.quests.hubs[requires.hub]}{" "}
+                <StarMarks {...questStarLevel(requires.hub, requires.stars)} />)
+              </Link>
+            </Stat>
+          )}
+          {quest.largeMonsters.length > 0 && (
+            <Stat label={d.monsters}>
+              <MonsterLinks monsters={quest.largeMonsters} />
+            </Stat>
+          )}
+          {crowns.length > 0 && (
+            <Stat label={d.crowns}>
+              <span className="inline-flex flex-wrap items-center gap-[0.6rem] whitespace-normal text-white">
+                {crowns.map((c) => (
+                  <CrownIcon key={c} crown={c} />
+                ))}
+                {quest.monsterSize?.fixedFirst && <span>{d.crownsAfterFirstClear}</span>}
+              </span>
+            </Stat>
+          )}
+          {quest.smallMonsters.length > 0 && (
+            <Stat label={d.smallMonsters}>
+              <MonsterLinks monsters={quest.smallMonsters} />
+            </Stat>
+          )}
+          {quest.client && (
+            <Stat label={d.client}>
+              <span className="whitespace-normal text-white">{text("client", quest.client)}</span>
+            </Stat>
+          )}
+        </StatList>
+      ),
+    },
+  ];
+  if (quest.monsterStats.length > 0) {
+    tabs.push({
+      id: "monsters",
+      label: d.tabs.monsters,
+      content: <MonsterStats stats={quest.monsterStats} size={quest.monsterSize} />,
+    });
+  }
+  if (quest.rewardTables.length > 0) {
+    tabs.push({
+      id: "rewards",
+      label: d.tabs.rewards,
+      content: <QuestRewards tables={quest.rewardTables} />,
+    });
+  }
+  if (quest.supplies.length > 0) {
+    tabs.push({
+      id: "supplies",
+      label: d.tabs.supplies,
+      content: <QuestSupplies supplies={quest.supplies} />,
+    });
+  }
+
+  if (quest.hasAreaMap) {
+    tabs.push({ id: "map", label: d.tabs.map, content: <QuestAreaMap questId={id} /> });
+  }
+
+  return (
+    <DetailCard>
+      {/* The map's icon, faded behind the card's bottom-right corner, as on
+          the game's quest card; brightened, as the art is dark on this card.
+          Behind the text (-z-1 inside the card's own stacking context) and
+          out of the way of clicks. */}
+      {quest.map && (
+        <MapIcon
+          map={quest.map}
+          className="pointer-events-none absolute right-[3.2rem] bottom-[3.2rem] -z-1 size-[22rem] opacity-30 brightness-200 mobile:size-[14rem]"
+        />
+      )}
+
+      {/* Type, title, board and description, like the quest scroll: the
+          type and title centred in white, the details in white with the
+          game's roomy lines. CLEAR!! (a quest the loaded hunter has cleared)
+          sits in the top corner, level with the type, which keeps clear of
+          it; on a phone it takes its own line. */}
+      <div className="relative flex flex-col gap-2 text-main text-white">
+        {cleared && (
+          <div className="pointer-events-none absolute inset-x-0 top-0 flex text-small leading-[2.75rem] mobile:static mobile:leading-[1.25]">
+            <p className="text-stat">{t.quests.cleared}</p>
+          </div>
+        )}
+        <p
+          className={cn(
+            "text-center leading-[1.25] whitespace-normal",
+            cleared && "px-[9.6rem] mobile:px-0",
+          )}
+        >
+          {t.quests.typeHeadings[quest.type]}
+        </p>
+        <p className="text-center leading-[1.25] whitespace-normal">{title}</p>
+        <p className="text-center text-small leading-[1.25] whitespace-normal text-stat">
+          <StarMarks {...questStarLevel(hub, quest.stars)} />
+        </p>
+        {quest.details && (
+          <p className="mt-2 text-small leading-[1.4] whitespace-normal">
+            {text("details", quest.details)}
+          </p>
+        )}
+      </div>
+
+      <DetailBody>
+        <DetailRule />
+        {/* Keyed on the quest so the selected tab resets when navigating */}
+        <Tabs key={id} label={d.tabsLabel(title)} tabs={tabs} />
+      </DetailBody>
+    </DetailCard>
+  );
+}

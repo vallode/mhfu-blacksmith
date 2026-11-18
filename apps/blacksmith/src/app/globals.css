@@ -1,0 +1,728 @@
+/* ─── Tailwind ─────────────────────────────────────────────────────────────────
+   Plain `@import "tailwindcss";` — do NOT add a `layer(...)` import attribute
+   here. Next.js's webpack CSS pipeline has a longstanding bug where any
+   `@import <url> layer(name);` gets mis-rewritten as `@media layer(name) {}`
+   in the compiled output, which is invalid CSS and silently drops the entire
+   block (every Tailwind utility class, including `.flex`, stopped applying
+   site-wide because of this). See vercel/next.js#55763 and #66321. */
+@import "tailwindcss";
+
+/* modern-normalize, in Tailwind's `base` layer after Tailwind's own preflight,
+   so it still wins over preflight. Being layered lets utilities override it:
+   unlayered, its button/input font-size, line-height and margin beat every
+   Tailwind class. This `layer(base)` import is safe, unlike the one warned
+   about above: Tailwind's PostCSS plugin inlines it, so Next.js's CSS loader
+   never sees the `layer()`. */
+@import "modern-normalize/modern-normalize.css" layer(base);
+
+/* ─── Design tokens ────────────────────────────────────────────────────────────
+   This is the single source of truth for colours, spacing, breakpoints and
+   animations. Each token becomes a Tailwind utility (bg-accent, text-rarity-7,
+   animate-hover-glow, …) and a CSS variable (var(--color-accent)) that CSS
+   modules and inline styles can use. Don't hardcode these values elsewhere.
+
+   `static` makes Tailwind emit every variable even when no utility class uses
+   it, because some are only referenced from TS (Icon, SharpnessBar) via var(). */
+@theme static {
+  /* The root font-size is 62.5% (1rem = 10px), so Tailwind's default spacing
+     unit of 0.25rem would be 2.5px. 0.4rem restores the usual 4px scale:
+     p-4 = 16px, gap-2 = 8px, and so on. */
+  --spacing: 0.4rem;
+
+  /* The game sets its text on a wide fixed pitch: about 0.64em per character
+     with BIZ UDGothic's glyphs (0.5em each), so 14% tracking. A percentage is
+     of each element's own font size and inherits as a percentage, so it
+     scales with every text size (0.14em would inherit as body's pixel
+     value). Set on body; tracking-game restores it under an element that
+     overrides it. */
+  --tracking-game: 14%;
+
+  /* One character cell at that pitch: the glyph advance plus tracking.
+     Size text columns in cells with w-cells-N, not ch: 1ch is only the
+     glyph. Unregistered, so ch and em resolve on the element using it. */
+  --cell: calc(1ch + 0.14em);
+
+  /* Type scale: the only four text sizes. text-main is the game's text:
+     lists, values, titles and selector bars, 22px (20px on phones, set in
+     the base layer below). sub, small and fine step down for secondary
+     text: 18px labels and notices, 16px descriptions, tabs and meta lines,
+     14px hints and dense tables. */
+  --text-main: 2.2rem;
+  --text-sub: 1.8rem;
+  --text-small: 1.6rem;
+  --text-fine: 1.4rem;
+
+  /* Height of the phone tab bar (AppShell), so fixed things above the page
+     bottom (toasts) clear it: bottom-[calc(var(--spacing-tabbar)+1.4rem)]. */
+  --spacing-tabbar: 8.1rem;
+
+  /* UI palette */
+  --color-accent: #037703;
+  --color-hr: #6e905f;
+  --color-line: #2a3423;
+  --color-muted: #c0c0c0;
+  --color-gold: #f2d250;
+  --color-stat: #ffff50;
+  --color-positive: #52f152;
+  --color-negative: #f9455c;
+  --color-element: #56fbfa;
+  --color-warm: #ff9661;
+  --color-unavailable: #808080; /* greyed-out entries: ammo you cannot load, etc. */
+  --color-parchment: #c3be9f; /* menu labels and toast titles */
+  --color-selector: rgb(96 102 94 / 0.78); /* flat grey bar of in-game selectors and menu headers */
+  --color-selector-lit: rgb(132 140 128); /* a selector bar that opens a menu, hovered or open */
+  --color-sheet: #1b1f17; /* the fill of a card that lies over the page (sheets, dialogs) */
+
+  /* Item icon tints: the palette in data/items.json, by index, from the disc
+     (scripts/validate.ts checks they match). */
+  --color-item-0: #ffffff;
+  --color-item-1: #ff5d5d;
+  --color-item-2: #73cb8d;
+  --color-item-3: #96b5fd;
+  --color-item-4: #ffd35d;
+  --color-item-5: #b895c6;
+  --color-item-6: #9bdff0;
+  --color-item-7: #ff985d;
+  --color-item-8: #ed93a4;
+  --color-item-10: #a0a0a0;
+
+  /* Item rarity tints (rarities 1–3 are untinted) */
+  --color-rarity-4: #52f152;
+  --color-rarity-5: #fd9dc8;
+  --color-rarity-6: #83c3fc;
+  --color-rarity-7: #ff9661;
+  --color-rarity-8: #fd6960;
+  --color-rarity-9: #ffc762;
+  --color-rarity-10: #bb84fb;
+
+  /* Decoration / material colours (the `color` field in the game data) */
+  --color-gem-blue: #80c2fc;
+  --color-gem-cyan: #97e0ef;
+  --color-gem-gray: #a0a0a0;
+  --color-gem-green: #86bf8d;
+  --color-gem-orange: #ff9661;
+  --color-gem-pink: #ea9aa4;
+  --color-gem-red: #fd6960;
+  --color-gem-slate: #afa0c5;
+  --color-gem-white: #ffffff;
+  --color-gem-yellow: #ffc762;
+
+  /* Hunting horn notes */
+  --color-note-a: #6cc8fe;
+  --color-note-b: #7175fd;
+  --color-note-g: #7be61f;
+  --color-note-p: #e176ee;
+  --color-note-r: #fd3b1f;
+  --color-note-w: #ffffff;
+  --color-note-y: #ffeb2b;
+
+  /* Sharpness levels, red (1) through purple (7) */
+  --color-sharpness-1: #c3333c;
+  --color-sharpness-2: #ef5a26;
+  --color-sharpness-3: #ffc03c;
+  --color-sharpness-4: #84c11c;
+  --color-sharpness-5: #5a8aed;
+  --color-sharpness-6: #f7f7f7;
+  --color-sharpness-7: #df78f6;
+
+  /* Monster hitzone parts on the 3D model, in hitzone-table order (the 3D
+     viewer reads them through var() and getComputedStyle) */
+  --color-hitbox-1: #ff5a4f;
+  --color-hitbox-2: #ffa63d;
+  --color-hitbox-3: #ffe14d;
+  --color-hitbox-4: #6ee05a;
+  --color-hitbox-5: #4fc3ff;
+  --color-hitbox-6: #7d86ff;
+  --color-hitbox-7: #d36cff;
+  --color-hitbox-8: #ff7ac8;
+
+  /* Pulsing green highlight behind hovered rows, cards and search results.
+     The pulse animates only --glow-alpha (the strength of the background),
+     never the element's opacity, so text and icons on top stay solid. A
+     resting highlight uses --gradient-hover-glow; a pulsing one needs the
+     gradient written out where --glow-alpha is animated (a var() in a token is
+     resolved at :root): use the `hover-glow` utility, or
+       animation: var(--animate-hover-glow);
+       background: linear-gradient(0.25turn, transparent,
+         color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
+         transparent); */
+  --color-hover-glow: rgb(3 119 3 / 0.84);
+  --animate-hover-glow: glow-alpha 1s ease-in-out infinite alternate;
+  --gradient-hover-glow: linear-gradient(0.25turn, transparent, var(--color-hover-glow), transparent);
+
+  @keyframes glow-alpha {
+    from {
+      --glow-alpha: 1;
+    }
+    to {
+      --glow-alpha: 0.6;
+    }
+  }
+
+  /* Toasts slide up into place */
+  --animate-toast-in: toast-in 180ms ease-out;
+
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* The phone menu drawer (AppShell) slides in from the left */
+  --animate-drawer-in: drawer-in 160ms ease-out;
+
+  /* The phone detail sheet (SplitPage) slides up over the list */
+  --animate-sheet-in: sheet-in 180ms ease-out;
+
+  @keyframes sheet-in {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes drawer-in {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  /* Loading animation (Loading): hidden for a moment, so quick loads never
+     show it, then fades in */
+  --animate-loading-in: loading-in 150ms ease-out 250ms both;
+
+  @keyframes loading-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* "Pulsing highlights" off on the Options page (PreferencesContext sets the
+   attribute): every hover/selection glow reads this token, so they all hold
+   steady. */
+:root[data-steady-highlights] {
+  --animate-hover-glow: none;
+}
+
+@property --glow-alpha {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+/* ─── Custom variants ────────────────────────────────────────────────────────── */
+
+/* Breakpoints. The layout has three widths:
+   - mobile (below 900px: phones and portrait tablets): one pane at a time,
+     with the tab bar along the bottom. `mobile:flex-col`. The bare media
+     queries below (body, .split-page) and PHONE in src/lib/media.ts use the
+     same width; change them together.
+   - compact (900px to 1199px: landscape tablets and small laptops): two
+     panes, with the sidebar an icon rail that opens over the page.
+   - wide (1200px and up): the full sidebar, which the user can collapse.
+   Phones proper (600px and below) also set text-main a step smaller. */
+@custom-variant mobile (@media screen and (max-width: 899px));
+@custom-variant compact (@media screen and (min-width: 900px) and (max-width: 1199px));
+@custom-variant wide (@media screen and (min-width: 1200px));
+
+/* ─── Custom utilities ─────────────────────────────────────────────────────────
+   Effects that are awkward as utility class strings. They work with variants
+   like any other utility (hover:hover-glow, mobile:pixelated). */
+
+/* Width of N character cells (see --cell): w-cells-10 fits ten characters */
+@utility w-cells-* {
+  width: calc(--value(number) * var(--cell));
+}
+
+/* Crisp rendering for pixel-art game sprites */
+@utility pixelated {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+/* Pulsing green highlight (see --animate-hover-glow above) */
+@utility hover-glow {
+  animation: var(--animate-hover-glow);
+  background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
+}
+
+/* Icon colour tint (on an Icon's ::before): a mask shaped like the sprite,
+   multiplied over it. iconStyle() (src/lib/icon-style.ts) sets --icon-mask and
+   the fill (--icon-tint) as inline variables. */
+@utility icon-mask {
+  content: "";
+  display: block;
+  height: 100%;
+  -webkit-mask-image: var(--icon-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-image: var(--icon-mask);
+  mask-size: 100% 100%;
+  mix-blend-mode: multiply;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+}
+
+/* Icon corner badge (on an Icon's ::after): element or rank image from --icon-badge. */
+@utility icon-badge {
+  background-image: var(--icon-badge);
+  background-repeat: no-repeat;
+  bottom: 0;
+  content: "";
+  height: 100%;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Tiled in-game divider pattern, centred so both ends crop evenly (BorderRule) */
+@utility divider-tile {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAgCAYAAACinX6EAAAAeklEQVR42u3ZPQ5AMACAURUHsFttnMjgGEaD0TEMTsRmtbsBZ2hESLxv7k/y0qVtmPrqTD5cO6zhyfXT5OcBAAAAAIA/l8VOGOf91oZdU0SNr8v8dAIAAAAAAAAAAAAAAAAAAACAd98DYu/zd1u2w78AAAAAAAAA8EwXHPcMLz4FygMAAAAASUVORK5CYII=");
+  background-position: left center;
+  background-repeat: repeat-x;
+  background-size: 3.2rem 1.6rem;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+/* Decorative in-game 9-slice frame used by cards and toasts.
+   Each frame is drawn twice: as the element's border image, with its fill,
+   under the content; and, with frame-cover, its opaque pixels again
+   (--frame-cover) over the content, so whatever runs out to the edge (a
+   highlighted row, a scrolled list) passes under the frame rather than over
+   it. --card-inset-* is how deep the transparent notches around the frame's
+   outer edge go, on each side (with a unit, 0px not 0: card-body subtracts
+   it in calc()): Card's body sits there (card-body), so nothing shows
+   outside the frame.
+   Every frame's image is the game's art at 4x, and every frame is drawn at
+   3x (a 6px slice is 24 image pixels, drawn 18px wide). This one: copper
+   squares in the corners, 6px slices top and bottom and 8px at the sides, so
+   the 3px gap between each corner and its first notch sits in the corner
+   slice. Each middle strip is a whole number of the art's periods (24px: 3
+   notches, 2 columns of stars; 8px: 2 side zigzags, 1 row of stars), so
+   repeating it leaves no seams. */
+@utility card-frame {
+  border-image-outset: 0;
+  border-image-repeat: round round;
+  border-image-slice: 24 32 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAYAAACeXX40AAACKElEQVR42u3dPU7DQBAG0HUUCYlUUTqE6AgH4QCIg9ByiLQcBHEADgJ0CNEhqiDRxLTE/ASzdnY3fq8EK7sxo5lPthOqEEId+lW1PD71foa+/lb3MwqQkAJEATJc4+YPbi5Po17wbHHb6QZT72fo6/e9Hx0QIxgFCHlkwLYZ4g+ZoM7sPdfW705sfeiAGMEoQMgzA8aKvW5k/bTrd30dUQfECAYFSBkZMDZDXFzf3TvNRZv3WR86IEYwChCSqELP9yaPjg9lwII9PjzNdUCMYFCA7GQGbFrLhJPJZO2Xs4OpTMePXp5f1zLjcrn8teZ0QIxgFCBkkwGzyoT1arW/tuHR6K2kE1z6/rvOfDogRjAoQLLQ+jMhzRk/C9NOM1Ls8W0zVmxGK33/sb7JfDogRjAoQPKX3b3gtplqU+Zp+3rbXi+3/cdyLxgjGBQgRRjntqFmRintXmrp+9cBUYCgABmE5M8D7vp1uiqEvcbJfM9p/7E8D4gRDAqQIiV/HnDTdbPY47ediZqZ7x/Hv6Xcf2w96IAYwaAAKYLvhulYbpl02zwPiBEMCpBiMqDviOZHviMaIxgUIDvpy73g3P+/LGl1XR86IEYwChDyyIBtM92mTHB1fjJ3mst1tnjqtT50QIxgFCDkmQHjM0TcdcHU1yWHvr4OiBEMCpBhZsDYDBL+9v0zn9U9v+fK+t39PWLrQwfECEYBQhK9fyZEBtztDKgDYgSDAqRIH/sa58WeoPMsAAAAAElFTkSuQmCC");
+  border-image-width: var(--frame-width);
+  border-style: solid;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  --frame-width: 18px 24px;
+  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAYAAACeXX40AAABpElEQVR42u3dwVHDMBAFUJnhprJSAN2kCLpJAZTlsziTDDa2bLSy3jsCY4nkz+6OoyRTSqmkc00b/771fkZf/1/385agIQFEABnX+/MPHvdb1QU/Pr8O3WDr/Yy+/tn7UQHRghFAiDEDbp0h/jATlGD/c7H+cWrzoQKiBSOAEHMGrFV738j6bdc/+j6iCogWDAJIHzPgATPE5GHuWjkzHyogWjACCE1MKd57EOhoBlQB0YJBAOl2Blzs+TnnH7+c59lMx69yzuUpL4uZUwHRghFACDMDmgk5beZTAdGCQQDpcwbceQ2uqyofKiBaMAIIYWZA9/3YzWvBaMEggAggCCACCAJISM4DUsV5QLRgEEDGmAF3XoPrch4QLRgEkGvMgO77sZvzgGjBIIB0MwP6jGiW+IxotGAQQK7n5bvion+/LG0dnQ8VEC0YAYQYM+DWmW5tJnjcb8XD3K+15782HyogWjACCDFnwLNniDWt70uOvr4KiBYMAsiYM2DtDJK2nwdsfT5x9PU37ac2HyogWjACCE1EfE+IGXCg50MFRAtGAKGJb4uqga/xXSW8AAAAAElFTkSuQmCC");
+  --frame-cover-slice: 24 32;
+  --frame-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAQAAAA0VLa/AAAAvklEQVR42u3cQQqEMAxA0dT73zmeQCWtKA3vLwd08WhLOjAzolpefD4W3/P385PvOUJLAQQIECBAAZQkSZK+bJSfSCJuIq5yAAEKIECALaaevJh/Es7tfJhWoC0MsNUZGM7CytlnBdrCAAEKIECA7sLuwrKFAQIEKIAAt54DwzxYmf+sQFsYIEABBAiwzRxo/puaB61AWxhgq539nN+JWIG2MECAAggQoCRJkrRr730f6H+k5SoHECBAAQS4UyeLCxlzDHnfVgAAAABJRU5ErkJggg==");
+  --card-inset-t: 6px;
+  --card-inset-r: 6px;
+  --card-inset-b: 6px;
+  --card-inset-l: 6px;
+}
+
+/* Alternative in-game frame: red and teal bands, copper corner squares. 6px slices drawn at 3x. */
+@utility card-frame-teal {
+  border-image-outset: 0;
+  border-image-repeat: round round;
+  border-image-slice: 24 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACTElEQVR42u3bsUrDUBQG4FQEhwiKWhFdXJx9AcHBoYsgPoA4uzp0cnRycHUWH0AElw4Ogi/gG7jooHYQ7KxzYmm86Q2a9Pu2WNPC5f7cc9qcVpIkX0mFljqdBMp67/Uqff8pS8wkEwAEACbVdP4PN92dsd5w7+wucz2zvGKViSb2/nQCoAQCAQA9QHHNNG5NdvLZH/n66eyi+91fuqYP3Z9OAJRAIAAgACAAIAAgANBwrSQ3DxD7WYuL/V2rTGlH17dJlfvTCYASCAQA9ADF0jQd+fpgMMhcH29vWWVKO79/GGv/OQFAAEAAYGgPkDeyJ1heXX+0bPxXry9PmyF73gmAEggEAPQAQ2V6gvz3sOlcW0/Anxl8vGVq/iG/A7ScACAAIACQMR16Q77GSufaVpG/6wECn/1xAoAAgABA8bNAvvenVj1B4O8CTgCUQCAAMIEKfwfwvT+16gHMBIMAgABAEfMA1LvmNw8ASiAQAAhlHoB69wDmAUAAQAAglHkAmtUTmAcAJRAIABQxD0CzegDzACAAIABQxDwA9a75zQOAEggEAEKZB6DePYB5ABAAEAAIZR6AZvUE5gFACQQCAL/pAb6q/IDj7S2rTGnn9w9OABAAEACI68ezQDfdnbHecO/sLnO9sTBvlYkm9v50AqAEAgEAPUBxzRRak53OLmauTz77Qf+f5/7Jvj/2/nQCoAQCAQABAAEAAQABgIb7MQ8Q+1mLtYNDq0xpz1eXSZX70wmAEggEAPQA8S11OlaZ0t57PScACAAIAMT1DWFvzIBk3tT3AAAAAElFTkSuQmCC");
+  border-image-width: var(--frame-width);
+  border-style: solid;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  --frame-width: 18px;
+  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACM0lEQVR42u3bvUrDUBgG4FQKDnEQFRGcvQvBwaGLIF6AOLs6dOro5ODqLF6ACC4dOgjeiptuzVznpmKa84OpfZ4trSfC4byc70t6ekVRzIqM9gaDAkJ9jsdZ779hillnAoAAwLrq1z94GZ5G3fD8bjJ3vbl/YJZJJvX6tAOgBAIBAD1Ac80UW5ONpl+/fn+7tWu88cE1fdv1aQdACQQCAAIAAgACAAIA/1yvqJ0HSP1bi4eLM7NMsOvn1yLn+rQDoAQCAQA9QLOyLH/9vqqqueubk2OzTLD7t/eo9WcHAAEAAYAfe4C6WcAY6IpW69cOgBIIBAD0AM01Vf05bFVVegL+TFmWs9p6bLXG7QAogUAAQA/Q3AME3gNyiVqfdgCUQCAAoAdYrKk892eVtH0vYAdACQQCAHqAxR5gyTHQFc4DgBIIBADi63nvBegs5wFACQQCAPl7gMB7QC7OA4ASCAQA4nsAz/1ZWc4DgBIIBADie4Alx0BXOA8ASiAQAIiv570XoLOcBwAlEAgA5O8BAu8BuTgPAEogEACI7wE892dlOQ8ASiAQAFiqB5jl/Ac3J8dmmWD3b+92ABAAEABIq1//4GV4GnXD87vJ3PXRzrZZJpnU69MOgBIIBAD0AM01U9ua7HZrd+56NP1q9fd1xq/3+NTr0w6AEggEAAQABAAEAAQA/rmF8wCpf2txeHlllgn28fRY5FyfdgCUQCAAoAdIb28wMMsE+xyP7QAgACAAkNY3eBW10LU/jVYAAAAASUVORK5CYII=");
+  --frame-cover-slice: 24;
+  --frame-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAQAAADhybViAAAAsElEQVR42u3XsQqAMAxF0ej//3PdBMHBIfQFOWdy7qWxqQIAAAAAAAAAAP7mqHV/PS2H03zSr+d7OpksAQTwD/g0q+id/W6AEYQAAiCAAAIwYg/w/o/sA26AESQAAgiAAAIQ3QPKPrDz/e8GGEEIIAACCCAAI/YA7//IPuAGGEECIIAACCAA0T2g7AM73/9ugBGEAAIggAACMGIP8P6P7ANugBEkAAAAAAAAAAAAAI0uLpkVU8VZBi8AAAAASUVORK5CYII=");
+  --card-inset-t: 0px;
+  --card-inset-r: 6px;
+  --card-inset-b: 0px;
+  --card-inset-l: 6px;
+}
+
+/* Alternative in-game frame: rows of green squares. 8px slices drawn at 3x. */
+@utility card-frame-green {
+  border-image-outset: 0;
+  border-image-repeat: round round;
+  border-image-slice: 32 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABgCAYAAADVenpJAAABtklEQVR42u3dvW0CQRCG4T3L2QVEroMeyCxRBY1YboQqLDlzD67DkYOLjxzrDszsj2CfNwSdRlq9+mZ2ELohpTQndMuTIyAACIBeeT7/4O3zULTg++tx9Xv169aXAFoACAAzwBIfx69Qgf1hF3pe/bL1JYAWAALADJCrp0R7lvp160sALQAEAAFAABAABIA9QMt7rvp160sALQAEgBlgiejv2VHU30kAEAAEQAmGlPm/geM4OtWCTNMkAUAAEAC59gDDP59ZnRnGzcu3Yy06A2yvmOskAAgAAuCaPUCUeW0PYCYI9vzfn+2FPcAgAUAAEAA37gFy31PPZwCnnPE8JQAIAAKg4R7Avf+B9gISQAsAAWAP4N7f515AAmgBIADsAQLYC9zRvV8CgAAgAHLtAewF7uveLwFAABAAgTuke/8D7QUkgBYAAqDrGWB2DBIABAAB0B1/fguo/f569dvWlwBaAAgAM8ASpd9fr37b+hJACwABYAbI1VNKv1dP/bz1JYAWAAKAACAACAACwB6g5T1X/br1JYAWAALADLBE6ffXq9+2vgTQAkAAdIv/BkoAEAAEQJ+cAPPtnqel60aNAAAAAElFTkSuQmCC");
+  border-image-width: var(--frame-width);
+  border-style: solid;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  --frame-width: 24px;
+  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABgCAYAAADVenpJAAABnklEQVR42u3dMWoDMRRFUU1wp125C2QV3ojxRrwKQ7rsSvWktxkbI31psM4tE5IHw+X9LwVnlpTSmjAtXx4BAUAAzMrh/gvn31No4OX7+vT78vvmawAjAASAHWCL2/WvKuDndKz6efmx+RrACAABYAdoNVNqZ5b8vvkawAgAAUAAEAAEAAHgHmDkOVd+33wNYASAALADbFH79+xa5B81AAgAAiCCJTX+bGDO2VMNpJSiAUAAEACtdoB3WQN+JwY9fw1gBIAAsAO0mkn39wClFDtBBTnn9cU9wKIBQAAQAHvYAdwL7PvcrwFAABAAFfPDuf+D7gU0gBEAAsAO4Nw/572ABjACQADYAVrNJPcC+z73awAQAARA1A7gXmDf534NAAKAAKiYH879H3QvoAGMABAAU+8Aq8egAUAAEADT8fC/gnu/v17+2HwNYASAALADbBH9/nr5Y/M1gBEAAsAO0GqmRL9XT37bfA1gBIAAIAAIAAKAAHAPMPKcK79vvgYwAkAA2AG2iH5/vfyx+RrACAABMC0+G6gBQAAQAHPyD5R0j8VzZXObAAAAAElFTkSuQmCC");
+  --frame-cover-slice: 32;
+  --frame-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABgCAQAAAB/c7LCAAAAcElEQVR42u3YIQ7AIAxA0cL971w0ggSBaXnPzmw/lDAiAAAAAAAAAIDuRuTxyS7LfdnV+8/fV4AA9oB8M0vVZt8KEEAAAQQQQAD/AkZAAAEEEEAA5wD3AUZAAAEEEEAA5wD3AUZAAAAAAAAAAACAZhZKog8371m6SwAAAABJRU5ErkJggg==");
+  --card-inset-t: 0px;
+  --card-inset-r: 12px;
+  --card-inset-b: 0px;
+  --card-inset-l: 12px;
+}
+
+/* Alternative in-game frame: blue chain-link bands, patterned fill. Sliced
+   like card-frame (6px top and bottom, 8px at the sides, drawn at 3x), so its
+   middle strips are whole periods: 24px (3 notches, 2 columns of chains) and
+   12px (3 side zigzags, 1 band of chains). */
+@utility card-frame-blue {
+  border-image-outset: 0;
+  border-image-repeat: round round;
+  border-image-slice: 24 32 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABgCAYAAACaJ3mZAAACp0lEQVR42u3dMWobQRQG4N0khUGFwYYUAYc0gXQ6hE/gE/gcAZeGnCMn8Al8CHeBNMGGFAa7E7gJ6zbahF0NM6OZ0X5fJ9toRtJj3s/srNx3XTd0efWBf196Pksff6/zedNBQQoQBchyvRv/4PzqJuoJb68vkk6w9HyWPn7u+VgB0YJRgFBHBgzNEDtkgqGy1zwYP53Y+rACogWjAKHODBgrdt/I+GXHT72PaAVECwYFSBsZMDZD/Pz+9c7b3LR1zvqwAqIFowChiL4LvDa4Wq22Hm82m8m/f//h01YGPHp75F2v2Mufl63Hj79/rVPWgxUQLRgUINVkwLHJTPjx7MvdVGaQ8ZaVEcef9/3Dj3VIzVkB0YJRgFBNBpzMhON9n9OTs6av9c5lmtozbun5Pz0/bGW+/+wD9lZAtGBQgFQn+J6QcY9fHcdljNAMMxY7XujvD23+sZkz9NqvFRAtGBQgVZi9Flx63y8206TOWKmfr/b5hwrdF7QCogWjAKGI2X3AcQ8/PZnOHLkzRu5rneYfljHH47knBC0YFCBNWPx5QOI4D4gWDAqQJhU/DzjHPRtd1a/HeUC0YFCANKn4ecDYeyrm5D5P1/r8U3MeEC0YFCBNKH4ecN/n31LfN9v6/FNnducB0YJBAdIE3w/oWnMU5wHRgkEB0qTqzwPmNjff2l/PvufvPCBaMChADkL13w9IW5wHRAsGBUgzGXDIOcD4/wvTlh3+/68VEC0YFCDt+eda8PnVTdQT3l5feFcPWOr6sAKiBaMAoY4MGJrp5jLB58tva29zu+5nPv/Y+rACogWjAKHODBgrdl+w9L7k0se3AqIFgwJkmRkwNoN0u33/zN+GzK+5N366zyO2PqyAaMEoQCgi+z0hMuBhZ0ArIFowKECa9AopQzr5bDwMTQAAAABJRU5ErkJggg==");
+  border-image-width: var(--frame-width);
+  border-style: solid;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  --frame-width: 18px 24px;
+  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABgCAYAAACaJ3mZAAACAElEQVR42u3bwXHCMBAFUDnDzWVRAf34SD9UQFmclXM8GbAkG8nSe7cwwXLMn90doUwhhBiONSX+fu37GX39r97PT4CKBBABZFyX9QvX5VF0wef9tusN1r6f0dc/+n5UQLRgBBDamAFTZ4gNM0Fs7G+O1t9PaT5UQLRgBBDanAFLle4bWb/u+nvvI6qAaMEggJxjBtxhhpg85lOLR+ZDBUQLRgChiikkfjc4z/Ofn1+v15Y16HQGzMiDCogWDAJIGzNgUs8301EyM67zowKiBSOA0MwM+Lan/7PvYyYc2DzPcZWHpIypgGjBCCCcYwbMvAb9KsqHCogWjABCMzOgfT+ype4LqoBowQggtDkDbnwPZOVHBUQLRgChmRnwbU+3L8gqD84DogWDADLADJh5DfrlPCBaMAggfcyA9v3I5jwgWjAIIH3MgBvfA1n5UQHRghFAaGYGfNvT7QuyyoPzgGjBIIAMMANmXoN+OQ+IFgwCSB8zoH0/sjkPiBYMAshpZsD4hTU4r0PzoQKiBSOAUMVl/cJ1eRRd8Hm/eaod2zsfKiBaMAIIbcyAqTPdp5ngujyix3xenz7/0nyogGjBCCC0OQMePUN8UntfcvT1VUC0YBBAxpwBS2eQkH4esPb5xNHXT7qf0nyogGjBCCBU0eL/hJgBB/o8VEC0YAQQqvgFMnWX3uxIsjIAAAAASUVORK5CYII=");
+  --frame-cover-slice: 24 32;
+  --frame-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABgCAQAAAAwLrESAAAA4UlEQVR42u3dQQ6DMAwAQYf//9m8AJATBIo1e6zUHkYxcnpoR1TLi9fH4uf8/f7JzzlCSwEECBAgQAGUJEmSvmyU35FE3ERc5QACFECAAFtsPXmx/ySc2/0wnUAjDLDVMzA8CyvPPifQCAMEKIAAAboLuwvLCAMECFAAAW69B4Z9sLL/OYFGGCBAAQQIsM0eaP+b2gedQCMMECBAAQS4/R4Y9sHK/ucEGmGAAAUQIMA2e6D9b2ofdAKNMMBWk/2c341xAo0wQIACCBCgJEmStGvvfR/of+XkKgcQIEABBLhTJyZUH4+3JUhcAAAAAElFTkSuQmCC");
+  --card-inset-t: 6px;
+  --card-inset-r: 6px;
+  --card-inset-b: 6px;
+  --card-inset-l: 6px;
+}
+
+/* The frame's opaque pixels again, over the element's content (see
+   card-frame). The element must be positioned and must not scroll itself, or
+   this would scroll away with the content: Card scrolls an inner body. */
+@utility frame-cover {
+  &::after {
+    /* Longhands, like the frame's own: Safari doesn't reliably draw a
+       border-image shorthand built from var()s. */
+    border-image-outset: 0;
+    border-image-repeat: round;
+    border-image-slice: var(--frame-cover-slice);
+    border-image-source: var(--frame-cover);
+    border-image-width: var(--frame-width);
+    border-style: solid;
+    content: "";
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    /* Its own compositing layer, ordered by z-index: Safari on macOS gives a
+       scrolling body a layer of its own, which can otherwise draw over an
+       overlay painted into the card's layer. */
+    will-change: transform;
+    z-index: 1;
+  }
+}
+
+/* Card's body: at the frame's outline (--card-inset-*), with its padding
+   counted from the card's outer edge (card-p-*, card-px-*, card-py-*,
+   card-pl-*, card-pr-*; 2.6rem by 2rem by default) less that inset. A
+   padding smaller than the inset computes to 0: calc() in padding is clamped
+   at 0, so the content starts at the outline.
+   It is also masked where the frame is opaque (--frame-mask: the inverse of
+   --frame-cover, laid out over the card's box by the outset), so nothing in
+   it can draw over the frame whatever order the browser composites the
+   layers in. Safari on macOS gives a scrolling body a layer of its own, and
+   draws it over frame-cover's overlay. Browsers without
+   -webkit-mask-box-image (Firefox) rely on the overlay alone. */
+@utility card-body {
+  -webkit-mask-box-image-outset: var(--card-inset-t) var(--card-inset-r) var(--card-inset-b)
+    var(--card-inset-l);
+  -webkit-mask-box-image-repeat: round;
+  -webkit-mask-box-image-slice: var(--frame-cover-slice) fill;
+  -webkit-mask-box-image-source: var(--frame-mask);
+  -webkit-mask-box-image-width: var(--frame-width);
+  margin: var(--card-inset-t) var(--card-inset-r) var(--card-inset-b) var(--card-inset-l);
+  padding: calc(var(--card-py, var(--card-p, 2.6rem)) - var(--card-inset-t))
+    calc(var(--card-pr, var(--card-px, var(--card-p, 2rem))) - var(--card-inset-r))
+    calc(var(--card-py, var(--card-p, 2.6rem)) - var(--card-inset-b))
+    calc(var(--card-pl, var(--card-px, var(--card-p, 2rem))) - var(--card-inset-l));
+}
+
+/* Not inherited, so a card nested in another's body takes its own defaults. */
+@property --card-p {
+  syntax: "*";
+  inherits: false;
+}
+@property --card-px {
+  syntax: "*";
+  inherits: false;
+}
+@property --card-py {
+  syntax: "*";
+  inherits: false;
+}
+@property --card-pl {
+  syntax: "*";
+  inherits: false;
+}
+@property --card-pr {
+  syntax: "*";
+  inherits: false;
+}
+
+@utility card-p-* {
+  --card-p: calc(var(--spacing) * --value(integer));
+  --card-p: --value([length]);
+}
+
+@utility card-px-* {
+  --card-px: calc(var(--spacing) * --value(integer));
+  --card-px: --value([length]);
+}
+
+@utility card-py-* {
+  --card-py: calc(var(--spacing) * --value(integer));
+  --card-py: --value([length]);
+}
+
+@utility card-pl-* {
+  --card-pl: calc(var(--spacing) * --value(integer));
+  --card-pl: --value([length]);
+}
+
+@utility card-pr-* {
+  --card-pr: calc(var(--spacing) * --value(integer));
+  --card-pr: --value([length]);
+}
+
+/* ─── Typography ─────────────────────────────────────────────────────────────── */
+
+/* BIZ UDGothic (Morisawa, SIL OFL 1.1, see public/fonts/biz-udgothic-OFL.txt):
+   a Japanese gothic whose Latin glyphs are fixed half-width, like the game's
+   in-game text. Only the Latin subset is shipped; the site shows no Japanese.
+   The fallbacks are monospace so the fixed-width look survives a failed load. */
+@font-face {
+  font-family: "BIZ UDGothic";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/biz-udgothic-latin-400-normal.woff2") format("woff2");
+}
+
+html {
+  color: white;
+  font-size: 62.5%;
+  height: 100%;
+  line-height: 1.5;
+  /* Full-bleed elements (BorderRule) are 100vw wide, which includes the
+     scrollbar; clip rather than let that scroll sideways. */
+  overflow-x: clip;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "BIZ UDGothic", ui-monospace, monospace;
+  /* Browsers without percentage letter-spacing get the em value. */
+  letter-spacing: 0.14em;
+  @supports (letter-spacing: 1%) {
+    letter-spacing: var(--tracking-game);
+  }
+  font-size: 16px;
+  height: 100%;
+  align-items: stretch;
+  margin: 0;
+  padding: 1.4rem 1.4rem 2.5rem;
+
+  /* Fixed full-viewport background image */
+  &::before {
+    background: center / cover no-repeat url("/images/bg.png");
+    background-attachment: fixed;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
+  @media screen and (max-width: 899px) {
+    height: auto;
+    min-height: 100%;
+  }
+}
+
+@media screen and (min-width: 320px) {
+  body {
+    font-size: calc(14px + 6 * ((100vw - 320px) / 680));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  body {
+    font-size: 22px;
+  }
+}
+
+/* ─── Base element resets ────────────────────────────────────────────────────── */
+
+/* In the base layer so a colour utility on a link (text-gold) can win. */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  /* The UA stylesheet resets letter-spacing on form controls; inherit the
+     game tracking like the rest of the text. */
+  button,
+  input,
+  select,
+  textarea {
+    letter-spacing: inherit;
+  }
+}
+
+/* Game sprites look best with crisp pixel rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  color: transparent;
+
+  /* Broken images replaced with the in-game unknown item icon */
+  &::before {
+    background-image: url("/images/ukwn.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    content: " ";
+    display: block;
+    height: 100%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    position: absolute;
+    width: 100%;
+  }
+}
+
+/* Default divider. In the base layer so utilities can adjust it (e.g. the
+   search overlay's tighter margins). The tiled page-header divider is the
+   BorderRule component. */
+/* text-main is 20px on phones (the @theme block can't hold a media query). */
+@layer base {
+  @media screen and (max-width: 600px) {
+    :root {
+      --text-main: 2rem;
+    }
+  }
+}
+
+@layer base {
+  hr {
+    background-color: var(--color-hr);
+    border: none;
+    flex: 0 0 auto;
+    height: 6px;
+    margin: 1.3rem 0 2.2rem 0;
+    width: 100%;
+  }
+}
+
+/* ─── Card paragraphs ──────────────────────────────────────────────────────────
+   Default for paragraphs inside a Card: one line, tight leading, colour from
+   the card, above its frame. In Tailwind's components layer, so any utility
+   on a paragraph overrides it (e.g. a note that wraps, a red error). */
+@layer components {
+  .card-copy p {
+    color: inherit;
+    line-height: 1;
+    margin: 0;
+    position: relative;
+    white-space: nowrap;
+    z-index: 10;
+  }
+}
+
+/* ─── Reusable components ──────────────────────────────────────────────────────
+   Shared building blocks used as plain class strings across pages. Layout
+   (flex/spacing) is done with Tailwind utilities directly in the markup.
+
+   Deliberately left unlayered (not wrapped in `@layer components`): Tailwind
+   itself declares an internal layer named "components" as part of `@layer
+   theme, base, components, utilities;`, which ranks below its own "utilities"
+   layer. Reusing that same layer name here would merge our rules into
+   Tailwind's lower-priority layer instead of overriding it. Unlayered rules
+   always win over any layered rule regardless of order, which is what we want
+   (component classes like .split-page should beat conflicting utilities). */
+
+/* A full-width row in a linked list table (weapon-type lists, armor lists). */
+.list-row {
+  align-items: center;
+  display: flex;
+  flex: 0 0 38px;
+  height: 38px;
+  /* Like a weapon-tree row: flush left, the icon's own margin is the gap. */
+  padding-right: 0.9rem;
+
+  &:hover {
+    animation: var(--animate-hover-glow);
+    background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
+  }
+}
+
+/* Two-panel layout: tree sidebar + detail panel split the space equally. */
+.split-page {
+  display: flex;
+  position: relative; /* anchors the 3D model popover over the side card */
+  gap: 1.3rem;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+
+  > .card {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+
+  @media screen and (max-width: 899px) {
+    flex-direction: column;
+    /* Fill the screen under the page bar even when the list is short, so an
+       item's sheet (SplitPage) has the screen's height to open into. */
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+}
+
+/* With the hunter filter bar showing (WeaponTreePanel), let its arrows out
+   past the tree card; `min-*: 0` keeps the flex sizing overflow: hidden gave. */
+.split-page:has(> [data-tree-panel] [data-filter-bar]) {
+  min-height: 0;
+  min-width: 0;
+  overflow: visible;
+}
+
+/* ─── View Transitions ───────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 120ms;
+  }
+}

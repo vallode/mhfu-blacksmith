@@ -1,0 +1,19 @@
+// randomfu's web app on Cloudflare: a Worker with only static assets (no
+// script). Deployed by the "Deploy to Cloudflare" workflow
+// (.github/workflows/cloudflare-deploy.yml) after `pnpm build` has written
+// dist/. Response headers are in _headers, which build.mjs copies into dist/.
+{
+  "name": "randomfu",
+  "compatibility_date": "2026-10-22",
+  "assets": {
+    "directory": "./dist",
+  },
+  // Production at randomfu.<account>.workers.dev until randomfu.vallode.com
+  // is added as a custom domain, and a preview URL per branch (see the
+  // workflow).
+  "workers_dev": true,
+  "preview_urls": true,
+  // Required by `wrangler preview`, which Workers Builds runs for branches
+  // other than main. Empty: assets and compatibility settings stay above.
+  "previews": {},
+}

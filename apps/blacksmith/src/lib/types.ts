@@ -1,0 +1,297 @@
+import type { Tier } from "./min-rank";
+import type { Crowns } from "./crowns";
+
+export interface Material {
+  name: string;
+  amount: string | number;
+  type: string;
+  color: string;
+}
+
+export interface WeaponElement {
+  name: string;
+  attack: number;
+}
+
+export interface ShellingInfo {
+  type: string;
+  level: number;
+}
+
+export interface AmmoEntry {
+  name: string;
+  capacity: number[];
+}
+
+export interface ShotEntry {
+  name: string;
+  level: number;
+}
+
+export interface Melody {
+  combo: string[];
+  effect: string;
+  description: string | null;
+  duration: string | null;
+  extended_effect: string | null;
+  extended_duration: string | null;
+}
+
+/** Earliest quest progress at which gear can be made (see min-rank.ts). */
+export type MinRank = Tier;
+
+export interface Weapon {
+  name: string;
+  slug: string;
+  type: string;
+  attack?: number;
+  raw_attack?: number;
+  max_attack?: number;
+  affinity?: string;
+  slots?: number;
+  rarity?: number;
+  bonus?: string | null;
+  sharpness?: (string | number)[];
+  sharpness_plus?: (string | number)[];
+  elements?: WeaponElement[] | null;
+  notes?: string[] | null;
+  /** Hunting horn songs its notes can play. */
+  melodies?: Melody[];
+  shelling?: ShellingInfo | null;
+  rapid_fire?: string | null;
+  recoil?: string | null;
+  reload?: string | null;
+  create_cost?: number | null;
+  improve_cost?: number | null;
+  /** A single source is a bare string; several are a list. */
+  improve_from?: string | string[] | null;
+  improve_to?: string[] | null;
+  create_mats?: Material[] | null;
+  improve_mats?: Material[] | null;
+  alternative_create_mats?: Material[] | null;
+  ammo?: AmmoEntry[] | null;
+  status_ammo?: AmmoEntry[] | null;
+  element_ammo?: AmmoEntry[] | null;
+  misc_ammo?: AmmoEntry[] | null;
+  coatings?: string[] | null;
+  shots?: ShotEntry[] | null;
+  skills?: string[] | null;
+  color?: string | null;
+  /** Derived from quest drops and recipes; absent when no route is known. */
+  min_rank?: MinRank;
+}
+
+export interface WeaponTreeNode {
+  slug: string;
+  name: string;
+  type: string;
+  rarity?: number;
+  color?: string;
+  /** The weapon's element, lower-case ("fire"); the first one of a dual-element weapon. */
+  element?: string;
+  /** Every element of a dual-element weapon, in order; absent for one element or none. */
+  elements?: string[];
+  /** Earliest quest progress needed to make it; absent when no route is known. */
+  min_rank?: MinRank;
+  /** Armor only: defence at the highest upgrade level. */
+  max_defence?: number;
+  /**
+   * The weapon is also listed further up the tree, under another weapon it
+   * can be upgraded from, and its own upgrades are listed there: this row has
+   * no children of its own.
+   */
+  alias?: boolean;
+  /**
+   * The page of the weapon this one is upgraded from, when the tree row isn't
+   * nested under it any more (its parent was pruned out of the tree).
+   */
+  parentHref?: string;
+  children?: WeaponTreeNode[];
+}
+
+export interface WeaponTree {
+  map: WeaponTreeNode[];
+}
+
+export interface ArmorSkill {
+  name: string;
+  amount: string | number;
+}
+
+export interface ArmorPiece {
+  name: string;
+  slug: string;
+  type: string;
+  hr?: string | number;
+  elder?: string | number;
+  rank: string;
+  /** Derived from quest drops and recipes; absent when no route is known. */
+  min_rank?: MinRank;
+  defence?: string | number;
+  /** Defence at the highest upgrade level, after Ukanlos opens the last True Armor Sphere levels. */
+  max_defence?: number;
+  /** Defence at the highest upgrade level before Ukanlos. */
+  max_defence_pre_ukanlos?: number;
+  fire_res?: string | number;
+  thunder_res?: string | number;
+  dragon_res?: string | number;
+  water_res?: string | number;
+  ice_res?: string | number;
+  sex?: string;
+  hunter_type?: string;
+  rarity?: string | number;
+  slots?: number;
+  create_cost?: string | number | null;
+  skills?: ArmorSkill[];
+  create_mats?: Material[];
+  /** A second recipe for the same piece (e.g. Felyne Piercing). */
+  alternative_create_mats?: Material[];
+}
+
+export interface HitzoneValues {
+  cut?: string;
+  bash?: string;
+  shot?: string;
+  fir?: string;
+  wtr?: string;
+  thn?: string;
+  ice?: string;
+  drg?: string;
+  ko?: string;
+}
+
+export interface MonsterDrop {
+  /** Item name without the quantity suffix ("Plesioth Scale", not "Plesioth Scale x2") */
+  name: string;
+  chance: string;
+  /** How many you get, when the source says so ("x2") */
+  quantity?: number;
+  /** Icon type and colour of the matching material, when it has one */
+  type?: string;
+  color?: string;
+}
+
+/** Identical attack records (same numbers), listed once with a count. */
+export interface MonsterAttackRow {
+  /** Base damage, before the quest's attack multiplier */
+  damage: number;
+  /** Guard knockback */
+  guard: number;
+  count: number;
+  elements?: string[];
+  statuses?: string[];
+  /** Buildup of the statuses */
+  statusValue?: number;
+  /** Stun (KO) buildup */
+  stun?: number;
+}
+
+/** A monster's attacks. The disc gives them per code family, so `sharedWith` are the other monsters on the same numbers. */
+export interface MonsterAttacks {
+  rows: MonsterAttackRow[];
+  sharedWith: { name: string; category: string; slug: string }[];
+}
+
+/** One break reward and the body parts behind it (from the disc; see packages/mhfu-extract `monsters/breaks.ts`). */
+export interface MonsterBreak {
+  /** The break's drop group label without "break " ("head", "wing"). */
+  name: string;
+  /** Body parts: the `part` numbers of the monster's hitbox capsules. */
+  parts: number[];
+  /** Flinches of a part that break it; null when another event does. */
+  flinches: number | null;
+  /** Every listed part must reach the count (else any one). */
+  all_parts?: boolean;
+  /** Fraction of max HP the monster must be under. */
+  below_hp?: number;
+  /** Damage the part must have taken. */
+  damage?: "cut" | "fire" | "dragon";
+}
+
+export interface Monster {
+  name: string;
+  slug: string;
+  type: string;
+  description?: string;
+  hitzones?: Record<string, HitzoneValues>;
+  drops?: Record<string, Record<string, MonsterDrop[]>>;
+  /** HP before a quest's multiplier, from the disc */
+  base_hp?: number;
+  attacks?: MonsterAttacks;
+  /** Centimetres at size 100 percent, as the Guild Card shows sizes (from the disc) */
+  base_size?: number;
+  /** Guild Card crown thresholds, in percent of `base_size` (src/lib/crowns.ts) */
+  crowns?: Crowns;
+  /**
+   * The smallest and largest size, in percent of `base_size`, the monster
+   * rolls across its quests (scripts/lib/quest-bundle.ts monsterSizeRanges);
+   * absent for monsters that are always 100.
+   */
+  size_range?: { min: number; max: number };
+  /** Breakable parts, one entry per break reward */
+  breaks?: MonsterBreak[];
+  /**
+   * Damage each body part (hitbox capsule `part`) takes before the monster
+   * flinches, before quest scaling; null where there's no such part. Only in
+   * `data/`: the site's bundles carry `hitzone_flinch` instead.
+   */
+  flinch_thresholds?: (number | null)[];
+  /**
+   * Each hitzone row's flinch threshold, by hitzone part: one value or a
+   * range ("100–160", see `flinchThreshold`). Worked out by the data build
+   * from `flinch_thresholds` and the monster's hitboxes. Rows without one
+   * are absent; the field is absent without hitboxes or thresholds.
+   */
+  hitzone_flinch?: Record<string, string>;
+  /** Status tolerances from the disc; null where the monster is immune. Only in `data/` so far. */
+  tolerances?: MonsterTolerances;
+}
+
+/**
+ * A status's buildup: it takes `initial` to trigger, `increase` more each
+ * time after; the buildup drains by `recovery` every `recovery_time` ticks,
+ * and the status lasts `duration` ticks.
+ */
+export interface StatusTolerance {
+  initial: number;
+  increase: number;
+  recovery: number;
+  recovery_time: number;
+  duration: number;
+}
+
+/** Poison's buildup, plus `damage` every `damage_interval` ticks for `total_time` ticks. */
+export interface PoisonTolerance {
+  initial: number;
+  increase: number;
+  recovery: number;
+  recovery_time: number;
+  damage: number;
+  damage_interval: number;
+  total_time: number;
+}
+
+export interface MonsterTolerances {
+  paralysis: StatusTolerance | null;
+  sleep: StatusTolerance | null;
+  ko: StatusTolerance | null;
+  poison: PoisonTolerance | null;
+}
+
+export interface Decoration {
+  name: string;
+  slug: string;
+  type: string;
+  color?: string;
+  rarity?: number;
+  slots?: number;
+  create_cost?: number | null;
+  skills?: string[];
+  create_mats?: Material[];
+  /** In-game item ID (data/items.json); decoded bundles only. */
+  item_id?: number;
+  /** A second recipe; the game lists the jewel once for each. */
+  alternative_create_mats?: Material[] | null;
+  /** Earliest quest progress it can be made at (generated, see min-rank.ts). */
+  min_rank?: MinRank;
+}

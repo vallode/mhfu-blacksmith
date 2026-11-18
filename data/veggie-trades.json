@@ -1,0 +1,3874 @@
+{
+  "rare_chance": 20,
+  "elders": [
+    {
+      "maps": [
+        2,
+        16
+      ],
+      "trades": [
+        {
+          "give": 876,
+          "common": 7,
+          "rare": 8
+        },
+        {
+          "give": 246,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 155,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 56,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 50,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 189,
+          "common": 175,
+          "rare": 292
+        },
+        {
+          "give": 201,
+          "common": 175,
+          "rare": 292
+        },
+        {
+          "give": 88,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 35,
+          "common": 95,
+          "rare": 94
+        },
+        {
+          "give": 233,
+          "common": 290,
+          "rare": 292
+        },
+        {
+          "give": 180,
+          "common": 94,
+          "rare": 290
+        },
+        {
+          "give": 182,
+          "common": 281,
+          "rare": 290
+        },
+        {
+          "give": 254,
+          "common": 427,
+          "rare": 330
+        },
+        {
+          "give": 203,
+          "common": 281,
+          "rare": 295
+        },
+        {
+          "give": 183,
+          "common": 95,
+          "rare": 94
+        },
+        {
+          "give": 337,
+          "common": 321,
+          "rare": 342
+        },
+        {
+          "give": 236,
+          "common": 427,
+          "rare": 292
+        },
+        {
+          "give": 944,
+          "common": 349,
+          "rare": 327
+        },
+        {
+          "give": 186,
+          "common": 427,
+          "rare": 95
+        },
+        {
+          "give": 235,
+          "common": 95,
+          "rare": 281
+        },
+        {
+          "give": 165,
+          "common": 290,
+          "rare": 289
+        },
+        {
+          "give": 819,
+          "common": 332,
+          "rare": 335
+        },
+        {
+          "give": 821,
+          "common": 344,
+          "rare": 370
+        },
+        {
+          "give": 190,
+          "common": 289,
+          "rare": 292
+        },
+        {
+          "give": 557,
+          "common": 504,
+          "rare": 366
+        },
+        {
+          "give": 354,
+          "common": 360,
+          "rare": 660
+        },
+        {
+          "give": 559,
+          "common": 532,
+          "rare": 597
+        },
+        {
+          "give": 729,
+          "common": 284,
+          "rare": 287
+        },
+        {
+          "give": 732,
+          "common": 746,
+          "rare": 683
+        },
+        {
+          "give": 510,
+          "common": 593,
+          "rare": 412
+        },
+        {
+          "give": 415,
+          "common": 388,
+          "rare": 393
+        },
+        {
+          "give": 722,
+          "common": 714,
+          "rare": 717
+        },
+        {
+          "give": 600,
+          "common": 473,
+          "rare": 435
+        },
+        {
+          "give": 590,
+          "common": 493,
+          "rare": 370
+        },
+        {
+          "give": 627,
+          "common": 526,
+          "rare": 529
+        },
+        {
+          "give": 570,
+          "common": 673,
+          "rare": 546
+        },
+        {
+          "give": 319,
+          "common": 321,
+          "rare": 382
+        },
+        {
+          "give": 243,
+          "common": 283,
+          "rare": 28
+        },
+        {
+          "give": 339,
+          "common": 273,
+          "rare": 267
+        },
+        {
+          "give": 805,
+          "common": 702,
+          "rare": 547
+        },
+        {
+          "give": 563,
+          "common": 268,
+          "rare": 629
+        },
+        {
+          "give": 386,
+          "common": 361,
+          "rare": 667
+        },
+        {
+          "give": 355,
+          "common": 520,
+          "rare": 548
+        },
+        {
+          "give": 652,
+          "common": 296,
+          "rare": 445
+        },
+        {
+          "give": 392,
+          "common": 326,
+          "rare": 343
+        },
+        {
+          "give": 466,
+          "common": 274,
+          "rare": 285
+        },
+        {
+          "give": 376,
+          "common": 271,
+          "rare": 529
+        },
+        {
+          "give": 567,
+          "common": 400,
+          "rare": 394
+        },
+        {
+          "give": 710,
+          "common": 522,
+          "rare": 550
+        },
+        {
+          "give": 657,
+          "common": 521,
+          "rare": 549
+        },
+        {
+          "give": 647,
+          "common": 390,
+          "rare": 561
+        },
+        {
+          "give": 411,
+          "common": 322,
+          "rare": 293
+        },
+        {
+          "give": 685,
+          "common": 275,
+          "rare": 288
+        },
+        {
+          "give": 811,
+          "common": 700,
+          "rare": 531
+        },
+        {
+          "give": 172,
+          "common": 67,
+          "rare": 68
+        },
+        {
+          "give": 184,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 244,
+          "common": 76,
+          "rare": 76
+        },
+        {
+          "give": 264,
+          "common": 250,
+          "rare": 25
+        },
+        {
+          "give": 817,
+          "common": 315,
+          "rare": 315
+        },
+        {
+          "give": 765,
+          "common": 283,
+          "rare": 287
+        },
+        {
+          "give": 766,
+          "common": 284,
+          "rare": 285
+        },
+        {
+          "give": 768,
+          "common": 283,
+          "rare": 287
+        },
+        {
+          "give": 769,
+          "common": 284,
+          "rare": 285
+        },
+        {
+          "give": 174,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 245,
+          "common": 139,
+          "rare": 139
+        },
+        {
+          "give": 929,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 930,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 933,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 934,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 936,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 937,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 940,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 941,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 518,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 931,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 932,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 935,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 938,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 939,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 519,
+          "common": 80,
+          "rare": 80
+        },
+        {
+          "give": 925,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 926,
+          "common": 317,
+          "rare": 317
+        },
+        {
+          "give": 381,
+          "common": 372,
+          "rare": 271
+        },
+        {
+          "give": 492,
+          "common": 488,
+          "rare": 489
+        },
+        {
+          "give": 884,
+          "common": 382,
+          "rare": 385
+        },
+        {
+          "give": 885,
+          "common": 444,
+          "rare": 451
+        },
+        {
+          "give": 886,
+          "common": 578,
+          "rare": 280
+        },
+        {
+          "give": 887,
+          "common": 495,
+          "rare": 498
+        },
+        {
+          "give": 888,
+          "common": 432,
+          "rare": 435
+        },
+        {
+          "give": 889,
+          "common": 409,
+          "rare": 412
+        },
+        {
+          "give": 890,
+          "common": 593,
+          "rare": 597
+        },
+        {
+          "give": 891,
+          "common": 637,
+          "rare": 645
+        },
+        {
+          "give": 892,
+          "common": 623,
+          "rare": 283
+        },
+        {
+          "give": 893,
+          "common": 686,
+          "rare": 682
+        },
+        {
+          "give": 894,
+          "common": 482,
+          "rare": 484
+        },
+        {
+          "give": 895,
+          "common": 470,
+          "rare": 473
+        },
+        {
+          "give": 896,
+          "common": 504,
+          "rare": 507
+        },
+        {
+          "give": 897,
+          "common": 548,
+          "rare": 554
+        },
+        {
+          "give": 898,
+          "common": 903,
+          "rare": 460
+        },
+        {
+          "give": 899,
+          "common": 373,
+          "rare": 453
+        },
+        {
+          "give": 900,
+          "common": 439,
+          "rare": 610
+        },
+        {
+          "give": 901,
+          "common": 488,
+          "rare": 513
+        },
+        {
+          "give": 902,
+          "common": 905,
+          "rare": 461
+        },
+        {
+          "give": 919,
+          "common": 31,
+          "rare": 36
+        },
+        {
+          "give": 920,
+          "common": 32,
+          "rare": 37
+        },
+        {
+          "give": 921,
+          "common": 284,
+          "rare": 284
+        },
+        {
+          "give": 922,
+          "common": 551,
+          "rare": 551
+        },
+        {
+          "give": 923,
+          "common": 552,
+          "rare": 552
+        },
+        {
+          "give": 924,
+          "common": 525,
+          "rare": 553
+        }
+      ]
+    },
+    {
+      "maps": [
+        3,
+        17
+      ],
+      "trades": [
+        {
+          "give": 877,
+          "common": 7,
+          "rare": 8
+        },
+        {
+          "give": 246,
+          "common": 192,
+          "rare": 192
+        },
+        {
+          "give": 155,
+          "common": 192,
+          "rare": 192
+        },
+        {
+          "give": 56,
+          "common": 192,
+          "rare": 192
+        },
+        {
+          "give": 50,
+          "common": 192,
+          "rare": 192
+        },
+        {
+          "give": 165,
+          "common": 192,
+          "rare": 219
+        },
+        {
+          "give": 170,
+          "common": 192,
+          "rare": 219
+        },
+        {
+          "give": 88,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 81,
+          "common": 204,
+          "rare": 944
+        },
+        {
+          "give": 337,
+          "common": 944,
+          "rare": 204
+        },
+        {
+          "give": 282,
+          "common": 203,
+          "rare": 202
+        },
+        {
+          "give": 281,
+          "common": 219,
+          "rare": 202
+        },
+        {
+          "give": 248,
+          "common": 201,
+          "rare": 202
+        },
+        {
+          "give": 289,
+          "common": 200,
+          "rare": 201
+        },
+        {
+          "give": 231,
+          "common": 202,
+          "rare": 201
+        },
+        {
+          "give": 162,
+          "common": 201,
+          "rare": 200
+        },
+        {
+          "give": 164,
+          "common": 200,
+          "rare": 201
+        },
+        {
+          "give": 290,
+          "common": 202,
+          "rare": 201
+        },
+        {
+          "give": 218,
+          "common": 944,
+          "rare": 944
+        },
+        {
+          "give": 182,
+          "common": 203,
+          "rare": 204
+        },
+        {
+          "give": 193,
+          "common": 203,
+          "rare": 204
+        },
+        {
+          "give": 336,
+          "common": 202,
+          "rare": 201
+        },
+        {
+          "give": 658,
+          "common": 203,
+          "rare": 204
+        },
+        {
+          "give": 821,
+          "common": 204,
+          "rare": 222
+        },
+        {
+          "give": 822,
+          "common": 204,
+          "rare": 222
+        },
+        {
+          "give": 140,
+          "common": 202,
+          "rare": 204
+        },
+        {
+          "give": 759,
+          "common": 223,
+          "rare": 224
+        },
+        {
+          "give": 651,
+          "common": 223,
+          "rare": 222
+        },
+        {
+          "give": 364,
+          "common": 204,
+          "rare": 203
+        },
+        {
+          "give": 906,
+          "common": 944,
+          "rare": 945
+        },
+        {
+          "give": 654,
+          "common": 204,
+          "rare": 215
+        },
+        {
+          "give": 692,
+          "common": 204,
+          "rare": 210
+        },
+        {
+          "give": 421,
+          "common": 204,
+          "rare": 215
+        },
+        {
+          "give": 712,
+          "common": 204,
+          "rare": 210
+        },
+        {
+          "give": 448,
+          "common": 203,
+          "rare": 204
+        },
+        {
+          "give": 509,
+          "common": 945,
+          "rare": 204
+        },
+        {
+          "give": 608,
+          "common": 204,
+          "rare": 944
+        },
+        {
+          "give": 347,
+          "common": 944,
+          "rare": 203
+        },
+        {
+          "give": 744,
+          "common": 210,
+          "rare": 946
+        },
+        {
+          "give": 339,
+          "common": 223,
+          "rare": 224
+        },
+        {
+          "give": 477,
+          "common": 945,
+          "rare": 947
+        },
+        {
+          "give": 763,
+          "common": 206,
+          "rare": 208
+        },
+        {
+          "give": 606,
+          "common": 210,
+          "rare": 215
+        },
+        {
+          "give": 341,
+          "common": 204,
+          "rare": 205
+        },
+        {
+          "give": 701,
+          "common": 211,
+          "rare": 216
+        },
+        {
+          "give": 383,
+          "common": 205,
+          "rare": 223
+        },
+        {
+          "give": 670,
+          "common": 210,
+          "rare": 205
+        },
+        {
+          "give": 384,
+          "common": 206,
+          "rare": 224
+        },
+        {
+          "give": 639,
+          "common": 207,
+          "rare": 947
+        },
+        {
+          "give": 478,
+          "common": 947,
+          "rare": 216
+        },
+        {
+          "give": 513,
+          "common": 208,
+          "rare": 946
+        },
+        {
+          "give": 710,
+          "common": 209,
+          "rare": 225
+        },
+        {
+          "give": 607,
+          "common": 225,
+          "rare": 222
+        },
+        {
+          "give": 764,
+          "common": 227,
+          "rare": 217
+        },
+        {
+          "give": 172,
+          "common": 67,
+          "rare": 68
+        },
+        {
+          "give": 184,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 244,
+          "common": 76,
+          "rare": 76
+        },
+        {
+          "give": 264,
+          "common": 250,
+          "rare": 25
+        },
+        {
+          "give": 817,
+          "common": 315,
+          "rare": 315
+        },
+        {
+          "give": 765,
+          "common": 223,
+          "rare": 223
+        },
+        {
+          "give": 766,
+          "common": 224,
+          "rare": 224
+        },
+        {
+          "give": 768,
+          "common": 223,
+          "rare": 223
+        },
+        {
+          "give": 769,
+          "common": 224,
+          "rare": 224
+        },
+        {
+          "give": 174,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 245,
+          "common": 139,
+          "rare": 139
+        },
+        {
+          "give": 929,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 930,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 933,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 934,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 936,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 937,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 940,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 941,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 518,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 931,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 932,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 935,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 938,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 939,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 519,
+          "common": 80,
+          "rare": 80
+        },
+        {
+          "give": 925,
+          "common": 192,
+          "rare": 192
+        },
+        {
+          "give": 926,
+          "common": 317,
+          "rare": 317
+        },
+        {
+          "give": 381,
+          "common": 945,
+          "rare": 220
+        },
+        {
+          "give": 492,
+          "common": 210,
+          "rare": 208
+        },
+        {
+          "give": 884,
+          "common": 201,
+          "rare": 200
+        },
+        {
+          "give": 885,
+          "common": 202,
+          "rare": 201
+        },
+        {
+          "give": 886,
+          "common": 944,
+          "rare": 219
+        },
+        {
+          "give": 887,
+          "common": 203,
+          "rare": 202
+        },
+        {
+          "give": 888,
+          "common": 219,
+          "rare": 203
+        },
+        {
+          "give": 889,
+          "common": 204,
+          "rare": 222
+        },
+        {
+          "give": 890,
+          "common": 944,
+          "rare": 204
+        },
+        {
+          "give": 891,
+          "common": 204,
+          "rare": 944
+        },
+        {
+          "give": 892,
+          "common": 945,
+          "rare": 210
+        },
+        {
+          "give": 893,
+          "common": 944,
+          "rare": 215
+        },
+        {
+          "give": 894,
+          "common": 202,
+          "rare": 201
+        },
+        {
+          "give": 895,
+          "common": 203,
+          "rare": 202
+        },
+        {
+          "give": 896,
+          "common": 945,
+          "rare": 198
+        },
+        {
+          "give": 897,
+          "common": 204,
+          "rare": 945
+        },
+        {
+          "give": 898,
+          "common": 946,
+          "rare": 210
+        },
+        {
+          "give": 899,
+          "common": 206,
+          "rare": 220
+        },
+        {
+          "give": 900,
+          "common": 220,
+          "rare": 215
+        },
+        {
+          "give": 901,
+          "common": 208,
+          "rare": 216
+        },
+        {
+          "give": 902,
+          "common": 207,
+          "rare": 211
+        },
+        {
+          "give": 919,
+          "common": 15,
+          "rare": 186
+        },
+        {
+          "give": 920,
+          "common": 16,
+          "rare": 17
+        },
+        {
+          "give": 921,
+          "common": 473,
+          "rare": 473
+        },
+        {
+          "give": 922,
+          "common": 675,
+          "rare": 675
+        },
+        {
+          "give": 923,
+          "common": 748,
+          "rare": 748
+        },
+        {
+          "give": 924,
+          "common": 707,
+          "rare": 707
+        }
+      ]
+    },
+    {
+      "maps": [
+        4,
+        18
+      ],
+      "trades": [
+        {
+          "give": 879,
+          "common": 7,
+          "rare": 8
+        },
+        {
+          "give": 880,
+          "common": 7,
+          "rare": 8
+        },
+        {
+          "give": 882,
+          "common": 883,
+          "rare": 883
+        },
+        {
+          "give": 246,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 155,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 56,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 50,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 180,
+          "common": 175,
+          "rare": 22
+        },
+        {
+          "give": 442,
+          "common": 175,
+          "rare": 11
+        },
+        {
+          "give": 88,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 289,
+          "common": 164,
+          "rare": 163
+        },
+        {
+          "give": 231,
+          "common": 178,
+          "rare": 181
+        },
+        {
+          "give": 382,
+          "common": 35,
+          "rare": 11
+        },
+        {
+          "give": 818,
+          "common": 237,
+          "rare": 279
+        },
+        {
+          "give": 249,
+          "common": 191,
+          "rare": 187
+        },
+        {
+          "give": 281,
+          "common": 21,
+          "rare": 52
+        },
+        {
+          "give": 201,
+          "common": 11,
+          "rare": 181
+        },
+        {
+          "give": 234,
+          "common": 250,
+          "rare": 218
+        },
+        {
+          "give": 219,
+          "common": 67,
+          "rare": 68
+        },
+        {
+          "give": 136,
+          "common": 177,
+          "rare": 251
+        },
+        {
+          "give": 185,
+          "common": 168,
+          "rare": 165
+        },
+        {
+          "give": 183,
+          "common": 181,
+          "rare": 180
+        },
+        {
+          "give": 142,
+          "common": 187,
+          "rare": 18
+        },
+        {
+          "give": 823,
+          "common": 660,
+          "rare": 658
+        },
+        {
+          "give": 820,
+          "common": 666,
+          "rare": 663
+        },
+        {
+          "give": 337,
+          "common": 254,
+          "rare": 33
+        },
+        {
+          "give": 205,
+          "common": 258,
+          "rare": 257
+        },
+        {
+          "give": 215,
+          "common": 252,
+          "rare": 254
+        },
+        {
+          "give": 503,
+          "common": 186,
+          "rare": 42
+        },
+        {
+          "give": 447,
+          "common": 10,
+          "rare": 9
+        },
+        {
+          "give": 356,
+          "common": 8,
+          "rare": 257
+        },
+        {
+          "give": 738,
+          "common": 16,
+          "rare": 51
+        },
+        {
+          "give": 429,
+          "common": 257,
+          "rare": 157
+        },
+        {
+          "give": 634,
+          "common": 15,
+          "rare": 16
+        },
+        {
+          "give": 329,
+          "common": 48,
+          "rare": 47
+        },
+        {
+          "give": 760,
+          "common": 12,
+          "rare": 52
+        },
+        {
+          "give": 568,
+          "common": 663,
+          "rare": 658
+        },
+        {
+          "give": 645,
+          "common": 24,
+          "rare": 30
+        },
+        {
+          "give": 665,
+          "common": 158,
+          "rare": 159
+        },
+        {
+          "give": 339,
+          "common": 255,
+          "rare": 258
+        },
+        {
+          "give": 947,
+          "common": 49,
+          "rare": 279
+        },
+        {
+          "give": 511,
+          "common": 55,
+          "rare": 54
+        },
+        {
+          "give": 733,
+          "common": 664,
+          "rare": 659
+        },
+        {
+          "give": 577,
+          "common": 667,
+          "rare": 661
+        },
+        {
+          "give": 516,
+          "common": 16,
+          "rare": 255
+        },
+        {
+          "give": 462,
+          "common": 13,
+          "rare": 14
+        },
+        {
+          "give": 275,
+          "common": 37,
+          "rare": 747
+        },
+        {
+          "give": 269,
+          "common": 279,
+          "rare": 13
+        },
+        {
+          "give": 514,
+          "common": 16,
+          "rare": 17
+        },
+        {
+          "give": 454,
+          "common": 259,
+          "rare": 255
+        },
+        {
+          "give": 773,
+          "common": 27,
+          "rare": 256
+        },
+        {
+          "give": 734,
+          "common": 662,
+          "rare": 668
+        },
+        {
+          "give": 576,
+          "common": 256,
+          "rare": 31
+        },
+        {
+          "give": 278,
+          "common": 29,
+          "rare": 280
+        },
+        {
+          "give": 172,
+          "common": 67,
+          "rare": 68
+        },
+        {
+          "give": 184,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 244,
+          "common": 76,
+          "rare": 76
+        },
+        {
+          "give": 264,
+          "common": 250,
+          "rare": 25
+        },
+        {
+          "give": 817,
+          "common": 315,
+          "rare": 315
+        },
+        {
+          "give": 765,
+          "common": 28,
+          "rare": 25
+        },
+        {
+          "give": 766,
+          "common": 280,
+          "rare": 26
+        },
+        {
+          "give": 768,
+          "common": 28,
+          "rare": 25
+        },
+        {
+          "give": 769,
+          "common": 280,
+          "rare": 26
+        },
+        {
+          "give": 174,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 245,
+          "common": 139,
+          "rare": 139
+        },
+        {
+          "give": 929,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 930,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 933,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 934,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 936,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 937,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 940,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 941,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 518,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 931,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 932,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 935,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 938,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 939,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 519,
+          "common": 80,
+          "rare": 80
+        },
+        {
+          "give": 925,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 926,
+          "common": 317,
+          "rare": 317
+        },
+        {
+          "give": 381,
+          "common": 158,
+          "rare": 157
+        },
+        {
+          "give": 492,
+          "common": 37,
+          "rare": 31
+        },
+        {
+          "give": 884,
+          "common": 7,
+          "rare": 163
+        },
+        {
+          "give": 885,
+          "common": 161,
+          "rare": 177
+        },
+        {
+          "give": 886,
+          "common": 9,
+          "rare": 251
+        },
+        {
+          "give": 887,
+          "common": 18,
+          "rare": 187
+        },
+        {
+          "give": 888,
+          "common": 51,
+          "rare": 22
+        },
+        {
+          "give": 889,
+          "common": 30,
+          "rare": 11
+        },
+        {
+          "give": 890,
+          "common": 15,
+          "rare": 186
+        },
+        {
+          "give": 891,
+          "common": 8,
+          "rare": 7
+        },
+        {
+          "give": 892,
+          "common": 20,
+          "rare": 19
+        },
+        {
+          "give": 893,
+          "common": 48,
+          "rare": 34
+        },
+        {
+          "give": 894,
+          "common": 52,
+          "rare": 21
+        },
+        {
+          "give": 895,
+          "common": 10,
+          "rare": 33
+        },
+        {
+          "give": 896,
+          "common": 49,
+          "rare": 13
+        },
+        {
+          "give": 897,
+          "common": 17,
+          "rare": 16
+        },
+        {
+          "give": 898,
+          "common": 31,
+          "rare": 12
+        },
+        {
+          "give": 899,
+          "common": 19,
+          "rare": 160
+        },
+        {
+          "give": 900,
+          "common": 16,
+          "rare": 159
+        },
+        {
+          "give": 901,
+          "common": 37,
+          "rare": 157
+        },
+        {
+          "give": 902,
+          "common": 32,
+          "rare": 312
+        },
+        {
+          "give": 919,
+          "common": 9,
+          "rare": 7
+        },
+        {
+          "give": 920,
+          "common": 10,
+          "rare": 8
+        },
+        {
+          "give": 921,
+          "common": 215,
+          "rare": 215
+        },
+        {
+          "give": 922,
+          "common": 627,
+          "rare": 627
+        },
+        {
+          "give": 923,
+          "common": 740,
+          "rare": 740
+        },
+        {
+          "give": 924,
+          "common": 632,
+          "rare": 632
+        }
+      ]
+    },
+    {
+      "maps": [
+        6,
+        20
+      ],
+      "trades": [
+        {
+          "give": 876,
+          "common": 7,
+          "rare": 8
+        },
+        {
+          "give": 878,
+          "common": 7,
+          "rare": 8
+        },
+        {
+          "give": 246,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 155,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 56,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 50,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 166,
+          "common": 175,
+          "rare": 292
+        },
+        {
+          "give": 179,
+          "common": 175,
+          "rare": 94
+        },
+        {
+          "give": 88,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 230,
+          "common": 95,
+          "rare": 94
+        },
+        {
+          "give": 231,
+          "common": 281,
+          "rare": 290
+        },
+        {
+          "give": 75,
+          "common": 94,
+          "rare": 95
+        },
+        {
+          "give": 253,
+          "common": 295,
+          "rare": 427
+        },
+        {
+          "give": 656,
+          "common": 270,
+          "rare": 290
+        },
+        {
+          "give": 247,
+          "common": 427,
+          "rare": 292
+        },
+        {
+          "give": 232,
+          "common": 294,
+          "rare": 95
+        },
+        {
+          "give": 187,
+          "common": 94,
+          "rare": 290
+        },
+        {
+          "give": 169,
+          "common": 289,
+          "rare": 292
+        },
+        {
+          "give": 944,
+          "common": 282,
+          "rare": 330
+        },
+        {
+          "give": 183,
+          "common": 281,
+          "rare": 295
+        },
+        {
+          "give": 141,
+          "common": 321,
+          "rare": 94
+        },
+        {
+          "give": 239,
+          "common": 198,
+          "rare": 468
+        },
+        {
+          "give": 946,
+          "common": 283,
+          "rare": 28
+        },
+        {
+          "give": 257,
+          "common": 342,
+          "rare": 321
+        },
+        {
+          "give": 822,
+          "common": 332,
+          "rare": 335
+        },
+        {
+          "give": 823,
+          "common": 353,
+          "rare": 362
+        },
+        {
+          "give": 494,
+          "common": 340,
+          "rare": 349
+        },
+        {
+          "give": 479,
+          "common": 360,
+          "rare": 470
+        },
+        {
+          "give": 417,
+          "common": 482,
+          "rare": 484
+        },
+        {
+          "give": 324,
+          "common": 425,
+          "rare": 325
+        },
+        {
+          "give": 323,
+          "common": 660,
+          "rare": 666
+        },
+        {
+          "give": 507,
+          "common": 401,
+          "rare": 473
+        },
+        {
+          "give": 437,
+          "common": 432,
+          "rare": 495
+        },
+        {
+          "give": 753,
+          "common": 754,
+          "rare": 623
+        },
+        {
+          "give": 691,
+          "common": 693,
+          "rare": 515
+        },
+        {
+          "give": 320,
+          "common": 328,
+          "rare": 351
+        },
+        {
+          "give": 404,
+          "common": 578,
+          "rare": 663
+        },
+        {
+          "give": 643,
+          "common": 671,
+          "rare": 669
+        },
+        {
+          "give": 735,
+          "common": 587,
+          "rare": 602
+        },
+        {
+          "give": 339,
+          "common": 276,
+          "rare": 270
+        },
+        {
+          "give": 480,
+          "common": 369,
+          "rare": 483
+        },
+        {
+          "give": 350,
+          "common": 331,
+          "rare": 368
+        },
+        {
+          "give": 396,
+          "common": 426,
+          "rare": 359
+        },
+        {
+          "give": 571,
+          "common": 402,
+          "rare": 369
+        },
+        {
+          "give": 464,
+          "common": 741,
+          "rare": 211
+        },
+        {
+          "give": 696,
+          "common": 749,
+          "rare": 300
+        },
+        {
+          "give": 418,
+          "common": 486,
+          "rare": 487
+        },
+        {
+          "give": 615,
+          "common": 612,
+          "rare": 618
+        },
+        {
+          "give": 491,
+          "common": 472,
+          "rare": 469
+        },
+        {
+          "give": 390,
+          "common": 387,
+          "rare": 397
+        },
+        {
+          "give": 636,
+          "common": 497,
+          "rare": 501
+        },
+        {
+          "give": 441,
+          "common": 452,
+          "rare": 453
+        },
+        {
+          "give": 758,
+          "common": 719,
+          "rare": 731
+        },
+        {
+          "give": 703,
+          "common": 528,
+          "rare": 556
+        },
+        {
+          "give": 172,
+          "common": 67,
+          "rare": 68
+        },
+        {
+          "give": 184,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 244,
+          "common": 76,
+          "rare": 76
+        },
+        {
+          "give": 264,
+          "common": 250,
+          "rare": 25
+        },
+        {
+          "give": 817,
+          "common": 315,
+          "rare": 315
+        },
+        {
+          "give": 765,
+          "common": 283,
+          "rare": 287
+        },
+        {
+          "give": 766,
+          "common": 284,
+          "rare": 285
+        },
+        {
+          "give": 768,
+          "common": 283,
+          "rare": 287
+        },
+        {
+          "give": 769,
+          "common": 284,
+          "rare": 285
+        },
+        {
+          "give": 174,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 245,
+          "common": 139,
+          "rare": 139
+        },
+        {
+          "give": 929,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 930,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 933,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 934,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 936,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 937,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 940,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 941,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 518,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 931,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 932,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 935,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 938,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 939,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 519,
+          "common": 80,
+          "rare": 80
+        },
+        {
+          "give": 925,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 926,
+          "common": 317,
+          "rare": 317
+        },
+        {
+          "give": 381,
+          "common": 372,
+          "rare": 271
+        },
+        {
+          "give": 492,
+          "common": 488,
+          "rare": 489
+        },
+        {
+          "give": 884,
+          "common": 382,
+          "rare": 385
+        },
+        {
+          "give": 885,
+          "common": 444,
+          "rare": 451
+        },
+        {
+          "give": 886,
+          "common": 578,
+          "rare": 280
+        },
+        {
+          "give": 887,
+          "common": 495,
+          "rare": 498
+        },
+        {
+          "give": 888,
+          "common": 432,
+          "rare": 435
+        },
+        {
+          "give": 889,
+          "common": 409,
+          "rare": 412
+        },
+        {
+          "give": 890,
+          "common": 593,
+          "rare": 597
+        },
+        {
+          "give": 891,
+          "common": 637,
+          "rare": 645
+        },
+        {
+          "give": 892,
+          "common": 623,
+          "rare": 283
+        },
+        {
+          "give": 893,
+          "common": 686,
+          "rare": 682
+        },
+        {
+          "give": 894,
+          "common": 482,
+          "rare": 484
+        },
+        {
+          "give": 895,
+          "common": 470,
+          "rare": 473
+        },
+        {
+          "give": 896,
+          "common": 504,
+          "rare": 507
+        },
+        {
+          "give": 897,
+          "common": 548,
+          "rare": 554
+        },
+        {
+          "give": 898,
+          "common": 903,
+          "rare": 460
+        },
+        {
+          "give": 899,
+          "common": 373,
+          "rare": 501
+        },
+        {
+          "give": 900,
+          "common": 439,
+          "rare": 610
+        },
+        {
+          "give": 901,
+          "common": 488,
+          "rare": 513
+        },
+        {
+          "give": 902,
+          "common": 905,
+          "rare": 461
+        },
+        {
+          "give": 919,
+          "common": 13,
+          "rare": 48
+        },
+        {
+          "give": 920,
+          "common": 14,
+          "rare": 49
+        },
+        {
+          "give": 921,
+          "common": 447,
+          "rare": 447
+        },
+        {
+          "give": 922,
+          "common": 523,
+          "rare": 523
+        },
+        {
+          "give": 923,
+          "common": 524,
+          "rare": 524
+        },
+        {
+          "give": 924,
+          "common": 697,
+          "rare": 697
+        }
+      ]
+    },
+    {
+      "maps": [
+        11,
+        21
+      ],
+      "trades": [
+        {
+          "give": 878,
+          "common": 7,
+          "rare": 8
+        },
+        {
+          "give": 879,
+          "common": 7,
+          "rare": 8
+        },
+        {
+          "give": 882,
+          "common": 883,
+          "rare": 883
+        },
+        {
+          "give": 246,
+          "common": 173,
+          "rare": 173
+        },
+        {
+          "give": 155,
+          "common": 173,
+          "rare": 173
+        },
+        {
+          "give": 56,
+          "common": 173,
+          "rare": 173
+        },
+        {
+          "give": 50,
+          "common": 173,
+          "rare": 173
+        },
+        {
+          "give": 167,
+          "common": 173,
+          "rare": 22
+        },
+        {
+          "give": 292,
+          "common": 173,
+          "rare": 171
+        },
+        {
+          "give": 88,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 219,
+          "common": 67,
+          "rare": 68
+        },
+        {
+          "give": 281,
+          "common": 22,
+          "rare": 51
+        },
+        {
+          "give": 58,
+          "common": 183,
+          "rare": 34
+        },
+        {
+          "give": 198,
+          "common": 55,
+          "rare": 257
+        },
+        {
+          "give": 240,
+          "common": 254,
+          "rare": 142
+        },
+        {
+          "give": 945,
+          "common": 252,
+          "rare": 253
+        },
+        {
+          "give": 139,
+          "common": 23,
+          "rare": 254
+        },
+        {
+          "give": 210,
+          "common": 159,
+          "rare": 157
+        },
+        {
+          "give": 820,
+          "common": 660,
+          "rare": 658
+        },
+        {
+          "give": 819,
+          "common": 666,
+          "rare": 663
+        },
+        {
+          "give": 193,
+          "common": 181,
+          "rare": 180
+        },
+        {
+          "give": 724,
+          "common": 10,
+          "rare": 9
+        },
+        {
+          "give": 688,
+          "common": 258,
+          "rare": 30
+        },
+        {
+          "give": 345,
+          "common": 42,
+          "rare": 35
+        },
+        {
+          "give": 605,
+          "common": 17,
+          "rare": 186
+        },
+        {
+          "give": 726,
+          "common": 20,
+          "rare": 187
+        },
+        {
+          "give": 451,
+          "common": 182,
+          "rare": 170
+        },
+        {
+          "give": 646,
+          "common": 13,
+          "rare": 279
+        },
+        {
+          "give": 395,
+          "common": 49,
+          "rare": 48
+        },
+        {
+          "give": 371,
+          "common": 160,
+          "rare": 158
+        },
+        {
+          "give": 762,
+          "common": 12,
+          "rare": 52
+        },
+        {
+          "give": 633,
+          "common": 32,
+          "rare": 31
+        },
+        {
+          "give": 756,
+          "common": 37,
+          "rare": 36
+        },
+        {
+          "give": 423,
+          "common": 182,
+          "rare": 11
+        },
+        {
+          "give": 206,
+          "common": 255,
+          "rare": 258
+        },
+        {
+          "give": 216,
+          "common": 32,
+          "rare": 37
+        },
+        {
+          "give": 243,
+          "common": 24,
+          "rare": 33
+        },
+        {
+          "give": 339,
+          "common": 255,
+          "rare": 258
+        },
+        {
+          "give": 319,
+          "common": 238,
+          "rare": 237
+        },
+        {
+          "give": 391,
+          "common": 15,
+          "rare": 182
+        },
+        {
+          "give": 594,
+          "common": 19,
+          "rare": 51
+        },
+        {
+          "give": 458,
+          "common": 659,
+          "rare": 664
+        },
+        {
+          "give": 346,
+          "common": 24,
+          "rare": 23
+        },
+        {
+          "give": 709,
+          "common": 661,
+          "rare": 667
+        },
+        {
+          "give": 575,
+          "common": 16,
+          "rare": 255
+        },
+        {
+          "give": 449,
+          "common": 18,
+          "rare": 8
+        },
+        {
+          "give": 677,
+          "common": 31,
+          "rare": 37
+        },
+        {
+          "give": 583,
+          "common": 280,
+          "rare": 33
+        },
+        {
+          "give": 591,
+          "common": 662,
+          "rare": 668
+        },
+        {
+          "give": 767,
+          "common": 31,
+          "rare": 27
+        },
+        {
+          "give": 209,
+          "common": 16,
+          "rare": 17
+        },
+        {
+          "give": 207,
+          "common": 49,
+          "rare": 279
+        },
+        {
+          "give": 338,
+          "common": 279,
+          "rare": 13
+        },
+        {
+          "give": 725,
+          "common": 13,
+          "rare": 14
+        },
+        {
+          "give": 172,
+          "common": 67,
+          "rare": 68
+        },
+        {
+          "give": 184,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 244,
+          "common": 76,
+          "rare": 76
+        },
+        {
+          "give": 264,
+          "common": 250,
+          "rare": 25
+        },
+        {
+          "give": 817,
+          "common": 315,
+          "rare": 315
+        },
+        {
+          "give": 765,
+          "common": 28,
+          "rare": 25
+        },
+        {
+          "give": 766,
+          "common": 280,
+          "rare": 26
+        },
+        {
+          "give": 768,
+          "common": 28,
+          "rare": 25
+        },
+        {
+          "give": 769,
+          "common": 280,
+          "rare": 26
+        },
+        {
+          "give": 174,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 245,
+          "common": 139,
+          "rare": 139
+        },
+        {
+          "give": 929,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 930,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 933,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 934,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 936,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 937,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 940,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 941,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 518,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 931,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 932,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 935,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 938,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 939,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 519,
+          "common": 80,
+          "rare": 80
+        },
+        {
+          "give": 925,
+          "common": 173,
+          "rare": 173
+        },
+        {
+          "give": 926,
+          "common": 317,
+          "rare": 317
+        },
+        {
+          "give": 381,
+          "common": 158,
+          "rare": 157
+        },
+        {
+          "give": 492,
+          "common": 37,
+          "rare": 31
+        },
+        {
+          "give": 884,
+          "common": 7,
+          "rare": 163
+        },
+        {
+          "give": 885,
+          "common": 161,
+          "rare": 177
+        },
+        {
+          "give": 886,
+          "common": 9,
+          "rare": 251
+        },
+        {
+          "give": 887,
+          "common": 18,
+          "rare": 187
+        },
+        {
+          "give": 888,
+          "common": 51,
+          "rare": 22
+        },
+        {
+          "give": 889,
+          "common": 30,
+          "rare": 11
+        },
+        {
+          "give": 890,
+          "common": 15,
+          "rare": 186
+        },
+        {
+          "give": 891,
+          "common": 8,
+          "rare": 7
+        },
+        {
+          "give": 892,
+          "common": 20,
+          "rare": 19
+        },
+        {
+          "give": 893,
+          "common": 48,
+          "rare": 34
+        },
+        {
+          "give": 894,
+          "common": 52,
+          "rare": 21
+        },
+        {
+          "give": 895,
+          "common": 10,
+          "rare": 33
+        },
+        {
+          "give": 896,
+          "common": 49,
+          "rare": 13
+        },
+        {
+          "give": 897,
+          "common": 17,
+          "rare": 16
+        },
+        {
+          "give": 898,
+          "common": 31,
+          "rare": 12
+        },
+        {
+          "give": 899,
+          "common": 19,
+          "rare": 160
+        },
+        {
+          "give": 900,
+          "common": 16,
+          "rare": 159
+        },
+        {
+          "give": 901,
+          "common": 37,
+          "rare": 157
+        },
+        {
+          "give": 902,
+          "common": 32,
+          "rare": 312
+        },
+        {
+          "give": 919,
+          "common": 18,
+          "rare": 187
+        },
+        {
+          "give": 920,
+          "common": 19,
+          "rare": 20
+        },
+        {
+          "give": 921,
+          "common": 429,
+          "rare": 429
+        },
+        {
+          "give": 922,
+          "common": 581,
+          "rare": 581
+        },
+        {
+          "give": 923,
+          "common": 728,
+          "rare": 728
+        },
+        {
+          "give": 924,
+          "common": 596,
+          "rare": 596
+        }
+      ]
+    },
+    {
+      "maps": [
+        26
+      ],
+      "trades": [
+        {
+          "give": 246,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 155,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 56,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 50,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 168,
+          "common": 175,
+          "rare": 22
+        },
+        {
+          "give": 442,
+          "common": 175,
+          "rare": 73
+        },
+        {
+          "give": 88,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 201,
+          "common": 200,
+          "rare": 195
+        },
+        {
+          "give": 231,
+          "common": 179,
+          "rare": 181
+        },
+        {
+          "give": 370,
+          "common": 35,
+          "rare": 11
+        },
+        {
+          "give": 290,
+          "common": 237,
+          "rare": 234
+        },
+        {
+          "give": 327,
+          "common": 191,
+          "rare": 187
+        },
+        {
+          "give": 281,
+          "common": 22,
+          "rare": 51
+        },
+        {
+          "give": 202,
+          "common": 181,
+          "rare": 180
+        },
+        {
+          "give": 253,
+          "common": 250,
+          "rare": 218
+        },
+        {
+          "give": 204,
+          "common": 254,
+          "rare": 161
+        },
+        {
+          "give": 138,
+          "common": 177,
+          "rare": 251
+        },
+        {
+          "give": 178,
+          "common": 185,
+          "rare": 165
+        },
+        {
+          "give": 193,
+          "common": 181,
+          "rare": 180
+        },
+        {
+          "give": 240,
+          "common": 187,
+          "rare": 18
+        },
+        {
+          "give": 821,
+          "common": 660,
+          "rare": 658
+        },
+        {
+          "give": 820,
+          "common": 666,
+          "rare": 663
+        },
+        {
+          "give": 656,
+          "common": 161,
+          "rare": 33
+        },
+        {
+          "give": 205,
+          "common": 161,
+          "rare": 24
+        },
+        {
+          "give": 198,
+          "common": 252,
+          "rare": 254
+        },
+        {
+          "give": 236,
+          "common": 186,
+          "rare": 42
+        },
+        {
+          "give": 323,
+          "common": 161,
+          "rare": 251
+        },
+        {
+          "give": 741,
+          "common": 15,
+          "rare": 51
+        },
+        {
+          "give": 429,
+          "common": 257,
+          "rare": 157
+        },
+        {
+          "give": 646,
+          "common": 15,
+          "rare": 16
+        },
+        {
+          "give": 364,
+          "common": 48,
+          "rare": 47
+        },
+        {
+          "give": 722,
+          "common": 12,
+          "rare": 52
+        },
+        {
+          "give": 336,
+          "common": 663,
+          "rare": 658
+        },
+        {
+          "give": 623,
+          "common": 218,
+          "rare": 30
+        },
+        {
+          "give": 354,
+          "common": 161,
+          "rare": 250
+        },
+        {
+          "give": 451,
+          "common": 8,
+          "rare": 257
+        },
+        {
+          "give": 284,
+          "common": 161,
+          "rare": 9
+        },
+        {
+          "give": 277,
+          "common": 26,
+          "rare": 28
+        },
+        {
+          "give": 533,
+          "common": 25,
+          "rare": 20
+        },
+        {
+          "give": 268,
+          "common": 258,
+          "rare": 259
+        },
+        {
+          "give": 216,
+          "common": 49,
+          "rare": 279
+        },
+        {
+          "give": 499,
+          "common": 55,
+          "rare": 54
+        },
+        {
+          "give": 575,
+          "common": 664,
+          "rare": 659
+        },
+        {
+          "give": 747,
+          "common": 667,
+          "rare": 661
+        },
+        {
+          "give": 582,
+          "common": 28,
+          "rare": 259
+        },
+        {
+          "give": 690,
+          "common": 13,
+          "rare": 14
+        },
+        {
+          "give": 614,
+          "common": 279,
+          "rare": 16
+        },
+        {
+          "give": 502,
+          "common": 19,
+          "rare": 20
+        },
+        {
+          "give": 770,
+          "common": 31,
+          "rare": 27
+        },
+        {
+          "give": 534,
+          "common": 545,
+          "rare": 33
+        },
+        {
+          "give": 772,
+          "common": 662,
+          "rare": 668
+        },
+        {
+          "give": 217,
+          "common": 279,
+          "rare": 13
+        },
+        {
+          "give": 685,
+          "common": 260,
+          "rare": 256
+        },
+        {
+          "give": 739,
+          "common": 13,
+          "rare": 14
+        },
+        {
+          "give": 172,
+          "common": 67,
+          "rare": 68
+        },
+        {
+          "give": 184,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 244,
+          "common": 76,
+          "rare": 76
+        },
+        {
+          "give": 264,
+          "common": 250,
+          "rare": 25
+        },
+        {
+          "give": 817,
+          "common": 315,
+          "rare": 315
+        },
+        {
+          "give": 765,
+          "common": 36,
+          "rare": 25
+        },
+        {
+          "give": 766,
+          "common": 280,
+          "rare": 26
+        },
+        {
+          "give": 768,
+          "common": 36,
+          "rare": 25
+        },
+        {
+          "give": 769,
+          "common": 280,
+          "rare": 26
+        },
+        {
+          "give": 174,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 245,
+          "common": 139,
+          "rare": 139
+        },
+        {
+          "give": 929,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 930,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 933,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 934,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 936,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 937,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 940,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 941,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 518,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 931,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 932,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 935,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 938,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 939,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 519,
+          "common": 80,
+          "rare": 80
+        },
+        {
+          "give": 925,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 926,
+          "common": 317,
+          "rare": 317
+        },
+        {
+          "give": 381,
+          "common": 158,
+          "rare": 157
+        },
+        {
+          "give": 492,
+          "common": 37,
+          "rare": 31
+        },
+        {
+          "give": 884,
+          "common": 7,
+          "rare": 163
+        },
+        {
+          "give": 885,
+          "common": 161,
+          "rare": 177
+        },
+        {
+          "give": 886,
+          "common": 9,
+          "rare": 251
+        },
+        {
+          "give": 887,
+          "common": 18,
+          "rare": 187
+        },
+        {
+          "give": 888,
+          "common": 51,
+          "rare": 22
+        },
+        {
+          "give": 889,
+          "common": 30,
+          "rare": 11
+        },
+        {
+          "give": 890,
+          "common": 15,
+          "rare": 186
+        },
+        {
+          "give": 891,
+          "common": 8,
+          "rare": 7
+        },
+        {
+          "give": 892,
+          "common": 20,
+          "rare": 19
+        },
+        {
+          "give": 893,
+          "common": 48,
+          "rare": 34
+        },
+        {
+          "give": 894,
+          "common": 52,
+          "rare": 21
+        },
+        {
+          "give": 895,
+          "common": 10,
+          "rare": 33
+        },
+        {
+          "give": 896,
+          "common": 49,
+          "rare": 13
+        },
+        {
+          "give": 897,
+          "common": 17,
+          "rare": 16
+        },
+        {
+          "give": 898,
+          "common": 31,
+          "rare": 12
+        },
+        {
+          "give": 899,
+          "common": 19,
+          "rare": 160
+        },
+        {
+          "give": 900,
+          "common": 16,
+          "rare": 159
+        },
+        {
+          "give": 901,
+          "common": 37,
+          "rare": 157
+        },
+        {
+          "give": 902,
+          "common": 32,
+          "rare": 312
+        },
+        {
+          "give": 919,
+          "common": 86,
+          "rare": 84
+        },
+        {
+          "give": 920,
+          "common": 87,
+          "rare": 85
+        },
+        {
+          "give": 921,
+          "common": 498,
+          "rare": 498
+        },
+        {
+          "give": 922,
+          "common": 635,
+          "rare": 635
+        },
+        {
+          "give": 923,
+          "common": 628,
+          "rare": 628
+        },
+        {
+          "give": 924,
+          "common": 611,
+          "rare": 611
+        }
+      ]
+    },
+    {
+      "maps": [
+        28
+      ],
+      "trades": [
+        {
+          "give": 880,
+          "common": 7,
+          "rare": 8
+        },
+        {
+          "give": 246,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 155,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 56,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 50,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 180,
+          "common": 175,
+          "rare": 22
+        },
+        {
+          "give": 163,
+          "common": 175,
+          "rare": 11
+        },
+        {
+          "give": 88,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 266,
+          "common": 203,
+          "rare": 944
+        },
+        {
+          "give": 337,
+          "common": 203,
+          "rare": 944
+        },
+        {
+          "give": 306,
+          "common": 203,
+          "rare": 202
+        },
+        {
+          "give": 254,
+          "common": 219,
+          "rare": 202
+        },
+        {
+          "give": 143,
+          "common": 201,
+          "rare": 202
+        },
+        {
+          "give": 294,
+          "common": 202,
+          "rare": 203
+        },
+        {
+          "give": 240,
+          "common": 202,
+          "rare": 201
+        },
+        {
+          "give": 168,
+          "common": 201,
+          "rare": 200
+        },
+        {
+          "give": 171,
+          "common": 200,
+          "rare": 201
+        },
+        {
+          "give": 299,
+          "common": 202,
+          "rare": 201
+        },
+        {
+          "give": 193,
+          "common": 944,
+          "rare": 944
+        },
+        {
+          "give": 181,
+          "common": 203,
+          "rare": 204
+        },
+        {
+          "give": 183,
+          "common": 203,
+          "rare": 204
+        },
+        {
+          "give": 257,
+          "common": 202,
+          "rare": 203
+        },
+        {
+          "give": 663,
+          "common": 203,
+          "rare": 204
+        },
+        {
+          "give": 819,
+          "common": 204,
+          "rare": 222
+        },
+        {
+          "give": 822,
+          "common": 204,
+          "rare": 222
+        },
+        {
+          "give": 332,
+          "common": 202,
+          "rare": 204
+        },
+        {
+          "give": 732,
+          "common": 223,
+          "rare": 224
+        },
+        {
+          "give": 633,
+          "common": 223,
+          "rare": 222
+        },
+        {
+          "give": 323,
+          "common": 204,
+          "rare": 203
+        },
+        {
+          "give": 818,
+          "common": 944,
+          "rare": 945
+        },
+        {
+          "give": 629,
+          "common": 203,
+          "rare": 215
+        },
+        {
+          "give": 698,
+          "common": 204,
+          "rare": 210
+        },
+        {
+          "give": 675,
+          "common": 203,
+          "rare": 215
+        },
+        {
+          "give": 711,
+          "common": 203,
+          "rare": 210
+        },
+        {
+          "give": 437,
+          "common": 203,
+          "rare": 204
+        },
+        {
+          "give": 498,
+          "common": 204,
+          "rare": 945
+        },
+        {
+          "give": 600,
+          "common": 204,
+          "rare": 944
+        },
+        {
+          "give": 371,
+          "common": 944,
+          "rare": 203
+        },
+        {
+          "give": 735,
+          "common": 945,
+          "rare": 946
+        },
+        {
+          "give": 238,
+          "common": 223,
+          "rare": 224
+        },
+        {
+          "give": 413,
+          "common": 946,
+          "rare": 947
+        },
+        {
+          "give": 733,
+          "common": 947,
+          "rare": 208
+        },
+        {
+          "give": 603,
+          "common": 210,
+          "rare": 215
+        },
+        {
+          "give": 367,
+          "common": 203,
+          "rare": 205
+        },
+        {
+          "give": 709,
+          "common": 215,
+          "rare": 216
+        },
+        {
+          "give": 396,
+          "common": 222,
+          "rare": 223
+        },
+        {
+          "give": 755,
+          "common": 208,
+          "rare": 947
+        },
+        {
+          "give": 286,
+          "common": 205,
+          "rare": 946
+        },
+        {
+          "give": 405,
+          "common": 206,
+          "rare": 216
+        },
+        {
+          "give": 625,
+          "common": 224,
+          "rare": 222
+        },
+        {
+          "give": 586,
+          "common": 947,
+          "rare": 216
+        },
+        {
+          "give": 491,
+          "common": 225,
+          "rare": 224
+        },
+        {
+          "give": 576,
+          "common": 207,
+          "rare": 300
+        },
+        {
+          "give": 743,
+          "common": 211,
+          "rare": 217
+        },
+        {
+          "give": 172,
+          "common": 67,
+          "rare": 68
+        },
+        {
+          "give": 184,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 244,
+          "common": 76,
+          "rare": 76
+        },
+        {
+          "give": 264,
+          "common": 250,
+          "rare": 25
+        },
+        {
+          "give": 817,
+          "common": 315,
+          "rare": 315
+        },
+        {
+          "give": 765,
+          "common": 223,
+          "rare": 223
+        },
+        {
+          "give": 766,
+          "common": 224,
+          "rare": 224
+        },
+        {
+          "give": 768,
+          "common": 223,
+          "rare": 223
+        },
+        {
+          "give": 769,
+          "common": 224,
+          "rare": 224
+        },
+        {
+          "give": 174,
+          "common": 161,
+          "rare": 161
+        },
+        {
+          "give": 245,
+          "common": 139,
+          "rare": 139
+        },
+        {
+          "give": 929,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 930,
+          "common": 150,
+          "rare": 149
+        },
+        {
+          "give": 933,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 934,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 936,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 937,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 940,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 941,
+          "common": 146,
+          "rare": 145
+        },
+        {
+          "give": 518,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 931,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 932,
+          "common": 87,
+          "rare": 86
+        },
+        {
+          "give": 935,
+          "common": 91,
+          "rare": 91
+        },
+        {
+          "give": 938,
+          "common": 92,
+          "rare": 92
+        },
+        {
+          "give": 939,
+          "common": 89,
+          "rare": 89
+        },
+        {
+          "give": 519,
+          "common": 80,
+          "rare": 80
+        },
+        {
+          "give": 925,
+          "common": 175,
+          "rare": 175
+        },
+        {
+          "give": 926,
+          "common": 317,
+          "rare": 317
+        },
+        {
+          "give": 381,
+          "common": 945,
+          "rare": 220
+        },
+        {
+          "give": 492,
+          "common": 210,
+          "rare": 208
+        },
+        {
+          "give": 884,
+          "common": 201,
+          "rare": 200
+        },
+        {
+          "give": 885,
+          "common": 202,
+          "rare": 201
+        },
+        {
+          "give": 886,
+          "common": 944,
+          "rare": 219
+        },
+        {
+          "give": 887,
+          "common": 203,
+          "rare": 202
+        },
+        {
+          "give": 888,
+          "common": 219,
+          "rare": 203
+        },
+        {
+          "give": 889,
+          "common": 204,
+          "rare": 222
+        },
+        {
+          "give": 890,
+          "common": 944,
+          "rare": 204
+        },
+        {
+          "give": 891,
+          "common": 204,
+          "rare": 944
+        },
+        {
+          "give": 892,
+          "common": 945,
+          "rare": 210
+        },
+        {
+          "give": 893,
+          "common": 944,
+          "rare": 215
+        },
+        {
+          "give": 894,
+          "common": 202,
+          "rare": 201
+        },
+        {
+          "give": 895,
+          "common": 203,
+          "rare": 202
+        },
+        {
+          "give": 896,
+          "common": 945,
+          "rare": 198
+        },
+        {
+          "give": 897,
+          "common": 204,
+          "rare": 945
+        },
+        {
+          "give": 898,
+          "common": 946,
+          "rare": 210
+        },
+        {
+          "give": 899,
+          "common": 206,
+          "rare": 220
+        },
+        {
+          "give": 900,
+          "common": 220,
+          "rare": 215
+        },
+        {
+          "give": 901,
+          "common": 208,
+          "rare": 216
+        },
+        {
+          "give": 902,
+          "common": 207,
+          "rare": 211
+        },
+        {
+          "give": 919,
+          "common": 157,
+          "rare": 158
+        },
+        {
+          "give": 920,
+          "common": 160,
+          "rare": 159
+        },
+        {
+          "give": 921,
+          "common": 509,
+          "rare": 509
+        },
+        {
+          "give": 922,
+          "common": 404,
+          "rare": 404
+        },
+        {
+          "give": 923,
+          "common": 696,
+          "rare": 696
+        },
+        {
+          "give": 924,
+          "common": 626,
+          "rare": 626
+        }
+      ]
+    }
+  ]
+}

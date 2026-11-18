@@ -631,7 +631,7 @@
       "code": "overlay/em07.ovl",
       "monsters": [
         "Lao-Shan Lung",
-        "Ashen Lao-Shan Lung"
+        "Ash Lao-Shan Lung"
       ],
       "attacks": [
         {
@@ -4873,10 +4873,10 @@
       "monsters": [
         "Hermitaur",
         "Daimyo Hermitaur",
-        "Plum Daimyo Hermitaur",
+        "Plum D.Hermitaur",
         "Ceanataur",
         "Shogun Ceanataur",
-        "Terra Shogun Ceanataur"
+        "Terra S.Ceanataur"
       ],
       "attacks": [
         {

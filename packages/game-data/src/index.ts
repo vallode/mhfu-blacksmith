@@ -1,0 +1,45 @@
+export {
+  readData,
+  readRawData,
+  writeData,
+  serializeData,
+  type DataDoc,
+  type WriteOptions,
+} from "./files.js";
+export {
+  ARMOR_SLOTS,
+  EQUIPMENT_TABLES,
+  RANGED_TYPES,
+  dehydrate,
+  equipmentIds,
+  equipmentRecordIds,
+  fileKind,
+  formatDecorationSkill,
+  hydrate,
+  mergeStrings,
+  stringResolver,
+  weaponTable,
+  type ArmorSlot,
+  type EquipmentTable,
+  type FileKind,
+  type Ref,
+  type Resolver,
+  type WeaponTable,
+} from "./model.js";
+export {
+  ALIAS_KINDS,
+  DEFAULT_LANG,
+  KINDS,
+  STRING_KINDS,
+  StringTable,
+  clearStringsCache,
+  compareKeys,
+  readStringsDoc,
+  serializeStrings,
+  stringsPath,
+  type AliasKind,
+  type StringKind,
+  type StringsDoc,
+} from "./strings.js";
+export { importLegacy, type Imported, type LegacyIdSources } from "./legacy.js";
+export { RECOIL_CODE_BASE, RECOIL_LEVELS, RELOAD_LEVELS } from "./gunner.js";

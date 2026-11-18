@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Monster attacks file",
-  "description": "Monster attack records read off the disc (tools/mhfu-extract attack-data), grouped by the code that spawns them. A family's monsters share its code (subspecies, and species without code of their own), and the disc doesn't say which of them uses which record, so each family lists its monsters and records together. Damage is the base damage before the quest's attack multiplier. Records with the same numbers are separate records (other hitboxes or attacks), listed once each.",
+  "description": "Monster attack records read off the disc (packages/mhfu-extract attack-data), grouped by the code that spawns them. A family's monsters share its code (subspecies, and species without code of their own), and the disc doesn't say which of them uses which record, so each family lists its monsters and records together. Damage is the base damage before the quest's attack multiplier. Records with the same numbers are separate records (other hitboxes or attacks), listed once each.",
   "type": "object",
   "required": ["families"],
   "additionalProperties": false,

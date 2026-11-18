@@ -1,0 +1,20 @@
+{
+  "name": "randomfu",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Seeded randomizer for Monster Hunter Freedom Unite / Portable 2nd G. The library behind the randomfu web app (apps/randomfu): patches the user's own disc image and writes a spoiler log.",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "test": "tsx --test test/**/*.test.ts",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "mhfu-extract": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "tsx": "^4.22.4",
+    "typescript": "^5"
+  }
+}

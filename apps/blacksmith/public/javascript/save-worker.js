@@ -1,0 +1,373 @@
+import { decryptGameLayer, decryptPSPLayer } from "./save-cipher.js";
+
+// All multi-byte values are little-endian unless noted.
+const CHAR_BASES = [0x001000, 0x06c100, 0x0d7200];
+
+const OFFSETS = {
+  HUNTER_NAME: 0x000000, // 24 bytes, UTF-16LE, null-padded (max 12 chars)
+  SEX:         0x000013, // uint8: 0 = Male, 1 = Female (0x12 is always 1)
+  PLAY_TIME:   0x003fc8, // uint32 LE, total seconds
+  ZENNY:       0x069250, // uint32 LE
+  // No Hunter Rank field: the game works HR out from cleared quests (see
+  // HR_URGENT_QUESTS). 0x0672d8, once read as HR, is the Guild Card's quest
+  // counts: 7 × uint16 LE, one per category (see "Guild Card quest counts").
+  EQUIP_CHEST: 0x0000a8, // 400 slots × 12 bytes (see parseEquipSlot)
+  ITEM_CHEST:  0x002f88, // 1000 slots × 4 bytes
+  ITEM_POUCH:  0x003f28, // 24 slots × 4 bytes
+  CLEARED:     0x003f88, // 64 bytes: one "cleared" bit per quest (see QUEST_FLAG_RUNS)
+  CAPTURES:    0x00402c, // the four monster tables: 90 × uint16 each, indexed
+  LARGEST:     0x0040e0, //   by the game's monster ID (src/lib/monster-ids.ts)
+  SMALLEST:    0x004194,
+  KILLS:       0x004248,
+  AWARDS:      0x067400, // u64 LE as two u32s: one bit per Guild Card award (see AWARD_COUNT)
+  // What the award conditions read (packages/mhfu-extract/docs/awards.md has
+  // the EU EBOOT and overlay code behind each).
+  RECIPES:         0x003fcc, // one bit per Combination List recipe, 0-171
+  GUILD_CARD_NAME: 0x0672b8, // the Guild Card's copy of the name, 18 bytes compared
+  GOLD_TREASURES:  0x067358, // u64 LE: one bit per gold-crown treasure, 0-34
+  TREASURE_SCORES: 0x067360, // 7 × u32 LE: best score of each Treasure Hunt, 4001-4007
+  GUILD_POINTS:    0x06924c, // u32 LE
+  TRAINING_SETS:   0x069234, // bit (quest - 21001) * 5 + set: a training quest cleared with a weapon set
+  FELYNE_CHEFS:    0x06925c, // 5 × 0x70: byte 0 nonzero when hired, byte 3 the chef's level
+  COMRADES:        0x06974c, // 13 × 0x70 (see parseComrades)
+  FARM:            0x069d98, // bytes: Field, Fishing Pier, Mining Area, Insect area levels
+  MAP_QUESTS:      0x06a09c, // 14 bytes: quests done on each map (see MAP_COUNT)
+  TRENYA_TRIPS:    0x06a909, // byte: Trenya's most expensive trip, times paid for
+  SPECIAL_WEAPONS: 0x06a90c, // 9 × u32 LE: one bit per special weapon forged (7 melee, 2 gunner)
+};
+
+const RECIPE_COUNT = 172;
+const GOLD_TREASURE_COUNT = 35;
+const TREASURE_HUNT_COUNT = 7;
+const TRAINING_SET_BITS = 23 * 5; // quests 21001-21023, five weapon sets each
+const FELYNE_CHEF_COUNT = 5;
+const COMRADE_COUNT = 13;
+const FELYNE_SIZE = 0x70;
+const FARM_COUNT = 4;
+// 0 Forest and Hills, 1 Jungle, 2 Desert, 3 Swamp, 4 Volcano, 5 Snowy
+// Mountains, 6 Tower, 7 Great Forest, 8 Old Jungle, 9 Old Volcano, 10 Old
+// Desert, 11 Old Swamp, 12 Fortress, 13 Town.
+const MAP_COUNT = 14;
+const SPECIAL_WEAPON_WORDS = 9;
+
+// The game's quest ID -> cleared-bit table (EBOOT 0x19a65c on the EU disc,
+// found by packages/mhfu-extract's `quest-flags`; its src/tables/quest-flags.ts
+// has the evidence). One bit per ID, in this order: each run is `slots`
+// consecutive IDs from `firstId`, the first `count` of them real quests and
+// the rest reserved IDs no quest uses. Bit n is byte n >> 3, mask 1 << (n & 7).
+const QUEST_FLAG_RUNS = [
+  [1, 10, 10], [101, 9, 9],
+  // Guild
+  [1001, 22, 22], [1101, 26, 26], [1201, 20, 20], [2001, 13, 15], [2101, 27, 30],
+  [2201, 36, 40], [3001, 25, 30], [3101, 27, 30], [3201, 33, 40],
+  // Treasure Hunting
+  [4001, 7, 7],
+  // Village
+  [10001, 5, 5], [10101, 18, 18], [10201, 18, 18], [10301, 19, 20], [10401, 18, 20],
+  [10501, 11, 15], [11001, 14, 20], [11101, 19, 25], [11201, 26, 30],
+  // Training School
+  [20001, 18, 18], [21001, 23, 30], [22001, 6, 6],
+].map(([firstId, count, slots]) => ({ firstId, count, slots }));
+
+// Hunter Rank isn't stored in the save. The game's HR routine (EBOOT EU
+// 0x0884fcb0, JP 0x0884fbf4) checks these urgent quests' cleared bits,
+// highest first, and returns 0-8; its callers add 1 (EU 0x08852eb8, JP
+// 0x08852dd4). So HR is 2 + the index of the last quest here that is cleared,
+// or 1 if none is. The site keeps the same list in src/lib/hunter-rank.ts (a
+// test checks the two match), since this worker can't import it.
+const HR_URGENT_QUESTS = [1104, 1201, 1218, 2120, 2201, 3009, 3103, 3228];
+
+// Guild Card quest counts: what the uint16s at 0x0672d8 count (not read;
+// for reference). Quests cleared
+// by category, each capped at 9999, added up by the game's quest-end routine
+// (EBOOT 0x08875048) from the quest ID: 0 Village 10000-10999, 1 Guild 1-1999,
+// 2 Guild 2000-2999, 3 Treasure 4000-4999, 4 Training 20000-22999 and
+// 61000-61999, 5 Village 11000-11999, 6 Guild 3000-3999; event quests
+// (60000-60999) go to 1, 2 or 6 by their rank. A sum every 100 quests posts a
+// message (0x0887eed8).
+
+const MONSTER_TABLE_SIZE = 90;
+
+// The Guild Card awards the game has given: bit n of the u64 at AWARDS is
+// award n, in the game's order (src/lib/awards.ts's AWARDS). The game's own
+// set/test routines (EU EBOOT 0x088551f0 / 0x08855278, JP 0x08855118 /
+// 0x088551a0) take the index and shift 1 by it as a 64-bit value; every index
+// 0-47 has a caller (the EBOOT, game_sub.ovl and lobby_task.ovl), and none
+// above it, so bits 48-63 are unused.
+const AWARD_COUNT = 48;
+
+// Equipment box slot: the first two bytes, read as one big-endian u16, are
+// 0x0000 for an empty slot and 0x0100–0x0106 for the seven equip types, so
+// byte 1 is the equip type. Then comes a u16 LE equipment ID, in the ID
+// space its type picks (see data/equipment-ids.json, generated by
+// scripts/generate-equipment-ids.ts):
+//   0 leggings, 1 helmet, 2 plate, 3 gauntlets, 4 waist,
+//   5 melee (every blademaster class), 6 ranged (bowguns and bows)
+//
+// Bytes 4–5 are 0 on every weapon and nonzero on upgraded armor (likely the
+// armor's upgrade level; not decoded yet). Bytes 6–11 are the attached
+// decorations: three u16 LE item IDs (data/items.json), 0 for an empty slot.
+// Checked against the real save in test/fixtures: two Grinder Jewels (968,
+// 1 slot each) sit in each of six 2-slot pieces, and every other slot is 0.
+const EQUIP_SLOT_SIZE = 12;
+const DECORATION_OFFSETS = [6, 8, 10];
+const EQUIP_SLOT_COUNT = 400;
+
+function readName(view, base) {
+  const bytes = new Uint8Array(view.buffer, base + OFFSETS.HUNTER_NAME, 24);
+  const full = new TextDecoder("utf-16le").decode(bytes);
+  const nullIdx = full.indexOf("\0");
+  return (nullIdx === -1 ? full : full.slice(0, nullIdx)).trim();
+}
+
+function parseEquipSlot(view, offset) {
+  // The only BIG-endian field in the file.
+  if (view.getUint16(offset, false) === 0x0000) return null;
+  const type = view.getUint8(offset + 1);
+  const id   = view.getUint16(offset + 2, true);
+  const decorations = DECORATION_OFFSETS.map((d) => view.getUint16(offset + d, true)).filter((d) => d !== 0);
+  return { type, id, decorations };
+}
+
+function parseItemSlot(view, offset) {
+  const id  = view.getUint16(offset, true);
+  const qty = view.getUint16(offset + 2, true);
+  if (id === 0) return null;
+  return { id, qty };
+}
+
+/** IDs of the quests whose cleared bit is set, in table order. */
+function parseClearedQuests(view, base) {
+  const cleared = [];
+  let bit = 0;
+  for (const { firstId, count, slots } of QUEST_FLAG_RUNS) {
+    for (let k = 0; k < count; k++) {
+      const b = bit + k;
+      if (view.getUint8(base + OFFSETS.CLEARED + (b >> 3)) & (1 << (b & 7))) cleared.push(firstId + k);
+    }
+    bit += slots;
+  }
+  return cleared;
+}
+
+/** The hunter's HR, 1-9, worked out the way the game does (see HR_URGENT_QUESTS). */
+function hunterRankFrom(clearedQuests) {
+  const cleared = new Set(clearedQuests);
+  for (let i = HR_URGENT_QUESTS.length - 1; i >= 0; i--) {
+    if (cleared.has(HR_URGENT_QUESTS[i])) return i + 2;
+  }
+  return 1;
+}
+
+/** Indexes (into the game's award list) of the awards the hunter has been given. */
+function parseAwards(view, base) {
+  const awards = [];
+  for (let n = 0; n < AWARD_COUNT; n++) {
+    const word = view.getUint32(base + OFFSETS.AWARDS + (n >> 5) * 4, true);
+    if (word & (1 << (n & 31))) awards.push(n);
+  }
+  return awards;
+}
+
+/** Indexes of the set bits among the first `count` bits at `offset` (bit n is byte n >> 3, mask 1 << (n & 7)). */
+function setBits(view, offset, count) {
+  const bits = [];
+  for (let n = 0; n < count; n++) {
+    if (view.getUint8(offset + (n >> 3)) & (1 << (n & 7))) bits.push(n);
+  }
+  return bits;
+}
+
+/** The bytes at `offset`, as numbers. */
+function bytes(view, offset, count) {
+  return Array.from({ length: count }, (_, i) => view.getUint8(offset + i));
+}
+
+/**
+ * The hunter's Felyne Comrades (game_sub 0x09C1F918 reads them): a slot is
+ * used when its first byte is nonzero. `fondness` is the s16 at +0x2A,
+ * `skills` how many of the 36 skill bits (the u64 at +0x3C) are set, and
+ * `own` whether the owner name at +0x4E is this hunter's Guild Card name.
+ */
+function parseComrades(view, base) {
+  const name = bytes(view, base + OFFSETS.GUILD_CARD_NAME, 18);
+  const comrades = [];
+  for (let i = 0; i < COMRADE_COUNT; i++) {
+    const at = base + OFFSETS.COMRADES + i * FELYNE_SIZE;
+    if (view.getInt8(at) === 0) continue;
+    const low = view.getUint32(at + 0x3c, true);
+    const high = view.getUint32(at + 0x40, true) & 0xf;
+    const owner = bytes(view, at + 0x4e, 18);
+    comrades.push({
+      fondness: view.getInt16(at + 0x2a, true),
+      skills: popcount(low) + popcount(high),
+      own: owner.every((b, k) => b === name[k]),
+    });
+  }
+  return comrades;
+}
+
+function popcount(word) {
+  let n = 0;
+  for (let w = word >>> 0; w; w >>>= 1) n += w & 1;
+  return n;
+}
+
+/** What the award conditions read from the save, besides the quests and monster records. */
+function parseAwardRecords(view, base) {
+  const u32 = (offset) => view.getUint32(base + offset, true);
+  let specialWeapons = 0;
+  for (let i = 0; i < SPECIAL_WEAPON_WORDS; i++) specialWeapons += popcount(u32(OFFSETS.SPECIAL_WEAPONS + i * 4));
+  const felyneChefs = [];
+  for (let i = 0; i < FELYNE_CHEF_COUNT; i++) {
+    const at = base + OFFSETS.FELYNE_CHEFS + i * FELYNE_SIZE;
+    if (view.getInt8(at) !== 0) felyneChefs.push(view.getInt8(at + 3));
+  }
+  return {
+    trainingSets: setBits(view, base + OFFSETS.TRAINING_SETS, TRAINING_SET_BITS),
+    farm: bytes(view, base + OFFSETS.FARM, FARM_COUNT),
+    felyneChefs,
+    comrades: parseComrades(view, base),
+    recipes: setBits(view, base + OFFSETS.RECIPES, RECIPE_COUNT).length,
+    guildPoints: u32(OFFSETS.GUILD_POINTS),
+    goldTreasures: setBits(view, base + OFFSETS.GOLD_TREASURES, GOLD_TREASURE_COUNT).length,
+    treasureScores: Array.from({ length: TREASURE_HUNT_COUNT }, (_, i) => u32(OFFSETS.TREASURE_SCORES + i * 4)),
+    mapQuests: bytes(view, base + OFFSETS.MAP_QUESTS, MAP_COUNT),
+    trenyaTrips: view.getUint8(base + OFFSETS.TRENYA_TRIPS),
+    specialWeapons,
+  };
+}
+
+/**
+ * Every monster with a record: kills, captures, and the largest and smallest
+ * size recorded (percent of the monster's base size). Monster ID 0 is
+ * "none" and never set.
+ */
+function parseMonsterRecords(view, base) {
+  const read = (table, id) => view.getUint16(base + table + id * 2, true);
+  const records = [];
+  for (let id = 1; id < MONSTER_TABLE_SIZE; id++) {
+    const record = {
+      id,
+      kills: read(OFFSETS.KILLS, id),
+      captures: read(OFFSETS.CAPTURES, id),
+      largest: read(OFFSETS.LARGEST, id),
+      smallest: read(OFFSETS.SMALLEST, id),
+    };
+    if (record.kills || record.captures || record.largest || record.smallest) records.push(record);
+  }
+  return records;
+}
+
+function parseCharacter(view, charIndex) {
+  const base = CHAR_BASES[charIndex];
+  // Empty slot: first two name bytes are both 0x00
+  if (view.getUint8(base) === 0 && view.getUint8(base + 1) === 0) return null;
+
+  const name  = readName(view, base);
+  const sex   = view.getUint8(base + OFFSETS.SEX) === 0 ? "Male" : "Female";
+  const zenny = view.getUint32(base + OFFSETS.ZENNY, true);
+  const playTime = view.getUint32(base + OFFSETS.PLAY_TIME, true);
+
+  // Kept in box order (slot index), skipping empty slots.
+  const equipBox = [];
+  for (let i = 0; i < EQUIP_SLOT_COUNT; i++) {
+    const slot = parseEquipSlot(view, base + OFFSETS.EQUIP_CHEST + i * EQUIP_SLOT_SIZE);
+    if (slot) equipBox.push(slot);
+  }
+
+  const itemChest = [];
+  for (let i = 0; i < 1000; i++) {
+    const slot = parseItemSlot(view, base + OFFSETS.ITEM_CHEST + i * 4);
+    if (slot) itemChest.push(slot);
+  }
+
+  const itemPouch = [];
+  for (let i = 0; i < 24; i++) {
+    const slot = parseItemSlot(view, base + OFFSETS.ITEM_POUCH + i * 4);
+    if (slot) itemPouch.push(slot);
+  }
+
+  const clearedQuests = parseClearedQuests(view, base);
+  const hunterRank = hunterRankFrom(clearedQuests);
+  const monsters = parseMonsterRecords(view, base);
+  const awards = parseAwards(view, base);
+
+  return {
+    name, sex, zenny, playTime, hunterRank, equipBox, itemChest, itemPouch, clearedQuests, monsters,
+    awards, ...parseAwardRecords(view, base),
+  };
+}
+
+const ENCRYPTED_SIZE   = 0x16A100; // game-layer only (PPSSPP default)
+const DECRYPTED_SIZE   = 0x16A0E8; // plaintext (pre-decrypted export)
+const PSP_HARDWARE_SIZE = 0x16A110; // PSP hardware layer still present
+
+// US and EU share every key; JP has its own PSP key and SHA-1 salt. So there
+// are only two key sets to try: the region is detected by trying the hinted
+// one first and the other on a mismatch.
+const OTHER_KEYSET = { us: "jp", eu: "jp", jp: "us" };
+
+/**
+ * Decrypt an encrypted save (PSP layer optional, game layer required) with one
+ * region's keys. Returns the plaintext, or null when the game layer's SHA-1
+ * doesn't match (wrong keys). Other errors are thrown.
+ */
+async function decryptWith(buffer, region) {
+  let game = buffer;
+  if (buffer.byteLength === PSP_HARDWARE_SIZE) game = await decryptPSPLayer(buffer, region);
+  try {
+    return await decryptGameLayer(game, region);
+  } catch (e) {
+    if (e.message === "SHA-1 mismatch") return null;
+    throw e;
+  }
+}
+
+self.onmessage = async ({ data: { buffer, region } }) => {
+  try {
+    region = region ?? "us";
+    const size = buffer.byteLength;
+
+    if (size === DECRYPTED_SIZE) {
+      // Already-decrypted export: parse as-is. No keys were needed, so the
+      // region is only the hint.
+      postCharacters(buffer, false, region);
+      return;
+    }
+
+    if (size !== ENCRYPTED_SIZE && size !== PSP_HARDWARE_SIZE) {
+      throw new Error(
+        `Unexpected file size (${size} bytes). Expected ${PSP_HARDWARE_SIZE} or ` +
+        `${ENCRYPTED_SIZE} (encrypted) or ${DECRYPTED_SIZE} (decrypted).`
+      );
+    }
+
+    // An encrypted save always carries the game layer, so a SHA-1 mismatch
+    // means these keys are the other release's: try those before giving up,
+    // and report which region's keys worked.
+    const plaintext = await decryptWith(buffer, region);
+    if (plaintext) {
+      postCharacters(plaintext, true, region);
+      return;
+    }
+    const other = OTHER_KEYSET[region] ?? "jp";
+    const otherPlaintext = await decryptWith(buffer, other);
+    if (otherPlaintext) {
+      postCharacters(otherPlaintext, true, other);
+      return;
+    }
+    throw new Error(
+      "This save couldn't be decrypted with any region's keys. " +
+      "It may be damaged, or not a Monster Hunter Freedom Unite / P2G save."
+    );
+  } catch (err) {
+    self.postMessage({ ok: false, error: err.message });
+  }
+};
+
+function postCharacters(plaintext, decrypted, region) {
+  const view = new DataView(plaintext);
+  const characters = [0, 1, 2].map((i) => parseCharacter(view, i));
+  self.postMessage({ ok: true, characters, decrypted, region });
+}

@@ -1,7 +1,7 @@
 {
   "weapons": [
     {
-      "name": "Hunter's Bow I",
+      "id": 116,
       "attack": 96,
       "affinity": "0%",
       "slots": 0,
@@ -39,19 +39,19 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 2,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 5,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Anteka Pelt",
+          "item": 330,
           "amount": 2,
           "type": "pelt",
           "color": "orange"
@@ -59,13 +59,13 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Hunter's Bow II"
+        117
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Hunter's Bow II",
+      "id": 117,
       "attack": 120,
       "affinity": "0%",
       "slots": 0,
@@ -100,36 +100,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 1100,
-      "improve_from": "Hunter's Bow I",
+      "improve_from": 116,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Giant Bone",
+          "item": 295,
           "amount": 2,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Disk Stone",
+          "item": 201,
           "amount": 10,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Giadrome Claw",
+          "item": 345,
           "amount": 3,
           "type": "claw",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Hunter's Bow III"
+        118
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Hunter's Bow III",
+      "id": 118,
       "attack": 144,
       "affinity": "0%",
       "slots": 0,
@@ -164,28 +164,28 @@
       "type": "bow",
       "create_cost": 1650,
       "improve_cost": 1650,
-      "improve_from": "Hunter's Bow II",
+      "improve_from": 117,
       "create_mats": [
         {
-          "name": "Piscine Fang",
+          "item": 468,
           "amount": 4,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Lg Monster Bone",
+          "item": 283,
           "amount": 4,
           "type": "bone",
           "color": "yellow"
         },
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 8,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Gendrome Hide",
+          "item": 362,
           "amount": 5,
           "type": "pelt",
           "color": "green"
@@ -193,13 +193,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Hard Ticket",
+          "item": 910,
           "amount": 1,
           "type": "ticket",
           "color": "green"
         },
         {
-          "name": "Piscine Fang",
+          "item": 468,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
@@ -207,31 +207,31 @@
       ],
       "improve_mats": [
         {
-          "name": "Piscine Fang",
+          "item": 468,
           "amount": 3,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 8,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Gendrome Hide",
+          "item": 362,
           "amount": 5,
           "type": "pelt",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Hunter's Bow IV"
+        119
       ],
       "elements": null
     },
     {
-      "name": "Hunter's Bow IV",
+      "id": 119,
       "attack": 168,
       "affinity": "0%",
       "slots": 0,
@@ -266,36 +266,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 2750,
-      "improve_from": "Hunter's Bow III",
+      "improve_from": 118,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Rubbery Hide",
+          "item": 401,
           "amount": 5,
           "type": "hide",
           "color": "blue"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 4,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Iodrome Hide",
+          "item": 370,
           "amount": 4,
           "type": "pelt",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Hunter's Power Bow I"
+        120
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Hunter's Power Bow I",
+      "id": 120,
       "attack": 192,
       "affinity": "0%",
       "slots": 0,
@@ -329,28 +329,28 @@
       "type": "bow",
       "create_cost": 4400,
       "improve_cost": 4400,
-      "improve_from": "Hunter's Bow IV",
+      "improve_from": 119,
       "create_mats": [
         {
-          "name": "Basarios Wing",
+          "item": 590,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 4,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Lg Monster Bone",
+          "item": 283,
           "amount": 4,
           "type": "bone",
           "color": "yellow"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 15,
           "type": "ore",
           "color": "blue"
@@ -358,32 +358,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 2,
           "type": "insect",
           "color": "green"
         },
         {
-          "name": "Monoblos Shell",
+          "item": 671,
           "amount": 4,
           "type": "part",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Hunter's Power Bow II"
+        121
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Hunter's Power Bow II",
+      "id": 121,
       "attack": 204,
       "affinity": "0%",
       "slots": 0,
@@ -417,36 +417,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 5500,
-      "improve_from": "Hunter's Power Bow I",
+      "improve_from": 120,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Gravios Shell",
+          "item": 623,
           "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Blos Fang",
+          "item": 645,
           "amount": 3,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 3,
           "type": "ore",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Hunter's Power Bow III"
+        122
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Hunter's Power Bow III",
+      "id": 122,
       "attack": 216,
       "affinity": "0%",
       "slots": 0,
@@ -480,37 +480,37 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 7900,
-      "improve_from": "Hunter's Power Bow II",
+      "improve_from": 121,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Bulldrome Hide+",
+          "item": 326,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Giadrome Claw+",
+          "item": 346,
           "amount": 5,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Gendrome Tail",
+          "item": 363,
           "amount": 4,
           "type": "pelt",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Hunter's Power Bow IV",
-        "Icicle Bow I"
+        289,
+        290
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Hunter's Power Bow IV",
+      "id": 289,
       "attack": 324,
       "affinity": "0%",
       "slots": 0,
@@ -544,29 +544,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 49500,
-      "improve_from": "Hunter's Power Bow III",
+      "improve_from": 122,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "StrBasariosWing",
+          "item": 591,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvyBasariosShell",
+          "item": 589,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 5,
           "type": "bone",
           "color": "gray"
@@ -577,7 +577,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Icicle Bow I",
+      "id": 290,
       "attack": 228,
       "affinity": "0%",
       "slots": 0,
@@ -612,28 +612,28 @@
       "type": "bow",
       "create_cost": 34650,
       "improve_cost": 34650,
-      "improve_from": "Hunter's Power Bow III",
+      "improve_from": 122,
       "create_mats": [
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 1,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 20,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 15,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 5,
           "type": "bone",
           "color": "gray"
@@ -641,32 +641,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Lg Pelagus Fang",
+          "item": 452,
           "amount": 6,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 20,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "RobustWyvernBone",
+          "item": 293,
           "amount": 5,
           "type": "bone",
           "color": "cyan"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 10,
           "type": "ore",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Icicle Bow II"
+        291
       ],
       "elements": [
         {
@@ -677,7 +677,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Icicle Bow II",
+      "id": 291,
       "attack": 264,
       "affinity": "0%",
       "slots": 0,
@@ -712,29 +712,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 55450,
-      "improve_from": "Icicle Bow I",
+      "improve_from": 290,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvyBlangongaFang",
+          "item": 431,
           "amount": 2,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 3,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Piercing Claw",
+          "item": 428,
           "amount": 10,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 6,
           "type": "bone",
           "color": "gray"
@@ -750,7 +750,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wild Bow I",
+      "id": 123,
       "attack": 168,
       "affinity": "0%",
       "slots": 2,
@@ -787,19 +787,19 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Congalala Pelt",
+          "item": 444,
           "amount": 4,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Sharp Claw",
+          "item": 427,
           "amount": 3,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Bone",
+          "item": 292,
           "amount": 10,
           "type": "bone",
           "color": "white"
@@ -807,13 +807,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Tcket",
+          "item": 911,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Sharp Claw",
+          "item": 427,
           "amount": 1,
           "type": "claw",
           "color": "gray"
@@ -821,12 +821,12 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Wild Bow II"
+        124
       ],
       "elements": null
     },
     {
-      "name": "Wild Bow II",
+      "id": 124,
       "attack": 192,
       "affinity": "0%",
       "slots": 2,
@@ -860,36 +860,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 3500,
-      "improve_from": "Wild Bow I",
+      "improve_from": 123,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Congalala Pelt",
+          "item": 444,
           "amount": 2,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Conga Pelt",
+          "item": 442,
           "amount": 12,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Iodrome Hide",
+          "item": 370,
           "amount": 2,
           "type": "pelt",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Wild Bow III"
+        125
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Wild Bow III",
+      "id": 125,
       "attack": 216,
       "affinity": "0%",
       "slots": 3,
@@ -923,28 +923,28 @@
       "type": "bow",
       "create_cost": 5250,
       "improve_cost": 5250,
-      "improve_from": "Wild Bow II",
+      "improve_from": 124,
       "create_mats": [
         {
-          "name": "Monoblos Spine",
+          "item": 673,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Congalala Claw",
+          "item": 448,
           "amount": 2,
           "type": "claw",
           "color": "pink"
         },
         {
-          "name": "Pale Bone",
+          "item": 581,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 2,
           "type": "insect",
           "color": "green"
@@ -952,32 +952,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Congalala Fang",
+          "item": 451,
           "amount": 5,
           "type": "claw",
           "color": "pink"
         },
         {
-          "name": "Garuga Mane",
+          "item": 423,
           "amount": 3,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 2,
           "type": "insect",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Wild Bow IV"
+        126
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Wild Bow IV",
+      "id": 126,
       "attack": 228,
       "affinity": "0%",
       "slots": 3,
@@ -1011,36 +1011,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 6150,
-      "improve_from": "Wild Bow III",
+      "improve_from": 125,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Vibrant Pelt",
+          "item": 447,
           "amount": 1,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Claw",
+          "item": 602,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 2,
           "type": "bone",
           "color": "orange"
         }
       ],
       "improve_to": [
-        "Wild Power Bow I"
+        127
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Wild Power Bow I",
+      "id": 127,
       "attack": 240,
       "affinity": "0%",
       "slots": 3,
@@ -1074,28 +1074,28 @@
       "type": "bow",
       "create_cost": 8950,
       "improve_cost": 8950,
-      "improve_from": "Wild Bow IV",
+      "improve_from": 126,
       "create_mats": [
         {
-          "name": "Congalala Pelt+",
+          "item": 445,
           "amount": 6,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Congalala Fang",
+          "item": 451,
           "amount": 10,
           "type": "claw",
           "color": "pink"
         },
         {
-          "name": "Giant Bone",
+          "item": 295,
           "amount": 10,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 6,
           "type": "ore",
           "color": "slate"
@@ -1103,32 +1103,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Congalala Pelt+",
+          "item": 445,
           "amount": 6,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Chameleos Claw",
+          "item": 735,
           "amount": 2,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 6,
           "type": "ore",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Wild Power Bow II"
+        128
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Wild Power Bow II",
+      "id": 128,
       "attack": 252,
       "affinity": "0%",
       "slots": 3,
@@ -1162,36 +1162,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 10550,
-      "improve_from": "Wild Power Bow I",
+      "improve_from": 127,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Congalala Claw+",
+          "item": 449,
           "amount": 2,
           "type": "claw",
           "color": "pink"
         },
         {
-          "name": "Pur Gypceros Wng",
+          "item": 407,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "King Scarab",
+          "item": 255,
           "amount": 6,
           "type": "insect",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Jungle Bow I"
+        296
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Jungle Bow I",
+      "id": 296,
       "attack": 324,
       "affinity": "10%",
       "slots": 0,
@@ -1225,28 +1225,28 @@
       "type": "bow",
       "create_cost": 49500,
       "improve_cost": 49500,
-      "improve_from": "Wild Power Bow II",
+      "improve_from": 128,
       "create_mats": [
         {
-          "name": "E.CongalalaPelt+",
+          "item": 453,
           "amount": 6,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "Vibrant Comb",
+          "item": 455,
           "amount": 2,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "HrdCongalalaClw+",
+          "item": 450,
           "amount": 3,
           "type": "claw",
           "color": "pink"
         },
         {
-          "name": "Emperor Cricket",
+          "item": 256,
           "amount": 6,
           "type": "insect",
           "color": "orange"
@@ -1254,38 +1254,38 @@
       ],
       "improve_mats": [
         {
-          "name": "E.CongalalaPelt+",
+          "item": 453,
           "amount": 4,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "Lg Pelagus Fang",
+          "item": 452,
           "amount": 3,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 4,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Emperor Cricket",
+          "item": 256,
           "amount": 4,
           "type": "insect",
           "color": "orange"
         }
       ],
       "improve_to": [
-        "Jungle Bow II"
+        297
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Jungle Bow II",
+      "id": 297,
       "attack": 360,
       "affinity": "15%",
       "slots": 0,
@@ -1319,29 +1319,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 74250,
-      "improve_from": "Jungle Bow I",
+      "improve_from": 296,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Vibrant Comb",
+          "item": 455,
           "amount": 1,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "C.BlangongaPelt+",
+          "item": 439,
           "amount": 6,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 3,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 2,
           "type": "insect",
           "color": "white"
@@ -1352,7 +1352,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blango Fur Bow I",
+      "id": 129,
       "attack": 96,
       "affinity": "0%",
       "slots": 1,
@@ -1389,19 +1389,19 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Blango Pelt",
+          "item": 425,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Giaprey Scale",
+          "item": 340,
           "amount": 5,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 10,
           "type": "ore",
           "color": "cyan"
@@ -1409,7 +1409,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Blango Fur Bow II"
+        130
       ],
       "elements": [
         {
@@ -1420,7 +1420,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blango Fur Bow II",
+      "id": 130,
       "attack": 120,
       "affinity": "0%",
       "slots": 1,
@@ -1454,30 +1454,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 1500,
-      "improve_from": "Blango Fur Bow I",
+      "improve_from": 129,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 4,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Giadrome Hide",
+          "item": 344,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Carpenterbug",
+          "item": 254,
           "amount": 10,
           "type": "insect",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Blango Fur Bow III"
+        131
       ],
       "elements": [
         {
@@ -1488,7 +1488,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blango Fur Bow III",
+      "id": 131,
       "attack": 168,
       "affinity": "0%",
       "slots": 2,
@@ -1522,22 +1522,22 @@
       "type": "bow",
       "create_cost": 3850,
       "improve_cost": 3850,
-      "improve_from": "Blango Fur Bow II",
+      "improve_from": 130,
       "create_mats": [
         {
-          "name": "Blangonga Pelt",
+          "item": 432,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Wht Monoblos Hrn",
+          "item": 676,
           "amount": 2,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 10,
           "type": "ore",
           "color": "cyan"
@@ -1545,26 +1545,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Blangonga Whiskr",
+          "item": 435,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Blango Pelt",
+          "item": 425,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Lg Monster Bone",
+          "item": 283,
           "amount": 4,
           "type": "bone",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Blango Fur Bow IV"
+        132
       ],
       "elements": [
         {
@@ -1575,7 +1575,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blango Fur Bow IV",
+      "id": 132,
       "attack": 180,
       "affinity": "0%",
       "slots": 2,
@@ -1609,30 +1609,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 4600,
-      "improve_from": "Blango Fur Bow III",
+      "improve_from": 131,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "DaoraDragonScale",
+          "item": 717,
           "amount": 4,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Blangonga Pelt",
+          "item": 432,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 2,
           "type": "bone",
           "color": "orange"
         }
       ],
       "improve_to": [
-        "Abominable Bow I"
+        133
       ],
       "elements": [
         {
@@ -1643,7 +1643,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Abominable Bow I",
+      "id": 133,
       "attack": 192,
       "affinity": "0%",
       "slots": 2,
@@ -1677,30 +1677,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 7350,
-      "improve_from": "Blango Fur Bow IV",
+      "improve_from": 132,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Blangonga Fang+",
+          "item": 430,
           "amount": 1,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Daora Claw",
+          "item": 726,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "King Scarab",
+          "item": 255,
           "amount": 6,
           "type": "insect",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Abominable Bow II"
+        293
       ],
       "elements": [
         {
@@ -1711,7 +1711,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Abominable Bow II",
+      "id": 293,
       "attack": 288,
       "affinity": "0%",
       "slots": 2,
@@ -1745,29 +1745,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 69300,
-      "improve_from": "Abominable Bow I",
+      "improve_from": 133,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HrdBlangongaPlt+",
+          "item": 434,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 4,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Lthr Pelagus Plt",
+          "item": 436,
           "amount": 3,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 4,
           "type": "insect",
           "color": "white"
@@ -1783,7 +1783,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Kut-Ku Stave I",
+      "id": 134,
       "attack": 120,
       "affinity": "0%",
       "slots": 1,
@@ -1820,25 +1820,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Kut-Ku Shell",
+          "item": 385,
           "amount": 5,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Kut-Ku Scale",
+          "item": 382,
           "amount": 5,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Flame Sac",
+          "item": 273,
           "amount": 2,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "Carpenterbug",
+          "item": 254,
           "amount": 4,
           "type": "insect",
           "color": "gray"
@@ -1846,7 +1846,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Kut-Ku Stave II"
+        135
       ],
       "elements": [
         {
@@ -1857,7 +1857,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Kut-Ku Stave II",
+      "id": 135,
       "attack": 144,
       "affinity": "0%",
       "slots": 1,
@@ -1891,30 +1891,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 2300,
-      "improve_from": "Kut-Ku Stave I",
+      "improve_from": 134,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Flame Sac",
+          "item": 273,
           "amount": 4,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "FireWyvern Fluid",
+          "item": 545,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Blue Kut-Ku Scl",
+          "item": 395,
           "amount": 6,
           "type": "scale",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Kut-Ku Stave III"
+        136
       ],
       "elements": [
         {
@@ -1925,7 +1925,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Kut-Ku Stave III",
+      "id": 136,
       "attack": 180,
       "affinity": "0%",
       "slots": 2,
@@ -1959,30 +1959,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 4600,
-      "improve_from": "Kut-Ku Stave II",
+      "improve_from": 135,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Kut-Ku Ear",
+          "item": 388,
           "amount": 3,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Blk Gravios Shl",
+          "item": 629,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Carpenterbug",
+          "item": 254,
           "amount": 20,
           "type": "insect",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Blue Kut-Ku Stave I"
+        137
       ],
       "elements": [
         {
@@ -1993,7 +1993,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blue Kut-Ku Stave I",
+      "id": 137,
       "attack": 192,
       "affinity": "0%",
       "slots": 2,
@@ -2028,28 +2028,28 @@
       "type": "bow",
       "create_cost": 7350,
       "improve_cost": 7350,
-      "improve_from": "Kut-Ku Stave III",
+      "improve_from": 136,
       "create_mats": [
         {
-          "name": "Blue Kut-Ku Cpc",
+          "item": 399,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Lunastra Shell",
+          "item": 750,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 4,
           "type": "bone",
           "color": "red"
         },
         {
-          "name": "Inferno Sac",
+          "item": 274,
           "amount": 4,
           "type": "sac",
           "color": "red"
@@ -2057,27 +2057,27 @@
       ],
       "improve_mats": [
         {
-          "name": "Lunastra Shell",
+          "item": 750,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Blue Kut-Ku Cpc",
+          "item": 399,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Inferno Sac",
+          "item": 274,
           "amount": 4,
           "type": "sac",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Blue Kut-Ku Stave II",
-        "Wolf Bow"
+        299,
+        301
       ],
       "elements": [
         {
@@ -2088,7 +2088,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blue Kut-Ku Stave II",
+      "id": 299,
       "attack": 240,
       "affinity": "0%",
       "slots": 2,
@@ -2123,36 +2123,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 41600,
-      "improve_from": "Blue Kut-Ku Stave I",
+      "improve_from": 137,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvyBlueKut-KuShl",
+          "item": 400,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Lucky Kut-Ku Ear",
+          "item": 390,
           "amount": 3,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Blazing Fire Sac",
+          "item": 275,
           "amount": 4,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "Monster Essence",
+          "item": 27,
           "amount": 4,
           "type": "fluid",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Blue Kut-Ku Stave III"
+        300
       ],
       "elements": [
         {
@@ -2163,7 +2163,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blue Kut-Ku Stave III",
+      "id": 300,
       "attack": 276,
       "affinity": "0%",
       "slots": 2,
@@ -2198,29 +2198,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 62400,
-      "improve_from": "Blue Kut-Ku Stave II",
+      "improve_from": 299,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvyAzurRthlsShl",
+          "item": 567,
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "ThkBlueKut-KuScl",
+          "item": 397,
           "amount": 6,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Emperor Cricket",
+          "item": 256,
           "amount": 6,
           "type": "insect",
           "color": "orange"
         },
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 5,
           "type": "ore",
           "color": "white"
@@ -2236,7 +2236,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wolf Bow",
+      "id": 301,
       "attack": 348,
       "affinity": "10%",
       "slots": 0,
@@ -2269,28 +2269,28 @@
       "type": "bow",
       "create_cost": 83150,
       "improve_cost": 83150,
-      "improve_from": "Blue Kut-Ku Stave I",
+      "improve_from": 137,
       "create_mats": [
         {
-          "name": "Hvy Garuga Shell",
+          "item": 414,
           "amount": 5,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "SilverGarugaPelt",
+          "item": 424,
           "amount": 4,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "LethrGarugaTail",
+          "item": 422,
           "amount": 1,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "HardGypcerosHead",
+          "item": 405,
           "amount": 1,
           "type": "part",
           "color": "blue"
@@ -2298,32 +2298,32 @@
       ],
       "improve_mats": [
         {
-          "name": "ThickGarugaScale",
+          "item": 411,
           "amount": 5,
           "type": "scale",
           "color": "slate"
         },
         {
-          "name": "Hvy Garuga Shell",
+          "item": 414,
           "amount": 4,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Rejuvenated Beak",
+          "item": 418,
           "amount": 3,
           "type": "bone",
           "color": "slate"
         },
         {
-          "name": "DeadlyPoisonSac",
+          "item": 269,
           "amount": 2,
           "type": "sac",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Crow Bow"
+        302
       ],
       "elements": [
         {
@@ -2334,7 +2334,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crow Bow",
+      "id": 302,
       "attack": 360,
       "affinity": "10%",
       "slots": 0,
@@ -2367,29 +2367,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 103950,
-      "improve_from": "Wolf Bow",
+      "improve_from": 301,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "LethrGarugaTail",
+          "item": 422,
           "amount": 1,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "SilverGarugaPelt",
+          "item": 424,
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 3,
           "type": "insect",
           "color": "white"
         },
         {
-          "name": "SpecChameleHide+",
+          "item": 731,
           "amount": 4,
           "type": "pelt",
           "color": "slate"
@@ -2405,7 +2405,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wing Bow I",
+      "id": 334,
       "attack": 228,
       "affinity": "0%",
       "slots": 1,
@@ -2441,25 +2441,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "OrangeHypnoPelt",
+          "item": 372,
           "amount": 4,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Hypno Beak",
+          "item": 378,
           "amount": 2,
           "type": "bone",
           "color": "orange"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 3,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 4,
           "type": "bone",
           "color": "red"
@@ -2467,7 +2467,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Wing Bow II"
+        335
       ],
       "elements": [
         {
@@ -2478,7 +2478,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wing Bow II",
+      "id": 335,
       "attack": 240,
       "affinity": "0%",
       "slots": 1,
@@ -2511,30 +2511,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 13450,
-      "improve_from": "Wing Bow I",
+      "improve_from": 334,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Top-GrdHypnoClaw",
+          "item": 374,
           "amount": 6,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Basarios Carpace",
+          "item": 588,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Rare Scarab",
+          "item": 259,
           "amount": 3,
           "type": "insect",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Wing Bow III"
+        336
       ],
       "elements": [
         {
@@ -2545,7 +2545,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wing Bow III",
+      "id": 336,
       "attack": 312,
       "affinity": "0%",
       "slots": 1,
@@ -2578,28 +2578,28 @@
       "type": "bow",
       "create_cost": 53450,
       "improve_cost": 53450,
-      "improve_from": "Wing Bow II",
+      "improve_from": 335,
       "create_mats": [
         {
-          "name": "OrangeHypnoPelt+",
+          "item": 373,
           "amount": 8,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Hypno Claw+",
+          "item": 375,
           "amount": 6,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Hypno Bezoar",
+          "item": 376,
           "amount": 1,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Lucky Kut-Ku Ear",
+          "item": 390,
           "amount": 3,
           "type": "part",
           "color": "pink"
@@ -2607,32 +2607,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Hypno Fang",
+          "item": 379,
           "amount": 3,
           "type": "bone",
           "color": "orange"
         },
         {
-          "name": "OrangeHypnoPelt+",
+          "item": 373,
           "amount": 6,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Sleep Sac",
+          "item": 271,
           "amount": 4,
           "type": "sac",
           "color": "blue"
         },
         {
-          "name": "Str Kut-Ku Wing",
+          "item": 394,
           "amount": 4,
           "type": "part",
           "color": "pink"
         }
       ],
       "improve_to": [
-        "Wing Bow IV"
+        337
       ],
       "elements": [
         {
@@ -2643,7 +2643,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wing Bow IV",
+      "id": 337,
       "attack": 348,
       "affinity": "0%",
       "slots": 1,
@@ -2676,29 +2676,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 77200,
-      "improve_from": "Wing Bow III",
+      "improve_from": 336,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hypno Bezoar+",
+          "item": 377,
           "amount": 1,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Hypno Claw+",
+          "item": 375,
           "amount": 6,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "HvyGraviosShell",
+          "item": 625,
           "amount": 4,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Coma Sac",
+          "item": 272,
           "amount": 2,
           "type": "sac",
           "color": "blue"
@@ -2714,7 +2714,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Defect Swordfish Bow",
+      "id": 303,
       "attack": 132,
       "affinity": "0%",
       "slots": 3,
@@ -2751,25 +2751,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Speartuna",
+          "item": 239,
           "amount": 1,
           "type": "fish",
           "color": "blue"
         },
         {
-          "name": "Black Pearl",
+          "item": 198,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Antiseptic Stone",
+          "item": 218,
           "amount": 2,
           "type": "ore",
           "color": "yellow"
         },
         {
-          "name": "FlynMealPassReg",
+          "item": 916,
           "amount": 1,
           "type": "ticket",
           "color": "pink"
@@ -2777,7 +2777,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Whole Swordfish Bow"
+        304
       ],
       "elements": [
         {
@@ -2788,7 +2788,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Whole Swordfish Bow",
+      "id": 304,
       "attack": 204,
       "affinity": "0%",
       "slots": 3,
@@ -2822,36 +2822,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 5950,
-      "improve_from": "Defect Swordfish Bow",
+      "improve_from": 303,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Speartuna",
+          "item": 239,
           "amount": 1,
           "type": "fish",
           "color": "blue"
         },
         {
-          "name": "Novacrystal",
+          "item": 216,
           "amount": 1,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 6,
           "type": "bone",
           "color": "red"
         },
         {
-          "name": "FlynMealPassPlus",
+          "item": 917,
           "amount": 3,
           "type": "ticket",
           "color": "pink"
         }
       ],
       "improve_to": [
-        "Perfect Swordfish Bow"
+        305
       ],
       "elements": [
         {
@@ -2862,7 +2862,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Perfect Swordfish Bow",
+      "id": 305,
       "attack": 288,
       "affinity": "0%",
       "slots": 3,
@@ -2896,29 +2896,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 35650,
-      "improve_from": "Whole Swordfish Bow",
+      "improve_from": 304,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Speartuna",
+          "item": 239,
           "amount": 1,
           "type": "fish",
           "color": "blue"
         },
         {
-          "name": "Ancient Fish",
+          "item": 243,
           "amount": 5,
           "type": "fish",
           "color": "gray"
         },
         {
-          "name": "Paralysis Sac",
+          "item": 270,
           "amount": 10,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 8,
           "type": "bone",
           "color": "gray"
@@ -2934,7 +2934,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Daimyo's Warbow I",
+      "id": 138,
       "attack": 144,
       "affinity": "0%",
       "slots": 1,
@@ -2971,25 +2971,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Hermitaur Shell",
+          "item": 495,
           "amount": 4,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Plesioth Scale",
+          "item": 470,
           "amount": 4,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Sm Hermitaur Shl",
+          "item": 494,
           "amount": 10,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 8,
           "type": "ore",
           "color": "white"
@@ -2997,7 +2997,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Daimyo's Warbow II"
+        139
       ],
       "elements": [
         {
@@ -3008,7 +3008,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Daimyo's Warbow II",
+      "id": 139,
       "attack": 168,
       "affinity": "0%",
       "slots": 1,
@@ -3042,30 +3042,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 3850,
-      "improve_from": "Daimyo's Warbow I",
+      "improve_from": 138,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Ceanataur Claw",
+          "item": 510,
           "amount": 2,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Grn Plesioth Scl",
+          "item": 476,
           "amount": 3,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Med Monster Bone",
+          "item": 282,
           "amount": 4,
           "type": "bone",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Daimyo's Warbow III"
+        140
       ],
       "elements": [
         {
@@ -3076,7 +3076,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Daimyo's Warbow III",
+      "id": 140,
       "attack": 180,
       "affinity": "0%",
       "slots": 2,
@@ -3110,30 +3110,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 4600,
-      "improve_from": "Daimyo's Warbow II",
+      "improve_from": 139,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Black Pearl",
+          "item": 198,
           "amount": 6,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Twisted Horn",
+          "item": 634,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Hermitaur Claw",
+          "item": 498,
           "amount": 4,
           "type": "claw",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Daimyo's Warbow IV"
+        141
       ],
       "elements": [
         {
@@ -3144,7 +3144,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Daimyo's Warbow IV",
+      "id": 141,
       "attack": 192,
       "affinity": "0%",
       "slots": 2,
@@ -3178,28 +3178,28 @@
       "type": "bow",
       "create_cost": 7350,
       "improve_cost": 7350,
-      "improve_from": "Daimyo's Warbow III",
+      "improve_from": 140,
       "create_mats": [
         {
-          "name": "Hermitaur Carpce",
+          "item": 496,
           "amount": 6,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Hermitaur Claw+",
+          "item": 499,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Coral Cphlos Fin",
+          "item": 487,
           "amount": 1,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 3,
           "type": "bone",
           "color": "red"
@@ -3207,26 +3207,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Hermitaur Carpce",
+          "item": 496,
           "amount": 6,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Cephalos Fin+",
+          "item": 485,
           "amount": 3,
           "type": "part",
           "color": "cyan"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 3,
           "type": "bone",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Great Purple Emperor I"
+        310
       ],
       "elements": [
         {
@@ -3237,7 +3237,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Great Purple Emperor I",
+      "id": 310,
       "attack": 252,
       "affinity": "0%",
       "slots": 1,
@@ -3271,28 +3271,28 @@
       "type": "bow",
       "create_cost": 52000,
       "improve_cost": 52000,
-      "improve_from": "Daimyo's Warbow IV",
+      "improve_from": 141,
       "create_mats": [
         {
-          "name": "PlumD.HermitrShl",
+          "item": 501,
           "amount": 8,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "PlumD.HermitrClw",
+          "item": 502,
           "amount": 3,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "HrdHermitaurClaw",
+          "item": 500,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "SpecGrnPlesioFn+",
+          "item": 481,
           "amount": 4,
           "type": "part",
           "color": "green"
@@ -3300,26 +3300,26 @@
       ],
       "improve_mats": [
         {
-          "name": "PlumD.HermitrShl",
+          "item": 501,
           "amount": 6,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "HvyHermitaurShl",
+          "item": 497,
           "amount": 4,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "ThckGrnPlesioScl",
+          "item": 478,
           "amount": 3,
           "type": "scale",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Great Purple Emperor II"
+        311
       ],
       "elements": [
         {
@@ -3330,7 +3330,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Great Purple Emperor II",
+      "id": 311,
       "attack": 300,
       "affinity": "0%",
       "slots": 1,
@@ -3364,29 +3364,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 81700,
-      "improve_from": "Great Purple Emperor I",
+      "improve_from": 310,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "PlumD.HermitrClw",
+          "item": 502,
           "amount": 3,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "SpecGrnPlesioFn+",
+          "item": 481,
           "amount": 3,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "HvyGaorenShell",
+          "item": 706,
           "amount": 4,
           "type": "shell",
           "color": "gray"
@@ -3402,7 +3402,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blue Blade Bow I",
+      "id": 312,
       "attack": 204,
       "affinity": "0%",
       "slots": 0,
@@ -3439,25 +3439,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Ceanataur Shell",
+          "item": 504,
           "amount": 4,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Ceanataur Pincer",
+          "item": 509,
           "amount": 1,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Hercudrome",
+          "item": 258,
           "amount": 2,
           "type": "insect",
           "color": "red"
         },
         {
-          "name": "Sharp Claw",
+          "item": 427,
           "amount": 7,
           "type": "claw",
           "color": "gray"
@@ -3465,13 +3465,13 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Blue Blade Bow II"
+        313
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Blue Blade Bow II",
+      "id": 313,
       "attack": 264,
       "affinity": "0%",
       "slots": 0,
@@ -3505,36 +3505,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 23100,
-      "improve_from": "Blue Blade Bow I",
+      "improve_from": 312,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Ceanataur Carpce",
+          "item": 505,
           "amount": 5,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Ceanataur Claw+",
+          "item": 511,
           "amount": 3,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 3,
           "type": "bone",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Blue Blade Bow III"
+        314
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Blue Blade Bow III",
+      "id": 314,
       "attack": 360,
       "affinity": "0%",
       "slots": 1,
@@ -3568,28 +3568,28 @@
       "type": "bow",
       "create_cost": 90100,
       "improve_cost": 90100,
-      "improve_from": "Blue Blade Bow II",
+      "improve_from": 313,
       "create_mats": [
         {
-          "name": "HvyCeanataurShl",
+          "item": 506,
           "amount": 5,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "HrdCeanataurClaw",
+          "item": 512,
           "amount": 3,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 3,
           "type": "bone",
           "color": "gray"
@@ -3597,33 +3597,33 @@
       ],
       "improve_mats": [
         {
-          "name": "HvyCeanataurShl",
+          "item": 506,
           "amount": 4,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "HvyCeanataurLeg",
+          "item": 508,
           "amount": 3,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 3,
           "type": "bone",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Showroom Model",
-        "Carmine Bow"
+        315,
+        316
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Showroom Model",
+      "id": 315,
       "attack": 372,
       "affinity": "0%",
       "slots": 1,
@@ -3657,23 +3657,23 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 103950,
-      "improve_from": "Blue Blade Bow III",
+      "improve_from": 314,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HrdCeanataurClaw",
+          "item": 512,
           "amount": 2,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "HvyGraviosShell",
+          "item": 625,
           "amount": 4,
           "type": "part",
           "color": "white"
@@ -3684,7 +3684,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Carmine Bow",
+      "id": 316,
       "attack": 312,
       "affinity": "0%",
       "slots": 0,
@@ -3717,30 +3717,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 89100,
-      "improve_from": "Blue Blade Bow III",
+      "improve_from": 314,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "TerraCeanatrShl",
+          "item": 513,
           "amount": 4,
           "type": "shell",
           "color": "orange"
         },
         {
-          "name": "HvyCeanataurLeg",
+          "item": 508,
           "amount": 3,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "ThckPlesiothScl",
+          "item": 472,
           "amount": 4,
           "type": "scale",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Eraser"
+        317
       ],
       "elements": [
         {
@@ -3751,7 +3751,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Eraser",
+      "id": 317,
       "attack": 324,
       "affinity": "0%",
       "slots": 0,
@@ -3784,23 +3784,23 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 103950,
-      "improve_from": "Carmine Bow",
+      "improve_from": 316,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "TerraCeanatrClaw",
+          "item": 514,
           "amount": 2,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "HvyBlkGraviosShl",
+          "item": 631,
           "amount": 4,
           "type": "part",
           "color": "gray"
@@ -3816,7 +3816,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sonic Bow I",
+      "id": 142,
       "attack": 144,
       "affinity": "0%",
       "slots": 1,
@@ -3852,25 +3852,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Electro Sac",
+          "item": 276,
           "amount": 2,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "Vespoid Shell",
+          "item": 658,
           "amount": 10,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Hornetaur Wing",
+          "item": 666,
           "amount": 5,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 2,
           "type": "insect",
           "color": "green"
@@ -3878,7 +3878,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Sonic Bow II"
+        143
       ],
       "elements": [
         {
@@ -3889,7 +3889,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sonic Bow II",
+      "id": 143,
       "attack": 180,
       "affinity": "0%",
       "slots": 2,
@@ -3922,30 +3922,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 4600,
-      "improve_from": "Sonic Bow I",
+      "improve_from": 142,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Thunderbug Juice",
+          "item": 28,
           "amount": 4,
           "type": "fluid",
           "color": "yellow"
         },
         {
-          "name": "Alluring Hide",
+          "item": 584,
           "amount": 4,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Hornetaur Head",
+          "item": 665,
           "amount": 2,
           "type": "insect",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Sonic Bow III"
+        144
       ],
       "elements": [
         {
@@ -3956,7 +3956,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sonic Bow III",
+      "id": 144,
       "attack": 192,
       "affinity": "0%",
       "slots": 2,
@@ -3989,28 +3989,28 @@
       "type": "bow",
       "create_cost": 7350,
       "improve_cost": 7350,
-      "improve_from": "Sonic Bow II",
+      "improve_from": 143,
       "create_mats": [
         {
-          "name": "Thunder Sac",
+          "item": 277,
           "amount": 4,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "HornetaurInnrWng",
+          "item": 667,
           "amount": 3,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Vespoid Carapace",
+          "item": 659,
           "amount": 15,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Rare Scarab",
+          "item": 259,
           "amount": 4,
           "type": "insect",
           "color": "yellow"
@@ -4018,26 +4018,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Thunder Sac",
+          "item": 277,
           "amount": 3,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "HornetaurInnrWng",
+          "item": 667,
           "amount": 2,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Vespoid Carapace",
+          "item": 659,
           "amount": 10,
           "type": "insect",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Sonic Bow IV"
+        307
       ],
       "elements": [
         {
@@ -4048,7 +4048,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Khezu Bow I",
+      "id": 346,
       "attack": 252,
       "affinity": "0%",
       "slots": 1,
@@ -4085,25 +4085,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "KhezuHide-Cream",
+          "item": 580,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Lightning Sac",
+          "item": 278,
           "amount": 3,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "SpecRubberyHide+",
+          "item": 403,
           "amount": 3,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 5,
           "type": "ore",
           "color": "red"
@@ -4111,7 +4111,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Khezu Bow II"
+        347
       ],
       "elements": [
         {
@@ -4122,7 +4122,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Khezu Bow II",
+      "id": 347,
       "attack": 288,
       "affinity": "0%",
       "slots": 1,
@@ -4156,29 +4156,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 74,
-      "improve_from": "Khezu Bow I",
+      "improve_from": 346,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "StrAlluringWing",
+          "item": 586,
           "amount": 4,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "KhezuSpecialCut",
+          "item": 583,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "HrdPuGypcerosWng",
+          "item": 408,
           "amount": 3,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "SilverGarugaPelt",
+          "item": 424,
           "amount": 2,
           "type": "part",
           "color": "white"
@@ -4194,7 +4194,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Queen Blaster I",
+      "id": 145,
       "attack": 204,
       "affinity": "0%",
       "slots": 1,
@@ -4229,25 +4229,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Rathian Shell",
+          "item": 526,
           "amount": 3,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 1,
           "type": "bone",
           "color": "orange"
         },
         {
-          "name": "Rathian Scale",
+          "item": 520,
           "amount": 5,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 8,
           "type": "ore",
           "color": "blue"
@@ -4255,7 +4255,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Queen Blaster II"
+        146
       ],
       "elements": [
         {
@@ -4266,7 +4266,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Queen Blaster II",
+      "id": 146,
       "attack": 216,
       "affinity": "0%",
       "slots": 2,
@@ -4298,31 +4298,31 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 6600,
-      "improve_from": "Queen Blaster I",
+      "improve_from": 145,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Rathian Shell",
+          "item": 526,
           "amount": 4,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Fire Wyvern Claw",
+          "item": 543,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 2,
           "type": "ore",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Queen Blaster III",
-        "Heartshot Bow I"
+        147,
+        148
       ],
       "elements": [
         {
@@ -4333,7 +4333,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Queen Blaster III",
+      "id": 147,
       "attack": 264,
       "affinity": "0%",
       "slots": 2,
@@ -4365,28 +4365,28 @@
       "type": "bow",
       "create_cost": 16500,
       "improve_cost": 16500,
-      "improve_from": "Queen Blaster II",
+      "improve_from": 146,
       "create_mats": [
         {
-          "name": "Rathian Carapace",
+          "item": 527,
           "amount": 3,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Rathian Scale+",
+          "item": 521,
           "amount": 5,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Rathian Plate",
+          "item": 523,
           "amount": 1,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Rare Scarab",
+          "item": 259,
           "amount": 3,
           "type": "insect",
           "color": "yellow"
@@ -4394,26 +4394,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Rathian Scale+",
+          "item": 521,
           "amount": 5,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Rathian Spike",
+          "item": 529,
           "amount": 3,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Rare Scarab",
+          "item": 259,
           "amount": 3,
           "type": "insect",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Queen Blaster IV"
+        331
       ],
       "elements": [
         {
@@ -4424,7 +4424,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Queen Blaster IV",
+      "id": 331,
       "attack": 336,
       "affinity": "0%",
       "slots": 2,
@@ -4456,36 +4456,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 54450,
-      "improve_from": "Queen Blaster III",
+      "improve_from": 147,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "ThckRathianScl",
+          "item": 522,
           "amount": 5,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Rathian Ruby",
+          "item": 524,
           "amount": 1,
           "type": "stone",
           "color": "green"
         },
         {
-          "name": "DeadlyPoisonSac",
+          "item": 269,
           "amount": 4,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 3,
           "type": "insect",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Queen Blaster V"
+        332
       ],
       "elements": [
         {
@@ -4496,7 +4496,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Queen Blaster V",
+      "id": 332,
       "attack": 360,
       "affinity": "0%",
       "slots": 2,
@@ -4528,23 +4528,23 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 69300,
-      "improve_from": "Queen Blaster IV",
+      "improve_from": 331,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvyRathianShell",
+          "item": 528,
           "amount": 4,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "HvnlyRathianScl",
+          "item": 525,
           "amount": 1,
           "type": "heavenly",
           "color": "green"
         },
         {
-          "name": "ThckGldRathnScl",
+          "item": 539,
           "amount": 5,
           "type": "scale",
           "color": "yellow"
@@ -4560,7 +4560,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Heartshot Bow I",
+      "id": 148,
       "attack": 240,
       "affinity": "10%",
       "slots": 0,
@@ -4592,28 +4592,28 @@
       "type": "bow",
       "create_cost": 13450,
       "improve_cost": 13450,
-      "improve_from": "Queen Blaster II",
+      "improve_from": 146,
       "create_mats": [
         {
-          "name": "Pnk Rathian Cpc",
+          "item": 536,
           "amount": 3,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Pnk Rathian Scl+",
+          "item": 533,
           "amount": 5,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Rathian Spike+",
+          "item": 530,
           "amount": 1,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 6,
           "type": "ore",
           "color": "slate"
@@ -4621,32 +4621,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Pnk Rathian Cpc",
+          "item": 536,
           "amount": 3,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "FireWyvrn Marrow",
+          "item": 546,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 6,
           "type": "ore",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Heartshot Bow II"
+        149
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Heartshot Bow II",
+      "id": 149,
       "attack": 264,
       "affinity": "20%",
       "slots": 1,
@@ -4678,36 +4678,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 19800,
-      "improve_from": "Heartshot Bow I",
+      "improve_from": 148,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Rathian Spike+",
+          "item": 530,
           "amount": 1,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Pnk Rathian Scl+",
+          "item": 533,
           "amount": 5,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 3,
           "type": "ore",
           "color": "pink"
         }
       ],
       "improve_to": [
-        "Heartshot Bow III"
+        333
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Heartshot Bow III",
+      "id": 333,
       "attack": 336,
       "affinity": "30%",
       "slots": 1,
@@ -4739,23 +4739,23 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 83150,
-      "improve_from": "Heartshot Bow II",
+      "improve_from": 149,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Rathian Thorn",
+          "item": 531,
           "amount": 1,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "ThckPnkRathnScl",
+          "item": 534,
           "amount": 5,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 5,
           "type": "ore",
           "color": "white"
@@ -4766,7 +4766,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Prominence Bow I",
+      "id": 150,
       "attack": 204,
       "affinity": "0%",
       "slots": 1,
@@ -4801,25 +4801,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Rathalos Shell",
+          "item": 554,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 2,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Rathalos Scale",
+          "item": 548,
           "amount": 5,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Blood Red Horn",
+          "item": 669,
           "amount": 2,
           "type": "claw",
           "color": "red"
@@ -4827,7 +4827,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Prominence Bow II"
+        151
       ],
       "elements": [
         {
@@ -4838,7 +4838,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Prominence Bow II",
+      "id": 151,
       "attack": 216,
       "affinity": "0%",
       "slots": 2,
@@ -4870,30 +4870,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 8250,
-      "improve_from": "Prominence Bow I",
+      "improve_from": 150,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Rathalos Shell",
+          "item": 554,
           "amount": 6,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "FireWyvrn Marrow",
+          "item": 546,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 2,
           "type": "ore",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Prominence Bow III"
+        152
       ],
       "elements": [
         {
@@ -4904,7 +4904,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Prominence Bow III",
+      "id": 152,
       "attack": 252,
       "affinity": "0%",
       "slots": 2,
@@ -4936,30 +4936,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 16500,
-      "improve_from": "Prominence Bow II",
+      "improve_from": 151,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Rathalos Carpace",
+          "item": 555,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "FireWyvrn BrnStm",
+          "item": 547,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 2,
           "type": "ore",
           "color": "orange"
         }
       ],
       "improve_to": [
-        "Prominence Bow IV"
+        329
       ],
       "elements": [
         {
@@ -4970,7 +4970,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Prominence Bow IV",
+      "id": 329,
       "attack": 288,
       "affinity": "0%",
       "slots": 2,
@@ -5002,28 +5002,28 @@
       "type": "bow",
       "create_cost": 61900,
       "improve_cost": 61900,
-      "improve_from": "Prominence Bow III",
+      "improve_from": 152,
       "create_mats": [
         {
-          "name": "HvyRathalosShl",
+          "item": 556,
           "amount": 6,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "StrRathalosWing",
+          "item": 561,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Rathalos Ruby",
+          "item": 552,
           "amount": 1,
           "type": "stone",
           "color": "red"
         },
         {
-          "name": "HvyLavasiothShl",
+          "item": 489,
           "amount": 4,
           "type": "part",
           "color": "gray"
@@ -5031,26 +5031,26 @@
       ],
       "improve_mats": [
         {
-          "name": "HvyRathalosShl",
+          "item": 556,
           "amount": 5,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Rathalos Ruby",
+          "item": 552,
           "amount": 1,
           "type": "stone",
           "color": "red"
         },
         {
-          "name": "ThckLavasiothScl",
+          "item": 488,
           "amount": 3,
           "type": "scale",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Prominence Bow V"
+        330
       ],
       "elements": [
         {
@@ -5061,7 +5061,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Prominence Bow V",
+      "id": 330,
       "attack": 300,
       "affinity": "0%",
       "slots": 2,
@@ -5093,23 +5093,23 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 74250,
-      "improve_from": "Prominence Bow IV",
+      "improve_from": 329,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hrd Rathalos Scl",
+          "item": 550,
           "amount": 6,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "HvnlyRathalosScl",
+          "item": 553,
           "amount": 1,
           "type": "heavenly",
           "color": "red"
         },
         {
-          "name": "HvySlvrRthlsShl",
+          "item": 574,
           "amount": 3,
           "type": "part",
           "color": "white"
@@ -5125,7 +5125,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Courageous Hope",
+      "id": 153,
       "attack": 240,
       "affinity": "0%",
       "slots": 1,
@@ -5161,25 +5161,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Teostra Carapace",
+          "item": 757,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Teostra Mane",
+          "item": 759,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Lunastra Mane",
+          "item": 752,
           "amount": 2,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 1,
           "type": "ore",
           "color": "orange"
@@ -5187,7 +5187,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Courageous Wish"
+        154
       ],
       "elements": [
         {
@@ -5198,7 +5198,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Courageous Wish",
+      "id": 154,
       "attack": 264,
       "affinity": "0%",
       "slots": 2,
@@ -5231,30 +5231,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 39600,
-      "improve_from": "Courageous Hope",
+      "improve_from": 153,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Fire Dragon Pwdr",
+          "item": 747,
           "amount": 2,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "Gravios BrainStm",
+          "item": 628,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 3,
           "type": "ore",
           "color": "pink"
         }
       ],
       "improve_to": [
-        "Courageous Dream"
+        343
       ],
       "elements": [
         {
@@ -5265,7 +5265,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Courageous Dream",
+      "id": 343,
       "attack": 336,
       "affinity": "0%",
       "slots": 2,
@@ -5298,29 +5298,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 111350,
-      "improve_from": "Courageous Wish",
+      "improve_from": 154,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HrdFireDrgnClaw",
+          "item": 745,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "ThckFireDrgnScl",
+          "item": 743,
           "amount": 4,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "LunastraCarapace",
+          "item": 751,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -5336,7 +5336,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Diablos Horn Bow I",
+      "id": 155,
       "attack": 216,
       "affinity": "10%",
       "slots": 1,
@@ -5370,25 +5370,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Diablos Carapace",
+          "item": 638,
           "amount": 4,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Majestic Horn",
+          "item": 635,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Wyvern Stone",
+          "item": 300,
           "amount": 2,
           "type": "stone",
           "color": "cyan"
         },
         {
-          "name": "Black Blos Spine",
+          "item": 651,
           "amount": 3,
           "type": "part",
           "color": "gray"
@@ -5396,13 +5396,13 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Diablos Horn Bow II"
+        156
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Diablos Horn Bow II",
+      "id": 156,
       "attack": 276,
       "affinity": "10%",
       "slots": 1,
@@ -5433,36 +5433,36 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 25700,
-      "improve_from": "Diablos Horn Bow I",
+      "improve_from": 155,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Diablos Thoracic",
+          "item": 641,
           "amount": 4,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Black Blos Cpc",
+          "item": 649,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Majestic Horn",
+          "item": 635,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Gale Horn Bow"
+        341
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Gale Horn Bow",
+      "id": 341,
       "attack": 336,
       "affinity": "20%",
       "slots": 0,
@@ -5493,28 +5493,28 @@
       "type": "bow",
       "create_cost": 90100,
       "improve_cost": 90100,
-      "improve_from": "Diablos Horn Bow II",
+      "improve_from": 156,
       "create_mats": [
         {
-          "name": "HvyBlkBlosShell",
+          "item": 650,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvyDiablosSpine",
+          "item": 642,
           "amount": 5,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "StoutBlkTwstdHrn",
+          "item": 647,
           "amount": 3,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 2,
           "type": "stone",
           "color": "blue"
@@ -5522,32 +5522,32 @@
       ],
       "improve_mats": [
         {
-          "name": "HvyBlkBlosSpine",
+          "item": 653,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvyBlkBlosShell",
+          "item": 650,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "StoutBlkTwstdHrn",
+          "item": 647,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "DiablosKingHornBow"
+        342
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "DiablosKingHornBow",
+      "id": 342,
       "attack": 372,
       "affinity": "20%",
       "slots": 0,
@@ -5578,29 +5578,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 117800,
-      "improve_from": "Gale Horn Bow",
+      "improve_from": 341,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 4,
           "type": "stone",
           "color": "blue"
         },
         {
-          "name": "HvyBlkBlosSpine",
+          "item": 653,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "StoutBlkTwstdHrn",
+          "item": 647,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "StoutWarpedHorn",
+          "item": 636,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
@@ -5611,7 +5611,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "dummy (Diasorute Arrow)",
+      "id": 353,
       "attack": 324,
       "affinity": "10%",
       "slots": 1,
@@ -5645,25 +5645,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Dengeki Ticket G",
+          "item": 935,
           "amount": 4,
           "type": "ticket",
           "color": "yellow"
         },
         {
-          "name": "HvyDiablosSpine",
+          "item": 642,
           "amount": 4,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "HvyDiablosShell",
+          "item": 639,
           "amount": 8,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Top-GrdRedHorn",
+          "item": 670,
           "amount": 6,
           "type": "claw",
           "color": "red"
@@ -5680,7 +5680,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tiger Arrow I",
+      "id": 157,
       "attack": 264,
       "affinity": "-30%",
       "slots": 0,
@@ -5715,25 +5715,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Tigrex Scale",
+          "item": 593,
           "amount": 6,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Fang",
+          "item": 605,
           "amount": 3,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Claw",
+          "item": 602,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 2,
           "type": "bone",
           "color": "orange"
@@ -5741,13 +5741,13 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Tiger Arrow II"
+        158
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Tiger Arrow II",
+      "id": 158,
       "attack": 276,
       "affinity": "-30%",
       "slots": 0,
@@ -5779,37 +5779,37 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 10000,
-      "improve_from": "Tiger Arrow I",
+      "improve_from": 157,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Tigrex Fang",
+          "item": 605,
           "amount": 3,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "TwstBlkBlosHrn",
+          "item": 646,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Hercudrome",
+          "item": 258,
           "amount": 2,
           "type": "insect",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Tigrex Whisker",
-        "Hidden Bow"
+        159,
+        319
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Tigrex Whisker",
+      "id": 159,
       "attack": 312,
       "affinity": "-30%",
       "slots": 0,
@@ -5841,28 +5841,28 @@
       "type": "bow",
       "create_cost": 25700,
       "improve_cost": 25700,
-      "improve_from": "Tiger Arrow II",
+      "improve_from": 158,
       "create_mats": [
         {
-          "name": "Tigrex Carapace",
+          "item": 598,
           "amount": 4,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Scale+",
+          "item": 594,
           "amount": 8,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "FireWyvrn BrnStm",
+          "item": 547,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Wyvern Stone",
+          "item": 300,
           "amount": 4,
           "type": "stone",
           "color": "cyan"
@@ -5870,32 +5870,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Tigrex Carapace",
+          "item": 598,
           "amount": 4,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "FireWyvrn BrnStm",
+          "item": 547,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Wyvern Stone",
+          "item": 300,
           "amount": 3,
           "type": "stone",
           "color": "cyan"
         }
       ],
       "improve_to": [
-        "Tigrex Whisker+"
+        318
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Tigrex Whisker+",
+      "id": 318,
       "attack": 384,
       "affinity": "-30%",
       "slots": 1,
@@ -5927,29 +5927,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 90100,
-      "improve_from": "Tigrex Whisker",
+      "improve_from": 159,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hvy Tigrex Shell",
+          "item": 599,
           "amount": 4,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "ThickTigrexScale",
+          "item": 595,
           "amount": 8,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "HvnlyTigrexScale",
+          "item": 596,
           "amount": 1,
           "type": "heavenly",
           "color": "yellow"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 3,
           "type": "insect",
           "color": "white"
@@ -5960,7 +5960,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Hidden Bow",
+      "id": 319,
       "attack": 252,
       "affinity": "50%",
       "slots": 0,
@@ -5995,28 +5995,28 @@
       "type": "bow",
       "create_cost": 27750,
       "improve_cost": 27750,
-      "improve_from": "Tiger Arrow II",
+      "improve_from": 158,
       "create_mats": [
         {
-          "name": "Black Narga Pelt",
+          "item": 612,
           "amount": 6,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "NargaCuttingWing",
+          "item": 618,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 5,
           "type": "bone",
           "color": "red"
         },
         {
-          "name": "Narga Brain Stem",
+          "item": 622,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -6024,32 +6024,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Black Narga Pelt",
+          "item": 612,
           "amount": 4,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "NargaCuttingWing",
+          "item": 618,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Nargacuga Fang+",
+          "item": 620,
           "amount": 6,
           "type": "claw",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Midnight Bow"
+        320
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Midnight Bow",
+      "id": 320,
       "attack": 324,
       "affinity": "50%",
       "slots": 0,
@@ -6084,28 +6084,28 @@
       "type": "bow",
       "create_cost": 103950,
       "improve_cost": 103950,
-      "improve_from": "Hidden Bow",
+      "improve_from": 319,
       "create_mats": [
         {
-          "name": "ThickNargaScale",
+          "item": 610,
           "amount": 10,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "StrNargaCttngWng",
+          "item": 619,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvyNargacugaFang",
+          "item": 621,
           "amount": 8,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "HvnlyNargaScale",
+          "item": 611,
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
@@ -6113,25 +6113,25 @@
       ],
       "improve_mats": [
         {
-          "name": "BlackNargaPelt+",
+          "item": 613,
           "amount": 4,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "StrNargaCttngWng",
+          "item": 619,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvyNargacugaFang",
+          "item": 621,
           "amount": 6,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Narga Brain Stem",
+          "item": 622,
           "amount": 2,
           "type": "part",
           "color": "red"
@@ -6142,7 +6142,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragonhead Harp I",
+      "id": 160,
       "attack": 156,
       "affinity": "30%",
       "slots": 3,
@@ -6180,25 +6180,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Wyverian Harp",
+          "item": 816,
           "amount": 1,
           "type": "ukwn",
           "color": "cyan"
         },
         {
-          "name": "Plesioth Scale+",
+          "item": 471,
           "amount": 4,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Grn Plsioth Scl+",
+          "item": 477,
           "amount": 4,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Novacrystal",
+          "item": 216,
           "amount": 2,
           "type": "ore",
           "color": "white"
@@ -6206,7 +6206,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Dragonhead Harp II"
+        338
       ],
       "elements": [
         {
@@ -6217,7 +6217,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragonhead Harp II",
+      "id": 338,
       "attack": 204,
       "affinity": "30%",
       "slots": 3,
@@ -6252,30 +6252,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 50000,
-      "improve_from": "Dragonhead Harp I",
+      "improve_from": 160,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "ThckPlesiothScl",
+          "item": 472,
           "amount": 4,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "ThckGrnPlesioScl",
+          "item": 478,
           "amount": 4,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 2,
           "type": "ore",
           "color": "cyan"
         }
       ],
       "improve_to": [
-        "Dragonhead Harp III"
+        339
       ],
       "elements": [
         {
@@ -6286,7 +6286,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragonhead Harp III",
+      "id": 339,
       "attack": 240,
       "affinity": "30%",
       "slots": 3,
@@ -6321,29 +6321,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 125000,
-      "improve_from": "Dragonhead Harp II",
+      "improve_from": 338,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "SpecPlesiothFin+",
+          "item": 475,
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "SpecGrnPlesioFn+",
+          "item": 481,
           "amount": 3,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "HvyLavasiothFang",
+          "item": 490,
           "amount": 3,
           "type": "claw",
           "color": "gray"
@@ -6359,7 +6359,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragon Bow Halo",
+      "id": 161,
       "attack": 192,
       "affinity": "10%",
       "slots": 1,
@@ -6396,25 +6396,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Dragonwood",
+          "item": 768,
           "amount": 2,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Dragonmoss",
+          "item": 765,
           "amount": 4,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Kirin Thndr Tail",
+          "item": 688,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -6422,7 +6422,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Dragon Bow Solar"
+        162
       ],
       "elements": [
         {
@@ -6433,7 +6433,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragon Bow Solar",
+      "id": 162,
       "attack": 240,
       "affinity": "10%",
       "slots": 1,
@@ -6467,30 +6467,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 23750,
-      "improve_from": "Dragon Bow Halo",
+      "improve_from": 161,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Pokke Ticket+",
+          "item": 908,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Dragonmoss+",
+          "item": 766,
           "amount": 4,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Kirin Azure Horn",
+          "item": 690,
           "amount": 3,
           "type": "claw",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Ancient Dragonwood Bow"
+        328
       ],
       "elements": [
         {
@@ -6501,7 +6501,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ancient Dragonwood Bow",
+      "id": 328,
       "attack": 300,
       "affinity": "20%",
       "slots": 0,
@@ -6536,28 +6536,28 @@
       "type": "bow",
       "create_cost": 115800,
       "improve_cost": 115800,
-      "improve_from": "Dragon Bow Solar",
+      "improve_from": 162,
       "create_mats": [
         {
-          "name": "YamaTsukamiHide",
+          "item": 771,
           "amount": 6,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "YamaTsukaFillet",
+          "item": 772,
           "amount": 4,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "YamaTsukamiFluid",
+          "item": 773,
           "amount": 6,
           "type": "fluid",
           "color": "green"
         },
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -6565,25 +6565,25 @@
       ],
       "improve_mats": [
         {
-          "name": "YamaTsukamiHide",
+          "item": 771,
           "amount": 4,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "YamaTsukaFillet",
+          "item": 772,
           "amount": 3,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "AncientDrgnwood",
+          "item": 770,
           "amount": 4,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "AncientDrgnmoss",
+          "item": 767,
           "amount": 4,
           "type": "part",
           "color": "green"
@@ -6603,7 +6603,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragon Bow Earth",
+      "id": 163,
       "attack": 192,
       "affinity": "0%",
       "slots": 1,
@@ -6641,25 +6641,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Lao-Shan's Horn",
+          "item": 692,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Lao-Shan's Scale",
+          "item": 693,
           "amount": 6,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Lao-Shan's Shell",
+          "item": 698,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Rathian Plate",
+          "item": 523,
           "amount": 1,
           "type": "scale",
           "color": "green"
@@ -6667,7 +6667,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Dragon Bow Mountain"
+        164
       ],
       "elements": [
         {
@@ -6678,7 +6678,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragon Bow Mountain",
+      "id": 164,
       "attack": 288,
       "affinity": "0%",
       "slots": 0,
@@ -6713,30 +6713,30 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 47500,
-      "improve_from": "Dragon Bow Earth",
+      "improve_from": 163,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Lao-Shan's Ruby",
+          "item": 696,
           "amount": 1,
           "type": "stone",
           "color": "red"
         },
         {
-          "name": "Chameleos Hide+",
+          "item": 730,
           "amount": 4,
           "type": "pelt",
           "color": "slate"
         },
         {
-          "name": "Daora Carapace",
+          "item": 715,
           "amount": 6,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Dragon Bow Chaos"
+        326
       ],
       "elements": [
         {
@@ -6747,7 +6747,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragon Bow Chaos",
+      "id": 326,
       "attack": 360,
       "affinity": "0%",
       "slots": 0,
@@ -6782,29 +6782,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 124750,
-      "improve_from": "Dragon Bow Mountain",
+      "improve_from": 164,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Lao-ShanHvnlyScl",
+          "item": 697,
           "amount": 1,
           "type": "heavenly",
           "color": "red"
         },
         {
-          "name": "Lao-Shan'sHvyShl",
+          "item": 700,
           "amount": 6,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Lao-Shan'sThkScl",
+          "item": 695,
           "amount": 4,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 8,
           "type": "stone",
           "color": "blue"
@@ -6820,7 +6820,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Beast Thunderbow",
+      "id": 348,
       "attack": 300,
       "affinity": "0%",
       "slots": 0,
@@ -6855,25 +6855,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Blk Rajang Pelt+",
+          "item": 461,
           "amount": 4,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Hvy Rajang Fang",
+          "item": 459,
           "amount": 5,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Hard Rajang Claw",
+          "item": 463,
           "amount": 3,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Gold Rajang Pelt",
+          "item": 466,
           "amount": 2,
           "type": "pelt",
           "color": "yellow"
@@ -6881,7 +6881,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "BeastKingThunderbow"
+        349
       ],
       "elements": [
         {
@@ -6892,7 +6892,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "BeastKingThunderbow",
+      "id": 349,
       "attack": 336,
       "affinity": "0%",
       "slots": 0,
@@ -6924,29 +6924,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 118800,
-      "improve_from": "Beast Thunderbow",
+      "improve_from": 348,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "GoldRajangPelt+",
+          "item": 467,
           "amount": 2,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "Blk Rajang Pelt+",
+          "item": 461,
           "amount": 3,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "HvyC.BlangoFang",
+          "item": 440,
           "amount": 3,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Vibrant Comb",
+          "item": 455,
           "amount": 3,
           "type": "pelt",
           "color": "orange"
@@ -6962,7 +6962,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Icy Steel Bow",
+      "id": 350,
       "attack": 264,
       "affinity": "20%",
       "slots": 1,
@@ -6998,25 +6998,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Hvy Daora Shell",
+          "item": 716,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "ThckDaoraDrgnScl",
+          "item": 719,
           "amount": 8,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "BigEDragonBone",
+          "item": 288,
           "amount": 4,
           "type": "bone",
           "color": "slate"
         },
         {
-          "name": "Daora Jewel",
+          "item": 728,
           "amount": 1,
           "type": "stone",
           "color": "gray"
@@ -7024,7 +7024,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Daora's Sagittarii"
+        351
       ],
       "elements": [
         {
@@ -7035,7 +7035,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Daora's Sagittarii",
+      "id": 351,
       "attack": 300,
       "affinity": "30%",
       "slots": 1,
@@ -7068,29 +7068,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 117800,
-      "improve_from": "Icy Steel Bow",
+      "improve_from": 350,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hard Daora Horn",
+          "item": 723,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Str Daora Wing",
+          "item": 721,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
         },
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -7106,7 +7106,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Akantor Bow",
+      "id": 165,
       "attack": 252,
       "affinity": "40%",
       "slots": 1,
@@ -7137,25 +7137,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Akantor Fang",
+          "item": 807,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Akantor Spike",
+          "item": 808,
           "amount": 1,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Akantor Scale",
+          "item": 803,
           "amount": 6,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Gaoren Pincer",
+          "item": 711,
           "amount": 2,
           "type": "shell",
           "color": "gray"
@@ -7163,7 +7163,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Akantor Chaos Bow"
+        344
       ],
       "elements": [
         {
@@ -7174,7 +7174,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Akantor Chaos Bow",
+      "id": 344,
       "attack": 312,
       "affinity": "40%",
       "slots": 1,
@@ -7202,29 +7202,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 145000,
-      "improve_from": "Akantor Bow",
+      "improve_from": 165,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Akantor Fang",
+          "item": 807,
           "amount": 8,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 4,
           "type": "stone",
           "color": "blue"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
         },
         {
-          "name": "Ukanlos Stone",
+          "item": 815,
           "amount": 1,
           "type": "heavenly",
           "color": "white"
@@ -7240,7 +7240,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Bow I",
+      "id": 321,
       "attack": 180,
       "affinity": "0%",
       "slots": 1,
@@ -7275,19 +7275,19 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Dark Stone",
+          "item": 775,
           "amount": 1,
           "type": "egg",
           "color": "gray"
         },
         {
-          "name": "Dark Piece",
+          "item": 774,
           "amount": 4,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Pokke Ticket",
+          "item": 907,
           "amount": 1,
           "type": "ticket",
           "color": "cyan"
@@ -7295,7 +7295,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Black Bow II"
+        322
       ],
       "elements": [
         {
@@ -7306,7 +7306,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Bow II",
+      "id": 322,
       "attack": 192,
       "affinity": "0%",
       "slots": 1,
@@ -7338,31 +7338,31 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 15000,
-      "improve_from": "Black Bow I",
+      "improve_from": 321,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Dark Stone",
+          "item": 775,
           "amount": 2,
           "type": "egg",
           "color": "gray"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 20,
           "type": "ore",
           "color": "pink"
         }
       ],
       "improve_to": [
-        "Exterminator Bow I",
-        "Glorious Victory I"
+        166,
+        167
       ],
       "elements": [
         {
@@ -7373,7 +7373,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Exterminator Bow I",
+      "id": 166,
       "attack": 312,
       "affinity": "20%",
       "slots": 1,
@@ -7404,22 +7404,22 @@
       "type": "bow",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": "Black Bow II",
+      "improve_from": 322,
       "create_mats": [
         {
-          "name": "Fatalis Horn",
+          "item": 776,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Fatalis Scale",
+          "item": 778,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Fatalis Shell",
+          "item": 780,
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -7427,32 +7427,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Fatalis Horn",
+          "item": 776,
           "amount": 3,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Fatalis Scale",
+          "item": 778,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Fatalis Shell",
+          "item": 780,
           "amount": 1,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Exterminator Bow II"
+        324
       ],
       "elements": null,
       "alternative_create_mats": null
     },
     {
-      "name": "Exterminator Bow II",
+      "id": 324,
       "attack": 384,
       "affinity": "20%",
       "slots": 1,
@@ -7483,29 +7483,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 150000,
-      "improve_from": "Exterminator Bow I",
+      "improve_from": 166,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HardFatalisHorn",
+          "item": 777,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "ThckFatalisScale",
+          "item": 779,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Hvy Fatalis Shl",
+          "item": 781,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
@@ -7516,7 +7516,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Glorious Victory I",
+      "id": 167,
       "attack": 276,
       "affinity": "0%",
       "slots": 0,
@@ -7546,22 +7546,22 @@
       "type": "bow",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": "Black Bow II",
+      "improve_from": 322,
       "create_mats": [
         {
-          "name": "Wht Fatalis Horn",
+          "item": 801,
           "amount": 4,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Wht Fatalis Scl",
+          "item": 795,
           "amount": 2,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Wht Fatalis Shl",
+          "item": 797,
           "amount": 1,
           "type": "part",
           "color": "white"
@@ -7569,26 +7569,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Wht Fatalis Horn",
+          "item": 801,
           "amount": 3,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Wht Fatalis Scl",
+          "item": 795,
           "amount": 2,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Wht Fatalis Shl",
+          "item": 797,
           "amount": 1,
           "type": "part",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Glorious Victory II"
+        325
       ],
       "elements": [
         {
@@ -7599,7 +7599,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Glorious Victory II",
+      "id": 325,
       "attack": 336,
       "affinity": "0%",
       "slots": 0,
@@ -7629,29 +7629,29 @@
       "type": "bow",
       "create_cost": null,
       "improve_cost": 150000,
-      "improve_from": "Glorious Victory I",
+      "improve_from": 167,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HrdWhtFatlisHorn",
+          "item": 802,
           "amount": 4,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "ThckWhtFatlisScl",
+          "item": 796,
           "amount": 2,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "HvyWhtFatalisShl",
+          "item": 798,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 3,
           "type": "stone",
           "color": "slate"
@@ -7667,7 +7667,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ukanlos Bow",
+      "id": 345,
       "attack": 432,
       "affinity": "-40%",
       "slots": 0,
@@ -7702,25 +7702,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "UkanlosShovelJaw",
+          "item": 813,
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "StrongUkanlosFin",
+          "item": 814,
           "amount": 4,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "UkanlosUnderscl",
+          "item": 810,
           "amount": 6,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Ukanlos Stone",
+          "item": 815,
           "amount": 1,
           "type": "heavenly",
           "color": "white"
@@ -7737,7 +7737,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Hunter's Bow G",
+      "id": 288,
       "attack": 276,
       "affinity": "0%",
       "slots": 3,
@@ -7775,25 +7775,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 3,
           "type": "bone",
           "color": "gray"
         },
         {
-          "name": "RobustWyvernBone",
+          "item": 293,
           "amount": 10,
           "type": "bone",
           "color": "cyan"
         },
         {
-          "name": "Rare Scarab",
+          "item": 259,
           "amount": 10,
           "type": "insect",
           "color": "yellow"
@@ -7805,7 +7805,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wild Bow G",
+      "id": 294,
       "attack": 336,
       "affinity": "0%",
       "slots": 3,
@@ -7842,25 +7842,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HrdCongalalaPlt+",
+          "item": 446,
           "amount": 6,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Lg Pelagus Fang",
+          "item": 452,
           "amount": 4,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 10,
           "type": "bone",
           "color": "white"
@@ -7872,7 +7872,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wild Power Bow G",
+      "id": 295,
       "attack": 360,
       "affinity": "0%",
       "slots": 2,
@@ -7909,25 +7909,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Vibrant Pelt",
+          "item": 447,
           "amount": 3,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "HrdCongalalaClw+",
+          "item": 450,
           "amount": 4,
           "type": "claw",
           "color": "pink"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 4,
           "type": "insect",
           "color": "white"
@@ -7939,7 +7939,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blango Fur Bow G",
+      "id": 292,
       "attack": 276,
       "affinity": "0%",
       "slots": 3,
@@ -7976,25 +7976,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HrdBlangongaPlt+",
+          "item": 434,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Top-GrdPlatHorn",
+          "item": 677,
           "amount": 3,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "HvyBlangongaFang",
+          "item": 431,
           "amount": 3,
           "type": "claw",
           "color": "white"
@@ -8011,7 +8011,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Kut-Ku Stave G",
+      "id": 298,
       "attack": 276,
       "affinity": "0%",
       "slots": 1,
@@ -8048,25 +8048,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Thick Kut-Ku Scl",
+          "item": 384,
           "amount": 8,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Hvy Kut-Ku Shell",
+          "item": 387,
           "amount": 6,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Top-GrdRedHorn",
+          "item": 670,
           "amount": 3,
           "type": "claw",
           "color": "red"
@@ -8083,7 +8083,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Daimyo's Warbow G",
+      "id": 309,
       "attack": 276,
       "affinity": "0%",
       "slots": 2,
@@ -8120,25 +8120,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HvyHermitaurShl",
+          "item": 497,
           "amount": 6,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Wyvern Skull Shl",
+          "item": 493,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "MonoblosCarapace",
+          "item": 672,
           "amount": 6,
           "type": "part",
           "color": "red"
@@ -8155,7 +8155,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sonic Bow G",
+      "id": 308,
       "attack": 276,
       "affinity": "0%",
       "slots": 2,
@@ -8191,25 +8191,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "VespoidQn'sCrown",
+          "item": 657,
           "amount": 5,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Lightning Sac",
+          "item": 278,
           "amount": 4,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "Hornet Razorwing",
+          "item": 668,
           "amount": 6,
           "type": "webbing",
           "color": "gray"
@@ -8226,7 +8226,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Diablos Horn Bow G",
+      "id": 340,
       "attack": 372,
       "affinity": "10%",
       "slots": 1,
@@ -8260,25 +8260,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "StoutWarpedHorn",
+          "item": 636,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "HvyDiablosShell",
+          "item": 639,
           "amount": 8,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 6,
           "type": "stone",
           "color": "blue"
@@ -8290,7 +8290,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dragon Bow Solar G",
+      "id": 327,
       "attack": 288,
       "affinity": "10%",
       "slots": 1,
@@ -8327,25 +8327,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Dragonwood+",
+          "item": 769,
           "amount": 20,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Dragonwood",
+          "item": 768,
           "amount": 20,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "YamaTsukamiFluid",
+          "item": 773,
           "amount": 8,
           "type": "fluid",
           "color": "green"
@@ -8362,7 +8362,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Bow G",
+      "id": 323,
       "attack": 300,
       "affinity": "0%",
       "slots": 2,
@@ -8397,25 +8397,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 10,
           "type": "stone",
           "color": "blue"
         },
         {
-          "name": "Dark Piece",
+          "item": 774,
           "amount": 20,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Pokke Ticket",
+          "item": 907,
           "amount": 10,
           "type": "ticket",
           "color": "cyan"
@@ -8432,7 +8432,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sonic Bow IV",
+      "id": 307,
       "attack": 240,
       "affinity": "0%",
       "slots": 2,
@@ -8463,29 +8463,29 @@
         "paint"
       ],
       "type": "bow",
-      "improve_from": "Sonic Bow III",
+      "improve_from": 144,
       "improve_cost": 0,
       "improve_mats": [
         {
-          "name": "VespoidQn'sCrown",
+          "item": 657,
           "amount": 3,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Thunderbug Jelly",
+          "item": 29,
           "amount": 10,
           "type": "fluid",
           "color": "yellow"
         },
         {
-          "name": "Thunder Sac",
+          "item": 277,
           "amount": 6,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "Vspoid Razorwing",
+          "item": 662,
           "amount": 6,
           "type": "webbing",
           "color": "yellow"

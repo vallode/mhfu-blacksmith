@@ -6,4 +6,5 @@ data
 content
 next-env.d.ts
 pnpm-lock.yaml
-tools/mhfu-extract/vendor
+packages/mhfu-extract/vendor
+dist
