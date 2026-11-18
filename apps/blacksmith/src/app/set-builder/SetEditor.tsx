@@ -11,6 +11,7 @@ import { useT } from "@/context/LanguageContext";
 import type { ArmorRank, ArmorSlot } from "@/lib/constants";
 import type { Tier } from "@/lib/min-rank";
 import {
+  binSlots,
   evaluateBuild,
   freeSlotsIn,
   pieceIn,
@@ -24,6 +25,7 @@ import {
 import type { DecoBin, Piece, SearchData } from "@/lib/set-search";
 import ArmorSetView, { PanelTitle, SetStatus } from "./ArmorSetView";
 import { DecorationPicker, PiecePicker } from "./Pickers";
+import SetWishlistButton from "./SetWishlistButton";
 
 type Picking = { kind: "piece"; slot: ArmorSlot } | { kind: "decoration"; bin: DecoBin } | null;
 
@@ -59,6 +61,14 @@ export default function SetEditor({
   const [picking, setPicking] = useState<Picking>(null);
   const evaluated = useMemo(() => evaluateBuild(data, set, wanted), [data, set, wanted]);
   const warnings = useMemo(() => validateBuild(set), [set]);
+  // What the wishlist gets: the jewels in an empty slot don't count, as above.
+  const wishlistSet = useMemo(
+    () => ({
+      pieces: set.pieces,
+      decorations: set.decorations.filter((d) => binSlots(set, d.bin) > 0),
+    }),
+    [set],
+  );
 
   if (picking?.kind === "piece") {
     return (
@@ -128,6 +138,7 @@ export default function SetEditor({
           isOwned,
         }}
       />
+      <SetWishlistButton set={wishlistSet} />
     </div>
   );
 }

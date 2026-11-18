@@ -13,6 +13,7 @@ import { WEAPON_TYPES } from "../src/lib/constants";
 import { buildWeaponTree } from "../src/lib/trees";
 import type { Decoration, Material, Weapon, WeaponTreeNode } from "../src/lib/types";
 import {
+  addEntries,
   bestDestinations,
   decorationNeed,
   decorationSteps,
@@ -20,14 +21,17 @@ import {
   entryCount,
   entryHref,
   entryKey,
+  hasAll,
   itemWays,
   recipesOf,
+  setWants,
   totalCost,
   totalMaterials,
   treeParents,
   upgradeAncestors,
   weaponSteps,
   type MaterialNeed,
+  type WishlistEntry,
 } from "../src/lib/wishlist";
 import { parseWishlist, toggleEntry, unreadableEntries } from "../src/lib/wishlist-store";
 
@@ -235,6 +239,98 @@ describe("decorations", () => {
     assert.deepEqual(decorationNeed(3, 3), { toMake: 0, owned: true });
     assert.deepEqual(decorationNeed(3, 87), { toMake: 0, owned: true });
     assert.deepEqual(decorationNeed(2, Infinity), { toMake: 0, owned: true });
+  });
+});
+
+describe("adding a set", () => {
+  const piece = (slot: "helmet" | "plate" | "waist", slug: string) =>
+    ({ slot, rank: "g-rank", slug }) as const;
+  const jewel = (slug: string) => ({ deco: { slug } });
+  const set = {
+    pieces: [piece("waist", "c"), null, piece("helmet", "a"), piece("plate", "b")],
+    decorations: [jewel("fierce"), jewel("handy"), jewel("fierce"), jewel("fierce")],
+  };
+
+  test("the pieces head to legs, then each jewel with how many", () => {
+    assert.deepEqual(setWants(set), [
+      { kind: "armor", slot: "helmet", rank: "g-rank", slug: "a" },
+      { kind: "armor", slot: "plate", rank: "g-rank", slug: "b" },
+      { kind: "armor", slot: "waist", rank: "g-rank", slug: "c" },
+      { kind: "decoration", slug: "fierce", count: 3 },
+      { kind: "decoration", slug: "handy", count: 1 },
+    ]);
+    assert.deepEqual(setWants({ pieces: [null], decorations: [] }), []);
+  });
+
+  test("adds what's missing first, in order, and raises jewels to the count", () => {
+    const old: WishlistEntry[] = [
+      { kind: "weapon", type: "bow", slug: "x", addedAt: 1 },
+      { kind: "armor", slot: "plate", rank: "g-rank", slug: "b", addedAt: 1, recipe: "alt" },
+      { kind: "decoration", slug: "fierce", addedAt: 1 },
+      { kind: "decoration", slug: "handy", count: 5, addedAt: 1 },
+    ];
+    const wants = setWants(set);
+    assert.equal(hasAll(old, wants), false);
+    const [next, changed] = addEntries(old, wants, 2);
+    assert.equal(changed, 3);
+    assert.deepEqual(
+      next.map((e) => [entryKey(e), entryCount(e), e.addedAt]),
+      [
+        ["armor/helmet/g-rank/a", 1, 2],
+        ["armor/waist/g-rank/c", 1, 2],
+        ["weapon/bow/x", 1, 1],
+        ["armor/plate/g-rank/b", 1, 1],
+        ["decoration/fierce", 3, 1],
+        // Never lowered.
+        ["decoration/handy", 5, 1],
+      ],
+    );
+    // The listed piece keeps its recipe.
+    assert.equal(next[3].recipe, "alt");
+    assert.equal(hasAll(next, wants), true);
+    // Adding it again changes nothing.
+    const [again, none] = addEntries(next, wants, 3);
+    assert.equal(none, 0);
+    assert.deepEqual(again, next);
+  });
+
+  test("gear wanted twice takes the largest count, never lowering a listed jewel", () => {
+    const old: WishlistEntry[] = [{ kind: "decoration", slug: "fierce", addedAt: 1 }];
+    const [next, changed] = addEntries(old, [
+      { kind: "decoration", slug: "fierce", count: 5 },
+      { kind: "decoration", slug: "fierce", count: 3 },
+      { kind: "decoration", slug: "handy", count: 2 },
+      { kind: "decoration", slug: "handy", count: 4 },
+    ]);
+    assert.equal(changed, 2);
+    assert.deepEqual(
+      next.map((e) => [entryKey(e), entryCount(e)]),
+      [
+        ["decoration/handy", 4],
+        ["decoration/fierce", 5],
+      ],
+    );
+  });
+
+  test("a want over the most counts as met at the most", () => {
+    const wants = [{ kind: "decoration", slug: "a", count: 500 }] as const;
+    const [next] = addEntries([], wants);
+    assert.equal(hasAll(next, wants), true);
+  });
+
+  test("a jewel count is kept to 1…99, and one is left unset", () => {
+    const [next] = addEntries(
+      [],
+      [
+        { kind: "decoration", slug: "a", count: 500 },
+        { kind: "decoration", slug: "b", count: 1 },
+      ],
+    );
+    assert.deepEqual(
+      next.map((e) => e.kind === "decoration" && e.count),
+      [99, undefined],
+    );
+    assert.deepEqual(parseWishlist(JSON.stringify(next)), next);
   });
 });
 

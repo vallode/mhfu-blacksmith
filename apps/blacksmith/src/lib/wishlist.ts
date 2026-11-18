@@ -4,7 +4,7 @@
  * wishlist page builds it from the bundles it loads and the tests build it
  * from data/. The list itself is kept in localStorage (wishlist-store.ts).
  */
-import type { ArmorRank, ArmorSlot, WeaponType } from "./constants";
+import { ARMOR_SLOTS, type ArmorRank, type ArmorSlot, type WeaponType } from "./constants";
 import { weaponHref } from "./equipment-ref";
 import { normalizeItemName } from "./items";
 import { farmPlaceLabel, type FarmPlace, type GatherKind, type ItemPlaces } from "./item-places";
@@ -97,6 +97,86 @@ export function entryHref(ref: GearRef): string {
 /** How many of the gear an entry wants: a decoration's count, else one. */
 export function entryCount(entry: WishlistEntry): number {
   return entry.kind === "decoration" ? (entry.count ?? 1) : 1;
+}
+
+/** Gear to add to the wishlist; a decoration with how many (1 if unset). */
+export type GearWant = GearRef & { count?: number };
+
+/** A decoration count kept to 1…MAX_DECORATION_COUNT. */
+const clampCount = (n: number) =>
+  Math.min(MAX_DECORATION_COUNT, Math.max(1, Math.floor(Number.isFinite(n) ? n : 1)));
+
+/**
+ * What an armor set needs made: each piece, head to legs, then each jewel
+ * (the weapon's and the pieces') with how many of it, in the order placed.
+ */
+export function setWants(set: {
+  pieces: readonly ({ slot: ArmorSlot; rank: ArmorRank; slug: string } | null)[];
+  decorations: readonly { deco: { slug: string } }[];
+}): GearWant[] {
+  const pieces = set.pieces
+    .filter((p) => p !== null)
+    .sort((a, b) => ARMOR_SLOTS.indexOf(a.slot) - ARMOR_SLOTS.indexOf(b.slot))
+    .map((p): GearWant => ({ kind: "armor", slot: p.slot, rank: p.rank, slug: p.slug }));
+  const jewels = new Map<string, number>();
+  for (const { deco } of set.decorations) jewels.set(deco.slug, (jewels.get(deco.slug) ?? 0) + 1);
+  return [
+    ...pieces,
+    ...[...jewels].map(([slug, count]): GearWant => ({ kind: "decoration", slug, count })),
+  ];
+}
+
+/** How many of the gear a want asks for: a decoration's count, clamped, else one. */
+const wantCount = (w: GearWant) => (w.kind === "decoration" ? clampCount(w.count ?? 1) : 1);
+
+/**
+ * Adds every wanted gear the list doesn't have, first and in the order given;
+ * a decoration already listed is raised to the count wanted (never lowered),
+ * so adding the same set twice changes nothing. Gear wanted more than once
+ * takes the largest count. Returns the list and how many entries were added
+ * or raised.
+ */
+export function addEntries(
+  entries: readonly WishlistEntry[],
+  wants: readonly GearWant[],
+  now = Date.now(),
+): [WishlistEntry[], number] {
+  // Each gear once, in the order first wanted, with the most of it wanted.
+  const merged = new Map<string, { ref: GearRef; n: number }>();
+  for (const { count, ...ref } of wants) {
+    const key = entryKey(ref);
+    const n = wantCount({ ...ref, count });
+    const had = merged.get(key);
+    if (!had || n > had.n) merged.set(key, { ref: had?.ref ?? ref, n });
+  }
+  const listed = new Map(entries.map((e) => [entryKey(e), e]));
+  const raised = new Map<string, number>();
+  const added: WishlistEntry[] = [];
+  for (const [key, { ref, n }] of merged) {
+    const had = listed.get(key);
+    if (!had) {
+      added.push(
+        (n > 1 ? { ...ref, count: n, addedAt: now } : { ...ref, addedAt: now }) as WishlistEntry,
+      );
+    } else if (had.kind === "decoration" && n > entryCount(had)) {
+      raised.set(key, n);
+    }
+  }
+  if (added.length === 0 && raised.size === 0) return [[...entries], 0];
+  const kept = entries.map((e) => {
+    const n = raised.get(entryKey(e));
+    return n === undefined ? e : ({ ...e, count: n } as WishlistEntry);
+  });
+  return [[...added, ...kept], added.length + raised.size];
+}
+
+/** Whether the list has every wanted gear, each decoration at least as many times. */
+export function hasAll(entries: readonly WishlistEntry[], wants: readonly GearWant[]): boolean {
+  const listed = new Map(entries.map((e) => [entryKey(e), e]));
+  return wants.every((w) => {
+    const e = listed.get(entryKey(w));
+    return !!e && entryCount(e) >= wantCount(w);
+  });
 }
 
 // ---------------------------------------------------------------------------

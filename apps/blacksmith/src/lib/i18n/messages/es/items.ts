@@ -138,7 +138,7 @@ export const items: Messages["items"] = {
     materials: "Materiales",
     whereToGo: "Adónde ir",
     empty:
-      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma, pieza de armadura o adorno para añadirlo, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
+      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma, pieza de armadura o adorno para añadirlo, o añade un conjunto entero desde el Creador de conjuntos, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
     loadError: "No se pudo cargar el equipo de la lista de deseos.",
     retry: "Reintentar",
     whereToGoNote: "Los monstruos y mapas que dan más de los materiales que aún te faltan.",

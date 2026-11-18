@@ -242,6 +242,12 @@ export const setBuilder = {
     jewels: "Jewels",
     swapsTitle: "Swaps that keep your skills",
     openPage: (name: string) => `Open ${name}'s page`,
+    /** Puts every piece and jewel of the set on the wishlist. */
+    addToWishlist: "Add set to wishlist",
+    /** The same button once they're all there: a link to the wishlist. */
+    onWishlist: "On your wishlist",
+    setAdded: "Set added to your wishlist.",
+    setAddedWithJewels: "Set added to your wishlist, with its jewels.",
     alwaysUse: "Always use",
     alwaysUseLabel: (name: string) => `Always use ${name}: lock it in every set`,
     unlock: "Unlock",
