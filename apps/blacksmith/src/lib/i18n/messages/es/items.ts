@@ -157,6 +157,8 @@ export const items: Messages["items"] = {
     madeLabel: (name: string) => `Hecho: ${name}`,
     markMade: "Marcar como hecho",
     unmarkMade: "Aún no hecho",
+    ownedStepLabel: (name: string) => `Hecho: ${name} (según tu partida)`,
+    ownedStep: "Tu partida muestra que ya está hecho",
     cost: "Precio:",
     youHave: (amount: string) => `(tienes ${amount})`,
     materialsCount: "Materiales:",

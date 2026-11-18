@@ -54,6 +54,7 @@ import {
   entryKey,
   itemWays,
   madeSteps,
+  ownedSteps,
   recipesOf,
   totalCost,
   totalMaterials,
@@ -201,8 +202,10 @@ interface GearRow {
   /** Upgrades: where the path starts (see `WeaponEntry.from`) */
   from: string | null | undefined;
   steps: CraftStep[];
-  /** How many of `steps`, from the first, the player has ticked off as made */
+  /** How many of `steps`, from the first, are made: ticked off, or up to one the hunter owns */
   done: number;
+  /** How many of `steps`, from the first, the loaded hunter is past (`ownedSteps`) */
+  ownedDone: number;
   /** The loaded hunter has it already */
   owned: boolean;
 }
@@ -233,6 +236,7 @@ function resolveRows(
       from: undefined,
       steps: [],
       done: 0,
+      ownedDone: 0,
       owned: owned?.has(href) ?? false,
     };
     if (!found) return row;
@@ -266,7 +270,8 @@ function resolveRows(
           : (row.ancestors.find((a) => owned?.has(a.href))?.slug ?? row.ancestors[0]?.slug);
     }
     row.steps = weaponSteps(weapon, row.recipe, row.from, byName);
-    row.done = madeSteps(row.steps, entry.made);
+    row.ownedDone = ownedSteps(row.steps, owned);
+    row.done = Math.max(madeSteps(row.steps, entry.made), row.ownedDone);
     return row;
   });
 }
@@ -536,7 +541,7 @@ function GearRecipe({
   const tw = useT().items.wishlist;
   const game = useGameText();
   const zenny = useZenny();
-  const { recipes, recipe, ancestors, from, steps, done } = row;
+  const { recipes, recipe, ancestors, from, steps, done, ownedDone } = row;
   if (!recipe) return <p className={ui.note}>{tw.noRecipe}</p>;
   // What's left to pay: the crafts not yet ticked off.
   const cost = steps.slice(done).reduce((s, st) => s + st.cost, 0);
@@ -591,7 +596,17 @@ function GearRecipe({
             const name = game.name(row.entry.kind, s.name);
             return (
               <li key={i} className="flex min-w-0 items-center gap-[0.8rem]">
-                {i < steps.length - 1 ? (
+                {i < ownedDone ? (
+                  // Ticked by the save: it can't be unticked here.
+                  <span
+                    role="img"
+                    aria-label={tw.ownedStepLabel(name)}
+                    title={tw.ownedStep}
+                    className={stepBox}
+                  >
+                    ✓
+                  </span>
+                ) : i < steps.length - 1 ? (
                   <button
                     type="button"
                     aria-pressed={made}

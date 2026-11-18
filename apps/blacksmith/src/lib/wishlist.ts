@@ -239,6 +239,19 @@ export function madeSteps(steps: readonly CraftStep[], made: string | undefined)
   return i >= 0 && i < steps.length - 1 ? i + 1 : 0;
 }
 
+/**
+ * How many of the crafts, from the first, the loaded hunter is past: up to
+ * and including the furthest one whose weapon they own (`owned` holds the
+ * hrefs of their gear). Upgrading uses up the weapon before, so owning one
+ * along the path counts every craft before it as made too. Never the last
+ * craft: owning that is owning the gear.
+ */
+export function ownedSteps(steps: readonly CraftStep[], owned: ReadonlySet<string> | null): number {
+  if (!owned) return 0;
+  for (let i = steps.length - 2; i >= 0; i--) if (owned.has(steps[i].href)) return i + 1;
+  return 0;
+}
+
 /** An armor piece's craft by a recipe. */
 export function armorSteps(piece: ArmorPiece, href: string, recipe: Recipe): CraftStep[] {
   return [step(piece, href, recipe)];

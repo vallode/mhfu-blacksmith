@@ -24,6 +24,7 @@ import {
   treeParents,
   upgradeAncestors,
   madeSteps,
+  ownedSteps,
   weaponSteps,
   type MaterialNeed,
 } from "../src/lib/wishlist";
@@ -171,6 +172,19 @@ describe("recipes", () => {
     // Off the path (a start further down, or another recipe): nothing made.
     assert.equal(madeSteps(steps, "bone"), 0);
     assert.equal(madeSteps(weaponSteps(hugeBone, "improve", "big-bone", byName), "big-bone"), 0);
+  });
+
+  test("owning a weapon along the path counts it and every craft before it", () => {
+    const steps = weaponSteps(hugeBone, "improve", "bone", byName);
+    const owns = (...slugs: string[]) =>
+      new Set(slugs.map((s) => steps.find((st) => st.slug === s)!.href));
+    assert.equal(ownedSteps(steps, null), 0);
+    assert.equal(ownedSteps(steps, new Set()), 0);
+    assert.equal(ownedSteps(steps, owns("bone-plus")), 1);
+    assert.equal(ownedSteps(steps, owns("big-bone")), 2);
+    assert.equal(ownedSteps(steps, owns("bone-plus", "big-bone")), 2);
+    // Owning the gear itself isn't a step made: the entry is owned.
+    assert.equal(ownedSteps(steps, owns("huge-bone")), 0);
   });
 
   test("create ignores the path", () => {
