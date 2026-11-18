@@ -9,7 +9,8 @@
  * - A monster's `emChunk` (`+0x158`) holds 28 pointers; 3 to 19 are its AI
  *   script roots, one picked per map. The scripts are in `game_task.ovl` or
  *   in the monster family's `emNN.ovl`. Those overlays all load at one
- *   address, so a root is matched to the monster's own overlay, or the one
+ *   address, so a root is matched to the monster's own overlay (Basarios and
+ *   Black Gravios: em17, `SCRIPT_OVERLAY`), or the one
  *   overlay where every root it has reads as one; monsters that match more
  *   than one, or none, are left alone.
  * - A root is 20 table pointers to script entry points: `+0` by the
@@ -48,6 +49,16 @@ export const AI_ROOT_LAST = 19;
 export const ROOT_TABLES = 20;
 /** The roll is `0`…`31`. */
 export const CHOICE_TOTAL = 32;
+
+/**
+ * Species whose scripts are in another family's overlay: Basarios and Black
+ * Gravios run Gravios's class and scripts in `em17.ovl` (their roots also
+ * read in em83). Found from the species class vtables (`docs/monster-ai.md`).
+ */
+export const SCRIPT_OVERLAY: ReadonlyMap<number, number> = new Map([
+  [22, 17],
+  [47, 17],
+]);
 
 /** How far a choice's entry is searched for after the one before it. */
 const MAX_ENTRY = 0x140;
@@ -212,9 +223,10 @@ export function locateScripts(
     }
     if (!elsewhere.length) continue;
     const reads = (file: LoadedOverlay) => elsewhere.every((r) => readRoot(file.ovl, r));
-    const own = emOverlays.get(emId);
+    const ownId = SCRIPT_OVERLAY.get(emId) ?? emId;
+    const own = emOverlays.get(ownId);
     const holders =
-      own && reads(own) ? [[emId, own] as const] : [...emOverlays].filter(([, f]) => reads(f));
+      own && reads(own) ? [[ownId, own] as const] : [...emOverlays].filter(([, f]) => reads(f));
     if (holders.length !== 1) {
       unknown.push(emId);
       continue;
