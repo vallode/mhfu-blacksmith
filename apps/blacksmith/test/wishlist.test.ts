@@ -29,6 +29,10 @@ import {
   totalMaterials,
   treeParents,
   upgradeAncestors,
+  madeSteps,
+  ownedSteps,
+  stepsDone,
+  untickedMade,
   weaponSteps,
   type MaterialNeed,
   type WishlistEntry,
@@ -110,6 +114,8 @@ describe("entries", () => {
       ok,
       { ...ok, addedAt: 2 },
       { kind: "weapon", type: "spear", slug: "b", addedAt: 1 },
+      { kind: "weapon", type: "bow", slug: "f", addedAt: 1, made: 3 },
+      { kind: "weapon", type: "bow", slug: "g", addedAt: 1, made: "bone" },
       { kind: "armor", slot: "helmet", rank: "g-rank", slug: "c", addedAt: 1, recipe: "x" },
       { kind: "armor", slot: "helmet", rank: "g-rank", slug: "c", addedAt: 1, recipe: "alt" },
       { kind: "decoration", slug: "d", addedAt: 1, count: 0 },
@@ -121,7 +127,7 @@ describe("entries", () => {
     ]);
     assert.deepEqual(
       parseWishlist(raw).map((e) => e.slug),
-      ["a", "c", "d", "e"],
+      ["a", "g", "c", "d", "e"],
     );
     assert.deepEqual(parseWishlist("not json"), []);
   });
@@ -189,6 +195,47 @@ describe("recipes", () => {
     assert.deepEqual(names(weaponSteps(hugeBone, "improve", "nowhere", byName)), [
       "improve Huge Bone",
     ]);
+  });
+
+  test("made crafts count from the start of the path, never the last", () => {
+    const steps = weaponSteps(hugeBone, "improve", "bone", byName);
+    assert.equal(madeSteps(steps, undefined), 0);
+    assert.equal(madeSteps(steps, "bone-plus"), 1);
+    assert.equal(madeSteps(steps, "big-bone"), 2);
+    assert.equal(madeSteps(steps, "huge-bone"), 0);
+    // Off the path (a start further down, or another recipe): nothing made.
+    assert.equal(madeSteps(steps, "bone"), 0);
+    assert.equal(madeSteps(weaponSteps(hugeBone, "improve", "big-bone", byName), "big-bone"), 0);
+  });
+
+  test("owning a weapon along the path counts it and every craft before it", () => {
+    const steps = weaponSteps(hugeBone, "improve", "bone", byName);
+    const owns = (...slugs: string[]) =>
+      new Set(slugs.map((s) => steps.find((st) => st.slug === s)!.href));
+    assert.equal(ownedSteps(steps, null), 0);
+    assert.equal(ownedSteps(steps, new Set()), 0);
+    assert.equal(ownedSteps(steps, owns("bone-plus")), 1);
+    assert.equal(ownedSteps(steps, owns("big-bone")), 2);
+    assert.equal(ownedSteps(steps, owns("bone-plus", "big-bone")), 2);
+    // Owning the gear itself isn't a step made: the entry is owned.
+    assert.equal(ownedSteps(steps, owns("huge-bone")), 0);
+  });
+
+  test("made crafts are the hand-ticked ones or the save's, whichever reach further", () => {
+    const steps = weaponSteps(hugeBone, "improve", "bone", byName);
+    const owns = new Set([steps[0].href]);
+    assert.deepEqual(stepsDone(steps, undefined, null), { done: 0, fromSave: 0 });
+    assert.deepEqual(stepsDone(steps, "big-bone", owns), { done: 2, fromSave: 1 });
+    assert.deepEqual(stepsDone(steps, undefined, owns), { done: 1, fromSave: 1 });
+    assert.deepEqual(stepsDone(steps, "nowhere", owns), { done: 1, fromSave: 1 });
+  });
+
+  test("unticking keeps the crafts before it, but not the save's", () => {
+    const steps = weaponSteps(hugeBone, "improve", "bone", byName);
+    assert.equal(untickedMade(steps, 1, 0), "bone-plus");
+    assert.equal(untickedMade(steps, 0, 0), undefined);
+    // The craft before is ticked by the save: nothing of the player's is left.
+    assert.equal(untickedMade(steps, 1, 1), undefined);
   });
 
   test("create ignores the path", () => {

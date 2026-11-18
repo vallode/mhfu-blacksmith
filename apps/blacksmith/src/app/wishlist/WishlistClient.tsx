@@ -60,6 +60,8 @@ import {
   entryKey,
   itemWays,
   MAX_DECORATION_COUNT,
+  stepsDone,
+  untickedMade,
   recipesOf,
   totalCost,
   totalMaterials,
@@ -215,6 +217,10 @@ interface GearRow {
   /** Upgrades: where the path starts (see `WeaponEntry.from`) */
   from: string | null | undefined;
   steps: CraftStep[];
+  /** How many of `steps`, from the first, are made: ticked off, or up to one the hunter owns */
+  done: number;
+  /** How many of `steps`, from the first, the loaded hunter is past (`stepsDone`) */
+  fromSave: number;
   /** How many the entry wants (decorations; one for the rest) */
   count: number;
   /** Decorations: how many the loaded hunter has free, in their item box and pouch (null without a save) */
@@ -247,6 +253,8 @@ function resolveRows(
       ancestors: [],
       from: undefined,
       steps: [],
+      done: 0,
+      fromSave: 0,
       count: entryCount(entry),
       have: null,
       owned: owned?.has(href) ?? false,
@@ -293,6 +301,7 @@ function resolveRows(
           : (row.ancestors.find((a) => owned?.has(a.href))?.slug ?? row.ancestors[0]?.slug);
     }
     row.steps = weaponSteps(weapon, row.recipe, row.from, byName);
+    ({ done: row.done, fromSave: row.fromSave } = stepsDone(row.steps, entry.made, owned));
     return row;
   });
 }
@@ -334,7 +343,7 @@ export default function WishlistClient() {
     if (!rows || !items) return null;
     const crafts = rows
       .filter((r) => r.gear && !r.owned && r.steps.length > 0)
-      .map((r) => ({ gear: r.gear!.name, steps: r.steps }));
+      .map((r) => ({ gear: r.gear!.name, steps: r.steps.slice(r.done) }));
     const needs = totalMaterials(crafts, items.idOf).map((need) => {
       const id = need.itemId;
       const ways =
@@ -471,6 +480,10 @@ function WishCard({
 
 const select =
   "max-w-full min-w-0 cursor-pointer border border-hr bg-black/45 px-[0.6rem] py-[0.3rem] font-[inherit] text-fine text-white focus-visible:border-white focus-visible:outline-none";
+
+/** The tick box beside each craft of an upgrade path. */
+const stepBox =
+  "flex size-[2rem] flex-none items-center justify-center border border-hr bg-black/45 p-0 text-fine leading-none text-positive";
 
 /** "4,500z", in the site's language. */
 function useZenny(): (n: number) => string {
@@ -621,9 +634,10 @@ function GearRecipe({
   const game = useGameText();
   const zenny = useZenny();
   const { formatNumber } = useLocale();
-  const { recipes, recipe, ancestors, from, steps, have } = row;
+  const { recipes, recipe, ancestors, from, steps, have, done, fromSave } = row;
   if (!recipe) return <p className={ui.note}>{tw.noRecipe}</p>;
-  const cost = totalCost([{ steps }]);
+  // What's left to pay: the crafts not yet ticked off.
+  const cost = totalCost([{ steps: steps.slice(done) }]);
   return (
     <div className="flex flex-col gap-[0.6rem] text-fine text-white/60">
       <div className="flex flex-wrap items-center gap-x-[1.2rem] gap-y-[0.6rem]">
@@ -675,20 +689,72 @@ function GearRecipe({
         <span className="ml-auto text-white">{zenny(cost)}</span>
       </div>
       {steps.length > 1 && (
-        <ol className="m-0 flex list-none flex-wrap gap-x-[0.6rem] gap-y-[0.2rem] p-0 whitespace-normal">
-          {steps.map((s, i) => (
-            <li key={i}>
-              {i > 0 && <span className="text-muted">→ </span>}
-              <Link href={s.href} className="text-white/80 underline-offset-4 hover:underline">
-                {game.name(row.entry.kind, s.name)}
-              </Link>
-              {s.recipe !== "improve" && (
-                <span className="text-white/50"> {tw.stepRecipes[s.recipe]}</span>
-              )}
-            </li>
-          ))}
+        // On phones the tick boxes' hit areas reach past them (`stepHit`), so
+        // the rows are spaced to keep them off the links around them.
+        <ol className="m-0 flex list-none flex-wrap items-center gap-x-[0.6rem] gap-y-[0.4rem] p-0 whitespace-normal mobile:gap-y-[1.2rem] mobile:py-[0.4rem]">
+          {steps.map((s, i) => {
+            const made = i < done;
+            const name = game.name(row.entry.kind, s.name);
+            return (
+              <li key={i} className="flex min-w-0 items-center gap-[0.6rem] mobile:gap-[1.2rem]">
+                {i > 0 && <span className="text-muted">→</span>}
+                {i < fromSave ? (
+                  // Ticked by the save: it can't be unticked here, so it isn't a box.
+                  <span
+                    role="img"
+                    aria-label={tw.ownedStepLabel(name)}
+                    title={tw.ownedStep}
+                    className={cn(stepBox, "border-transparent bg-transparent text-white/50")}
+                  >
+                    ✓
+                  </span>
+                ) : (
+                  i < steps.length - 1 && (
+                    // The last craft makes the gear itself: made, it's owned, not ticked off.
+                    <button
+                      type="button"
+                      aria-pressed={made}
+                      aria-label={tw.madeLabel(name)}
+                      title={made ? tw.unmarkMade : tw.markMade}
+                      className="group -m-[0.6rem] flex-none cursor-pointer border-none bg-transparent p-[0.6rem] focus-visible:outline-none mobile:-m-[1rem] mobile:p-[1rem]"
+                      // Ticking a craft ticks every one before it; unticking it unticks the ones after.
+                      onClick={() =>
+                        wishlist.update(row.key, {
+                          made: made ? untickedMade(steps, i, fromSave) : s.slug,
+                        })
+                      }
+                    >
+                      <span
+                        className={cn(
+                          stepBox,
+                          "group-hover:border-white group-focus-visible:border-white",
+                        )}
+                      >
+                        {made && "✓"}
+                      </span>
+                    </button>
+                  )
+                )}
+                <span className={cn("min-w-0", made && "opacity-50")}>
+                  <Link
+                    href={s.href}
+                    className={cn(
+                      "text-white/80 underline-offset-4 hover:underline",
+                      made && "line-through",
+                    )}
+                  >
+                    {name}
+                  </Link>
+                  {s.recipe !== "improve" && (
+                    <span className="text-white/50"> {tw.stepRecipes[s.recipe]}</span>
+                  )}
+                </span>
+              </li>
+            );
+          })}
         </ol>
       )}
+      {fromSave > 0 && <p className="m-0 whitespace-normal text-white/50">{tw.fromSaveNote}</p>}
     </div>
   );
 }

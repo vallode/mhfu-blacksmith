@@ -35,7 +35,8 @@ function isEntry(x: unknown): x is WishlistEntry {
   if (e.kind === "weapon") {
     return (
       (WEAPON_TYPES as readonly string[]).includes(e.type) &&
-      (e.from === undefined || e.from === null || typeof e.from === "string")
+      (e.from === undefined || e.from === null || typeof e.from === "string") &&
+      (e.made === undefined || typeof e.made === "string")
     );
   }
   if (e.kind === "decoration") return e.count === undefined || isCount(e.count);
@@ -152,10 +153,17 @@ export interface Wishlist {
    * storage refused the write.
    */
   addAll(wants: readonly GearWant[]): number | null;
-  /** Changes an entry's recipe, starting weapon or (decorations) count. */
+  /**
+   * Changes an entry's recipe, starting weapon, (decorations) count, or the
+   * furthest weapon made along its path (`made: undefined` clears it).
+   */
   update(
     key: string,
-    patch: Partial<Pick<WishlistEntry, "recipe">> & { from?: string | null; count?: number },
+    patch: Partial<Pick<WishlistEntry, "recipe">> & {
+      from?: string | null;
+      count?: number;
+      made?: string;
+    },
   ): void;
   remove(key: string): void;
   clear(): void;

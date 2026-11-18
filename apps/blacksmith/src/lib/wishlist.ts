@@ -40,6 +40,12 @@ export interface WeaponEntry extends EntryBase {
    * the weapon just before it.
    */
   from?: string | null;
+  /**
+   * Upgrade paths of more than one craft: the furthest weapon along the path
+   * the player has made, by slug. It and every craft before it are ticked off
+   * (`madeSteps`). Ignored while it isn't on the path the entry makes.
+   */
+  made?: string;
 }
 
 export interface ArmorEntry extends EntryBase {
@@ -243,6 +249,7 @@ export function defaultRecipe(gear: Gear): Recipe | undefined {
 /** One craft at the smithy: a weapon, armor piece or decoration, by one recipe. */
 export interface CraftStep {
   name: string;
+  slug: string;
   href: string;
   recipe: Recipe;
   /** Per craft */
@@ -295,7 +302,14 @@ function step(gear: Gear, href: string, recipe: Recipe): CraftStep {
         : gear.create_mats;
   const cost =
     recipe === "improve" && "improve_cost" in gear ? gear.improve_cost : gear.create_cost;
-  return { name: gear.name, href, recipe, cost: Number(cost) || 0, materials: materials ?? [] };
+  return {
+    name: gear.name,
+    slug: gear.slug,
+    href,
+    recipe,
+    cost: Number(cost) || 0,
+    materials: materials ?? [],
+  };
 }
 
 /**
@@ -331,6 +345,57 @@ export function weaponSteps(
   // From scratch with nothing creatable up the tree: the whole path found.
   // A start that isn't up the path: just the one upgrade.
   return from === null ? steps.reverse() : [make(weapon, "improve")];
+}
+
+/**
+ * How many of the crafts, from the first, are made: up to and including
+ * `made` (a weapon's slug). Never the last craft, which makes the gear itself;
+ * 0 when `made` isn't one of the others.
+ */
+export function madeSteps(steps: readonly CraftStep[], made: string | undefined): number {
+  if (made === undefined) return 0;
+  const i = steps.findIndex((s) => s.slug === made);
+  return i >= 0 && i < steps.length - 1 ? i + 1 : 0;
+}
+
+/**
+ * How many of the crafts, from the first, the loaded hunter is past: up to
+ * and including the furthest one whose weapon they own (`owned` holds the
+ * hrefs of their gear). Upgrading uses up the weapon before, so owning one
+ * along the path counts every craft before it as made too. Never the last
+ * craft: owning that is owning the gear.
+ */
+export function ownedSteps(steps: readonly CraftStep[], owned: ReadonlySet<string> | null): number {
+  if (!owned) return 0;
+  for (let i = steps.length - 2; i >= 0; i--) if (owned.has(steps[i].href)) return i + 1;
+  return 0;
+}
+
+/**
+ * How many of the crafts, from the first, are made (`done`): those ticked off
+ * by hand up to `made`, or the loaded hunter is past (`fromSave`, which they
+ * can't untick), whichever reaches further.
+ */
+export function stepsDone(
+  steps: readonly CraftStep[],
+  made: string | undefined,
+  owned: ReadonlySet<string> | null,
+): { done: number; fromSave: number } {
+  const fromSave = ownedSteps(steps, owned);
+  return { done: Math.max(madeSteps(steps, made), fromSave), fromSave };
+}
+
+/**
+ * The `made` to store when the craft at `index` is unticked: the craft before
+ * it, or nothing when that one is ticked by the save (`fromSave`), so the
+ * save's ticks don't stay behind as the player's own once it's gone.
+ */
+export function untickedMade(
+  steps: readonly CraftStep[],
+  index: number,
+  fromSave: number,
+): string | undefined {
+  return index - 1 >= fromSave ? steps[index - 1]?.slug : undefined;
 }
 
 /** An armor piece's craft by a recipe. */

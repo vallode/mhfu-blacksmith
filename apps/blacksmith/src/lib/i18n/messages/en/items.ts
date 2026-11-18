@@ -199,6 +199,15 @@ export const items = {
     from: "From",
     ownedOption: (name: string) => `${name} (owned)`,
     wholePath: "Nothing (whole path)",
+    /** The tick box beside each weapon of an upgrade path, and its tooltips. */
+    madeLabel: (name: string) => `Made ${name}`,
+    markMade: "Tick off as made",
+    unmarkMade: "Not made yet",
+    /** A step ticked because the loaded hunter owns it, or a weapon further along. */
+    ownedStepLabel: (name: string) => `Made ${name} (from your save)`,
+    ownedStep: "Your save shows this made",
+    /** Under an upgrade path when the save ticked some of it. */
+    fromSaveNote: "Grey ticks come from your loaded save.",
     cost: "Cost:",
     /** The loaded hunter's zenny, after the cost. */
     youHave: (amount: string) => `(you have ${amount})`,
