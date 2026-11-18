@@ -195,6 +195,8 @@ export const items = {
     /** A step ticked because the loaded hunter owns it, or a weapon further along. */
     ownedStepLabel: (name: string) => `Made ${name} (from your save)`,
     ownedStep: "Your save shows this made",
+    /** Under an upgrade path when the save ticked some of it. */
+    fromSaveNote: "Grey ticks come from your loaded save.",
     cost: "Cost:",
     /** The loaded hunter's zenny, after the cost. */
     youHave: (amount: string) => `(you have ${amount})`,

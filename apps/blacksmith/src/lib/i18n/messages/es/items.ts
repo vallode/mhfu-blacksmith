@@ -159,6 +159,7 @@ export const items: Messages["items"] = {
     unmarkMade: "Aún no hecho",
     ownedStepLabel: (name: string) => `Hecho: ${name} (según tu partida)`,
     ownedStep: "Tu partida muestra que ya está hecho",
+    fromSaveNote: "Las marcas grises vienen de tu partida cargada.",
     cost: "Precio:",
     youHave: (amount: string) => `(tienes ${amount})`,
     materialsCount: "Materiales:",

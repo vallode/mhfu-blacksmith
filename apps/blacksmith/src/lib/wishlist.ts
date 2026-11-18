@@ -252,6 +252,33 @@ export function ownedSteps(steps: readonly CraftStep[], owned: ReadonlySet<strin
   return 0;
 }
 
+/**
+ * How many of the crafts, from the first, are made (`done`): those ticked off
+ * by hand up to `made`, or the loaded hunter is past (`fromSave`, which they
+ * can't untick), whichever reaches further.
+ */
+export function stepsDone(
+  steps: readonly CraftStep[],
+  made: string | undefined,
+  owned: ReadonlySet<string> | null,
+): { done: number; fromSave: number } {
+  const fromSave = ownedSteps(steps, owned);
+  return { done: Math.max(madeSteps(steps, made), fromSave), fromSave };
+}
+
+/**
+ * The `made` to store when the craft at `index` is unticked: the craft before
+ * it, or nothing when that one is ticked by the save (`fromSave`), so the
+ * save's ticks don't stay behind as the player's own once it's gone.
+ */
+export function untickedMade(
+  steps: readonly CraftStep[],
+  index: number,
+  fromSave: number,
+): string | undefined {
+  return index - 1 >= fromSave ? steps[index - 1]?.slug : undefined;
+}
+
 /** An armor piece's craft by a recipe. */
 export function armorSteps(piece: ArmorPiece, href: string, recipe: Recipe): CraftStep[] {
   return [step(piece, href, recipe)];

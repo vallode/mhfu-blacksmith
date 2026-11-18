@@ -25,6 +25,8 @@ import {
   upgradeAncestors,
   madeSteps,
   ownedSteps,
+  stepsDone,
+  untickedMade,
   weaponSteps,
   type MaterialNeed,
 } from "../src/lib/wishlist";
@@ -185,6 +187,23 @@ describe("recipes", () => {
     assert.equal(ownedSteps(steps, owns("bone-plus", "big-bone")), 2);
     // Owning the gear itself isn't a step made: the entry is owned.
     assert.equal(ownedSteps(steps, owns("huge-bone")), 0);
+  });
+
+  test("made crafts are the hand-ticked ones or the save's, whichever reach further", () => {
+    const steps = weaponSteps(hugeBone, "improve", "bone", byName);
+    const owns = new Set([steps[0].href]);
+    assert.deepEqual(stepsDone(steps, undefined, null), { done: 0, fromSave: 0 });
+    assert.deepEqual(stepsDone(steps, "big-bone", owns), { done: 2, fromSave: 1 });
+    assert.deepEqual(stepsDone(steps, undefined, owns), { done: 1, fromSave: 1 });
+    assert.deepEqual(stepsDone(steps, "nowhere", owns), { done: 1, fromSave: 1 });
+  });
+
+  test("unticking keeps the crafts before it, but not the save's", () => {
+    const steps = weaponSteps(hugeBone, "improve", "bone", byName);
+    assert.equal(untickedMade(steps, 1, 0), "bone-plus");
+    assert.equal(untickedMade(steps, 0, 0), undefined);
+    // The craft before is ticked by the save: nothing of the player's is left.
+    assert.equal(untickedMade(steps, 1, 1), undefined);
   });
 
   test("create ignores the path", () => {
