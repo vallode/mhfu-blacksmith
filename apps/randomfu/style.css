@@ -18,12 +18,18 @@
   src: url("fonts/biz-udgothic-latin-400-normal.woff2") format("woff2");
 }
 
-@keyframes opacity-alternate {
+@property --glow-alpha {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+@keyframes glow-alpha {
   from {
-    opacity: 1;
+    --glow-alpha: 1;
   }
   to {
-    opacity: 0.6;
+    --glow-alpha: 0.6;
   }
 }
 
@@ -236,7 +242,7 @@ code {
 
   @media (hover: hover) {
     &:hover {
-      background: var(--gradient-hover-glow);
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }
@@ -341,7 +347,7 @@ code {
 
   @media (hover: hover) {
     &:enabled:not([aria-current]):hover {
-      background: var(--gradient-hover-glow);
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }
@@ -519,7 +525,7 @@ code {
   @media (hover: hover) {
     &:enabled:hover {
       color: white;
-      background: var(--gradient-hover-glow);
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }
@@ -615,7 +621,7 @@ textarea.text-input {
     content: "";
     position: absolute;
     inset: 0.8rem 1rem;
-    background: var(--gradient-hover-glow);
+    background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
     animation: var(--animate-hover-glow);
     visibility: hidden;
     pointer-events: none;
@@ -747,7 +753,7 @@ textarea.text-input {
 
   @media (hover: hover) {
     &:not(:has(input:checked, input:disabled)):hover {
-      background: var(--gradient-hover-glow);
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }

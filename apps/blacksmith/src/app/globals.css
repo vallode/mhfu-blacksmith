@@ -136,17 +136,25 @@
   --color-hitbox-8: #ff7ac8;
 
   /* Pulsing green highlight behind hovered rows, cards and search results.
-     Use the `hover-glow` utility, or in a CSS module:
-       animation: var(--animate-hover-glow); background: var(--gradient-hover-glow); */
-  --animate-hover-glow: opacity-alternate 1s ease-in-out infinite alternate;
-  --gradient-hover-glow: linear-gradient(0.25turn, transparent, rgb(3 119 3 / 0.84), transparent);
+     The pulse animates only --glow-alpha (the strength of the background),
+     never the element's opacity, so text and icons on top stay solid. A
+     resting highlight uses --gradient-hover-glow; a pulsing one needs the
+     gradient written out where --glow-alpha is animated (a var() in a token is
+     resolved at :root): use the `hover-glow` utility, or
+       animation: var(--animate-hover-glow);
+       background: linear-gradient(0.25turn, transparent,
+         color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
+         transparent); */
+  --color-hover-glow: rgb(3 119 3 / 0.84);
+  --animate-hover-glow: glow-alpha 1s ease-in-out infinite alternate;
+  --gradient-hover-glow: linear-gradient(0.25turn, transparent, var(--color-hover-glow), transparent);
 
-  @keyframes opacity-alternate {
+  @keyframes glow-alpha {
     from {
-      opacity: 1;
+      --glow-alpha: 1;
     }
     to {
-      opacity: 0.6;
+      --glow-alpha: 0.6;
     }
   }
 
@@ -209,6 +217,12 @@
   --animate-hover-glow: none;
 }
 
+@property --glow-alpha {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
 /* ─── Custom variants ────────────────────────────────────────────────────────── */
 
 /* Breakpoints. The layout has three widths:
@@ -243,7 +257,7 @@
 /* Pulsing green highlight (see --animate-hover-glow above) */
 @utility hover-glow {
   animation: var(--animate-hover-glow);
-  background: var(--gradient-hover-glow);
+  background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
 }
 
 /* Icon colour tint (on an Icon's ::before): a mask shaped like the sprite,
@@ -667,7 +681,7 @@ img {
 
   &:hover {
     animation: var(--animate-hover-glow);
-    background: var(--gradient-hover-glow);
+    background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
   }
 }
 
