@@ -106,7 +106,14 @@ const OPTION_STEPS: Step[] = [
     id: "modifications",
     title: "Modifications",
     icon: "dragon",
-    sections: ["Poogie", "Hunter's Pact", "Elite monsters", "Unknown Monster?! quests", "HUD"],
+    sections: [
+      "Poogie",
+      "Hunter's Pact",
+      "Elite monsters",
+      "Unknown Monster?! quests",
+      "Key quests",
+      "HUD",
+    ],
     intro:
       "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code. Each caps received Guild Cards at 3 to make room for it. Only Poogie's luck is on unless you turn the others on, and elite monsters haven't been tried in game yet.",
   },
@@ -143,6 +150,7 @@ const SECTION_ICONS: Record<string, Sprite> = {
   "Monster stats": { icon: "ko" },
   "Elite monsters": { icon: "monsters/elder-dragon", tint: "var(--color-gem-slate)" },
   "Unknown Monster?! quests": { icon: "ukwn", tint: "var(--color-gem-cyan)" },
+  "Key quests": { icon: "ticket", tint: "var(--color-gem-yellow)" },
   Weaknesses: { icon: "fire" },
   Hints: { icon: "ukwn", tint: "var(--color-gem-cyan)" },
   HUD: { icon: "fluid", tint: "var(--color-gem-red)" },

@@ -50,6 +50,7 @@ const UNTRIED: readonly OptionKey[] = [
   "mods.nodeMap",
   "elites.enabled",
   "monsterAi.branches",
+  "quests.keyLabel",
 ];
 
 test("presets do what their help says", () => {

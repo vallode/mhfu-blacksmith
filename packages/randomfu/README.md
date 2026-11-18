@@ -180,6 +180,7 @@ web app shows as a tag):
 | `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)                  |
 | `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                              |
 | `quests.unknown`                  | off         | "Unknown Monster?!" quests on Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards) |
+| `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards) |
 
 ### Presets
 
@@ -191,8 +192,8 @@ Elder's trades. Turn those on yourself once you've tried them on your disc.
 Armor stats are the exception: the presets turn on all four, though only
 defense has been played. Resistances, slots and rarity have only been run
 over the EU disc's tables, and what the game reads armor rarity for hasn't
-been checked. Monster health, elite monsters and the Unknown Monster quests are off in every
-preset, since they cap Guild Cards.
+been checked. Monster health, elite monsters, the Unknown Monster quests and the key quest
+label are off in every preset, since they cap Guild Cards.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                                                   |
 | ------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1447,6 +1448,40 @@ save: it shows on the board, loads a rolled hunt and plays through. Not yet
 tried: the 8★ and G★3 boards themselves, rolled starts, ad-hoc play, and each region
 separately.
 
+## Key quests
+
+`quests.keyLabel` marks key quests where you pick them: when the quest
+counter's card (the Village Chief's, and likely the Guild's, which share
+the code) shows a key quest, a yellow star (★) shows in the card's top right
+corner, drawn as the card draws "CLEAR!!" in its top left. Key quests are
+the ones a star needs cleared before its Urgent Quest shows. The quests
+themselves and their titles aren't changed. It runs as blob code on the
+code loader (below), so it caps Guild Cards at 3.
+
+What it found (EU and JP (FUC), in `lobby_task.ovl`; `src/patches/key-quests.ts`
+has the details):
+
+- The card is drawn by one function (EU 0x09A8CA40), called from one place
+  in the counter's draw step every frame it shows. It reads the shown
+  quest from a copy of its board record at a fixed address (EU
+  0x09B03F40), which a getter returns. Bit 26 of the record's quest type
+  marks a key quest (77 records on the EU boards), bit 25 an Urgent Quest.
+- It draws its lines with a print routine that draws text over a drop
+  shadow, after setting the printer's glyph size. "CLEAR!!" is glyph size
+  14, yellow over shadow colour 1, 8 pixels in from the card's left (the
+  card's place and size and "CLEAR!!"'s are in a layout table). The star, the
+  font's own ★ (the quest details show levels as "LV★★★"), is drawn the
+  same way just after the card, 8 pixels in from its right, clear of the
+  quest type centred on the same row.
+- The two discs' card functions are the same words but for immediates, so
+  it's found by its masked first words, and the routines, globals and
+  layout by what it does with them. Both discs' text is UTF-8 (the quest
+  details' "LV★" on FUC too), so the star is the same bytes on both.
+
+Tried in PPSSPP on EU at the Village Chief with "Key Quest!" in the same
+corner; the star itself hasn't been seen in game yet. Not yet tried: the
+Guild's counters, and JP.
+
 ## Code loader (prototype)
 
 `?loader-demo` in the web app's address (see `apps/randomfu`) caps received
@@ -1455,7 +1490,7 @@ struct) into room for randomfu's own code and data. Its demo blob adds 1000
 zenny on every save load, so it's seen to run; it does in PPSSPP on EU and
 JP (FUC). It's not for play. `docs/code-loader.md` has the design: the
 address, when it loads, the blob format, game hooks, the C toolchain and
-the PRX alternative. Poogie's luck, monster health and the Hunter's Pact are built on it.
+the PRX alternative. Poogie's luck, monster health, the Hunter's Pact and the key quest label are built on it.
 
 - **Room.** The save struct is static (an arena in the EBOOT's BSS), so the
   freed slots are at a fixed address per region: EU `0x099A1820`, JP
