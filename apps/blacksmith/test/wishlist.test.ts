@@ -11,10 +11,12 @@ import { readData } from "game-data";
 import { slugify } from "../src/lib/slug";
 import { WEAPON_TYPES } from "../src/lib/constants";
 import { buildWeaponTree } from "../src/lib/trees";
-import type { Material, Weapon, WeaponTreeNode } from "../src/lib/types";
+import type { Decoration, Material, Weapon, WeaponTreeNode } from "../src/lib/types";
 import {
   bestDestinations,
+  decorationSteps,
   defaultRecipe,
+  entryCount,
   entryHref,
   entryKey,
   itemWays,
@@ -73,6 +75,18 @@ describe("entries", () => {
     assert.equal(entryHref(w), "/blacksmith/great-sword/bone/");
     assert.equal(entryKey(a), "armor/helmet/g-rank/rath-helm");
     assert.equal(entryHref(a), "/armorsmith/helmet/g-rank/rath-helm/");
+    const d = { kind: "decoration", slug: "attack-jewel" } as const;
+    assert.equal(entryKey(d), "decoration/attack-jewel");
+    assert.equal(entryHref(d), "/decorations/attack-jewel/");
+  });
+
+  test("a decoration wants one unless counted", () => {
+    assert.equal(entryCount({ kind: "decoration", slug: "a", addedAt: 1 }), 1);
+    assert.equal(entryCount({ kind: "decoration", slug: "a", addedAt: 1, count: 4 }), 4);
+    assert.equal(
+      entryCount({ kind: "armor", slot: "leggings", rank: "g-rank", slug: "a", addedAt: 1 }),
+      1,
+    );
   });
 
   test("toggle adds first and removes", () => {
@@ -93,11 +107,16 @@ describe("entries", () => {
       { kind: "weapon", type: "spear", slug: "b", addedAt: 1 },
       { kind: "armor", slot: "helmet", rank: "g-rank", slug: "c", addedAt: 1, recipe: "x" },
       { kind: "armor", slot: "helmet", rank: "g-rank", slug: "c", addedAt: 1, recipe: "alt" },
+      { kind: "decoration", slug: "d", addedAt: 1, count: 0 },
+      { kind: "decoration", slug: "d", addedAt: 1, count: 2.5 },
+      { kind: "decoration", slug: "d", addedAt: 1, count: 3 },
+      { kind: "decoration", slug: "e", addedAt: 1 },
+      { kind: "decoration", slug: "e", addedAt: 1, count: 2 },
       null,
     ]);
     assert.deepEqual(
       parseWishlist(raw).map((e) => e.slug),
-      ["a", "c"],
+      ["a", "c", "d", "e"],
     );
     assert.deepEqual(parseWishlist("not json"), []);
     assert.deepEqual(parseWishlist(null), []);
@@ -161,6 +180,42 @@ describe("recipes", () => {
 
   test("create ignores the path", () => {
     assert.deepEqual(names(weaponSteps(bigBone, "create", "bone", byName)), ["create Big Bone"]);
+  });
+});
+
+describe("decorations", () => {
+  const jewel: Decoration = {
+    name: "Attack Jewel",
+    slug: "attack-jewel",
+    type: "decoration",
+    create_cost: 400,
+    create_mats: [mat("Monster Fluid", 1), mat("Iron Ore", 2)],
+    alternative_create_mats: [mat("Rathalos Scale", 1)],
+  };
+
+  test("recipes", () => {
+    assert.deepEqual(recipesOf(jewel), ["create", "alt"]);
+    assert.equal(defaultRecipe(jewel), "create");
+    assert.deepEqual(recipesOf({ ...jewel, create_mats: [] }), ["alt"]);
+  });
+
+  test("one craft per jewel still to make", () => {
+    const steps = decorationSteps(jewel, "/decorations/attack-jewel/", "create", 3);
+    assert.equal(steps.length, 3);
+    assert.equal(totalCost([{ steps }]), 1200);
+    const mats = totalMaterials([{ gear: jewel.name, steps }], () => undefined);
+    assert.deepEqual(
+      mats.map((m) => [m.name, m.amount]),
+      [
+        ["Monster Fluid", 3],
+        ["Iron Ore", 6],
+      ],
+    );
+    assert.deepEqual(
+      decorationSteps(jewel, "", "alt", 1).map((s) => s.materials[0].name),
+      ["Rathalos Scale"],
+    );
+    assert.deepEqual(decorationSteps(jewel, "", "create", 0), []);
   });
 });
 
@@ -444,5 +499,17 @@ describe("game data", () => {
       checked++;
     }
     assert.ok(checked > 900, `checked ${checked}`);
+  });
+
+  test("every decoration has a recipe to make it by", () => {
+    const { decorations } = readData(DATA_DIR, "decorations.json") as {
+      decorations: Decoration[];
+    };
+    assert.ok(decorations.length > 100);
+    for (const d of decorations) {
+      const recipe = defaultRecipe(d);
+      assert.ok(recipe, d.name);
+      assert.ok(decorationSteps(d, "", recipe, 1)[0].materials.length > 0, d.name);
+    }
   });
 });

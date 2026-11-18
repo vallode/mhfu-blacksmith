@@ -161,14 +161,14 @@ export const items = {
     pickItem:
       "Pick an item to see what the Veggie Elder gives for it. Each hunting ground has its own list.",
   },
-  /** /wishlist/: the gear the player starred and the materials it needs. */
+  /** /wishlist/: the gear and decorations the player starred and the materials they need. */
   wishlist: {
     /** Card titles. */
     title: "Wishlist",
     materials: "Materials",
     whereToGo: "Where to go",
     empty:
-      "Nothing on your wishlist yet. Press the star beside a weapon or armor piece's name to add it, and its materials add up here with where to get them. The wishlist is kept in this browser.",
+      "Nothing on your wishlist yet. Press the star beside a weapon, armor piece or decoration's name to add it, and its materials add up here with where to get them. The wishlist is kept in this browser.",
     loadError: "Couldn't load the wishlist's gear.",
     retry: "Try again",
     whereToGoNote: "The monsters and maps that give the most of the materials you still need.",
@@ -178,6 +178,15 @@ export const items = {
     removeLabel: (name: string) => `Remove ${name} from the wishlist`,
     missingGear: "Not in this version's data any more.",
     ownedNote: "Your hunter has this already, so its materials are left out.",
+    /** A decoration the loaded hunter has enough of, free in their item box and pouch. */
+    enoughNote: (have: string) =>
+      `Your hunter has ${have} in their item box already, so its materials are left out.`,
+    /** A decoration's count: how many jewels to have. */
+    countLabel: (name: string) => `How many ${name} to have`,
+    oneFewer: "One fewer",
+    oneMore: "One more",
+    /** Jewels set in equipment don't count: taking one out breaks it. */
+    inBox: (have: string, toMake: string) => `${have} in your item box · ${toMake} to make`,
     noRecipe: "No recipe makes this.",
     recipe: "Recipe",
     /** By lib/wishlist Recipe. */

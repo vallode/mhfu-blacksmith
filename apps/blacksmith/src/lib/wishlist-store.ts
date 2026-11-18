@@ -11,7 +11,7 @@
  */
 import { useCallback, useSyncExternalStore } from "react";
 import { ARMOR_RANKS, ARMOR_SLOTS, WEAPON_TYPES } from "./constants";
-import { entryKey, type GearRef, type WishlistEntry } from "./wishlist";
+import { entryKey, MAX_DECORATION_COUNT, type GearRef, type WishlistEntry } from "./wishlist";
 
 const KEY = "wishlist";
 /** Sent on this window when the list changes here (other tabs get `storage`). */
@@ -30,11 +30,17 @@ function isEntry(x: unknown): x is WishlistEntry {
       (e.from === undefined || e.from === null || typeof e.from === "string")
     );
   }
+  if (e.kind === "decoration") return e.count === undefined || isCount(e.count);
   return (
     e.kind === "armor" &&
     (ARMOR_SLOTS as readonly string[]).includes(e.slot) &&
     (ARMOR_RANKS as readonly string[]).includes(e.rank)
   );
+}
+
+/** A decoration entry's count: a whole number from 1 to MAX_DECORATION_COUNT. */
+export function isCount(n: unknown): n is number {
+  return Number.isInteger(n) && (n as number) >= 1 && (n as number) <= MAX_DECORATION_COUNT;
 }
 
 /** The stored list, without anything malformed or listed twice. */
@@ -114,10 +120,10 @@ export interface Wishlist {
   has(ref: GearRef): boolean;
   /** Adds or removes the gear; false if storage refused the write. */
   toggle(ref: GearRef): boolean;
-  /** Changes an entry's recipe or starting weapon. */
+  /** Changes an entry's recipe, starting weapon or (decorations) count. */
   update(
     key: string,
-    patch: Partial<Pick<WishlistEntry, "recipe">> & { from?: string | null },
+    patch: Partial<Pick<WishlistEntry, "recipe">> & { from?: string | null; count?: number },
   ): void;
   remove(key: string): void;
   clear(): void;
@@ -133,6 +139,8 @@ export function useWishlist(): Wishlist {
   );
   const toggle = useCallback((ref: GearRef) => writeWishlist(toggleEntry(snapshot(), ref)[0]), []);
   const update = useCallback<Wishlist["update"]>((key, patch) => {
+    // A count the list wouldn't read back would drop the whole entry.
+    if (patch.count !== undefined && !isCount(patch.count)) return;
     writeWishlist(
       snapshot().map((e) => (entryKey(e) === key ? ({ ...e, ...patch } as WishlistEntry) : e)),
     );

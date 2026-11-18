@@ -138,7 +138,7 @@ export const items: Messages["items"] = {
     materials: "Materiales",
     whereToGo: "Adónde ir",
     empty:
-      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma o pieza de armadura para añadirla, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
+      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma, pieza de armadura o adorno para añadirlo, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
     loadError: "No se pudo cargar el equipo de la lista de deseos.",
     retry: "Reintentar",
     whereToGoNote: "Los monstruos y mapas que dan más de los materiales que aún te faltan.",
@@ -147,6 +147,12 @@ export const items: Messages["items"] = {
     removeLabel: (name: string) => `Quitar ${name} de la lista de deseos`,
     missingGear: "Ya no está en los datos de esta versión.",
     ownedNote: "Tu cazador ya lo tiene, así que sus materiales no se cuentan.",
+    enoughNote: (have: string) =>
+      `Tu cazador ya tiene ${have} en la caja de objetos, así que sus materiales no se cuentan.`,
+    countLabel: (name: string) => `Cuántos ${name} tener`,
+    oneFewer: "Uno menos",
+    oneMore: "Uno más",
+    inBox: (have: string, toMake: string) => `${have} en la caja de objetos · ${toMake} por crear`,
     noRecipe: "Ninguna receta lo crea.",
     recipe: "Receta",
     recipes: { create: "Crear", alt: "Receta alt.", improve: "Mejorar" },
