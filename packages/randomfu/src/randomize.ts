@@ -102,6 +102,7 @@ import { writeGuides } from "./hints/guides.js";
 import { DEMO_OBJECTS } from "./blob/demo-object.js";
 import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
+import { findKeyQuestSites, keyQuestsObjects, keyQuestsReport } from "./patches/key-quests.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
 import {
@@ -952,7 +953,8 @@ export function randomize(
     settings["quests.unknown"] ||
     settings["elites.enabled"] ||
     settings["pact.enabled"] ||
-    settings["poogie.enabled"]
+    settings["poogie.enabled"] ||
+    settings["quests.keyLabel"]
   ) {
     // Each feature is resolved on its own first: one that doesn't match this
     // disc is left out, and the loader (which caps Guild Cards) only goes in
@@ -1099,7 +1101,19 @@ export function randomize(
       Object.assign(externs, poogie.externs);
     }
     const luck = typeof poogie === "string" ? null : poogie;
-    if (typeof hookSites !== "string" && (monsterHp || unknown || elites || pact || luck)) {
+    const { ovl: lobbyOvl } = game.lobbyTask;
+    const keySites = !settings["quests.keyLabel"]
+      ? null
+      : typeof hookSites === "string"
+        ? hookSites
+        : findKeyQuestSites(lobbyOvl.reader.buf, lobbyOvl.loadBase);
+    if (typeof keySites === "string") reports.push(notApplied("Key quests", keySites));
+    const keys = typeof keySites === "string" ? null : keySites;
+    if (keys) {
+      objects.push(...keyQuestsObjects());
+      Object.assign(externs, keys.externs);
+    }
+    if (typeof hookSites !== "string" && (monsterHp || unknown || elites || pact || luck || keys)) {
       const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         // Elites and the pact both bring the shared monster boosts: link them once.
         objects: objects.filter((o, k) => objects.findIndex((x) => x.name === o.name) === k),
@@ -1109,12 +1123,16 @@ export function randomize(
           ...(typeof sites !== "string" && { gameTask: game.gameTask }),
           ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
           ...(luck && { pick: luck.pick }),
+          ...(keys && {
+            questCard: { call: keys.call, card: keys.card, lobbyTask: game.lobbyTask },
+          }),
         },
         externs,
         data,
       });
       reports.push(loader);
       if (unknown) reports.push(unknown.finish(loader.applied));
+      if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {
         reports.push(luck.finish(loader.applied));
         if (loader.applied && options.poogieTest) {

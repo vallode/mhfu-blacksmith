@@ -47,6 +47,9 @@
  *    stub that tail-calls the blob's `rf_hook5` with the picker's own
  *    arguments when the blob defines one, and otherwise runs those two words
  *    and goes on with the game's picker.
+ * 6. Quest card (optional, `quests.keyLabel`): `lobby_task`'s one call to
+ *    the quest counter's card (see `key-quests.ts`), every frame the card
+ *    shows. The hook gets the counter object.
  *
  * The quest loader (EU 0x08870AEC) is `(quest, u16 id, buf)`, a two-step
  * state machine the caller runs every frame until it returns 1: step 0
@@ -88,7 +91,15 @@ import {
   type Segment,
 } from "./mips.js";
 
-export const HOOK = { questFrame: 0, hud: 1, pad: 2, questLoad: 3, rewards: 4, pick: 5 } as const;
+export const HOOK = {
+  questFrame: 0,
+  hud: 1,
+  pad: 2,
+  questLoad: 3,
+  rewards: 4,
+  pick: 5,
+  questCard: 6,
+} as const;
 
 /** The game's picker (hook 5): its address and its first two words, which the stub runs instead. */
 export interface PickSite {

@@ -125,7 +125,14 @@ struct rf_load {
  *   u16 each) and before the reward screen shows them.
  */
 #define RF_HOOK_REWARDS 4
-#define RF_HOOKS 5
+/*
+ * RF_HOOK_QUEST_CARD: just after lobby_task draws the quest counter's card
+ *   (the Village Chief's and the Guild's), every frame it shows. The
+ *   argument is the counter object. Draw here with the HUD's routines and
+ *   the printer: the card leaves its layers set.
+ */
+#define RF_HOOK_QUEST_CARD 6
+#define RF_HOOKS 7
 
 /*
  * rf_hook5 isn't a callback hook: it replaces the EBOOT's weighted picker,

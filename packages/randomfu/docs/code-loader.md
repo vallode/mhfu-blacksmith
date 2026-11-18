@@ -145,10 +145,11 @@ reaches. Twelve words per stub and 15 for `dispatch`.
 | 3    | quest load  | the quest loader (EU 0x08870AEC), accepting and departing      | `lobby_task` +0x2F424, `game_task` +0x6B8 | `lobby_task` +0x2F0B4, `game_task` +0x6A8 |
 | 4    | rewards     | the quest reward roll (EU 0x0886F894), once a completed quest  | 0x08875284                                | found by signature                        |
 | 5    | pick        | replaces the weighted picker (`poogie-luck.ts`)                | 0x0887265C (the picker's first two words) | 0x08872654                                |
+| 6    | quest card  | the quest counter's card (EU 0x09A8CA40), in town              | `lobby_task` 0x09A8BF08                   | `lobby_task` 0x09A87078                   |
 
 Hooks 0 and 1 pass the HUD object (EU 0x09A04BA0, right after the save
 struct), hook 3 a `struct rf_load` (below), hook 4 the results step's
-object. Hook 2 passes the system's `SceCtrlData` that `padRead` (called
+object, hook 6 the quest counter's object. Hook 2 passes the system's `SceCtrlData` that `padRead` (called
 once a frame by the main loop, EU 0x0888FD5C) reads into: buttons a u32 at
 `+4`, the stick bytes at `+8`, `+9`. It runs before `padRead` checks the
 game's input lock (the pad object's `+0x17`, which shops and dialogues
@@ -427,6 +428,22 @@ imported by both EBOOTs. The tables are linked after the code as the
 `rf_uq_data` symbol (`linkBlob`'s `data`), so the blob has them at a known
 address; `test/unknown-quests.test.ts` runs the stub and blob against a fake
 loader.
+
+## Key quests
+
+`blob/key-quests.c` on hook 6 (`README.md` has what it does for the
+player). The hook wraps `lobby_task`'s one call of the quest counter's
+card function, so it runs every frame the card shows, after the card is
+drawn. The blob reads the shown quest's type from the record copy the
+card draws from (EU 0x09B03F40, JP 0x09AFECD8) and, with bit 26 set, draws
+"Key Quest!" in the card's top right corner with `print(printer, x, y, shadow,
+colour, text, dx, dy)` (EU 0x0889198C, JP 0x0889144C), as the card draws
+"CLEAR!!" in its top left. It sets the
+printer's glyph size bytes (`+0x12C`, `+0x12D`, `+0x15F`) to 14 for the
+print and puts them back. Every address and the label's place are link-time
+constants that `findKeyQuestSites` reads from `lobby_task`; the hook's call
+is patched in the overlay (`code-loader.ts`, `hooks.questCard`).
+`test/key-quests.test.ts` runs the stub and blob in the interpreter.
 
 ## Toolchain
 

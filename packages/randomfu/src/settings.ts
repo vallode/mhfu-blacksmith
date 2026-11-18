@@ -122,6 +122,7 @@ export interface Settings {
   "elites.enabled": boolean;
   "elites.chance": number;
   "quests.unknown": boolean;
+  "quests.keyLabel": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -1768,6 +1769,14 @@ export const OPTIONS: readonly OptionDef[] = [
     section: "Unknown Monster?! quests",
     label: "Unknown Monster?! quests",
     help: "Adds an investigation quest to the Guild 8★ and G★3 boards (high and G rank; low rank is left as it was). Each time you accept it, it rolls a monster met on that map in any quest, the map, size, crowns, difficulty for the rank, the rewards and whether you start in base camp or a random area (where that map's quests do either). The board doesn't say what you'll find, and the quest names the monster once it starts. Solo only: in ad-hoc play the others get a different roll. Caps received Guild Cards at 3 to make room for the code.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "quests.keyLabel",
+    section: "Key quests",
+    label: "Mark key quests",
+    help: "The Village Chief's and the Guild's quest cards show \"Key Quest!\" in their top right corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
     type: { kind: "boolean" },
     default: false,
   },
