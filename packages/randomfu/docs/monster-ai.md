@@ -252,9 +252,10 @@ including the elder dragons, Rajang, Congalala and Hypnocatrice; the
 weakest is Bulldrome. It needs the classification in the
 randomizer as data, keyed by file and choice order and checked against the
 disc's weights, since it can't be worked out without a disassembler.
-Before building it, play an attack-heavy test disc for a few species, one
-of them a trample-heavy one (Yian Kut-Ku, Yian Garuga, Diablos) to check
-the trample rule.
+A test disc with the attack entries of every mixed choice weighted ×4
+(then back to 32) made Giadrome clearly more aggressive on the EU disc in
+PPSSPP. Still to play: a trample-heavy species (Yian Kut-Ku, Yian Garuga,
+Diablos) to check the trample rule, and an elder dragon for the aura.
 
 ## Other things found on the way
 
