@@ -61,7 +61,8 @@ web app shows as a tag):
   carves, gathering points, supply boxes, recipe materials, the smithy's
   weapons and armor, armor skills (`armorSkills.mode shuffle`), shop stock,
   the large and small monsters in quests, quests' maps and where their
-  monsters start, and monsters' weaknesses. Nothing new is
+  monsters start, monsters' weaknesses, and the effects of hunting horn
+  songs. Nothing new is
   made; a weapon keeps its own stats wherever it turns up (randomized or
   not).
 - A randomizer rolls new values: material amounts, crafting costs, shop
@@ -127,6 +128,9 @@ web app shows as a tag):
 | `weapons.statRange`               | `near`      | Rarities either side stats stay within (`near` 1, `wide` 3, `any`)                                     |
 | `weapons.sharpness`               | off         | Blademaster weapons of a type and rarity trade sharpness                                               |
 | `weapons.sharpnessMode`           | `shuffle`   | `new`: every bar the weapons use also gets new colors                                                  |
+| `songs.enabled`                   | off         | Shuffle which effect each hunting horn song plays                                                      |
+| `songs.mix`                       | `any`       | Effects move between `any` songs, or songs of the same `length`                                        |
+| `songs.keepSelfImprovement`       | on          | White-White and Purple-Purple stay Self-Improvement                                                    |
 | `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                                   |
 | `armor.scope`                     | `rarity`    | Which pieces a place can get: the same `rarity`, the same `rank` (Low, High or G), or `any`            |
 | `armor.start`                     | `smithy`    | A new hunter's armor: what the smithy's spots make (`smithy`), any Low Rank piece (`rank`), or `any`   |
@@ -193,8 +197,8 @@ web app shows as a tag):
 Each preset replaces every option and keeps the seed. They're built on
 the shuffle and randomize split, and a test (`test/settings.test.ts`) keeps
 them to what's described here. Options not yet tried in game are in no
-preset: quest maps, monster starts, small monster species and the Veggie
-Elder's trades. Turn those on yourself once you've tried them on your disc.
+preset: quest maps, monster starts, small monster species, the Veggie
+Elder's trades and hunting horn songs. Turn those on yourself once you've tried them on your disc.
 Armor stats are the exception: the presets turn on all four, though only
 defense has been played. Resistances, slots and rarity have only been run
 over the EU disc's tables, and what the game reads armor rarity for hasn't
@@ -235,6 +239,7 @@ and the quest map options, which rebuild quests (see "Quest maps" below).
 | `quest-goals`     | The quest header's goal slots and type, the board's copy, the goal line                | Hunt, capture or slay, which monster, how many (see below)    |
 | quest maps        | Each quest `.mib`, rebuilt; the board's map byte                                       | The map, its gathering and small monsters, starts             |
 | `veggie-trades`   | The Veggie Elder's trade lists in `game_task.ovl`                                      | What each trade gives (see below)                             |
+| horn songs        | The song table's effect bytes in `game_task.ovl`                                       | Which effect each song plays (see below)                      |
 | quest monsters    | Spawn records in each quest `.mib`                                                     | Which large monsters, their level, small counts               |
 | monster stats     | Each monster's `emChunk` in `game_task.ovl`                                            | Base HP, size, status resistance                              |
 | weaknesses        | Hitzone tables in `game_task.ovl`                                                      | Elemental weaknesses and weak spots                           |
@@ -1215,6 +1220,65 @@ that gave one item keeps giving one. Rows keep the item he takes and their place
 of the hunter's items he picks doesn't change. No tier logic applies: a trade
 isn't counted as an item source, so the recipe check ignores it. Not yet
 played in game.
+
+### Hunting horn songs
+
+A horn can play every song made of its three notes. The notes are the
+EBOOT's note-set table, indexed by each horn's `NoteGLType` (20 sets of
+three, the first note white or purple). The songs are a table in
+`game_task.ovl` (mhfu-extract `tables/horn.ts`, EU file offset 0x1aca38):
+47 songs of two to four notes, each 4 bytes stored last note first, then
+an empty entry, then one effect byte per song (IDs 0-41; Defense Up [Hi],
+Wind Cancel and Ice Res Up [Lo] and [Hi] have two songs each). Only the
+notes and effect IDs are on the disc: the extractor's effect names and
+durations (`overlay/melody-effects.json`) are hand-made, from the old site.
+
+When a song is played, `game_task` reads its effect byte and jumps on it
+(EU 0x09bb1248, a 42-case jump table at 0x09c10b08). Each case sets the
+effect's timer, its strength and, if it's already on, the extended
+effect. Whether a song reaches other hunters or only the player
+(Self-Improvement, Clairvoyance and Supersonic Waves) also comes from the
+byte (EU 0x09a72630, 0x09a868b8), and the effect names the game shows are
+listed by effect, not by song. So `songs.enabled` only moves effect bytes
+between songs, as a permutation: every effect is still in the game, as
+strong and as long as before, on other notes. Songs keep their notes and
+horns keep theirs. With `songs.mix length`, effects only move between songs
+of as many notes, so a song takes as long to play as before; `any` lets a
+strong buff land on a two-note song or a weak one on four.
+
+Every note set has White-White or Purple-Purple, which play
+Self-Improvement (Movement Speed Up): the walking speed a horn needs, so
+`songs.keepSelfImprovement` (on by default) keeps those two songs as they
+are. Nothing else is kept per horn. On the disc, Attack Up is on
+White-Red and Purple-Red-Red, so 8 of the 20 note sets have it; shuffled,
+a seed may leave it to two or three sets, and a horn's set may hold only
+resistances. The spoiler log lists every song's new effect and each note
+set's songs.
+
+The game names songs in two places, both rewritten on the EU disc:
+
+- The bookshelf's Hunting Horn Sheet Music (strings 356-375 of the
+  bookshelf table, 19 pages) and Hunting Horn Sheet Music at a Glance
+  (376-398, 22 pages; on the disc it waits for Info Magazine issue 3),
+  under Melee Weapons Info. They become the RandomFU Songbook: every song
+  by its new effect, then a page per note set with the songs it plays,
+  each note a ♪ in the colour the game's sheet music uses. Written in the
+  guides' one repack (`hints/guides.ts`), in English in every language,
+  and readable from the start. The songbook takes about 7.3 KB of the
+  12.9-14.1 KB the two articles had, so the other guides get the rest.
+- The Training School's hunting horn lesson ends with three songs
+  (White-White, Blue-Blue-Red, Red-Blue-White; table 0, string 298 of the
+  EU message files 4776-4780). Its song lines get the new effects, in
+  English in every language, within the string's own bytes; the lesson's
+  own lines are kept.
+
+The smithy shows a horn's notes, not its songs, so nothing else changes.
+The effect bytes have been written to the EU disc and read back (the notes
+unchanged, the effects a permutation), and the songbook and lesson read
+back in every language. Not yet played in game: that a song plays its new
+effect, and that the game's song name follows it, are from the code above.
+mhfu-extract finds the song table by its effect IDs counting up from 0, so
+it can't read a shuffled disc's songs.
 
 ## Monster health
 

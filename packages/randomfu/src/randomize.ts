@@ -65,6 +65,9 @@ import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
 import { findSmithyStore, findStarterBox, gearReport } from "./shuffles/store.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
 import { collectTradeSlots, randomizeTrades, shuffleTrades } from "./shuffles/veggie-trades.js";
+import { collectSongs, readNoteSets, shuffleSongs } from "./shuffles/melodies.js";
+import { planSongbook, rewriteLesson } from "./hints/songbook.js";
+import type { GuidePlan } from "./hints/bookshelf.js";
 import { collectWeaponStats, randomizeWeaponStats } from "./shuffles/weapon-stats.js";
 import { randomizeSharpness } from "./shuffles/sharpness.js";
 import {
@@ -732,6 +735,28 @@ export function randomize(
     );
   }
 
+  // Songs: the sheet music on the bookshelf is written with the guides, last.
+  let songbook: GuidePlan | null = null;
+  if (settings["songs.enabled"]) {
+    const table = collectSongs(game.gameTask);
+    const noteSets = readNoteSets(game.eboot);
+    const { effects, report } = shuffleSongs(
+      table,
+      { mix: settings["songs.mix"], keepSelfImprovement: settings["songs.keepSelfImprovement"] },
+      rng.fork("songs"),
+      edits,
+      game.gameTask,
+      noteSets,
+    );
+    report.notes.push(rewriteLesson(game, edits, table, effects));
+    if (noteSets) songbook = planSongbook(settings.seed, table, effects, noteSets);
+    else
+      report.notes.push(
+        "The bookshelf's sheet music still lists the old effects: the horns' note sets weren't found.",
+      );
+    reports.push(report);
+  }
+
   // The smithy's store and a new hunter's equipment follow the weapons and
   // armor shuffles: found once, for both.
   const startArmor = settings["armor.start"];
@@ -1172,10 +1197,14 @@ export function randomize(
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.
   reports.push(
-    ...writeGuides(game, questsAfter, settings.seed, edits, {
-      bestiary: settings["hints.bookshelf"],
-      almanac: settings["hints.almanac"],
-    }),
+    ...writeGuides(
+      game,
+      questsAfter,
+      settings.seed,
+      edits,
+      { bestiary: settings["hints.bookshelf"], almanac: settings["hints.almanac"] },
+      songbook,
+    ),
   );
 
   if (settings["mods.nodeMap"]) reports.push(addNodeMap(game, edits));

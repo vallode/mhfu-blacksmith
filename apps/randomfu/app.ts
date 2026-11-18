@@ -91,8 +91,8 @@ const OPTION_STEPS: Step[] = [
     id: "smithy",
     title: "Smithy",
     icon: "hammer",
-    sections: ["Crafting", "Costs", "Weapons", "Armor"],
-    intro: "What the smithy makes and what it asks for.",
+    sections: ["Crafting", "Costs", "Weapons", "Hunting horn", "Armor"],
+    intro: "What the smithy makes and what it asks for, and what hunting horns play.",
   },
   {
     id: "shops",
@@ -158,6 +158,7 @@ const SECTION_ICONS: Record<string, Sprite> = {
   Crafting: { icon: "bone", tint: "var(--color-parchment)" },
   Costs: { icon: "coin", tint: "var(--color-gem-yellow)" },
   Weapons: { icon: "great-sword" },
+  "Hunting horn": { icon: "hunting-horn" },
   Armor: { icon: "helmet" },
   "Shop stock": { icon: "sac", tint: "var(--color-gem-orange)" },
   "Shop prices": { icon: "coin", tint: "var(--color-gem-yellow)" },

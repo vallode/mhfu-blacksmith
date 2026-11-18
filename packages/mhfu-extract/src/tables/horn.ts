@@ -38,8 +38,8 @@ export const NOTE_SET_COUNT = 20;
 const NOTE_SET_SIZE = 3;
 const NOTE_SET_TERMINATOR = Buffer.from("ffffffff", "hex");
 
-const SONG_SIZE = 4;
-const SONG_OPTIONAL_FLAG = 0x80;
+export const SONG_SIZE = 4;
+export const SONG_OPTIONAL_FLAG = 0x80;
 /** Fewest songs a candidate melody table needs (the EU disc has 47). */
 const MIN_SONGS = 30;
 
@@ -134,13 +134,26 @@ function effectIdsAt(buf: Buffer, offset: number, count: number): number[] | nul
   return ids;
 }
 
+export interface MelodyTable {
+  /** File offset of the first song. */
+  offset: number;
+  /** File offset of the effect IDs, one byte per song. */
+  effectsOffset: number;
+  songs: Song[];
+}
+
 /**
  * Every song in `buf` (a decrypted `game_task.ovl`). Throws unless exactly
  * one table has the melody table's shape.
  */
 export function readMelodyTable(reader: BinaryReader): Song[] {
+  return locateMelodyTable(reader).songs;
+}
+
+/** The melody table and where it is (`readMelodyTable`). */
+export function locateMelodyTable(reader: BinaryReader): MelodyTable {
   const buf = reader.buf;
-  const found: Song[][] = [];
+  const found: MelodyTable[] = [];
   for (let start = 0; start + SONG_SIZE * (MIN_SONGS + 1) <= buf.length; start += SONG_SIZE) {
     // Only the start of a run, so each table is seen once.
     if (start >= SONG_SIZE && songAt(buf, start - SONG_SIZE)) continue;
@@ -153,7 +166,11 @@ export function readMelodyTable(reader: BinaryReader): Song[] {
     if (songs.length < MIN_SONGS || buf.readUInt32LE(at) !== 0) continue;
     const ids = effectIdsAt(buf, at + SONG_SIZE, songs.length);
     if (!ids) continue;
-    found.push(songs.map((s, index) => ({ index, ...s, effectId: ids[index]! })));
+    found.push({
+      offset: start,
+      effectsOffset: at + SONG_SIZE,
+      songs: songs.map((s, index) => ({ index, ...s, effectId: ids[index]! })),
+    });
   }
   if (found.length !== 1) {
     throw new HornTableError(`Expected one hunting horn melody table, found ${found.length}.`);
