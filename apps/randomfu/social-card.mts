@@ -19,7 +19,9 @@ import { fileURLToPath } from "node:url";
 const web = path.dirname(fileURLToPath(import.meta.url));
 const dist = path.join(web, "dist");
 const out = path.join(web, "social-card.png");
-execFileSync(process.execPath, [path.join(web, "build.mjs")], { stdio: "inherit" });
+execFileSync(process.execPath, ["--import", "tsx", path.join(web, "build.mjs")], {
+  stdio: "inherit",
+});
 
 /** The steps' sprites and tints (STEPS in app.ts), in order. */
 const SPRITES: [string, string?][] = [

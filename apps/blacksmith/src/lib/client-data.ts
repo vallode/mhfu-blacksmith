@@ -23,10 +23,12 @@ import {
   decodeWeapon,
   decodeArmor,
   decodeMonster,
+  decodeMonsterListItem,
+  type MonsterListItem,
   decodeDecoration,
   decodeTree,
 } from "./schema";
-import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES } from "./constants";
+import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES, type MonsterCategory } from "./constants";
 import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
@@ -37,11 +39,9 @@ import { slugify } from "./slug";
 import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
 import type { SearchData, SkillTreeData } from "./set-search";
 import { setSearchDataFromBundles } from "./set-data";
+import type { AwardText } from "./i18n/game-text";
 
-export interface MonsterListItem {
-  slug: string;
-  name: string;
-}
+export type { MonsterListItem };
 
 // ---------------------------------------------------------------------------
 // Module-level caches
@@ -285,9 +285,37 @@ export function useMonsterList(category: string): ListState<MonsterListItem> {
     const b = bundle as MonsterBundle;
     return {
       tree: null,
-      items: b.items.map((m) => ({ slug: m.s, name: m.n })),
+      items: b.items.map(decodeMonsterListItem),
     };
   });
+}
+
+/** Every monster type's list, with each monster's type: null until they have all loaded. */
+export function useAllMonsters(): (MonsterListItem & { category: MonsterCategory })[] | null {
+  const [monsters, setMonsters] = useState<
+    (MonsterListItem & { category: MonsterCategory })[] | null
+  >(null);
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all(
+      MONSTER_CATEGORIES.map((category) =>
+        getBundle(`monster-${category}`).then((bundle) =>
+          (bundle as MonsterBundle).items.map((m) => ({
+            ...decodeMonsterListItem(m),
+            category,
+          })),
+        ),
+      ),
+    )
+      .then((lists) => {
+        if (!cancelled) setMonsters(lists.flat());
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return monsters;
 }
 
 // Re-export melodies lookup for the horn table.
@@ -733,4 +761,43 @@ export function loadSetSearchData(): Promise<SearchData> {
       });
   }
   return setSearchPromise;
+}
+
+// ---------------------------------------------------------------------------
+// Guild Card awards: each award's name and description, by its index
+// ---------------------------------------------------------------------------
+
+let awardTextPromise: Promise<AwardText[]> | null = null;
+let awardTextCache: AwardText[] | null = null;
+
+/** The awards' English text from awards.json, in the game's order (`AWARDS`'). */
+export function getAwardText(): Promise<AwardText[]> {
+  if (awardTextCache) return Promise.resolve(awardTextCache);
+  if (!awardTextPromise) {
+    awardTextPromise = fetchJson<AwardText[]>("/data/awards.json")
+      .then((text) => (awardTextCache = text))
+      .catch((e) => {
+        awardTextPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return awardTextPromise;
+}
+
+/** `getAwardText` as a hook: null while loading or on error (`error` set). */
+export function useAwardText(): { awards: AwardText[] | null; error: boolean } {
+  const [awards, setAwards] = useState(awardTextCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (awardTextCache) return;
+    let cancelled = false;
+    getAwardText().then(
+      (a) => !cancelled && setAwards(a),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { awards, error };
 }

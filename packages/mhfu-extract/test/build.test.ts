@@ -541,6 +541,30 @@ test("Pokke Farm's points are copied when extract found them, and skipped otherw
   }
 });
 
+test("the awards' text goes into the strings, by award index", async () => {
+  const { root, data, extracted } = await fixture();
+  try {
+    const skipped = await copyTargets(["awards"], { extracted, data });
+    assert.deepEqual(skipped, { copied: [], skipped: ["awards.json"] });
+
+    const award = {
+      id: 0,
+      name: "Village Chief's Glove",
+      description: "Proof of completing Pokke Beginner Quests.",
+    };
+    await writeFile(path.join(extracted, "awards.json"), JSON.stringify({ awards: [award] }));
+    const report = await runBuildData({ extracted, data, only: ["awards"] });
+    assert.deepEqual(report.copiedFiles, ["awards.json"]);
+    const written = JSON.parse(await readFile(path.join(data, "mhfu", "awards.json"), "utf-8"));
+    assert.deepEqual(written.awards, [{ id: 0 }]);
+    assert.equal(readStringsDoc(data, "mhfu").award?.["0"], award.name);
+    assert.equal(readStringsDoc(data, "mhfu").award_description?.["0"], award.description);
+    assert.deepEqual(readData(data, "mhfu", "awards.json").awards, [award]);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("runBuildData restyles material fields it doesn't take, by item ID", async () => {
   const { root, data, extracted } = await fixture();
   try {

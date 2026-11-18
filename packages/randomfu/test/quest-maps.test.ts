@@ -10,7 +10,7 @@ import {
 } from "mhfu-extract/src/quests/document.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { sampleDoc, spawn } from "mhfu-extract/test/quest-document-sample.js";
-import { openPatchableImage } from "../src/disc/node-file.js";
+import { enumMonsterNames } from "../src/names.js";
 import { Edits } from "../src/edits.js";
 import type { BoardFile } from "../src/game/board.js";
 import { itemSources, lostSources } from "../src/game/first-tiers.js";
@@ -28,7 +28,7 @@ import { randomize } from "../src/randomize.js";
 import type { RewardList } from "../src/shuffles/monster-rewards.js";
 import { swapSmallSpecies } from "../src/shuffles/small-monsters.js";
 import { writeEdits } from "../src/write.js";
-import { buildFixtureDisc, tempDir } from "./fixtures.js";
+import { buildFixtureDisc, finish, patchInMemory, tempDir } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 // emIDs: large Rathian 1, Yian Kut-Ku 6, Pink Rathian 37, Diablos 14; small
@@ -135,7 +135,7 @@ test("a quest moves to the other time of day and takes that map's parts", () => 
   ];
   for (const seed of ["a", "b", "c", "d"]) {
     const list = quests(setups);
-    const { report, moved } = moveQuests(list, "time", new Rng(seed), fitsAll);
+    const { report, moved } = moveQuests(list, "time", new Rng(seed), fitsAll, enumMonsterNames);
     assert.deepEqual([...moved].map((e) => e.vanilla.header.questId).sort(), [1001, 1002]);
 
     const day = byId(list, 1001);
@@ -181,7 +181,7 @@ test("with any map, a quest only goes where all of its large monsters are found"
   ];
   for (const seed of ["a", "b", "c", "d", "e"]) {
     const list = quests(setups);
-    const { report } = moveQuests(list, "any", new Rng(seed), fitsAll);
+    const { report } = moveQuests(list, "any", new Rng(seed), fitsAll, enumMonsterNames);
     assert.equal(byId(list, 1001).doc.header.map, 5);
     assert.equal(byId(list, 1002).doc.header.map, 2);
     assert.equal(byId(list, 1003).doc.header.map, 3);
@@ -206,6 +206,7 @@ test("a donor whose parts don't fit is passed over, and a quest with none that f
     "time",
     new Rng("x"),
     (entry) => entry.vanilla.header.questId !== 1001,
+    enumMonsterNames,
   );
   assert.deepEqual(
     [...moved].map((e) => e.vanilla.header.questId),
@@ -233,7 +234,7 @@ test("start points: only a monster's own kind's, and moved quests are left alone
   const seen = new Set<number>();
   for (const seed of ["a", "b", "c", "d", "e", "f", "g", "h"]) {
     const list = quests(setups);
-    randomizeStarts(list, new Set([byId(list, 1002)]), new Rng(seed));
+    randomizeStarts(list, new Set([byId(list, 1002)]), new Rng(seed), enumMonsterNames);
     const stage = byId(list, 1001).doc.large[0]!.spawns[0]!.stage;
     assert.ok([36, 38].includes(stage));
     seen.add(stage);
@@ -243,6 +244,29 @@ test("start points: only a monster's own kind's, and moved quests are left alone
     for (const s of byId(list, 1004).doc.large[0]!.spawns) assert.equal(s.stage, 40);
   }
   assert.deepEqual([...seen].sort(), [36, 38]);
+});
+
+test("no two of a quest's large monsters share a starting point", () => {
+  const setups: Setup[] = [
+    // Two Rathian points by day, one by night.
+    {
+      questId: 1001,
+      map: 2,
+      large: [
+        [1, 36],
+        [1, 38],
+      ],
+    },
+    { questId: 1002, map: 16, large: [[1, 187]] },
+  ];
+  for (const seed of ["a", "b", "c", "d", "e", "f"]) {
+    const list = quests(setups);
+    const { moved } = moveQuests(list, "time", new Rng(seed), fitsAll, enumMonsterNames);
+    assert.ok(!moved.has(byId(list, 1001)), "the night has one Rathian point for two");
+    randomizeStarts(list, moved, new Rng(seed), enumMonsterNames);
+    const stages = byId(list, 1001).doc.large[0]!.spawns.map((s) => s.stage);
+    assert.deepEqual([...stages].sort(), [36, 38]);
+  }
 });
 
 test("a quest only moves where each of its monsters' kinds starts", () => {
@@ -255,7 +279,7 @@ test("a quest only moves where each of its monsters' kinds starts", () => {
   ];
   for (const seed of ["a", "b", "c"]) {
     const list = quests(setups);
-    const { report, moved } = moveQuests(list, "time", new Rng(seed), fitsAll);
+    const { report, moved } = moveQuests(list, "time", new Rng(seed), fitsAll, enumMonsterNames);
     assert.deepEqual(
       [...moved].map((e) => e.vanilla.header.questId),
       [1002, 1003],
@@ -272,7 +296,7 @@ test("a moved quest takes the new map's spawn byte unless the map uses its own, 
     { questId: 1002, map: 16, large: [[1, 187]], spawn: 2 },
   ];
   const list = quests(setups);
-  const { moved } = moveQuests(list, "time", new Rng("s"), fitsAll);
+  const { moved } = moveQuests(list, "time", new Rng("s"), fitsAll, enumMonsterNames);
   assert.equal(moved.size, 2);
   assert.equal(byId(list, 1001).doc.header.spawn, 2);
   assert.equal(byId(list, 1002).doc.header.spawn, 0);
@@ -386,7 +410,7 @@ test("a small monster swap never doubles a species only in a preload list", () =
     // 1002 loads Bullfango (30) in stage 33 but spawns only Hornetaurs (13).
     docs[1]!.small.groups[0]!.preload = [13, 30];
     const { list } = collectDocQuests(docs.map((d, i) => loaded(d, i)));
-    swapSmallSpecies(list, new Rng(seed));
+    swapSmallSpecies(list, new Rng(seed), enumMonsterNames);
     const preload = byId(list, 1002).doc.small.groups[0]!.preload;
     assert.equal(new Set(preload).size, preload.length, `seed ${seed}: ${preload}`);
   }
@@ -437,7 +461,7 @@ test("small monsters swap per quest, only to species found in every area they're
   let changed = 0;
   for (const seed of ["a", "b", "c", "d", "e", "f", "g", "h"]) {
     const list = quests(setups);
-    swapSmallSpecies(list, new Rng(seed));
+    swapSmallSpecies(list, new Rng(seed), enumMonsterNames);
     for (const entry of list) {
       const { doc, vanilla } = entry;
       const mapping = new Map<number, number>();
@@ -497,9 +521,9 @@ test("a rebuilt quest is padded to its disc length, and refused past its sectors
 
 test("on a disc: a rebuilt quest is written and read back; quests that can't be rebuilt are named", async () => {
   const output = path.join(tempDir(), "out.iso");
-  writeFileSync(output, buildFixtureDisc());
-  const image = openPatchableImage(output);
-  const game = await loadGame(image.source, image.iso, { eboot: null });
+  const original = buildFixtureDisc();
+  const image = patchInMemory(original);
+  const game = await loadGame(image.source, image.iso);
 
   // The fixture's small monster tables aren't laid out like the disc's, so most of its quests are locked.
   const result = randomize(
@@ -522,10 +546,10 @@ test("on a disc: a rebuilt quest is written and read back; quests that can't be 
   const edits = new Edits(game);
   edits.quest(rebuilt);
   assert.equal(writeEdits(image, game, edits).quests, 1); // and reads it back
-  image.close();
+  writeFileSync(output, finish(image, original));
 
   const { source, iso } = openDiscImage(output);
-  const after = await loadGame(source, iso, { eboot: null });
+  const after = await loadGame(source, iso);
   const written = after.quests.find((q) => q.parsed.header.questId === 10102)!;
   assert.equal(parseDoc(written.file.payload).large[0]!.spawns[0]!.stage, 151);
   source.close();

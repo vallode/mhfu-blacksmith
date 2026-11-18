@@ -1,6 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import CrownIcon from "@/components/CrownIcon";
-import { CROWN_LABELS, formatChance } from "@/lib/crowns";
+import CrownIcon, { useFormatChance } from "@/components/CrownIcon";
+import { useGameText, useT } from "@/context/LanguageContext";
 import { QUEST_HUBS, questHref, type BestCrown, type Quest } from "@/lib/quests";
 
 /**
@@ -21,6 +23,10 @@ export default function MonsterQuests({
   /** Shown above the lists, across both columns (the crown cutoffs). */
   legend?: React.ReactNode;
 }) {
+  const { quests: t, monsters } = useT();
+  const tc = monsters.crowns;
+  const game = useGameText();
+  const formatChance = useFormatChance();
   return (
     <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1 compact:grid-cols-1">
       {legend && <div className="col-span-full">{legend}</div>}
@@ -29,7 +35,9 @@ export default function MonsterQuests({
         if (onHub.length === 0) return null;
         return (
           <section key={hub.slug} className="flex min-w-0 flex-col gap-[0.6rem]">
-            <h3 className="m-0 text-small leading-[1.25] font-normal text-gold">{hub.label}</h3>
+            <h3 className="m-0 text-small leading-[1.25] font-normal text-gold">
+              {t.hubs[hub.slug]}
+            </h3>
             <ul className="m-0 flex list-none flex-col gap-[0.4rem] p-0">
               {onHub.map((q) => {
                 const best = bestCrowns?.get(q.id);
@@ -43,7 +51,7 @@ export default function MonsterQuests({
                       href={questHref(q)}
                       className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
                     >
-                      {q.title}
+                      {game.quest(q.id, "title", q.title)}
                     </Link>
                     {best && (
                       // The 22px crowns overhang the 20px row by a pixel each
@@ -55,13 +63,13 @@ export default function MonsterQuests({
                           <CrownIcon
                             key={crown}
                             crown={crown}
-                            title={`Best chance of a ${CROWN_LABELS[crown].toLowerCase()} crown: ${formatChance(chance)}`}
+                            title={tc.bestChance(tc.crown[crown], formatChance(chance))}
                           />
                         ))}
                       </span>
                     )}
                     {cleared?.has(q.id) && (
-                      <span className="ml-auto flex-none text-stat">CLEAR!!</span>
+                      <span className="ml-auto flex-none text-stat">{t.cleared}</span>
                     )}
                   </li>
                 );

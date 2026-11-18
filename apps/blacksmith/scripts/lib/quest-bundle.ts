@@ -6,7 +6,6 @@
  */
 import {
   QUEST_HUBS,
-  QUEST_MONSTER_ALIASES,
   QUEST_NON_MONSTERS,
   REWARD_KINDS,
   ROLL_OUTCOMES,
@@ -124,8 +123,7 @@ export function encodeQuestBundle({
 
   const monsters: QuestsBundle["monsters"] = [];
   const monsterIndex = new Map<string, number>();
-  const monster = (discName: string): number => {
-    const name = QUEST_MONSTER_ALIASES[discName] ?? discName;
+  const monster = (name: string): number => {
     let i = monsterIndex.get(name);
     if (i === undefined) {
       const page = monsterPage(name);

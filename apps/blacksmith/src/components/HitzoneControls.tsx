@@ -1,15 +1,19 @@
 "use client";
 
+import { useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 
 export interface HitzonePart {
+  /** The data's part id ("front-legs"). */
   name: string;
+  /** The part's name in the site's language. */
+  label: string;
   /** `var(--color-hitbox-N)`. */
   color: string;
 }
 
-/** A break reward in the legend: its highlight key and name. */
+/** A break reward in the legend: its highlight key and name (in the site's language). */
 export interface HitzoneBreak {
   key: string;
   name: string;
@@ -42,6 +46,7 @@ export default function HitzoneControls({
   onPin,
   onHover,
 }: Props) {
+  const { hitzones: t, breaks: breakText } = useT().monsters;
   return (
     <>
       <button
@@ -55,11 +60,11 @@ export default function HitzoneControls({
           show ? "text-stat" : "text-parchment",
         )}
       >
-        Hitzones
+        {t.show}
       </button>
       {show && (
         <ul
-          aria-label="Hitzone parts"
+          aria-label={t.legend}
           className={cn(modelPanel, "absolute top-2 left-2 z-10 flex flex-col")}
           onPointerLeave={() => onHover(null)}
         >
@@ -76,12 +81,12 @@ export default function HitzoneControls({
                 className="size-[1rem] shrink-0"
                 style={{ backgroundColor: part.color }}
               />
-              {part.name}
+              {part.label}
             </LegendEntry>
           ))}
           {breaks.length > 0 && (
             <li aria-hidden className="mt-[0.4rem] text-gold">
-              Breaks
+              {breakText.legend}
             </li>
           )}
           {breaks.map((b) => (
@@ -89,7 +94,7 @@ export default function HitzoneControls({
               <span aria-hidden className="w-[1rem] shrink-0 text-center text-gold">
                 ◆
               </span>
-              <span className="sr-only">Break: </span>
+              <span className="sr-only">{breakText.legendPrefix}</span>
               {b.name}
             </LegendEntry>
           ))}
@@ -119,7 +124,7 @@ function LegendEntry({ id, pinned, onPin, onHover, children }: LegendEntryProps)
         onFocus={() => onHover(id)}
         onBlur={() => onHover(null)}
         className={cn(
-          "flex cursor-pointer items-center gap-[0.6rem] text-left capitalize hover:text-white focus-visible:text-white",
+          "flex cursor-pointer items-center gap-[0.6rem] text-left hover:text-white focus-visible:text-white",
           pinned === id ? "text-white underline" : "text-parchment",
         )}
       >

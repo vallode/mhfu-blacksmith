@@ -417,6 +417,8 @@ interface Primitive {
   part: number;
   material: number;
   uvScale: [number, number];
+  /** An effect layer's blend; undefined for the rest, drawn as before. */
+  effect?: "add" | "revsub";
   /** Triangle list, as indices into the model's vertex table. */
   indices: number[];
 }
@@ -488,10 +490,17 @@ export async function buildGlb(
       // (texture, UV scale), not the PMO material index: PMO materials that
       // differ only in their (unused) colours merge, along with their geometry.
       const texture = pmo.materials[source.materialIndex]!.textureIndex;
-      const key = `${part}:${texture}:${exact ? mesh.uvScale.join(",") : ""}`;
+      const effect = mesh.blend === "add" || mesh.blend === "revsub" ? mesh.blend : undefined;
+      const key = `${part}:${texture}:${exact ? mesh.uvScale.join(",") : ""}:${effect ?? ""}`;
       let primitive = primitives.get(key);
       if (!primitive) {
-        primitive = { part, material: source.materialIndex, uvScale: mesh.uvScale, indices: [] };
+        primitive = {
+          part,
+          material: source.materialIndex,
+          uvScale: mesh.uvScale,
+          ...(effect ? { effect } : {}),
+          indices: [],
+        };
         primitives.set(key, primitive);
       }
       const remap = vertices.map((v, j) => {
@@ -763,11 +772,13 @@ export async function buildGlb(
   };
 
   let usesTextureTransform = false;
+  let usesUnlit = false;
   const materials: object[] = [];
   const materialIndex = new Map<string, number>();
   const materialFor = (primitive: Primitive): number => {
     const source = pmo.materials[primitive.material]!;
-    const key = `${source.textureIndex}:${exact ? primitive.uvScale.join(",") : ""}`;
+    const { effect } = primitive;
+    const key = `${source.textureIndex}:${exact ? primitive.uvScale.join(",") : ""}:${effect ?? ""}`;
     let index = materialIndex.get(key);
     if (index !== undefined) return index;
     const texture = textureFor(source.textureIndex);
@@ -782,13 +793,21 @@ export async function buildGlb(
       };
     }
     const alpha = texture !== undefined && textures[source.textureIndex]!.hasAlpha;
+    if (effect) usesUnlit = true;
     materials.push({
       pbrMetallicRoughness: {
         ...(textureInfo ? { baseColorTexture: textureInfo } : {}),
         metallicFactor: 0,
         roughnessFactor: 1,
       },
-      ...(alpha ? { alphaMode: "MASK", alphaCutoff: 0.5 } : {}),
+      // An effect layer is unlit and blended; glTF has no additive or
+      // subtractive mode, so `extras.blend` names it for the viewer, which
+      // otherwise draws it alpha-blended.
+      ...(effect
+        ? { alphaMode: "BLEND", extensions: { KHR_materials_unlit: {} }, extras: { blend: effect } }
+        : alpha
+          ? { alphaMode: "MASK", alphaCutoff: 0.5 }
+          : {}),
       doubleSided: true,
     });
     index = materials.length - 1;
@@ -848,6 +867,8 @@ export async function buildGlb(
     ...(compress ? ["EXT_meshopt_compression"] : []),
     ...(usesWebp ? ["EXT_texture_webp"] : []),
   ];
+  // Optional: a viewer without it draws the layer lit.
+  const optional = usesUnlit ? ["KHR_materials_unlit"] : [];
   // One mesh per piece, unless the model is whole (the usual case).
   const parts = [...new Set(gltfPrimitives.map((primitive) => primitive.part))].sort(
     (a, b) => a - b,
@@ -873,7 +894,10 @@ export async function buildGlb(
       version: "2.0",
       ...(rig?.motionsFile ? { extras: { motions: rig.motionsFile } } : {}),
     },
-    ...(extensions.length ? { extensionsUsed: extensions, extensionsRequired: extensions } : {}),
+    ...(extensions.length || optional.length
+      ? { extensionsUsed: [...extensions, ...optional] }
+      : {}),
+    ...(extensions.length ? { extensionsRequired: extensions } : {}),
     scene: 0,
     scenes: [{ nodes: [...meshNodes.keys(), ...skeleton.roots] }],
     nodes: [...meshNodes, ...skeleton.nodes],

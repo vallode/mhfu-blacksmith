@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Guild Card awards file",
+  "description": "The Guild Card's 48 awards, in the game's order. The game keeps which a hunter has as 48 bits of the save, bit n for award n. What it checks before giving each is in packages/mhfu-extract/docs/awards.md.",
+  "type": "object",
+  "required": ["awards"],
+  "additionalProperties": false,
+  "properties": {
+    "awards": {
+      "type": "array",
+      "description": "By index",
+      "items": { "$ref": "#/definitions/award" }
+    }
+  },
+  "definitions": {
+    "award": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "$comment": "The award's name and the game's description of it are in data/strings under 'award' and 'award_description', keyed by its id.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 63,
+          "description": "The award's index: its bit in the save's award flags"
+        }
+      }
+    }
+  }
+}

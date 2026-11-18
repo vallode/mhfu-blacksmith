@@ -7,13 +7,26 @@
  * - `bodytailshiny[89]` (52 bytes, entry `i` is emID `i + 1`): body carve,
  *   tail carve and shiny drop, each seven u16 indexes, one per rank slot
  *   (unranked, low, high, treasure, training, G, misc; `0xFFFF` = none),
- *   then a 10-byte trailer (two u8, the f32 carve radius, a u16, two u8).
+ *   then a 10-byte trailer: the u8 body and tail carve counts (0 where the
+ *   monster has none or carves another way, as the elder dragons do), the
+ *   f32 carve radius, a u16 and two u8. Found by testing: a test disc with
+ *   Giadrome's body count changed from 2 to 1 gave one body carve in game.
  *   Index `n` reads the pointer at `carvePointers + n * 4`, which leads to
  *   `{ u16 chance, u16 item }` pairs ending in chance `0xFFFF`.
  * - `capbreakindex[]` (14 bytes, ending at a `0xFF` emID byte): u8 emID,
  *   u8 type (128 = capture, otherwise a break part number), six u16 rank
  *   indexes (no misc slot) into `capBreakPointers`, whose lists are
  *   `{ u16 chance, u16 item, u16 amount }` ending in chance `0xFFFF`.
+ *
+ * - Pointers no `bodytailshiny` index reaches (#1001 to #1087 on the EU
+ *   disc) lead to lists that code picks instead, by the quest's rank slot:
+ *   a monster's `emXX.ovl` loads the pointer number as an immediate (the
+ *   elder dragons' carves, Gypceros's live carves), and `game_task.ovl`'s
+ *   shiny drop code does for Yama Tsukami and reads Congalala's and Emerald
+ *   Congalala's tail-stagger drops from u32 tables of pointer numbers, three
+ *   per rank slot (bone, mushroom, mineral stone). `readUnindexedCarves`
+ *   reads the lists by pointer number, and `CODE_CARVES` says which monster
+ *   and rank slot each code picks.
  *
  * Each index table directly follows its pointer table, and the pointer
  * tables are runs of exactly 1088 and 924 pointers into the overlay (the
@@ -27,6 +40,8 @@ export const CAP_BREAK_POINTER_COUNT = 924;
 export const CARVE_INDEX_COUNT = 89;
 export const CARVE_INDEX_SIZE = 52;
 export const CAP_BREAK_ENTRY_SIZE = 14;
+/** Offset of the body carve count in a `bodytailshiny` entry; the tail count follows it. */
+export const CARVE_COUNT_OFFSET = 42;
 export const CAPTURE_TYPE = 128;
 
 /** Rank slots, in struct order. Cap/break entries have no `misc` slot. */
@@ -181,4 +196,82 @@ export function readCapBreakTables(ovl: OvlFile, table: TablePair): CapBreakTabl
     });
   }
   return tables;
+}
+
+/** Carve lists no `bodytailshiny` index reaches, by pointer number (see the module comment). */
+export function readUnindexedCarves(ovl: OvlFile, table: TablePair): Record<number, RewardEntry[]> {
+  const indexed = new Set<number>();
+  for (let i = 0; i < CARVE_INDEX_COUNT; i++)
+    for (let k = 0; k < CARVE_KINDS.length * REWARD_RANKS.length; k++)
+      indexed.add(ovl.reader.u16(table.index + i * CARVE_INDEX_SIZE + k * 2));
+  const lists: Record<number, RewardEntry[]> = {};
+  for (let n = 0; n < CARVE_POINTER_COUNT; n++) {
+    if (indexed.has(n)) continue;
+    const list = readRewardList(ovl, ovl.reader.u32(table.pointers + n * 4), false);
+    if (list) lists[n] = list;
+  }
+  return lists;
+}
+
+/** A carve or shiny drop whose list code picks rather than `bodytailshiny` (see the module comment). */
+export interface CodeCarve {
+  emId: number;
+  /** "body", "live carve", "second carve" or "shiny". */
+  source: string;
+  /** The carve pointer the code picks in each rank slot, in `REWARD_RANKS` order. */
+  pointers: readonly number[];
+}
+
+/**
+ * Every code-picked carve, read off the EU disc's code: em02.ovl (Fatalis,
+ * Crimson and White Fatalis), em07.ovl (Lao-Shan Lung and Ashen), em20.ovl
+ * (Gypceros and Purple), em55.ovl (Shen Gaoren), em58.ovl (Yama Tsukami's
+ * carves) and game_task.ovl's shiny drop code (Yama Tsukami, Congalala,
+ * Emerald Congalala; EU vaddr 0x09AD7AB8). Each picks one pointer for a few
+ * rank slots and another for every other slot. Shen Gaoren's second carve
+ * has Lao-Shan Lung's materials.
+ */
+export const CODE_CARVES: readonly CodeCarve[] = [
+  { emId: 2, source: "body", pointers: [1007, 1072, 1007, 1007, 1033, 1055, 1007] },
+  { emId: 36, source: "body", pointers: [1008, 1073, 1008, 1008, 1036, 1056, 1008] },
+  { emId: 71, source: "body", pointers: [1047, 1074, 1009, 1009, 1041, 1057, 1047] },
+  { emId: 7, source: "body", pointers: [1001, 1001, 1003, 1001, 1034, 1051, 1001] },
+  { emId: 7, source: "live carve", pointers: [1002, 1002, 1004, 1002, 1035, 1052, 1002] },
+  { emId: 50, source: "body", pointers: [1005, 1005, 1005, 1005, 1037, 1053, 1005] },
+  { emId: 50, source: "live carve", pointers: [1006, 1006, 1006, 1006, 1038, 1054, 1006] },
+  { emId: 20, source: "live carve", pointers: [1028, 1028, 1028, 1028, 1042, 1066, 1083] },
+  { emId: 39, source: "live carve", pointers: [1048, 1048, 1048, 1048, 1050, 1067, 1084] },
+  { emId: 55, source: "body", pointers: [1030, 1030, 1010, 1030, 1039, 1058, 1030] },
+  { emId: 55, source: "second carve", pointers: [1031, 1031, 1011, 1031, 1040, 1059, 1031] },
+  { emId: 58, source: "body", pointers: [1068, 1068, 1068, 1068, 1070, 1068, 1068] },
+  { emId: 58, source: "live carve", pointers: [1069, 1069, 1069, 1069, 1071, 1069, 1069] },
+  { emId: 58, source: "shiny", pointers: [1076, 1076, 1076, 1076, 1076, 1075, 1076] },
+  // Congalala and Emerald Congalala: bone, mushroom, mineral stone.
+  { emId: 52, source: "shiny", pointers: [1013, 1016, 1019, 1022, 1025, 1060, 1077] },
+  { emId: 52, source: "shiny", pointers: [1014, 1017, 1020, 1023, 1026, 1061, 1078] },
+  { emId: 52, source: "shiny", pointers: [1015, 1018, 1021, 1024, 1027, 1062, 1079] },
+  { emId: 85, source: "shiny", pointers: [1080, 1080, 1080, 1080, 1085, 1063, 1080] },
+  { emId: 85, source: "shiny", pointers: [1081, 1081, 1081, 1081, 1086, 1064, 1081] },
+  { emId: 85, source: "shiny", pointers: [1082, 1082, 1082, 1082, 1087, 1065, 1082] },
+];
+
+export interface CarveCounts {
+  emId: number;
+  /** File offset of the body count byte; the tail count is the next byte. */
+  offset: number;
+  body: number;
+  tail: number;
+}
+
+/** Reads the body and tail carve counts of all 89 `bodytailshiny` entries. */
+export function readCarveCounts(ovl: OvlFile, table: TablePair): CarveCounts[] {
+  return Array.from({ length: CARVE_INDEX_COUNT }, (_, i) => {
+    const offset = table.index + i * CARVE_INDEX_SIZE + CARVE_COUNT_OFFSET;
+    return {
+      emId: i + 1,
+      offset,
+      body: ovl.reader.u8(offset),
+      tail: ovl.reader.u8(offset + 1),
+    };
+  });
 }

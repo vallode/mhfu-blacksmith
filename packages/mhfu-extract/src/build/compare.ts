@@ -16,7 +16,6 @@ import {
 } from "./fields.js";
 import { assignDiscIds, loadSiteIndex, type SiteIndex } from "./ids.js";
 import type { MaterialContext } from "./categories.js";
-import { monsterIdOf } from "../overlay/monsters.js";
 import { readData } from "game-data";
 import { GAME } from "../game.js";
 
@@ -97,10 +96,14 @@ export function pairCategory(
   const discOnly: Unpaired[] = [];
   for (const spec of category.files) {
     const items = extracted.get(spec.file) ?? [];
-    const ids = assignDiscIds(
-      items.map((i) => String(i.name)),
-      spec.table,
-    );
+    // Monsters carry their emID; everything else is named by its enum.
+    const ids =
+      spec.table === "emID"
+        ? items.map((i) => (typeof i.id === "number" ? i.id : null))
+        : assignDiscIds(
+            items.map((i) => String(i.name)),
+            spec.table,
+          );
     items.forEach((item, i) => {
       const id = ids[i];
       if (id === null || id === undefined) {
@@ -124,7 +127,7 @@ export function pairCategory(
             sex: item.sex as string | undefined,
           })
         : spec.table === "emID"
-          ? monsterIdOf(name)
+          ? site.monsterIdOf(name)
           : site.itemIdOf(name);
       const match = id === null ? undefined : disc.get(idKey(category, spec.file, id));
       if (id === null || !match) {

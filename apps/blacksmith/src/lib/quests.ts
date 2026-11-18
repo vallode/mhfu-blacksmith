@@ -40,15 +40,6 @@ export function questHubLabel(slug: string): string {
   return QUEST_HUBS.find((h) => h.slug === slug)?.label ?? slug;
 }
 
-/**
- * Quest monster names come from the disc; these are the site's names for the
- * two that differ.
- */
-export const QUEST_MONSTER_ALIASES: Record<string, string> = {
-  "One-Ear Yian Garuga": "Scarred Yian Garuga",
-  "Terra Shogun Ceanatur": "Terra Shogun Ceanataur",
-};
-
 /** Small-monster spawns that aren't monsters: Treasure Hunting's breakable rocks. */
 export const QUEST_NON_MONSTERS: ReadonlySet<string> = new Set(["Rocks"]);
 

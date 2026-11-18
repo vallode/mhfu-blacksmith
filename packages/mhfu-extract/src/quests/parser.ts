@@ -16,11 +16,13 @@
  * titles); confirmed by decoding a real quest's strings and getting
  * coherent Japanese text.
  *
- * Not implemented here (out of scope for now): `QuestScript` (the
- * opcode/bytecode format is marked "TBD" even in the upstream pattern),
- * gathering node locations/items, `UnknPTR2`, and arena sets.
+ * Not read here: `QuestScript` (README "Quest script" decodes it; every
+ * quest uses one of six scripts, so the site needs nothing from it),
+ * gathering node locations/items (`quests/gathering.ts`) and `UnknPTR2`.
  */
+import type { EquipmentTable } from "game-data";
 import { BinaryReader } from "../binary/reader.js";
+import { ARENA_SET_SIZE, ARENA_SETS_MAX, readArenaSetsAt } from "./document.js";
 
 export interface QuestHeader {
   suppliesPtr: number;
@@ -306,6 +308,12 @@ function readQuestStringsAt(reader: BinaryReader, ptr: number): QuestStrings {
  * UTF-8 strings). Slots with a null pointer are omitted. On the one real JP
  * quest sample checked, every slot aliased the same pointer (Japanese
  * text) — this disc apparently never populated distinct EU-locale text.
+ *
+ * The slot names (`LANG_SLOTS`) are quest.hexpat's field names. On the EU
+ * disc the first slot is confirmed English (the committed `data/mhfu/quests/`
+ * text); which of the other four holds German, French, Spanish and Italian
+ * is only the hexpat's word, so `locales` checks each with a language guess
+ * (locales/quests.ts).
  */
 export function readQuestStrings(
   reader: BinaryReader,
@@ -319,6 +327,17 @@ export function readQuestStrings(
     if (ptr !== 0) out[slot] = readQuestStringsAt(reader, ptr);
   });
   return out;
+}
+
+/** The first populated slot of `languages` (from `readQuestStrings`), or null if none are set. */
+export function primaryQuestStrings(
+  languages: Partial<Record<LangSlot, QuestStrings>>,
+): QuestStrings | null {
+  for (const slot of LANG_SLOTS) {
+    const strings = languages[slot];
+    if (strings) return strings;
+  }
+  return null;
 }
 
 /**
@@ -389,12 +408,73 @@ export function readPrimaryQuestStrings(
   reader: BinaryReader,
   header: QuestHeader,
 ): QuestStrings | null {
-  const all = readQuestStrings(reader, header);
-  for (const slot of LANG_SLOTS) {
-    const strings = all[slot];
-    if (strings) return strings;
-  }
-  return null;
+  return primaryQuestStrings(readQuestStrings(reader, header));
+}
+
+/** An arena set's equipment slot, by the entry's type byte (0-6). */
+export const ARENA_SLOTS = [
+  "leggings",
+  "helmet",
+  "plate",
+  "gauntlets",
+  "waist",
+  "melee",
+  "ranged",
+] as const satisfies readonly EquipmentTable[];
+export type ArenaSlot = (typeof ARENA_SLOTS)[number];
+
+export interface ArenaEquipment {
+  slot: ArenaSlot;
+  /** The slot's equipment ID (an armor ID, or the melee or ranged weapon table index). */
+  id: number;
+  /**
+   * The u16 after the ID: an armor piece's upgrade level, a bowgun's
+   * attachment bits (0x04, 0x10, 0x20, 0x80), 0 on melee weapons and bows.
+   */
+  level: number;
+  /** Item IDs of the slotted decorations; empty slots left out. */
+  decorations: number[];
+}
+
+/**
+ * One loadout a Training School quest offers (layout: document.ts
+ * `ArenaSet`), with empty equipment and item slots left out.
+ */
+export interface ArenaSet {
+  /** On the first set, how many hunters the quest is for (1, 2 or 4); 0 on the others. */
+  players: number;
+  /** 85-120 on the EU disc; what it scales isn't confirmed. */
+  pointMultiplier: number;
+  /** In disc order: the weapon, then legs, head, chest, arms and waist. */
+  equipment: ArenaEquipment[];
+  items: SupplyItem[];
+}
+
+/**
+ * ArenaSet[] @ header.arenaPtr. Nothing counts them: they run up to the
+ * quest script, which follows them (1 set on Basic Training and Mastery
+ * quests, 5 on Subjugation Training ones). Only Training School quests
+ * have them; elsewhere `arenaPtr` is 0.
+ */
+export function readArenaSets(reader: BinaryReader, header: QuestHeader): ArenaSet[] {
+  const start = header.arenaPtr;
+  if (start === 0) return [];
+  const count = Math.min(
+    ARENA_SETS_MAX,
+    Math.floor((header.questScriptPtr - start) / ARENA_SET_SIZE),
+  );
+  if (count < 1) return [];
+  return readArenaSetsAt(reader.buf, start, count).map((set) => ({
+    players: set.players,
+    pointMultiplier: set.pointMultiplier,
+    equipment: set.equipment.flatMap((e) => {
+      const slot = ARENA_SLOTS[e.type];
+      if (!slot || e.id === 0) return [];
+      const decorations = e.decorations.filter((d) => d !== 0);
+      return [{ slot, id: e.id, level: e.level, decorations }];
+    }),
+    items: set.items.filter((i) => i.item !== 0).map((i) => ({ itemId: i.item, amount: i.amount })),
+  }));
 }
 
 export interface ParsedQuest {
@@ -403,19 +483,27 @@ export interface ParsedQuest {
   rewards: RewardTable[];
   largeMonsters: (MonsterSpawn & { stage: number })[];
   smallMonsters: SmallMonsterTable[];
+  /** Training School loadouts (`readArenaSets`); empty on other quests. */
+  arenaSets: ArenaSet[];
+  /** The first populated language slot (English on the EU disc, Japanese on JP), or null. */
   strings: QuestStrings | null;
+  /** Every populated language slot, for `locales`. */
+  languages: Partial<Record<LangSlot, QuestStrings>>;
 }
 
 /** Parses every struct this module knows about from a decrypted `.mib` payload. */
 export function parseQuest(payload: Buffer): ParsedQuest {
   const reader = new BinaryReader(payload);
   const header = readQuestHeader(reader);
+  const languages = readQuestStrings(reader, header);
   return {
     header,
     supplies: readSupplies(reader, header),
     rewards: readRewards(reader, header),
     largeMonsters: readLargeMonsters(reader, header),
     smallMonsters: readSmallMonsters(reader, header),
-    strings: readPrimaryQuestStrings(reader, header),
+    arenaSets: readArenaSets(reader, header),
+    strings: primaryQuestStrings(languages),
+    languages,
   };
 }

@@ -38,8 +38,10 @@ for (const game of DATA_GAMES) {
     ["combinations", "combination", optional("combinations.json")],
     ["Veggie Elder trades", "veggie-trade", optional("veggie-trades.json")],
     ["Pokke Farm", "farm", optional("farm.json")],
+    ["Guild Card awards", "award", optional("awards.json")],
     ["skills", "skill", optional("skills.json")],
     ["string tables", "strings", jsonFiles("strings")],
+    ["locales", "locale", fs.existsSync(path.join(gameDir, "locales")) ? jsonFiles("locales") : []],
   ];
 
   for (const [label, schemaName, files] of checks) {

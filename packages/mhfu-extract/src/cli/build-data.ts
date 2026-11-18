@@ -35,10 +35,11 @@ import {
 } from "../build/material-styles.js";
 import { mergeItemStats, type ItemStatChange } from "../build/items.js";
 import type { EmittedItem } from "../emit/items.js";
+import { renameMonsters, type MonsterNameChange } from "../build/monster-names.js";
 
 /** Targets copied from the disc whole, rather than merged with committed files. */
 export type CopiedTarget =
-  "quests" | "gathering" | "shops" | "combinations" | "veggie-trades" | "farm";
+  "quests" | "gathering" | "shops" | "combinations" | "veggie-trades" | "farm" | "awards";
 const COPIED_TARGETS: CopiedTarget[] = [
   "quests",
   "gathering",
@@ -46,13 +47,14 @@ const COPIED_TARGETS: CopiedTarget[] = [
   "combinations",
   "veggie-trades",
   "farm",
+  "awards",
 ];
 /**
  * Copied targets `extract` skips with a warning when it can't find them: a
  * run that doesn't name them in `only` leaves them as they are instead of
  * failing.
  */
-const OPTIONAL_TARGETS: CopiedTarget[] = ["veggie-trades", "farm"];
+const OPTIONAL_TARGETS: CopiedTarget[] = ["veggie-trades", "farm", "awards"];
 export type BuildTarget = CategoryName | "items" | CopiedTarget;
 export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, "items", ...COPIED_TARGETS];
 
@@ -95,6 +97,8 @@ export interface ItemsBuildReport {
 }
 
 export interface BuildDataReport {
+  /** Monsters renamed to the disc's names (`build/monster-names.ts`); null when monsters weren't built. */
+  monsterNames: MonsterNameChange[] | null;
   categories: CategoryBuildReport[];
   items: ItemsBuildReport | null;
   /** Files copied from the disc (quests, gathering points, shops, combinations), relative to `data/`. */
@@ -139,9 +143,21 @@ function itemRenamer(site: SiteIndex) {
   };
 }
 
-/** Writes each quest supply and reward item under its game name. */
+/** `itemRenamer` for a bare item name. */
+function itemNamer(site: SiteIndex) {
+  const rename = itemRenamer(site);
+  return (item: string) => rename({ item }).item;
+}
+
+interface ArenaSetDoc {
+  equipment: { decorations: string[] }[];
+  items: QuestItem[];
+}
+
+/** Writes each quest supply, reward and Training School loadout item under its game name. */
 export function nameQuestItems(content: unknown, site: SiteIndex): unknown {
   const rename = itemRenamer(site);
+  const name = itemNamer(site);
   const doc = content as { quests?: Record<string, unknown>[] };
   if (!Array.isArray(doc?.quests)) return content;
   return {
@@ -153,6 +169,12 @@ export function nameQuestItems(content: unknown, site: SiteIndex): unknown {
         out.reward_tables = (quest.reward_tables as { items?: QuestItem[] }[]).map((table) =>
           Array.isArray(table.items) ? { ...table, items: table.items.map(rename) } : table,
         );
+      if (Array.isArray(quest.arena_sets))
+        out.arena_sets = (quest.arena_sets as ArenaSetDoc[]).map((set) => ({
+          ...set,
+          equipment: set.equipment.map((e) => ({ ...e, decorations: e.decorations.map(name) })),
+          items: set.items.map(rename),
+        }));
       return out;
     }),
   };
@@ -192,8 +214,7 @@ export function nameShopItems(content: unknown, site: SiteIndex): unknown {
 
 /** Writes each Veggie Elder trade's items under their game names. */
 export function nameVeggieTradeItems(content: unknown, site: SiteIndex): unknown {
-  const rename = itemRenamer(site);
-  const name = (item: string) => rename({ item }).item;
+  const name = itemNamer(site);
   const doc = content as { elders?: { trades: Record<"give" | "common" | "rare", string>[] }[] };
   if (!Array.isArray(doc?.elders)) return content;
   return {
@@ -257,6 +278,8 @@ async function copiedFiles(
   if (target === "veggie-trades")
     return { files: ["veggie-trades.json"], name: nameVeggieTradeItems };
   if (target === "farm") return { files: ["farm.json"], name: nameFarmItems };
+  // Awards refer to nothing: their text goes into data/mhfu/strings as it is.
+  if (target === "awards") return { files: ["awards.json"], name: (content) => content };
   if (target === "combinations")
     return { files: ["combinations.json"], name: nameCombinationItems };
   const from = path.join(extractedDir, "quests");
@@ -264,6 +287,22 @@ async function copiedFiles(
   if (files.length === 0)
     throw new Error(`${from} has no quest files; rerun extract with DATA.BIN unpacked`);
   return { files: files.map((f) => path.join("quests", f)), name: nameQuestItems };
+}
+
+/** Renames `data/mhfu/strings` monsters to the names `extract` read from the disc. */
+async function buildMonsterNames(options: BuildDataOptions): Promise<MonsterNameChange[]> {
+  const source = await readJsonOrNull(path.join(options.extracted, "monster-names.json"));
+  if (!source) {
+    console.warn(
+      "monster-names.json isn't in the extract (not an EU disc?); names left as they are.",
+    );
+    return [];
+  }
+  return renameMonsters(
+    options.data,
+    (source as { names: Record<string, string> }).names,
+    options.dryRun,
+  );
 }
 
 /** Writes the disc's item stats into `data/mhfu/items.json`. */
@@ -396,10 +435,13 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
   const categoryNames = targets.filter(
     (t): t is CategoryName => t !== "items" && !COPIED_TARGETS.includes(t as CopiedTarget),
   );
+  // Names first: the merge below reads the committed monsters by name.
+  const monsterNames = categoryNames.includes("monsters") ? await buildMonsterNames(options) : null;
   const categories = await buildCategories(categoryNames, options);
   const items = targets.includes("items") ? await buildItems(options) : null;
   const { copied, skipped } = await copyTargets(targets, options);
   const report: BuildDataReport = {
+    monsterNames,
     categories,
     items,
     copiedFiles: copied,
@@ -413,6 +455,10 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
 
 export function printBuildSummary(report: BuildDataReport, dryRun = false): void {
   const verb = dryRun ? "would write" : "wrote";
+  if (report.monsterNames)
+    console.log(
+      `monster names: ${report.monsterNames.length} renamed to the disc's${report.monsterNames.length > 0 ? ` (${report.monsterNames.map((c) => `${c.before} -> ${c.after}`).join(", ")})` : ""}.`,
+    );
   for (const c of report.categories) {
     const byField = new Map<string, number>();
     for (const change of c.changes) byField.set(change.field, (byField.get(change.field) ?? 0) + 1);
@@ -511,6 +557,12 @@ export function changedLeaves(
 /** Markdown listing of every change, kept disagreement and unpaired item. */
 export function formatBuildReport(report: BuildDataReport): string {
   const out: string[] = [];
+  if (report.monsterNames && report.monsterNames.length > 0) {
+    out.push("## monster names", "", "| emID | site (before) | disc (after) |", "|---|---|---|");
+    for (const c of report.monsterNames)
+      out.push(`| ${c.id} | ${cell(c.before)} | ${cell(c.after)} |`);
+    out.push("");
+  }
   for (const c of report.categories) {
     out.push(`## ${c.category}`, "");
     const byField = new Map<string, Change[]>();

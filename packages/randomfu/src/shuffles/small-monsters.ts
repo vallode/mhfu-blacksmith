@@ -17,7 +17,7 @@
  * small monsters but are things in the area, not creatures: they stay too.
  */
 import type { QuestDoc } from "mhfu-extract/src/quests/document.js";
-import { monsterName, questLabel } from "../names.js";
+import { questLabel, type MonsterNames } from "../names.js";
 import type { Rng } from "../rng.js";
 import { isDelivery, namedMonsters, type DocQuest } from "./quest-maps.js";
 import { getOrInsert, type ShuffleReport } from "./shuffle.js";
@@ -52,7 +52,12 @@ export function smallByStage(list: readonly DocQuest[]): Map<number, Set<number>
   return out;
 }
 
-export function swapSmallSpecies(list: readonly DocQuest[], rng: Rng): ShuffleReport {
+export function swapSmallSpecies(
+  list: readonly DocQuest[],
+  rng: Rng,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
+): ShuffleReport {
   const byStage = smallByStage(list);
   const lines: ShuffleReport["lines"] = [];
   let deliveries = 0;

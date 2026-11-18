@@ -1,9 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync, writeFileSync } from "node:fs";
-import path from "node:path";
 import { test } from "node:test";
-import { settingsFromFlags } from "../src/cli.js";
-import { tempDir } from "./temp.js";
 import {
   OPTIONS,
   actionsOf,
@@ -15,10 +11,9 @@ import {
   describeSettings,
   encodeSettings,
   isActive,
-  needsEboot,
-  parseAssignments,
   settingsFromJson,
   settingsToJson,
+  withOlderDefaults,
   type Action,
   type OptionDef,
   type OptionKey,
@@ -34,26 +29,28 @@ test("every option has a default its own checks accept", () => {
       option.default,
     );
   }
-  // The only default that needs the EBOOT is the almanac's.
-  assert.equal(needsEboot(defaults), true, "the defaults need the EBOOT");
-  assert.equal(needsEboot({ ...defaults, "hints.almanac": false }), false, "only the almanac does");
   for (const preset of PRESETS) applySettings(defaults, preset.changes);
   for (const name of ["Full", "Chaos"]) {
     const preset = PRESETS.find((p) => p.name === name)!;
     assert.equal(preset.changes["armor.enabled"], true, `${name} shuffles armor`);
-    assert.equal(preset.changes["gathering.enabled"], true, `${name} shuffles gathering`);
+    assert.ok(preset.changes["gathering.mode"] !== undefined, `${name} changes gathering`);
   }
-  assert.equal(OPTIONS.find((o) => o.key === "armor.enabled")!.eboot, true);
-  assert.ok(!OPTIONS.find((o) => o.key === "gathering.enabled")!.eboot);
 });
 
-/** Options no preset turns on until they're tried in game (see the README's status). */
+/**
+ * Options no preset turns on until they're tried in game (see the README's
+ * status). Armor stats are the exception the README's Presets names.
+ */
 const UNTRIED: readonly OptionKey[] = [
+  "carveCounts.mode",
   "questMaps.enabled",
   "questMaps.starts",
   "questMonsters.smallSpecies",
-  "trades.enabled",
+  "trades.mode",
   "mods.nodeMap",
+  "elites.enabled",
+  "monsterAi.branches",
+  "quests.keyLabel",
 ];
 
 test("presets do what their help says", () => {
@@ -66,16 +63,15 @@ test("presets do what their help says", () => {
     OPTIONS.filter(
       (o) =>
         !UNTRIED.includes(o.key) &&
+        // Reward modes can do either: Randomized leaves them off (every reward stays put).
+        !(action === "randomize" && o.key.endsWith(".mode") && o.key !== "armorSkills.mode") &&
         (o.action === action ||
           (o.type.kind === "choice" && o.type.choices.some((c) => c.action === action))),
     );
 
   // "The defaults: quest rewards and carves are shuffled."
   assert.deepEqual(preset("Rewards only"), defaultSettings("S"));
-  assert.deepEqual(keys(preset("Rewards only")), [
-    "monsterRewards.enabled",
-    "questRewards.enabled",
-  ]);
+  assert.deepEqual(keys(preset("Rewards only")), ["monsterRewards.mode", "questRewards.mode"]);
 
   // Shuffled: every shuffle that's been tried, and no randomizer.
   const shuffled = preset("Shuffled");
@@ -86,8 +82,12 @@ test("presets do what their help says", () => {
       .map((o) => o.key)
       .sort(),
   );
-  for (const option of OPTIONS.filter((o) => o.type.kind === "choice")) {
-    if (option.key === "armorSkills.mode") continue;
+  for (const option of OPTIONS) {
+    if (option.type.kind !== "choice") continue;
+    // The modes are what the presets set, so they differ from the defaults: a
+    // mode's every value but "off" shuffles or randomizes. A scope or pool
+    // with an action on one value is still checked.
+    if (option.type.choices.every((c) => c.action || c.value === "off")) continue;
     assert.equal(shuffled[option.key], option.default, `Shuffled keeps ${option.key}'s pool`);
   }
 
@@ -106,11 +106,11 @@ test("presets do what their help says", () => {
       .sort(),
   );
 
-  // Full: both together, with logic; Chaos: all of Full, without.
+  // Full: both together, at the same star level; Chaos: all of Full, with the limits off.
   const full = preset("Full");
   const chaos = preset("Chaos");
-  assert.equal(full["logic.tiers"], "star");
-  assert.equal(chaos["logic.tiers"], "none");
+  assert.equal(full["recipes.scope"], "star");
+  assert.equal(chaos["recipes.scope"], "any");
   for (const key of [...keys(shuffled), ...keys(randomized)]) {
     assert.ok(actionsOf(full).has(key), `Full has ${key}`);
   }
@@ -131,7 +131,7 @@ test("presets do what their help says", () => {
 
 test("settings strings round-trip, seed included, and stay short for the defaults", () => {
   const custom = applySettings(defaultSettings("Ünïcode seed 🐉"), {
-    "logic.tiers": "rank",
+    "recipes.scope": "rank",
     "recipes.amounts": true,
     "recipes.amountSpread": 0.25,
     "weapons.enabled": true,
@@ -145,6 +145,21 @@ test("settings strings round-trip, seed included, and stay short for the default
   assert.throws(() => decodeSettings("nope"), /starts with RF/);
 });
 
+test("settings from before Poogie's luck existed keep it off, so they don't cap Guild Cards", () => {
+  const encode = (payload: Record<string, unknown>) =>
+    `RF${Buffer.from(JSON.stringify(payload)).toString("base64url")}`;
+  assert.equal(decodeSettings(encode({ v: 14, seed: "a" })).settings["poogie.enabled"], false);
+  assert.equal(
+    decodeSettings(encode({ v: 14, seed: "a", "poogie.enabled": true })).settings["poogie.enabled"],
+    true,
+  );
+  assert.equal(decodeSettings(encode({ v: 15, seed: "a" })).settings["poogie.enabled"], true);
+  // A full set stored by an older build lacks the key; a newer one keeps its own.
+  const { "poogie.enabled": _, ...older } = defaultSettings("b");
+  assert.equal(withOlderDefaults(older)["poogie.enabled"], false);
+  assert.equal(withOlderDefaults({ ...defaultSettings("b") })["poogie.enabled"], true);
+});
+
 test("values are checked and converted", () => {
   const d = defaultSettings("S");
   assert.equal(applySettings(d, { "costs.enabled": "true" })["costs.enabled"], true);
@@ -155,14 +170,13 @@ test("values are checked and converted", () => {
   assert.throws(() => applySettings(d, { "costs.enabled": "maybe" }), /true or false/);
   assert.throws(() => applySettings(d, { "made.up": 1 }), /Unknown setting/);
   assert.throws(() => applySettings(d, { seed: " " }), /seed/);
-  assert.deepEqual(parseAssignments("a=1, b = two"), { a: "1", b: "two" });
 });
 
 test("settings files hold any subset; written files list everything", () => {
   const partial = settingsFromJson('{"costs.enabled": true, "seed": "FILE"}', "unused");
   assert.equal(partial.seed, "FILE");
   assert.equal(partial["costs.enabled"], true);
-  assert.equal(partial["questRewards.enabled"], true, "unlisted options keep their defaults");
+  assert.equal(partial["questRewards.mode"], "shuffle", "unlisted options keep their defaults");
   const full = JSON.parse(settingsToJson(partial));
   assert.equal(Object.keys(full).length, OPTIONS.length + 1);
   assert.throws(() => settingsFromJson("[]", "S"), /JSON object/);
@@ -177,36 +191,21 @@ test("describeSettings hides options whose switch is off", () => {
   assert.ok(on.includes("Costs / Crafting cost variation: ±50%"));
 });
 
-test("CLI flags layer: file < string < --shuffles < shorthand < --set < --seed", () => {
-  const dir = tempDir();
-  const file = path.join(dir, "s.json");
-  writeFileSync(
-    file,
-    JSON.stringify({ seed: "FROMFILE", "costs.enabled": true, "costs.spread": 0.1 }),
-  );
-  assert.equal(settingsFromFlags({ settings: file }).seed, "FROMFILE");
-
-  const string = encodeSettings(
-    applySettings(defaultSettings("FROMSTRING"), { "weapons.enabled": true }),
-  );
-  const s = settingsFromFlags({
-    settings: file,
-    "settings-string": string,
-    shuffles: "weapons,recipes",
-    "cost-spread": "0.2",
-    set: "recipes.maxQuantity=5",
-    seed: "FINAL",
-  });
-  assert.equal(s.seed, "FINAL");
-  assert.equal(s["weapons.enabled"], true);
-  assert.equal(s["recipes.materials"], true);
-  assert.equal(s["questRewards.enabled"], false, "--shuffles turns off what it doesn't list");
-  assert.equal(s["costs.spread"], 0.2);
-  assert.equal(s["recipes.maxQuantity"], 5);
-  assert.throws(() => settingsFromFlags({ shuffles: "everything" }), /Unknown shuffle/);
-  const named = settingsFromFlags({ shuffles: "armor,gathering" });
-  assert.equal(named["armor.enabled"], true);
-  assert.equal(named["gathering.enabled"], true);
-  assert.equal(named["weapons.enabled"], false);
-  assert.ok(readFileSync(file, "utf-8").includes("FROMFILE"));
+test("an option enabled by a choice names one of its values; one enabled by a switch doesn't", () => {
+  for (const option of OPTIONS.filter((o) => o.enabledBy)) {
+    const parent = OPTIONS.find((o) => o.key === option.enabledBy);
+    assert.ok(parent, `${option.key}: ${option.enabledBy} is an option`);
+    if (parent.type.kind === "choice") {
+      const values = parent.type.choices.map((c) => c.value);
+      assert.ok(option.enabledWhen?.length, `${option.key}: a choice needs enabledWhen`);
+      for (const when of option.enabledWhen) {
+        assert.ok(values.includes(when), `${option.key}: ${when} is a value of ${parent.key}`);
+        const on = applySettings(defaultSettings("S"), { [parent.key]: when });
+        assert.ok(isActive(on, option), `${option.key} is active at ${when}`);
+      }
+    } else {
+      assert.equal(parent.type.kind, "boolean", `${option.key}: ${parent.key} is a switch`);
+      assert.equal(option.enabledWhen, undefined, `${option.key}: a switch needs no enabledWhen`);
+    }
+  }
 });

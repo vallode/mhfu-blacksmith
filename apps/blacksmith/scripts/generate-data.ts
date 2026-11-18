@@ -15,7 +15,11 @@
  *   - area-maps.json             (each quest's gathering points on the map, see src/lib/area-maps.ts)
  *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - veggie-trades.json         (the Veggie Elder's trades, see src/lib/veggie-trades.ts)
+ *   - awards.json                (the Guild Card awards' names and descriptions, by index)
  *   - data-manifest.json         ({ files, version })
+ *   - locale-<code>.json         (game text in other languages, from data/locales;
+ *                                 fetched only in that language, so outside the
+ *                                 manifest, the precache and the budget)
  *
  * Reuses the transform logic from src/lib (slugify, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
@@ -69,6 +73,8 @@ import {
   type ItemRecord,
 } from "../src/lib/items";
 import { encodeQuestBundle, monsterSizeRanges, type QuestRecord } from "./lib/quest-bundle";
+import { buildLocaleBundles } from "./lib/locales";
+import type { AwardText } from "../src/lib/i18n/game-text";
 import { encodeCombinations, type CombinationsFile } from "../src/lib/combinations";
 import { encodeVeggieTrades, type VeggieTradesFile } from "../src/lib/veggie-trades";
 import {
@@ -81,6 +87,7 @@ import {
 import { buildArmorTree, buildDecorationTree, buildWeaponTree } from "../src/lib/trees";
 import { buildAreaMaps } from "../src/lib/area-maps";
 import { flinchThreshold } from "../src/lib/monster-breaks";
+import { canCapture } from "../src/lib/monster-drops";
 import type { HitboxCapsule } from "../src/lib/models";
 import { readData } from "game-data";
 
@@ -172,6 +179,7 @@ function compactTreeNode(
   if (node.rarity !== undefined) out.r = node.rarity === null ? null : (toNum(node.rarity) ?? null);
   if (node.color) out.c = node.color;
   if (node.element) out.e = node.element;
+  if (node.elements && node.elements.length > 1) out.e2 = node.elements[1];
   const mr = minRankOf?.(node.type || bundleType, node.slug);
   if (mr) out.m = mr;
   const md = maxDefenceOf?.(node.slug);
@@ -338,9 +346,6 @@ function encodeMonster(
   const out: CompactMonster = { n: m.name, s: m.slug };
   const d = internString(m.description);
   if (d !== undefined) out.d = d;
-  if (Array.isArray(m.habitats) && m.habitats.length > 0) {
-    out.hb = m.habitats.map((h) => intern(stringIndex, h));
-  }
   if (m.hitzones && Object.keys(m.hitzones).length > 0) {
     const COLS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
     out.hz = Object.entries(m.hitzones).map(([part, vals]) => [
@@ -358,6 +363,7 @@ function encodeMonster(
   if (Array.isArray(m.breaks) && m.breaks.length > 0) out.bk = m.breaks;
   const flinch = out.hz && hitzoneFlinch(m);
   if (flinch) out.hf = flinch.map((v) => (v === null ? null : intern(stringIndex, v)));
+  if (canCapture(m)) out.ca = 1;
   if (m.drops && Object.keys(m.drops).length > 0) {
     out.dr = Object.entries(m.drops).map(([rankName, sources]) => [
       intern(stringIndex, rankName),
@@ -574,6 +580,12 @@ for (const category of MONSTER_CATEGORIES) {
     console.warn(`generate-data: trade items not in items.json: ${trades.unresolved.join(", ")}`);
   }
   push("veggie-trades.json", trades.bundle);
+
+  // The Guild Card awards' text, by index (src/lib/awards.ts has their rules).
+  const awards = readData<{ awards: ({ id: number } & AwardText)[] }>(dataDir, GAME, "awards.json");
+  const awardText: AwardText[] = [];
+  for (const a of awards.awards) awardText[a.id] = { name: a.name, description: a.description };
+  push("awards.json", awardText);
 }
 
 // Decorations
@@ -776,6 +788,13 @@ const walkImages = (dir: string) => {
 walkImages(imagesDir);
 imageUrls.sort();
 fs.writeFileSync(path.join(outDir, "image-manifest.json"), JSON.stringify(imageUrls));
+
+// Game text in other languages (scripts/lib/locales.ts).
+for (const locale of buildLocaleBundles(dataDir, GAME)) {
+  fs.writeFileSync(path.join(outDir, `locale-${locale.code}.json`), locale.json);
+  for (const warning of locale.warnings) console.warn(`generate-data: ${warning}`);
+  console.log(`generate-data: locale-${locale.code}.json, ${locale.entries} entries`);
+}
 
 const fmt = (n: number) =>
   n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(2)} MB` : `${(n / 1024).toFixed(1)} KB`;

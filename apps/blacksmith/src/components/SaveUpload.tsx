@@ -1,44 +1,40 @@
 "use client";
 
 /**
- * The hunter page: pick a save file, then pick a character, in the style of
- * the game's Character Select screen. Always three slot cards, "NO DATA" for
- * an empty one, the chosen hunter lit green. Nothing about the hunter's items
- * lives here; the recipes show those.
+ * The hunter section's save file page: pick a save file, then pick a
+ * character, like the game's Character Select screen: three slots, "NO DATA"
+ * for an empty one, the chosen hunter lit green.
  */
 import { useCallback, useRef, useState } from "react";
 import { useSaveWorker, type CharacterResult } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
 import { saveFromCharacter } from "@/lib/save-store";
 import { useFileSync } from "@/context/FileSyncContext";
+import { useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
-import Card from "@/components/Card";
-import CardBox from "@/components/CardBox";
+import {
+  DetailBody,
+  DetailCard,
+  DetailHeader,
+  DetailName,
+  DetailRule,
+} from "@/components/DetailPanel";
+import { formatPlayTime } from "@/lib/hunter-pages";
 import type { SaveData } from "@/lib/save-store";
 import Loading from "@/components/Loading";
-import { SITE_GAME } from "@/lib/constants";
-
-/** The save file the game writes. */
-const SAVE_FILE = SITE_GAME.save.fileName;
+import * as ui from "@/styles/settings";
 
 const SLOTS = [0, 1, 2];
 
-// One hunter slot. The card is the frame; this fills it so the whole slot is
-// the target, top-aligned so an empty slot's NO DATA sits where a name does.
-// Fills the card's body, which starts 6px in, at the frame's outline: the
-// padding and height leave out those 6px, so the text sits 2.6rem by 2.4rem
-// from the card's edge and the card is 16rem tall.
+// One hunter slot, a row like the game's Character Select: the slot number and
+// name, with HR, play time and zenny under it. The chosen hunter is lit
+// green. Picking it again does nothing: unloading is its own button, under the
+// slots, so a stray click can't drop the hunter.
 const slotBase =
-  "box-border flex min-h-[14.8rem] w-full flex-col justify-start gap-[0.8rem] border-0 bg-transparent px-[2rem] py-[1.8rem] text-left font-[inherit] leading-none tracking-[0.06em] text-white";
-
-// The chosen hunter, lit like the game's selected slot. Hover keeps the fill
-// so clicking again (to deselect) reads as acting on this card.
+  "flex w-full flex-col gap-[0.6rem] border-0 bg-transparent px-[1.2rem] py-[1rem] text-left font-[inherit] leading-none text-white";
 const slotActive =
   "animate-none bg-[linear-gradient(0.25turn,rgb(3_119_3/0.95),rgb(3_119_3/0.55))]";
-
 const slotName = "flex min-w-0 gap-[1.4rem] text-main [&>:last-child]:truncate";
-const slotRow = "flex gap-[1.6rem] text-sub";
-const slotLabel = "flex-[0_0_7rem] uppercase";
 
 // Status line under the slots (reading, errors). A div, not a p, so it
 // skips Card's one-line paragraph default (.card-copy p in globals.css).
@@ -57,13 +53,6 @@ function isActiveHunter(save: SaveData | null, c: CharacterResult): boolean {
   );
 }
 
-/** Play time as the game shows it: hours and zero-padded minutes. */
-function formatPlayTime(seconds: number): string {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  return `${hours}:${String(minutes).padStart(2, "0")}`;
-}
-
 interface Hunter {
   name: string;
   sex?: string;
@@ -72,81 +61,90 @@ interface Hunter {
   hunterRank?: number;
 }
 
-interface SlotCardProps {
+interface SlotRowProps {
   /** 0-based slot; shown 1-based like the game. */
   slot: number;
   hunter: Hunter | null;
   active: boolean;
-  /** Select this hunter, or deselect it when it is the active one. */
-  onToggle?: () => void;
+  /** Load this hunter (not called for the loaded one). */
+  onSelect?: () => void;
 }
 
-function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
+function SlotRow({ slot, hunter, active, onSelect }: SlotRowProps) {
+  const text = useT().site.hunter;
+  const { formatNumber } = useLocale();
   if (!hunter) {
     return (
-      <CardBox className="flex-none">
-        <Card bodyClassName="card-p-0">
-          <div className={slotBase}>
-            <span className={slotName}>
-              <span>{slot + 1}</span>
-              <span className="uppercase">No data</span>
-            </span>
-          </div>
-        </Card>
-      </CardBox>
+      <div className={cn(slotBase, "text-white/50")}>
+        <span className={slotName}>
+          <span>{slot + 1}</span>
+          <span className="uppercase">{text.noData}</span>
+        </span>
+      </div>
+    );
+  }
+  const meta = [
+    hunter.hunterRank !== undefined && text.rankShort(hunter.hunterRank),
+    hunter.playTime !== undefined && formatPlayTime(hunter.playTime),
+    hunter.sex && (text.sex[hunter.sex] ?? hunter.sex),
+    hunter.zenny !== undefined && `${formatNumber(hunter.zenny)}z`,
+  ].filter(Boolean);
+  return (
+    <button
+      type="button"
+      className={cn(
+        slotBase,
+        "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white",
+        active ? slotActive : "cursor-pointer hover:hover-glow",
+      )}
+      onClick={active ? undefined : onSelect}
+      aria-pressed={active}
+    >
+      <span className={slotName}>
+        <span>{slot + 1}</span>
+        {hunter.name}
+      </span>
+      {meta.length > 0 && (
+        <span className="pl-[2.8rem] text-small text-stat">{meta.join(" · ")}</span>
+      )}
+      {active && <span className="sr-only">{text.selected}</span>}
+    </button>
+  );
+}
+
+/**
+ * Unloads the hunter, after asking: their items, records and progress stop
+ * showing across the site until a save is loaded again.
+ */
+function UnloadHunter({ name, onUnload }: { name: string; onUnload: () => void }) {
+  const text = useT().site.hunter;
+  const [asking, setAsking] = useState(false);
+  if (!asking) {
+    return (
+      <div className={ui.actions}>
+        <button type="button" className={ui.buttonSecondary} onClick={() => setAsking(true)}>
+          {text.unload}
+        </button>
+      </div>
     );
   }
   return (
-    <CardBox className="flex-none">
-      <Card bodyClassName="card-p-0">
-        <button
-          type="button"
-          className={cn(
-            slotBase,
-            // 7px in from the body (at the frame's outline), so the ring sits
-            // just inside the frame's bands, which cover the body's edge.
-            "cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-7 focus-visible:outline-white",
-            active ? slotActive : "hover:hover-glow",
-          )}
-          onClick={onToggle}
-          aria-pressed={active}
-          title={active ? "Deselect this hunter" : undefined}
-        >
-          <span className={slotName}>
-            <span>{slot + 1}</span>
-            {hunter.name}
-          </span>
-          {(hunter.playTime !== undefined || hunter.sex) && (
-            <span className={slotRow}>
-              {hunter.playTime !== undefined && (
-                <>
-                  <span className={slotLabel}>Time</span>
-                  <span>{formatPlayTime(hunter.playTime)}</span>
-                </>
-              )}
-              {hunter.sex && <span className="uppercase">{hunter.sex}</span>}
-            </span>
-          )}
-          {hunter.hunterRank !== undefined && (
-            <span className={slotRow}>
-              <span className={slotLabel}>HR</span>
-              <span>{hunter.hunterRank}</span>
-            </span>
-          )}
-          {hunter.zenny !== undefined && (
-            <span className={slotRow}>
-              <span className={slotLabel}>Money</span>
-              <span>{hunter.zenny.toLocaleString()}z</span>
-            </span>
-          )}
-          {active && <span className="sr-only"> (selected)</span>}
+    <div role="alertdialog" aria-label={text.unload} className="flex flex-col gap-[1rem]">
+      <div className="text-small text-white">{text.unloadConfirm(name)}</div>
+      <div className={ui.actions}>
+        <button type="button" className={ui.buttonSecondary} onClick={onUnload}>
+          {text.unloadYes}
         </button>
-      </Card>
-    </CardBox>
+        <button type="button" className={ui.button} autoFocus onClick={() => setAsking(false)}>
+          {text.unloadNo}
+        </button>
+      </div>
+    </div>
   );
 }
 
 export default function SaveUpload() {
+  const text = useT().site.hunter;
   const { parse, result, error, loading } = useSaveWorker();
   const { save, load, clear } = useSave();
   const fileSync = useFileSync();
@@ -208,43 +206,20 @@ export default function SaveUpload() {
     "block w-full cursor-pointer border border-dashed border-white/35 bg-transparent p-[2.4rem] text-center font-[inherit] text-sub text-white/70 hover:border-white/60 hover:text-white";
 
   return (
-    // Slots take the game's third of the width; the loader has the rest. On a
-    // phone it's one column with the loader first, above the three slots.
-    <div className="grid w-full max-w-[130rem] grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-[1.3rem] mobile:grid-cols-1">
-      <div className="flex min-w-0 flex-col gap-[1.3rem]">
-        {SLOTS.map((slot) => {
-          if (storedSlot === slot && save) {
-            return <SlotCard key={slot} slot={slot} hunter={save} active onToggle={clear} />;
-          }
-          const c = result?.characters[slot] ?? null;
-          const active = c ? isActiveHunter(save, c) : false;
-          return (
-            <SlotCard
-              key={slot}
-              slot={slot}
-              hunter={c}
-              active={active}
-              onToggle={() => (active ? clear() : selectCharacter(slot))}
-            />
-          );
-        })}
-
-        {loading && <Loading className={cn(notice, "justify-center")}>Reading save file…</Loading>}
-        {error && <div className={cn(notice, "text-negative")}>{error}</div>}
-      </div>
-
-      <CardBox className="min-w-0 flex-none self-start mobile:-order-1">
-        <Card
-          className={cn(
-            isDragOver && "outline-2 -outline-offset-4 outline-white/40 outline-dashed",
-          )}
+    <DetailCard>
+      <DetailHeader>
+        <DetailName>{text.pages.save}</DetailName>
+      </DetailHeader>
+      <DetailBody>
+        <div
+          className={cn(isDragOver && "outline-2 outline-offset-4 outline-white/40 outline-dashed")}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
         >
           {fileSync.isSupported ? (
             <button type="button" className={loaderCta} onClick={handlePick}>
-              {`Drop ${SAVE_FILE} here or click to browse`}
+              {text.drop}
             </button>
           ) : (
             <label className={loaderCta}>
@@ -254,11 +229,42 @@ export default function SaveUpload() {
                 className="absolute h-0 w-0 opacity-0"
                 onChange={handleFileChange}
               />
-              {`Drop ${SAVE_FILE} here or click to browse`}
+              {text.drop}
             </label>
           )}
-        </Card>
-      </CardBox>
-    </div>
+        </div>
+
+        {loading && <Loading className={cn(notice, "justify-center")}>{text.reading}</Loading>}
+        {error && <div className={cn(notice, "text-negative")}>{error}</div>}
+
+        {(result || save) && (
+          <>
+            <DetailRule />
+            {result && !save && (
+              <div className="text-small text-white/70">{text.pickHunterNote}</div>
+            )}
+            <div className="flex flex-col gap-[0.4rem]">
+              {SLOTS.map((slot) => {
+                if (storedSlot === slot && save) {
+                  return <SlotRow key={slot} slot={slot} hunter={save} active />;
+                }
+                const c = result?.characters[slot] ?? null;
+                const active = c ? isActiveHunter(save, c) : false;
+                return (
+                  <SlotRow
+                    key={slot}
+                    slot={slot}
+                    hunter={c}
+                    active={active}
+                    onSelect={() => selectCharacter(slot)}
+                  />
+                );
+              })}
+            </div>
+            {save && <UnloadHunter key={save.savedAt} name={save.name} onUnload={clear} />}
+          </>
+        )}
+      </DetailBody>
+    </DetailCard>
   );
 }

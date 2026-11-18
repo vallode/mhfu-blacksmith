@@ -1,4 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/cn";
+import { useT } from "@/context/LanguageContext";
 
 /**
  * Sizes of the game's 13x14 star sprite: 1x beside body text, 2x in a
@@ -27,10 +30,11 @@ export default function StarMarks({
   className?: string;
 }) {
   const size = SIZES[scale];
+  const t = useT();
   return (
     <span
       role="img"
-      aria-label={`${g ? "G " : ""}${stars} ${stars === 1 ? "star" : "stars"}`}
+      aria-label={t.equipment.stars(stars, g)}
       className={cn(
         "inline-flex max-w-full min-w-0 items-center align-middle",
         size.gap,

@@ -83,3 +83,10 @@ export const DECORATION_ITEM_ALIASES: Record<string, string> = {
 export function decorationItemId(name: string, index: Map<string, number>): number | undefined {
   return index.get(normalizeItemName(DECORATION_ITEM_ALIASES[name] ?? name));
 }
+
+/**
+ * A name as the search boxes compare it: `normalizeItemName` without accents,
+ * so "pocion" finds "Poción" (the item and decoration filters).
+ */
+export const searchKey = (name: string): string =>
+  normalizeItemName(name).normalize("NFD").replace(/\p{M}/gu, "");

@@ -36,12 +36,16 @@ export const STRING_KINDS = {
   skill_activation: "skill ID:points",
   /** Monsters: the game's monster ID (`emID`). */
   monster: "emID",
-  /** The site's own description of a monster (hand-written). */
+  /** The game's description of a monster, shared with its subspecies. */
   monster_description: "emID",
   /** Maps: the quest header's map ID. */
   map: "map ID",
   /** Pokke Farm's gathering points ("Mining Point +2"): the point's index in the game's farm table, the order of data/mhfu/farm.json. */
   farm: "farm point index",
+  /** Guild Card awards: the award's index, its bit in the save's award flags (`data/mhfu/awards.json`). */
+  award: "award index",
+  /** The game's description of an award: the award's index. */
+  award_description: "award index",
   /** Quest text, from the disc: the quest ID. */
   quest: "quest ID",
   quest_goal: "quest ID",

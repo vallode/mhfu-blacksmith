@@ -27,7 +27,7 @@ const GAME_DIR = path.join(DATA, GAME);
 /** Every data file in the repository's data/, as paths inside it. */
 function dataFiles(): string[] {
   const top = ["items.json", "decorations.json", "skills.json", "gathering.json", "shops.json"];
-  top.push("veggie-trades.json", "combinations.json", "farm.json");
+  top.push("veggie-trades.json", "combinations.json", "farm.json", "awards.json");
   const dirs = ["weapons", "armor", "monsters", "quests"].flatMap((dir) =>
     readdirSync(path.join(GAME_DIR, dir))
       .filter((f) => f.endsWith(".json"))
@@ -341,4 +341,62 @@ describe("writeData", () => {
     armor.armor[0].name = "Not In The Tables";
     assert.throws(() => writeData(dir, GAME, "armor/helmet.json", armor), /no helmet is named/);
   });
+});
+
+test("a quest's loadouts name training-only gear, never a piece with a record", () => {
+  const en = new StringTable({
+    item: { "989": "Attack Jewel" },
+    helmet: { "1": "Leather Helm", "241": "Old Piercing Name" },
+  });
+  const records = new Map([["helmet" as const, new Set([1])]]);
+  const quest = (names: [string, string]) => ({
+    quests: [
+      {
+        id: 21001,
+        map: null,
+        target: null,
+        supplies: [],
+        reward_tables: [],
+        large_monsters: [],
+        small_monsters: [],
+        arena_sets: [
+          {
+            players: 1,
+            point_multiplier: 100,
+            equipment: [
+              { slot: "helmet", id: 1, name: names[0], level: 0, decorations: ["Attack Jewel"] },
+              { slot: "helmet", id: 241, name: names[1], level: 2, decorations: [] },
+            ],
+            items: [],
+          },
+        ],
+        title: null,
+        goal: null,
+        details: null,
+        fail: null,
+        client: null,
+      },
+    ],
+  });
+  const { raw, strings } = dehydrate(
+    { kind: "quests" },
+    quest(["Renamed Helm", "Piercing of Rage"]),
+    stringResolver(en, undefined, records),
+  );
+  // The training-only piece takes the quest's name, even over an older one; the recorded piece keeps its record's.
+  assert.deepEqual(strings.en.helmet, { "241": "Piercing of Rage" });
+  assert.deepEqual(raw.quests[0].arena_sets[0].equipment, [
+    { slot: "helmet", id: 1, level: 0, decorations: [989] },
+    { slot: "helmet", id: 241, level: 2, decorations: [] },
+  ]);
+  // And the named view puts the name back after the ID.
+  const named = hydrate({ kind: "quests" }, raw, { en });
+  assert.deepEqual(Object.keys(named.quests[0].arena_sets[0].equipment[1]), [
+    "slot",
+    "id",
+    "name",
+    "level",
+    "decorations",
+  ]);
+  assert.equal(named.quests[0].arena_sets[0].equipment[1].name, "Old Piercing Name");
 });

@@ -108,6 +108,9 @@ importers:
 
   apps/randomfu:
     dependencies:
+      game-data:
+        specifier: workspace:*
+        version: link:../../packages/game-data
       mhfu-extract:
         specifier: workspace:*
         version: link:../../packages/mhfu-extract
@@ -174,13 +177,13 @@ importers:
       mhfu-extract:
         specifier: workspace:*
         version: link:../mhfu-extract
-      tsx:
-        specifier: ^4.22.4
-        version: 4.22.4
     devDependencies:
       '@types/node':
         specifier: ^22
         version: 22.19.19
+      tsx:
+        specifier: ^4.22.4
+        version: 4.22.4
       typescript:
         specifier: ^5
         version: 5.9.3

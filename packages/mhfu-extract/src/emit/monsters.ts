@@ -3,7 +3,7 @@
  * (vallode/mhfu-blacksmith#35), for `compare` and `build-data`.
  *
  * The disc gives numbers: hitzone rows by table and row, drop lists by kind
- * and rank slot. `overlay/monsters.json` says which of those each committed
+ * and rank slot, or by carve pointer number for the lists only code picks. `overlay/monsters.json` says which of those each committed
  * hitzone part and drop group shows, so the output uses the site's part
  * names and group labels, in the committed order. Only parts and groups the
  * overlay maps are emitted. Values stay numeric: hitzones as numbers under
@@ -14,11 +14,13 @@
  * named after its `break …` drop group. `flinch_thresholds` is each body
  * part's flinch threshold (`hitzones.ts` `readFlinchThresholds`).
  * `base_size` and `crowns` are its size at 100 percent and its crown
- * thresholds (`monsters/sizes.ts`).
+ * thresholds (`monsters/sizes.ts`). `description` is the game's description
+ * of it or of the monster it's a subspecies of (`monsters/bestiary.ts`).
  *
- * Monsters are named by the `emID` enum, so `compare` recovers their IDs the
- * same way it does for equipment.
+ * Each monster carries its emID (`id`), which `compare` pairs it by, and its
+ * name (the disc's on an EU disc, `strings/monster-names.ts`).
  */
+import { bestiaryEntryFor, type BestiaryEntry } from "../monsters/bestiary.js";
 import type { BreakRecord } from "../monsters/breaks.js";
 import type {
   HitzoneColumn,
@@ -55,7 +57,11 @@ export interface EmittedDrop {
 }
 
 export interface EmittedMonster {
+  /** emID: `compare` pairs monsters by it, as names can change. */
+  id: number;
   name: string;
+  /** The game's description, shared with the monster's subspecies. */
+  description?: string;
   /** Base HP before the quest's multiplier (`base_hp` on the site). */
   base_hp: number;
   hitzones?: Record<string, Record<string, number>>;
@@ -157,6 +163,8 @@ export interface EmittedBreak {
 export interface MonsterTables {
   chunks: MonsterChunk[];
   carves: CarveTables[];
+  /** Carve lists only code reaches, by pointer number (`rewards.ts` `readUnindexedCarves`); absent, `carve:` slots emit nothing. */
+  unindexedCarves?: Record<number, RewardEntry[]>;
   capBreak: CapBreakTable[];
   /** The break table; absent, no breaks are emitted. */
   breaks?: BreakRecord[];
@@ -164,6 +172,8 @@ export interface MonsterTables {
   species?: number[] | null;
   /** Base sizes and crowns (EBOOT, EU only); absent, monsters get neither. */
   sizes?: SizeTables | null;
+  /** The game's monster list and descriptions (EU only); absent, monsters get no description. */
+  bestiary?: BestiaryEntry[] | null;
 }
 
 const BREAK_LABEL = /^break\s+/i;
@@ -226,7 +236,8 @@ export function monsterBreaks(
 }
 
 function dropList(tables: MonsterTables, emId: number, slot: string): RewardEntry[] | undefined {
-  const { kind, breakType, rank } = parseDropSlot(slot);
+  const { kind, breakType, pointer, rank } = parseDropSlot(slot);
+  if (kind === "carve") return tables.unindexedCarves?.[pointer!];
   const r = rank as RewardRank;
   if (kind === "body" || kind === "tail" || kind === "shiny") {
     return tables.carves.find((c) => c.emId === emId)?.[kind][r];
@@ -237,15 +248,18 @@ function dropList(tables: MonsterTables, emId: number, slot: string): RewardEntr
 
 export function emitMonsters(tables: MonsterTables): EmitOutput {
   const names = getNameResolver();
-  const enumName = (emId: number) => names.resolve("emID", emId) ?? `Monster ${emId}`;
+  const monsterName = (emId: number) => names.resolve("emID", emId) ?? `Monster ${emId}`;
   const itemName = (id: number) => names.resolve("ItemID", id) ?? `Item ${id}`;
   const byFile = new Map<string, EmittedMonster[]>();
 
   for (const entry of MONSTER_OVERLAY) {
     const chunk = tables.chunks[entry.id];
     if (!chunk) continue;
+    const description = tables.bestiary && bestiaryEntryFor(tables.bestiary, entry.id)?.description;
     const monster: EmittedMonster = {
-      name: enumName(entry.id),
+      id: entry.id,
+      name: monsterName(entry.id),
+      ...(description ? { description } : {}),
       base_hp: chunk.baseHp,
       tolerances: siteTolerances(chunk.tolerances),
     };

@@ -141,9 +141,15 @@ const RANK_NAMES: Record<GuildRank, string> = {
 
 export const rankName = (rank: GuildRank): string => RANK_NAMES[rank];
 
-/** "High Rank ★7"; G Rank's ★9-★11 are the game's G★1-G★3. */
-export const tierLabel = (t: Tier): string =>
-  `${RANK_NAMES[t.rank]} ★${t.rank === "g-rank" ? t.stars - G_RANK_STAR_OFFSET : t.stars}`;
+/** The stars the game shows for a tier: G Rank's ★9-★11 are the game's G★1-G★3. */
+export const tierStars = (t: Tier): number =>
+  t.rank === "g-rank" ? t.stars - G_RANK_STAR_OFFSET : t.stars;
+
+/**
+ * "High Rank ★7", in English (scripts, tests). Pages show the translated
+ * form, `t.equipment.tierLabel(tier)`.
+ */
+export const tierLabel = (t: Tier): string => `${RANK_NAMES[t.rank]} ★${tierStars(t)}`;
 
 /** Is this one of the offered stages? Guards values read back from storage. */
 export function isStage(value: unknown): value is Tier {

@@ -8,11 +8,17 @@ import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import { useSectionHref, type MenuSection } from "@/app/MenuLink";
 import { cn } from "@/lib/cn";
+import { useT } from "@/context/LanguageContext";
 import { SITE_GAME } from "@/lib/constants";
 import type { GameSections } from "game-data/games";
+import { useSave } from "@/context/SaveContext";
+import type { Messages } from "@/lib/i18n/messages";
+
+type NavLabel = keyof Messages["site"]["nav"];
 
 interface NavItem {
-  label: string;
+  /** Its name, in `site.nav`. */
+  label: NavLabel;
   /** Icon sprite, from /images/<icon>.png. */
   icon: string;
   /** Pages under this path light the entry up. */
@@ -22,35 +28,39 @@ interface NavItem {
   section?: MenuSection;
   /** Shown in the phone tab bar (the rest are in its menu drawer). */
   tab?: boolean;
-  /** Tab bar uses the 16px /images/<icon>-mini.png sprite. */
-  tabMini?: boolean;
+  /** Uses the 16px /images/<icon>-mini.png sprite (drawn at 2x) in the sidebar and tab bar. */
+  mini?: boolean;
   /** The game's section (its config's `sections`) the entry needs; the entry is left out without it. */
   needs?: keyof GameSections;
 }
 
-/** The sidebar's entries, in groups with a divider between them: the game's data, then your own. */
+/**
+ * The sidebar's entries, in groups with a divider between them: the game's
+ * data, then your own. Search, the options and the hunter sit at the
+ * bottom (OPTIONS_NAV, HunterRow).
+ */
 const ALL_NAV_GROUPS: NavItem[][] = [
   [
     {
-      label: "Weapons",
+      label: "weapons",
       icon: "great-sword",
       match: "/blacksmith/",
       section: "weapons",
       needs: "blacksmith",
       tab: true,
-      tabMini: true,
+      mini: true,
     },
     {
-      label: "Armor",
+      label: "armor",
       icon: "helmet",
       match: "/armorsmith/",
       section: "armor",
       needs: "armorsmith",
       tab: true,
-      tabMini: true,
+      mini: true,
     },
     {
-      label: "Monsters",
+      label: "monsters",
       icon: "claw",
       match: "/monsters/",
       section: "monsters",
@@ -58,23 +68,24 @@ const ALL_NAV_GROUPS: NavItem[][] = [
       needs: "monsters",
     },
     {
-      label: "Decorations",
+      label: "decorations",
       icon: "decoration",
       match: "/decorations/",
       href: "/decorations/",
+      mini: true,
       needs: "decorations",
     },
     {
-      label: "Quests",
+      label: "quests",
       icon: "ticket",
       match: "/quests/",
       section: "quests",
       tab: true,
       needs: "quests",
     },
-    { label: "Items", icon: "fluid", match: "/items/", href: "/items/", needs: "items" },
+    { label: "items", icon: "fluid", match: "/items/", href: "/items/", needs: "items" },
     {
-      label: "Veggie Elder",
+      label: "veggieElder",
       icon: "mushroom",
       match: "/veggie-elder/",
       href: "/veggie-elder/",
@@ -83,22 +94,28 @@ const ALL_NAV_GROUPS: NavItem[][] = [
   ],
   [
     {
-      label: "Sets",
+      label: "sets",
       icon: "plate",
       match: "/set-builder/",
       href: "/set-builder/",
+      mini: true,
       needs: "setBuilder",
     },
-    { label: "Wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/", needs: "wishlist" },
-    { label: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/", needs: "hunterImport" },
-    { label: "Options", icon: "part", match: "/options/", href: "/options/" },
+    { label: "wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/", needs: "wishlist" },
   ],
 ];
 /** The entries the game has sections for. */
 const NAV_GROUPS = ALL_NAV_GROUPS.map((group) =>
   group.filter((item) => !item.needs || SITE_GAME.sections[item.needs]),
 );
+const OPTIONS_NAV: NavItem = {
+  label: "options",
+  icon: "part",
+  match: "/options/",
+  href: "/options/",
+};
 const NAV = NAV_GROUPS.flat();
+const HUNTER_MATCH = "/hunter/";
 
 const COLLAPSED_KEY = "sidebar-collapsed";
 
@@ -141,6 +158,47 @@ const sidebarRowActive = "bg-(image:--gradient-hover-glow)";
 const rowIcon = "mr-0 group-hover:before:bg-white";
 
 /**
+ * The hunter's entry at the foot of the sidebar, like an account row: the
+ * loaded hunter's name over their HR, or "Load hunter" without one. It leads
+ * to the hunter's pages (/hunter/), where a save is loaded too.
+ */
+function HunterRow({
+  pathname,
+  railLabel,
+  rail,
+}: {
+  pathname: string;
+  railLabel: boolean;
+  rail: (wide: string, compact: string) => string | false | undefined;
+}) {
+  const t = useT().site;
+  const { save } = useSave();
+  const active = pathname.startsWith(HUNTER_MATCH);
+  const label = save ? save.name : t.nav.loadHunter;
+  const rank = save?.hunterRank !== undefined ? t.hunter.rankShort(save.hunterRank) : null;
+  return (
+    <Link
+      href={HUNTER_MATCH}
+      title={railLabel ? [label, rank].filter(Boolean).join(" · ") : undefined}
+      aria-current={active ? "page" : undefined}
+      className={cn(sidebarRow, "h-[5.2rem]", active && sidebarRowActive)}
+    >
+      {/* Lit green while a hunter is loaded, like the chosen slot on the hunter page. */}
+      <Icon type="coin" nav active={active || !!save} className={rowIcon} />
+      <span
+        className={cn(
+          "flex min-w-0 flex-col leading-tight",
+          rail("wide:sr-only", "compact:sr-only"),
+        )}
+      >
+        <span className={cn("truncate", !save && "text-white/70")}>{label}</span>
+        {rank && <span className="text-fine text-muted">{rank}</span>}
+      </span>
+    </Link>
+  );
+}
+
+/**
  * The entries of the sidebar (and the phone menu drawer): logo, sections,
  * search and, on desktop, the collapse toggle. `collapsed` shrinks it to an
  * icon rail on wide screens; on compact ones it is a rail unless `open`.
@@ -163,6 +221,7 @@ function SidebarContents({
   onToggle?: () => void;
   onSearch?: () => void;
 }) {
+  const t = useT().site;
   // Rail classes, by width: wide screens follow the saved preference, compact
   // ones are a rail unless opened. (Phones show the drawer, never a rail.)
   // Both classes are spelled out at each use so Tailwind finds them.
@@ -172,13 +231,13 @@ function SidebarContents({
     <>
       <Link
         href="/"
-        aria-label="Home"
+        aria-label={t.nav.home}
         className={cn("mx-6 mt-2 mb-4 block flex-none", rail("wide:hidden", "compact:hidden"))}
       >
-        <img className="h-auto w-full" src="/images/blacksmith.png" alt="Blacksmith" />
+        <img className="h-auto w-full" src="/images/blacksmith.png" alt={t.logoAlt} />
       </Link>
 
-      <nav className="flex flex-col" aria-label="Main">
+      <nav className="flex flex-col" aria-label={t.nav.main}>
         {NAV_GROUPS.map((group, i) => (
           <Fragment key={i}>
             {i > 0 && <hr className="mx-6 my-[1rem] h-[3px] w-auto" />}
@@ -188,12 +247,20 @@ function SidebarContents({
                 <Link
                   key={item.match}
                   href={hrefFor(item)}
-                  title={railLabel ? item.label : undefined}
+                  title={railLabel ? t.nav[item.label] : undefined}
                   aria-current={active ? "page" : undefined}
                   className={cn(sidebarRow, active && sidebarRowActive)}
                 >
-                  <Icon type={item.icon} nav active={active} className={rowIcon} />
-                  <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{item.label}</span>
+                  <Icon
+                    type={item.icon}
+                    size={item.mini ? "mini" : undefined}
+                    nav
+                    active={active}
+                    className={rowIcon}
+                  />
+                  <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>
+                    {t.nav[item.label]}
+                  </span>
                 </Link>
               );
             })}
@@ -206,27 +273,46 @@ function SidebarContents({
         <button
           type="button"
           className={cn(sidebarRow, "search-trigger")}
-          title={railLabel ? "Search" : undefined}
+          title={railLabel ? t.nav.search : undefined}
           onClick={onSearch}
         >
           <span className="flex size-[32px] flex-none items-center justify-center">
             <img
-              className="size-[24px] opacity-75 group-hover:opacity-100"
-              src="/images/binoculars.png"
+              className="size-[32px] opacity-75 pixelated group-hover:opacity-100"
+              src="/images/binoculars-mini.png"
               alt=""
             />
           </span>
-          <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>Search</span>
+          <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.search}</span>
         </button>
+
+        <Link
+          href={hrefFor(OPTIONS_NAV)}
+          title={railLabel ? t.nav.options : undefined}
+          aria-current={pathname.startsWith(OPTIONS_NAV.match) ? "page" : undefined}
+          className={cn(sidebarRow, pathname.startsWith(OPTIONS_NAV.match) && sidebarRowActive)}
+        >
+          <Icon
+            type={OPTIONS_NAV.icon}
+            nav
+            active={pathname.startsWith(OPTIONS_NAV.match)}
+            className={rowIcon}
+          />
+          <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.options}</span>
+        </Link>
+
+        {SITE_GAME.sections.hunterImport && (
+          <HunterRow pathname={pathname} railLabel={railLabel} rail={rail} />
+        )}
 
         {onToggle && (
           <button
             type="button"
             className={sidebarRow}
             onClick={onToggle}
-            aria-label={railLabel ? "Expand sidebar" : "Collapse sidebar"}
+            aria-label={railLabel ? t.nav.expandSidebar : t.nav.collapseSidebar}
             aria-expanded={!railLabel}
-            title={railLabel ? "Expand sidebar" : undefined}
+            title={railLabel ? t.nav.expandSidebar : undefined}
           >
             <span className="flex size-[32px] flex-none items-center justify-center">
               <img
@@ -238,7 +324,7 @@ function SidebarContents({
                 alt=""
               />
             </span>
-            <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>Collapse</span>
+            <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.collapse}</span>
           </button>
         )}
       </div>
@@ -258,6 +344,7 @@ function TabBar({
   menuOpen: boolean;
   onMenu: () => void;
 }) {
+  const t = useT().site;
   const tab =
     "group flex min-w-0 flex-1 cursor-pointer flex-col items-center justify-center gap-[0.3rem] border-none bg-transparent p-0 text-white";
   const tabActive = "bg-(image:--gradient-hover-glow)";
@@ -272,7 +359,10 @@ function TabBar({
     // sidebar under the left edge, so only the frame's top band shows. The
     // card is that much taller, and taller still by the bottom safe
     // area, which the tabs stay clear of.
-    <nav aria-label="Main" className="fixed inset-x-0 -bottom-[1.8rem] z-800 hidden mobile:flex">
+    <nav
+      aria-label={t.nav.main}
+      className="fixed inset-x-0 -bottom-[1.8rem] z-800 hidden mobile:flex"
+    >
       <Card
         frame="teal"
         className="h-[calc(var(--spacing-tabbar)+1.8rem+env(safe-area-inset-bottom))] bg-black/60 backdrop-blur-sm"
@@ -291,12 +381,12 @@ function TabBar({
             >
               <Icon
                 type={item.icon}
-                size={item.tabMini ? "mini" : undefined}
+                size={item.mini ? "mini" : undefined}
                 nav
                 active={active}
                 className={rowIcon}
               />
-              <span className={label}>{item.label}</span>
+              <span className={label}>{t.nav[item.label]}</span>
             </Link>
           );
         })}
@@ -319,7 +409,7 @@ function TabBar({
               />
             ))}
           </span>
-          <span className={label}>Menu</span>
+          <span className={label}>{t.nav.menu}</span>
         </button>
       </Card>
     </nav>
@@ -336,6 +426,7 @@ function TabBar({
  * Menu tab slides the full list in as a drawer.
  */
 export default function AppShell({ children }: { children: React.ReactNode }) {
+  const t = useT().site;
   const pathname = usePathname();
   const hrefFor = useNavHrefs(pathname);
 
@@ -446,7 +537,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         className={cn("fixed inset-0 z-850 hidden", menuOpen && "mobile:flex")}
         role="dialog"
         aria-modal="true"
-        aria-label="Menu"
+        aria-label={t.nav.menu}
       >
         <div className="absolute inset-0 bg-black/60" onClick={closeMenu} />
         {/* Dips under the screen's left edge, like the desktop sidebar. */}

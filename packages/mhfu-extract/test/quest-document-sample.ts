@@ -75,7 +75,7 @@ export function sampleDoc(questId = 1001): QuestDoc {
           unk: 0,
           type: i,
           id: 10 + i,
-          pad: 0,
+          level: 0,
           decorations: [1, 0, 2] as [number, number, number],
         })),
         items: Array.from({ length: 20 }, (_, i) => ({

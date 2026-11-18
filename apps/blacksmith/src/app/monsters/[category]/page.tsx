@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ...faviconMetadata(category),
     ...pageMetadata({
       title: name,
-      description: `${names.length} ${name} monsters in Monster Hunter Freedom Unite: ${names.slice(0, 6).join(", ")}${names.length > 6 ? "…" : ""}. Hitzones, drops and habitats.`,
+      description: `${names.length} ${name} monsters in Monster Hunter Freedom Unite: ${names.slice(0, 6).join(", ")}${names.length > 6 ? "…" : ""}. Hitzones, drops and quests.`,
       path: `/monsters/${category}/`,
       image: monsterCategoryEmbedIcon(category),
     }),

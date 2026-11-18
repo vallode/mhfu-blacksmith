@@ -10,7 +10,6 @@ import {
   MONSTER_CHUNK_SIZE,
   TOLERANCE_OFFSET,
 } from "mhfu-extract/src/monsters/hitzones.js";
-import { openPatchableImage } from "../src/disc/node-file.js";
 import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
 import {
   readSpawns,
@@ -26,10 +25,12 @@ import { formatSpoiler } from "../src/spoiler.js";
 import { writeEdits } from "../src/write.js";
 import {
   buildFixtureDisc,
+  finish,
   FIXTURE_TOLERANCES,
   fixtureHitzone,
   fixtureHp,
   GAME_TASK_INDEX,
+  patchInMemory,
   tempDir,
 } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
@@ -50,7 +51,7 @@ const FILE = fixtureFile();
 
 async function load(file = FILE): Promise<{ game: GameData; close: () => void }> {
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: null });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -91,7 +92,7 @@ test("variant swaps keep each monster in its family and on its map, and move the
   const { game, close } = await load();
   let swaps = 0;
   for (let seed = 0; seed < 20; seed++) {
-    const result = randomize(game, only(`v${seed}`, { "questMonsters.species": true }));
+    const result = randomize(game, only(`v${seed}`, { "questMonsters.mode": "shuffle" }));
     for (const quest of game.quests) {
       const after = payloadAfter(result, quest);
       const spawns = readSpawns(after, quest.parsed.header);
@@ -138,7 +139,7 @@ test("rank swaps leave quests with several kinds of monster, and stay in the ran
   for (let seed = 0; seed < 20; seed++) {
     const result = randomize(
       game,
-      only(`r${seed}`, { "questMonsters.species": true, "questMonsters.speciesPool": "rank" }),
+      only(`r${seed}`, { "questMonsters.mode": "randomize", "questMonsters.scope": "rank" }),
     );
     for (const id of [10102, 2001, 20001]) {
       assert.ok(!result.edits.quests.has(byId(game, id).index), `quest ${id} unchanged`);
@@ -201,8 +202,8 @@ test("difficulty follows the monster a species swap left, not the one it replace
     const result = randomize(
       game,
       only(`ds${seed}`, {
-        "questMonsters.species": true,
-        "questMonsters.speciesPool": "rank",
+        "questMonsters.mode": "randomize",
+        "questMonsters.scope": "rank",
         "questMonsters.difficulty": true,
         "questMonsters.difficultySpread": 31,
       }),
@@ -330,11 +331,11 @@ test("weak spots trade rows, the same way in every state", async () => {
 
 test("monster edits are written and read back; other options don't change", async () => {
   const output = path.join(tempDir(), "out.iso");
-  writeFileSync(output, readFileSync(FILE));
-  const image = openPatchableImage(output);
-  const game = await loadGame(image.source, image.iso, { eboot: null });
+  const original = readFileSync(FILE);
+  const image = patchInMemory(original);
+  const game = await loadGame(image.source, image.iso);
   const all = only("all", {
-    "questMonsters.species": true,
+    "questMonsters.mode": "shuffle",
     "questMonsters.difficulty": true,
     "questMonsters.smallCounts": true,
     "monsterStats.hp": true,
@@ -345,7 +346,7 @@ test("monster edits are written and read back; other options don't change", asyn
   });
   const result = randomize(game, all);
   writeEdits(image, game, result.edits); // checks every file reads back
-  image.close();
+  writeFileSync(output, finish(image, original));
 
   const after = await load(output);
   assert.ok(
@@ -433,7 +434,7 @@ test("crown spread gives every quest with large monsters one of the game's sprea
   }
   assert.ok(seen.size > 1, "random picks more than one spread");
 
-  const off = randomize(game, only("c", { "questMonsters.species": true }));
+  const off = randomize(game, only("c", { "questMonsters.mode": "shuffle" }));
   for (const quest of game.quests)
     assert.equal(variation(off, quest), quest.file.payload[SIZE_VARIATION_OFFSET]);
   close();
@@ -441,7 +442,7 @@ test("crown spread gives every quest with large monsters one of the game's sprea
 
 test("quest size is off by default and leaves every quest's size alone", async () => {
   const { game, close } = await load();
-  const result = randomize(game, only("q", { "questMonsters.species": true }));
+  const result = randomize(game, only("q", { "questMonsters.mode": "shuffle" }));
   for (const quest of game.quests) {
     assert.equal(
       payloadAfter(result, quest).readUInt32LE(SIZE_PERCENT_OFFSET),
@@ -453,7 +454,7 @@ test("quest size is off by default and leaves every quest's size alone", async (
 
 test("the species report says which quests kept their monsters, and which monsters never move", async () => {
   const { game, close } = await load();
-  const result = randomize(game, only("n", { "questMonsters.species": true }));
+  const result = randomize(game, only("n", { "questMonsters.mode": "shuffle" }));
   const notes = result.reports.find((r) => r.title === "Quest monsters")!.notes.join("\n");
   // Fatalis (2) has no variant in any fixture quest's map.
   assert.match(

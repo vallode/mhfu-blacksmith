@@ -1,6 +1,6 @@
 /**
- * The randomfu web app's page: a step-by-step builder over the same
- * `OPTIONS` and `PRESETS` the CLI uses. The steps are the disc, the seed and
+ * The randomfu web app's page: a step-by-step builder over the
+ * `OPTIONS` and `PRESETS` in randomfu's settings. The steps are the disc, the seed and
  * a preset, one step per group of option sections, a review, and the run.
  *
  * Runs happen in a worker. The finished ISO is assembled as a Blob from
@@ -21,6 +21,7 @@ import {
   isActive,
   settingsFromJson,
   settingsToJson,
+  withOlderDefaults,
   type Action,
   type OptionDef,
   type OptionKey,
@@ -53,14 +54,6 @@ interface Step extends Sprite {
 
 const OPTION_STEPS: Step[] = [
   {
-    id: "logic",
-    title: "Logic",
-    icon: "star",
-    sections: ["Logic"],
-    intro:
-      "Logic applies to every item shuffle: quest rewards, carves, gathering points, supply boxes and recipe materials. At Same star level, every recipe stays craftable as early in the game as before.",
-  },
-  {
     id: "rewards",
     title: "Rewards",
     icon: "claw",
@@ -73,26 +66,26 @@ const OPTION_STEPS: Step[] = [
     title: "Gathering",
     icon: "ore",
     tint: "var(--color-gem-blue)",
-    sections: ["Gathering"],
-    intro: "What mining, gathering and bug catching points give you.",
+    sections: ["Gathering", "Veggie Elder"],
+    intro:
+      "What mining, gathering and bug catching points give you, and what the Veggie Elder trades.",
   },
   {
     id: "quests",
     title: "Quests",
     icon: "herb",
     tint: "var(--color-gem-green)",
-    sections: ["Supplies", "Quest terms", "Deliveries"],
+    sections: ["Supplies", "Quest terms", "Deliveries", "Quest maps"],
     intro:
-      "What quests hand you, what they pay and how long they last, and what delivery quests ask for.",
+      "What quests hand you, what they pay and how long they last, what delivery quests ask for, and which maps they're on.",
   },
   {
     id: "monsters",
     title: "Monsters",
     icon: "part",
     tint: "var(--color-gem-orange)",
-    sections: ["Quest monsters", "Monster stats", "Weaknesses", "Hints"],
-    intro:
-      "Which monsters quests have and how tough they are. All of it has been tried in game, and the presets use it.",
+    sections: ["Quest monsters", "Monster stats", "Weaknesses"],
+    intro: "Which monsters quests have, how tough they are and where they're weak.",
   },
   {
     id: "smithy",
@@ -112,9 +105,25 @@ const OPTION_STEPS: Step[] = [
   {
     id: "modifications",
     title: "Modifications",
+    icon: "dragon",
+    sections: [
+      "Poogie",
+      "Hunter's Pact",
+      "Elite monsters",
+      "Unknown Monster?! quests",
+      "Key quests",
+      "HUD",
+    ],
+    intro:
+      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code. Each caps received Guild Cards at 3 to make room for it. Only Poogie's luck is on unless you turn the others on, and elite monsters haven't been tried in game yet.",
+  },
+  {
+    id: "extras",
+    title: "Extras",
     icon: "deco",
-    sections: ["Modifications"],
-    intro: "Changes to how the game looks and what it shows you, rather than what it hands out.",
+    sections: ["Extras"],
+    intro:
+      "Neither a shuffle nor a randomizer: text, bookshelf guides and map changes that show you what the other steps did.",
   },
 ];
 
@@ -127,15 +136,24 @@ if (unclaimed.length > 0) {
 
 /** The sprite beside each option section's heading, in steps of more than one section. */
 const SECTION_ICONS: Record<string, Sprite> = {
+  Gathering: { icon: "ore", tint: "var(--color-gem-blue)" },
+  "Veggie Elder": { icon: "herb", tint: "var(--color-gem-green)" },
   "Quest rewards": { icon: "heavenly", tint: "var(--color-gem-yellow)" },
   "Monster rewards": { icon: "scale", tint: "var(--color-gem-red)" },
   Supplies: { icon: "fluid", tint: "var(--color-gem-green)" },
   "Quest terms": { icon: "ticket", tint: "var(--color-gem-orange)" },
   Deliveries: { icon: "egg", tint: "var(--color-parchment)" },
+  "Quest maps": { icon: "binoculars" },
+  "Hunter's Pact": { icon: "ko", tint: "var(--color-gem-red)" },
+  Poogie: { icon: "meat", tint: "var(--color-gem-pink)" },
   "Quest monsters": { icon: "monsters/flying-wyvern", tint: "var(--color-gem-orange)" },
   "Monster stats": { icon: "ko" },
+  "Elite monsters": { icon: "monsters/elder-dragon", tint: "var(--color-gem-slate)" },
+  "Unknown Monster?! quests": { icon: "ukwn", tint: "var(--color-gem-cyan)" },
+  "Key quests": { icon: "ticket", tint: "var(--color-gem-yellow)" },
   Weaknesses: { icon: "fire" },
   Hints: { icon: "ukwn", tint: "var(--color-gem-cyan)" },
+  HUD: { icon: "fluid", tint: "var(--color-gem-red)" },
   Crafting: { icon: "bone", tint: "var(--color-parchment)" },
   Costs: { icon: "coin", tint: "var(--color-gem-yellow)" },
   Weapons: { icon: "great-sword" },
@@ -255,8 +273,12 @@ function save(): void {
 function restore(): void {
   try {
     const stored = JSON.parse(localStorage.getItem(STORE) ?? "{}") as { settings?: Settings };
+    // Stored settings have every option, so a missing one is newer than them.
     if (stored.settings)
-      settings = applySettings(defaultSettings(settings.seed), { ...stored.settings });
+      settings = applySettings(
+        defaultSettings(settings.seed),
+        withOlderDefaults({ ...stored.settings }),
+      );
   } catch {
     // Missing, or from an older version: keep the defaults.
   }
@@ -355,7 +377,45 @@ function renderOption(option: OptionDef): HTMLElement {
     }
     wrap.append(optionText(option, null), group);
   }
+  if (option.key === "mods.nodeMap") wrap.append(nodeMapPreview());
   return wrap;
+}
+
+/**
+ * The map screen's picture as "Gathering nodes on the area map" leaves it,
+ * for the Great Forest: the site's copy of its texture, at its 160x160
+ * pixels, with a marker on each node as randomfu's patch draws them.
+ */
+function nodeMapPreview(): HTMLElement {
+  const { texture, size, marker, onArtAlpha, colors, points } = NODE_MAP_PREVIEW;
+  const canvas = el("canvas", {
+    class: "node-map",
+    width: String(size),
+    height: String(size),
+    role: "img",
+    "aria-label": "The Great Forest's map with its gathering nodes marked",
+  });
+  const context = canvas.getContext("2d", { willReadFrequently: true })!;
+  const picture = new Image();
+  picture.src = `images/area-maps/${texture}.png`;
+  picture
+    .decode()
+    .then(() => {
+      context.drawImage(picture, 0, 0, size, size);
+      // As the patch does: a node off the art (where the game draws nothing) gets no marker.
+      const art = context.getImageData(0, 0, size, size).data;
+      const half = (marker - 1) / 2;
+      for (const [kind, x, y] of points) {
+        if (x < 0 || y < 0 || x >= size || y >= size) continue;
+        if (art[(y * size + x) * 4 + 3]! <= onArtAlpha) continue;
+        context.fillStyle = `rgb(${colors[kind].join(" ")})`;
+        context.fillRect(x - half, y - half, marker, marker);
+      }
+    })
+    .catch(() => {
+      // The picture didn't load: the preview stays empty.
+    });
+  return canvas;
 }
 
 function buildOptionPanels(): void {
@@ -413,7 +473,11 @@ function buildPresets(): void {
               [...actionsOf(presetSettings(preset)).values()].includes(action) ? tag(action) : null,
             ),
           ),
-          el("span", { class: "note" }, preset.help),
+          el(
+            "ul",
+            { class: "preset-points" },
+            ...preset.points.map((point) => el("li", {}, point)),
+          ),
         ),
       ),
     );
@@ -729,6 +793,19 @@ function droppable(): void {
 
 // ---------------------------------------------------------------- runs
 
+/**
+ * For testing in game, from the address: `?poogie-test` makes a happy Poogie
+ * always give the rarest reward and `?loader-demo` adds the code loader's
+ * demo (neither for play), and `?debug` adds research detail to the spoiler
+ * log.
+ */
+const params = new URLSearchParams(location.search);
+const testing = {
+  poogieTest: params.has("poogie-test"),
+  loaderDemo: params.has("loader-demo"),
+  debug: params.has("debug"),
+};
+
 function outputName(file: File, seed: string): string {
   return `${file.name.replace(/\.iso$/i, "")} (RandomFU ${seed}).iso`;
 }
@@ -756,7 +833,12 @@ async function run(dryRun: boolean): Promise<void> {
     log.scrollTop = log.scrollHeight;
   };
   try {
-    const r = await ask({ type: "run", iso: file, settings, dryRun });
+    const r = await ask({
+      type: "run",
+      iso: file,
+      settings,
+      options: { ...testing, dryRun },
+    });
     if (r.type === "error") throw new Error(r.message);
     if (r.type !== "done") throw new Error("The run stopped without finishing.");
     showSpoiler(r.spoiler);

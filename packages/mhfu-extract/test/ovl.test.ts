@@ -24,6 +24,7 @@ import {
   readCapBreakTables,
   readCarveTables,
   readRewardList,
+  readUnindexedCarves,
 } from "../src/monsters/rewards.js";
 
 const LOAD_BASE = 0x09a5a580;
@@ -231,6 +232,11 @@ const RATHIAN_CAPTURE = {
   entry: "0180000001000200030004000500",
   low: [0x09cda820, "24000e0201003400080202000a002202010002000b020100ffff"],
 } as const;
+/** Carve pointer 1007, which only em02.ovl's code picks: Fatalis's high-rank body carves. */
+const FATALIS_CARVES = {
+  pointer: 1007,
+  list: [0x09cd7558, "2a000a0332000c0308000803ffff"],
+} as const;
 /** Every other pointer leads here: 100% Mega Potion (item 8), a list shape the disc uses. */
 const FILLER_LIST = 0x09cd7a38;
 
@@ -239,9 +245,15 @@ function buildGameSub(): OvlFile {
   const at = (vaddr: number) => vaddr - EU_SUB_LOAD;
   put(buf, at(FILLER_LIST), "64000800ffff");
   put(buf, at(GIAPREY.list[0]), GIAPREY.list[1]);
+  put(buf, at(FATALIS_CARVES.list[0]), FATALIS_CARVES.list[1]);
   put(buf, at(RATHIAN_CAPTURE.low[0]), RATHIAN_CAPTURE.low[1]);
   for (let i = 0; i < CARVE_POINTER_COUNT; i++) {
-    const pointer = i === GIAPREY.lowIndex ? GIAPREY.list[0] : FILLER_LIST;
+    const pointer =
+      i === GIAPREY.lowIndex
+        ? GIAPREY.list[0]
+        : i === FATALIS_CARVES.pointer
+          ? FATALIS_CARVES.list[0]
+          : FILLER_LIST;
     buf.writeUInt32LE(pointer, CARVE_POINTERS + i * 4);
   }
   const carveIndex = CARVE_POINTERS + CARVE_POINTER_COUNT * 4;
@@ -289,6 +301,21 @@ test("reward tables are found by their pointer runs and lead to each monster's l
   ]);
 });
 
+test("readUnindexedCarves reads the carve lists no bodytailshiny index reaches, by pointer", () => {
+  const ovl = buildGameSub();
+  const lists = readUnindexedCarves(ovl, locateRewardTables(ovl)!.carves);
+  // data/mhfu/monsters/elder-dragon.json: Fatalis high-rank body carves.
+  assert.deepEqual(lists[FATALIS_CARVES.pointer], [
+    { chance: 42, itemId: 778 },
+    { chance: 50, itemId: 780 },
+    { chance: 8, itemId: 776 },
+  ]);
+  // Giaprey's entry indexes pointers 189 to 195.
+  assert.equal(lists[GIAPREY.lowIndex], undefined);
+  assert.equal(lists[189], undefined);
+  assert.deepEqual(lists[196], [{ chance: 100, itemId: 8 }]);
+});
+
 test("readRewardList rejects lists that run on or leave the overlay", () => {
   const buf = buildOvl({ name: "game_sub.ovl", loadBase: EU_SUB_LOAD, dataSize: 0x40 });
   const ovl = parseOvl(buf);
@@ -307,6 +334,7 @@ test("emitMonsters names parts and groups through overlay/monsters.json", () => 
   const output = emitMonsters({
     chunks: readMonsterChunks(task, EU_CHUNKS),
     carves: readCarveTables(sub, rewards.carves),
+    unindexedCarves: readUnindexedCarves(sub, rewards.carves),
     capBreak: readCapBreakTables(sub, rewards.capBreak),
   }) as Record<string, { monsters: Record<string, unknown>[] }>;
 
@@ -338,6 +366,14 @@ test("emitMonsters names parts and groups through overlay/monsters.json", () => 
   assert.deepEqual(
     giapreyDrops["low-rank"]!["body carves (x1)"]!.map((e) => e.chance),
     [52, 30, 18],
+  );
+
+  // A `carve:<n>` slot reads the list by pointer number.
+  const fatalis = output["monsters/elder-dragon.json"]!.monsters.find((m) => m.name === "Fatalis")!;
+  const fatalisDrops = fatalis.drops as Record<string, Record<string, { itemId: number }[]>>;
+  assert.deepEqual(
+    fatalisDrops["high rank"]!["body carves (x9)"]!.map((e) => e.itemId),
+    [778, 780, 776],
   );
 });
 

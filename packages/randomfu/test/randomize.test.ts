@@ -10,26 +10,30 @@ import {
 } from "mhfu-extract/src/tables/offsets.js";
 import { equipmentCreateLayout } from "mhfu-extract/src/tables/recipes.js";
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
-import { openPatchableImage } from "../src/disc/node-file.js";
 import { EBOOT_PATH, loadGame, type GameData } from "../src/game/load.js";
 import { tierLabel } from "../src/game/tiers.js";
 import { randomize } from "../src/randomize.js";
-import type { Settings } from "../src/settings.js";
+import { applySettings, defaultSettings, type Settings } from "../src/settings.js";
 import { settingsWith, type ShuffleName } from "./settings-helper.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
 import { collectRecipeSlots } from "../src/shuffles/recipes.js";
 import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
-import { roundTrip, writeEdits } from "../src/write.js";
-import { main } from "../src/cli.js";
+import { writeEdits } from "../src/write.js";
+import { runRandomizer } from "../src/run.js";
 import {
+  assemble,
   buildFixtureDisc,
   EBOOT_SIZE,
+  finish,
   FIXTURE_PRICES,
   FIXTURE_QUESTS,
   FIXTURE_RECIPES,
   GAME_SUB_INDEX,
   LOBBY_TASK_INDEX,
+  EDIT_TASK_INDEX,
+  memorySource,
+  patchInMemory,
   QUEST_INDICES,
   tempDir,
 } from "./fixtures.js";
@@ -48,7 +52,7 @@ function fixtureFile(): string {
 
 async function load(file: string): Promise<{ game: GameData; close: () => void }> {
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -88,7 +92,7 @@ test("the fixture disc loads like a real one", async () => {
     game.quests.map((q) => q.index),
     QUEST_INDICES,
   );
-  assert.equal(game.eboot!.length, EBOOT_SIZE);
+  assert.equal(game.eboot.length, EBOOT_SIZE);
   assert.deepEqual(monsterItems(game), [[100, 101], [102, 103], [200], [150], [104]]);
   close();
 });
@@ -96,10 +100,30 @@ test("the fixture disc loads like a real one", async () => {
 test("roundtrip finds every file re-encrypts to the disc's bytes", async () => {
   const file = fixtureFile();
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: null });
-  const result = roundTrip(game, (o, l) => source.read(o, l));
+  const game = await loadGame(source, iso);
+  // Re-encrypts every quest (both cipher layers) and the overlays shuffles
+  // edit, unchanged, and compares with the disc's own bytes.
+  const base = game.dataBinEntry.lba * 2048;
+  const onDisc = (index: number): Buffer =>
+    source.read(base + game.dataBin.offsetOf(index), game.dataBin.lengthOf(index));
+  const mismatches: string[] = [];
+  let checked = 0;
+  for (const quest of game.quests) {
+    checked++;
+    const sealed = quest.file.seal(Buffer.from(quest.file.payload));
+    if (!game.dataBin.encode(quest.index, sealed).equals(onDisc(quest.index))) {
+      mismatches.push(quest.path);
+    }
+  }
+  const overlays = [game.gameSub, game.gameTask, game.lobbyTask, game.editTask];
+  for (const { index } of overlays.filter((o) => o !== null)) {
+    checked++;
+    if (!game.dataBin.encode(index, game.dataBin.read(index)).equals(onDisc(index))) {
+      mismatches.push(`DATA.BIN file ${index}`);
+    }
+  }
   source.close();
-  assert.deepEqual(result, { checked: 8, mismatches: [] });
+  assert.deepEqual({ checked, mismatches }, { checked: 9, mismatches: [] });
 });
 
 test("items get the earliest star level of a reward, monster or used gathering point", async () => {
@@ -147,7 +171,7 @@ test("randomizing is deterministic and keeps items within their tier", async () 
 
   // Recipe materials only swap within a tier: 1★ slots get 1★ items, and so on.
   const tierOf = (item: number) => a.sources.tiers.get(item);
-  const before = recipes(game.eboot!).flat();
+  const before = recipes(game.eboot).flat();
   const after = recipes(a.edits.eboot()).flat();
   before.forEach(([item], i) => {
     const [next] = after[i]!;
@@ -162,7 +186,7 @@ test("randomizing is deterministic and keeps items within their tier", async () 
 
 test("recipe amounts follow each material's usual quantity and stay in range", async () => {
   const { game, close } = await load(fixtureFile());
-  const vanilla = recipes(game.eboot!);
+  const vanilla = recipes(game.eboot);
 
   const unchanged = randomize(
     game,
@@ -196,7 +220,7 @@ test("recipe amounts follow each material's usual quantity and stay in range", a
   );
   // Each item's median quantity over every recipe slot on the disc.
   const quantities = new Map<number, number[]>();
-  for (const slot of collectRecipeSlots(game.eboot!, undefined)) {
+  for (const slot of collectRecipeSlots(game.eboot, undefined)) {
     quantities.set(slot.itemId, [...(quantities.get(slot.itemId) ?? []), slot.quantity]);
   }
   const typical = new Map(
@@ -255,9 +279,9 @@ test("costs vary within the spread in steps of 10z", async () => {
 test("written output reads back with the shuffled data, and nothing else changes", async () => {
   const input = fixtureFile();
   const output = path.join(tempDir(), "out.iso");
-  writeFileSync(output, readFileSync(input));
-  const image = openPatchableImage(output);
-  const game = await loadGame(image.source, image.iso, { eboot: {} });
+  const original = readFileSync(input);
+  const image = patchInMemory(original);
+  const game = await loadGame(image.source, image.iso);
   const all = settings(
     "fixture",
     "quest-rewards",
@@ -270,7 +294,7 @@ test("written output reads back with the shuffled data, and nothing else changes
   );
   const result = randomize(game, all);
   const summary = writeEdits(image, game, result.edits);
-  image.close();
+  writeFileSync(output, finish(image, original));
   assert.equal(summary.eboot, "in place");
 
   const before = await load(input);
@@ -299,13 +323,12 @@ test("written output reads back with the shuffled data, and nothing else changes
     "armor moved on the written EBOOT",
   );
 
-  // Monster lists: same lengths and chances; each tier keeps its items.
+  // Monster lists: same lengths and chance totals; each tier keeps its items.
   const listsBefore = collectRewardLists(before.game.gameSub.ovl);
   const listsAfter = collectRewardLists(after.game.gameSub.ovl);
-  assert.deepEqual(
-    listsAfter.map((l) => l.entries.map((e) => e.chance)),
-    listsBefore.map((l) => l.entries.map((e) => e.chance)),
-  );
+  const shape = (ls: typeof listsBefore) =>
+    ls.map((l) => [l.entries.length, l.entries.reduce((sum, e) => sum + e.chance, 0)]);
+  assert.deepEqual(shape(listsAfter), shape(listsBefore));
   const items = (ls: typeof listsBefore, which: number[]) =>
     sorted(which.flatMap((i) => ls[i]!.entries.map((e) => e.itemId)));
   assert.deepEqual(items(listsAfter, [0, 4]), items(listsBefore, [0, 4]), "Low Rank 1★");
@@ -334,6 +357,7 @@ test("written output reads back with the shuffled data, and nothing else changes
     ...QUEST_INDICES.filter((i) => i !== training),
     GAME_SUB_INDEX,
     LOBBY_TASK_INDEX,
+    EDIT_TASK_INDEX,
   ]);
   const changed: number[] = [];
   for (let i = 0; i < bin.fileCount; i++) {
@@ -348,43 +372,59 @@ test("written output reads back with the shuffled data, and nothing else changes
   after.close();
 });
 
-test("the CLI writes an ISO and a spoiler log, and refuses to overwrite", async () => {
-  const input = fixtureFile();
-  const dir = tempDir();
-  const output = path.join(dir, "random.iso");
-  const log = console.log;
-  console.log = () => {};
-  try {
-    await main([
-      "randomize",
-      "--iso",
-      input,
-      "--out",
-      output,
-      "--seed",
-      "cli",
-      "--shuffles",
-      "quest-rewards,monster-rewards,recipes,recipe-amounts,costs,gathering,armor",
-      "--cost-spread",
-      "0.25",
-    ]);
-    const spoiler = readFileSync(path.join(dir, "random.spoiler.txt"), "utf-8");
-    assert.match(spoiler, /Seed:\s+cli/);
-    assert.match(spoiler, /Crafting cost variation: ±25%/);
-    assert.match(spoiler, /== Quest rewards ==/);
-    assert.match(spoiler, /== Gathering points ==/);
-    assert.match(spoiler, /== Armor progression ==/);
-    assert.match(spoiler, /== Where items are first found ==/);
-    assert.match(spoiler, /Low Rank 1★ \(\d+\)/);
-    await assert.rejects(
-      main(["randomize", "--iso", input, "--out", output, "--seed", "cli"]),
-      /already exists/,
-    );
-    await assert.rejects(
-      main(["randomize", "--iso", input, "--out", output, "--cost-spread", "2", "--force"]),
-      /costs\.spread must be a number from 0 to 0\.95/,
-    );
-  } finally {
-    console.log = log;
-  }
+test("runRandomizer leaves the disc alone and returns the finished image", async () => {
+  const disc = buildFixtureDisc();
+  const original = Buffer.from(disc);
+  const source = memorySource(disc);
+  const chosen = settingsWith(
+    "run",
+    [
+      "quest-rewards",
+      "monster-rewards",
+      "recipes",
+      "recipe-amounts",
+      "costs",
+      "gathering",
+      "armor",
+    ],
+    { "costs.spread": 0.25 },
+  );
+  const lines: string[] = [];
+  const result = await runRandomizer(source, chosen, {}, (line) => lines.push(line));
+  assert.ok(disc.equals(original), "the input is never written to");
+  assert.ok(lines.some((line) => /Read-back check passed/.test(line)));
+  assert.match(result.spoiler, /Seed:\s+run/);
+  assert.match(result.spoiler, /Crafting cost variation: ±25%/);
+  assert.match(result.spoiler, /== Quest rewards ==/);
+  assert.match(result.spoiler, /== Gathering points ==/);
+  assert.match(result.spoiler, /== Armor progression ==/);
+  assert.match(result.spoiler, /== Where items are first found ==/);
+  assert.match(result.spoiler, /Low Rank 1★ \(\d+\)/);
+
+  const image = assemble(result.segments!, disc);
+  assert.ok(!image.equals(disc));
+  const file = path.join(tempDir(), "random.iso");
+  writeFileSync(file, image);
+  const before = await load(fixtureFile());
+  const after = await load(file);
+  assert.equal(after.game.quests.length, before.game.quests.length);
+  assert.notDeepEqual(questItems(after.game), questItems(before.game));
+  before.close();
+  after.close();
+
+  const dry = await runRandomizer(source, chosen, { dryRun: true }, () => {});
+  assert.equal(dry.segments, null);
+  assert.equal(dry.spoiler, result.spoiler, "a dry run previews the same game");
+});
+
+test("Poogie's luck is reported when on, and the test notice shows only when it went in", async () => {
+  const { game, close } = await load(fixtureFile());
+  // The fixture's EBOOT has none of the game's code, so it can't go in.
+  const on = randomize(game, defaultSettings("p"), { poogieTest: true });
+  const poogie = on.reports.find((r) => r.title === "Poogie");
+  assert.match(poogie?.summary ?? "", /Poogie: not applied/);
+  assert.ok(!on.testing.some((line) => /Poogie test/.test(line)));
+  const off = randomize(game, applySettings(defaultSettings("p"), { "poogie.enabled": false }));
+  assert.ok(!off.reports.some((r) => r.title === "Poogie"));
+  close();
 });

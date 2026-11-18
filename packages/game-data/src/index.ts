@@ -12,6 +12,7 @@ export {
   RANGED_TYPES,
   dehydrate,
   equipmentIds,
+  equipmentRecordIds,
   fileKind,
   formatDecorationSkill,
   hydrate,
@@ -59,3 +60,4 @@ export {
   type SaveFormat,
   type WeaponClass,
 } from "./games.js";
+export { RECOIL_CODE_BASE, RECOIL_LEVELS, RELOAD_LEVELS } from "./gunner.js";

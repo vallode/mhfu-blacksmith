@@ -122,6 +122,47 @@
         "amount":  { "type": "integer", "minimum": 1 }
       }
     },
+    "arena_equipment": {
+      "type": "object",
+      "required": ["slot", "id", "decorations"],
+      "additionalProperties": false,
+      "$comment": "A piece of a Training School loadout. Gear with a record in data/armor or data/weapons is named there; training-only gear (Rookie Knife, the Piercings) is named in data/strings under the slot. See mhfu-extract's README, 'Arena sets'.",
+      "properties": {
+        "slot": {
+          "type": "string",
+          "enum": ["leggings", "helmet", "plate", "gauntlets", "waist", "melee", "ranged"]
+        },
+        "id":          { "type": "integer", "minimum": 1, "description": "The slot's equipment ID (armor ID, or melee or ranged weapon table index)" },
+        "level":       { "type": "integer", "minimum": 0, "$comment": "Armor: the piece's upgrade level. Melee weapons: only when nonzero, which no quest on the disc has." },
+        "attachments": { "type": "integer", "minimum": 1, "$comment": "Ranged weapons only, when any: a bowgun's attachment bits (0x04, 0x10, 0x20, 0x80), raw." },
+        "decorations": { "type": "array", "items": { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json)" } }
+      },
+      "allOf": [
+        {
+          "if":   { "properties": { "slot": { "enum": ["leggings", "helmet", "plate", "gauntlets", "waist"] } } },
+          "then": { "required": ["level"], "not": { "required": ["attachments"] } }
+        },
+        {
+          "if":   { "properties": { "slot": { "const": "melee" } } },
+          "then": { "not": { "required": ["attachments"] }, "properties": { "level": { "minimum": 1 } } }
+        },
+        {
+          "if":   { "properties": { "slot": { "const": "ranged" } } },
+          "then": { "not": { "required": ["level"] } }
+        }
+      ]
+    },
+    "arena_set": {
+      "type": "object",
+      "required": ["players", "point_multiplier", "equipment", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "players":          { "type": "integer", "minimum": 0, "$comment": "On the first set, how many hunters the quest is for (1, 2 or 4); 0 on the others." },
+        "point_multiplier": { "type": "integer", "minimum": 0, "$comment": "Raw (85-120 on the EU disc); what it scales isn't confirmed." },
+        "equipment":        { "type": "array", "items": { "$ref": "#/definitions/arena_equipment" }, "$comment": "Weapon, then legs, head, chest, arms and waist; empty slots left out." },
+        "items":            { "type": "array", "items": { "$ref": "#/definitions/supply" } }
+      }
+    },
     "quest": {
       "type": "object",
       "required": ["id", "hub", "stars", "fee", "reward", "penalty", "time_limit_minutes"],
@@ -153,6 +194,13 @@
         "monster_size": {
           "oneOf": [{ "$ref": "#/definitions/monster_size" }, { "type": "null" }],
           "$comment": "null when the quest has no large monsters."
+        },
+        "arena_sets": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": { "$ref": "#/definitions/arena_set" },
+          "$comment": "Training School quests only: the loadouts the hunter picks from."
         },
 
         "requires": {
