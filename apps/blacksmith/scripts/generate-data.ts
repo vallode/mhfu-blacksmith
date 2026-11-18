@@ -179,6 +179,7 @@ function compactTreeNode(
   if (node.rarity !== undefined) out.r = node.rarity === null ? null : (toNum(node.rarity) ?? null);
   if (node.color) out.c = node.color;
   if (node.element) out.e = node.element;
+  if (node.elements && node.elements.length > 1) out.e2 = node.elements[1];
   const mr = minRankOf?.(node.type || bundleType, node.slug);
   if (mr) out.m = mr;
   const md = maxDefenceOf?.(node.slug);

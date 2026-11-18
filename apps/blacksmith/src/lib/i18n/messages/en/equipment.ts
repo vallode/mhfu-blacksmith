@@ -46,13 +46,42 @@ export const equipment = {
     maxDefenceTitle: (value: number) => `Max defence ${value}`,
     /** The material squares on a weapon row. */
     materialsOwned: (have: number, total: number) => `${have} of ${total} materials owned`,
-    filterGroup: "Weapon tree filter",
+    /** The weapon tree's sort bar (TreeSortBar) and its menu. */
+    sortMenu: "Sort and filter",
+    sortBarLabel: (summary: string, count: string) => `Sort and filter: ${summary}, ${count}`,
+    sortView: "View",
+    sortElement: "Element",
+    sortHunter: "Hunter",
+    /** The bar's read-out: the view, then any filters. */
+    sortSummary: (parts: string[]) => parts.join(" · "),
+    rarityGroup: (rarity: number) => `Rarity ${rarity}`,
     previousFilter: "Previous filter",
     nextFilter: "Next filter",
     filterCount: (matched: number, total: number) => `${matched} of ${total} weapons`,
     rankGroup: "Armor rank",
     previousRank: "Previous rank",
     nextRank: "Next rank",
+  },
+  /** The weapon tree's views (lib/tree-filter `TreeViewId`). */
+  treeViews: {
+    tree: "Upgrade tree",
+    element: "By element",
+    rarity: "By rarity",
+  },
+  /** The weapon tree's element filter (lib/tree-filter `ElementFilterId`). */
+  treeElementFilters: {
+    all: "All elements",
+    any: "Any element",
+    fire: "Fire",
+    water: "Water",
+    thunder: "Thunder",
+    ice: "Ice",
+    dragon: "Dragon",
+    status: "Any status",
+    poison: "Poison",
+    paralysis: "Paralysis",
+    sleep: "Sleep",
+    none: "No element",
   },
   /** The weapon tree filter (lib/tree-filter `TreeFilterId`). */
   treeFilters: {

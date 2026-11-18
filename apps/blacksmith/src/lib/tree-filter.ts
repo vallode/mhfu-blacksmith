@@ -1,8 +1,11 @@
 /**
- * The weapon tree's hunter filter (All / Owned / Not owned / Craftable /
- * Within 1 material): each row's owned and craft status for the loaded
- * hunter, whether it matches the chosen filter, and the tree's match count.
- * The decoration list uses the same row status and filters.
+ * The weapon tree's filters: the hunter filter (All / Owned / Not owned /
+ * Craftable / Within 1 material) and the element filter (one element, any,
+ * any status, or none), with each row's owned and craft status for the
+ * loaded hunter, whether it matches both filters, and the tree's match
+ * count. Also the tree's views (the upgrade tree, or its weapons listed by
+ * element or rarity; see tree-groups.ts). The decoration list uses the same
+ * row status and hunter filters.
  *
  * Pure functions over the tree data and the HunterProgress lookups, so the
  * list-level hook and the rows share one definition of a row's status.
@@ -26,10 +29,81 @@ export function isTreeFilterId(value: unknown): value is TreeFilterId {
   return TREE_FILTERS.some((f) => f.id === value);
 }
 
-/** The filter `step` places after (1) or before (-1) `current`, wrapping around. */
-export function cycleTreeFilter(current: TreeFilterId, step: 1 | -1): TreeFilterId {
-  const i = TREE_FILTERS.findIndex((f) => f.id === current);
-  return TREE_FILTERS[(i + step + TREE_FILTERS.length) % TREE_FILTERS.length].id;
+/** The elements, in the game's order. */
+export const WEAPON_ELEMENTS = [
+  "fire",
+  "water",
+  "thunder",
+  "ice",
+  "dragon",
+  "poison",
+  "paralysis",
+  "sleep",
+] as const;
+
+const STATUS_ELEMENTS = new Set<string>(["poison", "paralysis", "sleep"]);
+
+/**
+ * The element filter: every weapon, any element, one element, any status
+ * element (poison, paralysis or sleep), or no element.
+ */
+export const ELEMENT_FILTERS = [
+  "all",
+  "any",
+  "fire",
+  "water",
+  "thunder",
+  "ice",
+  "dragon",
+  "status",
+  "poison",
+  "paralysis",
+  "sleep",
+  "none",
+] as const;
+
+export type ElementFilterId = (typeof ELEMENT_FILTERS)[number];
+
+export function isElementFilterId(value: unknown): value is ElementFilterId {
+  return (ELEMENT_FILTERS as readonly unknown[]).includes(value);
+}
+
+/** A tree node's elements: none, one, or both of a dual-element weapon's. */
+export function nodeElements(node: WeaponTreeNode): string[] {
+  return node.elements ?? (node.element ? [node.element] : []);
+}
+
+export function matchesElementFilter(
+  filter: ElementFilterId,
+  elements: readonly string[],
+): boolean {
+  switch (filter) {
+    case "all":
+      return true;
+    case "any":
+      return elements.length > 0;
+    case "none":
+      return elements.length === 0;
+    case "status":
+      return elements.some((e) => STATUS_ELEMENTS.has(e));
+    default:
+      return elements.includes(filter);
+  }
+}
+
+/** How the tree card lays out its weapons: the upgrade tree, or a list by element or rarity. */
+export const TREE_VIEWS = ["tree", "element", "rarity"] as const;
+
+export type TreeViewId = (typeof TREE_VIEWS)[number];
+
+export function isTreeViewId(value: unknown): value is TreeViewId {
+  return (TREE_VIEWS as readonly unknown[]).includes(value);
+}
+
+/** The filters a row has to pass, together. */
+export interface TreeFilters {
+  hunter: TreeFilterId;
+  element: ElementFilterId;
 }
 
 /** The lookups this module needs from HunterProgressContext. */
@@ -135,14 +209,15 @@ export interface FilteredTree {
 /**
  * Every node's status and match. Counts every weapon in the tree data once,
  * including rows inside collapsed branches and cross-type rows; a weapon
- * listed under several parents matches when any of its rows does.
+ * listed under several parents matches when any of its rows does. Like the
+ * hunter filter, an element filter other than All rules out cross-type rows.
  */
 export function filterTree(
   tree: WeaponTreeNode[],
   sectionType: string,
   basePath: string,
   progress: ProgressLookups,
-  filter: TreeFilterId,
+  filters: TreeFilters,
 ): FilteredTree {
   const rows = new Map<string, FilteredRow>();
   const weapons = new Set<string>();
@@ -151,7 +226,10 @@ export function filterTree(
     for (const node of nodes) {
       const from = node.parentHref ?? parentHref;
       const status = rowStatus(node, sectionType, basePath, from, progress);
-      const match = matchesTreeFilter(filter, status);
+      const match =
+        (filters.element === "all" ||
+          (!status.external && matchesElementFilter(filters.element, nodeElements(node)))) &&
+        matchesTreeFilter(filters.hunter, status);
       const weapon = `${node.type}/${node.slug}`;
       weapons.add(weapon);
       if (match) matches.add(weapon);
