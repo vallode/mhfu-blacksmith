@@ -70,6 +70,8 @@ export interface Settings {
   "armorSkills.enabled": boolean;
   "armorSkills.mode": "shuffle" | "randomize";
   "armorSkills.keepArmorOnly": boolean;
+  "skillActivations.mode": "off" | "shuffle" | "split";
+  "skillActivations.thresholds": boolean;
   "armorStats.defense": Mode;
   "armorStats.defenseSpread": number;
   "armorStats.resistances": Mode;
@@ -1090,6 +1092,40 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: true,
     enabledBy: "armorSkills.enabled",
+  },
+  {
+    key: "skillActivations.mode",
+    section: "Armor",
+    label: "What skill points turn on",
+    help: "Which skill each skill tree turns on at 10, 15 and 20 points (and -10, -15, -20). Armor and decorations keep their points; the skills those points give change.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Each tree turns on its own skills." },
+        {
+          value: "shuffle",
+          label: "Trade between trees",
+          action: "shuffle",
+          help: "Skill trees trade everything they turn on, good and bad skills together, with trees for the same hunters: Attack +10 might give Guard +1. Every skill is still on one tree.",
+        },
+        {
+          value: "split",
+          label: "Good and bad apart",
+          action: "shuffle",
+          help: "Skill trees trade their good skills, and separately their bad ones, so a tree's bad skills come from another tree than its good ones. Trees with no bad skills still have none.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "skillActivations.thresholds",
+    section: "Armor",
+    label: "Shift skill thresholds",
+    help: "Each skill needs 5 points more or fewer to turn on, between 10 and 20, keeping a tree's skills weakest first. Skills on trees no decoration has keep their thresholds, since armor alone may not reach more.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
   },
   {
     key: "armorStats.defense",

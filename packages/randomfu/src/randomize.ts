@@ -66,6 +66,7 @@ import { shuffleWeapons } from "./shuffles/weapons.js";
 import { collectTradeSlots, randomizeTrades, shuffleTrades } from "./shuffles/veggie-trades.js";
 import { collectWeaponStats, randomizeWeaponStats } from "./shuffles/weapon-stats.js";
 import { randomizeSharpness } from "./shuffles/sharpness.js";
+import { randomizeSkillActivations } from "./shuffles/skill-activations.js";
 import {
   collectQuestMonsters,
   collectStartPoints,
@@ -847,6 +848,22 @@ export function randomize(
           keepArmorOnly: settings["armorSkills.keepArmorOnly"],
         },
         rng.fork("armor-skills"),
+        edits,
+      ),
+    );
+  }
+
+  // What a tree's points turn on; armor and decorations keep their points.
+  if (settings["skillActivations.mode"] !== "off" || settings["skillActivations.thresholds"]) {
+    reports.push(
+      randomizeSkillActivations(
+        game.eboot,
+        game.resolver,
+        {
+          mode: settings["skillActivations.mode"],
+          thresholds: settings["skillActivations.thresholds"],
+        },
+        { trees: rng.fork("skill-activations"), thresholds: rng.fork("skill-thresholds") },
         edits,
       ),
     );
