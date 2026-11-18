@@ -36,7 +36,7 @@ export function mapLabel(map: number): string {
 
 /** A monster reward list's source as the guides name it: "carve", "tail", "capture" ... */
 export function rewardKind(source: string): string {
-  if (source === "body") return "carve";
+  if (source === "body" || source.endsWith(" carve")) return "carve";
   if (source.startsWith("break")) return "break";
   return source;
 }
@@ -100,10 +100,9 @@ export function largeAppearances(quests: readonly ParsedQuest[]): Map<number, Ti
 
 /**
  * Every item a crafting or upgrade recipe now uses, from the EBOOT as the
- * shuffles left it; null if the EBOOT wasn't loaded.
+ * shuffles left it.
  */
-export function recipeMaterials(game: GameData, edits: Edits): Set<number> | null {
+export function recipeMaterials(game: GameData, edits: Edits): Set<number> {
   const eboot = edits.changedEboot() ?? game.eboot;
-  if (!eboot) return null;
   return new Set(collectRecipeSlots(eboot, game.resolver).map((slot) => slot.itemId));
 }

@@ -1,7 +1,7 @@
 /**
- * Minimal random-access byte source, implemented by both a plain ISO file
- * and a CSO-backed reader (container/cso.ts) so the ISO 9660 layer
- * (container/iso9660.ts) never needs to know which one it's talking to.
+ * Minimal random-access byte source, so the ISO 9660 layer
+ * (container/iso9660.ts) never needs to know where the bytes come from: a
+ * file on disk, memory, or a browser File.
  */
 export interface RandomAccessSource {
   readonly totalBytes: number;

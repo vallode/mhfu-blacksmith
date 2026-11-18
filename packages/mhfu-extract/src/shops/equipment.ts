@@ -39,7 +39,7 @@ export const ARMOR_CATEGORY: Record<ArmorSlot, number> = {
  * Entries in each category's table, by category: an ID must be below it.
  * This keeps the search from taking some other table of small numbers.
  */
-const CATEGORY_COUNTS = [
+export const CATEGORY_COUNTS: readonly number[] = [
   TABLE_COUNTS.legArmor,
   TABLE_COUNTS.headArmor,
   TABLE_COUNTS.chestArmor,

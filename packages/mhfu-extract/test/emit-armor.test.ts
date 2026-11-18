@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
+import { readData } from "game-data";
 import { fileURLToPath } from "node:url";
 import {
   defenceAtLevel,
@@ -72,7 +72,7 @@ const EU_ARRAY_OFFSET: Record<ArmorSlot, number> = {
 const FIXTURE_SIZE = 0x180000;
 
 function committed(slot: ArmorSlot, name: string) {
-  const file = JSON.parse(readFileSync(path.join(DATA_DIR, `${SITE_FILE[slot]}.json`), "utf-8"));
+  const file = readData(path.dirname(DATA_DIR), "armor", `${SITE_FILE[slot]}.json`);
   const entry = file.armor.find((a: { name: string }) => a.name === name);
   assert.ok(entry, `${name} should be in data/armor/${SITE_FILE[slot]}.json`);
   return entry;

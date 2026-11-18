@@ -1,7 +1,7 @@
 {
   "weapons": [
     {
-      "name": "Bone Shooter",
+      "id": 70,
       "attack": 156,
       "max_attack": 216,
       "rapid_fire": null,
@@ -146,13 +146,13 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 8,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Sm Monster Bone",
+          "item": 281,
           "amount": 3,
           "type": "bone",
           "color": "yellow"
@@ -162,7 +162,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Injector Cannon",
+      "id": 75,
       "attack": 168,
       "max_attack": 228,
       "rapid_fire": null,
@@ -307,25 +307,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Vespoid Wing",
+          "item": 660,
           "amount": 6,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "Hornetaur Shell",
+          "item": 663,
           "amount": 4,
           "type": "insect",
           "color": "gray"
         },
         {
-          "name": "Disk Stone",
+          "item": 201,
           "amount": 3,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 2,
           "type": "bone",
           "color": "white"
@@ -333,13 +333,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Normal Ticket",
+          "item": 909,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Vespoid Wing",
+          "item": 660,
           "amount": 1,
           "type": "webbing",
           "color": "yellow"
@@ -348,7 +348,7 @@
       "elements": null
     },
     {
-      "name": "Rapidcaster",
+      "id": 71,
       "attack": 180,
       "max_attack": 240,
       "rapid_fire": null,
@@ -493,25 +493,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 4,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Bulldrome Hide",
+          "item": 325,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Kelbi Hide",
+          "item": 328,
           "amount": 4,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "Kelbi Horn",
+          "item": 327,
           "amount": 2,
           "type": "claw",
           "color": "blue"
@@ -519,13 +519,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Hard Ticket",
+          "item": 910,
           "amount": 1,
           "type": "ticket",
           "color": "green"
         },
         {
-          "name": "Bulldrome Hide",
+          "item": 325,
           "amount": 1,
           "type": "pelt",
           "color": "white"
@@ -534,7 +534,7 @@
       "elements": null
     },
     {
-      "name": "Tankmage",
+      "id": 81,
       "attack": 180,
       "max_attack": 240,
       "rapid_fire": null,
@@ -679,13 +679,13 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Rubbery Hide",
+          "item": 401,
           "amount": 4,
           "type": "hide",
           "color": "blue"
         },
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 10,
           "type": "ore",
           "color": "white"
@@ -693,13 +693,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Tcket",
+          "item": 911,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Rubbery Hide",
+          "item": 401,
           "amount": 1,
           "type": "hide",
           "color": "blue"
@@ -708,7 +708,7 @@
       "elements": null
     },
     {
-      "name": "Bastionmage",
+      "id": 82,
       "attack": 192,
       "max_attack": 252,
       "rapid_fire": null,
@@ -853,19 +853,19 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Pur Rubbery Hide",
+          "item": 406,
           "amount": 8,
           "type": "pelt",
           "color": "slate"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 4,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Carpenterbug",
+          "item": 254,
           "amount": 6,
           "type": "insect",
           "color": "gray"
@@ -875,7 +875,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sand Driver",
+      "id": 232,
       "attack": 192,
       "max_attack": 252,
       "rapid_fire": null,
@@ -1020,25 +1020,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Cephalos Fin",
+          "item": 484,
           "amount": 2,
           "type": "part",
           "color": "cyan"
         },
         {
-          "name": "Cephalos Scale",
+          "item": 482,
           "amount": 6,
           "type": "scale",
           "color": "cyan"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 10,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 3,
           "type": "ore",
           "color": "blue"
@@ -1048,7 +1048,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Yian Kut-Ku Cannon",
+      "id": 78,
       "attack": 216,
       "max_attack": 276,
       "rapid_fire": null,
@@ -1193,25 +1193,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Kut-Ku Shell",
+          "item": 385,
           "amount": 8,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Kut-Ku Scale",
+          "item": 382,
           "amount": 6,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Flabby Hide",
+          "item": 578,
           "amount": 5,
           "type": "hide",
           "color": "white"
         },
         {
-          "name": "Lg Monster Bone",
+          "item": 283,
           "amount": 10,
           "type": "bone",
           "color": "yellow"
@@ -1221,7 +1221,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crab Buster",
+      "id": 83,
       "attack": 216,
       "max_attack": 276,
       "rapid_fire": null,
@@ -1366,25 +1366,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Hermitaur Claw",
+          "item": 498,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Hermitaur Shell",
+          "item": 495,
           "amount": 8,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Sm Hermitaur Shl",
+          "item": 494,
           "amount": 10,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Piscine Fang",
+          "item": 468,
           "amount": 4,
           "type": "claw",
           "color": "yellow"
@@ -1394,7 +1394,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Rock Eater",
+      "id": 85,
       "attack": 216,
       "max_attack": 276,
       "rapid_fire": null,
@@ -1539,25 +1539,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 10,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 15,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Poison Sac",
+          "item": 267,
           "amount": 4,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "Basarios Wing",
+          "item": 590,
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -1567,7 +1567,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Meteor Cannon",
+      "id": 84,
       "attack": 216,
       "max_attack": 276,
       "rapid_fire": null,
@@ -1712,25 +1712,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 1,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 15,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 20,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 40,
           "type": "ore",
           "color": "gray"
@@ -1740,7 +1740,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Flechette Gun",
+      "id": 76,
       "attack": 228,
       "max_attack": 288,
       "rapid_fire": null,
@@ -1885,25 +1885,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Hercudrome",
+          "item": 258,
           "amount": 2,
           "type": "insect",
           "color": "red"
         },
         {
-          "name": "Vespoid Abdomen",
+          "item": 656,
           "amount": 1,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Hornetaur Shell",
+          "item": 663,
           "amount": 15,
           "type": "insect",
           "color": "gray"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 3,
           "type": "bone",
           "color": "orange"
@@ -1913,7 +1913,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Monodevilcaster",
+      "id": 72,
       "attack": 240,
       "max_attack": 300,
       "rapid_fire": null,
@@ -2058,25 +2058,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Wht Monoblos Spn",
+          "item": 680,
           "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Wht Monoblos Shl",
+          "item": 678,
           "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 2,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Wht Monoblos Hrn",
+          "item": 676,
           "amount": 2,
           "type": "claw",
           "color": "white"
@@ -2086,7 +2086,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Piercing Crab",
+      "id": 233,
       "attack": 240,
       "max_attack": 300,
       "rapid_fire": null,
@@ -2231,25 +2231,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Ceanataur Leg",
+          "item": 507,
           "amount": 3,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Ceanataur Shell",
+          "item": 504,
           "amount": 6,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Ceanataur Claw",
+          "item": 510,
           "amount": 3,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Lg Monster Bone",
+          "item": 283,
           "amount": 8,
           "type": "bone",
           "color": "yellow"
@@ -2259,7 +2259,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blue Kut-Ku Cannon",
+      "id": 79,
       "attack": 252,
       "max_attack": 312,
       "rapid_fire": null,
@@ -2404,25 +2404,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Giant Beak",
+          "item": 391,
           "amount": 1,
           "type": "bone",
           "color": "pink"
         },
         {
-          "name": "Blue Kut-Ku Shl",
+          "item": 398,
           "amount": 5,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Alluring Hide",
+          "item": 584,
           "amount": 5,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 10,
           "type": "ore",
           "color": "blue"
@@ -2432,7 +2432,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Duelcaster",
+      "id": 73,
       "attack": 288,
       "max_attack": 348,
       "rapid_fire": null,
@@ -2577,25 +2577,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Diablos Spine",
+          "item": 640,
           "amount": 5,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Diablos Shell",
+          "item": 637,
           "amount": 5,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 15,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Majestic Horn",
+          "item": 635,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
@@ -2605,7 +2605,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tigrex Howl",
+      "id": 86,
       "attack": 300,
       "max_attack": 360,
       "rapid_fire": null,
@@ -2750,25 +2750,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Tigrex Skull Shl",
+          "item": 608,
           "amount": 2,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Shell",
+          "item": 597,
           "amount": 8,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 6,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 8,
           "type": "bone",
           "color": "orange"
@@ -2778,7 +2778,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Seven Nova",
+      "id": 77,
       "attack": 204,
       "max_attack": 264,
       "rapid_fire": null,
@@ -2923,25 +2923,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Great Ladybug",
+          "item": 265,
           "amount": 2,
           "type": "insect",
           "color": "red"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 2,
           "type": "insect",
           "color": "green"
         },
         {
-          "name": "Giant Bone",
+          "item": 295,
           "amount": 3,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Congalala Fang",
+          "item": 451,
           "amount": 4,
           "type": "claw",
           "color": "pink"
@@ -2951,7 +2951,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Quickcaster",
+      "id": 74,
       "attack": 252,
       "max_attack": 312,
       "rapid_fire": null,
@@ -3096,25 +3096,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Kirin Mane",
+          "item": 686,
           "amount": 8,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Kirin Hide",
+          "item": 683,
           "amount": 2,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 10,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Twisted Horn",
+          "item": 634,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
@@ -3124,7 +3124,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Cannon",
+      "id": 92,
       "attack": 252,
       "max_attack": 312,
       "rapid_fire": null,
@@ -3269,25 +3269,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Dark Stone",
+          "item": 775,
           "amount": 1,
           "type": "egg",
           "color": "gray"
         },
         {
-          "name": "Dark Piece",
+          "item": 774,
           "amount": 4,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 3,
           "type": "ore",
           "color": "green"
@@ -3297,7 +3297,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Raven Heirloom",
+      "id": 80,
       "attack": 264,
       "max_attack": 324,
       "rapid_fire": null,
@@ -3442,25 +3442,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Garuga Ear",
+          "item": 415,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga Shell",
+          "item": 412,
           "amount": 8,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Blangonga Whiskr",
+          "item": 435,
           "amount": 4,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Ceanataur Claw",
+          "item": 510,
           "amount": 3,
           "type": "claw",
           "color": "blue"
@@ -3470,7 +3470,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Daora's Delphinidae",
+      "id": 87,
       "attack": 264,
       "max_attack": 324,
       "rapid_fire": null,
@@ -3615,25 +3615,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Daora Shell",
+          "item": 714,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "DaoraDragonScale",
+          "item": 717,
           "amount": 8,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 4,
           "type": "ore",
           "color": "green"
@@ -3643,7 +3643,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Lunastra's Cannon",
+      "id": 88,
       "attack": 264,
       "max_attack": 324,
       "rapid_fire": null,
@@ -3788,25 +3788,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Lunastra Shell",
+          "item": 750,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Fire Dragon Scl",
+          "item": 741,
           "amount": 6,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Lunastra Mane",
+          "item": 752,
           "amount": 2,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 1,
           "type": "ore",
           "color": "red"
@@ -3816,7 +3816,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Teostra's Artillery",
+      "id": 89,
       "attack": 276,
       "max_attack": 336,
       "rapid_fire": null,
@@ -3961,25 +3961,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Teostra Shell",
+          "item": 756,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Fire Dragon Scl",
+          "item": 741,
           "amount": 6,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Teostra Mane",
+          "item": 759,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 2,
           "type": "ore",
           "color": "red"
@@ -3989,7 +3989,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bronze Fire",
+      "id": 91,
       "attack": 276,
       "max_attack": 336,
       "rapid_fire": null,
@@ -4134,25 +4134,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Gaoren Pincer",
+          "item": 711,
           "amount": 2,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gaoren Shell",
+          "item": 704,
           "amount": 5,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 1,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Pokke Ticket",
+          "item": 907,
           "amount": 2,
           "type": "ticket",
           "color": "cyan"
@@ -4162,7 +4162,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Lao-Shan Lung Cannon",
+      "id": 90,
       "attack": 300,
       "max_attack": 360,
       "rapid_fire": null,
@@ -4307,25 +4307,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Lao-Shan's Shell",
+          "item": 698,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Lao-Shan's Scale",
+          "item": 693,
           "amount": 6,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Rathalos Plate",
+          "item": 551,
           "amount": 1,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 10,
           "type": "ore",
           "color": "green"
@@ -4335,7 +4335,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Great Arbalest",
+      "id": 93,
       "attack": 288,
       "max_attack": 348,
       "rapid_fire": null,
@@ -4480,25 +4480,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 4,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "FlynMealPassPlus",
+          "item": 917,
           "amount": 2,
           "type": "ticket",
           "color": "pink"
         },
         {
-          "name": "Bulldrome Hide+",
+          "item": 326,
           "amount": 3,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "King Scarab",
+          "item": 255,
           "amount": 6,
           "type": "insect",
           "color": "slate"
@@ -4506,13 +4506,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Tcket",
+          "item": 911,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 4,
           "type": "bone",
           "color": "white"
@@ -4521,7 +4521,7 @@
       "elements": null
     },
     {
-      "name": "Tankmage+",
+      "id": 101,
       "attack": 288,
       "max_attack": 348,
       "rapid_fire": null,
@@ -4666,13 +4666,13 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Rubbery Hide+",
+          "item": 402,
           "amount": 4,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 10,
           "type": "ore",
           "color": "slate"
@@ -4682,7 +4682,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Desert Diver",
+      "id": 234,
       "attack": 288,
       "max_attack": 348,
       "rapid_fire": null,
@@ -4827,25 +4827,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Cephalos Fin+",
+          "item": 485,
           "amount": 5,
           "type": "part",
           "color": "cyan"
         },
         {
-          "name": "Cephalos Scale+",
+          "item": 483,
           "amount": 6,
           "type": "scale",
           "color": "cyan"
         },
         {
-          "name": "Coral Cphlos Scl",
+          "item": 486,
           "amount": 3,
           "type": "scale",
           "color": "slate"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 3,
           "type": "bone",
           "color": "red"
@@ -4855,7 +4855,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Meteor Buster",
+      "id": 104,
       "attack": 288,
       "max_attack": 348,
       "rapid_fire": null,
@@ -5000,25 +5000,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 1,
           "type": "ore",
           "color": "orange"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 5,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 10,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "King Scarab",
+          "item": 255,
           "amount": 8,
           "type": "insect",
           "color": "slate"
@@ -5028,7 +5028,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Honeycomber",
+      "id": 97,
       "attack": 300,
       "max_attack": 360,
       "rapid_fire": null,
@@ -5173,25 +5173,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Vespoid Carapace",
+          "item": 659,
           "amount": 10,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Vespoid Abdomen",
+          "item": 656,
           "amount": 1,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Hornetaur Crapce",
+          "item": 664,
           "amount": 10,
           "type": "insect",
           "color": "gray"
         },
         {
-          "name": "King Scarab",
+          "item": 255,
           "amount": 6,
           "type": "insect",
           "color": "slate"
@@ -5201,7 +5201,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Earth Eater",
+      "id": 105,
       "attack": 300,
       "max_attack": 360,
       "rapid_fire": null,
@@ -5346,25 +5346,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Basarios Carpace",
+          "item": 588,
           "amount": 10,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Basarios Tears",
+          "item": 592,
           "amount": 2,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 20,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "King Scarab",
+          "item": 255,
           "amount": 8,
           "type": "insect",
           "color": "slate"
@@ -5374,7 +5374,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Heavy Buster Crab",
+      "id": 103,
       "attack": 300,
       "max_attack": 360,
       "rapid_fire": null,
@@ -5519,25 +5519,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Hermitaur Carpce",
+          "item": 496,
           "amount": 8,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Hermitaur Shell",
+          "item": 495,
           "amount": 10,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Cephalos Scale+",
+          "item": 483,
           "amount": 6,
           "type": "scale",
           "color": "cyan"
         },
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 4,
           "type": "bone",
           "color": "white"
@@ -5547,7 +5547,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gravios Howl",
+      "id": 107,
       "attack": 312,
       "max_attack": 372,
       "rapid_fire": null,
@@ -5692,25 +5692,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Gravios Carapace",
+          "item": 624,
           "amount": 8,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Gravios Skl Shl",
+          "item": 627,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Basarios Tears",
+          "item": 592,
           "amount": 1,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "Rare Scarab",
+          "item": 259,
           "amount": 2,
           "type": "insect",
           "color": "yellow"
@@ -5720,7 +5720,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Heavy Piercing Crab",
+      "id": 235,
       "attack": 324,
       "max_attack": 384,
       "rapid_fire": null,
@@ -5865,25 +5865,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Ceanataur Carpce",
+          "item": 505,
           "amount": 6,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Ceanataur Pincer",
+          "item": 509,
           "amount": 3,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Coral Cphlos Scl",
+          "item": 486,
           "amount": 4,
           "type": "scale",
           "color": "slate"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 10,
           "type": "bone",
           "color": "orange"
@@ -5893,7 +5893,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Duelcaster+",
+      "id": 95,
       "attack": 348,
       "max_attack": 408,
       "rapid_fire": null,
@@ -6038,25 +6038,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Diablos Thoracic",
+          "item": 641,
           "amount": 3,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Diablos Carapace",
+          "item": 638,
           "amount": 6,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 5,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "Majestic Horn",
+          "item": 635,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
@@ -6066,7 +6066,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tigrex Skull",
+      "id": 106,
       "attack": 360,
       "max_attack": 420,
       "rapid_fire": null,
@@ -6211,25 +6211,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Tigrex Carapace",
+          "item": 598,
           "amount": 6,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Skull Shl",
+          "item": 608,
           "amount": 3,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "FireWyvrn BrnStm",
+          "item": 547,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Wyvern Stone",
+          "item": 300,
           "amount": 2,
           "type": "stone",
           "color": "cyan"
@@ -6239,7 +6239,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Hidden Sniper",
+      "id": 237,
       "attack": 276,
       "max_attack": 336,
       "rapid_fire": null,
@@ -6384,25 +6384,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Narga Scale+",
+          "item": 609,
           "amount": 10,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Black Narga Pelt",
+          "item": 612,
           "amount": 5,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Narga Brain Stem",
+          "item": 622,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 6,
           "type": "bone",
           "color": "red"
@@ -6412,7 +6412,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bastion Cannon",
+      "id": 102,
       "attack": 300,
       "max_attack": 360,
       "rapid_fire": null,
@@ -6557,25 +6557,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Pur Gypceros Wng",
+          "item": 407,
           "amount": 8,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 6,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Congalala Pelt+",
+          "item": 445,
           "amount": 3,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Hercudrome",
+          "item": 258,
           "amount": 4,
           "type": "insect",
           "color": "red"
@@ -6585,7 +6585,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gravios Roar",
+      "id": 108,
       "attack": 324,
       "max_attack": 384,
       "rapid_fire": null,
@@ -6730,25 +6730,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Blk Gravios Cpc",
+          "item": 630,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Blk Gravios Skl",
+          "item": 633,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Gravios BrainStm",
+          "item": 628,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 2,
           "type": "bone",
           "color": "red"
@@ -6758,7 +6758,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Mega Kut-Ku Cannon",
+      "id": 99,
       "attack": 336,
       "max_attack": 396,
       "rapid_fire": null,
@@ -6903,25 +6903,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Blue Kut-Ku Cpc",
+          "item": 399,
           "amount": 8,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Long Kut-Ku Ear",
+          "item": 389,
           "amount": 2,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Pale Khezu Steak",
+          "item": 582,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 8,
           "type": "ore",
           "color": "pink"
@@ -6931,7 +6931,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Monodevilcaster+",
+      "id": 94,
       "attack": 336,
       "max_attack": 396,
       "rapid_fire": null,
@@ -7076,25 +7076,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Wht Monoblos Cpc",
+          "item": 679,
           "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "WhtMonoblosThora",
+          "item": 681,
           "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 6,
           "type": "bone",
           "color": "red"
         },
         {
-          "name": "Monoblos Heart",
+          "item": 675,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -7104,7 +7104,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Seven Stars",
+      "id": 98,
       "attack": 300,
       "max_attack": 360,
       "rapid_fire": null,
@@ -7249,25 +7249,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Rare Scarab",
+          "item": 259,
           "amount": 3,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Great Ladybug",
+          "item": 265,
           "amount": 4,
           "type": "insect",
           "color": "red"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 1,
           "type": "bone",
           "color": "red"
         },
         {
-          "name": "Monster Broth",
+          "item": 26,
           "amount": 4,
           "type": "fluid",
           "color": "blue"
@@ -7277,7 +7277,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Quickcaster+",
+      "id": 96,
       "attack": 312,
       "max_attack": 372,
       "rapid_fire": null,
@@ -7422,25 +7422,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Kirin Hide+",
+          "item": 684,
           "amount": 3,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Kirin Thndr Tail",
+          "item": 688,
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 10,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Majestic Horn",
+          "item": 635,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
@@ -7450,7 +7450,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Grande Daora",
+      "id": 109,
       "attack": 312,
       "max_attack": 372,
       "rapid_fire": null,
@@ -7595,25 +7595,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Daora Jewel",
+          "item": 728,
           "amount": 1,
           "type": "stone",
           "color": "gray"
         },
         {
-          "name": "Daora Carapace",
+          "item": 715,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 4,
           "type": "bone",
           "color": "red"
@@ -7623,7 +7623,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Vor Cannon",
+      "id": 114,
       "attack": 312,
       "max_attack": 372,
       "rapid_fire": null,
@@ -7768,25 +7768,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Fatalis Shell",
+          "item": 780,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Fatalis Horn",
+          "item": 776,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Fatalis Scale",
+          "item": 778,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 6,
           "type": "ore",
           "color": "pink"
@@ -7796,7 +7796,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Lunastra's Flames",
+      "id": 236,
       "attack": 324,
       "max_attack": 384,
       "rapid_fire": null,
@@ -7941,25 +7941,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "LunastraCarapace",
+          "item": 751,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Fire Drgn Jwl",
+          "item": 748,
           "amount": 1,
           "type": "stone",
           "color": "red"
         },
         {
-          "name": "Lunastra Mane",
+          "item": 752,
           "amount": 1,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 2,
           "type": "ore",
           "color": "orange"
@@ -7969,7 +7969,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Teostra's Flames",
+      "id": 110,
       "attack": 324,
       "max_attack": 384,
       "rapid_fire": null,
@@ -8114,25 +8114,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Fire Drgn Jwl",
+          "item": 748,
           "amount": 1,
           "type": "stone",
           "color": "red"
         },
         {
-          "name": "Teostra Carapace",
+          "item": 757,
           "amount": 5,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 4,
           "type": "bone",
           "color": "red"
@@ -8142,7 +8142,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Destiny's Hands",
+      "id": 115,
       "attack": 324,
       "max_attack": 384,
       "rapid_fire": null,
@@ -8287,25 +8287,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Fatalis CrmsnShl",
+          "item": 790,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Fatalis CrmsnHrn",
+          "item": 786,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Fatalis CrmsnScl",
+          "item": 788,
           "amount": 2,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 4,
           "type": "ore",
           "color": "orange"
@@ -8315,7 +8315,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wolf Heirloom",
+      "id": 100,
       "attack": 336,
       "max_attack": 396,
       "rapid_fire": null,
@@ -8460,25 +8460,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Long Garuga Ear",
+          "item": 416,
           "amount": 3,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga Carapace",
+          "item": 413,
           "amount": 5,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga Wing",
+          "item": 419,
           "amount": 3,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Black Blos Cpc",
+          "item": 649,
           "amount": 3,
           "type": "part",
           "color": "gray"
@@ -8488,7 +8488,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gaoren's Fire",
+      "id": 113,
       "attack": 348,
       "max_attack": 408,
       "rapid_fire": null,
@@ -8633,25 +8633,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Gaoren Thoracic",
+          "item": 709,
           "amount": 3,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gaoren Carapace",
+          "item": 705,
           "amount": 5,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 2,
           "type": "ore",
           "color": "orange"
         },
         {
-          "name": "Pokke Ticket",
+          "item": 907,
           "amount": 4,
           "type": "ticket",
           "color": "cyan"
@@ -8661,7 +8661,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Suprm Lao-Shan Cannon",
+      "id": 111,
       "attack": 360,
       "max_attack": 420,
       "rapid_fire": null,
@@ -8806,25 +8806,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Lao-Shan's Ruby",
+          "item": 696,
           "amount": 1,
           "type": "stone",
           "color": "red"
         },
         {
-          "name": "Lao-ShanCarapace",
+          "item": 699,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Lao-Shan Scale+",
+          "item": 694,
           "amount": 5,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 8,
           "type": "bone",
           "color": "red"
@@ -8834,7 +8834,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Empr Lao-Shan Cannon",
+      "id": 112,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -8979,25 +8979,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Azure LaoS Shell",
+          "item": 702,
           "amount": 5,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Lao-Shan's Ruby",
+          "item": 696,
           "amount": 1,
           "type": "stone",
           "color": "red"
         },
         {
-          "name": "Lao-ShanCarapace",
+          "item": 699,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Wyvern Stone",
+          "item": 300,
           "amount": 4,
           "type": "stone",
           "color": "cyan"
@@ -9007,7 +9007,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Great Arbalest+",
+      "id": 238,
       "attack": 324,
       "max_attack": 384,
       "rapid_fire": null,
@@ -9152,25 +9152,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 20,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 6,
           "type": "bone",
           "color": "red"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 1,
           "type": "bone",
           "color": "gray"
         },
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -9180,7 +9180,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tanksorcerer",
+      "id": 239,
       "attack": 336,
       "max_attack": 396,
       "rapid_fire": null,
@@ -9325,25 +9325,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "SpecRubberyHide+",
+          "item": 403,
           "amount": 6,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "Gypceros Head",
+          "item": 404,
           "amount": 1,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "KhezuHide-Cream",
+          "item": 580,
           "amount": 3,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 1,
           "type": "ore",
           "color": "cyan"
@@ -9353,7 +9353,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bastionwitch",
+      "id": 240,
       "attack": 336,
       "max_attack": 396,
       "rapid_fire": null,
@@ -9498,25 +9498,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HrdPuGypcerosWng",
+          "item": 408,
           "amount": 6,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "HardGypcerosHead",
+          "item": 405,
           "amount": 1,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "StrAlluringWing",
+          "item": 586,
           "amount": 3,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
@@ -9526,7 +9526,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Power Stinger",
+      "id": 243,
       "attack": 348,
       "max_attack": 408,
       "rapid_fire": null,
@@ -9671,25 +9671,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HrdCongalalaPlt+",
+          "item": 446,
           "amount": 8,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Lg Pelagus Fang",
+          "item": 452,
           "amount": 4,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Vibrant Pelt",
+          "item": 447,
           "amount": 3,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 1,
           "type": "bone",
           "color": "gray"
@@ -9699,7 +9699,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Pressurized Plesioth",
+      "id": 241,
       "attack": 360,
       "max_attack": 420,
       "rapid_fire": null,
@@ -9844,25 +9844,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "ThckPlesiothScl",
+          "item": 472,
           "amount": 8,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "SpecPlesiothFin+",
+          "item": 475,
           "amount": 4,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "ThckGrnPlesioScl",
+          "item": 478,
           "amount": 4,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Emperor Cricket",
+          "item": 256,
           "amount": 6,
           "type": "insect",
           "color": "orange"
@@ -9872,7 +9872,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Violet Punisher",
+      "id": 244,
       "attack": 360,
       "max_attack": 420,
       "rapid_fire": null,
@@ -10017,25 +10017,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "PlumD.HermitrShl",
+          "item": 501,
           "amount": 8,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "HrdHermitaurClaw",
+          "item": 500,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "ThckGrnPlesioScl",
+          "item": 478,
           "amount": 3,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 2,
           "type": "bone",
           "color": "white"
@@ -10045,7 +10045,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Super Kut-Ku Cannon",
+      "id": 245,
       "attack": 372,
       "max_attack": 432,
       "rapid_fire": null,
@@ -10190,25 +10190,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Hvy Kut-Ku Shell",
+          "item": 387,
           "amount": 6,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Str Kut-Ku Wing",
+          "item": 394,
           "amount": 6,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Hypno Bezoar",
+          "item": 376,
           "amount": 2,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
@@ -10218,7 +10218,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ultra Kut-Ku Cannon",
+      "id": 246,
       "attack": 372,
       "max_attack": 432,
       "rapid_fire": null,
@@ -10363,25 +10363,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HvyBlueKut-KuShl",
+          "item": 400,
           "amount": 6,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Lucky Kut-Ku Ear",
+          "item": 390,
           "amount": 3,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Hypno Claw+",
+          "item": 375,
           "amount": 5,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 2,
           "type": "bone",
           "color": "gray"
@@ -10391,7 +10391,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Meteor Shower",
+      "id": 248,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -10536,25 +10536,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 10,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "ThckLavasiothScl",
+          "item": 488,
           "amount": 4,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 20,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 1,
           "type": "stone",
           "color": "blue"
@@ -10564,7 +10564,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gaia Eater",
+      "id": 250,
       "attack": 396,
       "max_attack": 456,
       "rapid_fire": null,
@@ -10709,25 +10709,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HvyBasariosShell",
+          "item": 589,
           "amount": 10,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "StrBasariosWing",
+          "item": 591,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 20,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Emperor Cricket",
+          "item": 256,
           "amount": 6,
           "type": "insect",
           "color": "orange"
@@ -10737,7 +10737,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Icethrower",
+      "id": 251,
       "attack": 396,
       "max_attack": 456,
       "rapid_fire": null,
@@ -10882,25 +10882,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HrdBlangongaPlt+",
+          "item": 434,
           "amount": 8,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "HvyBlangongaFang",
+          "item": 431,
           "amount": 4,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Lthr Pelagus Plt",
+          "item": 436,
           "amount": 2,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Lg Pelagus Fang",
+          "item": 452,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
@@ -10910,7 +10910,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ceanataur Blaster",
+      "id": 253,
       "attack": 408,
       "max_attack": 468,
       "rapid_fire": null,
@@ -11055,25 +11055,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HvyCeanataurShl",
+          "item": 506,
           "amount": 6,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "HrdCeanataurClaw",
+          "item": 512,
           "amount": 4,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 4,
           "type": "bone",
           "color": "gray"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 2,
           "type": "stone",
           "color": "blue"
@@ -11083,7 +11083,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gravios gigahowl",
+      "id": 259,
       "attack": 420,
       "max_attack": 480,
       "rapid_fire": null,
@@ -11228,25 +11228,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HvyGraviosShell",
+          "item": 625,
           "amount": 8,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Gravios Skl Shl",
+          "item": 627,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "StrBasariosWing",
+          "item": 591,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvnlyGraviosShl",
+          "item": 626,
           "amount": 1,
           "type": "heavenly",
           "color": "white"
@@ -11256,7 +11256,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "dummy (Pirate J Cannon)",
+      "id": 352,
       "attack": 420,
       "max_attack": 480,
       "rapid_fire": null,
@@ -11401,25 +11401,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Pirate Tckt J G",
+          "item": 938,
           "amount": 4,
           "type": "ticket",
           "color": "red"
         },
         {
-          "name": "ThckFireDrgnScl",
+          "item": 743,
           "amount": 10,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "HrdFireDrgnClaw",
+          "item": 745,
           "amount": 3,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
@@ -11429,7 +11429,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Queen Needle",
+      "id": 242,
       "attack": 348,
       "max_attack": 408,
       "rapid_fire": null,
@@ -11574,25 +11574,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "VespoidQn'sCrown",
+          "item": 657,
           "amount": 3,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Vespoid Abdomen",
+          "item": 656,
           "amount": 3,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Lightning Sac",
+          "item": 278,
           "amount": 2,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "Hornet Razorwing",
+          "item": 668,
           "amount": 4,
           "type": "webbing",
           "color": "gray"
@@ -11602,7 +11602,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Evil Wind Darkcannon",
+      "id": 247,
       "attack": 360,
       "max_attack": 420,
       "rapid_fire": null,
@@ -11747,25 +11747,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "ThickNargaScale",
+          "item": 610,
           "amount": 10,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "BlackNargaPelt+",
+          "item": 613,
           "amount": 5,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "HvnlyNargaScale",
+          "item": 611,
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 6,
           "type": "bone",
           "color": "gray"
@@ -11775,7 +11775,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "GreatLadybugCannon+",
+      "id": 249,
       "attack": 396,
       "max_attack": 456,
       "rapid_fire": null,
@@ -11920,25 +11920,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 8,
           "type": "insect",
           "color": "white"
         },
         {
-          "name": "HvyRathalosShl",
+          "item": 556,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Great Ladybug",
+          "item": 265,
           "amount": 10,
           "type": "insect",
           "color": "red"
         },
         {
-          "name": "Monster Essence",
+          "item": 27,
           "amount": 4,
           "type": "fluid",
           "color": "blue"
@@ -11948,7 +11948,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Quick Quiver",
+      "id": 256,
       "attack": 396,
       "max_attack": 456,
       "rapid_fire": null,
@@ -12093,25 +12093,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "SpecialKirinHide",
+          "item": 685,
           "amount": 3,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Platinum Mane",
+          "item": 687,
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 4,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "StoutWarpedHorn",
+          "item": 636,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
@@ -12121,7 +12121,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crow Heirloom",
+      "id": 252,
       "attack": 408,
       "max_attack": 468,
       "rapid_fire": null,
@@ -12266,25 +12266,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "SilverGarugaPelt",
+          "item": 424,
           "amount": 4,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Hvy Garuga Shell",
+          "item": 414,
           "amount": 5,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Str Garuga Wing",
+          "item": 420,
           "amount": 4,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 6,
           "type": "bone",
           "color": "gray"
@@ -12294,7 +12294,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Terra C Blaster",
+      "id": 254,
       "attack": 408,
       "max_attack": 468,
       "rapid_fire": null,
@@ -12439,25 +12439,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "TerraCeanatrShl",
+          "item": 513,
           "amount": 6,
           "type": "shell",
           "color": "orange"
         },
         {
-          "name": "TerraCeanatrClaw",
+          "item": 514,
           "amount": 4,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "HvyBasariosShell",
+          "item": 589,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "ThckLavasiothScl",
+          "item": 488,
           "amount": 4,
           "type": "scale",
           "color": "gray"
@@ -12467,7 +12467,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Daora's Ceti",
+      "id": 258,
       "attack": 408,
       "max_attack": 468,
       "rapid_fire": null,
@@ -12612,25 +12612,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Hvy Daora Shell",
+          "item": 716,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Str Daora Wing",
+          "item": 721,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
         },
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -12640,7 +12640,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Destiny's Arm",
+      "id": 257,
       "attack": 420,
       "max_attack": 480,
       "rapid_fire": null,
@@ -12785,25 +12785,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HvyFatalisCrmShl",
+          "item": 791,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "HrdFatlisCrmHorn",
+          "item": 787,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "ThckFatlisCrmScl",
+          "item": 789,
           "amount": 2,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 2,
           "type": "stone",
           "color": "slate"
@@ -12813,7 +12813,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gravios Gigaroar",
+      "id": 260,
       "attack": 420,
       "max_attack": 480,
       "rapid_fire": null,
@@ -12958,25 +12958,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HvyBlkGraviosShl",
+          "item": 631,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Gravios BrainStm",
+          "item": 628,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 6,
           "type": "ore",
           "color": "orange"
         },
         {
-          "name": "HvnlyBlkGraviShl",
+          "item": 632,
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
@@ -12986,7 +12986,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Teostra Flamethrower",
+      "id": 261,
       "attack": 420,
       "max_attack": 480,
       "rapid_fire": null,
@@ -13131,25 +13131,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HvyTeostraShell",
+          "item": 758,
           "amount": 5,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "HrdFireDrgnClaw",
+          "item": 745,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
         },
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -13159,7 +13159,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Dark Duelcaster",
+      "id": 263,
       "attack": 432,
       "max_attack": 492,
       "rapid_fire": null,
@@ -13304,25 +13304,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HvyBlkBlosSpine",
+          "item": 653,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvyDiablosShell",
+          "item": 639,
           "amount": 6,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 5,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "StoutBlkTwstdHrn",
+          "item": 647,
           "amount": 2,
           "type": "claw",
           "color": "gray"
@@ -13332,7 +13332,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Vor Buster",
+      "id": 262,
       "attack": 432,
       "max_attack": 492,
       "rapid_fire": null,
@@ -13477,25 +13477,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Hvy Fatalis Shl",
+          "item": 781,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HardFatalisHorn",
+          "item": 777,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "ThckFatalisScale",
+          "item": 779,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
@@ -13505,7 +13505,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tigrex Skull+",
+      "id": 264,
       "attack": 444,
       "max_attack": 504,
       "rapid_fire": null,
@@ -13650,25 +13650,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Hvy Tigrex Shell",
+          "item": 599,
           "amount": 6,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Skull Shl",
+          "item": 608,
           "amount": 3,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Hvy Tigrex Fang",
+          "item": 607,
           "amount": 3,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "HvnlyTigrexScale",
+          "item": 596,
           "amount": 1,
           "type": "heavenly",
           "color": "yellow"
@@ -13678,7 +13678,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gaoren Orb",
+      "id": 266,
       "attack": 444,
       "max_attack": 504,
       "rapid_fire": null,
@@ -13823,25 +13823,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Hvy Gaoren Spine",
+          "item": 710,
           "amount": 4,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "HvyGaorenShell",
+          "item": 706,
           "amount": 6,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 20,
           "type": "ore",
           "color": "orange"
         },
         {
-          "name": "HvnlyGaorenShell",
+          "item": 707,
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
@@ -13851,7 +13851,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "AncientDrgnwoodCan",
+      "id": 265,
       "attack": 444,
       "max_attack": 504,
       "rapid_fire": null,
@@ -13996,25 +13996,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "AncientDrgnwood",
+          "item": 770,
           "amount": 4,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "YamaTsukamiFluid",
+          "item": 773,
           "amount": 8,
           "type": "fluid",
           "color": "green"
         },
         {
-          "name": "Thunderbug Jelly",
+          "item": 29,
           "amount": 6,
           "type": "fluid",
           "color": "yellow"
         },
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 10,
           "type": "ore",
           "color": "white"
@@ -14024,7 +14024,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "UltimateLao-ShaoCan",
+      "id": 255,
       "attack": 480,
       "max_attack": 540,
       "rapid_fire": null,
@@ -14169,25 +14169,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Lao-Shan'sHvyShl",
+          "item": 700,
           "amount": 4,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Azure LaoS Claw",
+          "item": 703,
           "amount": 3,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Lao-ShanHvnlyScl",
+          "item": 697,
           "amount": 1,
           "type": "heavenly",
           "color": "red"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 4,
           "type": "stone",
           "color": "blue"
@@ -14197,7 +14197,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ukanlos Cannon",
+      "id": 267,
       "attack": 504,
       "max_attack": 564,
       "rapid_fire": null,
@@ -14342,25 +14342,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "HvyUkanlosShell",
+          "item": 809,
           "amount": 6,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "StrongUkanlosFin",
+          "item": 814,
           "amount": 4,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "UkanlosUnderscl",
+          "item": 810,
           "amount": 3,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Ukanlos Stone",
+          "item": 815,
           "amount": 1,
           "type": "heavenly",
           "color": "white"
@@ -14370,7 +14370,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Arbalest G",
+      "id": 268,
       "attack": 312,
       "max_attack": 372,
       "rapid_fire": null,
@@ -14515,25 +14515,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "ThkBullfangoPelt",
+          "item": 322,
           "amount": 15,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "RobustWyvernBone",
+          "item": 293,
           "amount": 20,
           "type": "bone",
           "color": "cyan"
         },
         {
-          "name": "Lg Monster Bone",
+          "item": 283,
           "amount": 30,
           "type": "bone",
           "color": "yellow"
@@ -14543,7 +14543,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Rapidcaster G",
+      "id": 270,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -14688,25 +14688,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Kelbi Hide",
+          "item": 328,
           "amount": 20,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "Majestic Horn",
+          "item": 635,
           "amount": 10,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Carpenterbug",
+          "item": 254,
           "amount": 99,
           "type": "insect",
           "color": "gray"
@@ -14716,7 +14716,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Injector Cannon G",
+      "id": 269,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -14861,25 +14861,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Monster Essence",
+          "item": 27,
           "amount": 30,
           "type": "fluid",
           "color": "blue"
         },
         {
-          "name": "Monster Broth",
+          "item": 26,
           "amount": 30,
           "type": "fluid",
           "color": "blue"
         },
         {
-          "name": "Monster Fluid",
+          "item": 25,
           "amount": 30,
           "type": "fluid",
           "color": "cyan"
@@ -14889,7 +14889,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Honeycomber G",
+      "id": 271,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -15034,25 +15034,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "YamaTsukamiFluid",
+          "item": 773,
           "amount": 4,
           "type": "fluid",
           "color": "green"
         },
         {
-          "name": "Vespoid Abdomen",
+          "item": 656,
           "amount": 10,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Hornetaur Head",
+          "item": 665,
           "amount": 10,
           "type": "insect",
           "color": "gray"
@@ -15062,7 +15062,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tanksorcerer G",
+      "id": 272,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -15207,25 +15207,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "DeadlyPoisonSac",
+          "item": 269,
           "amount": 10,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "Toxin Sac",
+          "item": 268,
           "amount": 10,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 5,
           "type": "ore",
           "color": "cyan"
@@ -15235,7 +15235,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bastionwitch G",
+      "id": 273,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -15380,25 +15380,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HardGypcerosHead",
+          "item": 405,
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Lightcrystal",
+          "item": 215,
           "amount": 20,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Novacrystal",
+          "item": 216,
           "amount": 10,
           "type": "ore",
           "color": "white"
@@ -15408,7 +15408,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Desert Diver G",
+      "id": 274,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -15553,25 +15553,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HvyPiscineFang",
+          "item": 469,
           "amount": 10,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Coral Cphlos Fin",
+          "item": 487,
           "amount": 6,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 30,
           "type": "ore",
           "color": "pink"
@@ -15581,7 +15581,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Power Stinger G",
+      "id": 278,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -15726,25 +15726,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Vibrant Comb",
+          "item": 455,
           "amount": 2,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "HrdCongalalaClw+",
+          "item": 450,
           "amount": 4,
           "type": "claw",
           "color": "pink"
         },
         {
-          "name": "HrdE.CongaClaw",
+          "item": 454,
           "amount": 6,
           "type": "claw",
           "color": "green"
@@ -15754,7 +15754,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crab Buster G",
+      "id": 283,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -15899,25 +15899,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Hermitaur Claw+",
+          "item": 499,
           "amount": 8,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "HvyHermitaurShl",
+          "item": 497,
           "amount": 8,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Black Pearl",
+          "item": 198,
           "amount": 20,
           "type": "scale",
           "color": "gray"
@@ -15927,7 +15927,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Meteor Cannon G",
+      "id": 276,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -16072,25 +16072,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 40,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Mellanje Ore",
+          "item": 209,
           "amount": 30,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Basarios Tears",
+          "item": 592,
           "amount": 5,
           "type": "ore",
           "color": "pink"
@@ -16100,7 +16100,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "PressurizedPlesiothG",
+      "id": 275,
       "attack": 396,
       "max_attack": 456,
       "rapid_fire": null,
@@ -16245,25 +16245,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "ThckPlesiothScl",
+          "item": 472,
           "amount": 10,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Ancient Fish",
+          "item": 243,
           "amount": 10,
           "type": "fish",
           "color": "gray"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 20,
           "type": "bone",
           "color": "red"
@@ -16273,7 +16273,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Violet Punisher G",
+      "id": 284,
       "attack": 396,
       "max_attack": 456,
       "rapid_fire": null,
@@ -16418,25 +16418,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "PlumD.HermitrClw",
+          "item": 502,
           "amount": 6,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "PlumD.HermitrShl",
+          "item": 501,
           "amount": 8,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "Wyvern Skull Shl",
+          "item": 493,
           "amount": 3,
           "type": "part",
           "color": "gray"
@@ -16446,7 +16446,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "SuperKut-KuCannon G",
+      "id": 281,
       "attack": 408,
       "max_attack": 468,
       "rapid_fire": null,
@@ -16591,25 +16591,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Thick Kut-Ku Scl",
+          "item": 384,
           "amount": 10,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Lucky Kut-Ku Ear",
+          "item": 390,
           "amount": 5,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Pale Khezu Steak",
+          "item": 582,
           "amount": 3,
           "type": "part",
           "color": "white"
@@ -16619,7 +16619,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "UltraKut-KuCannon G",
+      "id": 282,
       "attack": 408,
       "max_attack": 468,
       "rapid_fire": null,
@@ -16764,25 +16764,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "ThkBlueKut-KuScl",
+          "item": 397,
           "amount": 10,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Long Kut-Ku Ear",
+          "item": 389,
           "amount": 10,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "KhezuSpecialCut",
+          "item": 583,
           "amount": 1,
           "type": "part",
           "color": "white"
@@ -16792,7 +16792,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Monodevilcaster G",
+      "id": 285,
       "attack": 420,
       "max_attack": 480,
       "rapid_fire": null,
@@ -16937,25 +16937,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Wht Monoblos Cpc",
+          "item": 679,
           "amount": 8,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "StoutBlkTwstdHrn",
+          "item": 647,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Monoblos Heart",
+          "item": 675,
           "amount": 2,
           "type": "part",
           "color": "red"
@@ -16965,7 +16965,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Duelcaster G",
+      "id": 286,
       "attack": 432,
       "max_attack": 492,
       "rapid_fire": null,
@@ -17110,25 +17110,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HvyDiablosShell",
+          "item": 639,
           "amount": 8,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Top-GrdPlatHorn",
+          "item": 677,
           "amount": 6,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Wyvern Stone",
+          "item": 300,
           "amount": 10,
           "type": "stone",
           "color": "cyan"
@@ -17138,7 +17138,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Queen Needle G",
+      "id": 279,
       "attack": 384,
       "max_attack": 444,
       "rapid_fire": null,
@@ -17283,25 +17283,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "VespoidQn'sCrown",
+          "item": 657,
           "amount": 5,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Thunderbug Jelly",
+          "item": 29,
           "amount": 20,
           "type": "fluid",
           "color": "yellow"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 99,
           "type": "insect",
           "color": "green"
@@ -17311,7 +17311,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Black Cannon G",
+      "id": 277,
       "attack": 408,
       "max_attack": 468,
       "rapid_fire": null,
@@ -17456,25 +17456,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Dark Stone",
+          "item": 775,
           "amount": 10,
           "type": "egg",
           "color": "gray"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 5,
           "type": "scale",
           "color": "gray"
@@ -17484,7 +17484,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Lunastra's Flames G",
+      "id": 280,
       "attack": 420,
       "max_attack": 480,
       "rapid_fire": null,
@@ -17629,25 +17629,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "ThckFireDrgnScl",
+          "item": 743,
           "amount": 4,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "LunastraCarapace",
+          "item": 751,
           "amount": 8,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Fire Drgn Jwl",
+          "item": 748,
           "amount": 3,
           "type": "stone",
           "color": "red"
@@ -17657,7 +17657,7 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Lao-ShanLungCannon G",
+      "id": 287,
       "attack": 456,
       "max_attack": 516,
       "rapid_fire": null,
@@ -17802,25 +17802,25 @@
       "improve_mats": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Lao-ShanHvnlyScl",
+          "item": 697,
           "amount": 1,
           "type": "heavenly",
           "color": "red"
         },
         {
-          "name": "Lao-Shan's Ruby",
+          "item": 696,
           "amount": 2,
           "type": "stone",
           "color": "red"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 10,
           "type": "part",
           "color": "red"

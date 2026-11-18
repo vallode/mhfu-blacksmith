@@ -42,6 +42,7 @@ import {
 } from "mhfu-extract/src/tables/offsets.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import type { LoadedOverlay } from "../game/load.js";
+import { GUIDES, isMonsterInfo, isNeverDrawn } from "../game/quest-fields.js";
 import type { Edits } from "../edits.js";
 import { itemName } from "../names.js";
 import type { Rng } from "../rng.js";
@@ -172,12 +173,17 @@ function poolFor(
   context: ShopContext,
 ): number[] {
   const base = options.mix === "each" ? own : allShopItems;
-  if (options.pool === "shop") return [...base];
-  if (options.pool === "any") return [...context.allItems];
-  const ranks = options.pool === "low" ? ["low"] : ["low", "high"];
-  const out = new Set(base);
-  for (const [item, band] of context.bands) if (ranks.includes(band)) out.add(item);
-  return [...out].sort((a, b) => a - b);
+  const pool = (() => {
+    if (options.pool === "shop") return [...base];
+    if (options.pool === "any") return [...context.allItems];
+    const ranks = options.pool === "low" ? ["low"] : ["low", "high"];
+    const out = new Set(base);
+    for (const [item, band] of context.bands) if (ranks.includes(band)) out.add(item);
+    return [...out].sort((a, b) => a - b);
+  })();
+  // The monster Info items are dropped from shops, the guides stay where they are,
+  // and nothing `isNeverDrawn` is drawn.
+  return pool.filter((v) => !isNeverDrawn(v));
 }
 
 /**
@@ -205,6 +211,7 @@ function prepareGroup(
   const firstStage = new Map<number, number>();
   lists.forEach((list, stage) => {
     for (const v of list.items) {
+      if (isMonsterInfo(v)) continue;
       if (!items.includes(v)) items.push(v);
       if (!firstStage.has(v)) firstStage.set(v, stage);
     }
@@ -249,22 +256,25 @@ function prepareGroup(
     const kept = new Map<ShopList, Set<number>>();
     // Smaller lists first, so a list's nested lists are settled before it.
     for (const list of [...lists].sort((a, b) => a.items.length - b.items.length)) {
-      const replaced = [...new Set(list.items.map((v) => sigma.get(v)!))];
-      if (list.items.length === 0) {
+      // The monster Info items are dropped, not replaced.
+      const sold = list.items.filter((v) => !isMonsterInfo(v));
+      const replaced = [...new Set(sold.map((v) => sigma.get(v)!))];
+      if (sold.length === 0) {
         out.set(list.offset, []);
         continue;
       }
-      const size = list.items.length;
+      const size = sold.length;
       const target =
         factor >= 1
           ? size + Math.floor((factor - 1) * size)
           : Math.max(1, Math.ceil(factor * size));
       const candidates = factor > 1 ? [...replaced, ...extras] : replaced;
-      // Whatever a nested list kept stays (see above).
+      // Whatever a nested list kept stays (see above), and so do the guides.
       const keep = new Set<number>();
       for (const [inner, items] of kept) {
         if (inner.items.every((v) => list.items.includes(v))) for (const v of items) keep.add(v);
       }
+      for (const v of sold) if (GUIDES.includes(v)) keep.add(v);
       for (const v of [...candidates].sort((a, b) => priority.get(a)! - priority.get(b)!)) {
         if (keep.size >= target) break;
         keep.add(v);
@@ -297,7 +307,9 @@ function listSpace(
 }
 
 /**
- * Writes new list contents. Same lengths: in place. Otherwise every list is
+ * Writes new list contents. No list longer than before: in place, a shorter
+ * list ending early with the rest of its old span 0xFFFF padding (no list
+ * overlaps another on the EU or FUC disc). Otherwise every list is
  * rewritten back to back (4-byte aligned, as on the disc) in the span the
  * lists take now, and every table's pointers are updated. Throws if the span
  * holds anything but lists and 0/0xFFFF padding, or if it's too small.
@@ -310,8 +322,12 @@ export function writeLists(
 ): "in place" | "repacked" {
   const lists = [...data.lists.values()].sort((a, b) => a.offset - b.offset);
   const newItems = (l: ShopList) => contents.get(l.offset) ?? l.items;
-  if (lists.every((l) => newItems(l).length === l.items.length)) {
-    for (const l of lists) newItems(l).forEach((v, i) => buf.writeUInt16LE(v, l.offset + i * 2));
+  if (lists.every((l) => newItems(l).length <= l.items.length)) {
+    for (const l of lists) {
+      const items = newItems(l);
+      items.forEach((v, i) => buf.writeUInt16LE(v, l.offset + i * 2));
+      buf.fill(0xff, l.offset + items.length * 2, l.offset + l.items.length * 2 + 2);
+    }
     return "in place";
   }
 
@@ -325,7 +341,7 @@ export function writeLists(
     const v = r.u16(at);
     if (!covered.has(at) && v !== 0 && v !== LIST_END) {
       throw new Error(
-        `lobby_task.ovl: something other than shop lists is at 0x${at.toString(16)}, so shops can't change length. Set the shop item count variation to 0.`,
+        `lobby_task.ovl: something other than shop lists is at 0x${at.toString(16)}, so shops can't grow. Set the shop stock size variation to 0.`,
       );
     }
   }
@@ -363,8 +379,10 @@ export function randomizeShops(
   lobby: LoadedOverlay,
 ): { report: ShuffleReport; sold: number[] } {
   const included = data.tables.filter((t) => options.special || !t.special);
-  const pinned = new Set(options.keepEssentials ? ESSENTIALS : []);
+  // The guides always stay on sale, where they are.
+  const pinned = new Set([...GUIDES, ...(options.keepEssentials ? ESSENTIALS : [])]);
   const allShopItems = itemsSoldBy(data, included);
+  const guides = GUIDES.filter((v) => allShopItems.includes(v));
   const maxLength = Math.max(...[...data.lists.values()].map((l) => l.items.length));
   const lines: { where: string; text: string }[] = [];
   const contents = new Map<number, number[]>();
@@ -374,6 +392,7 @@ export function randomizeShops(
     const offsets = [...new Set(group.flatMap((t) => t.lists))].sort((a, b) => a - b);
     const lists = offsets.map((o) => data.lists.get(o)!);
     const own = [...new Set(lists.flatMap((l) => l.items))];
+    const infos = own.filter(isMonsterInfo).sort((a, b) => a - b);
     const plan = prepareGroup(
       lists,
       poolFor(own, allShopItems, options, context),
@@ -383,8 +402,9 @@ export function randomizeShops(
     );
     const s = options.countSpread;
     const factor = s > 0 ? 1 - s + rng.float() * 2 * s : 1;
-    return { group, plan, factor };
+    return { group, plan, factor, infos };
   });
+  const dropped = new Set(groups.flatMap((g) => g.infos)).size;
 
   // Shops can only grow into space others free: scale growth back until the lists fit.
   let growth = 1;
@@ -403,8 +423,9 @@ export function randomizeShops(
   }
   for (const [offset, items] of planned()) contents.set(offset, items);
 
-  for (const { group, plan } of groups) {
+  for (const { group, plan, infos } of groups) {
     const where = group.map((t) => t.name).join(" + ");
+    for (const v of infos) lines.push({ where, text: `${itemName(v)} (removed)` });
     for (const [v, now] of plan.sigma) {
       if (now !== v) replaced++;
       lines.push({
@@ -451,9 +472,19 @@ export function randomizeShops(
       options.keepEssentials
         ? "Potion, Whetstone, pickaxes, bugnets, BBQ Spit, Normal S Lv1/2 and Empty Bottle stay on sale."
         : "No item is guaranteed to stay on sale.",
+      ...(guides.length > 0
+        ? [`${guides.map(itemName).join(", ")} stay on sale where they are.`]
+        : []),
       options.countSpread > 0
         ? `How many items each shop sells varies by up to ${Math.round(options.countSpread * 100)}% (at most ${maxLength}); the lists were ${layout === "repacked" ? "rewritten and the shop tables updated" : "kept in place"}.${growth < 1 ? ` Shops can only grow into space others free, so growth was scaled to ${Math.round(growth * 100)}%.` : ""}`
-        : "Each shop sells as many items as before.",
+        : dropped > 0
+          ? "Each shop sells as many items as before, less the monster Info items."
+          : "Each shop sells as many items as before.",
+      ...(dropped > 0
+        ? [
+            `The ${dropped} monster Info items are no longer sold: they're dropped from their shops, not replaced.`,
+          ]
+        : []),
       ...notes,
       `${replaced} items replaced.${skipped.length > 0 ? ` Not changed: ${skipped.join(", ")}.` : ""}`,
     ],

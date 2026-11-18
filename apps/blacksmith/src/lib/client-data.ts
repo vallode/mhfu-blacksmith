@@ -23,24 +23,25 @@ import {
   decodeWeapon,
   decodeArmor,
   decodeMonster,
+  decodeMonsterListItem,
+  type MonsterListItem,
   decodeDecoration,
   decodeTree,
 } from "./schema";
-import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES } from "./constants";
+import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES, type MonsterCategory } from "./constants";
 import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
 import { decodeCombinations, type CombinationIndex, type CombinationsBundle } from "./combinations";
+import { indexVeggieTrades, type ItemTrades, type VeggieTradesBundle } from "./veggie-trades";
 import { normalizeItemName } from "./items";
 import { slugify } from "./slug";
 import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
 import type { SearchData, SkillTreeData } from "./set-search";
 import { setSearchDataFromBundles } from "./set-data";
+import type { AwardText } from "./i18n/game-text";
 
-export interface MonsterListItem {
-  slug: string;
-  name: string;
-}
+export type { MonsterListItem };
 
 // ---------------------------------------------------------------------------
 // Module-level caches
@@ -72,10 +73,16 @@ export function getBundle(file: string): Promise<Bundle> {
   if (cached) return Promise.resolve(cached);
   let p = bundlePromises.get(file);
   if (!p) {
-    p = fetchJson<Bundle>(`/data/${file}.json`).then((b) => {
-      bundleCache.set(file, b);
-      return b;
-    });
+    p = fetchJson<Bundle>(`/data/${file}.json`).then(
+      (b) => {
+        bundleCache.set(file, b);
+        return b;
+      },
+      (e) => {
+        bundlePromises.delete(file); // allow a retry on the next call
+        throw e;
+      },
+    );
     bundlePromises.set(file, p);
   }
   return p;
@@ -163,17 +170,22 @@ export function useWeapon(type: string, slug: string): DetailState<Weapon> {
 /** A weapon bundle's weapons, decoded once per bundle. */
 const decodedWeapons = new WeakMap<WeaponBundle, Weapon[]>();
 
+/** A weapon bundle's weapons, decoded (once per bundle; shared, so don't change them). */
+export function decodeWeaponBundle(b: WeaponBundle, dict: Dictionaries): Weapon[] {
+  let item = decodedWeapons.get(b);
+  if (!item) {
+    item = b.items.map((w) => decodeWeapon(dict, w, b.type));
+    decodedWeapons.set(b, item);
+  }
+  return item;
+}
+
 /** Every weapon of a class, decoded (the set builder's weapon suggestions). */
 export function useWeaponList(type: string): DetailState<Weapon[]> {
-  return useBundle<Weapon[]>(`weapon-${type}`, (bundle, dict) => {
-    const b = bundle as WeaponBundle;
-    let item = decodedWeapons.get(b);
-    if (!item) {
-      item = b.items.map((w) => decodeWeapon(dict, w, b.type));
-      decodedWeapons.set(b, item);
-    }
-    return { item, tree: null };
-  });
+  return useBundle<Weapon[]>(`weapon-${type}`, (bundle, dict) => ({
+    item: decodeWeaponBundle(bundle as WeaponBundle, dict),
+    tree: null,
+  }));
 }
 
 export function useArmorPiece(slot: string, rank: string, slug: string): DetailState<ArmorPiece> {
@@ -273,9 +285,37 @@ export function useMonsterList(category: string): ListState<MonsterListItem> {
     const b = bundle as MonsterBundle;
     return {
       tree: null,
-      items: b.items.map((m) => ({ slug: m.s, name: m.n })),
+      items: b.items.map(decodeMonsterListItem),
     };
   });
+}
+
+/** Every monster type's list, with each monster's type: null until they have all loaded. */
+export function useAllMonsters(): (MonsterListItem & { category: MonsterCategory })[] | null {
+  const [monsters, setMonsters] = useState<
+    (MonsterListItem & { category: MonsterCategory })[] | null
+  >(null);
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all(
+      MONSTER_CATEGORIES.map((category) =>
+        getBundle(`monster-${category}`).then((bundle) =>
+          (bundle as MonsterBundle).items.map((m) => ({
+            ...decodeMonsterListItem(m),
+            category,
+          })),
+        ),
+      ),
+    )
+      .then((lists) => {
+        if (!cancelled) setMonsters(lists.flat());
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return monsters;
 }
 
 // Re-export melodies lookup for the horn table.
@@ -622,6 +662,72 @@ export function useCombinations(): { combinations: CombinationIndex | null; erro
 }
 
 // ---------------------------------------------------------------------------
+// Veggie Elder trades, by item ID
+// ---------------------------------------------------------------------------
+let tradeBundlePromise: Promise<VeggieTradesBundle> | null = null;
+let tradeBundleCache: VeggieTradesBundle | null = null;
+let tradesCache: Map<number, ItemTrades> | null = null;
+
+/** The Veggie Elder's trades as the build wrote them, from veggie-trades.json. */
+export function getVeggieTrades(): Promise<VeggieTradesBundle> {
+  if (tradeBundleCache) return Promise.resolve(tradeBundleCache);
+  if (!tradeBundlePromise) {
+    tradeBundlePromise = fetchJson<VeggieTradesBundle>("/data/veggie-trades.json")
+      .then((bundle) => {
+        tradeBundleCache = bundle;
+        return bundle;
+      })
+      .catch((e) => {
+        tradeBundlePromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return tradeBundlePromise;
+}
+
+/** The Veggie Elder's trades by item. */
+export function getItemTrades(): Promise<Map<number, ItemTrades>> {
+  if (tradesCache) return Promise.resolve(tradesCache);
+  return getVeggieTrades().then((bundle) => (tradesCache ??= indexVeggieTrades(bundle)));
+}
+
+/** `getVeggieTrades` as a hook: null while loading or on error (`error` set). */
+export function useVeggieTrades(): { bundle: VeggieTradesBundle | null; error: boolean } {
+  const [bundle, setBundle] = useState(tradeBundleCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (tradeBundleCache) return;
+    let cancelled = false;
+    getVeggieTrades().then(
+      (b) => !cancelled && setBundle(b),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { bundle, error };
+}
+
+/** `getItemTrades` as a hook: null while loading or on error (`error` set). */
+export function useItemTrades(): { trades: Map<number, ItemTrades> | null; error: boolean } {
+  const [trades, setTrades] = useState(tradesCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (tradesCache) return;
+    let cancelled = false;
+    getItemTrades().then(
+      (t) => !cancelled && setTrades(t),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { trades, error };
+}
+
+// ---------------------------------------------------------------------------
 // Set builder: every armor piece, decoration and skill tree
 // ---------------------------------------------------------------------------
 let setSearchPromise: Promise<SearchData> | null = null;
@@ -655,4 +761,43 @@ export function loadSetSearchData(): Promise<SearchData> {
       });
   }
   return setSearchPromise;
+}
+
+// ---------------------------------------------------------------------------
+// Guild Card awards: each award's name and description, by its index
+// ---------------------------------------------------------------------------
+
+let awardTextPromise: Promise<AwardText[]> | null = null;
+let awardTextCache: AwardText[] | null = null;
+
+/** The awards' English text from awards.json, in the game's order (`AWARDS`'). */
+export function getAwardText(): Promise<AwardText[]> {
+  if (awardTextCache) return Promise.resolve(awardTextCache);
+  if (!awardTextPromise) {
+    awardTextPromise = fetchJson<AwardText[]>("/data/awards.json")
+      .then((text) => (awardTextCache = text))
+      .catch((e) => {
+        awardTextPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return awardTextPromise;
+}
+
+/** `getAwardText` as a hook: null while loading or on error (`error` set). */
+export function useAwardText(): { awards: AwardText[] | null; error: boolean } {
+  const [awards, setAwards] = useState(awardTextCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (awardTextCache) return;
+    let cancelled = false;
+    getAwardText().then(
+      (a) => !cancelled && setAwards(a),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { awards, error };
 }

@@ -10,6 +10,8 @@ export class Edits {
   readonly quests = new Map<number, { quest: LoadedQuest; payload: Buffer }>();
   /** Other DATA.BIN files (overlays) by index, plaintext. */
   readonly files = new Map<number, Buffer>();
+  /** Files added to the disc, or replacing ones on it, by ISO path. */
+  readonly discFiles = new Map<string, Buffer>();
   private ebootCopy: Buffer | null = null;
 
   constructor(private readonly game: GameData) {}
@@ -62,14 +64,18 @@ export class Edits {
     return this.files.get(index) ?? this.game.dataBin.read(index);
   }
 
+  /** Adds a file to the disc, or replaces one, outside DATA.BIN (an ISO path). */
+  discFile(path: string, data: Buffer): void {
+    this.discFiles.set(path, data);
+  }
+
   eboot(): Buffer {
-    if (!this.game.eboot) throw new Error("The EBOOT wasn't loaded");
     this.ebootCopy ??= Buffer.from(this.game.eboot);
     return this.ebootCopy;
   }
 
   /** The edited EBOOT, or null if nothing changed it. */
   changedEboot(): Buffer | null {
-    return this.ebootCopy && !this.ebootCopy.equals(this.game.eboot!) ? this.ebootCopy : null;
+    return this.ebootCopy && !this.ebootCopy.equals(this.game.eboot) ? this.ebootCopy : null;
   }
 }

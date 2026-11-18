@@ -4,7 +4,7 @@ import MonsterRedirect from "./MonsterRedirect";
 
 export const metadata: Metadata = pageMetadata({
   title: "Bestiary",
-  description: "Every monster in Monster Hunter Freedom Unite, with hitzones, drops and habitats.",
+  description: "Every monster in Monster Hunter Freedom Unite, with hitzones, drops and quests.",
   path: "/monsters/",
 });
 

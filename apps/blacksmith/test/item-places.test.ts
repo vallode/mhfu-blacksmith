@@ -7,14 +7,18 @@ import {
   buildItemPlaces,
   decodeItemPlaces,
   encodeItemPlaces,
+  farmPlaceLabel,
   gatherPointsLabel,
   shopStagesLabel,
+  type FarmFile,
   type GatheringFile,
   type ShopPlace,
   type ShopsFile,
 } from "../src/lib/item-places";
+import { buildAreaMaps } from "../src/lib/area-maps";
 import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
 const ITEM_IDS: Record<string, number> = { "Iron Ore": 1, Potion: 2, "Mountain Herbs": 3 };
 const itemId = (name: string) => ITEM_IDS[name];
@@ -47,8 +51,16 @@ const gathering: GatheringFile = {
     },
     {
       map: "Old Desert",
+      texture: "map27",
       quests: [3001, 20001],
-      areas: [{ area: 3, nodes: [node("mine", [["Iron Ore", 30]])] }],
+      areas: [
+        {
+          area: 3,
+          nodes: [{ ...node("mine", [["Iron Ore", 30]]), positions: [[40, 50]] }],
+        },
+        // An area the map doesn't draw.
+        { area: 11, nodes: [node("gather", [["Potion", 50]])] },
+      ],
     },
   ],
 };
@@ -85,8 +97,34 @@ const shops: ShopsFile = {
   ],
 };
 
+const farm: FarmFile = {
+  points: [
+    {
+      name: "Mining Point",
+      spot: "mining",
+      gathers: 3,
+      most_gathers: 4,
+      items: [
+        { item: "Iron Ore", chance: 24 },
+        { item: "Unknown Ore", chance: 76 },
+      ],
+    },
+    {
+      name: "Modified Bee Hive",
+      spot: "honey",
+      gathers: 5,
+      most_gathers: 6,
+      // A 0% row never comes up.
+      items: [
+        { item: "Mountain Herbs", chance: 0 },
+        { item: "Potion", chance: 100 },
+      ],
+    },
+  ],
+};
+
 describe("item places", () => {
-  const places = buildItemPlaces(gathering, shops, quests, itemId);
+  const places = buildItemPlaces(gathering, shops, farm, quests, itemId);
 
   test("groups gathering by rank or board, then map, best chance first", () => {
     assert.deepEqual(places.get(1)!.gathering, [
@@ -104,12 +142,14 @@ describe("item places", () => {
         map: "Old Desert",
         points: [{ kind: "mine", areas: [3] }],
         chance: 30,
+        mapQuest: 3001,
       },
       {
         group: "Training School",
         map: "Old Desert",
         points: [{ kind: "mine", areas: [3] }],
         chance: 30,
+        mapQuest: 20001,
       },
     ]);
   });
@@ -126,6 +166,17 @@ describe("item places", () => {
     ]);
   });
 
+  test("lists Pokke Farm's points apart from the quests' gathering", () => {
+    assert.deepEqual(places.get(1)!.farm, [
+      { point: "Mining Point", spot: "mining", chance: 24, gathers: 3, mostGathers: 4 },
+    ]);
+    assert.deepEqual(places.get(2)!.farm, [
+      { point: "Modified Bee Hive", spot: "honey", chance: 100, gathers: 5, mostGathers: 6 },
+    ]);
+    assert.deepEqual(places.get(3)!.farm, []);
+    assert.equal(farmPlaceLabel(places.get(1)!.farm[0]!), "Mining · 3-4 per quest");
+  });
+
   test("numbers shop stages over the lists with items", () => {
     assert.deepEqual(places.get(2)!.shops, [
       {
@@ -139,8 +190,25 @@ describe("item places", () => {
     ]);
   });
 
+  test("names a map quest only where the map draws a point that gives the item", () => {
+    const g = (id: number) => places.get(id)!.gathering.map((p) => [p.group, p.mapQuest]);
+    assert.deepEqual(g(1), [
+      ["Low Rank", undefined],
+      ["G Rank", 3001],
+      ["Training School", 20001],
+    ]);
+    assert.deepEqual(g(2), [
+      ["Low Rank", undefined],
+      ["G Rank", undefined],
+      ["Training School", undefined],
+    ]);
+  });
+
   test("the bundle decodes to the same places", () => {
-    const bundle = JSON.parse(JSON.stringify(encodeItemPlaces(places)));
+    const encoded = encodeItemPlaces(places);
+    assert.deepEqual(encoded.mapQuests, { "1,1": 3001, "2,1": 20001 });
+    assert.deepEqual(encoded.unmapped, ["2:1", "2:2", "3:0"]);
+    const bundle = JSON.parse(JSON.stringify(encoded));
     assert.deepEqual(decodeItemPlaces(bundle), places);
   });
 
@@ -167,8 +235,7 @@ describe("item places", () => {
   });
 
   test("every gathered or sold item in data/ resolves to an item", () => {
-    const read = <T>(file: string) =>
-      JSON.parse(fs.readFileSync(path.join(DATA_DIR, file), "utf-8")) as T;
+    const read = <T>(file: string) => readData(DATA_DIR, file) as T;
     const { index } = buildItemNameIndex(read<{ items: ItemRecord[] }>("items.json").items);
     const missing = new Set<string>();
     const resolve = (name: string) => {
@@ -182,15 +249,47 @@ describe("item places", () => {
     const real = buildItemPlaces(
       read<GatheringFile>("gathering.json"),
       read<ShopsFile>("shops.json"),
+      read<FarmFile>("farm.json"),
       all,
       resolve,
     );
     assert.deepEqual([...missing], []);
+    // Each place's map quest has an area map, and most of the places have one.
+    const areaMaps = buildAreaMaps(read<GatheringFile>("gathering.json"));
+    const rows = [...real.values()].flatMap((p) => p.gathering);
+    for (const row of rows) {
+      if (row.mapQuest) assert.ok(row.mapQuest in areaMaps.quests, `quest ${row.mapQuest}`);
+    }
+    assert.ok(rows.filter((r) => r.mapQuest).length > rows.length / 2);
+    // Every Village quest has a rank, so none sit apart under a "Village" list
+    // that would look like the Village's only maps.
+    assert.deepEqual(
+      rows.filter((r) => r.group === "Village").map((r) => r.map),
+      [],
+    );
     // Iron Ore is mined on many maps, and the general store sells Potions from the start.
     assert.ok(real.get(index.get(normalizeItemName("Iron Ore"))!)!.gathering.length > 10);
     assert.equal(
       shopStagesLabel(real.get(index.get(normalizeItemName("Potion"))!)!.shops[0]!),
       "From the start",
     );
+    // Pokke Farm's mining points are the only place to mine Armor Stone, and
+    // only the last one gives Purecrystal.
+    const farmed = (name: string) =>
+      real.get(index.get(normalizeItemName(name))!)!.farm.map((p) => [p.point, p.chance]);
+    assert.deepEqual(farmed("Armor Stone"), [["Mining Point", 1]]);
+    assert.deepEqual(farmed("Purecrystal"), [["Mining Point +4", 4]]);
+    assert.deepEqual(farmed("Machalite Ore"), [
+      ["Mining Point", 7],
+      ["Mining Point +1", 14],
+      ["Mining Point +2", 23],
+      ["Mining Point +3", 18],
+    ]);
+    // The Modified Bee Hive's 0% Insect Husk isn't a place.
+    assert.deepEqual(farmed("Insect Husk"), [
+      ["Insect Thicket", 4],
+      ["Prototype Bee Hive", 10],
+      ["Production Bee Hive", 5],
+    ]);
   });
 });

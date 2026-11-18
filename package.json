@@ -8,7 +8,8 @@
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "clean:discs": "node scripts/clean-discs.mjs"
   },
   "devDependencies": {
     "prettier": "^3.9.10",

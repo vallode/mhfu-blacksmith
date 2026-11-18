@@ -16,9 +16,11 @@ import {
   RequirementsPage,
   Slots,
   Stat,
+  StatArrows,
   StatList,
   StatValue,
 } from "@/components/DetailPanel";
+import { RECOIL_LEVELS, RELOAD_LEVELS } from "game-data/gunner";
 import { cn } from "@/lib/cn";
 import {
   melodyDuration,
@@ -33,7 +35,9 @@ import ModelViewer from "@/components/ModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useWeaponModel } from "@/lib/models";
 import { usePreferences } from "@/context/PreferencesContext";
+import { useGameText, useT } from "@/context/LanguageContext";
 import Loading from "@/components/Loading";
+import WishlistButton from "@/components/WishlistButton";
 
 interface Props {
   type: WeaponType;
@@ -47,6 +51,24 @@ function affinityClass(affinity: string | undefined): string {
   return "";
 }
 
+/**
+ * Recoil as kick arrows: a red down-arrow for each level heavier than the
+ * lightest (VeryWeak), in the game's own order. Moderate, every light
+ * bowgun's and most heavy bowguns', gets three. Null for a level the list
+ * doesn't know (game-data's tests check the data has none).
+ */
+function recoilSteps(recoil: string): number | null {
+  const i = (RECOIL_LEVELS as readonly string[]).indexOf(recoil);
+  return i < 0 ? null : -(RECOIL_LEVELS.length - 1 - i);
+}
+
+/** Reload as arrows either side of Normal: green up when faster, red down when slower. */
+function reloadSteps(reload: string): number | null {
+  const i = (RELOAD_LEVELS as readonly string[]).indexOf(reload);
+  return i < 0 ? null : i - RELOAD_LEVELS.indexOf("Normal");
+}
+
+/** Bow coatings in the game's order (English, matched against the data). */
 const COATINGS = [
   "Power Coating",
   "Poison Coating",
@@ -56,6 +78,13 @@ const COATINGS = [
   "Sleep Coating",
 ];
 
+/** "3 mins", "1 min 30 s", "30 s" as minutes and seconds; null for anything else. */
+function parseDuration(text: string): [number, number] | null {
+  const match = /^(?:(\d+) mins?)?\s*(?:(\d+) s)?$/.exec(text.trim());
+  if (!match || (!match[1] && !match[2])) return null;
+  return [Number(match[1] ?? 0), Number(match[2] ?? 0)];
+}
+
 export default function WeaponDetailClient({ type, slug }: Props) {
   const { item: weapon, loading } = useWeapon(type, slug);
   const melodies = useMelodies(weapon?.notes);
@@ -64,12 +93,28 @@ export default function WeaponDetailClient({ type, slug }: Props) {
   // Open state is tied to the model, so navigating to another weapon closes it.
   const [openModel, setOpenModel] = useState<string | null>(null);
   const modelOpen = modelUrl !== null && openModel === modelUrl;
+  const t = useT();
+  const game = useGameText();
+  const tw = t.equipment.weapon;
+  const td = t.equipment.detail;
+  /** A value from one of the data's closed sets, translated when the dictionary has it. */
+  const lookup = (table: Record<string, string>, value: string) => table[value] ?? value;
+  const duration = (text: string) => {
+    const parsed = parseDuration(text);
+    return parsed ? tw.duration(...parsed) : text;
+  };
 
   // The page bar and the tree on the left come from the blacksmith layout
   // (WeaponShell), which stays mounted; this is only the detail panel.
   if (loading || !weapon) {
-    return <DetailCard>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</DetailCard>;
+    return (
+      <DetailCard>
+        {loading ? <Loading>{t.common.loading}</Loading> : <p>{td.notFound}</p>}
+      </DetailCard>
+    );
   }
+
+  const name = game.name("weapon", weapon.name);
 
   return (
     <>
@@ -81,10 +126,10 @@ export default function WeaponDetailClient({ type, slug }: Props) {
             size="large"
             rarity={weapon.rarity}
             color={weapon.color}
-            alt={weapon.name}
+            alt={name}
           />
 
-          <DetailName id="weapon_name">{weapon.name}</DetailName>
+          <DetailName id="weapon_name">{name}</DetailName>
 
           {modelUrl && (
             <ModelButton
@@ -93,6 +138,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               className="ml-[0.4rem]"
             />
           )}
+
+          <WishlistButton
+            gear={{ kind: "weapon", type, slug }}
+            name={name}
+            className={modelUrl ? undefined : "ml-[0.4rem]"}
+          />
 
           {(weapon.sharpness || weapon.sharpness_plus) && (
             <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:mt-[1rem] mobile:mr-auto mobile:ml-0">
@@ -106,67 +157,76 @@ export default function WeaponDetailClient({ type, slug }: Props) {
         <DetailBody>
           <StatList>
             {weapon.attack && (
-              <Stat label="Attack:">
+              <Stat label={tw.attack}>
                 <StatValue>{weapon.attack}</StatValue>
                 {showRawValues && weapon.raw_attack && (
-                  <StatValue className="opacity-20">[ {weapon.raw_attack} ]</StatValue>
+                  <StatValue className="ml-(--cell) opacity-20">[{weapon.raw_attack}]</StatValue>
                 )}
-                {weapon.shelling && <StatValue>[{weapon.shelling.type} Type]</StatValue>}
+                {weapon.shelling && (
+                  <StatValue>
+                    {tw.shellingType(lookup(tw.shellingTypes, weapon.shelling.type))}
+                  </StatValue>
+                )}
               </Stat>
             )}
 
             {weapon.max_attack && (
-              <Stat label="Max attack:">
+              <Stat label={tw.maxAttack}>
                 <StatValue>{weapon.max_attack}</StatValue>
               </Stat>
             )}
 
             {weapon.recoil && (
-              <Stat label="Recoil:">
-                <StatValue>{weapon.recoil}</StatValue>
+              <Stat label={tw.recoil}>
+                <StatArrows steps={recoilSteps(weapon.recoil)} />
+                <StatValue>{lookup(tw.recoilValues, weapon.recoil)}</StatValue>
               </Stat>
             )}
 
             {weapon.reload && (
-              <Stat label="Reload:">
-                <StatValue>{weapon.reload}</StatValue>
+              <Stat label={tw.reload}>
+                <StatArrows steps={reloadSteps(weapon.reload)} />
+                <StatValue>{lookup(tw.reloadValues, weapon.reload)}</StatValue>
               </Stat>
             )}
 
             {weapon.affinity && (
-              <Stat label="Affinity:">
+              <Stat label={tw.affinity}>
                 <StatValue className={affinityClass(weapon.affinity)}>{weapon.affinity}</StatValue>
               </Stat>
             )}
 
-            <Stat label="Slots:">
+            <Stat label={td.slots}>
               <Slots count={weapon.slots} />
             </Stat>
 
             {weapon.shelling && (
               <p className="inline-block">
-                <StatValue className="text-positive">Shelling Lv{weapon.shelling.level}</StatValue>
+                <StatValue className="text-positive">
+                  {tw.shellingLevel(weapon.shelling.level)}
+                </StatValue>
               </p>
             )}
 
             {weapon.notes && (
               <div className="text-white">
-                [Note:
+                {tw.notesOpen}
                 {weapon.notes.map((note, i) => (
-                  <Icon key={i} type="note" color={`note-${note}`} alt={note} />
+                  <Icon key={i} type="note" color={`note-${note}`} alt={lookup(tw.notes, note)} />
                 ))}
-                ]
+                {tw.notesClose}
               </div>
             )}
 
             {weapon.elements?.map((el, i) => (
               <p key={i} className="inline-block whitespace-normal text-element">
-                {el.name} Attrib: <span className="whitespace-nowrap">{el.attack}</span>
+                {tw.elementAttrib(t.common.elements[el.name] ?? el.name)}{" "}
+                <span className="whitespace-nowrap">{el.attack}</span>
                 {showRawValues && typeof el.attack === "number" && (
                   <>
                     {" "}
                     <StatValue className="whitespace-nowrap opacity-20">
-                      [ {el.attack / 10} ]
+                      [{el.attack / 10}]
                     </StatValue>
                   </>
                 )}
@@ -175,11 +235,13 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
             {weapon.skills?.map((skill, i) => (
               <p key={i} className="inline-block whitespace-normal text-element">
-                {skill}
+                {game.name("skill", skill)}
               </p>
             ))}
 
-            {weapon.bonus && <p className="inline-block text-element">Defense {weapon.bonus}</p>}
+            {weapon.bonus && (
+              <p className="inline-block text-element">{tw.defenseBonus(String(weapon.bonus))}</p>
+            )}
           </StatList>
 
           <DetailRule />
@@ -188,16 +250,16 @@ export default function WeaponDetailClient({ type, slug }: Props) {
           <Requirements>
             <RequirementTabs
               key={slug}
-              label={`${weapon.name} requirements`}
+              label={tw.requirementsLabel(name)}
               tabs={[
                 {
                   id: "materials",
-                  label: "Materials",
+                  label: tw.tabs.materials,
                   content: (
                     <RequirementsPage stacked>
                       {weapon.improve_mats && (
                         <MaterialList
-                          label="Improve cost"
+                          label={td.improveCost}
                           cost={weapon.improve_cost}
                           materials={weapon.improve_mats}
                         />
@@ -205,7 +267,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
                       {weapon.create_mats && (
                         <MaterialList
-                          label="Create cost"
+                          label={td.createCost}
                           cost={weapon.create_cost}
                           materials={weapon.create_mats}
                         />
@@ -215,11 +277,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                 },
                 weapon.alternative_create_mats && {
                   id: "alt-recipe",
-                  label: "Alt. Recipe",
+                  label: td.altRecipe,
                   content: (
                     <RequirementsPage>
                       <MaterialList
-                        label="Create cost"
+                        label={td.createCost}
                         cost={weapon.create_cost}
                         materials={weapon.alternative_create_mats}
                       />
@@ -228,12 +290,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                 },
                 weapon.shots && {
                   id: "charge",
-                  label: "Charge",
+                  label: tw.tabs.charge,
                   content: (
                     <RequirementsPage>
                       <div className="flex flex-1 flex-col gap-[13px]">
                         <p>
-                          <span className="text-stat">[Charge Attack]</span>
+                          <span className="text-stat">{tw.chargeAttack}</span>
                         </p>
                         {weapon.shots.map((shot, i) => {
                           // The last (strongest) level is highlighted green.
@@ -245,11 +307,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                                   className="text-warm"
                                   style={{ visibility: i === 0 ? "visible" : "hidden" }}
                                 >
-                                  Lvl
+                                  {tw.chargeLevel}
                                 </span>{" "}
                                 {i + 1}:
                               </span>{" "}
-                              {shot.name}Lv{shot.level}
+                              {tw.chargeShot(lookup(tw.shotTypes, shot.name), shot.level)}
                             </p>
                           );
                         })}
@@ -259,14 +321,14 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                 },
                 weapon.ammo && {
                   id: "ammo",
-                  label: "Ammo",
+                  label: tw.tabs.ammo,
                   content: (
                     <RequirementsPage>
                       <table className={statTable}>
                         <thead>
                           <tr>
-                            <th>Cap.:</th>
-                            <th>LV</th>
+                            <th>{tw.capacity}</th>
+                            <th>{tw.ammoLevel}</th>
                             <th>1</th>
                             <th>2</th>
                             <th>3</th>
@@ -297,7 +359,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                           <thead>
                             <tr>
                               <th></th>
-                              <th>LV</th>
+                              <th>{tw.ammoLevel}</th>
                               <th>1</th>
                               <th>2</th>
                               <th></th>
@@ -329,13 +391,13 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                 },
                 weapon.element_ammo && {
                   id: "special-ammo",
-                  label: "Special Ammo",
+                  label: tw.tabs.specialAmmo,
                   content: (
                     <RequirementsPage>
                       <table className={statTable}>
                         <thead>
                           <tr>
-                            <th>Cap.:</th>
+                            <th>{tw.capacity}</th>
                             <th></th>
                             <th></th>
                           </tr>
@@ -392,12 +454,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                 },
                 weapon.coatings && {
                   id: "coatings",
-                  label: "Coatings",
+                  label: tw.tabs.coatings,
                   content: (
                     <RequirementsPage>
                       <div className="flex flex-1 flex-row flex-wrap content-start gap-[13px]">
                         <p className="w-full">
-                          <span className="text-stat">[Usable Coating]</span>
+                          <span className="text-stat">{tw.usableCoating}</span>
                         </p>
                         {COATINGS.map((coating) => {
                           const key = coating.toLowerCase().replace(" coating", "").trim();
@@ -412,7 +474,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                                 !usable && "text-unavailable",
                               )}
                             >
-                              {coating}
+                              {lookup(tw.coatings, coating)}
                             </p>
                           );
                         })}
@@ -422,15 +484,15 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                 },
                 melodies && {
                   id: "melodies",
-                  label: "Melodies",
+                  label: tw.tabs.melodies,
                   content: (
                     <RequirementsPage>
                       <table className={melodyTable}>
                         <thead>
                           <tr>
-                            <th>Combo</th>
-                            <th>Effect</th>
-                            <th className={melodyDuration}>Duration</th>
+                            <th>{tw.melodyCombo}</th>
+                            <th>{tw.melodyEffect}</th>
+                            <th className={melodyDuration}>{tw.melodyDuration}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -443,7 +505,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                                       key={j}
                                       type="note"
                                       color={`note-${note}`}
-                                      alt={note}
+                                      alt={lookup(tw.notes, note)}
                                       className={melodyNote}
                                     />
                                   ))}
@@ -452,10 +514,14 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                               <td>
                                 {melody.effect}
                                 {melody.duration && (
-                                  <span className={melodyDurationBelow}>{melody.duration}</span>
+                                  <span className={melodyDurationBelow}>
+                                    {duration(melody.duration)}
+                                  </span>
                                 )}
                               </td>
-                              <td className={melodyDuration}>{melody.duration}</td>
+                              <td className={melodyDuration}>
+                                {melody.duration && duration(melody.duration)}
+                              </td>
                             </tr>
                           ))}
                         </tbody>
@@ -469,13 +535,8 @@ export default function WeaponDetailClient({ type, slug }: Props) {
         </DetailBody>
       </DetailCard>
       {modelOpen && (
-        <ModelPopover title={weapon.name} onClose={() => setOpenModel(null)}>
-          <ModelViewer
-            src={modelUrl}
-            label={weapon.name}
-            hunter={type}
-            pair={type === "dual-blades"}
-          />
+        <ModelPopover title={name} onClose={() => setOpenModel(null)}>
+          <ModelViewer src={modelUrl} label={name} hunter={type} pair={type === "dual-blades"} />
         </ModelPopover>
       )}
     </>

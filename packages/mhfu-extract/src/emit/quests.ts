@@ -10,6 +10,9 @@
  * Japanese text). See README's "Quests" section.
  */
 import type {
+  ArenaEquipment,
+  ArenaSet,
+  ArenaSlot,
   MonsterSpawn,
   ParsedQuest,
   RewardTable,
@@ -18,7 +21,7 @@ import type {
 } from "../quests/parser.js";
 import type { MultiplierRow } from "../monsters/multipliers.js";
 import { crownChances, sizeRange, type Crowns, type SizeTables } from "../monsters/sizes.js";
-import { getNameResolver } from "../strings/names.js";
+import { EQUIPMENT_NAME_TABLES, getNameResolver } from "../strings/names.js";
 import { resolveMapName } from "../tables/quest-maps.js";
 import { QUEST_PREREQUISITES } from "../tables/quest-prerequisites.js";
 import { URGENT_QUESTS } from "../tables/urgent-quests.js";
@@ -66,8 +69,8 @@ export function questHub(questId: number): QuestHub | null {
  * are 1 (one ★6 is 2), `11xxx` 2 (one ★9 is 5). 0 (the Training School's
  * Basic/Mastery quests, the Village's two Tigrex quests and the Guild's ★1
  * and ★2), 3 (Treasure Hunting) and 4 (Subjugation Training) have no tier.
- * The Guild's ★1/★2 quests are still on its Low Rank board, so they are
- * emitted as low rank (`questRank`).
+ * The Guild's ★1/★2 quests and the Village's two Tigrex quests (★1 and ★2)
+ * are still Low Rank, so they are emitted as low rank (`questRank`).
  */
 const RANK_TIER: Record<number, Rank> = {
   1: "low-rank",
@@ -82,9 +85,9 @@ const RANK_TIER: Record<number, Rank> = {
  * and `m40001`-`m40008` (0 zenny fee, real monsters and rewards, but no
  * text in any language, so never shown on a quest board).
  */
-/** The emitted rank: the header's tier, or Low Rank for the Guild's rank-0 ★1/★2 quests. */
+/** The emitted rank: the header's tier, or Low Rank for the Guild's and Village's rank-0 quests. */
 function questRank(hub: QuestHub, headerRank: number): Rank | null {
-  return RANK_TIER[headerRank] ?? (hub === "guild" ? "low-rank" : null);
+  return RANK_TIER[headerRank] ?? (hub === "guild" || hub === "village" ? "low-rank" : null);
 }
 
 const PLACEHOLDER_TITLES = new Set(["**********", "none"]);
@@ -162,6 +165,29 @@ export interface EmittedQuestTarget {
   amount: number;
 }
 
+export interface EmittedArenaEquipment {
+  slot: ArenaSlot;
+  /** The slot's equipment ID, as in data/armor and data/weapons. */
+  id: number;
+  /** The disc's name for it; training-only gear has no record in data/ to name it. */
+  name: string | null;
+  /** An armor piece's upgrade level (and any nonzero value on a melee weapon). */
+  level?: number;
+  /** A bowgun's attachment bits, raw. */
+  attachments?: number;
+  decorations: string[];
+}
+
+/** One loadout of a Training School quest (src/quests/parser.ts `ArenaSet`). */
+export interface EmittedArenaSet {
+  /** On the first set, how many hunters the quest is for; 0 on the others. */
+  players: number;
+  /** Raw; what it scales isn't confirmed. */
+  point_multiplier: number;
+  equipment: EmittedArenaEquipment[];
+  items: EmittedSupply[];
+}
+
 export interface EmittedQuest {
   id: number;
   hub: QuestHub;
@@ -179,6 +205,8 @@ export interface EmittedQuest {
   /** How big the large monsters can be; null without large monsters or the size tables. */
   monster_size: EmittedMonsterSize | null;
   small_monsters: EmittedSmallMonsterSpawn[];
+  /** The Training School's loadouts, the hunter's gear on the quest; only on quests that have them. */
+  arena_sets?: EmittedArenaSet[];
   title: string | null;
   goal: string | null;
   details: string | null;
@@ -347,6 +375,40 @@ function dedupeSmallMonsters(tables: SmallMonsterTable[]): EmittedSmallMonsterSp
   }));
 }
 
+/** An item's name, or an error: a loadout without one would lose it silently. */
+function arenaItemName(questId: number, id: number): string {
+  const name = getNameResolver().resolve("ItemID", id);
+  if (name === null) throw new Error(`quest ${questId}: arena set item ${id} has no name`);
+  return name;
+}
+
+/**
+ * The u16 after the ID is an armor piece's upgrade level and a bowgun's
+ * attachment bits (`attachments`, on any ranged weapon). It's 0 on every
+ * melee weapon on the disc; anything else there is kept as `level`.
+ */
+function arenaLevel(e: ArenaEquipment): Pick<EmittedArenaEquipment, "level" | "attachments"> {
+  if (e.slot === "ranged") return e.level === 0 ? {} : { attachments: e.level };
+  if (e.slot !== "melee" || e.level !== 0) return { level: e.level };
+  return {};
+}
+
+function emitArenaSets(questId: number, sets: ArenaSet[]): EmittedArenaSet[] {
+  const names = getNameResolver();
+  return sets.map((set) => ({
+    players: set.players,
+    point_multiplier: set.pointMultiplier,
+    equipment: set.equipment.map((e) => ({
+      slot: e.slot,
+      id: e.id,
+      name: names.resolve(EQUIPMENT_NAME_TABLES[e.slot], e.id),
+      ...arenaLevel(e),
+      decorations: e.decorations.map((d) => arenaItemName(questId, d)),
+    })),
+    items: set.items.map((i) => ({ item: arenaItemName(questId, i.itemId), amount: i.amount })),
+  }));
+}
+
 /**
  * `targetId`/`targetNum` name the quest's primary hunt/capture objective —
  * null when there isn't a single specific target (`targetNum === 0`, or
@@ -394,6 +456,9 @@ export function emitQuest(
     large_monsters: dedupeLargeMonsters(parsed.largeMonsters, header, multipliers, sizes),
     monster_size: monsterSize(parsed, sizes),
     small_monsters: dedupeSmallMonsters(parsed.smallMonsters),
+    ...(parsed.arenaSets.length > 0
+      ? { arena_sets: emitArenaSets(header.questId, parsed.arenaSets) }
+      : {}),
     title: parsed.strings?.title ?? null,
     goal: parsed.strings?.goal ?? null,
     details: parsed.strings?.details ?? null,

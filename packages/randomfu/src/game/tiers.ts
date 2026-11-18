@@ -22,7 +22,7 @@ export interface Tier {
   stars: number;
 }
 
-/** How strictly shuffles keep items in place: see the `logic.tiers` setting. */
+/** How strictly item sources are compared: by star level, by rank only, or not at all. */
 export type TierMode = "star" | "rank" | "none";
 
 /** The tier shuffles group by under `mode`: star level, rank only, or one pool. */
@@ -30,6 +30,21 @@ export function coarsen(tier: Tier, mode: TierMode): Tier {
   if (mode === "rank") return { band: tier.band, stars: 0 };
   if (mode === "none") return { band: "low", stars: 0 };
   return tier;
+}
+
+/**
+ * How far a shuffle or randomizer may reach from a slot's own tier: its
+ * star level, its rank, the ranks next to it (Low and High, High and G) or
+ * the whole game.
+ */
+export type Scope = "star" | "rank" | "adjacent" | "any";
+
+/** True if something first found at `to` may be used at `from` under `scope`. */
+export function inScope(scope: Scope, from: Tier, to: Tier): boolean {
+  if (scope === "any") return true;
+  if (scope === "star") return from.band === to.band && from.stars === to.stars;
+  const gap = Math.abs(BANDS.indexOf(from.band) - BANDS.indexOf(to.band));
+  return scope === "rank" ? gap === 0 : gap <= 1;
 }
 
 export function tierKey(tier: Tier): string {
@@ -67,6 +82,17 @@ export function questTier(quest: ParsedQuest): Tier | null {
   const band = HEADER_RANK_BAND[quest.header.rank] ?? (quest.header.rank === 0 ? "low" : null);
   if (!band) return null;
   return { band, stars: Math.max(1, quest.header.questStars) };
+}
+
+/**
+ * Whether a player can take the quest: a Village or Guild quest with a
+ * tier (`questTier`), or a Training School or Treasure Hunting one. Not
+ * unused slots or the unused gathering copies.
+ */
+export function isPlayable(quest: ParsedQuest): boolean {
+  const hub = questHub(quest.header.questId);
+  if (hub === "training-school" || hub === "treasure-hunting") return !isPlaceholderQuest(quest);
+  return questTier(quest) !== null;
 }
 
 /** A monster reward list's rank slot -> band. Treasure, training and the rest aren't shuffled. */

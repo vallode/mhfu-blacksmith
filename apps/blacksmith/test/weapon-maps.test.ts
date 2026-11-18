@@ -1,22 +1,13 @@
 /**
- * The weapon trees written by scripts/generate-maps.ts (content/blacksmith),
- * checked against the crafting data.
+ * The weapon trees built by src/lib/trees.ts, checked against the crafting data.
  */
 import assert from "node:assert/strict";
-import fs from "node:fs";
-import path from "node:path";
 import { describe, it } from "node:test";
 import { WEAPON_TYPES } from "../src/lib/constants";
+import { buildWeaponTree } from "../src/lib/trees";
 import type { WeaponTreeNode } from "../src/lib/types";
 
-const contentDir = path.resolve(__dirname, "..", "content", "blacksmith");
-
-const readTree = (type: string) =>
-  (
-    JSON.parse(fs.readFileSync(path.join(contentDir, type, "map.json"), "utf-8")) as {
-      map: WeaponTreeNode[];
-    }
-  ).map;
+const readTree = buildWeaponTree;
 
 interface Row {
   node: WeaponTreeNode;

@@ -1,8 +1,8 @@
 /**
  * The shops' stock: lists of u16 item IDs in `overlay/lobby_task.ovl`, one
  * list per stage of the game, reached through a table of u32 pointers per
- * shop (each ending in a 0 word). Found with randomfu's `shop-scan` and
- * `shop-lists` on the EU disc, where the tables are at 0xa7da8 and the
+ * shop (each ending in a 0 word). Found with randomfu's former `shop-scan`
+ * and `shop-lists` research scans on the EU disc, where the tables are at 0xa7da8 and the
  * village store's first lists at 0xa7210 and 0xa7280. Tables can share
  * lists. randomfu's `shops` shuffle rewrites them; `emit/shops.ts` writes
  * them to `data/shops.json`.
@@ -15,7 +15,8 @@
  */
 import type { OvlFile } from "../container/ovl.js";
 
-const ITEM_COUNT = 1262;
+/** Item IDs run below this (the `ItemID` enum), past the item records' 1117. */
+export const ITEM_COUNT = 1262;
 export const LIST_END = 0xffff;
 const MAX_LIST = 200;
 const MAX_TABLE = 32;

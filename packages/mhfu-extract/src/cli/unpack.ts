@@ -1,5 +1,5 @@
 /**
- * `unpack` subcommand — reads a disc image (.iso or .cso), decrypts
+ * `unpack` subcommand — reads a disc image (.iso), decrypts
  * EBOOT.BIN and every DATA.BIN entry, and writes them to `--out` as plain
  * files a later `extract` run works from. See README's "Usage" section.
  *
@@ -11,7 +11,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { readDataBin, type UnpackedDataBin } from "../container/databin.js";
-import { decryptEboot } from "../container/eboot.js";
 import { loadFileList } from "../container/filelist.js";
 import { openDiscImage } from "../container/image.js";
 import type { Iso9660Reader } from "../container/iso9660.js";
@@ -23,6 +22,7 @@ import {
   type Game,
   type Region,
 } from "../container/sfo.js";
+import { unpackEboot } from "./eboot.js";
 
 /** Bumped when unpack's file naming changes; see UnpackManifest.fileList. */
 export const FILE_LIST_VERSION = 2;
@@ -76,7 +76,7 @@ export interface UnpackOptions {
    */
   game?: Game;
   region?: Region;
-  /** Pre-decrypted EBOOT dump, bypassing KIRK decryption entirely (see decryptEboot). */
+  /** Pre-decrypted EBOOT dump, bypassing KIRK decryption entirely (see unpackEboot). */
   eboot?: string;
   /**
    * Don't decrypt or write EBOOT.BIN at all — only DATA.BIN. For work that
@@ -178,7 +178,7 @@ export async function runUnpack(options: UnpackOptions): Promise<UnpackManifest>
     } else {
       console.log("Decrypting EBOOT.BIN...");
       const rawEboot = iso.readFile("/PSP_GAME/SYSDIR/EBOOT.BIN");
-      const eboot = await decryptEboot(rawEboot, {
+      const eboot = await unpackEboot(rawEboot, {
         overridePath: options.eboot,
         pspdecryptBin: options.pspdecryptBin,
       });

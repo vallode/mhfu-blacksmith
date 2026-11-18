@@ -1,7 +1,7 @@
 {
   "weapons": [
     {
-      "name": "Lava Alphorn",
+      "id": 1007,
       "attack": 1248,
       "sharpness": [
         5,
@@ -22,28 +22,28 @@
       "type": "hunting-horn",
       "create_cost": 100000,
       "improve_cost": 100000,
-      "improve_from": "Blacksmith",
+      "improve_from": 1005,
       "create_mats": [
         {
-          "name": "ThckLavasiothScl",
+          "item": 488,
           "amount": 8,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "HvyLavasiothShl",
+          "item": 489,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 8,
           "type": "bone",
           "color": "gray"
         },
         {
-          "name": "Screamer",
+          "item": 266,
           "amount": 8,
           "type": "sac",
           "color": "gray"
@@ -51,26 +51,26 @@
       ],
       "improve_mats": [
         {
-          "name": "ThckLavasiothScl",
+          "item": 488,
           "amount": 4,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "SpecLavasioFin+",
+          "item": 491,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Screamer",
+          "item": 266,
           "amount": 4,
           "type": "sac",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Volcano Alphorn"
+        1008
       ],
       "sharpness_plus": [
         5,
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "name": "Volcano Alphorn",
+      "id": 1008,
       "attack": 1404,
       "sharpness": [
         5,
@@ -182,29 +182,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 120000,
-      "improve_from": "Lava Alphorn",
+      "improve_from": 1007,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 5,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "SpecLavasioFin+",
+          "item": 491,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 3,
           "type": "insect",
           "color": "white"
         },
         {
-          "name": "HvyGraviosShell",
+          "item": 625,
           "amount": 2,
           "type": "part",
           "color": "white"
@@ -300,7 +300,7 @@
       ]
     },
     {
-      "name": "Bronze Bell",
+      "id": 316,
       "attack": 936,
       "sharpness": [
         9,
@@ -320,28 +320,28 @@
       "type": "hunting-horn",
       "create_cost": 35000,
       "improve_cost": 35000,
-      "improve_from": "Anvil Hammer",
+      "improve_from": 68,
       "create_mats": [
         {
-          "name": "Gaoren Pincer",
+          "item": 711,
           "amount": 2,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gaoren Shell",
+          "item": 704,
           "amount": 6,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gaoren Spine",
+          "item": 708,
           "amount": 2,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 20,
           "type": "ore",
           "color": "gray"
@@ -349,26 +349,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Gaoren Pincer",
+          "item": 711,
           "amount": 1,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gaoren Shell",
+          "item": 704,
           "amount": 4,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gaoren Claw",
+          "item": 712,
           "amount": 1,
           "type": "claw",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Gaoren Bell"
+        400
       ],
       "sharpness_plus": [
         9,
@@ -467,7 +467,7 @@
       ]
     },
     {
-      "name": "Gaoren Bell",
+      "id": 400,
       "attack": 1092,
       "sharpness": [
         9,
@@ -488,30 +488,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 85000,
-      "improve_from": "Bronze Bell",
+      "improve_from": 316,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Gaoren Claw",
+          "item": 712,
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Gaoren Thoracic",
+          "item": 709,
           "amount": 4,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gaoren Carapace",
+          "item": 705,
           "amount": 6,
           "type": "shell",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Gaoren Zhong"
+        1009
       ],
       "sharpness_plus": [
         9,
@@ -611,7 +611,7 @@
       ]
     },
     {
-      "name": "Gaoren Zhong",
+      "id": 1009,
       "attack": 1560,
       "sharpness": [
         9,
@@ -633,29 +633,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 130000,
-      "improve_from": "Gaoren Bell",
+      "improve_from": 400,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hard Gaoren Claw",
+          "item": 713,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Hvy Gaoren Spine",
+          "item": 710,
           "amount": 4,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "HvyGaorenShell",
+          "item": 706,
           "amount": 6,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "HvnlyGaorenShell",
+          "item": 707,
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
@@ -761,7 +761,7 @@
       ]
     },
     {
-      "name": "Sakura Recorder",
+      "id": 561,
       "attack": 884,
       "sharpness": [
         3,
@@ -781,28 +781,28 @@
       "type": "hunting-horn",
       "create_cost": 25000,
       "improve_cost": 25000,
-      "improve_from": "Anvil Hammer",
+      "improve_from": 68,
       "create_mats": [
         {
-          "name": "Pnk Rathian Scl",
+          "item": 532,
           "amount": 6,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Pnk Rathian Shl",
+          "item": 535,
           "amount": 4,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Dosbiscus",
+          "item": 172,
           "amount": 10,
           "type": "herb",
           "color": "red"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 10,
           "type": "insect",
           "color": "green"
@@ -810,26 +810,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Pnk Rathian Scl",
+          "item": 532,
           "amount": 5,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Pnk Rathian Shl",
+          "item": 535,
           "amount": 2,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 5,
           "type": "ore",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Sakura Recorder+"
+        575
       ],
       "sharpness_plus": [
         3,
@@ -895,7 +895,7 @@
       ]
     },
     {
-      "name": "Sakura Recorder+",
+      "id": 575,
       "attack": 936,
       "sharpness": [
         6,
@@ -915,30 +915,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 70000,
-      "improve_from": "Sakura Recorder",
+      "improve_from": 561,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Pnk Rathian Scl+",
+          "item": 533,
           "amount": 7,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Pnk Rathian Cpc",
+          "item": 536,
           "amount": 5,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Rathian Plate",
+          "item": 523,
           "amount": 1,
           "type": "scale",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Gold Recorder"
+        562
       ],
       "sharpness_plus": [
         6,
@@ -1004,7 +1004,7 @@
       ]
     },
     {
-      "name": "Gold Recorder",
+      "id": 562,
       "attack": 988,
       "sharpness": [
         3,
@@ -1025,30 +1025,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": "Sakura Recorder+",
+      "improve_from": 575,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Gld Rathian Scl+",
+          "item": 538,
           "amount": 6,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "Gld Rathian Cpc",
+          "item": 540,
           "amount": 4,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Small Goldenfish",
+          "item": 240,
           "amount": 20,
           "type": "fish",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Gold Recorder+"
+        1010
       ],
       "sharpness_plus": [
         3,
@@ -1128,7 +1128,7 @@
       ]
     },
     {
-      "name": "Gold Recorder+",
+      "id": 1010,
       "attack": 1196,
       "sharpness": [
         6,
@@ -1149,36 +1149,36 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Gold Recorder",
+      "improve_from": 562,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvyPnkRathianShl",
+          "item": 537,
           "amount": 6,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "HvyRathianShell",
+          "item": 528,
           "amount": 4,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Gld Rathian Cpc",
+          "item": 540,
           "amount": 6,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Rathian Thorn",
+          "item": 531,
           "amount": 1,
           "type": "part",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Lunar Recorder"
+        1011
       ],
       "sharpness_plus": [
         6,
@@ -1258,7 +1258,7 @@
       ]
     },
     {
-      "name": "Lunar Recorder",
+      "id": 1011,
       "attack": 1300,
       "sharpness": [
         10,
@@ -1280,23 +1280,23 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 125000,
-      "improve_from": "Gold Recorder+",
+      "improve_from": 1010,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "ThckGldRathnScl",
+          "item": 539,
           "amount": 7,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "HvyGldRathianShl",
+          "item": 541,
           "amount": 5,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "HvnlyRathianScl",
+          "item": 525,
           "amount": 1,
           "type": "heavenly",
           "color": "green"
@@ -1382,7 +1382,7 @@
       ]
     },
     {
-      "name": "Metal Bagpipe",
+      "id": 302,
       "attack": 676,
       "sharpness": [
         3,
@@ -1401,28 +1401,28 @@
       "type": "hunting-horn",
       "create_cost": 2340,
       "improve_cost": 2340,
-      "improve_from": "War Mace",
+      "improve_from": 59,
       "create_mats": [
         {
-          "name": "Black Pearl",
+          "item": 198,
           "amount": 5,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 17,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 5,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Velocidrome Head",
+          "item": 356,
           "amount": 1,
           "type": "part",
           "color": "blue"
@@ -1430,26 +1430,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Black Pearl",
+          "item": 198,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 12,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Screamer",
+          "item": 266,
           "amount": 3,
           "type": "sac",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Great Bagpipe"
+        396
       ],
       "sharpness_plus": [
         3,
@@ -1508,7 +1508,7 @@
       ]
     },
     {
-      "name": "Great Bagpipe",
+      "id": 396,
       "attack": 832,
       "sharpness": [
         3,
@@ -1528,30 +1528,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 4410,
-      "improve_from": "Metal Bagpipe",
+      "improve_from": 302,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 5,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 20,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Screamer",
+          "item": 266,
           "amount": 10,
           "type": "sac",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Heavy Bagpipe"
+        1018
       ],
       "sharpness_plus": [
         3,
@@ -1610,7 +1610,7 @@
       ]
     },
     {
-      "name": "Heavy Bagpipe",
+      "id": 1018,
       "attack": 1040,
       "sharpness": [
         3,
@@ -1630,28 +1630,28 @@
       "type": "hunting-horn",
       "create_cost": 40000,
       "improve_cost": 40000,
-      "improve_from": "Great Bagpipe",
+      "improve_from": 396,
       "create_mats": [
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 15,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 20,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 40,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Basarios Wing",
+          "item": 590,
           "amount": 2,
           "type": "part",
           "color": "gray"
@@ -1659,26 +1659,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 10,
           "type": "ore",
           "color": "slate"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 15,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 6,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Heavy Bagpipe+"
+        1019
       ],
       "sharpness_plus": [
         3,
@@ -1738,7 +1738,7 @@
       ]
     },
     {
-      "name": "Heavy Bagpipe+",
+      "id": 1019,
       "attack": 1144,
       "sharpness": [
         3,
@@ -1759,30 +1759,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 60000,
-      "improve_from": "Heavy Bagpipe",
+      "improve_from": 1018,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Union Ore",
+          "item": 208,
           "amount": 10,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "Basarios Tears",
+          "item": 592,
           "amount": 1,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "Blk Gravios Cpc",
+          "item": 630,
           "amount": 5,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Master Bagpipe"
+        1020
       ],
       "sharpness_plus": [
         3,
@@ -1843,7 +1843,7 @@
       ]
     },
     {
-      "name": "Master Bagpipe",
+      "id": 1020,
       "attack": 1404,
       "sharpness": [
         8,
@@ -1864,30 +1864,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 85000,
-      "improve_from": "Heavy Bagpipe+",
+      "improve_from": 1019,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 5,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "HvyBasariosShell",
+          "item": 589,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Narga Brain Stem",
+          "item": 622,
           "amount": 1,
           "type": "part",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Sforzando"
+        1021
       ],
       "sharpness_plus": [
         8,
@@ -1948,7 +1948,7 @@
       ]
     },
     {
-      "name": "Sforzando",
+      "id": 1021,
       "attack": 1508,
       "sharpness": [
         3,
@@ -1970,23 +1970,23 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 110000,
-      "improve_from": "Master Bagpipe",
+      "improve_from": 1020,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "StrBasariosWing",
+          "item": 591,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvyGraviosShell",
+          "item": 625,
           "amount": 4,
           "type": "part",
           "color": "white"
@@ -2053,7 +2053,7 @@
       ]
     },
     {
-      "name": "Basarios Rock",
+      "id": 569,
       "attack": 676,
       "sharpness": [
         6,
@@ -2073,28 +2073,28 @@
       "type": "hunting-horn",
       "create_cost": 3825,
       "improve_cost": 3825,
-      "improve_from": "Spiked Hammer+",
+      "improve_from": 65,
       "create_mats": [
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 25,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "FireWyvern Fluid",
+          "item": 545,
           "amount": 10,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Hercudrome",
+          "item": 258,
           "amount": 3,
           "type": "insect",
           "color": "red"
@@ -2102,26 +2102,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 15,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Flame Sac",
+          "item": 273,
           "amount": 3,
           "type": "sac",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Basarios Rock Mk.II"
+        573
       ],
       "sharpness_plus": [
         6,
@@ -2222,7 +2222,7 @@
       ]
     },
     {
-      "name": "Basarios Rock Mk.II",
+      "id": 573,
       "attack": 832,
       "sharpness": [
         6,
@@ -2242,30 +2242,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 5715,
-      "improve_from": "Basarios Rock",
+      "improve_from": 569,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Gravios Shell",
+          "item": 623,
           "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 20,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Basarios Wing",
+          "item": 590,
           "amount": 1,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Volcanic Rock"
+        570
       ],
       "sharpness_plus": [
         6,
@@ -2367,7 +2367,7 @@
       ]
     },
     {
-      "name": "Volcanic Rock",
+      "id": 570,
       "attack": 988,
       "sharpness": [
         8,
@@ -2388,30 +2388,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": "Basarios Rock Mk.II",
+      "improve_from": 573,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Basarios Tears",
+          "item": 592,
           "amount": 3,
           "type": "ore",
           "color": "pink"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 50,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Kirin Mane",
+          "item": 686,
           "amount": 5,
           "type": "part",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Volcanic Gig"
+        1025
       ],
       "sharpness_plus": [
         8,
@@ -2527,7 +2527,7 @@
       ]
     },
     {
-      "name": "Volcanic Gig",
+      "id": 1025,
       "attack": 1300,
       "sharpness": [
         8,
@@ -2549,29 +2549,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 95000,
-      "improve_from": "Volcanic Rock",
+      "improve_from": 570,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvyBasariosShell",
+          "item": 589,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "StrBasariosWing",
+          "item": 591,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Blazing Fire Sac",
+          "item": 275,
           "amount": 8,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 50,
           "type": "ore",
           "color": "blue"
@@ -2693,7 +2693,7 @@
       ]
     },
     {
-      "name": "Feather Whistle",
+      "id": 1032,
       "attack": 780,
       "sharpness": [
         3,
@@ -2713,28 +2713,28 @@
       "type": "hunting-horn",
       "create_cost": 50000,
       "improve_cost": 50000,
-      "improve_from": "Kut-Ku Pick",
+      "improve_from": 305,
       "create_mats": [
         {
-          "name": "Top-GrdHypnoClaw",
+          "item": 374,
           "amount": 10,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "OrangeHypnoPelt",
+          "item": 372,
           "amount": 8,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 20,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Carbalite Ore",
+          "item": 206,
           "amount": 10,
           "type": "ore",
           "color": "slate"
@@ -2742,26 +2742,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Top-GrdHypnoClaw",
+          "item": 374,
           "amount": 5,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "OrangeHypnoPelt",
+          "item": 372,
           "amount": 3,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 8,
           "type": "ore",
           "color": "green"
         }
       ],
       "improve_to": [
-        "Hypno Whistle"
+        1033
       ],
       "sharpness_plus": [
         3,
@@ -2840,7 +2840,7 @@
       ]
     },
     {
-      "name": "Hypno Whistle",
+      "id": 1033,
       "attack": 884,
       "sharpness": [
         3,
@@ -2861,28 +2861,28 @@
       "type": "hunting-horn",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": "Feather Whistle",
+      "improve_from": 1032,
       "create_mats": [
         {
-          "name": "OrangeHypnoPelt+",
+          "item": 373,
           "amount": 8,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Hypno Claw+",
+          "item": 375,
           "amount": 6,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 15,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Hypno Bezoar+",
+          "item": 377,
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -2890,32 +2890,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Top-GrdHypnoClaw",
+          "item": 374,
           "amount": 12,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "OrangeHypnoPelt+",
+          "item": 373,
           "amount": 5,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Hypno Bezoar",
+          "item": 376,
           "amount": 1,
           "type": "ore",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Hypno Slide Whistle"
+        1034
       ],
       "sharpness_plus": [
         3,
@@ -2995,7 +2995,7 @@
       ]
     },
     {
-      "name": "Hypno Slide Whistle",
+      "id": 1034,
       "attack": 1040,
       "sharpness": [
         3,
@@ -3017,29 +3017,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 105000,
-      "improve_from": "Hypno Whistle",
+      "improve_from": 1033,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hypno Claw+",
+          "item": 375,
           "amount": 8,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "RainbowTailFeath",
+          "item": 380,
           "amount": 5,
           "type": "scale",
           "color": "orange"
         },
         {
-          "name": "Hypno Bezoar+",
+          "item": 377,
           "amount": 1,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Coma Sac",
+          "item": 272,
           "amount": 3,
           "type": "sac",
           "color": "blue"
@@ -3125,7 +3125,7 @@
       ]
     },
     {
-      "name": "Wolf Shamisen",
+      "id": 1036,
       "attack": 1040,
       "sharpness": [
         8,
@@ -3146,28 +3146,28 @@
       "type": "hunting-horn",
       "create_cost": 65000,
       "improve_cost": 65000,
-      "improve_from": "Wolf Torrent",
+      "improve_from": 428,
       "create_mats": [
         {
-          "name": "Garuga Scale+",
+          "item": 410,
           "amount": 8,
           "type": "scale",
           "color": "slate"
         },
         {
-          "name": "Garuga Carapace",
+          "item": 413,
           "amount": 3,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga Tail",
+          "item": 421,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga Wing",
+          "item": 419,
           "amount": 4,
           "type": "part",
           "color": "slate"
@@ -3175,32 +3175,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Garuga Tail",
+          "item": 421,
           "amount": 1,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga Wing",
+          "item": 419,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga Mane",
+          "item": 423,
           "amount": 4,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga Scale+",
+          "item": 410,
           "amount": 4,
           "type": "scale",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Crow Shamisen"
+        1037
       ],
       "sharpness_plus": [
         8,
@@ -3290,7 +3290,7 @@
       ]
     },
     {
-      "name": "Crow Shamisen",
+      "id": 1037,
       "attack": 1404,
       "sharpness": [
         8,
@@ -3312,29 +3312,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 105000,
-      "improve_from": "Wolf Shamisen",
+      "improve_from": 1036,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "LethrGarugaTail",
+          "item": 422,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Str Garuga Wing",
+          "item": 420,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "SilverGarugaPelt",
+          "item": 424,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "ThickGarugaScale",
+          "item": 411,
           "amount": 8,
           "type": "scale",
           "color": "slate"
@@ -3430,7 +3430,7 @@
       ]
     },
     {
-      "name": "Khezu Horn",
+      "id": 304,
       "attack": 624,
       "sharpness": [
         9,
@@ -3450,28 +3450,28 @@
       "type": "hunting-horn",
       "create_cost": 2790,
       "improve_cost": 2790,
-      "improve_from": "Atlas Hammer",
+      "improve_from": 82,
       "create_mats": [
         {
-          "name": "Flabby Hide",
+          "item": 578,
           "amount": 5,
           "type": "hide",
           "color": "white"
         },
         {
-          "name": "Electro Sac",
+          "item": 276,
           "amount": 4,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 6,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Lg Monster Bone",
+          "item": 283,
           "amount": 6,
           "type": "bone",
           "color": "yellow"
@@ -3479,26 +3479,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Flabby Hide",
+          "item": 578,
           "amount": 3,
           "type": "hide",
           "color": "white"
         },
         {
-          "name": "Pale Extract",
+          "item": 280,
           "amount": 4,
           "type": "fluid",
           "color": "blue"
         },
         {
-          "name": "Electro Sac",
+          "item": 276,
           "amount": 2,
           "type": "sac",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Khezu Horn+"
+        576
       ],
       "sharpness_plus": [
         9,
@@ -3612,7 +3612,7 @@
       ]
     },
     {
-      "name": "Khezu Horn+",
+      "id": 576,
       "attack": 780,
       "sharpness": [
         9,
@@ -3632,32 +3632,32 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 5040,
-      "improve_from": "Khezu Horn",
+      "improve_from": 304,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Flabby Hide",
+          "item": 578,
           "amount": 8,
           "type": "hide",
           "color": "white"
         },
         {
-          "name": "Pale Bone",
+          "item": 581,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 4,
           "type": "bone",
           "color": "orange"
         }
       ],
       "improve_to": [
-        "Khezu Flute",
-        "Blood Horn",
-        "Purse Bop"
+        395,
+        315,
+        1043
       ],
       "sharpness_plus": [
         9,
@@ -3772,7 +3772,7 @@
       ]
     },
     {
-      "name": "Khezu Flute",
+      "id": 395,
       "attack": 884,
       "sharpness": [
         9,
@@ -3793,23 +3793,23 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 30000,
-      "improve_from": "Khezu Horn+",
+      "improve_from": 576,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Khezu Hide - Tan",
+          "item": 579,
           "amount": 6,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Pale Khezu Steak",
+          "item": 582,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Thunder Sac",
+          "item": 277,
           "amount": 5,
           "type": "sac",
           "color": "yellow"
@@ -3930,7 +3930,7 @@
       ]
     },
     {
-      "name": "Blood Horn",
+      "id": 315,
       "attack": 936,
       "sharpness": [
         14,
@@ -3950,30 +3950,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": "Khezu Horn+",
+      "improve_from": 576,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Alluring Webbing",
+          "item": 585,
           "amount": 2,
           "type": "webbing",
           "color": "pink"
         },
         {
-          "name": "Alluring Hide",
+          "item": 584,
           "amount": 8,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Electro Sac",
+          "item": 276,
           "amount": 5,
           "type": "sac",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Blood Flute"
+        399
       ],
       "sharpness_plus": [
         14,
@@ -4052,7 +4052,7 @@
       ]
     },
     {
-      "name": "Blood Flute",
+      "id": 399,
       "attack": 988,
       "sharpness": [
         14,
@@ -4073,30 +4073,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 50000,
-      "improve_from": "Blood Horn",
+      "improve_from": 315,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Alluring Webbing",
+          "item": 585,
           "amount": 6,
           "type": "webbing",
           "color": "pink"
         },
         {
-          "name": "Wyvern Stone",
+          "item": 300,
           "amount": 2,
           "type": "stone",
           "color": "cyan"
         },
         {
-          "name": "Thunder Sac",
+          "item": 277,
           "amount": 5,
           "type": "sac",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Blood Flute+"
+        1041
       ],
       "sharpness_plus": [
         14,
@@ -4176,7 +4176,7 @@
       ]
     },
     {
-      "name": "Blood Flute+",
+      "id": 1041,
       "attack": 1092,
       "sharpness": [
         5,
@@ -4198,36 +4198,36 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": "Blood Flute",
+      "improve_from": 399,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "StrAlluringWing",
+          "item": 586,
           "amount": 2,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Alluring Webbing",
+          "item": 585,
           "amount": 4,
           "type": "webbing",
           "color": "pink"
         },
         {
-          "name": "Lightning Sac",
+          "item": 278,
           "amount": 5,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "Pale Khezu Steak",
+          "item": 582,
           "amount": 1,
           "type": "part",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Brute Flute"
+        1042
       ],
       "sharpness_plus": [
         5,
@@ -4308,7 +4308,7 @@
       ]
     },
     {
-      "name": "Brute Flute",
+      "id": 1042,
       "attack": 1300,
       "sharpness": [
         14,
@@ -4330,23 +4330,23 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": "Blood Flute+",
+      "improve_from": 1041,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "StrAlluringWing",
+          "item": 586,
           "amount": 6,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "KhezuSpecialCut",
+          "item": 583,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "BigEDragonBone",
+          "item": 288,
           "amount": 2,
           "type": "bone",
           "color": "slate"
@@ -4432,7 +4432,7 @@
       ]
     },
     {
-      "name": "Shell Castanet",
+      "id": 1046,
       "attack": 1040,
       "sharpness": [
         10,
@@ -4453,28 +4453,28 @@
       "type": "hunting-horn",
       "create_cost": 50000,
       "improve_cost": 50000,
-      "improve_from": "Ancient Relic",
+      "improve_from": 431,
       "create_mats": [
         {
-          "name": "Hermitaur Carpce",
+          "item": 496,
           "amount": 6,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Ceanataur Carpce",
+          "item": 505,
           "amount": 3,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Hermitaur Claw+",
+          "item": 499,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Rubbery Hide+",
+          "item": 402,
           "amount": 4,
           "type": "pelt",
           "color": "blue"
@@ -4482,27 +4482,27 @@
       ],
       "improve_mats": [
         {
-          "name": "Hermitaur Carpce",
+          "item": 496,
           "amount": 4,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Ceanataur Carpce",
+          "item": 505,
           "amount": 2,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Hermitaur Claw+",
+          "item": 499,
           "amount": 1,
           "type": "claw",
           "color": "red"
         }
       ],
       "improve_to": [
-        "Shell Castanet+",
-        "Crabby Castanet"
+        1047,
+        1049
       ],
       "sharpness_plus": [
         10,
@@ -4583,7 +4583,7 @@
       ]
     },
     {
-      "name": "Shell Castanet+",
+      "id": 1047,
       "attack": 1144,
       "sharpness": [
         10,
@@ -4605,36 +4605,36 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 85000,
-      "improve_from": "Shell Castanet",
+      "improve_from": 1046,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvyHermitaurShl",
+          "item": 497,
           "amount": 4,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "Ceanataur Claw+",
+          "item": 511,
           "amount": 1,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "HrdHermitaurClaw",
+          "item": 500,
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "SpecRubberyHide+",
+          "item": 403,
           "amount": 2,
           "type": "pelt",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Bi-Colored Castanet"
+        1048
       ],
       "sharpness_plus": [
         10,
@@ -4716,7 +4716,7 @@
       ]
     },
     {
-      "name": "Bi-Colored Castanet",
+      "id": 1048,
       "attack": 1404,
       "sharpness": [
         6,
@@ -4738,29 +4738,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": "Shell Castanet+",
+      "improve_from": 1047,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvyHermitaurShl",
+          "item": 497,
           "amount": 2,
           "type": "shell",
           "color": "red"
         },
         {
-          "name": "HvyCeanataurShl",
+          "item": 506,
           "amount": 4,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "HrdCeanataurClaw",
+          "item": 512,
           "amount": 2,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 2,
           "type": "scale",
           "color": "gray"
@@ -4847,7 +4847,7 @@
       ]
     },
     {
-      "name": "Crabby Castanet",
+      "id": 1049,
       "attack": 1300,
       "sharpness": [
         5,
@@ -4870,30 +4870,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": "Shell Castanet",
+      "improve_from": 1046,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "PlumD.HermitrShl",
+          "item": 501,
           "amount": 4,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "TerraCeanatrShl",
+          "item": 513,
           "amount": 2,
           "type": "shell",
           "color": "orange"
         },
         {
-          "name": "PlumD.HermitrClw",
+          "item": 502,
           "amount": 1,
           "type": "claw",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Klick-Klack"
+        1050
       ],
       "sharpness_plus": [
         5,
@@ -4969,7 +4969,7 @@
       ]
     },
     {
-      "name": "Klick-Klack",
+      "id": 1050,
       "attack": 1352,
       "sharpness": [
         9,
@@ -4992,29 +4992,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 120000,
-      "improve_from": "Crabby Castanet",
+      "improve_from": 1049,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "PlumD.HermitrShl",
+          "item": 501,
           "amount": 6,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "TerraCeanatrShl",
+          "item": 513,
           "amount": 4,
           "type": "shell",
           "color": "orange"
         },
         {
-          "name": "Hard Gaoren Claw",
+          "item": 713,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "HvnlyGaorenShell",
+          "item": 707,
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
@@ -5095,7 +5095,7 @@
       ]
     },
     {
-      "name": "Sonic Glass",
+      "id": 296,
       "attack": 624,
       "sharpness": [
         10,
@@ -5115,28 +5115,28 @@
       "type": "hunting-horn",
       "create_cost": 2340,
       "improve_cost": 2340,
-      "improve_from": "Skullcrusher+",
+      "improve_from": 84,
       "create_mats": [
         {
-          "name": "Lightcrystal",
+          "item": 215,
           "amount": 2,
           "type": "ore",
           "color": "gray"
         },
         {
-          "name": "Vespoid Wing",
+          "item": 660,
           "amount": 6,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "Hornetaur Wing",
+          "item": 666,
           "amount": 6,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 5,
           "type": "insect",
           "color": "green"
@@ -5144,26 +5144,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Vespoid Abdomen",
+          "item": 656,
           "amount": 1,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Vespoid Shell",
+          "item": 658,
           "amount": 4,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Hornetaur Shell",
+          "item": 663,
           "amount": 4,
           "type": "insect",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Sonic Glass+"
+        297
       ],
       "sharpness_plus": [
         10,
@@ -5246,7 +5246,7 @@
       ]
     },
     {
-      "name": "Sonic Glass+",
+      "id": 297,
       "attack": 728,
       "sharpness": [
         8,
@@ -5267,30 +5267,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 3285,
-      "improve_from": "Sonic Glass",
+      "improve_from": 296,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hercudrome",
+          "item": 258,
           "amount": 3,
           "type": "insect",
           "color": "red"
         },
         {
-          "name": "Vespoid Wing",
+          "item": 660,
           "amount": 20,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "Hornetaur Wing",
+          "item": 666,
           "amount": 20,
           "type": "webbing",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Glass Queen"
+        394
       ],
       "sharpness_plus": [
         8,
@@ -5375,7 +5375,7 @@
       ]
     },
     {
-      "name": "Glass Queen",
+      "id": 394,
       "attack": 832,
       "sharpness": [
         8,
@@ -5397,30 +5397,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": "Sonic Glass+",
+      "improve_from": 297,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Novacrystal",
+          "item": 216,
           "amount": 2,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Vespoid InnrWng",
+          "item": 661,
           "amount": 15,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "HornetaurInnrWng",
+          "item": 667,
           "amount": 15,
           "type": "webbing",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Glass Royale"
+        1051
       ],
       "sharpness_plus": [
         8,
@@ -5532,7 +5532,7 @@
       ]
     },
     {
-      "name": "Glass Royale",
+      "id": 1051,
       "attack": 1092,
       "sharpness": [
         8,
@@ -5555,28 +5555,28 @@
       "type": "hunting-horn",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": "Glass Queen",
+      "improve_from": 394,
       "create_mats": [
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 2,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Vspoid Razorwing",
+          "item": 662,
           "amount": 15,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "Hornet Razorwing",
+          "item": 668,
           "amount": 15,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "VespoidQn'sCrown",
+          "item": 657,
           "amount": 3,
           "type": "insect",
           "color": "yellow"
@@ -5584,26 +5584,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 1,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "Vspoid Razorwing",
+          "item": 662,
           "amount": 8,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "Hornet Razorwing",
+          "item": 668,
           "amount": 8,
           "type": "webbing",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Queen's Flute"
+        1052
       ],
       "sharpness_plus": [
         8,
@@ -5720,7 +5720,7 @@
       ]
     },
     {
-      "name": "Queen's Flute",
+      "id": 1052,
       "attack": 1248,
       "sharpness": [
         5,
@@ -5743,29 +5743,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 105000,
-      "improve_from": "Glass Royale",
+      "improve_from": 1051,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Vspoid Razorwing",
+          "item": 662,
           "amount": 5,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "Hornet Razorwing",
+          "item": 668,
           "amount": 5,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Monster Essence",
+          "item": 27,
           "amount": 10,
           "type": "fluid",
           "color": "blue"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 10,
           "type": "insect",
           "color": "white"
@@ -5887,7 +5887,7 @@
       ]
     },
     {
-      "name": "Giaprey Balloon",
+      "id": 579,
       "attack": 416,
       "sharpness": [
         3,
@@ -5906,28 +5906,28 @@
       "type": "hunting-horn",
       "create_cost": 990,
       "improve_cost": 990,
-      "improve_from": "Bone Club",
+      "improve_from": 99,
       "create_mats": [
         {
-          "name": "Giaprey Hide",
+          "item": 342,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 3,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Anteka Antlers",
+          "item": 329,
           "amount": 1,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 5,
           "type": "ore",
           "color": "gray"
@@ -5935,13 +5935,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Tcket",
+          "item": 911,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Giaprey Scale",
+          "item": 340,
           "amount": 1,
           "type": "scale",
           "color": "white"
@@ -5949,26 +5949,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Giaprey Hide",
+          "item": 342,
           "amount": 2,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Giaprey Scale",
+          "item": 340,
           "amount": 2,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 3,
           "type": "ore",
           "color": "cyan"
         }
       ],
       "improve_to": [
-        "Giaprey Balloon+"
+        580
       ],
       "sharpness_plus": [
         3,
@@ -6031,7 +6031,7 @@
       ]
     },
     {
-      "name": "Giaprey Balloon+",
+      "id": 580,
       "attack": 520,
       "sharpness": [
         3,
@@ -6050,31 +6050,31 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 1935,
-      "improve_from": "Giaprey Balloon",
+      "improve_from": 579,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Giadrome Hide",
+          "item": 344,
           "amount": 5,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Giadrome Skull",
+          "item": 347,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Screamer",
+          "item": 266,
           "amount": 3,
           "type": "sac",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Giadrome Balloon",
-        "Velociprey Balloon"
+        577,
+        1056
       ],
       "sharpness_plus": [
         3,
@@ -6139,7 +6139,7 @@
       ]
     },
     {
-      "name": "Giadrome Balloon",
+      "id": 577,
       "attack": 1040,
       "sharpness": [
         5,
@@ -6160,23 +6160,23 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": "Giaprey Balloon+",
+      "improve_from": 580,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Giaprey Hide+",
+          "item": 343,
           "amount": 5,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Giadrome Claw+",
+          "item": 346,
           "amount": 6,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Giaprey Scale+",
+          "item": 341,
           "amount": 5,
           "type": "scale",
           "color": "white"
@@ -6248,7 +6248,7 @@
       ]
     },
     {
-      "name": "Velociprey Balloon",
+      "id": 1056,
       "attack": 988,
       "sharpness": [
         5,
@@ -6268,28 +6268,28 @@
       "type": "hunting-horn",
       "create_cost": 30000,
       "improve_cost": 30000,
-      "improve_from": "Giaprey Balloon+",
+      "improve_from": 580,
       "create_mats": [
         {
-          "name": "Velociprey Scle+",
+          "item": 350,
           "amount": 8,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Velociprey Hide",
+          "item": 351,
           "amount": 15,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "Screamer",
+          "item": 266,
           "amount": 3,
           "type": "sac",
           "color": "gray"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 3,
           "type": "bone",
           "color": "red"
@@ -6297,32 +6297,32 @@
       ],
       "improve_mats": [
         {
-          "name": "Velociprey Scle+",
+          "item": 350,
           "amount": 5,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Velociprey Hide",
+          "item": 351,
           "amount": 10,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "Velociprey Fang",
+          "item": 348,
           "amount": 15,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Screamer",
+          "item": 266,
           "amount": 3,
           "type": "sac",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Velociprey Balloon+"
+        1057
       ],
       "sharpness_plus": [
         5,
@@ -6432,7 +6432,7 @@
       ]
     },
     {
-      "name": "Velociprey Balloon+",
+      "id": 1057,
       "attack": 1092,
       "sharpness": [
         10,
@@ -6452,36 +6452,36 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 50000,
-      "improve_from": "Velociprey Balloon",
+      "improve_from": 1056,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Velociprey Scle+",
+          "item": 350,
           "amount": 10,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Velociprey Hide+",
+          "item": 352,
           "amount": 8,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "Rare Scarab",
+          "item": 259,
           "amount": 5,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Remobra Skin+",
+          "item": 333,
           "amount": 5,
           "type": "pelt",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Velocidrome Balloon"
+        1058
       ],
       "sharpness_plus": [
         10,
@@ -6591,7 +6591,7 @@
       ]
     },
     {
-      "name": "Velocidrome Balloon",
+      "id": 1058,
       "attack": 1144,
       "sharpness": [
         5,
@@ -6612,36 +6612,36 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 80000,
-      "improve_from": "Velociprey Balloon+",
+      "improve_from": 1057,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Velocidrome Head",
+          "item": 356,
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Velocidrome Clw+",
+          "item": 355,
           "amount": 6,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "RobustWyvernBone",
+          "item": 293,
           "amount": 10,
           "type": "bone",
           "color": "cyan"
         },
         {
-          "name": "Emperor Cricket",
+          "item": 256,
           "amount": 5,
           "type": "insect",
           "color": "orange"
         }
       ],
       "improve_to": [
-        "Velocidrome Balloon+"
+        1059
       ],
       "sharpness_plus": [
         5,
@@ -6752,7 +6752,7 @@
       ]
     },
     {
-      "name": "Velocidrome Balloon+",
+      "id": 1059,
       "attack": 1404,
       "sharpness": [
         5,
@@ -6774,29 +6774,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 105000,
-      "improve_from": "Velocidrome Balloon",
+      "improve_from": 1058,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Velocidrome Hide",
+          "item": 353,
           "amount": 10,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "RobustWyvernBone",
+          "item": 293,
           "amount": 15,
           "type": "bone",
           "color": "cyan"
         },
         {
-          "name": "PhantomButterfly",
+          "item": 260,
           "amount": 5,
           "type": "insect",
           "color": "white"
         },
         {
-          "name": "BigEDragonBone",
+          "item": 288,
           "amount": 1,
           "type": "bone",
           "color": "slate"
@@ -6913,7 +6913,7 @@
       ]
     },
     {
-      "name": "Ivory Horn",
+      "id": 581,
       "attack": 364,
       "sharpness": [
         9,
@@ -6935,13 +6935,13 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 2,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Blue Mushroom",
+          "item": 177,
           "amount": 1,
           "type": "mushroom",
           "color": "blue"
@@ -6949,8 +6949,8 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Bone Horn",
-        "War Drum"
+        294,
+        295
       ],
       "sharpness_plus": [
         9,
@@ -7020,7 +7020,7 @@
       ]
     },
     {
-      "name": "Bone Horn",
+      "id": 294,
       "attack": 572,
       "sharpness": [
         10,
@@ -7041,18 +7041,18 @@
       "create_cost": 1575,
       "improve_cost": 1575,
       "improve_from": [
-        "Cyclo-Hammer",
-        "Ivory Horn"
+        80,
+        581
       ],
       "create_mats": [
         {
-          "name": "Hard Ticket",
+          "item": 910,
           "amount": 1,
           "type": "ticket",
           "color": "green"
         },
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 1,
           "type": "bone",
           "color": "white"
@@ -7060,21 +7060,21 @@
       ],
       "improve_mats": [
         {
-          "name": "Blue Mushroom",
+          "item": 177,
           "amount": 3,
           "type": "mushroom",
           "color": "blue"
         },
         {
-          "name": "Giant Bone",
+          "item": 295,
           "amount": 1,
           "type": "bone",
           "color": "white"
         }
       ],
       "improve_to": [
-        "Bone Horn+",
-        "Blessed Ocarina"
+        392,
+        307
       ],
       "sharpness_plus": [
         10,
@@ -7145,7 +7145,7 @@
       ]
     },
     {
-      "name": "Bone Horn+",
+      "id": 392,
       "attack": 884,
       "sharpness": [
         10,
@@ -7165,30 +7165,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 5040,
-      "improve_from": "Bone Horn",
+      "improve_from": 294,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Dragon Toadstool",
+          "item": 182,
           "amount": 3,
           "type": "mushroom",
           "color": "red"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 3,
           "type": "bone",
           "color": "orange"
         },
         {
-          "name": "Monster Fluid",
+          "item": 25,
           "amount": 5,
           "type": "fluid",
           "color": "cyan"
         }
       ],
       "improve_to": [
-        "Hunter's Horn"
+        1060
       ],
       "sharpness_plus": [
         10,
@@ -7259,7 +7259,7 @@
       ]
     },
     {
-      "name": "Hunter's Horn",
+      "id": 1060,
       "attack": 1040,
       "sharpness": [
         8,
@@ -7279,30 +7279,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": "Bone Horn+",
+      "improve_from": 392,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Dragon Toadstool",
+          "item": 182,
           "amount": 5,
           "type": "mushroom",
           "color": "red"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 3,
           "type": "bone",
           "color": "red"
         },
         {
-          "name": "Monster Broth",
+          "item": 26,
           "amount": 5,
           "type": "fluid",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Hunter's Horn+"
+        1061
       ],
       "sharpness_plus": [
         8,
@@ -7374,7 +7374,7 @@
       ]
     },
     {
-      "name": "Hunter's Horn+",
+      "id": 1061,
       "attack": 1196,
       "sharpness": [
         8,
@@ -7395,36 +7395,36 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": "Hunter's Horn",
+      "improve_from": 1060,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Dragon Toadstool",
+          "item": 182,
           "amount": 8,
           "type": "mushroom",
           "color": "red"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 3,
           "type": "bone",
           "color": "gray"
         },
         {
-          "name": "RobustWyvernBone",
+          "item": 293,
           "amount": 5,
           "type": "bone",
           "color": "cyan"
         },
         {
-          "name": "Monster Essence",
+          "item": 27,
           "amount": 3,
           "type": "fluid",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "Native's Horn"
+        1062
       ],
       "sharpness_plus": [
         8,
@@ -7497,7 +7497,7 @@
       ]
     },
     {
-      "name": "Native's Horn",
+      "id": 1062,
       "attack": 1404,
       "sharpness": [
         8,
@@ -7519,29 +7519,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Hunter's Horn+",
+      "improve_from": 1061,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Dragon Toadstool",
+          "item": 182,
           "amount": 10,
           "type": "mushroom",
           "color": "red"
         },
         {
-          "name": "BigEDragonBone",
+          "item": 288,
           "amount": 3,
           "type": "bone",
           "color": "slate"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 5,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -7620,7 +7620,7 @@
       ]
     },
     {
-      "name": "Blessed Ocarina",
+      "id": 307,
       "attack": 832,
       "sharpness": [
         14,
@@ -7640,28 +7640,28 @@
       "type": "hunting-horn",
       "create_cost": 10000,
       "improve_cost": 10000,
-      "improve_from": "Bone Horn",
+      "improve_from": 294,
       "create_mats": [
         {
-          "name": "Chameleos Tail",
+          "item": 738,
           "amount": 2,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Chameleos Hide",
+          "item": 729,
           "amount": 4,
           "type": "pelt",
           "color": "slate"
         },
         {
-          "name": "ChameleosWebbing",
+          "item": 736,
           "amount": 2,
           "type": "webbing",
           "color": "slate"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 5,
           "type": "ore",
           "color": "green"
@@ -7669,26 +7669,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Chameleos Tail",
+          "item": 738,
           "amount": 1,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Chameleos Hide",
+          "item": 729,
           "amount": 3,
           "type": "pelt",
           "color": "slate"
         },
         {
-          "name": "Chameleos Horn",
+          "item": 732,
           "amount": 2,
           "type": "claw",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Cursed Ocarina"
+        397
       ],
       "sharpness_plus": [
         14,
@@ -7752,7 +7752,7 @@
       ]
     },
     {
-      "name": "Cursed Ocarina",
+      "id": 397,
       "attack": 936,
       "sharpness": [
         14,
@@ -7773,36 +7773,36 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": "Blessed Ocarina",
+      "improve_from": 307,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Chameleos Hide+",
+          "item": 730,
           "amount": 6,
           "type": "pelt",
           "color": "slate"
         },
         {
-          "name": "ChameleosWebbing",
+          "item": 736,
           "amount": 10,
           "type": "webbing",
           "color": "slate"
         },
         {
-          "name": "Chameleos Spike",
+          "item": 733,
           "amount": 2,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "Chameleos Jewel",
+          "item": 740,
           "amount": 1,
           "type": "stone",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Genie's Ocarina"
+        1063
       ],
       "sharpness_plus": [
         14,
@@ -7882,7 +7882,7 @@
       ]
     },
     {
-      "name": "Genie's Ocarina",
+      "id": 1063,
       "attack": 1300,
       "sharpness": [
         19,
@@ -7904,29 +7904,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 130000,
-      "improve_from": "Cursed Ocarina",
+      "improve_from": 397,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "SpecChameleHide+",
+          "item": 731,
           "amount": 6,
           "type": "pelt",
           "color": "slate"
         },
         {
-          "name": "StrChameleosWing",
+          "item": 737,
           "amount": 5,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "HrdChameleosHorn",
+          "item": 734,
           "amount": 2,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
@@ -8012,7 +8012,7 @@
       ]
     },
     {
-      "name": "War Drum",
+      "id": 295,
       "attack": 624,
       "sharpness": [
         5,
@@ -8031,22 +8031,22 @@
       "type": "hunting-horn",
       "create_cost": 1935,
       "improve_cost": 1935,
-      "improve_from": "Ivory Horn",
+      "improve_from": 581,
       "create_mats": [
         {
-          "name": "Congalala Pelt",
+          "item": 444,
           "amount": 4,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Med Monster Bone",
+          "item": 282,
           "amount": 2,
           "type": "bone",
           "color": "yellow"
         },
         {
-          "name": "Fire Herb",
+          "item": 165,
           "amount": 5,
           "type": "herb",
           "color": "red"
@@ -8054,26 +8054,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Conga Pelt",
+          "item": 442,
           "amount": 8,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Brute Bone",
+          "item": 294,
           "amount": 3,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Fire Herb",
+          "item": 165,
           "amount": 3,
           "type": "herb",
           "color": "red"
         }
       ],
       "improve_to": [
-        "War Drum+"
+        393
       ],
       "sharpness_plus": [
         5,
@@ -8154,7 +8154,7 @@
       ]
     },
     {
-      "name": "War Drum+",
+      "id": 393,
       "attack": 936,
       "sharpness": [
         5,
@@ -8174,22 +8174,22 @@
       "type": "hunting-horn",
       "create_cost": 5040,
       "improve_cost": 5040,
-      "improve_from": "War Drum",
+      "improve_from": 295,
       "create_mats": [
         {
-          "name": "Plus Class Tcket",
+          "item": 911,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Striped Skin",
+          "item": 335,
           "amount": 1,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Monster Bone+",
+          "item": 284,
           "amount": 1,
           "type": "bone",
           "color": "orange"
@@ -8197,26 +8197,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Vibrant Pelt",
+          "item": 447,
           "amount": 1,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "Congalala Pelt",
+          "item": 444,
           "amount": 8,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Striped Skin",
+          "item": 335,
           "amount": 5,
           "type": "pelt",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "War Bongo"
+        314
       ],
       "sharpness_plus": [
         5,
@@ -8298,7 +8298,7 @@
       ]
     },
     {
-      "name": "War Bongo",
+      "id": 314,
       "attack": 1092,
       "sharpness": [
         8,
@@ -8318,28 +8318,28 @@
       "type": "hunting-horn",
       "create_cost": 50000,
       "improve_cost": 50000,
-      "improve_from": "War Drum+",
+      "improve_from": 393,
       "create_mats": [
         {
-          "name": "Congalala Pelt+",
+          "item": 445,
           "amount": 4,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Vibrant Pelt",
+          "item": 447,
           "amount": 6,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "Conga Pelt+",
+          "item": 443,
           "amount": 8,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 3,
           "type": "bone",
           "color": "red"
@@ -8347,13 +8347,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "Plus Class Tcket",
+          "item": 911,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         },
         {
-          "name": "Congalala Pelt+",
+          "item": 445,
           "amount": 1,
           "type": "pelt",
           "color": "pink"
@@ -8361,26 +8361,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Congalala Pelt+",
+          "item": 445,
           "amount": 3,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Conga Pelt+",
+          "item": 443,
           "amount": 6,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Stout Bone",
+          "item": 296,
           "amount": 2,
           "type": "bone",
           "color": "white"
         }
       ],
       "improve_to": [
-        "War Conga"
+        398
       ],
       "sharpness_plus": [
         8,
@@ -8463,7 +8463,7 @@
       ]
     },
     {
-      "name": "War Conga",
+      "id": 398,
       "attack": 1196,
       "sharpness": [
         6,
@@ -8483,37 +8483,37 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 60000,
-      "improve_from": "War Bongo",
+      "improve_from": 314,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Blangonga Pelt+",
+          "item": 433,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Congalala Pelt+",
+          "item": 445,
           "amount": 8,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Conga Pelt",
+          "item": 442,
           "amount": 20,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Vibrant Pelt",
+          "item": 447,
           "amount": 2,
           "type": "pelt",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Conga Conga",
-        "Jungle Bongo"
+        1064,
+        1065
       ],
       "sharpness_plus": [
         6,
@@ -8597,7 +8597,7 @@
       ]
     },
     {
-      "name": "Conga Conga",
+      "id": 1064,
       "attack": 1456,
       "sharpness": [
         10,
@@ -8617,29 +8617,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 95000,
-      "improve_from": "War Conga",
+      "improve_from": 398,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HrdCongalalaPlt+",
+          "item": 446,
           "amount": 6,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Lg Pelagus Fang",
+          "item": 452,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Congalala Claw+",
+          "item": 449,
           "amount": 8,
           "type": "claw",
           "color": "pink"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 2,
           "type": "bone",
           "color": "white"
@@ -8728,7 +8728,7 @@
       ]
     },
     {
-      "name": "Jungle Bongo",
+      "id": 1065,
       "attack": 1248,
       "sharpness": [
         8,
@@ -8749,28 +8749,28 @@
       "type": "hunting-horn",
       "create_cost": 85000,
       "improve_cost": 85000,
-      "improve_from": "War Conga",
+      "improve_from": 398,
       "create_mats": [
         {
-          "name": "E.CongalalaPelt+",
+          "item": 453,
           "amount": 8,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "Vibrant Comb",
+          "item": 455,
           "amount": 1,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 4,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Emperor Cricket",
+          "item": 256,
           "amount": 5,
           "type": "insect",
           "color": "orange"
@@ -8778,26 +8778,26 @@
       ],
       "improve_mats": [
         {
-          "name": "E.CongalalaPelt+",
+          "item": 453,
           "amount": 4,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "Lg Pelagus Fang",
+          "item": 452,
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Rare Scarab",
+          "item": 259,
           "amount": 5,
           "type": "insect",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Jungle Conga"
+        1066
       ],
       "sharpness_plus": [
         8,
@@ -8872,7 +8872,7 @@
       ]
     },
     {
-      "name": "Jungle Conga",
+      "id": 1066,
       "attack": 1456,
       "sharpness": [
         8,
@@ -8894,29 +8894,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": "Jungle Bongo",
+      "improve_from": 1065,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HrdBlangongaPlt+",
+          "item": 434,
           "amount": 4,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "E.CongalalaPelt+",
+          "item": 453,
           "amount": 8,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "HrdE.CongaClaw",
+          "item": 454,
           "amount": 4,
           "type": "claw",
           "color": "green"
         },
         {
-          "name": "Vibrant Comb",
+          "item": 455,
           "amount": 2,
           "type": "pelt",
           "color": "orange"
@@ -8997,7 +8997,7 @@
       ]
     },
     {
-      "name": "Black Lute",
+      "id": 1073,
       "attack": 780,
       "sharpness": [
         8,
@@ -9020,19 +9020,19 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Dark Stone",
+          "item": 775,
           "amount": 1,
           "type": "egg",
           "color": "gray"
         },
         {
-          "name": "Dark Piece",
+          "item": 774,
           "amount": 4,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Pokke Ticket",
+          "item": 907,
           "amount": 1,
           "type": "ticket",
           "color": "cyan"
@@ -9040,8 +9040,8 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Fatalis Menace",
-        "Ancient Fatalis Lied"
+        1074,
+        1076
       ],
       "sharpness_plus": [
         8,
@@ -9106,7 +9106,7 @@
       ]
     },
     {
-      "name": "Fatalis Menace",
+      "id": 1074,
       "attack": 1092,
       "sharpness": [
         3,
@@ -9127,36 +9127,36 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Black Lute",
+      "improve_from": 1073,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Fatalis Horn",
+          "item": 776,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Fatalis Webbing",
+          "item": 784,
           "amount": 1,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Fatalis Scale",
+          "item": 778,
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Chameleos Jewel",
+          "item": 740,
           "amount": 1,
           "type": "stone",
           "color": "slate"
         }
       ],
       "improve_to": [
-        "Fatalis Menace Lute"
+        1075
       ],
       "sharpness_plus": [
         3,
@@ -9237,7 +9237,7 @@
       ]
     },
     {
-      "name": "Fatalis Menace Lute",
+      "id": 1075,
       "attack": 1456,
       "sharpness": [
         10,
@@ -9258,23 +9258,23 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 150000,
-      "improve_from": "Fatalis Menace",
+      "improve_from": 1074,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HardFatalisHorn",
+          "item": 777,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "ThckFatalisScale",
+          "item": 779,
           "amount": 4,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 1,
           "type": "stone",
           "color": "slate"
@@ -9360,7 +9360,7 @@
       ]
     },
     {
-      "name": "Ancient Fatalis Lied",
+      "id": 1076,
       "attack": 1040,
       "sharpness": [
         9,
@@ -9381,36 +9381,36 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": "Black Lute",
+      "improve_from": 1073,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Wht Fatalis Horn",
+          "item": 801,
           "amount": 2,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Wht Fatalis Wbng",
+          "item": 799,
           "amount": 1,
           "type": "webbing",
           "color": "white"
         },
         {
-          "name": "Wht Fatalis Scl",
+          "item": 795,
           "amount": 2,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Daora Jewel",
+          "item": 728,
           "amount": 1,
           "type": "stone",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Ancient Fatalis Lute"
+        1077
       ],
       "sharpness_plus": [
         9,
@@ -9490,7 +9490,7 @@
       ]
     },
     {
-      "name": "Ancient Fatalis Lute",
+      "id": 1077,
       "attack": 1352,
       "sharpness": [
         3,
@@ -9512,29 +9512,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 150000,
-      "improve_from": "Ancient Fatalis Lied",
+      "improve_from": 1076,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HrdWhtFatlisHorn",
+          "item": 802,
           "amount": 2,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "StrWhtFatalisWng",
+          "item": 800,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "ThckWhtFatlisScl",
+          "item": 796,
           "amount": 2,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "BigEDragonJewel",
+          "item": 302,
           "amount": 3,
           "type": "stone",
           "color": "slate"
@@ -9620,7 +9620,7 @@
       ]
     },
     {
-      "name": "Dragonwood Horn",
+      "id": 317,
       "attack": 624,
       "sharpness": [
         19,
@@ -9643,25 +9643,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Dragonwood",
+          "item": 768,
           "amount": 2,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Dragonmoss",
+          "item": 765,
           "amount": 3,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Monster Fluid",
+          "item": 25,
           "amount": 10,
           "type": "fluid",
           "color": "cyan"
         },
         {
-          "name": "Thunderbug",
+          "item": 253,
           "amount": 20,
           "type": "insect",
           "color": "yellow"
@@ -9669,7 +9669,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Spirit Dragonwd Horn"
+        401
       ],
       "sharpness_plus": [
         19,
@@ -9749,7 +9749,7 @@
       ]
     },
     {
-      "name": "Spirit Dragonwd Horn",
+      "id": 401,
       "attack": 780,
       "sharpness": [
         19,
@@ -9770,30 +9770,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": "Dragonwood Horn",
+      "improve_from": 317,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Dragonwood+",
+          "item": 769,
           "amount": 2,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Dragonmoss+",
+          "item": 766,
           "amount": 4,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Pokke Ticket+",
+          "item": 908,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
         }
       ],
       "improve_to": [
-        "AncientDrgnwoodFlute"
+        1078
       ],
       "sharpness_plus": [
         19,
@@ -9874,7 +9874,7 @@
       ]
     },
     {
-      "name": "AncientDrgnwoodFlute",
+      "id": 1078,
       "attack": 988,
       "sharpness": [
         19,
@@ -9896,28 +9896,28 @@
       "type": "hunting-horn",
       "create_cost": 120000,
       "improve_cost": 120000,
-      "improve_from": "Spirit Dragonwd Horn",
+      "improve_from": 401,
       "create_mats": [
         {
-          "name": "AncientDrgnwood",
+          "item": 770,
           "amount": 6,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "AncientDrgnmoss",
+          "item": 767,
           "amount": 2,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "YamaTsukaFillet",
+          "item": 772,
           "amount": 2,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Thunderbug Jelly",
+          "item": 29,
           "amount": 10,
           "type": "fluid",
           "color": "yellow"
@@ -9925,26 +9925,26 @@
       ],
       "improve_mats": [
         {
-          "name": "AncientDrgnwood",
+          "item": 770,
           "amount": 3,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "AncientDrgnmoss",
+          "item": 767,
           "amount": 1,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "YamaTsukamiHide",
+          "item": 771,
           "amount": 2,
           "type": "pelt",
           "color": "green"
         }
       ],
       "improve_to": [
-        "DivineAncDrgnwdFlute"
+        1079
       ],
       "sharpness_plus": [
         19,
@@ -10026,7 +10026,7 @@
       ]
     },
     {
-      "name": "DivineAncDrgnwdFlute",
+      "id": 1079,
       "attack": 1092,
       "sharpness": [
         9,
@@ -10048,29 +10048,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 145000,
-      "improve_from": "AncientDrgnwoodFlute",
+      "improve_from": 1078,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "AncientDrgnwood",
+          "item": 770,
           "amount": 6,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "YamaTsukamiFluid",
+          "item": 773,
           "amount": 5,
           "type": "fluid",
           "color": "green"
         },
         {
-          "name": "Thunderbug Jelly",
+          "item": 29,
           "amount": 8,
           "type": "fluid",
           "color": "yellow"
         },
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -10157,7 +10157,7 @@
       ]
     },
     {
-      "name": "Handmade Frog",
+      "id": 1080,
       "attack": 884,
       "sharpness": [
         6,
@@ -10180,19 +10180,19 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Tailed Frog",
+          "item": 245,
           "amount": 2,
           "type": "pelt",
           "color": "cyan"
         },
         {
-          "name": "Dragonwood+",
+          "item": 769,
           "amount": 2,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Frog",
+          "item": 139,
           "amount": 5,
           "type": "bait",
           "color": "blue"
@@ -10200,7 +10200,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Handcrafted Frog"
+        1081
       ],
       "sharpness_plus": [
         6,
@@ -10315,7 +10315,7 @@
       ]
     },
     {
-      "name": "Handcrafted Frog",
+      "id": 1081,
       "attack": 1248,
       "sharpness": [
         6,
@@ -10336,29 +10336,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": "Handmade Frog",
+      "improve_from": 1080,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Tailed Frog",
+          "item": 245,
           "amount": 5,
           "type": "pelt",
           "color": "cyan"
         },
         {
-          "name": "Frog",
+          "item": 139,
           "amount": 10,
           "type": "bait",
           "color": "blue"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 3,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Gt Lobstershell",
+          "item": 517,
           "amount": 2,
           "type": "shell",
           "color": "pink"
@@ -10479,7 +10479,7 @@
       ]
     },
     {
-      "name": "Striped Dragonga",
+      "id": 588,
       "attack": 936,
       "sharpness": [
         19,
@@ -10503,25 +10503,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Tigrex Shell",
+          "item": 597,
           "amount": 5,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Fang",
+          "item": 605,
           "amount": 7,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 10,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Pokke Ticket",
+          "item": 907,
           "amount": 1,
           "type": "ticket",
           "color": "cyan"
@@ -10529,8 +10529,8 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Tigrex Horn",
-        "Hidden Tone"
+        589,
+        1092
       ],
       "sharpness_plus": [
         19,
@@ -10592,7 +10592,7 @@
       ]
     },
     {
-      "name": "Tigrex Horn",
+      "id": 589,
       "attack": 1144,
       "sharpness": [
         19,
@@ -10614,30 +10614,30 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 80000,
-      "improve_from": "Striped Dragonga",
+      "improve_from": 588,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Tigrex Carapace",
+          "item": 598,
           "amount": 5,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Fang+",
+          "item": 606,
           "amount": 7,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Skull Shl",
+          "item": 608,
           "amount": 2,
           "type": "part",
           "color": "yellow"
         }
       ],
       "improve_to": [
-        "Tigrex Horn+"
+        1091
       ],
       "sharpness_plus": [
         19,
@@ -10714,7 +10714,7 @@
       ]
     },
     {
-      "name": "Tigrex Horn+",
+      "id": 1091,
       "attack": 1508,
       "sharpness": [
         19,
@@ -10737,29 +10737,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 125000,
-      "improve_from": "Tigrex Horn",
+      "improve_from": 589,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hvy Tigrex Shell",
+          "item": 599,
           "amount": 5,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Hvy Tigrex Fang",
+          "item": 607,
           "amount": 7,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 10,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "HvnlyTigrexScale",
+          "item": 596,
           "amount": 1,
           "type": "heavenly",
           "color": "yellow"
@@ -10841,7 +10841,7 @@
       ]
     },
     {
-      "name": "Hidden Tone",
+      "id": 1092,
       "attack": 988,
       "sharpness": [
         3,
@@ -10863,28 +10863,28 @@
       "type": "hunting-horn",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": "Striped Dragonga",
+      "improve_from": 588,
       "create_mats": [
         {
-          "name": "Black Narga Pelt",
+          "item": 612,
           "amount": 6,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "NargaCuttingWing",
+          "item": 618,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Narga Brain Stem",
+          "item": 622,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Hrd Monster Bone",
+          "item": 285,
           "amount": 4,
           "type": "bone",
           "color": "red"
@@ -10892,26 +10892,26 @@
       ],
       "improve_mats": [
         {
-          "name": "Black Narga Pelt",
+          "item": 612,
           "amount": 4,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "NargaCuttingWing",
+          "item": 618,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Narga Tail Spike",
+          "item": 616,
           "amount": 3,
           "type": "part",
           "color": "gray"
         }
       ],
       "improve_to": [
-        "Demon's Darkflute"
+        1093
       ],
       "sharpness_plus": [
         3,
@@ -10988,7 +10988,7 @@
       ]
     },
     {
-      "name": "Demon's Darkflute",
+      "id": 1093,
       "attack": 1248,
       "sharpness": [
         3,
@@ -11011,28 +11011,28 @@
       "type": "hunting-horn",
       "create_cost": 120000,
       "improve_cost": 120000,
-      "improve_from": "Hidden Tone",
+      "improve_from": 1092,
       "create_mats": [
         {
-          "name": "BlackNargaPelt+",
+          "item": 613,
           "amount": 10,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "StrNargaCttngWng",
+          "item": 619,
           "amount": 6,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "ThickNargaScale",
+          "item": 610,
           "amount": 6,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "HvnlyNargaScale",
+          "item": 611,
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
@@ -11040,25 +11040,25 @@
       ],
       "improve_mats": [
         {
-          "name": "BlackNargaPelt+",
+          "item": 613,
           "amount": 6,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "StrNargaCttngWng",
+          "item": 619,
           "amount": 4,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "HvyNargaTailSpik",
+          "item": 617,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Narga Brain Stem",
+          "item": 622,
           "amount": 2,
           "type": "part",
           "color": "red"
@@ -11140,7 +11140,7 @@
       ]
     },
     {
-      "name": "Akantor Horn",
+      "id": 590,
       "attack": 1300,
       "sharpness": [
         9,
@@ -11163,25 +11163,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Akantor Tail",
+          "item": 805,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Akantor Fang",
+          "item": 807,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Akantor Scale",
+          "item": 803,
           "amount": 8,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 5,
           "type": "ore",
           "color": "orange"
@@ -11189,7 +11189,7 @@
       ],
       "improve_mats": null,
       "improve_to": [
-        "Akantor Dark Melody"
+        1094
       ],
       "sharpness_plus": [
         9,
@@ -11263,7 +11263,7 @@
       ]
     },
     {
-      "name": "Akantor Dark Melody",
+      "id": 1094,
       "attack": 1716,
       "sharpness": [
         9,
@@ -11283,29 +11283,29 @@
       "type": "hunting-horn",
       "create_cost": null,
       "improve_cost": 145000,
-      "improve_from": "Akantor Horn",
+      "improve_from": 590,
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Ukanlos Stone",
+          "item": 815,
           "amount": 1,
           "type": "heavenly",
           "color": "white"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 3,
           "type": "stone",
           "color": "blue"
         },
         {
-          "name": "Akantor Tail",
+          "item": 805,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Akantor Fang",
+          "item": 807,
           "amount": 4,
           "type": "claw",
           "color": "gray"
@@ -11385,7 +11385,7 @@
       ]
     },
     {
-      "name": "Ukanlos Horned Flute",
+      "id": 1096,
       "attack": 1820,
       "sharpness": [
         19,
@@ -11409,25 +11409,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "UkanlosShovelJaw",
+          "item": 813,
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Hvy Ukanlos Tail",
+          "item": 811,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "UkanlosUnderscl",
+          "item": 810,
           "amount": 5,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Ukanlos Stone",
+          "item": 815,
           "amount": 1,
           "type": "heavenly",
           "color": "white"
@@ -11513,7 +11513,7 @@
       ]
     },
     {
-      "name": "Bone Horn G",
+      "id": 1133,
       "attack": 1404,
       "sharpness": [
         9,
@@ -11538,25 +11538,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Blue Mushroom",
+          "item": 177,
           "amount": 10,
           "type": "mushroom",
           "color": "blue"
         },
         {
-          "name": "Massive Bone",
+          "item": 297,
           "amount": 8,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Monster Fluid",
+          "item": 25,
           "amount": 20,
           "type": "fluid",
           "color": "cyan"
@@ -11636,7 +11636,7 @@
       ]
     },
     {
-      "name": "War Drum G",
+      "id": 1134,
       "attack": 1456,
       "sharpness": [
         5,
@@ -11661,25 +11661,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Conga Pelt",
+          "item": 442,
           "amount": 30,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Conga Pelt+",
+          "item": 443,
           "amount": 20,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Hvy Monster Bone",
+          "item": 286,
           "amount": 8,
           "type": "bone",
           "color": "gray"
@@ -11769,7 +11769,7 @@
       ]
     },
     {
-      "name": "Great Bagpipe G",
+      "id": 1108,
       "attack": 1404,
       "sharpness": [
         3,
@@ -11794,25 +11794,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "SpecRemobraSkin+",
+          "item": 334,
           "amount": 8,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Giant Blk Pearl",
+          "item": 199,
           "amount": 5,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Screamer",
+          "item": 266,
           "amount": 10,
           "type": "sac",
           "color": "gray"
@@ -11880,7 +11880,7 @@
       ]
     },
     {
-      "name": "Khezu Flute G",
+      "id": 1124,
       "attack": 1196,
       "sharpness": [
         9,
@@ -11905,25 +11905,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "KhezuHide-Cream",
+          "item": 580,
           "amount": 5,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Thunder Sac",
+          "item": 277,
           "amount": 10,
           "type": "sac",
           "color": "yellow"
         },
         {
-          "name": "Pale Bone",
+          "item": 581,
           "amount": 7,
           "type": "part",
           "color": "white"
@@ -12046,7 +12046,7 @@
       ]
     },
     {
-      "name": "Basarios Rock G",
+      "id": 1115,
       "attack": 1352,
       "sharpness": [
         6,
@@ -12071,25 +12071,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "HvyBasariosShell",
+          "item": 589,
           "amount": 8,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "StrBasariosWing",
+          "item": 591,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Flame Sac",
+          "item": 273,
           "amount": 20,
           "type": "sac",
           "color": "red"
@@ -12212,7 +12212,7 @@
       ]
     },
     {
-      "name": "Glass Queen G",
+      "id": 1129,
       "attack": 1248,
       "sharpness": [
         8,
@@ -12238,25 +12238,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Vespoid Abdomen",
+          "item": 656,
           "amount": 8,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Vspoid Razorwing",
+          "item": 662,
           "amount": 10,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "Monster Essence",
+          "item": 27,
           "amount": 5,
           "type": "fluid",
           "color": "blue"
@@ -12374,7 +12374,7 @@
       ]
     },
     {
-      "name": "Heavy Bagpipe G",
+      "id": 1109,
       "attack": 1352,
       "sharpness": [
         3,
@@ -12399,25 +12399,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Eltalite Ore",
+          "item": 207,
           "amount": 5,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "HvyBlkGraviosShl",
+          "item": 631,
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Narga Brain Stem",
+          "item": 622,
           "amount": 3,
           "type": "part",
           "color": "red"
@@ -12485,7 +12485,7 @@
       ]
     },
     {
-      "name": "Velociprey Balloon G",
+      "id": 1132,
       "attack": 1352,
       "sharpness": [
         5,
@@ -12510,25 +12510,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Velociprey Scle+",
+          "item": 350,
           "amount": 10,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "RobustWyvernBone",
+          "item": 293,
           "amount": 10,
           "type": "bone",
           "color": "cyan"
         },
         {
-          "name": "Velociprey Hide",
+          "item": 351,
           "amount": 50,
           "type": "pelt",
           "color": "blue"
@@ -12646,7 +12646,7 @@
       ]
     },
     {
-      "name": "Giadrome Balloon G",
+      "id": 1055,
       "attack": 1404,
       "sharpness": [
         3,
@@ -12671,25 +12671,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Giadrome Skull",
+          "item": 347,
           "amount": 5,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "RobustWyvernBone",
+          "item": 293,
           "amount": 10,
           "type": "bone",
           "color": "cyan"
         },
         {
-          "name": "Giadrome Claw+",
+          "item": 346,
           "amount": 15,
           "type": "claw",
           "color": "white"
@@ -12763,7 +12763,7 @@
       ]
     },
     {
-      "name": "Sakura Recorder G",
+      "id": 1101,
       "attack": 1300,
       "sharpness": [
         6,
@@ -12788,25 +12788,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "ThckPnkRathnScl",
+          "item": 534,
           "amount": 7,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "HvyPnkRathianShl",
+          "item": 537,
           "amount": 5,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Pnk Rathian Cpc",
+          "item": 536,
           "amount": 10,
           "type": "part",
           "color": "pink"
@@ -12893,7 +12893,7 @@
       ]
     },
     {
-      "name": "Spirit Dragonwd Horn G",
+      "id": 1141,
       "attack": 1040,
       "sharpness": [
         19,
@@ -12918,25 +12918,25 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Dragonwood+",
+          "item": 769,
           "amount": 8,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Dragonmoss+",
+          "item": 766,
           "amount": 8,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Thunderbug Jelly",
+          "item": 29,
           "amount": 15,
           "type": "fluid",
           "color": "yellow"

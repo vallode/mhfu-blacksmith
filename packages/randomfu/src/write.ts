@@ -11,6 +11,8 @@ import { DATA_BIN_PATH, EBOOT_PATH, type GameData } from "./game/load.js";
 export interface WriteSummary {
   quests: number;
   files: number;
+  /** Files written outside DATA.BIN. */
+  discFiles: number;
   eboot: "unchanged" | "in place" | "moved to the end of the image";
 }
 
@@ -26,7 +28,7 @@ export function writeEdits(image: PatchableImage, game: GameData, edits: Edits):
 
   let quests = 0;
   for (const [index, { quest, payload }] of edits.quests) {
-    if (payload.equals(quest.file.payload)) continue;
+    if (payload.equals(quest.file.disc)) continue;
     writeFile(index, quest.file.seal(payload));
     quests++;
   }
@@ -46,8 +48,10 @@ export function writeEdits(image: PatchableImage, game: GameData, edits: Edits):
       : "in place";
   }
 
+  for (const [path, data] of edits.discFiles) image.writeFile(path, data);
+
   verify(image, game, edits);
-  return { quests, files, eboot };
+  return { quests, files, discFiles: edits.discFiles.size, eboot };
 }
 
 /** Re-reads the output image from scratch and compares every edited file. */
@@ -72,40 +76,8 @@ function verify(image: PatchableImage, game: GameData, edits: Edits): void {
   if (changedEboot && !image.iso.readFile(EBOOT_PATH).equals(changedEboot)) {
     throw new Error("Read-back check failed for EBOOT.BIN");
   }
-}
-
-export interface RoundTripResult {
-  checked: number;
-  mismatches: string[];
-}
-
-/**
- * Re-encrypts files without changing them and compares with the disc's own
- * bytes: every quest (both cipher layers) and the overlays shuffles edit. A
- * clean result means edited files will be written in the format the game
- * reads. Nothing is written.
- */
-export function roundTrip(
-  game: GameData,
-  read: (offset: number, length: number) => Buffer,
-): RoundTripResult {
-  const base = game.dataBinEntry.lba * 2048;
-  const onDisc = (index: number): Buffer =>
-    read(base + game.dataBin.offsetOf(index), game.dataBin.lengthOf(index));
-  const mismatches: string[] = [];
-  let checked = 0;
-  for (const quest of game.quests) {
-    checked++;
-    const sealed = quest.file.seal(Buffer.from(quest.file.payload));
-    if (!game.dataBin.encode(quest.index, sealed).equals(onDisc(quest.index))) {
-      mismatches.push(quest.path);
-    }
+  for (const [path, data] of edits.discFiles) {
+    if (!image.iso.readFile(path).equals(data))
+      throw new Error(`Read-back check failed for ${path}`);
   }
-  for (const { index } of [game.gameSub, game.gameTask, game.lobbyTask]) {
-    checked++;
-    if (!game.dataBin.encode(index, game.dataBin.read(index)).equals(onDisc(index))) {
-      mismatches.push(`DATA.BIN file ${index}`);
-    }
-  }
-  return { checked, mismatches };
 }

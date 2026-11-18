@@ -10,6 +10,7 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Card from "@/components/Card";
+import { useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 
 export default function Sheet({
@@ -29,6 +30,7 @@ export default function Sheet({
   footer?: React.ReactNode;
   children: React.ReactNode;
 }) {
+  const close = useT().common.close;
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
@@ -51,7 +53,7 @@ export default function Sheet({
     <div className="fixed inset-0 z-900 flex flex-col items-center justify-center p-[2.4rem] mobile:justify-end mobile:p-0">
       <button
         type="button"
-        aria-label="Close"
+        aria-label={close}
         tabIndex={-1}
         className="absolute inset-0 cursor-default border-none bg-black/65 p-0"
         onClick={onClose}
@@ -79,7 +81,7 @@ export default function Sheet({
             </h2>
             <button
               type="button"
-              aria-label="Close"
+              aria-label={close}
               className="-my-[0.8rem] flex size-[4.4rem] flex-none cursor-pointer items-center justify-center border-none bg-transparent p-0 text-[3rem] leading-none text-white/60 hover:text-white"
               onClick={onClose}
             >

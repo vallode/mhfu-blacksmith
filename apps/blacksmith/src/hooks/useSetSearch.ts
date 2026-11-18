@@ -14,6 +14,15 @@ import {
 import type { SearchData, SearchQuery, SearchResult } from "@/lib/set-search";
 import type { SetSearchRequest, SetSearchResponse } from "@/workers/set-search.worker";
 
+/**
+ * Why a search failed: the data wasn't in the worker yet, the worker died,
+ * or the search threw (`detail` is the error's message, in English).
+ */
+export type SetSearchError =
+  | { kind: "not-loaded" }
+  | { kind: "crashed"; detail?: string }
+  | { kind: "failed"; detail: string };
+
 export interface SetSearchState {
   /** Armor, decorations and skills; null while loading. */
   data: SearchData | null;
@@ -27,7 +36,7 @@ export interface SetSearchState {
   /** The set being shown, an index into `result.sets`. */
   index: number;
   setIndex: (index: number) => void;
-  error: string | null;
+  error: SetSearchError | null;
   search: (query: SearchQuery) => void;
   cancel: () => void;
 }
@@ -106,7 +115,7 @@ export function useSetSearch(): SetSearchState {
   const [result, setResult] = useState<SearchResult | null>(null);
   const [query, setQuery] = useState<SearchQuery | null>(null);
   const [index, setIndexState] = useState(0);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<SetSearchError | null>(null);
   const workersRef = useRef<Worker[]>([]);
   const searchId = useRef(0);
   /** The running search (see lib/search-run.ts), or null. */
@@ -161,12 +170,12 @@ export function useSetSearch(): SetSearchState {
   }, []);
 
   const stop = useCallback(
-    (message: string) => {
+    (reason: SetSearchError) => {
       keepShown();
       searchId.current++;
       pending.current = null;
       setSearching(false);
-      setError(message);
+      setError(reason);
       // The other workers may still be on the search: start afresh.
       restart.current?.();
     },
@@ -182,7 +191,11 @@ export function useSetSearch(): SetSearchState {
           const run = pending.current;
           if (msg.id !== searchId.current || !run) return; // a cancelled search
           if (msg.type === "error") {
-            stop(msg.error);
+            stop(
+              msg.reason === "not-loaded"
+                ? { kind: "not-loaded" }
+                : { kind: "failed", detail: msg.error },
+            );
             return;
           }
           if (msg.type === "sets") {
@@ -226,11 +239,11 @@ export function useSetSearch(): SetSearchState {
           // only a running search restarts them: a worker that can't even
           // load would fail again.
           if (!workersRef.current.includes(worker)) return;
-          const message = event.message || "The search stopped unexpectedly.";
-          if (pending.current) stop(message);
+          const reason: SetSearchError = { kind: "crashed", detail: event.message || undefined };
+          if (pending.current) stop(reason);
           else {
             failed.current = true;
-            setError(message);
+            setError(reason);
           }
         };
         worker.postMessage({ type: "init", data: d } satisfies SetSearchRequest);

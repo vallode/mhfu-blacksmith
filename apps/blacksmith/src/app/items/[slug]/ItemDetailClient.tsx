@@ -2,6 +2,7 @@
 
 import { Fragment, useMemo, type ReactNode } from "react";
 import Link from "next/link";
+import { ItemAreaMap } from "@/components/AreaMap";
 import {
   DetailBody,
   DetailCard,
@@ -17,6 +18,7 @@ import Loading from "@/components/Loading";
 import MapIcon from "@/components/MapIcon";
 import { DropGrid, dropQuantity } from "@/components/MonsterDrops";
 import Tabs, { type Tab } from "@/components/Tabs";
+import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
@@ -25,33 +27,36 @@ import {
   useItemPlaces,
   useItems,
   useItemSources,
+  useItemTrades,
   useQuests,
   type ItemLookup,
 } from "@/lib/client-data";
 import {
-  combinationNotes,
   quantityLabel,
+  quantityOdds,
   type Combination,
   type ItemCombinations,
 } from "@/lib/combinations";
 import { ownedItemCounts } from "@/lib/hunter-progress";
-import { itemCategory, itemCategoryLabel } from "@/lib/item-categories";
-import {
-  gatherPointsLabel,
-  shopStagesLabel,
-  type GatherPlace,
-  type ShopPlace,
-} from "@/lib/item-places";
+import type { Messages } from "@/lib/i18n/messages";
+import { itemCategory } from "@/lib/item-categories";
+import type { FarmPlace, GatherPlace, ShopPlace } from "@/lib/item-places";
 import { groupBy, itemHref, type MonsterSource, type QuestSource } from "@/lib/item-sources";
-import type { DropSource } from "@/lib/monster-drops";
 import {
   clearedQuestIds,
   type Quest,
   questHref,
-  questHubLabel,
   questStarLevel,
   rewardTableHeading,
 } from "@/lib/quests";
+import { groupTrades, tradeMapsLabel, type ItemTrades, type Trade } from "@/lib/veggie-trades";
+import {
+  dropSourceLabel,
+  farmLabel,
+  farmPointName,
+  groundName,
+  groupLabel,
+} from "../source-labels";
 
 interface Props {
   slug: string;
@@ -62,8 +67,12 @@ export default function ItemDetailClient({ slug }: Props) {
   const { sources, error: sourcesError } = useItemSources();
   const { places, error: placesError } = useItemPlaces();
   const { combinations, error: combinationsError } = useCombinations();
+  const { trades, error: tradesError } = useItemTrades();
   const { quests } = useQuests();
   const { save } = useSave();
+  const t = useT();
+  const game = useGameText();
+  const { formatNumber } = useLocale();
   const { showMaterialCounts, markCleared } = usePreferences().prefs;
   const owned = useMemo(
     () => (showMaterialCounts ? ownedItemCounts(save) : null),
@@ -78,11 +87,11 @@ export default function ItemDetailClient({ slug }: Props) {
     return (
       <DetailCard>
         {items ? (
-          <p>Not found.</p>
+          <p>{t.items.detail.notFound}</p>
         ) : error ? (
-          <p className="text-negative">Couldn&apos;t load items.</p>
+          <p className="text-negative">{t.items.list.loadError}</p>
         ) : (
-          <Loading>Loading…</Loading>
+          <Loading>{t.common.loading}</Loading>
         )}
       </DetailCard>
     );
@@ -95,32 +104,64 @@ export default function ItemDetailClient({ slug }: Props) {
   if (found?.monsters.length) {
     tabs.push({
       id: "monsters",
-      label: "Monsters",
+      label: t.items.detail.tabs.monsters,
       content: <MonsterSources sources={found.monsters} />,
     });
   }
   if (found?.quests.length) {
     tabs.push({
       id: "quests",
-      label: "Quests",
+      label: t.items.detail.tabs.quests,
       content: <QuestSources sources={found.quests} cleared={cleared} />,
     });
   }
-  if (placed?.gathering.length) {
+  if (placed?.gathering.length || placed?.farm.length) {
     tabs.push({
       id: "gathering",
-      label: "Gathering",
-      content: <GatherPlaces places={placed.gathering} quests={quests} cleared={cleared} />,
+      label: t.items.detail.tabs.gathering,
+      content: (
+        <GatherPlaces
+          places={placed.gathering}
+          farm={placed.farm}
+          quests={quests}
+          cleared={cleared}
+        />
+      ),
+    });
+  }
+  if (placed?.gathering.some((p) => p.mapQuest !== undefined)) {
+    tabs.push({
+      id: "map",
+      label: t.items.detail.tabs.map,
+      content: (
+        <ItemAreaMap
+          places={placed.gathering}
+          quests={new Map(quests?.map((q) => [q.id, q]))}
+          gives={(name) => items.idOf(name) === item.id}
+        />
+      ),
     });
   }
   if (placed?.shops.length) {
-    tabs.push({ id: "shops", label: "Shops", content: <ShopPlaces places={placed.shops} /> });
+    tabs.push({
+      id: "shops",
+      label: t.items.detail.tabs.shops,
+      content: <ShopPlaces places={placed.shops} />,
+    });
+  }
+  const traded = trades?.get(item.id);
+  if (traded) {
+    tabs.push({
+      id: "trades",
+      label: t.items.detail.tabs.trades,
+      content: <VeggieTrades trades={traded} items={items} />,
+    });
   }
   const combos = combinations?.byItem.get(item.id);
   if (combinations && combos) {
     tabs.push({
       id: "combining",
-      label: "Combining",
+      label: t.items.detail.tabs.combining,
       content: (
         <CombinationSources
           itemId={item.id}
@@ -134,39 +175,42 @@ export default function ItemDetailClient({ slug }: Props) {
   // The tabs wait for every bundle to load or fail, so they don't reorder
   // under the reader; one that fails leaves the others' tabs and a note.
   const settled =
-    (sources || sourcesError) && (places || placesError) && (combinations || combinationsError);
-  const failed = sourcesError || placesError || combinationsError;
+    (sources || sourcesError) &&
+    (places || placesError) &&
+    (combinations || combinationsError) &&
+    (trades || tradesError);
+  const failed = sourcesError || placesError || combinationsError || tradesError;
 
   return (
     <DetailCard>
       <DetailHeader>
         <Icon type={item.type} color={item.color} size="large" alt="" />
-        <DetailName>{item.name}</DetailName>
+        <DetailName>{game.name("item", item.name)}</DetailName>
       </DetailHeader>
 
       <DetailBody>
         <StatList>
-          <Stat label="Category:">
-            <StatValue>{itemCategoryLabel(itemCategory(item.id))}</StatValue>
+          <Stat label={t.items.detail.category}>
+            <StatValue>{t.items.categories[itemCategory(item.id)]}</StatValue>
           </Stat>
           {item.rarity !== undefined && (
-            <Stat label="Rarity:">
+            <Stat label={t.items.detail.rarity}>
               <StatValue>{item.rarity}</StatValue>
             </Stat>
           )}
           {item.carry !== undefined && (
-            <Stat label="Carry:">
-              <StatValue>{item.carry === 255 ? "∞" : item.carry}</StatValue>
+            <Stat label={t.items.detail.carry}>
+              <StatValue>{item.carry === 255 ? "∞" : formatNumber(item.carry)}</StatValue>
             </Stat>
           )}
           {!!item.price && (
-            <Stat label="Price:">
-              <StatValue>{item.price}z</StatValue>
+            <Stat label={t.items.detail.price}>
+              <StatValue>{t.common.zenny(formatNumber(item.price))}</StatValue>
             </Stat>
           )}
           {own !== null && (
-            <Stat label="Owned:">
-              <StatValue>{own === Infinity ? "∞" : own}</StatValue>
+            <Stat label={t.items.detail.owned}>
+              <StatValue>{own === Infinity ? "∞" : formatNumber(own)}</StatValue>
             </Stat>
           )}
         </StatList>
@@ -174,20 +218,14 @@ export default function ItemDetailClient({ slug }: Props) {
         <DetailRule />
 
         {!settled ? (
-          <Loading>Loading…</Loading>
+          <Loading>{t.common.loading}</Loading>
         ) : tabs.length > 0 ? (
-          <Tabs key={slug} tabs={tabs} label="Where to get it and what it makes" />
+          <Tabs key={slug} tabs={tabs} label={t.items.detail.tabsLabel} />
         ) : (
-          !failed && (
-            <p className="whitespace-normal text-white">
-              No monster drop, quest reward, gathering point, shop or combination gives this item.
-            </p>
-          )
+          !failed && <p className="whitespace-normal text-white">{t.items.detail.noSources}</p>
         )}
         {settled && failed && (
-          <p className="text-negative">
-            Couldn&apos;t load {tabs.length > 0 ? "all of " : ""}where to get this item.
-          </p>
+          <p className="text-negative">{t.items.detail.loadError(tabs.length > 0)}</p>
         )}
       </DetailBody>
     </DetailCard>
@@ -197,25 +235,23 @@ export default function ItemDetailClient({ slug }: Props) {
 /** "×3", or nothing for one */
 const amountLabel = (n: number) => (n > 1 ? `×${n}` : undefined);
 
-/** "Body carves ×3 · fished out, using frog as bait" */
-function dropSourceLabel({ title, count, note }: DropSource): string {
-  return [count !== undefined ? `${title} ×${count}` : title, note].filter(Boolean).join(" · ");
-}
-
 /** The item's monster drops, one list per rank, best chance first. */
 function MonsterSources({ sources }: { sources: MonsterSource[] }) {
+  const t = useT();
+  const game = useGameText();
+  const { formatNumber } = useLocale();
   return (
     <DropGrid>
       {groupBy(sources, (s) => s.rank).map(([rank, rows]) => (
         <SourceList
           key={rank}
-          title={rank}
+          title={groupLabel(t, rank)}
           rows={rows.map((s) => ({
-            name: s.monster.name,
+            name: game.name("monster", s.monster.name),
             href: s.monster.href,
-            detail: dropSourceLabel(s.source),
+            detail: dropSourceLabel(t, s.source),
             amount: amountLabel(s.quantity),
-            value: `${s.chance}%`,
+            value: `${formatNumber(s.chance)}%`,
             strong: s.chance >= 100,
           }))}
         />
@@ -232,28 +268,34 @@ function QuestSources({
   sources: QuestSource[];
   cleared: ReadonlySet<number> | null;
 }) {
+  const t = useT();
+  const game = useGameText();
+  const { formatNumber } = useLocale();
   return (
     <DropGrid>
       {groupBy(sources, (s) => s.quest.hub).map(([hub, rows]) => (
         <SourceList
           key={hub}
-          title={questHubLabel(hub)}
+          title={t.quests.hubs[rows[0]!.quest.hub]}
           rows={rows.map(({ quest, table, amount, chance }) => {
             const { g, stars } = questStarLevel(quest.hub, quest.stars);
-            const heading = rewardTableHeading(table);
+            const { count } = rewardTableHeading(table);
+            const kind = t.quests.rewards.kinds[table.kind];
             return {
-              name: quest.title,
+              name: game.quest(quest.id, "title", quest.title),
               href: questHref(quest),
               prefix: `${g ? "G" : ""}${stars}★`,
               detail: [
-                heading.count !== undefined ? `${heading.title} ×${heading.count}` : heading.title,
-                heading.note,
+                count !== undefined ? `${kind} ×${count}` : kind,
+                table.kind === "conditional" &&
+                  table.condition !== null &&
+                  t.quests.rewards.condition(table.condition),
               ]
                 .filter(Boolean)
                 .join(" · "),
               cleared: cleared?.has(quest.id),
               amount: amountLabel(amount),
-              value: `${chance}%`,
+              value: `${formatNumber(chance)}%`,
               strong: chance >= 100,
             };
           })}
@@ -265,35 +307,44 @@ function QuestSources({
 
 /**
  * The item's gathering points, one list per rank or quest board: a row per
- * map, or per quest where only that quest's points give it.
+ * map, or per quest where only that quest's points give it. Then Pokke
+ * Farm's points, a row per upgrade.
  */
 function GatherPlaces({
   places,
+  farm,
   quests,
   cleared,
 }: {
   places: GatherPlace[];
+  farm: FarmPlace[];
   quests: Quest[] | null;
   cleared: ReadonlySet<number> | null;
 }) {
+  const t = useT();
+  const game = useGameText();
+  const { formatNumber } = useLocale();
   const byId = new Map(quests?.map((q) => [q.id, q]));
-  return (
+  const grid = (
     <DropGrid>
       {groupBy(places, (p) => p.group).map(([group, rows]) => (
         <SourceList
           key={group}
-          title={group}
+          title={groupLabel(t, group)}
           rows={rows.flatMap((p): SourceRow[] => {
-            const value = `${p.chance}%`;
-            const points = gatherPointsLabel(p.points);
-            if (!p.quests) return [{ name: p.map, map: p.map, detail: points, value }];
+            const value = `${formatNumber(p.chance)}%`;
+            const points = gatherPointsLabel(t.items.gathering, p.points);
+            const mapName = game.name("map", p.map);
+            if (!p.quests) return [{ name: mapName, map: p.map, detail: points, value }];
             return p.quests.map((id) => {
               const quest = byId.get(id);
               return {
-                name: quest?.title ?? `Quest ${id}`,
+                name: quest
+                  ? game.quest(quest.id, "title", quest.title)
+                  : t.items.detail.unknownQuest(id),
                 href: quest && questHref(quest),
                 map: p.map,
-                detail: `${p.map} · ${points}`,
+                detail: `${mapName} · ${points}`,
                 cleared: cleared?.has(id),
                 value,
               };
@@ -301,25 +352,115 @@ function GatherPlaces({
           })}
         />
       ))}
+      {farm.length > 0 && (
+        <SourceList
+          title={t.items.farm.title}
+          rows={farm.map((p) => ({
+            name: farmPointName(t, p.point),
+            detail: farmLabel(t, p),
+            value: `${formatNumber(p.chance)}%`,
+          }))}
+        />
+      )}
     </DropGrid>
   );
+  if (farm.length === 0) return grid;
+  return (
+    <div className="flex flex-col gap-[1.6rem]">
+      {grid}
+      <p className="m-0 text-fine whitespace-normal text-white/60">
+        {t.items.farm.restocks}
+        {farm.some((p) => p.spot === "mining" || p.spot === "insects") &&
+          ` ${t.items.farm.upgradesStack}`}
+      </p>
+    </div>
+  );
+}
+
+/** "Mining: areas 2, 5 · Gathering: Base Camp, area 3", in the site's language. */
+function gatherPointsLabel(t: Messages["items"]["gathering"], points: GatherPlace["points"]) {
+  return points
+    .map(({ kind, areas }) => {
+      const numbered = areas.filter((a) => a > 0);
+      const places = [
+        ...(areas.includes(0) ? [t.baseCamp] : []),
+        ...(numbered.length > 0 ? [t.areas(numbered)] : []),
+      ];
+      return t.points(t.kinds[kind], places.join(", "));
+    })
+    .join(" · ");
+}
+
+/** Which stages of a shop's stock have the item: "From the start", "Stages 1, 3 and 5 of 5". */
+function shopStagesLabel(t: Messages["items"]["shops"], { stages, stageCount }: ShopPlace) {
+  const first = stages[0]!;
+  if (stages.length === stageCount - first + 1) {
+    return first === 1 ? t.fromStart : t.fromStage(first, stageCount);
+  }
+  return t.stagesOf(stages, stageCount);
 }
 
 /** The shops that sell the item, with its price and the stages of their stock that have it. */
 function ShopPlaces({ places }: { places: ShopPlace[] }) {
+  const t = useT();
+  const { formatNumber } = useLocale();
+  const shops = t.items.shops;
   return (
     <DropGrid>
       <SourceList
-        title="Shops"
+        title={shops.title}
         rows={places.map((p) => ({
-          name: p.shop,
-          detail: [shopStagesLabel(p), p.currency === "pokke-points" && "Pokke Points"]
+          name: shops.names[p.shop] ?? p.shop,
+          detail: [shopStagesLabel(shops, p), p.currency === "pokke-points" && shops.pokkePoints]
             .filter(Boolean)
             .join(" · "),
-          value: p.price === null ? "—" : `${p.price}z`,
+          value: p.price === null ? "—" : t.common.zenny(formatNumber(p.price)),
         }))}
       />
     </DropGrid>
+  );
+}
+
+/**
+ * The Veggie Elder trades that give the item and the ones that take it, a
+ * row per distinct trade with the grounds that make it and the list number
+ * there, which decides which one he makes.
+ */
+function VeggieTrades({ trades, items }: { trades: ItemTrades; items: ItemLookup }) {
+  const t = useT();
+  const tv = t.items.veggieElder;
+  const game = useGameText();
+  const { formatNumber } = useLocale();
+  const grounds = (maps: string[]) => tradeMapsLabel(maps, (m) => groundName(game, m));
+  // One row per distinct trade, with every ground that makes it, not a row per ground.
+  const rows = (list: Trade[]): SourceRow[] =>
+    groupTrades(list).map((g) => {
+      const it = items.get(g.item);
+      return {
+        name: it.known ? game.name("item", it.name) : t.quests.rewards.unknownItem(g.item),
+        href: it.known ? itemHref(it.name) : undefined,
+        icon: { type: it.type, color: it.color },
+        detail: [
+          g.rare && tv.rareTrade,
+          // The list place only where it's one ground: on several it is a different one on each.
+          g.places.length === 1
+            ? tv.listPlace(grounds(g.places[0]!.maps), g.places[0]!.row)
+            : g.places.map((p) => grounds(p.maps)).join(", "),
+        ]
+          .filter(Boolean)
+          .join(" · "),
+        value: `${formatNumber(g.chance)}%`,
+        strong: g.chance >= 100,
+      };
+    });
+  return (
+    <div className="flex flex-col gap-[1.6rem]">
+      <DropGrid>
+        {trades.gives.length > 0 && <SourceList title={tv.gives} rows={rows(trades.gives)} />}
+        {trades.takes.length > 0 && <SourceList title={tv.takes} rows={rows(trades.takes)} />}
+      </DropGrid>
+      <p className="m-0 text-fine whitespace-normal text-white/60">{tv.itemNote}</p>
+    </div>
   );
 }
 
@@ -340,9 +481,15 @@ function CombinationSources({
   items: ItemLookup;
   bookBonus: number[];
 }) {
-  const link = (id: number) => {
+  const t = useT();
+  const tc = t.items.combining;
+  const game = useGameText();
+  const { formatNumber } = useLocale();
+  const link = (id: number): LinkedName => {
     const it = items.get(id);
-    return it.known ? { name: it.name, href: itemHref(it.name) } : { name: it.name };
+    return it.known
+      ? { name: game.name("item", it.name), href: itemHref(it.name) }
+      : { name: t.quests.rewards.unknownItem(id) };
   };
   const books = bookBonus
     .slice(1)
@@ -354,16 +501,28 @@ function CombinationSources({
     return label === "×1" ? undefined : label;
   };
   const rate = (c: Combination) => ({
-    value: `${c.successRate}%`,
+    value: `${formatNumber(c.successRate)}%`,
     strong: c.successRate >= 100,
   });
-  const detail = (c: Combination) => [...combinationNotes(c), `List No. ${c.number}`].join(" · ");
+  // What it needs and what makes it certain, then its place in the list.
+  const detail = (c: Combination) => {
+    const odds = quantityOdds(c.quantity);
+    return [
+      c.alchemy && tc.alchemy,
+      c.bomb && tc.bomber,
+      c.trap && tc.trapMaster,
+      odds && tc.makes(odds),
+      tc.listNumber(c.number),
+    ]
+      .filter(Boolean)
+      .join(" · ");
+  };
   return (
     <div className="flex flex-col gap-[1.6rem]">
       <DropGrid>
         {combos.madeFrom.length > 0 && (
           <SourceList
-            title="Made by combining"
+            title={tc.madeFrom}
             rows={combos.madeFrom.map((c) => ({
               name: c.ingredients.map(link),
               detail: detail(c),
@@ -374,15 +533,14 @@ function CombinationSources({
         )}
         {combos.usedIn.length > 0 && (
           <SourceList
-            title="Used to make"
+            title={tc.usedIn}
             rows={combos.usedIn.map((c) => {
               const other = c.ingredients.find((id) => id !== itemId) ?? itemId;
               return {
                 ...link(c.result),
                 detail: (
                   <>
-                    {"with "}
-                    <NameLink {...link(other)} />
+                    {tc.with(<NameLink {...link(other)} />)}
                     {` · ${detail(c)}`}
                   </>
                 ),
@@ -395,8 +553,7 @@ function CombinationSources({
       </DropGrid>
       {bookBonus.length > 1 && (
         <p className="m-0 text-fine whitespace-normal text-white/60">
-          Rates are before Books of Combos 1–{bookBonus.length - 1} ({books} for owning them in
-          order from 1) and the Combination skill.
+          {tc.booksNote(bookBonus.length - 1, books)}
         </p>
       )}
     </div>
@@ -428,6 +585,8 @@ interface SourceRow {
   prefix?: string;
   /** Before the name: the map's icon (gathering points) */
   map?: string;
+  /** Before the name: an item's icon */
+  icon?: { type: string; color: string };
   /** How it's obtained, on the line below */
   detail: ReactNode;
   /** The loaded hunter has cleared this quest */
@@ -446,6 +605,7 @@ interface SourceRow {
  * how it's obtained on a line below.
  */
 function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
+  const cleared = useT().quests.cleared;
   // Only lists with amounts get the amount column, so chances stay next to the names.
   const showAmount = rows.some((r) => r.amount);
   // "×3" fits three cells; a range ("×1-3") takes five.
@@ -460,6 +620,7 @@ function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
           <li key={i} className="flex min-w-0 gap-[0.8rem] leading-[1.25]">
             {r.prefix && <span className="w-cells-4 flex-none text-stat">{r.prefix}</span>}
             {r.map && <MapIcon map={r.map} />}
+            {r.icon && <Icon type={r.icon.type} color={r.icon.color} />}
             <div className="flex min-w-0 flex-1 flex-col gap-[0.2rem]">
               <div className="flex min-w-0 items-baseline gap-[0.8rem]">
                 {typeof r.name !== "string" ? (
@@ -497,7 +658,7 @@ function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
               </div>
               <p className="flex min-w-0 gap-[0.8rem] text-fine whitespace-normal text-white/60">
                 <span className="min-w-0 flex-1">{r.detail}</span>
-                {r.cleared && <span className="flex-none text-stat">CLEAR!!</span>}
+                {r.cleared && <span className="flex-none text-stat">{cleared}</span>}
               </p>
             </div>
           </li>

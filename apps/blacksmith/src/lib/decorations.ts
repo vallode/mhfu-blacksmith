@@ -1,9 +1,8 @@
-import fs from "fs";
-import path from "path";
 import { slugify } from "./slug";
 import type { Decoration } from "./types";
 import { DATA_DIR } from "./paths";
 import { cached } from "./data-cache";
+import { readData } from "game-data";
 
 const dataDir = DATA_DIR;
 
@@ -14,8 +13,7 @@ export function getDecorations(): Decoration[] {
 }
 
 function loadDecorations(): Decoration[] {
-  const filePath = path.join(dataDir, "decorations.json");
-  const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { decorations: Decoration[] };
+  const raw = readData<{ decorations: Decoration[] }>(dataDir, "decorations.json");
 
   return raw.decorations.map((d) => ({ ...d, slug: slugify(d.name) }));
 }

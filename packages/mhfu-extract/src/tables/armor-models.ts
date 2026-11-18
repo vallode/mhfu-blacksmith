@@ -18,7 +18,7 @@ import {
 import { ARMOR_ENTRY_SIZE, JP_BASE_ADDRESS, tableOffset } from "./offsets.js";
 import type { TableAddressResolver } from "./resolver.js";
 
-/** Armor slots as named in data/armor/ and data/equipment-ids.json. */
+/** Armor slots as named in data/armor/ and game-data's equipment-ids.json view. */
 export type SiteArmorSlot = "helmet" | "plate" | "gauntlets" | "waist" | "leggings";
 
 interface SlotLayout {
@@ -38,7 +38,7 @@ export const ARMOR_MODEL_LAYOUT: Record<SiteArmorSlot, SlotLayout> = {
 };
 
 export interface ArmorModelIds {
-  /** Equipment ID, i.e. the index into data/equipment-ids.json's slot list. */
+  /** Equipment ID, i.e. the index into game-data's equipment-ids.json view's slot list. */
   index: number;
   maleId: number;
   femaleId: number;

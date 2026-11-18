@@ -41,6 +41,13 @@ describe("parsePreferences", () => {
     assert.deepEqual(prefs, DEFAULT_PREFERENCES);
   });
 
+  test("language is a known locale or auto", () => {
+    assert.equal(parsePreferences(JSON.stringify({ language: "es" })).language, "es");
+    assert.equal(parsePreferences(JSON.stringify({ language: "auto" })).language, "auto");
+    assert.equal(parsePreferences(JSON.stringify({ language: "xx" })).language, "auto");
+    assert.equal(parsePreferences(JSON.stringify({ language: 3 })).language, "auto");
+  });
+
   test("quest progress is one of the offered stages", () => {
     const prefs = parsePreferences(
       JSON.stringify({ questProgress: { rank: "high-rank", stars: 7 } }),

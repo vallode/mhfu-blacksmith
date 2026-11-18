@@ -4,7 +4,7 @@
  */
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { decodeMonster, type Dictionaries } from "../src/lib/schema";
+import { decodeMonster, decodeMonsterListItem, type Dictionaries } from "../src/lib/schema";
 
 const dict = {
   strings: ["Head", "Tail", "180", "100–160"],
@@ -71,4 +71,22 @@ test("decodeMonster reads the size range, in percent", () => {
     decodeMonster(dict, { n: "Kirin", s: "kirin" }, "elder-dragon").size_range,
     undefined,
   );
+});
+
+test("decodeMonsterListItem reads the capturable flag", () => {
+  assert.deepEqual(decodeMonsterListItem({ n: "Rathian", s: "rathian", ca: 1 }), {
+    slug: "rathian",
+    name: "Rathian",
+    capturable: true,
+  });
+  assert.equal(decodeMonsterListItem({ n: "Remobra", s: "remobra" }).capturable, false);
+  assert.deepEqual(
+    decodeMonsterListItem({ n: "Rathian", s: "rathian", cr: [80, 115, 120] }).crowns,
+    {
+      mini: 80,
+      silver: 115,
+      gold: 120,
+    },
+  );
+  assert.equal(decodeMonsterListItem({ n: "Remobra", s: "remobra" }).crowns, undefined);
 });

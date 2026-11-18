@@ -5,15 +5,18 @@ import { flushSync } from "react-dom";
 import Link from "next/link";
 import Icon from "./Icon";
 import { cn } from "@/lib/cn";
+import { filterFade, filteredOut } from "@/styles/list";
 import { prefetchBundle } from "@/lib/client-data";
 import { isNodeCollapsed, onNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { useTreeFilterResult, useWeaponTree } from "@/context/TreeFilterContext";
 import { usePreferences } from "@/context/PreferencesContext";
+import { useLocale } from "@/context/LanguageContext";
 import type { MaterialCheck } from "@/lib/hunter-progress";
 import { rowStatus, treeRowKey } from "@/lib/tree-filter";
 import { rowsAbove } from "@/lib/tree-visibility";
 import type { WeaponTreeNode } from "@/lib/types";
+import type { GameTextKind } from "@/lib/i18n/game-text";
 
 interface WeaponTreeRowProps {
   node: WeaponTreeNode;
@@ -34,6 +37,11 @@ interface WeaponTreeRowProps {
    * turn it off, or the page would jump down to it.
    */
   scroll?: boolean;
+  /**
+   * The weapon has a row higher up the same list (a dual-element weapon in
+   * the by-element view): that one gets the id TreeScroll looks up.
+   */
+  listedAgain?: boolean;
 }
 
 // Each row is a full-width line with a highlight strip drawn by ::before.
@@ -44,7 +52,7 @@ interface WeaponTreeRowProps {
 // connector lines and indentation never move.
 const rowBase = [
   "relative flex h-[38px] w-full min-w-max flex-row items-center pr-[0.9rem] text-white",
-  "transition-opacity duration-150 ease-out motion-reduce:transition-none",
+  filterFade,
   "before:absolute before:top-0 before:left-[calc(100%-50vw+2.3rem+0.65rem)] before:z-0 before:block before:h-full before:w-[calc(50vw-2.3rem-0.65rem)] before:bg-transparent",
   "mobile:before:left-0 mobile:before:w-full",
   "hover:before:hover-glow focus:before:hover-glow",
@@ -57,6 +65,13 @@ const connector = [
   "before:absolute before:top-0 before:-left-4 before:-z-1 before:block before:h-[19px] before:w-[3px] before:bg-line",
   "after:absolute after:top-[19px] after:-left-4 after:-z-1 after:block after:h-[3px] after:w-4 after:bg-line",
 ].join(" ");
+
+/** The game text kind of a tree's names: the tree is weapons, armor or decorations. */
+function gameTextKind(basePath: string): GameTextKind {
+  if (basePath.startsWith("/armorsmith/")) return "armor";
+  if (basePath.startsWith("/decorations/")) return "decoration";
+  return "weapon";
+}
 
 /** Map a tree-row href to its data bundle, so we can warm the cache on hover. */
 function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
@@ -83,6 +98,7 @@ function MaterialPips({
   className?: string;
 }) {
   const have = materials.filter((m) => m.have >= m.need).length;
+  const { t, game } = useLocale();
   return (
     <span
       className={cn(
@@ -90,9 +106,12 @@ function MaterialPips({
         className,
       )}
       role="img"
-      aria-label={`${have} of ${materials.length} materials owned`}
+      aria-label={t.equipment.tree.materialsOwned(have, materials.length)}
       title={materials
-        .map((m) => `${m.name}: ${Number.isFinite(m.have) ? m.have : "∞"}/${m.need}`)
+        .map(
+          (m) =>
+            `${game.name("item", m.name)}: ${Number.isFinite(m.have) ? m.have : "∞"}/${m.need}`,
+        )
         .join("\n")}
     >
       {materials.map((m, i) => (
@@ -161,6 +180,7 @@ export default function WeaponTreeRow({
   nested = false,
   hasNextSibling = false,
   scroll = true,
+  listedAgain = false,
 }: WeaponTreeRowProps) {
   // A branch holding the active row opens, so arriving at a weapon (from the
   // global search, say) shows it even if its branch was collapsed earlier.
@@ -177,12 +197,16 @@ export default function WeaponTreeRow({
   const tree = useWeaponTree();
 
   const isActive = activeSlug === node.slug;
+  // Cross-type rows in a weapon tree are weapons too.
+  const nameKind = gameTextKind(basePath);
 
   // Markers for the loaded hunter: owned pieces, and weapons they can forge
   // or upgrade with what's in their item box right now. In a
   // filtered weapon tree the panel has already worked this out for every row.
   // The Options page can turn either marker off; the tree filter still works.
   const progress = useHunterProgress();
+  const { t, game, formatNumber } = useLocale();
+  const tt = t.equipment.tree;
   const { markOwned, showCraftProgress } = usePreferences().prefs;
   const from = node.parentHref ?? parentHref;
   const filtered = useTreeFilterResult()?.rows.get(treeRowKey(node, from));
@@ -194,7 +218,7 @@ export default function WeaponTreeRow({
   const showPips = craft != null && craft.status !== "unknown";
   const ready = craft?.status === "ready" ? craft : null;
   // Weapons are forged; jewels are made.
-  const makeVerb = sectionType === "decoration" ? "make" : "forge";
+  const jewel = sectionType === "decoration";
 
   // Subscribed above, so this also updates `collapsed`.
   const onToggle = () => setNodeCollapsed(treeKey, node.slug, !collapsed);
@@ -227,7 +251,7 @@ export default function WeaponTreeRow({
     // The current page's row keeps a steady (non-pulsing) highlight.
     isActive && "before:animate-none before:[background:var(--gradient-hover-glow)]",
     // Ruled out by the tree filter.
-    dimmed && "opacity-30",
+    dimmed && filteredOut,
   );
 
   const inner = (
@@ -242,26 +266,20 @@ export default function WeaponTreeRow({
         />
       )}
       {/* Owned pieces get gold names, as in the game's lists. */}
-      <p className={cn("truncate", owned && "text-gold")}>{node.name}</p>
-      {owned && <span className="sr-only"> (owned)</span>}
+      <p className={cn("truncate", owned && "text-gold")}>{game.name(nameKind, node.name)}</p>
+      {owned && <span className="sr-only">{tt.ownedNote}</span>}
       {ready && (
         <span className="sr-only">
-          {ready.via === "upgrade"
-            ? " (you can make this upgrade now)"
-            : ` (you can ${makeVerb} this now)`}
+          {ready.via === "upgrade" ? tt.canUpgradeNote : jewel ? tt.canMakeNote : tt.canForgeNote}
         </span>
       )}
       {node.children && (
-        <RowButton label={collapsed ? "Expand" : "Collapse"} onActivate={onToggle}>
+        <RowButton label={collapsed ? tt.expand : tt.collapse} onActivate={onToggle}>
           {collapsed ? "[+]" : "[-]"}
         </RowButton>
       )}
       {node.alias && (
-        <RowButton
-          label="Upgrades listed above: go to them"
-          title="Upgrades listed above"
-          onActivate={onAliasActivate}
-        >
+        <RowButton label={tt.aliasLabel} title={tt.aliasTitle} onActivate={onAliasActivate}>
           [↑]
         </RowButton>
       )}
@@ -269,9 +287,9 @@ export default function WeaponTreeRow({
       {node.max_defence !== undefined && !showPips && (
         <span
           className="relative z-10 ml-auto pl-4 text-muted"
-          title={`Max defence ${node.max_defence}`}
+          title={tt.maxDefenceTitle(node.max_defence)}
         >
-          <span className="sr-only">Max defence </span>
+          <span className="sr-only">{tt.maxDefence} </span>
           {node.max_defence}
         </span>
       )}
@@ -285,17 +303,21 @@ export default function WeaponTreeRow({
         <Link
           // An alias row repeats a weapon listed above: only the first gets the
           // id that TreeScroll and the alias marker look up.
-          id={node.alias ? undefined : node.slug}
+          id={node.alias || listedAgain ? undefined : node.slug}
           className={rowClass}
           href={href}
           scroll={scroll}
           title={
             ready
-              ? `You can ${ready.via === "upgrade" ? "make this upgrade" : `${makeVerb} this`} now (${ready.cost.toLocaleString()}z, materials in your item box)`
+              ? (ready.via === "upgrade"
+                  ? tt.canUpgradeTitle
+                  : jewel
+                    ? tt.canMakeTitle
+                    : tt.canForgeTitle)(formatNumber(ready.cost))
               : owned
-                ? sectionType === "decoration"
-                  ? "In your item box or equipment"
-                  : "In your equipment box"
+                ? jewel
+                  ? tt.ownedJewelTitle
+                  : tt.ownedTitle
                 : undefined
           }
           onPointerEnter={onPointerEnter}
@@ -304,7 +326,7 @@ export default function WeaponTreeRow({
           {inner}
         </Link>
       ) : (
-        <span id={node.alias ? undefined : node.slug} className={rowClass}>
+        <span id={node.alias || listedAgain ? undefined : node.slug} className={rowClass}>
           {inner}
         </span>
       )}

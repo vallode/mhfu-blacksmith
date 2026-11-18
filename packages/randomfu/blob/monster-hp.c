@@ -1,0 +1,142 @@
+/*
+ * Monster HP (the hud.monsterHp option): a gauge per large monster under the
+ * name plate, drawn with the HUD's gauge routines, sprites and colours.
+ * See ../docs/code-loader.md and src/patches/monster-hp.ts, which finds the
+ * game's addresses below on each disc. It only reads game state.
+ */
+#include "rf.h"
+
+/* Found per disc (src/patches/monster-hp.ts). */
+extern const u8 rf_game_task[];      /* game_task.ovl's load address */
+extern u8 *const rf_monsters[];      /* the global holding the monster manager */
+extern const u8 rf_em_chunks[];      /* game_task's per-species table */
+extern const u8 rf_hud_frame[];      /* frame(hud, x, y, w, h, sprite) */
+extern const u8 rf_hud_cap[];        /* cap(hud, x, y, sprite) */
+extern const u8 rf_hud_fill[];       /* fill(hud, x, y, w, h, r, g, b) */
+extern const u8 rf_map_shows[];      /* the map's test: does it show this monster? (hud, m) */
+extern const u8 rf_hud_sprite[];     /* sprite(hud, x, y, w, h, sprite): a sprite stretched to w×h */
+extern const u8 rf_hud_sprites[];    /* the HUD's sprite table that `sprite` indexes */
+extern const u8 rf_monster_hp_mode[]; /* a constant, not an address: MODE_* */
+
+#define MODE_PAINTED 1
+#define MODE_ALWAYS 2
+
+/* The monster manager: up to 20 monsters in the hunter's area, large and small. */
+#define MANAGER_SLOTS 0x1220
+#define SLOTS 20
+/* A monster (and the hunter: the same entity layout). */
+#define FLAGS 0x4 /* bit 0: active in the hunter's area (the map's test checks it) */
+#define AREA 0x29a
+#define EM_ID 0x1e8
+#define HP 0x2e4
+#define HP_MAX 0x41e
+/* game_task's species table: 0x1D0 bytes each, by monster id; its stat set is 0 for small monsters. */
+#define CHUNK_BYTES 0x1d0
+#define CHUNK_SET 0x14f
+#define SPECIES 90
+/* The HUD: bit 1 of +0x1194 hides the gauges (the gauge routine checks it too). */
+#define HUD_FLAGS 0x1194
+#define HUD_GAUGES_HIDDEN 2
+#define HUD_HUNTER 0x530
+
+/*
+ * Layout: a short gauge in the stamina gauge's style (its frame and its
+ * end cap, the cap mirrored on the left too) per monster, stacked on the
+ * left edge under the hunter's name plate.
+ */
+#define FRAME_SPRITE 4
+#define CAP_SPRITE 6
+#define CAP_U 52 /* sprite 6's place in the HUD texture, to mirror it */
+#define CAP_V 44
+#define CAP_W 24
+#define CAP_H 12
+#define CAP_TEXTURE 0x8001
+#define X (4 + CAP_W)
+#define Y 92
+#define ROW 14
+#define WIDTH 80
+#define HEIGHT 8
+#define FILL_Y 1
+#define FILL_H 2
+#define ROWS 3
+
+/*
+ * The mirrored cap: a sprite record of the table's 12-byte format with a
+ * negative width, so the stretching sprite routine reads the cap right to
+ * left. The routine reaches it by an index past the table's end.
+ */
+static struct {
+  s16 u, v, w, h;
+  u16 texture, set;
+} __attribute__((aligned(4))) left_cap = {CAP_U + CAP_W, CAP_V, -CAP_W, CAP_H, CAP_TEXTURE, 0};
+
+/* The HUD's own colours: the hunter's red (health lost) and the stamina yellow. */
+#define HP_R 0xc0
+#define HP_G 0x10
+#define HP_B 0x10
+#define TRAIL_R 0xf0
+#define TRAIL_G 0xf0
+#define TRAIL_B 0x00
+
+/* Per manager slot: who was there and how much of the bar the trail still shows. */
+static u8 *seen[SLOTS];
+static u16 trail[SLOTS];
+
+static int game_task_loaded(void) {
+  const u32 *name = (const u32 *)(rf_game_task + 0x20);
+  return name[0] == 0x656d6167 && name[1] == 0x7361745f; /* "game_tas" */
+}
+
+static int is_large(u32 em) {
+  return em > 0 && em < SPECIES && (signed char)rf_em_chunks[em * CHUNK_BYTES + CHUNK_SET] > 0;
+}
+
+typedef u32 (*map_shows_fn)(u8 *hud, u8 *m);
+
+/* The sprite index the routine turns into `record`: index × 12 wraps to the offset (× 0xAAAAAAAB is ÷ 3). */
+static u32 sprite_index(const void *record) {
+  return (((u32)record - (u32)rf_hud_sprites) >> 2) * 0xaaaaaaabu;
+}
+
+static void fill(u8 *hud, u32 x, u32 y, u32 w, u32 r, u32 g, u32 b) {
+  if (w) rf_call8(rf_hud_fill, (u32)hud, x, y, w, FILL_H, r, g, b);
+}
+
+static void draw(u8 *hud) {
+  if (*(u32 *)(hud + HUD_FLAGS) & HUD_GAUGES_HIDDEN) return;
+  if (!game_task_loaded()) return;
+  u8 *manager = *rf_monsters;
+  u8 *hunter = *(u8 **)(hud + HUD_HUNTER);
+  if (!manager || !hunter) return;
+  u16 area = *(u16 *)(hunter + AREA);
+  u32 always = (u32)rf_monster_hp_mode == MODE_ALWAYS;
+  u32 row = 0;
+  for (u32 slot = 0; slot < SLOTS; slot++) {
+    u8 *m = *(u8 **)(manager + MANAGER_SLOTS + slot * 4);
+    if (!m || !is_large(m[EM_ID])) continue;
+    if (!(m[FLAGS] & 1) || *(u16 *)(m + AREA) != area) continue;
+    s32 hp = *(short *)(m + HP);
+    u32 max = *(u16 *)(m + HP_MAX);
+    if (max == 0 || hp <= 0) continue;
+    if (!always && !(u8)((map_shows_fn)rf_map_shows)(hud, m)) continue;
+    if ((u32)hp > max) hp = (s32)max;
+    u32 w = ((u32)hp * WIDTH + max - 1) / max;
+    if (seen[slot] != m || trail[slot] < w) trail[slot] = (u16)w;
+    seen[slot] = m;
+    if (row == ROWS) continue;
+    u32 y = Y + row * ROW;
+    rf_call8(rf_hud_frame, (u32)hud, X, y, WIDTH, HEIGHT, FRAME_SPRITE, 0, 0);
+    rf_call8(rf_hud_sprite, (u32)hud, X - CAP_W, y, CAP_W, CAP_H, sprite_index(&left_cap), 0, 0);
+    rf_call8(rf_hud_cap, (u32)hud, X + WIDTH, y, CAP_SPRITE, 0, 0, 0, 0);
+    fill(hud, X + w, y + FILL_Y, trail[slot] - w, TRAIL_R, TRAIL_G, TRAIL_B);
+    fill(hud, X, y + FILL_Y, w, HP_R, HP_G, HP_B);
+    if (trail[slot] > w) trail[slot]--;
+    row++;
+  }
+}
+
+void rf_monster_hp_init(u32 reason, u8 *save) {
+  (void)reason;
+  (void)save;
+  rf_on(RF_HOOK_HUD, draw);
+}
