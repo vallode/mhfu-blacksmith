@@ -41,7 +41,9 @@ import {
 import type { Edits } from "../edits.js";
 import type { LoadedOverlay } from "../game/load.js";
 import type { MonsterNames } from "../names.js";
+import { fnv1a } from "../hash.js";
 import type { Rng } from "../rng.js";
+import type { Settings } from "../settings.js";
 import { MONSTER_ATTACKS, type AttackData } from "./monster-attacks.js";
 import type { ShuffleReport } from "./shuffle.js";
 
@@ -263,20 +265,35 @@ export function locateScripts(
   return { files: ordered, unknown };
 }
 
+export interface ScriptChoices extends ScriptFile {
+  /** Its checked choices, with their vanilla weights. */
+  choices: Choice[];
+}
+
+/** `locateScripts`, with each file's choices read: what both AI options work on. */
+export function readScripts(
+  gameTask: LoadedOverlay,
+  emOverlays: ReadonlyMap<number, LoadedOverlay>,
+): { files: ScriptChoices[]; unknown: number[] } {
+  const { files, unknown } = locateScripts(gameTask, emOverlays);
+  return {
+    files: files.map((f) => ({ ...f, choices: findChoices(f.file.ovl, f.roots) })),
+    unknown,
+  };
+}
+
 export function randomizeMonsterAi(
   spread: number,
   rng: Rng,
   edits: Edits,
-  gameTask: LoadedOverlay,
-  emOverlays: ReadonlyMap<number, LoadedOverlay>,
+  scripts: ReturnType<typeof readScripts>,
   monsterName: MonsterNames,
 ): ShuffleReport {
   const factor = () => 1 - spread + 2 * spread * rng.float();
-  const { files, unknown } = locateScripts(gameTask, emOverlays);
+  const { files, unknown } = scripts;
   const lines: ShuffleReport["lines"] = [];
   let total = 0;
-  for (const { file, name, roots, emIds } of files) {
-    const choices = findChoices(file.ovl, roots);
+  for (const { file, name, choices, emIds } of files) {
     if (!choices.length) continue;
     const buf = edits.overlay(file);
     for (const c of choices) {
@@ -306,19 +323,26 @@ export function randomizeMonsterAi(
 }
 
 /** How much likelier an attack entry gets than before, against the others. */
-export const AGGRESSION_FACTOR = { more: 2, relentless: 4 } as const;
-export type Aggression = "off" | keyof typeof AGGRESSION_FACTOR;
+export const AGGRESSION_FACTOR: Readonly<
+  Record<Exclude<Settings["monsterAi.aggression"], "off">, number>
+> = { more: 2, relentless: 4 };
 
-/** FNV-1a over each choice's entry count and weights, in order (`monster-attacks.ts`). */
-export function weightHash(choices: readonly Pick<Choice, "weights">[]): string {
-  let h = 0x811c9dc5;
-  for (const { weights } of choices) {
-    for (const b of [weights.length, ...weights]) {
-      h ^= b;
-      h = Math.imul(h, 0x01000193) >>> 0;
-    }
+/**
+ * FNV-1a over each choice, in order: its distance from the one before, its
+ * entry count, and each entry's weight and place in it (`monster-attacks.ts`).
+ * Places as well as weights, so choices with the same weights in another
+ * order don't match.
+ */
+export function weightHash(choices: readonly Choice[]): string {
+  const bytes: number[] = [];
+  let last = choices[0]?.offset ?? 0;
+  for (const c of choices) {
+    const gap = c.offset - last;
+    last = c.offset;
+    bytes.push(gap, gap >> 8, gap >> 16, c.weights.length);
+    c.weights.forEach((w, k) => bytes.push(w, c.weightAt[k]! - c.offset));
   }
-  return h.toString(16).padStart(8, "0");
+  return fnv1a(bytes).toString(16).padStart(8, "0");
 }
 
 /** A file's mixed choices from `AttackData.mixed`: choice index to entry kinds. */
@@ -373,20 +397,18 @@ export function leanTowardsAttacks(
 export function makeMonstersAggressive(
   level: keyof typeof AGGRESSION_FACTOR,
   edits: Edits,
-  gameTask: LoadedOverlay,
-  emOverlays: ReadonlyMap<number, LoadedOverlay>,
+  scripts: ReturnType<typeof readScripts>,
   monsterName: MonsterNames,
   data: Readonly<Record<string, AttackData>> = MONSTER_ATTACKS,
 ): ShuffleReport {
   const factor = AGGRESSION_FACTOR[level];
-  const { files } = locateScripts(gameTask, emOverlays);
+  const { files } = scripts;
   const lines: ShuffleReport["lines"] = [];
   const unmatched: string[] = [];
   let total = 0;
-  for (const { file, name, roots, emIds } of files) {
+  for (const { file, name, choices, emIds } of files) {
     const known = data[name];
     if (!known) continue;
-    const choices = findChoices(file.ovl, roots);
     if (!matchesAttackData(choices, known)) {
       unmatched.push(name);
       continue;
@@ -401,15 +423,15 @@ export function makeMonstersAggressive(
   const notes = [
     `In each choice between attacks and other moves, attacks are ${factor} times as likely as before against the rest; every move stays possible.`,
   ];
-  if (unmatched.length) {
-    notes.push(
-      `Left alone, their scripts aren't the ones the attack data was made from: ${unmatched.join(", ")}.`,
-    );
-  }
+  const leftAlone = unmatched.length
+    ? `left alone, their scripts aren't the ones the attack data was made from (EU and FUC discs): ${unmatched.join(", ")}`
+    : "";
+  if (leftAlone) notes.push(`${leftAlone[0]!.toUpperCase()}${leftAlone.slice(1)}.`);
   return {
     title: "Monster aggression",
     notes,
     lines,
-    summary: `Monster aggression: ${total} choices`,
+    // The summary is the run log's line, so a disc it can't change says so there too.
+    summary: `Monster aggression: ${total} choices${leftAlone ? `; warning: ${leftAlone}` : ""}`,
   };
 }

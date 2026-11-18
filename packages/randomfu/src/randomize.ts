@@ -97,7 +97,7 @@ import {
   randomizeMonsterStats,
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
-import { makeMonstersAggressive, randomizeMonsterAi } from "./shuffles/monster-ai.js";
+import { makeMonstersAggressive, randomizeMonsterAi, readScripts } from "./shuffles/monster-ai.js";
 import { writeGuides } from "./hints/guides.js";
 import { DEMO_OBJECTS } from "./blob/demo-object.js";
 import { decodeObjects } from "./blob/link.js";
@@ -460,24 +460,21 @@ export function randomize(
   }
   const aggression = settings["monsterAi.aggression"];
   if (settings["monsterAi.branches"] || aggression !== "off") {
-    const emOverlays = loadEmOverlays(game);
+    const scripts = readScripts(game.gameTask, loadEmOverlays(game));
     if (settings["monsterAi.branches"]) {
       reports.push(
         randomizeMonsterAi(
           settings["monsterAi.branchSpread"],
           rng.fork("monster-ai"),
           edits,
-          game.gameTask,
-          emOverlays,
+          scripts,
           monsterName,
         ),
       );
     }
     // After the reroll, so it leans whatever odds the choices have by then.
     if (aggression !== "off") {
-      reports.push(
-        makeMonstersAggressive(aggression, edits, game.gameTask, emOverlays, monsterName),
-      );
+      reports.push(makeMonstersAggressive(aggression, edits, scripts, monsterName));
     }
   }
 

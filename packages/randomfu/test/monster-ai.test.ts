@@ -7,6 +7,7 @@ import {
   favourAttacks,
   findChoices,
   leanTowardsAttacks,
+  makeMonstersAggressive,
   matchesAttackData,
   parseMixed,
   rerollWeights,
@@ -14,6 +15,8 @@ import {
   scriptOverlay,
   splitWeights,
 } from "../src/shuffles/monster-ai.js";
+import { MONSTER_ATTACKS } from "../src/shuffles/monster-attacks.js";
+import type { Edits } from "../src/edits.js";
 import type { LoadedOverlay } from "../src/game/load.js";
 import { Rng } from "../src/rng.js";
 
@@ -166,6 +169,9 @@ test("attack data is applied only to the scripts it was made from", () => {
   assert.ok(matchesAttackData(choices, known));
   assert.ok(!matchesAttackData(choices, { ...known, hash: "00000000" }));
   assert.ok(!matchesAttackData(choices.slice(1), known));
+  // The same weights with an entry in another place don't match either.
+  const moved = choices.map((c, i) => (i ? c : { ...c, weightAt: c.weightAt.map((at) => at + 1) }));
+  assert.ok(!matchesAttackData(moved, known));
 
   assert.equal(leanTowardsAttacks(choices, buf, known, 4), 2);
   const after = findChoices(ovl, [root]).map((c) => c.weights);
@@ -178,8 +184,7 @@ test("attack data is applied only to the scripts it was made from", () => {
   assert.ok(findChoices(ovl, [root])[1]!.weights[1]! > after[1]![1]!);
 });
 
-test("the attack data reads: every mixed choice has attacks and other moves", async () => {
-  const { MONSTER_ATTACKS } = await import("../src/shuffles/monster-attacks.js");
+test("the attack data reads: every mixed choice has attacks and other moves", () => {
   let total = 0;
   for (const [name, known] of Object.entries(MONSTER_ATTACKS)) {
     assert.match(name, /^(game_task|em\d\d)\.ovl$/);
@@ -191,4 +196,21 @@ test("the attack data reads: every mixed choice has attacks and other moves", as
     }
   }
   assert.equal(total, 2156);
+});
+
+test("a disc the attack data wasn't made from is left alone, with a warning in the log line", () => {
+  const { ovl, root } = script();
+  const file = { index: 1, ovl } as LoadedOverlay;
+  const scripts = {
+    files: [
+      { file, name: "em01.ovl", roots: [root], emIds: [1], choices: findChoices(ovl, [root]) },
+    ],
+    unknown: [],
+  };
+  const known = { "em01.ovl": { choices: 2, hash: "00000000", mixed: "1:-A" } };
+  const report = makeMonstersAggressive("more", {} as Edits, scripts, String, known);
+  assert.match(
+    report.summary ?? "",
+    /^Monster aggression: 0 choices; warning: left alone.*em01\.ovl/,
+  );
 });

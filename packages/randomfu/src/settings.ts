@@ -1660,7 +1660,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "monsterAi.aggression",
     section: "Monster stats",
     label: "Aggression",
-    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, so it spends less time between them. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug, Fatalis, the Vespoids and Bulldrome are partly left alone.",
+    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, so it spends less time between them. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
     type: {
       kind: "choice",
       choices: [
