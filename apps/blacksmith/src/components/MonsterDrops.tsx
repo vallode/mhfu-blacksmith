@@ -124,7 +124,7 @@ function DropRow({ drop, showQuantity }: { drop: LinkedDrop; showQuantity: boole
       )}
       <span
         className={cn(
-          "w-cells-4 flex-none text-right tabular-nums",
+          "ml-auto w-cells-4 flex-none text-right tabular-nums",
           drop.chance === "100%" && "text-positive",
         )}
       >
