@@ -173,7 +173,10 @@ test("attack data is applied only to the scripts it was made from", () => {
   const moved = choices.map((c, i) => (i ? c : { ...c, weightAt: c.weightAt.map((at) => at + 1) }));
   assert.ok(!matchesAttackData(moved, known));
 
-  assert.equal(leanTowardsAttacks(choices, buf, known, 4), 2);
+  assert.deepEqual(
+    leanTowardsAttacks(choices, buf, known, 4),
+    new Set(choices.map((c) => c.offset)),
+  );
   const after = findChoices(ovl, [root]).map((c) => c.weights);
   assert.deepEqual(after, [
     favourAttacks([8, 4, 14, 6], "-A-A", 4),
@@ -203,14 +206,25 @@ test("a disc the attack data wasn't made from is left alone, with a warning in t
   const file = { index: 1, ovl } as LoadedOverlay;
   const scripts = {
     files: [
-      { file, name: "em01.ovl", roots: [root], emIds: [1], choices: findChoices(ovl, [root]) },
+      {
+        file,
+        name: "em01.ovl",
+        roots: [root],
+        emIds: [1],
+        rootsBy: new Map([[1, [root]]]),
+        choices: findChoices(ovl, [root]),
+      },
     ],
     unknown: [],
   };
-  const known = { "em01.ovl": { choices: 2, hash: "00000000", mixed: "1:-A" } };
+  const known = {
+    "em01.ovl": { choices: 2, hash: "00000000", mixed: "1:-A" },
+    "em02.ovl": { choices: 1, hash: "00000000", mixed: "0:-A" },
+  };
   const report = makeMonstersAggressive("more", {} as Edits, scripts, String, known);
+  // em01 doesn't match; em02 isn't among this disc's scripts at all.
   assert.match(
     report.summary ?? "",
-    /^Monster aggression: 0 choices; warning: left alone.*em01\.ovl/,
+    /^Monster aggression: 0 choices; warning: left alone.*em01\.ovl, em02\.ovl$/,
   );
 });

@@ -875,7 +875,9 @@ rerolls the weights of the monsters' AI choices. Monster AI is bytecode in
   there, or else the one overlay where all its roots read. Basarios and
   Black Gravios read in em17 and em83; their class code and roots are
   Gravios's, so they take em17 and change with Gravios.
-- A root is up to 20 table pointers to script entry points. `80 00 N` is a
+- A root is table pointers to script entry points, usually 20 (fewer, or up
+  to 25 for monsters that use `82 a n` above `a` 4; the scripts behind the
+  extra ones sit among the others', so reading 20 finds every choice). `80 00 N` is a
   weighted choice: N entries `80 k w <body>`, then `80 FF`; the game rolls
   0 to 31 and walks the weights, which add up to 32.
 - Each weight is multiplied by a factor within the spread and the choice is

@@ -13,8 +13,11 @@
  *   Black Gravios: em17, mhfu-extract `familyOverlayId`), or the one
  *   overlay where every root it has reads as one; monsters that match more
  *   than one, or none, are left alone.
- * - A root is 20 table pointers to script entry points: `+0` by the
- *   monster's state, `+4` for op `81 n`, `+0x3C + 4a` for op `82 a n`.
+ * - A root is table pointers to script entry points: `+0` by the
+ *   monster's state, `+4` for op `81 n`, `+0x3C + 4a` for op `82 a n`. Most
+ *   have 20; ones that use `82 a n` above `a` 4 have more (up to 25), but
+ *   the scripts behind those sit among the others' (all 498 on the EU disc),
+ *   so the first 20 find every choice.
  * - Op `80 00 N` is a weighted choice: N entries `80 k w <body>`, then
  *   `80 FF`. The game rolls `0`…`31` and walks the weights, which add up
  *   to 32.
@@ -200,6 +203,8 @@ export interface ScriptFile {
   roots: number[];
   /** Species whose scripts are in it. */
   emIds: number[];
+  /** Each of those species' roots in it. */
+  rootsBy: Map<number, number[]>;
 }
 
 /**
@@ -233,9 +238,11 @@ export function locateScripts(
   const files = new Map<LoadedOverlay, ScriptFile>();
   const add = (file: LoadedOverlay, name: string, emId: number, root: number) => {
     let f = files.get(file);
-    if (!f) files.set(file, (f = { file, name, roots: [], emIds: [] }));
+    if (!f) files.set(file, (f = { file, name, roots: [], emIds: [], rootsBy: new Map() }));
     if (!f.roots.includes(root)) f.roots.push(root);
     if (!f.emIds.includes(emId)) f.emIds.push(emId);
+    const own = f.rootsBy.get(emId) ?? [];
+    if (!own.includes(root)) f.rootsBy.set(emId, [...own, root]);
   };
   const unknown: number[] = [];
   for (let emId = 0; emId < MONSTER_CHUNK_COUNT; emId++) {
@@ -340,7 +347,10 @@ export function weightHash(choices: readonly Choice[]): string {
     const gap = c.offset - last;
     last = c.offset;
     bytes.push(gap, gap >> 8, gap >> 16, c.weights.length);
-    c.weights.forEach((w, k) => bytes.push(w, c.weightAt[k]! - c.offset));
+    c.weights.forEach((w, k) => {
+      const place = c.weightAt[k]! - c.offset;
+      bytes.push(w, place, place >> 8);
+    });
   }
   return fnv1a(bytes).toString(16).padStart(8, "0");
 }
@@ -362,26 +372,28 @@ export function matchesAttackData(choices: readonly Choice[], known: AttackData)
 
 /**
  * Leans `known`'s mixed choices towards their attacks in `buf` (the file's
- * edited copy, whose current weights are kept as the base). Returns how many
- * changed.
+ * edited copy, whose current weights are kept as the base). `choices` must
+ * match `known` (`matchesAttackData`). Returns the changed choices' offsets.
  */
 export function leanTowardsAttacks(
   choices: readonly Choice[],
   buf: Buffer,
   known: AttackData,
   factor: number,
-): number {
-  let changed = 0;
+): Set<number> {
+  const changed = new Set<number>();
   for (const [index, kinds] of parseMixed(known.mixed)) {
     const c = choices[index];
-    if (!c || c.weights.length !== kinds.length) continue;
+    if (c?.weights.length !== kinds.length) {
+      throw new Error(`Monster aggression: choice ${index} doesn't match the attack data`);
+    }
     const next = favourAttacks(
       c.weightAt.map((at) => buf[at]!),
       kinds,
       factor,
     );
     c.weightAt.forEach((at, k) => buf.writeUInt8(next[k]!, at));
-    changed++;
+    changed.add(c.offset);
   }
   return changed;
 }
@@ -406,7 +418,7 @@ export function makeMonstersAggressive(
   const lines: ShuffleReport["lines"] = [];
   const unmatched: string[] = [];
   let total = 0;
-  for (const { file, name, choices, emIds } of files) {
+  for (const { file, name, choices, emIds, rootsBy } of files) {
     const known = data[name];
     if (!known) continue;
     if (!matchesAttackData(choices, known)) {
@@ -414,24 +426,33 @@ export function makeMonstersAggressive(
       continue;
     }
     const changed = leanTowardsAttacks(choices, edits.overlay(file), known, factor);
-    total += changed;
+    total += changed.size;
+    // Only the species whose own scripts hold a changed choice.
+    const species = emIds.filter((emId) =>
+      findChoices(file.ovl, rootsBy.get(emId) ?? []).some((c) => changed.has(c.offset)),
+    );
     lines.push({
       where: name,
-      text: `${changed} choices, for ${emIds.map(monsterName).join(", ")}`,
+      text: `${changed.size} choices, for ${species.map(monsterName).join(", ")}`,
     });
   }
+  // Files the data has that this disc's scan didn't place (their species unknown).
+  const seen = new Set(files.map((f) => f.name));
+  unmatched.push(...Object.keys(data).filter((name) => !seen.has(name)));
   const notes = [
     `In each choice between attacks and other moves, attacks are ${factor} times as likely as before against the rest; every move stays possible.`,
   ];
-  const leftAlone = unmatched.length
-    ? `left alone, their scripts aren't the ones the attack data was made from (EU and FUC discs): ${unmatched.join(", ")}`
-    : "";
-  if (leftAlone) notes.push(`${leftAlone[0]!.toUpperCase()}${leftAlone.slice(1)}.`);
+  const list = unmatched.join(", ");
+  if (unmatched.length) {
+    notes.push(
+      `Left alone, their scripts aren't the ones the attack data was made from (EU and FUC discs): ${list}.`,
+    );
+  }
   return {
     title: "Monster aggression",
     notes,
     lines,
     // The summary is the run log's line, so a disc it can't change says so there too.
-    summary: `Monster aggression: ${total} choices${leftAlone ? `; warning: ${leftAlone}` : ""}`,
+    summary: `Monster aggression: ${total} choices${unmatched.length ? `; warning: left alone, not the scripts the attack data was made from: ${list}` : ""}`,
   };
 }

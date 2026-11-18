@@ -130,8 +130,12 @@ export interface LinkedBlob {
 
 /** FNV-1a over the image with its build field zero; never 0. */
 function buildId(image: Buffer): number {
-  const zeroed = Buffer.from(image).fill(0, HEADER.build, HEADER.build + 4);
-  return fnv1a(zeroed) || 1;
+  const bytes = function* () {
+    for (let k = 0; k < image.length; k++) {
+      yield k >= HEADER.build && k < HEADER.build + 4 ? 0 : image[k]!;
+    }
+  };
+  return fnv1a(bytes()) || 1;
 }
 
 /** Objects as `blob/build.mjs` writes them (base64), ready to link. */
