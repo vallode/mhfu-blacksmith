@@ -5,5 +5,5 @@ packages:
 allowBuilds:
   "@parcel/watcher": true
   esbuild: true
-  sharp: true
+  sharp: false
   unrs-resolver: true
