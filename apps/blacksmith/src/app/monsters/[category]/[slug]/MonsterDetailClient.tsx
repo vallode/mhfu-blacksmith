@@ -80,14 +80,31 @@ const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
   e.currentTarget.style.visibility = "hidden";
 };
 
-/** A Guild Card size record (percent) in centimetres, with the crown it earns. */
-function SizeRecord({ size, monster }: { size: number; monster: Monster }) {
+/**
+ * A Guild Card size record (percent) in centimetres, with the crown it earns.
+ * A gold crown on the largest or a mini crown on the smallest already says
+ * which record it is, so the label is left out then. The crown, label and size
+ * stay on one line.
+ */
+function SizeRecord({
+  size,
+  monster,
+  kind,
+}: {
+  size: number;
+  monster: Monster;
+  kind: "largest" | "smallest";
+}) {
   const { t, formatNumber } = useLocale();
   const crown = monster.crowns ? crownFor(size, monster.crowns) : null;
+  const implied = crown === (kind === "largest" ? "gold" : "mini");
   return (
-    <span className="text-white tabular-nums">
-      {t.monsters.detail.cm(formatNumber(Math.round(sizeInCm(size, monster.base_size ?? 0))))}
-      {crown && <CrownIcon crown={crown} className="ml-[0.4rem] align-middle" />}
+    <span className="whitespace-nowrap">
+      {crown && <CrownIcon crown={crown} className="mr-[0.4rem] align-middle" />}
+      {!implied && <>{t.monsters.detail[kind]} </>}
+      <span className="text-white tabular-nums">
+        {t.monsters.detail.cm(formatNumber(Math.round(sizeInCm(size, monster.base_size ?? 0))))}
+      </span>
     </span>
   );
 }
@@ -392,17 +409,11 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 // A record the hunter hasn't set is 0; leave it out.
                 <p className="text-small whitespace-normal text-stat">
                   {record.largest > 0 && (
-                    <>
-                      {t.monsters.detail.largest}{" "}
-                      <SizeRecord size={record.largest} monster={monster} />
-                    </>
+                    <SizeRecord size={record.largest} monster={monster} kind="largest" />
                   )}
                   {record.largest > 0 && record.smallest > 0 && " · "}
                   {record.smallest > 0 && (
-                    <>
-                      {t.monsters.detail.smallest}{" "}
-                      <SizeRecord size={record.smallest} monster={monster} />
-                    </>
+                    <SizeRecord size={record.smallest} monster={monster} kind="smallest" />
                   )}
                 </p>
               )}
