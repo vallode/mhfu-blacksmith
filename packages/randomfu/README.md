@@ -101,7 +101,7 @@ web app shows as a tag):
 | `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                                                 |
 | `questGoals.enabled`              | off         | Randomize what hunting and slaying quests ask for (see "Quest goals")                                  |
 | `questGoals.capture`              | on          | Goals can ask for a capture                                                                            |
-| `questGoals.smallMonsters`        | on          | Goals can switch between large and small monsters                                                      |
+| `questGoals.smallMonsters`        | on          | Slaying quests can ask for other small monsters, or a large one                                        |
 | `trades.mode`                     | `off`       | `off`, `shuffle` what the Veggie Elder's trades give, or `randomize` it                                |
 | `trades.mix`                      | `elder`     | Within each hunting ground's Elder, or between `all` of them                                           |
 | `trades.scope`                    | `low`       | With `randomize`, the items trades can give besides their own: `low` / `high` rank, `any`              |
@@ -1138,7 +1138,7 @@ Nothing was found that reads 0x200. The quest type's first byte (+76) is
 1 for a single Slay goal and 4 for a hunt, two-goal ones included.
 
 `questGoals` gives each Village and Guild hunting or slaying quest a goal
-its own monsters allow, after every shuffle that changes them (map moves,
+its own monsters allow (a hunt stays a large monster's), after every shuffle that changes them (map moves,
 small monster species, large monster swaps) and before small monster
 counts, which then keep enough for a new Slay goal:
 
@@ -1146,15 +1146,19 @@ counts, which then keep enough for a new Slay goal:
   (`questGoals.capture`) capture one that can. A monster can be captured
   if some Village or Guild quest on the disc hunts it with flag 1 (43 on
   the EU disc).
-- (`questGoals.smallMonsters`) Slay a third to a half of one of its small
-  monsters (5 at least, never more than 55% of them, in fives from 10 up;
-  an endless spawn counts as 60). The disc asks for 15 of 31 Blangos and
-  20 of 52 Genprey. Off, a small monster goal stays one (on another of the
-  quest's small monsters, if it has one) and a large monster goal stays
-  large. Rocks and Great Thunderbugs are never a goal.
+- (`questGoals.smallMonsters`) A slaying quest (a goal of small monsters)
+  can instead ask for a third to a half of another of its small monsters
+  (5 at least, never more than 55% of them, in fives from 10 up; an
+  endless spawn counts as 60), or for one of its large monsters as above.
+  The disc asks for 15 of 31 Blangos and 20 of 52 Genprey. Off, slaying
+  quests keep their goals.
 
-A goal kind is drawn first, then a goal of it, so a quest with one large
-monster and many small ones isn't mostly small goals; drawing the quest's
+A hunt never becomes a small monster goal: tried in game, a Bulldrome hunt
+that became "Slay 15 Vespoids" was no hunt at all. No new goal asks for
+Vespoids (a quest that asked for them can keep them), nor Rocks or Great
+Thunderbugs: Vespoids keep coming in most quests, so they were often the
+only small monster with enough of them, and made 41 of one seed's 83 small
+goals. A goal kind is drawn first, then a goal of it; drawing the quest's
 own goal leaves it as it was. Which large monsters a goal can name: in a
 quest with one group of them, each that's there from the start (no flag
 or timer in its record, quantity 1), as many as it has records; in a quest
@@ -1180,8 +1184,9 @@ Left alone: deliveries, gathering and Paw Pass Ticket quests; Treasure
 Hunting, fortress and "Survive until Time Over" quests (their scripts end
 them another way: opcodes 42, 44, 53, 57); elder dragons' slay-or-repel
 goals; and any quest whose goals aren't one or two plain hunts or slays of
-monsters it has. Over six EU seeds with every monster option on, 188 to
-212 of the 291 eligible quests change, and every goal re-read from the
+monsters it has. Over six EU seeds, with and without every monster option
+on, 149 to 176 of the 291 eligible quests change (most of them to captures,
+about ten to other small monsters), and every goal re-read from the
 written disc names a monster the quest has, as many as it has, a capture
 only of a capturable one, and the same goals and line on the board.
 

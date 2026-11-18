@@ -14,7 +14,10 @@
  *   No quest on the disc asks for one.
  * - **Slay N** of one of its small monsters (0x201), N about a third to a
  *   half of how many the quest has of it, as the disc's own slay goals ask
- *   (15 of 31 Blangos, 20 of 52 Genprey).
+ *   (15 of 31 Blangos, 20 of 52 Genprey). Only a quest that asked for small
+ *   monsters gets one: a hunt stays a large monster's. Never Vespoids
+ *   (`NOT_GOALS`), which keep coming in most quests and so would be most
+ *   of them.
  *
  * Which large monsters can be a goal: the goal's own, and in a quest with
  * one group of large monsters, each other one there from the start (a
@@ -74,7 +77,7 @@ import type { ShuffleReport } from "./shuffle.js";
 export interface GoalOptions {
   /** Goals can ask for a capture. */
   capture: boolean;
-  /** Goals can ask for small monsters, and small monster goals for large ones. */
+  /** Slaying quests (small monster goals) can ask for other small monsters, or a large one. */
   small: boolean;
 }
 
@@ -93,6 +96,12 @@ const GOAL_LINES = 2;
 const SMALL_SHARE = [0.3, 0.5] as const;
 /** And never more than this share (the disc's highest is 20 of 38). */
 const SMALL_MOST = 0.55;
+/**
+ * Small monsters no new goal asks for: Vespoids are in most quests, and
+ * without end, so they'd be most small goals (41 of 83 on one seed). A
+ * quest that asked for them keeps them as a choice.
+ */
+const NOT_GOALS: ReadonlySet<number> = new Set([19]);
 /** A goal of fewer is over before it starts (the disc's fewest is 10). */
 const SMALL_FEWEST = 5;
 const SMALL_CAP = 30;
@@ -332,21 +341,20 @@ export function randomizeGoals(
       const pools = new Map<string, Goal[]>();
       const add = (pool: string, g: Goal) =>
         (pools.get(pool) ?? pools.set(pool, []).get(pool)!).push(g);
-      const targets = largeTargets(now, quest);
-      if (large.has(goal.id)) targets.set(goal.id, goal.count);
-      if (!options.small) {
-        // A small monster goal stays one; a large one stays large.
-        if (!large.has(goal.id)) targets.clear();
+      // A hunt stays a large monster's; a slaying quest changes only with `small`.
+      const hunt = large.has(goal.id);
+      if (hunt || options.small) {
+        const targets = largeTargets(now, quest);
+        if (hunt) targets.set(goal.id, goal.count);
+        for (const [id, count] of [...targets].sort((a, b) => a[0] - b[0])) {
+          add("hunt", { flags: huntOrSlay(id), id, count });
+          if (options.capture && capturable.has(id))
+            add("capture", { flags: CAPTURE_FLAGS, id, count });
+        }
       }
-      for (const [id, count] of [...targets].sort((a, b) => a[0] - b[0])) {
-        add("hunt", { flags: huntOrSlay(id), id, count });
-        if (options.capture && capturable.has(id))
-          add("capture", { flags: CAPTURE_FLAGS, id, count });
-      }
-      if (options.small || !large.has(goal.id)) {
+      if (!hunt && options.small) {
         for (const [id, have] of [...small].sort((a, b) => a[0] - b[0])) {
-          if (large.has(id)) continue;
-          if (!options.small && id !== goal.id) continue;
+          if (large.has(id) || (NOT_GOALS.has(id) && id !== goal.id)) continue;
           // The goal's own monster keeps its own count.
           const count = id === goal.id ? goal.count : smallCount(have, rng);
           if (count !== null) add("small", { flags: SLAY_FLAGS, id, count });
@@ -422,10 +430,13 @@ export function randomizeGoals(
         `${kinds.get(k)} ${{ hunt: "hunt or slay a large monster", capture: "capture one", small: "slay small monsters", "two goals": "two goals, each hunted or captured" }[k]}`,
     );
   const notes = [
-    "Each Village and Guild hunting or slaying quest asks for something its own monsters allow: to hunt one of its large monsters (slay, for those that can't be captured)" +
-      (options.capture ? ", to capture one that can be (killing it fails the quest)" : "") +
-      (options.small ? ", or to slay a third to a half of one of its small monsters" : "") +
-      ". Quests whose large monsters come in waves keep their target; quests with two goals keep both monsters.",
+    "Each Village and Guild hunting quest asks to hunt one of its large monsters (slay, for those that can't be captured)" +
+      (options.capture ? " or to capture one that can be (killing it fails the quest)" : "") +
+      "; a hunt never becomes small monsters." +
+      (options.small
+        ? " Each slaying quest asks for a third to a half of another of its small monsters (never Vespoids), or for one of its large monsters."
+        : " Slaying quests keep their goals.") +
+      " Quests whose large monsters come in waves keep their target; quests with two goals keep both monsters.",
     `Capturable monsters (those the disc's quests hunt): ${capturable.size}. Plurals learned from the disc's goals: ${plurals.size}.`,
     "The goal line is rewritten in English for every language, on the quest board too; the title and description aren't changed.",
     'Deliveries, gathering, Treasure Hunting, fortress, "Survive until Time Over" and elder dragon quests keep their goals.',

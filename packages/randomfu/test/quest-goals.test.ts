@@ -44,6 +44,7 @@ const APTONOTH = 12;
 const VELOCIPREY = 16;
 const KIRIN = 33;
 const BLANGO = 61;
+const VESPOID = 19;
 
 const NAMES: Record<number, string> = {
   [RATHIAN]: "Rathian",
@@ -53,6 +54,7 @@ const NAMES: Record<number, string> = {
   [VELOCIPREY]: "Velociprey",
   [KIRIN]: "Kirin",
   [BLANGO]: "Blango",
+  [VESPOID]: "Vespoid",
 };
 const name = (em: number) => NAMES[em] ?? `em${em}`;
 
@@ -69,9 +71,13 @@ const base = (
 
 const SPECS: FixtureQuest[] = [
   {
+    // A hunt with plenty of small monsters about: it stays a hunt.
     ...base(1001, "Hunt the Rathian"),
     monsters: [RATHIAN],
-    small: [[VELOCIPREY, 20]],
+    small: [
+      [VELOCIPREY, 20],
+      [VESPOID, 99],
+    ],
     goals: [{ flags: HUNT_FLAGS, id: RATHIAN, count: 1 }],
   },
   {
@@ -82,12 +88,14 @@ const SPECS: FixtureQuest[] = [
     questType: TYPE_SLAY,
   },
   {
-    // Slay 10 of 24 Blangos, with a Kut-Ku about.
+    // Slay 10 of 24 Blangos, with a Kut-Ku, 20 Velociprey and endless Vespoids about.
     ...base(1003, "Slay 10 Blangos"),
     monsters: [KUT_KU],
     small: [
       [BLANGO, 12],
       [BLANGO, 12],
+      [VELOCIPREY, 20],
+      [VESPOID, 99],
     ],
     goals: [{ flags: SLAY_FLAGS, id: BLANGO, count: 10 }],
     questType: TYPE_SLAY,
@@ -178,6 +186,9 @@ test("every goal the shuffle writes can be met by the quest's own monsters", () 
         // Kirin can't be captured: hunting it is slaying it.
         if (goal.id === KIRIN) assert.equal(goal.flags, SLAY_FLAGS);
         if (small > 0) assert.equal(goal.flags, SLAY_FLAGS);
+        // Hunts stay large, and no new goal is Vespoids.
+        if (questId !== 1003) assert.equal(small, 0, `${questId}: a hunt stays a large monster's`);
+        assert.notEqual(goal.id, VESPOID, "never Vespoids");
         seen.add(
           `${questId}:${goal.flags & GOAL_CAPTURE ? "capture" : small > 0 ? "small" : "large"}`,
         );
@@ -217,15 +228,7 @@ test("every goal the shuffle writes can be met by the quest's own monsters", () 
       }
     }
   }
-  for (const kind of [
-    "1001:capture",
-    "1001:small",
-    "1002:large",
-    "1002:small",
-    "1003:large",
-    "1003:small",
-    "1004:capture",
-  ]) {
+  for (const kind of ["1001:capture", "1002:large", "1003:large", "1003:small", "1004:capture"]) {
     assert.ok(seen.has(kind), `${kind} drawn at some seed`);
   }
 });
@@ -238,7 +241,7 @@ test("without captures or small monsters, goals keep to what's asked", () => {
       for (const goal of goals) assert.equal(goal.flags & GOAL_CAPTURE, 0, "no captures");
       const { questId } = quest.parsed.header;
       if (questId === 1001) assert.deepEqual(goals, [{ flags: HUNT_FLAGS, id: RATHIAN, count: 1 }]);
-      // A small monster goal stays one, on the quest's only small monster.
+      // A slaying quest keeps its goal.
       if (questId === 1003) assert.deepEqual(goals, [{ flags: SLAY_FLAGS, id: BLANGO, count: 10 }]);
     }
   }
@@ -247,14 +250,17 @@ test("without captures or small monsters, goals keep to what's asked", () => {
 });
 
 test("a small monster goal asks for a share of the quest's, never all of them", () => {
+  let drawn = 0;
   for (let seed = 0; seed < 60; seed++) {
     const { quests, edits } = run(`share${seed}`);
-    const payload = edits.questNow(quests[0]!);
+    const payload = edits.questNow(quests[2]!);
     const [goal] = setGoals(payload) as [Goal];
     if (goal.id !== VELOCIPREY) continue;
     // 20 Velociprey: at least 5, at most 11 (55%).
     assert.ok(goal.count >= 5 && goal.count <= 11, `asks for ${goal.count} of 20`);
+    drawn++;
   }
+  assert.ok(drawn > 0, "Velociprey drawn at some seed");
 });
 
 test("goal lines are the disc's style, wrapped to the goal box", () => {
