@@ -230,7 +230,7 @@ export default function QuestHubShell({
                   data-quest={q.id}
                   href={questHref(q)}
                   aria-current={q.id === id ? "page" : undefined}
-                  className={cn("list-row", q.id === id && "bg-white/10")}
+                  className={cn("list-row", q.id === id && "bg-(image:--gradient-hover-glow)")}
                 >
                   <p className={cn("truncate", q.urgent && "text-negative")}>
                     {game.quest(q.id, "title", q.title)}
