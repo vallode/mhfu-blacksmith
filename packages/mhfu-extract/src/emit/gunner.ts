@@ -22,7 +22,7 @@
  * - Bow `ShotCoatings` bits 7-9 are the poison, paralysis and sleep coating
  *   bonuses the site lists as `{ name, attack: "Add" }` elements.
  */
-import { RECOIL_CODE_BASE, RECOIL_LEVELS, RELOAD_LEVELS } from "game-data";
+import { RECOIL_CODE_BASE, RECOIL_LEVELS, RELOAD_LEVELS } from "game-data/gunner";
 import type { BinaryReader } from "../binary/reader.js";
 import {
   RAPID_FIRE_BITS,
