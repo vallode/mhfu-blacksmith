@@ -13,7 +13,7 @@ import {
   type HunterMotion,
   type WeaponMount,
 } from "@/lib/hunter";
-import { fetchMotions, inPlace, type MotionClip } from "@/lib/motions";
+import { fetchMotions, inPlace, MOTION_FPS, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
 import type { Messages } from "@/lib/i18n/messages";
@@ -29,6 +29,18 @@ export interface ModelCapsule {
   opacity: number;
 }
 
+/**
+ * An attack a monster's motion makes: capsules on its joints that show only
+ * while motion `slot` is between frames `from` (inclusive) and `to`.
+ */
+export interface ModelAttack {
+  slot: number;
+  from: number;
+  to: number;
+  /** Each on the model's `bone_<joint>`, placed in the bind pose like `ModelCapsule`. */
+  capsules: (Pick<ModelCapsule, "start" | "end" | "radius"> & { joint: number })[];
+}
+
 interface Props {
   /** URL of a .glb file. */
   src: string;
@@ -42,6 +54,8 @@ interface Props {
   pair?: boolean;
   /** Translucent capsules over the model, e.g. a monster's hitboxes. */
   capsules?: ModelCapsule[];
+  /** A monster's attacks, drawn while the motion playing can hit with them. */
+  attacks?: ModelAttack[];
   /**
    * Show `src` (a weapon) in the hands of the hunter, playing this weapon
    * type's motions. If the hunter's model can't load, the weapon shows alone.
@@ -68,6 +82,52 @@ function effectBlend(THREE: typeof import("three"), material: import("three").Ma
   material.blendDst = THREE.OneFactor;
 }
 
+/**
+ * A translucent capsule (a sphere of `radius` swept from `start` to `end`),
+ * drawn after the model and not hidden by it, so capsules inside the body
+ * still show; not writing depth keeps overlaps visible.
+ */
+function capsuleMesh(
+  THREE: Three,
+  { start, end, radius }: Pick<ModelCapsule, "start" | "end" | "radius">,
+  color: string,
+  opacity: number,
+): import("three").Mesh {
+  const from = new THREE.Vector3(...start);
+  const to = new THREE.Vector3(...end);
+  const length = from.distanceTo(to);
+  const mesh = new THREE.Mesh(
+    new THREE.CapsuleGeometry(radius, length, 8, 24),
+    new THREE.MeshBasicMaterial({
+      color: new THREE.Color(color),
+      transparent: true,
+      opacity,
+      depthTest: false,
+      depthWrite: false,
+    }),
+  );
+  mesh.position.copy(from).lerp(to, 0.5);
+  if (length > 0)
+    mesh.quaternion.setFromUnitVectors(
+      new THREE.Vector3(0, 1, 0),
+      to.clone().sub(from).normalize(),
+    );
+  mesh.renderOrder = 1;
+  mesh.userData.overlay = true;
+  return mesh;
+}
+
+/** Puts `mesh` (placed in the bind pose) on its bone, at the same place while the bone holds that pose. */
+function mountMesh(mesh: import("three").Mesh, mounted: CapsuleMount): void {
+  mesh.updateMatrix();
+  mesh.matrix.premultiply(mounted.inverse);
+  mesh.matrixAutoUpdate = false;
+  mounted.parent.add(mesh);
+}
+
+/** Opacity of an attack's capsules while it can hit. */
+const ATTACK_OPACITY = 0.5;
+
 /** Resolves a `var(--name)` colour against `element`; other colours pass through. */
 function resolveColor(element: Element, color: string): string {
   const match = /^var\((--[\w-]+)\)$/.exec(color);
@@ -80,10 +140,16 @@ interface CapsuleMount {
   inverse: import("three").Matrix4;
 }
 
-/** What the capsule effect needs of a shown model. */
+/** What the capsule effects need of a shown model. */
 interface SceneHandle {
   THREE: Three;
   scene: import("three").Scene;
+  /** Where a capsule on joint `joint` (in the bind pose) rides; null if the model has no such bone. */
+  jointMount: (joint: number) => CapsuleMount | null;
+  /** Called every frame, after the motion moves on. */
+  frameHooks: Set<() => void>;
+  /** The motion playing and its frame (60 fps); null before motions load. */
+  now: () => { slot: number; frame: number } | null;
   /** The bone a capsule (in the bind pose) rides on; null for an unskinned model. */
   mount: (
     start: ModelCapsule["start"],
@@ -119,6 +185,8 @@ const GROUND_SCALE = 1.4;
 interface MotionState {
   count: number;
   index: number;
+  /** The game's slot of the motion shown. */
+  slot: number;
   playing: boolean;
   /** What each clip is, when the clips are the hunter's (named by `motionLabel`). */
   motions?: HunterMotion[];
@@ -151,7 +219,14 @@ function motionLabel(t: Messages, motion: HunterMotion): string {
  * Interactive 3D view of a .glb model: drag to rotate, scroll/pinch to zoom.
  * three.js is imported on demand so it only loads on pages that show a model.
  */
-export default function ModelViewer({ src, label, pair = false, capsules, hunter }: Props) {
+export default function ModelViewer({
+  src,
+  label,
+  pair = false,
+  capsules,
+  attacks,
+  hunter,
+}: Props) {
   const t = useT();
   const containerRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("loading");
@@ -222,10 +297,14 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
       let frame = 0;
       const clock = new THREE.Clock();
       let mixer: import("three").AnimationMixer | null = null;
+      const frameHooks = new Set<() => void>();
+      /** The motion playing and its frame; set once motions load. */
+      let now: SceneHandle["now"] = () => null;
       const animate = () => {
         frame = requestAnimationFrame(animate);
         mixer?.update(clock.getDelta());
         holdWeapon?.();
+        for (const hook of frameHooks) hook();
         controls.update();
         renderer.render(scene, camera);
       };
@@ -434,6 +513,19 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
           };
         })();
 
+        // Attack capsules name their joint: each rides that bone, read in
+        // the bind pose like the hitboxes (the matrices are current above).
+        const jointMounts = new Map<number, CapsuleMount>();
+        if (!pair)
+          model.traverse((object) => {
+            const match = /^bone_(\d+)$/.exec(object.name);
+            if (match && !jointMounts.has(Number(match[1])))
+              jointMounts.set(Number(match[1]), {
+                parent: object,
+                inverse: object.matrixWorld.clone().invert(),
+              });
+          });
+
         // Frame the model for a turntable, viewed from slightly above (see fit).
         // Measured as posed (precise), so it's redone once a motion poses it.
         const box = new THREE.Box3();
@@ -534,7 +626,14 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
         const show = () => {
           if (shown) return;
           shown = true;
-          sceneRef.current = { THREE, scene, mount };
+          sceneRef.current = {
+            THREE,
+            scene,
+            mount,
+            jointMount: (joint) => jointMounts.get(joint) ?? null,
+            frameHooks,
+            now: () => now(),
+          };
           setStatus("ready");
           animate();
         };
@@ -613,6 +712,11 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
           first.stop();
 
           const state = { index: 0, playing: true };
+          now = () => {
+            const clip = sources[state.index];
+            const action = actions[state.index];
+            return clip && action ? { slot: clip.slot, frame: action.time * MOTION_FPS } : null;
+          };
           // A looping motion goes on from its loop start, as in the game, so
           // its lead-in plays once; any other replays from the start.
           mixer.addEventListener("finished", ({ action }) => {
@@ -629,6 +733,7 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
             setMotion({
               count: actions.length,
               index: state.index,
+              slot: sources[state.index]!.slot,
               playing: state.playing,
               motions: sources.some((clip) => (clip as HunterClip).motion)
                 ? sources.map((clip) => (clip as HunterClip).motion)
@@ -710,38 +815,17 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
     if (status !== "ready" || !target || !container || !capsules?.length) return;
     const { THREE, scene, mount } = target;
     const meshes: import("three").Mesh[] = [];
-    const up = new THREE.Vector3(0, 1, 0);
     for (const capsule of capsules) {
       if (capsule.opacity <= 0) continue;
-      const start = new THREE.Vector3(...capsule.start);
-      const end = new THREE.Vector3(...capsule.end);
-      const length = start.distanceTo(end);
-      const mesh = new THREE.Mesh(
-        new THREE.CapsuleGeometry(capsule.radius, length, 8, 24),
-        new THREE.MeshBasicMaterial({
-          color: new THREE.Color(resolveColor(container, capsule.color)),
-          transparent: true,
-          opacity: capsule.opacity,
-          // Drawn after the model and not hidden by it, so capsules inside
-          // the body still show; not writing depth keeps overlaps visible.
-          depthTest: false,
-          depthWrite: false,
-        }),
+      const mesh = capsuleMesh(
+        THREE,
+        capsule,
+        resolveColor(container, capsule.color),
+        capsule.opacity,
       );
-      mesh.position.copy(start).lerp(end, 0.5);
-      if (length > 0) mesh.quaternion.setFromUnitVectors(up, end.clone().sub(start).normalize());
-      mesh.renderOrder = 1;
-      mesh.userData.overlay = true;
-      // On its bone, at the same place while the bone holds its bind pose.
       const mounted = mount(capsule.start, capsule.end, capsule.radius);
-      if (mounted) {
-        mesh.updateMatrix();
-        mesh.matrix.premultiply(mounted.inverse);
-        mesh.matrixAutoUpdate = false;
-        mounted.parent.add(mesh);
-      } else {
-        scene.add(mesh);
-      }
+      if (mounted) mountMesh(mesh, mounted);
+      else scene.add(mesh);
       meshes.push(mesh);
     }
     return () => {
@@ -752,6 +836,47 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
       }
     };
   }, [capsules, status]);
+
+  // Attack capsules are all built up front, hidden, and shown each frame
+  // while the motion playing is within an attack's frames.
+  useEffect(() => {
+    const target = sceneRef.current;
+    const container = containerRef.current;
+    if (status !== "ready" || !target || !container || !attacks?.length) return;
+    const { THREE, jointMount, frameHooks, now } = target;
+    const color = resolveColor(container, "var(--color-attack)");
+    const shown = attacks.map((attack) => ({
+      attack,
+      meshes: attack.capsules.flatMap((capsule) => {
+        const mounted = jointMount(capsule.joint);
+        if (!mounted) return [];
+        const mesh = capsuleMesh(THREE, capsule, color, ATTACK_OPACITY);
+        mesh.visible = false;
+        mountMesh(mesh, mounted);
+        return [mesh];
+      }),
+    }));
+    const update = () => {
+      const at = now();
+      for (const { attack, meshes } of shown) {
+        const active =
+          at !== null && at.slot === attack.slot && at.frame >= attack.from && at.frame < attack.to;
+        for (const mesh of meshes) mesh.visible = active;
+      }
+    };
+    frameHooks.add(update);
+    return () => {
+      frameHooks.delete(update);
+      for (const { meshes } of shown)
+        for (const mesh of meshes) {
+          mesh.removeFromParent();
+          mesh.geometry.dispose();
+          (mesh.material as import("three").Material).dispose();
+        }
+    };
+  }, [attacks, status]);
+
+  const attackSlots = new Set(attacks?.map((attack) => attack.slot));
 
   const playWidth = Math.max(t.equipment.model.play.length, t.equipment.model.pause.length);
 
@@ -803,12 +928,18 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
               {t.equipment.model.motion}{" "}
               {/* As wide as the largest number, so the panel keeps its size. */}
               <span
-                className="inline-block text-right"
+                className={cn(
+                  "inline-block text-right",
+                  attackSlots.has(motion.slot) && "text-negative",
+                )}
                 style={{ width: `calc(var(--cell) * ${String(motion.count).length})` }}
               >
                 {motion.index + 1}
               </span>
               /{motion.count}
+              {attackSlots.has(motion.slot) && (
+                <span className="sr-only"> {t.equipment.model.attackMotion}</span>
+              )}
             </span>
           )}
           <button

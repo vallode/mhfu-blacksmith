@@ -24,7 +24,9 @@ expected) but not yet played in game. Star-level tiers, gathering sources,
 against the synthetic disc the tests build (`test/fixtures.ts`). `armor-skills`
 has been written to the EU disc and read back, but not yet played; so have
 quest maps, monster starts, small monster species and the wider quest
-reward pools. Armor stats have been run over the EU disc's tables, and
+reward pools, and `questGoals` (its goals and board copies re-read as written
+over six seeds with every monster option on; no capture goal has been played
+yet). Armor stats have been run over the EU disc's tables, and
 defense played in PPSSPP past 127 and 255 (see "Armor stats"); the presets
 turn them on, rarity included, though what the game reads armor rarity
 for hasn't been checked. A PSP
@@ -97,6 +99,9 @@ web app shows as a tag):
 | `terms.time`                      | off         | Randomize time limits                                                                                  |
 | `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                                     |
 | `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                                                 |
+| `questGoals.enabled`              | off         | Randomize what hunting and slaying quests ask for (see "Quest goals")                                  |
+| `questGoals.capture`              | on          | Goals can ask for a capture                                                                            |
+| `questGoals.smallMonsters`        | on          | Slaying quests can ask for other small monsters, or a large one                                        |
 | `trades.mode`                     | `off`       | `off`, `shuffle` what the Veggie Elder's trades give, or `randomize` it                                |
 | `trades.mix`                      | `elder`     | Within each hunting ground's Elder, or between `all` of them                                           |
 | `trades.scope`                    | `low`       | With `randomize`, the items trades can give besides their own: `low` / `high` rank, `any`              |
@@ -227,6 +232,7 @@ and the quest map options, which rebuild quests (see "Quest maps" below).
 | `supplies`        | Supply box lists in each quest `.mib`                                                  | Item and amount of each stack (see below)                     |
 | `terms`           | Quest header fee, reward, penalty, time limit                                          | The numbers, varied (see below)                               |
 | `deliveries`      | Delivery quest header target and goal line                                             | Which item and how many (see below)                           |
+| `quest-goals`     | The quest header's goal slots and type, the board's copy, the goal line                | Hunt, capture or slay, which monster, how many (see below)    |
 | quest maps        | Each quest `.mib`, rebuilt; the board's map byte                                       | The map, its gathering and small monsters, starts             |
 | `veggie-trades`   | The Veggie Elder's trade lists in `game_task.ovl`                                      | What each trade gives (see below)                             |
 | quest monsters    | Spawn records in each quest `.mib`                                                     | Which large monsters, their level, small counts               |
@@ -1108,6 +1114,88 @@ reward shuffle never moves it off the carves of a monster in that quest at
 its rank: Anteka Antlers, Popo Tongues and Piscine Livers are carved, not
 gathered, on the EU disc. So every delivery quest can still be finished.
 
+### Quest goals
+
+What clears a quest, found in the EU EBOOT (`src/game/goals.ts`): the
+quest manager sets up two goals from the header, the slots at `+0x6c` and
+`+0x74`, each `{ u32 flags, u16 id, u16 count }` (the first's id and count
+are `TargetID` and `TargetNum`), and the byte at `+0x6a` says how many must
+be met (1, the first; 2, both). The two "objective" slots at `+0x28` and
+`+0x30` aren't read by that setup (a quest to slay 15 Blangos has
+`{ 1, Blango, 9 }` there). A kill counts down a goal with flag 1 for that
+monster, and fails the quest if the goal also has 0x100; a capture counts
+down any monster goal. On the disc's Village and Guild quests:
+
+| Flags     | Goal line                 | Given to                                                                   |
+| --------- | ------------------------- | -------------------------------------------------------------------------- |
+| `1`       | Hunt (kill or capture)    | Large monsters that can be captured, only                                  |
+| `0x201`   | Slay                      | Small monsters, and the large ones that can't be captured (Kirin, Akantor) |
+| `0x101`   | Capture (a kill fails it) | No quest                                                                   |
+| `0x18004` | Slay or repel             | Elder dragons                                                              |
+| `2`       | Deliver                   | Deliveries                                                                 |
+
+Nothing was found that reads 0x200. The quest type's first byte (+76) is
+1 for a single Slay goal and 4 for a hunt, two-goal ones included.
+
+`questGoals` gives each Village and Guild hunting or slaying quest a goal
+its own monsters allow (a hunt stays a large monster's), after every shuffle that changes them (map moves,
+small monster species, large monster swaps) and before small monster
+counts, which then keep enough for a new Slay goal:
+
+- Hunt one of its large monsters, Slay it where it can't be captured, or
+  (`questGoals.capture`) capture one that can. A monster can be captured
+  if some Village or Guild quest on the disc hunts it with flag 1 (43 on
+  the EU disc).
+- (`questGoals.smallMonsters`) A slaying quest (a goal of small monsters)
+  can instead ask for a third to a half of another of its small monsters
+  (5 at least, never more than 55% of them, in fives from 10 up; an
+  endless spawn counts as 60), or for one of its large monsters as above.
+  The disc asks for 15 of 31 Blangos and 20 of 52 Genprey. Off, slaying
+  quests keep their goals.
+
+A hunt never becomes a small monster goal: tried in game, a Bulldrome hunt
+that became "Slay 15 Vespoids" was no hunt at all. No new goal asks for
+Vespoids (a quest that asked for them can keep them), nor Rocks or Great
+Thunderbugs: Vespoids keep coming in most quests, so they were often the
+only small monster with enough of them, and made 41 of one seed's 83 small
+goals. A goal kind is drawn first, then a goal of it; drawing the quest's
+own goal leaves it as it was. Which large monsters a goal can name: in a
+quest with one group of them, each that's there from the start (no flag
+or timer in its record, quantity 1), as many as it has records; in a quest
+whose monsters come in waves (more than one group: the Tigrex quests that
+send a Khezu, then a Giadrome), only the goal's own. A quest with two goals
+("Hunt the Rathalos and Rathian") keeps both monsters, each hunted or
+captured. The goal slots, `+0x6a` and the type byte are written to the
+quest and to its board records, which must carry the same goals as the
+quest (one that doesn't keeps its goals, and is listed).
+
+The goal line is written in English for every language, in the disc's
+style ("Hunt the Rathalos", "Capture the Rathian", "Slay 20 Genprey",
+"Hunt the Rathalos and capture the Rathian"), wrapped at 28 columns over
+at most two lines as the EU disc's are. Plurals are the disc's own where
+its goals count the monster ("Blangos", 32 of them), else the name for
+the Raptors and herbivores ("Velociprey", "Aptonoth") and an s for the
+rest. The line is repacked with the quest's other strings
+(`writeQuestText`), so it has room; a goal whose line wouldn't fit in the
+quest or a board record is passed over. The title and description aren't
+changed: a quest called "Slay the Great Kut-Ku!" can ask for a capture.
+
+Left alone: deliveries, gathering and Paw Pass Ticket quests; Treasure
+Hunting, fortress and "Survive until Time Over" quests (their scripts end
+them another way: opcodes 42, 44, 53, 57); elder dragons' slay-or-repel
+goals; and any quest whose goals aren't one or two plain hunts or slays of
+monsters it has. Over six EU seeds, with and without every monster option
+on, 149 to 176 of the 291 eligible quests change (most of them to captures,
+about ten to other small monsters), and every goal re-read from the
+written disc names a monster the quest has, as many as it has, a capture
+only of a capturable one, and the same goals and line on the board.
+
+Large monster swaps now move the second goal with its monster too (they
+moved only `TargetID` before, so a swapped "Rathalos and Rathian" quest
+still asked for the old second monster), and the Unknown Monster quests
+only take a quest as a template while its goal is a plain hunt or slay of
+its one monster.
+
 ### Veggie Elder trades
 
 The Veggie Elder trades on seven hunting grounds, each with its own list in
@@ -1567,6 +1655,10 @@ monsters, and one or two monsters past 32767 HP. With them, none.
 | Too few carves for a delivery                                   | Small monster counts never lower the monsters it's carved from                        |
 | A "Slay N" goal asks for more small monsters than the quest has | Small monster counts keep the goal's species at least at its count                    |
 | A goal's small monster is swapped or moved away                 | Small monster species and quest maps leave the goal's monsters and quest              |
+| A swap leaves a goal naming a monster the quest no longer has   | Swaps move both goals and the board's copy with the monster                           |
+| A goal asks to capture a monster that can't be captured         | Capture goals only name monsters some quest on the disc hunts with flag 1             |
+| A new goal asks for more monsters than the quest has            | Quest goals count the quest's own records; small monster counts keep the goal's count |
+| A goal names a monster that arrives late, or in a later wave    | Quest goals only name monsters there from the start, in quests with one group         |
 | A monster starts where it can't stand (water, sand, a nest)     | Swaps and Unknown Monster quests only start monsters where the disc starts their kind |
 | A monster's HP wraps past 32767                                 | Base HP, swaps and difficulty stay where HP fits; the pact and elites cap their own   |
 | The Paw Pass Ticket goes missing on a gathering quest           | Its supply box stack always stays                                                     |
@@ -1574,9 +1666,10 @@ monsters, and one or two monsters past 32767 HP. With them, none.
 Not covered: what a player chooses (a Hunter's Pact penalty, turning
 `supplies.keepEssentials` or `shops.keepEssentials` off), and odds (a
 randomized delivery asks for no more than its points give on average, so
-an unlucky run can fall short; retrying the quest rolls again). MHFU has
-no capture-only quests ("Hunt" takes a kill or a capture), so a monster
-that can't be captured never blocks one.
+an unlucky run can fall short; retrying the quest rolls again). The disc
+has no capture-only quests ("Hunt" takes a kill or a capture); with
+`questGoals.capture`, killing a capture goal's monster fails the quest, as
+the player is told by the goal line.
 
 ## How it writes the disc
 
@@ -1621,6 +1714,16 @@ that can't be captured never blocks one.
   file's own copy of the text, if anywhere, isn't known. Whether the game
   pays out, times or checks a delivery from the board's copy of the header
   or the quest file's isn't known either: both get the same values.
+- Capture goals in game. The kill check fails a goal with 0x100 and the
+  capture check counts any monster goal (`src/game/goals.ts`), but no
+  quest on the disc has one, so whether the quest clears on a capture,
+  fails on a kill, and what the end screen says, hasn't been played.
+- What reads the goal flag 0x200 and the "objective" slots at `+0x28` and
+  `+0x30`, if anything does; the goal shuffle leaves the objectives as
+  they were. Whether the game reads the board record's copy of the goals
+  at all, or only the quest file's: both get the same.
+- What the quest type's first byte does beyond the kind: the goal shuffle
+  keeps the disc's pairing (1 for one Slay goal, 4 otherwise).
 - Large monster counts. What `quantity` means for a large monster (it's 1
   in 536 of 554 records, 10 or 5 in a few), and how it relates to the
   header's `TargetNum`, isn't known.

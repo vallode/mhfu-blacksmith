@@ -1,6 +1,6 @@
 {
   "$comment": "Spanish game text: names keyed by their English name, quest board text keyed by quest ID. Missing entries fall back to English. Generated from the EU disc by `pnpm --filter mhfu-extract locales` (see packages/mhfu-extract/README.md, \"Localized text\"); don't hand-translate official names.",
-  "source": "EU disc ULES01213, extracted 2026-11-16",
+  "source": "EU disc ULES01213, extracted 2026-11-19",
   "weapon": {
     "Abominable Bow I": "Arco abominable I",
     "Abominable Bow II": "Arco abominable II",
@@ -8724,6 +8724,290 @@
       "fail": "Aucune prime",
       "details": "Une quête de collecte de\njour dans les montagnes\nenneigées. Collectez tous\nles composants que vous\ntrouverez sur place, puis\nlivrez le Ticket Passechat\npour achever le tout.",
       "client": "Chef village Pokke"
+    },
+    "60010": {
+      "title": "Montaña en el cielo",
+      "goal": "Mata al Yama Tsukami",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Una vez, siendo una niña, vi\nuna sombra gigante en el\ncielo. Era lo más grande que\nhabía visto. ¿Fue un sueño?\n¿Serías tan amable de com-\nprobarlo por mí, majete?",
+      "client": "Anciana pelo largo"
+    },
+    "60011": {
+      "title": "¿Dos muros? Vientos oscuros",
+      "goal": "Caza 2 Shogun Ceanataur\ntierra",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Todos están invitados a la\npelea definitiva! ¡Tengo 2\nmonstruos de los más duros,\nfuertes y terroríficos!\n¡Atrévete! ¡Prueba que\ntienes lo que hay que tener!",
+      "client": "Jefe sospechoso"
+    },
+    "60012": {
+      "title": "Bestias de las dunas",
+      "goal": "Caza 2 Blangonga cobre",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Hicimos una promesa a\nnuestro maestro, ¡miau!\nTenemos que llevar esta\ncarta a su destino.\nEstábamos muy cerca, pero\nhay monstruos por ahí...\nPor favor, ayúdanos... Miau",
+      "client": "Criaturas heridas"
+    },
+    "60013": {
+      "title": "¡Sacúdete el miedo!",
+      "goal": "Caza el Congalala esmeralda\ny el Congalala",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Escúchame! Últimamente, el\nagua de mi pueblo huele a\nalcantarilla. Seguro que\npasa algo malo en la fuente.\n¡Por favor, encuentra el\nproblema y acaba con él!",
+      "client": "Ama de casa del lago"
+    },
+    "60014": {
+      "title": "Doble cornamenta – Arena",
+      "goal": "Caza el Diablos negro\ny el Diablos",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Renuncié a este negocio\nhace mucho tiempo, pero no\npodría abandonarlo, así que\naquí estoy, ¡otra vez liado!\n¡Tus oponentes esta vez son\nun par de Diablos! ¡Buena\nsuerte!",
+      "client": "Jefe arena 1/2 edad"
+    },
+    "60015": {
+      "title": "¡Dos abismos! Viento cálido",
+      "goal": "Caza 2 Gravios negros",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Todos están invitados a la\npelea definitiva! ¡Tengo 2,\ncuéntenlos, 2 horribles\nGravios negros aquí, en esta\narena! ¿Crees que tienes lo\nque hay que tener para\nvencer a estas bestias?",
+      "client": "Jefe arena"
+    },
+    "60016": {
+      "title": "La lágrima del demonio",
+      "goal": "Caza 2 Rajang",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Dos Rajang raptaron a mi\nadorable novia y escaparon a\nlas montañas. No me importa\nque no me quiera, pero no\npuedo vivir sin ella. ¡Por\nfavor, préstame tu fuerza!",
+      "client": "Joven noble"
+    },
+    "60017": {
+      "title": "Arena de sangre y lágrimas",
+      "goal": "Caza todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "No suelo hacerlo así pero hay\nalguien que quiere probar tu\nfuerza. ¿Puedes mostrarme\ntu auténtico poder? Espera\nuna recompensa por\ntus esfuerzos.",
+      "client": "Caballero serio"
+    },
+    "60018": {
+      "title": "Cuatro reyes de fuego",
+      "goal": "Caza todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Hemos confirmado que la\nzona volcánica es adecuada\npara la alimentación de una\ngran variedad de monstruos.\n¿Tendrías la bondad de ir\nallí y cazar 4 especies para\nnuestra investigación?",
+      "client": "Científico de blanco"
+    },
+    "60019": {
+      "title": "Cacería divina para todos",
+      "goal": "Caza todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Oh tú que vas a someterte\na esta prueba! Cree en\ntu fuerza y en la de\nlos tuyos porque es en el\npeligro donde se prueba la\nfortaleza. ¡Lucha hasta el\nfin sin perder la esperanza!",
+      "client": "Caballero de rojo"
+    },
+    "60020": {
+      "title": "¡Fiesta del pánico porcino!",
+      "goal": "Mata 30 Bullfango",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Estoy contratando cazadores\npara divertir a los míos,\nji, ji ji... Hay toda una\ncolección de cerditos\nsueltos. Me pregunto\nsi serás capaz de\natraparlos...",
+      "client": "Dama exuberante"
+    },
+    "60021": {
+      "title": "Superpelea Hypnocatrice",
+      "goal": "Caza 2 Hypnocatrice",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Todos están invitados a la\npelea definitiva! ¡Tengo 2,\ncuéntalos, 2 Hypnocatrice\nesperando, listos para\nponerte a soñar. ¿Eres\ncapaz de vencer 2\npárpados somnolientos?",
+      "client": "Jefe arena"
+    },
+    "60022": {
+      "title": "Rodeado en un mar de magma",
+      "goal": "Caza el Lavasioth",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Íbamos a dar por acabada la\njornada cuando vimos una\nsombra enorme y oscura\nacechando bajo el magma al\nfondo de la cueva, como un\nNessie de la Lava. ¡Ten\ncuidado!",
+      "client": "Minero pálido"
+    },
+    "60023": {
+      "title": "¿¡Se llama \"Mega Kut-Ku\"!?",
+      "goal": "Caza 2 Yian Kut-Ku (?)",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Llegué aquí buscando una\ncomida nunca probada por los\nmortales. He oído que en la\nmontaña cercana vive una\ncriatura legendaria.\n¡Ayúdame a satisfacer mi\nambición! ¡A cazar!",
+      "client": "Experto en comida"
+    },
+    "60024": {
+      "title": "Triunvirato de las arenas",
+      "goal": "Caza todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¿Qué pasa con este desierto?\n¡Ya es la tercera vez hoy!\nTuve que dejar atrás todas\nmis cosas. Esas grandes\npociones... Me pregunto si\nestán por ahí en el estómago\nde algún monstruo.",
+      "client": "Farmacéutico norte"
+    },
+    "60025": {
+      "title": "Laurel, por favor.",
+      "goal": "Caza todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¿Quieres destacar? ¡Pues la\narena es perfecta para ti!\nHoy tenemos en el menú un\nCongalala, un Rathian, un\nShogun Ceanataur y muchas\notras cosas. ¡Usa bien las\npociones que encontraste!",
+      "client": "Jefe arena joven"
+    },
+    "60026": {
+      "title": "¡Baby boom! Todos a dormir",
+      "goal": "Sobrevive hasta fin del\ntiempo o usa el Ticket zarpa",
+      "fail": "Recompensa cero o Fin del\ntiempo antes de cazar 2",
+      "details": "¡Creía mudarme a un lugar\ntranquilo cuando compré la\ncasa, pero hay Hypnocatrice\npor todas partes, miau!\n¡Ayúdame a proteger mi casa\ncazando al menos dos de\nellos!",
+      "client": "Criatura resuelta"
+    },
+    "60027": {
+      "title": "¡Cacería en la jungla!",
+      "goal": "Caza todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Por el bien del pueblo llano\nnos propusimos ser valientes\ny explorar el bosque, pero\nnadie nos avisó de que\nexistiera un lugar tan\npeligroso. ¡Te pido que nos\nmantengas a salvo!",
+      "client": "Noble autoritario"
+    },
+    "60028": {
+      "title": "Festival acuático",
+      "goal": "Caza todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Quiero que éste sea un\nfestival divertido y, ¿sabes\ncómo creo que lo sería?\n¡Mostrando a la gente a\nbuenos cazadores en acción!\nTengo 4 monstruos listos,\n¡vamos a dar espectáculo!",
+      "client": "Showman"
+    },
+    "60029": {
+      "title": "El pez gordo",
+      "goal": "Mata al Fatalis",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Maestro! ¿Vas a explorar la\nvieja Torre? No te la puedes\nperder, miau... Si vas,\nverás algo increíble...\nAunque tengo un mal\npresentimiento... ",
+      "client": "Felyne blanco puro"
+    },
+    "60030": {
+      "title": "Las negras alas del destino",
+      "goal": "Mata al Fatalis",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Nos han informado de que\nse ha visto un dragón de\nalas negras en las ruinas de\nla Torre. Nuestra\nexpedición ha desaparecido\ny me temo lo peor. ¿No irá\nnadie a echar un vistazo?",
+      "client": "Maest. astuto Gremio"
+    },
+    "60031": {
+      "title": "Cielos escarlatas",
+      "goal": "Mata al Fatalis",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Mira ese cielo escarlata!\n¡Las leyendas son ciertas!\nLa ira de un Fatalis tiñe de\nrojo sangre hasta el cielo.\n¡Por favor, que alguien\ncalme esa rabia y devuelva\nel color al cielo!",
+      "client": "Pez gordo Gremio"
+    },
+    "60032": {
+      "title": "Un rayo de luz blanca",
+      "goal": "Mata al Fatalis",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Eres cazador, ¿no? Quiero\nque vengas conmigo... a\nun lugar maravilloso, donde\nla luz baila como estrellas\nen el cielo... Te juro que\nno te aburrirás...",
+      "client": "Chica de blanco"
+    },
+    "60033": {
+      "title": "2 colores Meow – Arena",
+      "goal": "Vence a 20 Felyne",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Al millón de admiradores de\nlos Felyne: ¡por fin llega \nnuestro desafío especial!\n¡Supéralo y tu recompensa\nserá un ticket muy\nespecial!",
+      "client": "Criaturas Ying-Yang"
+    },
+    "60034": {
+      "title": "Rey de altura",
+      "goal": "Mata al Akantor",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "El profundamente poderoso\nAkantor...\nLo hemos perseguido, pero\nsufriendo muchos daños.\n¡Cazadores de esta tierra!\n¡Os pido vuestra ayuda\ninmediata!",
+      "client": "Monarca benevolente"
+    },
+    "60035": {
+      "title": "¡Fiesta del cazador!",
+      "goal": "Caza todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "M-me toca encargarme del\nfestival y, em... *ejem* ¡La\nrecompensa por superar\nhábilmente este desafío es\nun ticket muy especial! Así\nque, em, ¡espero que todos\nlo intentemos!",
+      "client": "Chica de pelo corto"
+    },
+    "60037": {
+      "title": "Tigre del desierto",
+      "goal": "Caza el Tigrex",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Guau! ¡Parece que hay un\nmonstruo a rayas al otro\nlado! ¡Corre, vamos a ver\nsi vemos algo! Si es una\nbestia violenta estarás\nahí para protegerme,\n¿verdad?",
+      "client": "Doncella muy curiosa"
+    },
+    "60038": {
+      "title": "Terror doble",
+      "goal": "Caza 2 Rajang",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡No puedo creer lo que vi!\nFue horrible. Allí estaban,\n2 Rajang esperando en la\narena...\nEscucha, si das algún valor\na tu vida, ¡no te acerques\nallí! ¿De acuerdo?",
+      "client": "Mercenario pálido"
+    },
+    "61001": {
+      "title": "Misión Desafío 1",
+      "goal": "Mata al Yian Garuga",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "En la jungla han visto un\nYian Garuga y, como tu\nquerido instructor, creo\nque es una gran oportunidad\npara tu entrenamiento. Te\nvoy a prestar equipo, así\nque ¡vamos para allá!"
+    },
+    "61002": {
+      "title": "Misión Desafío 2",
+      "goal": "Mata a 2 King Shakalaka",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Anda! ¡Un desafío de\nShakalaka! Normalmente iría\nsolo, pero acabo de recordar\nque tengo algo importante\nde lo que ocuparme. ¡Ve\nen mi lugar y vuelve con\nese trofeo!"
+    },
+    "61003": {
+      "title": "Misión Desafío 3",
+      "goal": "Mata al Plesioth",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Esta vez, el campo de\nbatalla será la Arena\nacuática. El premio en\nmetálico es bueno, así que\npor qué no probar, ¿eh?\n¿La letra pequeña? ¡Vas a\nganar! Quizá... Ja ja."
+    },
+    "61004": {
+      "title": "Misión Desafío 4",
+      "goal": "Mata todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Identifícate con los\nmonstruos sabiendo cómo\npiensan; ¡es la mejor manera\nde vencerlos! Para eso es el\nentrenamiento. ¡Usa este\nequipo para entrar en la\ncabeza de esas bestias!"
+    },
+    "61005": {
+      "title": "Misión Desafío 5",
+      "goal": "Mata 2 Bulldrome",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Lo peor que puedes hacer\nes ir con el depósito\nvacío. ¡Saber comer es sa-\nber cazar! Te convertiré\nen el mejor cocinero del\nmundo. O al menos en\nexperto en barbacoas..."
+    },
+    "61006": {
+      "title": "Misión Desafío 6",
+      "goal": "Mata la Vespoid reina",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Me han pedido que haga algo\ncon los enormes bichos que\nhan aparecido en la Vieja\nJungla. Es sólo una idea,\npero quizá quieras ir a por\nla jefa. ¡Vete zumbando a\npor la reina!"
+    },
+    "61007": {
+      "title": "Misión Desafío 7",
+      "goal": "Mata a 2 Nargacuga",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Lucha con 2 Nargacuga a\nla vez! ¡Cuidado con su\nvelocidad y sus colas\nsuperfuertes! ¡Un latigazo\nes letal! Mantén la calma\ny piensa bien las cosas.\nNo tardarán en caer."
+    },
+    "61008": {
+      "title": "Misión Desafío 8",
+      "goal": "Mata todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Aquí regento mi arena\npropia, y estaré feliz de \nrepartir premios de mi\ntesoro a cualquiera que\ndestaque por sus tiempos.\nPuedes venir con amigos.\n¡No me hagas esperar!"
+    },
+    "61009": {
+      "title": "Misión Desafío 9",
+      "goal": "Mata 50 Velociprey",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Hoy tengo para ti una\naventura especial: un\ngrupo de Velociprey en\nla Gran arena. Pero,\n¡cuidado! ¡No son nada\nal lado del otro\nmonstruo que te espera!"
+    },
+    "61010": {
+      "title": "Misión Desafío 10",
+      "goal": "Mata al Rajang",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Es el temido Rajang dorado!\nEs el más fuerte que verás\njamás pero, tratándose de\nti, confío en que lo \nvencerás. ¡No te guardes\nnada y la victoria\nserá tuya!"
+    },
+    "61011": {
+      "title": "Fiesta Monster Hunter 1",
+      "goal": "Mata al Nargacuga",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Bienvenido! En este\ndesafío pedimos a los\nparticipantes que maten\nun Nargacuga del Gran\nbosque. ¡Confía en ti\nmismo y muéstranos la\nfuerza que llevas dentro!",
+      "client": "Promotor joven"
+    },
+    "61012": {
+      "title": "Fiesta Monster Hunter 2",
+      "goal": "Mata al Tigrex",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Hora del festival! ¡Tu\noponente es el poderoso\nTigrex! Como sabes, su\nfuerza es sofocante pero,\npara avanzar, debes abrirte\ncamino hasta el otro lado.",
+      "client": "Promotor campechano"
+    },
+    "61013": {
+      "title": "Fiesta Monster Hunter 3",
+      "goal": "Mata todos los monstruos\ngrandes",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "Parece que hemos llegado\na lo mejor de estas\ncompeticiones. ¡Me pregunto\nquién quedará en pie y se\nllevará el premio a casa.\nEstoy impaciente por ver\ntu magnífica técnica.",
+      "client": "Promotora voluptuosa"
+    },
+    "61014": {
+      "title": "Fiesta Monster Hunter 4",
+      "goal": "Mata al Rajang",
+      "fail": "Recompensa cero\nFin del tiempo",
+      "details": "¡Gracias a la partici-\npación de todos hemos\nllegado hasta aquí!\n¡Esperamos que todos\nlos cazadores se unan\nen una última cacería y\ndemuestren su fuerza!",
+      "client": "Promotor virtuoso"
     }
   },
   "award": {

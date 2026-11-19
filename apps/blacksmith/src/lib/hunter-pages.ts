@@ -2,7 +2,14 @@
  * The hunter section (/hunter/): its pages, in the order its list shows
  * them, and the numbers they show from the loaded save.
  */
-import { QUEST_HUBS, questsOnHub, questStarLevels, type Quest, type QuestHubSlug } from "./quests";
+import {
+  DOWNLOADED_QUEST_HUBS,
+  QUEST_HUBS,
+  questsOnHub,
+  questStarLevels,
+  type Quest,
+  type QuestHubSlug,
+} from "./quests";
 import type { SaveData } from "./save-store";
 
 export type HunterPageId =
@@ -59,11 +66,16 @@ export interface QuestProgress {
   }[];
 }
 
-/** How many of the boards' quests the hunter has cleared (none without cleared quests read). */
+/**
+ * How many of the boards' quests the hunter has cleared (none without
+ * cleared quests read). The downloaded quests' boards are left out: the save
+ * has no cleared bits for them.
+ */
 export function questProgress(quests: Quest[], save: SaveData | null): QuestProgress {
   const cleared = new Set(save?.clearedQuests ?? []);
   const count = (qs: Quest[]) => qs.filter((q) => cleared.has(q.id)).length;
-  const boards = QUEST_HUBS.map(({ slug }) => {
+  const onDisc = QUEST_HUBS.filter(({ slug }) => !DOWNLOADED_QUEST_HUBS.has(slug));
+  const boards = onDisc.map(({ slug }) => {
     const onHub = questsOnHub(quests, slug);
     const levels = questStarLevels(onHub).map((stars) => {
       const atLevel = onHub.filter((q) => q.stars === stars);

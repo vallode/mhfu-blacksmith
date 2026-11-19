@@ -16,14 +16,17 @@ import { writeLastQuestHub } from "@/lib/last-quest-hub";
 import { useQuests } from "@/lib/client-data";
 import {
   clearedQuestIds,
+  matchesQuestFilter,
+  questFilters,
   questHref,
   QUEST_HUBS,
   questsOnHub,
   questStarLevel,
   questStarLevels,
-  questTypesIn,
+  DOWNLOADED_QUEST_HUBS,
+  sameQuestFilter,
+  type QuestFilter,
   type QuestHubSlug,
-  type QuestType,
 } from "@/lib/quests";
 
 /** The quest ID in /quests/<hub>/<id>/, if the path has one. */
@@ -77,6 +80,24 @@ function StarTab({
   );
 }
 
+/** A quest's star level at the end of its row, on a board that lists every level together. */
+function RowStars({ hub, stars }: { hub: QuestHubSlug; stars: number }) {
+  const t = useT().quests;
+  const level = questStarLevel(hub, stars);
+  return (
+    // Relative, so the screen-reader text stays inside the scrolling card
+    // instead of stretching the page.
+    <span className="relative ml-auto flex flex-none items-center gap-[0.4rem] pl-[0.8rem] text-white/60">
+      <span aria-hidden="true">
+        {level.g && "G"}
+        {level.stars}
+      </span>
+      <img src="/images/star.png" alt="" className="aspect-[13/14] w-[20px] pixelated" />
+      <span className="sr-only">{t.board.starLevel(level.stars, level.g)}</span>
+    </span>
+  );
+}
+
 /**
  * The top row of a board's quest list: a back arrow and the board's name,
  * leading to the list of boards (/quests/), the way into another board.
@@ -122,7 +143,9 @@ export function QuestBoardsShell({ children }: { children: React.ReactNode }) {
  * A quest board: the board's star levels as tabs in the page bar, the
  * selected level's quests down the left (under a row back to the boards), with a selector at the bottom of
  * the card (like the weapon tree's filter bar) that filters them by type,
- * and the selected quest (or a prompt to pick one) on the right. With a
+ * and the selected quest (or a prompt to pick one) on the right. A board
+ * of downloaded quests (`DOWNLOADED_QUEST_HUBS`), with few quests, has no tabs: it lists every
+ * quest, each with its star level, and its selector filters by rank too. With a
  * hunter loaded, the quests they have cleared are marked CLEAR!!, like the
  * game's quest sheet. Lives in the hub's layout so the list stays mounted,
  * keeping its scroll position, when a quest is selected.
@@ -134,9 +157,11 @@ export default function QuestHubShell({
   hub: QuestHubSlug;
   children: React.ReactNode;
 }) {
-  const t = useT().quests;
+  const all = useT();
+  const t = all.quests;
   const game = useGameText();
   const { quests, error } = useQuests();
+  const single = DOWNLOADED_QUEST_HUBS.has(hub);
   const onHub = quests ? questsOnHub(quests, hub) : [];
   const levels = questStarLevels(onHub);
   const id = activeQuestId(usePathname(), hub);
@@ -150,24 +175,27 @@ export default function QuestHubShell({
   // Remember the board so the main menu's "Quests" entry reopens it.
   useEffect(() => writeLastQuestHub(hub), [hub]);
 
-  // The star level and type shown (null: every type). Opening a quest
-  // switches to its level, and off a type that would hide it; the tabs and
+  // The star level and filter shown (null: every quest). Opening a quest
+  // switches to its level, and off a filter that would hide it; the tabs and
   // the selector change them without leaving the quest.
   const [stars, setStars] = useState<number | null>(null);
-  const [type, setType] = useState<QuestType | null>(null);
+  const [chosen, setChosen] = useState<QuestFilter | null>(null);
   const [syncedTo, setSyncedTo] = useState<number | null>(null);
   if (active && id !== syncedTo) {
     setSyncedTo(id);
     setStars(active.stars);
-    if (type !== null && type !== active.type) setType(null);
+    if (!matchesQuestFilter(active, chosen)) setChosen(null);
   }
   const current = stars !== null && levels.includes(stars) ? stars : levels[0];
-  const atLevel = onHub.filter((q) => q.stars === current);
-  // Filtering only helps when the level has more than one type.
-  const types = questTypesIn(atLevel);
-  const filters: (QuestType | null)[] = types.length > 1 ? [null, ...types] : [null];
-  const filter = filters.includes(type) ? type : null;
-  const shown = filter ? atLevel.filter((q) => q.type === filter) : atLevel;
+  const atLevel = single ? onHub : onHub.filter((q) => q.stars === current);
+  // Filtering only helps when there is more than one type (or rank) to pick.
+  const filters: (QuestFilter | null)[] = [null, ...questFilters(atLevel, hub)];
+  const index = Math.max(
+    0,
+    filters.findIndex((f) => sameQuestFilter(f, chosen)),
+  );
+  const filter = filters[index] ?? null;
+  const shown = atLevel.filter((q) => matchesQuestFilter(q, filter));
 
   // On the first load of a quest page, bring its row into view.
   const ready = onHub.length > 0;
@@ -185,18 +213,22 @@ export default function QuestHubShell({
   const scrollToTop = () => listRef.current?.parentElement?.scrollTo({ top: 0 });
 
   const step = (by: 1 | -1) => {
-    const i = filters.indexOf(filter);
-    setType(filters[(i + by + filters.length) % filters.length] ?? null);
+    setChosen(filters[(index + by + filters.length) % filters.length] ?? null);
     scrollToTop();
   };
 
-  const index = filters.indexOf(filter);
+  const filterLabel = !filter
+    ? t.board.allQuests
+    : "rank" in filter
+      ? all.common.ranks[filter.rank]
+      : t.types[filter.type];
 
   return (
     <>
       <PageBar
         title={t.board.title(t.hubs[hub])}
         tabs={
+          !single &&
           levels.length > 0 && (
             <PageTabs label={t.board.starLevels}>
               {levels.map((s) => (
@@ -236,8 +268,11 @@ export default function QuestHubShell({
                     {game.quest(q.id, "title", q.title)}
                     {q.urgent && <span className="sr-only">{t.board.urgent}</span>}
                   </p>
+                  {single && <RowStars hub={hub} stars={q.stars} />}
                   {cleared?.has(q.id) && (
-                    <span className="ml-auto flex-none text-stat">{t.cleared}</span>
+                    <span className={cn("flex-none text-stat", !single && "ml-auto")}>
+                      {t.cleared}
+                    </span>
                   )}
                 </Link>
               ))}
@@ -253,13 +288,13 @@ export default function QuestHubShell({
           </Card>
           {filters.length > 1 && (
             <SelectorBar
-              label={filter ? t.types[filter] : t.board.allTypes}
-              groupLabel={t.board.typeFilter}
-              previousLabel={t.board.previousType}
-              nextLabel={t.board.nextType}
+              label={filterLabel}
+              groupLabel={t.board.filter}
+              previousLabel={t.board.previousFilter}
+              nextLabel={t.board.nextFilter}
               onStep={step}
               count={`${index + 1}/${filters.length}`}
-              countLabel={t.board.typeOf(index + 1, filters.length)}
+              countLabel={t.board.filterOf(index + 1, filters.length)}
             />
           )}
         </CardBox>

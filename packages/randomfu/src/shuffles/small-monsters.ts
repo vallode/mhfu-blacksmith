@@ -23,7 +23,7 @@ import { isDelivery, namedMonsters, type DocQuest } from "./quest-maps.js";
 import { getOrInsert, type ShuffleReport } from "./shuffle.js";
 
 /** Spawned like small monsters, but part of the area: Rocks and Great Thunderbug (emIDs). */
-const PROPS: ReadonlySet<number> = new Set([29, 56]);
+export const PROPS: ReadonlySet<number> = new Set([29, 56]);
 
 /** Draws before giving up on a quest whose species box each other in. */
 const ATTEMPTS = 20;

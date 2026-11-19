@@ -75,7 +75,7 @@ const OPTION_STEPS: Step[] = [
     title: "Quests",
     icon: "herb",
     tint: "var(--color-gem-green)",
-    sections: ["Supplies", "Quest terms", "Deliveries", "Quest maps"],
+    sections: ["Supplies", "Quest terms", "Deliveries", "Quest goals", "Quest maps"],
     intro:
       "What quests hand you, what they pay and how long they last, what delivery quests ask for, and which maps they're on.",
   },
@@ -143,6 +143,7 @@ const SECTION_ICONS: Record<string, Sprite> = {
   Supplies: { icon: "fluid", tint: "var(--color-gem-green)" },
   "Quest terms": { icon: "ticket", tint: "var(--color-gem-orange)" },
   Deliveries: { icon: "egg", tint: "var(--color-parchment)" },
+  "Quest goals": { icon: "scroll", tint: "var(--color-gem-orange)" },
   "Quest maps": { icon: "binoculars" },
   "Hunter's Pact": { icon: "ko", tint: "var(--color-gem-red)" },
   Poogie: { icon: "meat", tint: "var(--color-gem-pink)" },

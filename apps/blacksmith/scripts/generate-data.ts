@@ -18,7 +18,7 @@
  *   - item-uses.json             (the gear whose recipes take each item, see src/lib/item-uses.ts)
  *   - awards.json                (the Guild Card awards' names and descriptions, by index)
  *   - data-manifest.json         ({ files, version })
- *   - locale-<code>.json         (game text in other languages, from data/locales;
+ *   - locale-<code>.json         (game text in other languages, from data/mhfu/locales;
  *                                 fetched only in that language, so outside the
  *                                 manifest, the precache and the budget)
  *

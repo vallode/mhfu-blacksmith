@@ -135,6 +135,8 @@
   --color-hitbox-6: #7d86ff;
   --color-hitbox-7: #d36cff;
   --color-hitbox-8: #ff7ac8;
+  /* A monster's attack hitboxes, while they can hit. */
+  --color-attack: #ff2f2f;
 
   /* Pulsing green highlight behind hovered rows, cards and search results.
      The pulse animates only --glow-alpha (the strength of the background),

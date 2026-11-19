@@ -31,6 +31,11 @@
  * fetches it by the model's path; a monster whose hitboxes can't be read has
  * none, and the reason is logged.
  *
+ * With a decrypted `eboot.bin` from the EU disc, each monster also gets
+ * `monsters/emNN.attacks.json` (`monsters/attacks.ts`): the attack capsules
+ * its motions make, with the frames they can hit in, found by running the
+ * game's spawner code. Other discs' addresses aren't known, so they get none.
+ *
  * `public/models/hunter/` holds the hunter shown holding a weapon: `hunter.glb`
  * (the default armor set on the player's skeleton, `models/hunter.ts`), one
  * `wNN.motions.bin` per weapon class and `common.motions.bin`, the common
@@ -62,8 +67,17 @@ import {
   weaponPoses,
   type WeaponPoses,
 } from "../models/weapon-pose.js";
+import { isElf } from "../container/eboot.js";
 import { parseOvl, type OvlFile } from "../container/ovl.js";
+import {
+  buildSiteAttacks,
+  ebootImage,
+  ovlImage,
+  sweepMonsterAttacks,
+  type ImageSegment,
+} from "../monsters/attacks.js";
 import { readMonsterCollision } from "../monsters/collision.js";
+import { familyOverlayId } from "../monsters/families.js";
 import { buildSiteHitboxes, jointPositions } from "../monsters/hitboxes.js";
 import { locateMonsterChunks } from "../monsters/hitzones.js";
 import { OVERLAY_DIR } from "../monsters/overlays.js";
@@ -410,6 +424,14 @@ async function loadCollisionSource(unpacked: string): Promise<CollisionSource | 
   return { gameTask, chunksOffset: chunks.offset, emOvls };
 }
 
+/** The skeleton a monster package's mesh (its first PMO) is bound to; [] if none. */
+async function monsterSkeleton(pacPath: string): Promise<Bone[]> {
+  const pac = await readFile(pacPath);
+  const entries = isPac(pac) ? readPac(pac) : [];
+  const pmoEntry = entries.find((entry) => isPmo(entry.data));
+  return pmoEntry ? skeletonFor(entries, pmoEntry.index) : [];
+}
+
 /**
  * Writes `monsters/emNN.hitboxes.json` for one exported monster, or removes
  * a stale one and logs why there is none.
@@ -428,11 +450,7 @@ async function exportHitboxes(
     return false;
   };
   try {
-    const pac = await readFile(pacPath);
-    const entries = isPac(pac) ? readPac(pac) : [];
-    const pmoEntry = entries.find((entry) => isPmo(entry.data));
-    // The skeleton the model's mesh (the first PMO) is bound to.
-    const bones = pmoEntry ? skeletonFor(entries, pmoEntry.index) : [];
+    const bones = await monsterSkeleton(pacPath);
     if (bones.length === 0) return await fail("no skeleton in the model package");
     const collision = readMonsterCollision(
       source.gameTask,
@@ -461,9 +479,81 @@ async function exportHitboxes(
   }
 }
 
+/** What attack hitboxes are found with: the game's code and data, without a monster overlay, and every `emNN.ovl`. */
+interface AttackSource {
+  image: ImageSegment[];
+  overlays: Map<number, ImageSegment>;
+}
+
+async function loadAttackSource(
+  unpacked: string,
+  region: Region,
+  collision: CollisionSource | null,
+): Promise<AttackSource | null> {
+  const skip = (reason: string) => {
+    console.log(`${reason}: skipping monster attacks.`);
+    return null;
+  };
+  if (region !== "eu")
+    return skip(`Attack addresses are known for the EU disc only, not ${region}`);
+  if (!collision) return skip("No game_task.ovl");
+  const ebootPath = path.join(unpacked, "eboot.bin");
+  const gameSubPath = path.join(unpacked, OVERLAY_DIR, "game_sub.ovl");
+  if (!(await exists(ebootPath))) return skip("No eboot.bin");
+  if (!(await exists(gameSubPath))) return skip("No overlay/game_sub.ovl");
+  const eboot = await readFile(ebootPath);
+  if (!isElf(eboot)) return skip("eboot.bin isn't decrypted");
+  return {
+    image: [
+      ...ebootImage(eboot),
+      ovlImage(collision.gameTask),
+      ovlImage(parseOvl(await readFile(gameSubPath))),
+    ],
+    overlays: new Map([...collision.emOvls].map(([id, ovl]) => [id, ovlImage(ovl)])),
+  };
+}
+
+/**
+ * Writes `monsters/emNN.attacks.json` for one exported monster, or removes
+ * a stale one and logs why there is none.
+ */
+async function exportAttacks(
+  source: AttackSource,
+  pacPath: string,
+  emId: number,
+  siteName: string,
+  out: string,
+): Promise<boolean> {
+  const file = path.join(out, "monsters", `em${String(emId).padStart(2, "0")}.attacks.json`);
+  const fail = async (reason: string) => {
+    console.log(`no attacks for ${siteName}: ${reason}`);
+    await rm(file, { force: true });
+    return false;
+  };
+  try {
+    const bones = await monsterSkeleton(pacPath);
+    if (bones.length === 0) return await fail("no skeleton in the model package");
+    const sweep = sweepMonsterAttacks(source.image, source.overlays, emId, familyOverlayId(emId));
+    if ("error" in sweep) return await fail(sweep.error);
+    const { attacks, skipped } = buildSiteAttacks(sweep.spawns, jointPositions(bones));
+    for (const reason of skipped) console.log(`${siteName} attacks: skipped ${reason}`);
+    if (attacks.attacks.length === 0)
+      return await fail(
+        sweep.spawns.length
+          ? "no attack shape could be placed"
+          : "its spawner makes no attack objects",
+      );
+    await writeFile(file, `${JSON.stringify(attacks)}\n`);
+    return true;
+  } catch (err) {
+    return fail(err instanceof Error ? err.message : String(err));
+  }
+}
+
 async function exportMonsters(
   options: ExportSiteOptions,
   converter: Converter,
+  region: Region,
 ): Promise<Record<string, number>> {
   const siteNames = await siteMonsters(options.data);
   const monsters: Record<string, number> = {};
@@ -471,7 +561,9 @@ async function exportMonsters(
   if (!(await exists(emDir))) return monsters;
   const files = (await readdir(emDir)).filter((f) => /^em\d+\.pac$/.test(f)).sort();
   const collision = await loadCollisionSource(options.unpacked);
+  const attackSource = await loadAttackSource(options.unpacked, region, collision);
   let hitboxCount = 0;
+  let attackCount = 0;
   for (const file of files) {
     const id = Number.parseInt(file.slice(2), 10);
     const siteName = siteNames.get(id);
@@ -490,8 +582,15 @@ async function exportMonsters(
       (await exportHitboxes(collision, path.join(emDir, file), id, siteName, options.out))
     )
       hitboxCount++;
+    if (
+      attackSource &&
+      (await exportAttacks(attackSource, path.join(emDir, file), id, siteName, options.out))
+    )
+      attackCount++;
   }
-  console.log(`monsters: ${Object.keys(monsters).length}, with hitboxes: ${hitboxCount}`);
+  console.log(
+    `monsters: ${Object.keys(monsters).length}, with hitboxes: ${hitboxCount}, with attacks: ${attackCount}`,
+  );
   return monsters;
 }
 
@@ -626,7 +725,7 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
     armor: previous.armor ?? {},
   };
 
-  const monsters = await exportMonsters(options, converter);
+  const monsters = await exportMonsters(options, converter, unpackManifest.region);
   if (Object.keys(monsters).length) manifest.monsters = monsters;
 
   const ebootPath = path.join(options.unpacked, "eboot.bin");

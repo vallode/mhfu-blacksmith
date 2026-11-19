@@ -28,6 +28,7 @@ import {
   type ProducedLocale,
 } from "../locales/file.js";
 import { loadSiteKeys, nameSections } from "../locales/names.js";
+import { readDlcQuests } from "../quests/dlc.js";
 import {
   EU_SLOT_LOCALES,
   parseSlotMap,
@@ -64,6 +65,8 @@ export interface LocalesOptions {
   report?: string;
   /** Print what would be written without writing. */
   dryRun?: boolean;
+  /** The downloadable quests too, as `extract --dlc` takes them (src/quests/dlc.ts). */
+  dlc?: string;
 }
 
 export interface LocalesResult {
@@ -106,6 +109,11 @@ export async function runLocales(options: LocalesOptions): Promise<LocalesResult
   console.log(`Reading quests (${manifest.region.toUpperCase()} disc ${manifest.discId})...`);
   const { quests, skipped } = await readQuestsFromUnpackedDir(options.unpacked, manifest.region);
   console.log(`Parsed ${quests.length} quests, skipped ${skipped.length}.`);
+  if (options.dlc) {
+    const dlc = readDlcQuests(options.dlc, manifest.region);
+    quests.push(...dlc.quests.map((q) => q.parsed));
+    console.log(`Read ${dlc.quests.length} downloadable quests, skipped ${dlc.skipped.length}.`);
+  }
   const questResult = questLocales(
     quests,
     manifest.region,

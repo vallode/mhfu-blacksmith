@@ -172,7 +172,7 @@
         "id": { "type": "integer" },
         "hub": {
           "type": "string",
-          "enum": ["village", "guild", "training-school", "treasure-hunting"]
+          "enum": ["village", "guild", "training-school", "treasure-hunting", "event", "challenge"]
         },
         "rank": {
           "type": ["string", "null"],

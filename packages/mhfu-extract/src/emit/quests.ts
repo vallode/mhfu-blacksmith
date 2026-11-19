@@ -27,7 +27,8 @@ import { QUEST_PREREQUISITES } from "../tables/quest-prerequisites.js";
 import { URGENT_QUESTS } from "../tables/urgent-quests.js";
 import type { Rank } from "./common.js";
 
-export type QuestHub = "village" | "guild" | "training-school" | "treasure-hunting";
+export type QuestHub =
+  "village" | "guild" | "training-school" | "treasure-hunting" | "event" | "challenge";
 
 /**
  * The quest board, from the quest ID (`m#####.mib`). The disc numbers its
@@ -49,6 +50,9 @@ export type QuestHub = "village" | "guild" | "training-school" | "treasure-hunti
  *    Training quests.
  *  - `30001`-`30090`: 90 identical "Gathering - Snowy Mountains" copies
  *    with Guild Low Rank's header rank; kept there (the site hides them).
+ *  - `60xxx`: Event Quests, `61xxx`: Challenge Quests. Downloadable, never
+ *    on the disc (src/quests/dlc.ts). Event Quests number their stars like
+ *    the Guild's (★9-★11 are G★1-G★3) and carry its rank tiers.
  *
  * The header's `rank` byte is not the board: the Village's `10xxx` quests
  * carry the same values as Guild Low Rank. It is the quest's rank tier
@@ -60,6 +64,8 @@ export function questHub(questId: number): QuestHub | null {
   if (questId >= 10000 && questId < 12000) return "village";
   if (questId >= 20000 && questId < 23000) return "training-school";
   if (questId >= 30001 && questId <= 30090) return "guild";
+  if (questId >= 60000 && questId < 61000) return "event";
+  if (questId >= 61000 && questId < 62000) return "challenge";
   return null;
 }
 
@@ -474,7 +480,12 @@ export const QUEST_HUB_TO_FILE: Record<QuestHub, string> = {
   guild: "quests/guild.json",
   "training-school": "quests/training-school.json",
   "treasure-hunting": "quests/treasure-hunting.json",
+  event: "quests/event.json",
+  challenge: "quests/challenge.json",
 };
+
+/** Boards whose quests are downloaded, not on the disc: no file without them, so an extract without `--dlc` leaves `data/mhfu/` alone. */
+export const DOWNLOADED_HUBS: ReadonlySet<QuestHub> = new Set(["event", "challenge"]);
 
 /** Maps every parsed quest into the `data/mhfu/quests/*.json`-shaped output, grouped by hub, dropping unused slots. */
 export function emitQuestsFile(
@@ -487,6 +498,8 @@ export function emitQuestsFile(
     guild: [],
     "training-school": [],
     "treasure-hunting": [],
+    event: [],
+    challenge: [],
   };
   for (const parsed of parsedQuests) {
     const emitted = emitQuest(parsed, multipliers, sizes);
@@ -495,6 +508,7 @@ export function emitQuestsFile(
 
   const output: Record<string, { quests: EmittedQuest[] }> = {};
   for (const hub of Object.keys(byHub) as QuestHub[]) {
+    if (DOWNLOADED_HUBS.has(hub) && byHub[hub].length === 0) continue;
     output[QUEST_HUB_TO_FILE[hub]] = { quests: byHub[hub] };
   }
   return output;

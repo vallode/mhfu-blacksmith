@@ -35,6 +35,14 @@ export interface QuestHub<Slug extends string = string> {
   hub: string;
   /** The `rank` they have, for a board of one rank (the Guild's); null when any. */
   rank: string | null;
+  /** Whether the board numbers its stars like the Guild's, ★9 and up showing as G★1-G★3. */
+  guildStars: boolean;
+  /**
+   * Whether its quests are downloaded rather than on the disc (Event and
+   * Challenge Quests): a save has no cleared bit for them, and no copy of the
+   * game has them.
+   */
+  downloaded: boolean;
 }
 
 /** The sections of the site, which a game has or hasn't. */
@@ -125,12 +133,26 @@ const MHFU = {
     "elder-dragon",
   ],
   questHubs: [
-    { slug: "village", hub: "village", rank: null },
-    { slug: "low-rank", hub: "guild", rank: "low-rank" },
-    { slug: "high-rank", hub: "guild", rank: "high-rank" },
-    { slug: "g-rank", hub: "guild", rank: "g-rank" },
-    { slug: "training-school", hub: "training-school", rank: null },
-    { slug: "treasure-hunting", hub: "treasure-hunting", rank: null },
+    { slug: "village", hub: "village", rank: null, guildStars: false, downloaded: false },
+    { slug: "low-rank", hub: "guild", rank: "low-rank", guildStars: true, downloaded: false },
+    { slug: "high-rank", hub: "guild", rank: "high-rank", guildStars: true, downloaded: false },
+    { slug: "g-rank", hub: "guild", rank: "g-rank", guildStars: true, downloaded: false },
+    {
+      slug: "training-school",
+      hub: "training-school",
+      rank: null,
+      guildStars: false,
+      downloaded: false,
+    },
+    {
+      slug: "treasure-hunting",
+      hub: "treasure-hunting",
+      rank: null,
+      guildStars: false,
+      downloaded: false,
+    },
+    { slug: "event", hub: "event", rank: null, guildStars: true, downloaded: true },
+    { slug: "challenge", hub: "challenge", rank: null, guildStars: false, downloaded: true },
   ],
   sections: {
     blacksmith: true,

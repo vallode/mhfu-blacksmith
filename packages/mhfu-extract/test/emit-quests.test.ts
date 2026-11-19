@@ -221,6 +221,8 @@ test("questHub reads the board from the quest ID block", () => {
     [30090, "guild"],
     [40001, null],
     [50001, null],
+    [60010, "event"],
+    [61001, "challenge"],
   ];
   for (const [id, hub] of cases) assert.equal(questHub(id), hub, `quest ${id}`);
 });
@@ -355,7 +357,11 @@ test("emitQuestsFile groups quests by hub and drops unused slots and boardless q
   };
 
   const output = emitQuestsFile([VILLAGE_GIADROME, GIADROME_HUNT, disabled, training, boardless]);
-  assert.deepEqual(Object.keys(output).sort(), Object.values(QUEST_HUB_TO_FILE).sort());
+  // The downloadable boards' files only come with their quests (test/dlc.test.ts).
+  const boards = Object.entries(QUEST_HUB_TO_FILE)
+    .filter(([hub]) => hub !== "event" && hub !== "challenge")
+    .map(([, file]) => file);
+  assert.deepEqual(Object.keys(output).sort(), boards.sort());
   assert.equal(output[QUEST_HUB_TO_FILE.village]!.quests.length, 1);
   assert.equal(output[QUEST_HUB_TO_FILE["training-school"]]!.quests.length, 1);
   assert.equal(output[QUEST_HUB_TO_FILE.guild]!.quests.length, 1);

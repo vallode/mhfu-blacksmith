@@ -179,20 +179,20 @@ export default withPWA({
         },
       },
       {
-        // 3D models (public/models, see packages/mhfu-extract export-site): too
-        // big to precache, so keep the ones a visitor has viewed.
-        urlPattern: /\/models\/.+\.glb$/,
-        handler: "CacheFirst",
-        options: {
-          cacheName: "models",
-          expiration: { maxEntries: 200, maxAgeSeconds: 30 * 24 * 60 * 60 },
-        },
-      },
-      {
-        urlPattern: /\/models\/manifest\/.+\.json$/,
+        // 3D models and the files beside them (motions, hitboxes; public/models,
+        // see packages/mhfu-extract export-site): too big to precache, so keep
+        // the ones a visitor has viewed. NetworkFirst, not CacheFirst: a model
+        // is re-extracted in place (a GLB names its motions file), and a cached
+        // old one hid new motions until a hard refresh. "no-cache" makes the fetch
+        // revalidate past the browser's HTTP cache, so unchanged files cost a
+        // 304; offline, the cached copy serves. No network timeout: a slow
+        // load would fall back to the stale copy. Also covers the manifest.
+        urlPattern: /\/models\/.+\.(glb|bin|json)$/,
         handler: "NetworkFirst",
         options: {
           cacheName: "models",
+          fetchOptions: { cache: "no-cache" },
+          expiration: { maxEntries: 200, maxAgeSeconds: 30 * 24 * 60 * 60 },
         },
       },
       {
