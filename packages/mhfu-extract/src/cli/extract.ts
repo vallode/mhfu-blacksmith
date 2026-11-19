@@ -360,7 +360,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     for (const q of dlc.quests) {
       quests.push(q.parsed);
       payloads.push({ parsed: q.parsed, payload: q.payload });
-      raw.push(dumpQuestRaw(`dlc/${q.source}`, q.payload, q.parsed, q.payload.length));
+      raw.push(dumpQuestRaw(`dlc/${q.source}`, q.payload, q.parsed, q.size));
     }
     for (const s of dlc.skipped) skipped.push({ path: `dlc/${s.source}`, reason: s.reason });
     console.log(

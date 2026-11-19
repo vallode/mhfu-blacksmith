@@ -35,12 +35,12 @@ export const quests = {
     starLevel: (stars: number, g: boolean) =>
       `${g ? "G " : ""}${stars} ${stars === 1 ? "star" : "stars"}`,
     /** The filter at the bottom of the list, showing every quest. */
-    allTypes: "All quests",
-    typeFilter: "Quest filter",
-    previousType: "Previous filter",
-    nextType: "Next filter",
+    allQuests: "All quests",
+    filter: "Quest filter",
+    previousFilter: "Previous filter",
+    nextFilter: "Next filter",
     /** The filter's count, read out: "Filter 2 of 4". */
-    typeOf: (n: number, total: number) => `Filter ${n} of ${total}`,
+    filterOf: (n: number, total: number) => `Filter ${n} of ${total}`,
   },
   /** Quest types (lib/quests QUEST_TYPES), as the board's type filter shows them. */
   types: {

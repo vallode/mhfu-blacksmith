@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { armorSlugs } from "../src/lib/slug";
-import { questHubSlug, type QuestHubSlug } from "../src/lib/quests";
+import { questHubSlug, questStarLevel, type QuestHubSlug } from "../src/lib/quests";
 import { DATA_DIR } from "../src/lib/paths";
 import { slugify as itemSlug } from "../src/lib/slug";
 import { buildItemNameIndex, decorationItemId, type ItemRecord } from "../src/lib/items";
@@ -182,12 +182,18 @@ const QUEST_BOARD_SHORT: Record<QuestHubSlug, string> = {
   village: "Village",
   "low-rank": "Low",
   "high-rank": "High",
-  "g-rank": "G",
+  // "Guild", since the star level already says G ("Guild G1★").
+  "g-rank": "Guild",
   "training-school": "Training",
   "treasure-hunting": "Treasure",
   event: "Event",
   challenge: "Challenge",
 };
+/** A quest's star level as the game shows it: "3★", "G1★". */
+function starLabel(hub: QuestHubSlug, stars: number): string {
+  const level = questStarLevel(hub, stars);
+  return `${level.g ? "G" : ""}${level.stars}★`;
+}
 const questDir = path.join(dataDir, "quests");
 for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) {
   const data = readData(dataDir, "quests", file) as {
@@ -202,7 +208,7 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
       url: `/quests/${hub}/${q.id}`,
       category: "quest",
       type: hub,
-      rank: `${QUEST_BOARD_SHORT[hub]} ${q.stars}★`,
+      rank: `${QUEST_BOARD_SHORT[hub]} ${starLabel(hub, q.stars)}`,
       rarity: 0,
       elements: "",
       skills: "",

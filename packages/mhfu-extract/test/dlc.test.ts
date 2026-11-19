@@ -66,7 +66,8 @@ const CHEAT = [
 ].join("\r\n");
 
 test("readCheatQuests restores each quest's ID from its heading, for the region's game", () => {
-  const eu = readCheatQuests(CHEAT, "eu");
+  const { quests: eu, skipped } = readCheatQuests(CHEAT, "eu");
+  assert.deepEqual(skipped, []);
   assert.deepEqual(
     eu.map((q) => q.source),
     ["<DLC MHFU=60010> Mountain in the Sky", "<DLC MHFU=61001>Challenge Quest 1"],
@@ -74,18 +75,33 @@ test("readCheatQuests restores each quest's ID from its heading, for the region'
   assert.deepEqual(eu[0]!.payload, MOUNTAIN);
   assert.deepEqual(eu[1]!.payload, CHALLENGE);
 
-  const jp = readCheatQuests(CHEAT, "jp");
+  const jp = readCheatQuests(CHEAT, "jp").quests;
   assert.equal(jp.length, 1);
   assert.deepEqual(jp[0]!.payload, JP_MOUNTAIN);
 });
 
-test("readCheatQuests rejects a quest whose writes skip an address", () => {
-  const lines = cheatLines(MOUNTAIN);
-  lines.splice(3, 1);
-  assert.throws(
-    () => readCheatQuests(["_C0 <DLC MHFU=60010> Gap", ...lines].join("\n"), "eu"),
-    /doesn't follow/,
+test("readCheatQuests skips a section whose writes skip an address, or stop short", () => {
+  const gap = cheatLines(MOUNTAIN);
+  gap.splice(3, 1);
+  const text = [
+    "_C0 <DLC MHFU=60010> Gap",
+    ...gap,
+    "_C0 <DLC MHFU=60011> Short",
+    ...cheatLines(MOUNTAIN).slice(0, 20),
+    "_C0 <DLC MHFU=61001>Challenge Quest 1",
+    ...cheatLines(CHALLENGE, 0xc7b460),
+  ].join("\n");
+  const { quests, skipped } = readCheatQuests(text, "eu");
+  assert.deepEqual(
+    quests.map((q) => q.source),
+    ["<DLC MHFU=61001>Challenge Quest 1"],
   );
+  assert.deepEqual(
+    skipped.map((s) => s.source),
+    ["<DLC MHFU=60010> Gap", "<DLC MHFU=60011> Short"],
+  );
+  assert.match(skipped[0]!.reason, /doesn't follow/);
+  assert.match(skipped[1]!.reason, /too short/);
 });
 
 test("readDlcQuests reads a cheat file, sorted by quest ID", async () => {
@@ -111,7 +127,8 @@ test("readDlcQuests reads a directory of plain and QuestCipher-wrapped .mib file
   const dir = await mkdtemp(path.join(tmpdir(), "dlc-mib-"));
   try {
     await writeFile(path.join(dir, "m60010.mib"), MOUNTAIN);
-    await writeFile(path.join(dir, "m61001.mib"), encryptQuest(CHALLENGE, "eu", [1, 2, 3, 4]));
+    const wrapped = encryptQuest(CHALLENGE, "eu", [1, 2, 3, 4]);
+    await writeFile(path.join(dir, "m61001.mib"), wrapped);
     // A board quest isn't a download; a repeated ID keeps the first.
     await writeFile(path.join(dir, "m10001.mib"), questPayload(10001, "Village"));
     await writeFile(path.join(dir, "z60010.mib"), MOUNTAIN);
@@ -122,6 +139,9 @@ test("readDlcQuests reads a directory of plain and QuestCipher-wrapped .mib file
       [60010, 61001],
     );
     assert.deepEqual(quests[1]!.payload, CHALLENGE);
+    // The size read, before unwrapping.
+    assert.equal(quests[0]!.size, MOUNTAIN.length);
+    assert.equal(quests[1]!.size, wrapped.length);
     assert.deepEqual(
       skipped.map((s) => s.source),
       ["m10001.mib", "z60010.mib"],

@@ -23,8 +23,8 @@ import {
   questsOnHub,
   questStarLevel,
   questStarLevels,
+  DOWNLOADED_QUEST_HUBS,
   sameQuestFilter,
-  SINGLE_LIST_QUEST_HUBS,
   type QuestFilter,
   type QuestHubSlug,
 } from "@/lib/quests";
@@ -144,7 +144,7 @@ export function QuestBoardsShell({ children }: { children: React.ReactNode }) {
  * selected level's quests down the left (under a row back to the boards), with a selector at the bottom of
  * the card (like the weapon tree's filter bar) that filters them by type,
  * and the selected quest (or a prompt to pick one) on the right. A board
- * with few quests (`SINGLE_LIST_QUEST_HUBS`) has no tabs: it lists every
+ * of downloaded quests (`DOWNLOADED_QUEST_HUBS`), with few quests, has no tabs: it lists every
  * quest, each with its star level, and its selector filters by rank too. With a
  * hunter loaded, the quests they have cleared are marked CLEAR!!, like the
  * game's quest sheet. Lives in the hub's layout so the list stays mounted,
@@ -161,7 +161,7 @@ export default function QuestHubShell({
   const t = all.quests;
   const game = useGameText();
   const { quests, error } = useQuests();
-  const single = SINGLE_LIST_QUEST_HUBS.has(hub);
+  const single = DOWNLOADED_QUEST_HUBS.has(hub);
   const onHub = quests ? questsOnHub(quests, hub) : [];
   const levels = questStarLevels(onHub);
   const id = activeQuestId(usePathname(), hub);
@@ -218,7 +218,7 @@ export default function QuestHubShell({
   };
 
   const filterLabel = !filter
-    ? t.board.allTypes
+    ? t.board.allQuests
     : "rank" in filter
       ? all.common.ranks[filter.rank]
       : t.types[filter.type];
@@ -289,12 +289,12 @@ export default function QuestHubShell({
           {filters.length > 1 && (
             <SelectorBar
               label={filterLabel}
-              groupLabel={t.board.typeFilter}
-              previousLabel={t.board.previousType}
-              nextLabel={t.board.nextType}
+              groupLabel={t.board.filter}
+              previousLabel={t.board.previousFilter}
+              nextLabel={t.board.nextFilter}
               onStep={step}
               count={`${index + 1}/${filters.length}`}
-              countLabel={t.board.typeOf(index + 1, filters.length)}
+              countLabel={t.board.filterOf(index + 1, filters.length)}
             />
           )}
         </CardBox>

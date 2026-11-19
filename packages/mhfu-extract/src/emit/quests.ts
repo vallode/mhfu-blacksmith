@@ -485,7 +485,7 @@ export const QUEST_HUB_TO_FILE: Record<QuestHub, string> = {
 };
 
 /** Boards whose quests are downloaded, not on the disc: no file without them, so an extract without `--dlc` leaves `data/` alone. */
-const DOWNLOADED_HUBS: ReadonlySet<QuestHub> = new Set(["event", "challenge"]);
+export const DOWNLOADED_HUBS: ReadonlySet<QuestHub> = new Set(["event", "challenge"]);
 
 /** Maps every parsed quest into the `data/quests/*.json`-shaped output, grouped by hub, dropping unused slots. */
 export function emitQuestsFile(
