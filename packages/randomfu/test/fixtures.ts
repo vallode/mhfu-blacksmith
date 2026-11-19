@@ -45,8 +45,6 @@ import {
   EQUIP_UPGRADE_ENTRY_SIZE,
   ITEM_ENTRY_SIZE,
   JP_BASE_ADDRESS,
-  SKILL_ACTIVATION_ENTRY_SIZE,
-  TABLE_COUNTS,
   WEAPON_BM_ENTRY_SIZE,
   WEAPON_GUN_ENTRY_SIZE,
   tableOffset,
@@ -874,14 +872,6 @@ export function buildEboot(
       writeMaterials(buf, at + 4, materials);
     }
   }
-  // Skill activations: a row per tree 2 to 99, then 0xFF.
-  const activations = tableOffset("skillActivations");
-  for (let i = 0; i < TABLE_COUNTS.skillActivations; i++) {
-    const at = activations + i * SKILL_ACTIVATION_ENTRY_SIZE;
-    buf[at] = i + 2;
-    (FIXTURE_SKILL_ACTIVATIONS[i + 2] ?? []).forEach((skill, k) => (buf[at + 1 + k] = skill));
-  }
-  buf[activations + TABLE_COUNTS.skillActivations * SKILL_ACTIVATION_ENTRY_SIZE] = 0xff;
   const bm = tableOffset("weaponsBlademaster");
   for (const [i, price] of prices.blademaster)
     buf.writeUInt32LE(price, bm + i * WEAPON_BM_ENTRY_SIZE + 4);
@@ -1591,26 +1581,6 @@ export const TREE = {
   stamina: 65,
   edgemaster: 92,
 } as const;
-
-/**
- * What the fixture's trees turn on at -20, -15, -10, +10, +15 and +20
- * points, as on the EU disc. Other trees' rows are empty.
- */
-export const FIXTURE_SKILL_ACTIVATIONS: Record<number, number[]> = {
-  [TREE.health]: [22, 21, 20, 17, 18, 19],
-  [TREE.sharpness]: [28, 28, 28, 27, 27, 27],
-  [TREE.guard]: [43, 43, 42, 40, 40, 41],
-  [TREE.reload]: [52, 51, 50, 47, 48, 49],
-  [TREE.recoil]: [0, 0, 0, 53, 53, 54],
-  [TREE.hunger]: [73, 73, 72, 70, 71, 71],
-  [TREE.attack]: [81, 80, 79, 76, 77, 78],
-  [TREE.defense]: [87, 86, 85, 82, 83, 84],
-  [TREE.protection]: [89, 89, 89, 88, 88, 88],
-  [TREE.gathering]: [138, 138, 137, 135, 136, 136],
-  [TREE.fate]: [147, 146, 146, 144, 145, 145],
-  [TREE.stamina]: [169, 169, 169, 168, 168, 168],
-  [TREE.edgemaster]: [0, 0, 0, 209, 209, 209],
-};
 
 /**
  * Armor skills (`ArmorValue` +30): [tree, points] per entry, [0, 0] for an

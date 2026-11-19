@@ -24,7 +24,7 @@ expected) but not yet played in game. Star-level tiers, gathering sources,
 against the synthetic disc the tests build (`test/fixtures.ts`). `armor-skills`
 has been written to the EU disc and read back, but not yet played; so have
 quest maps, monster starts, small monster species and the wider quest
-reward pools, and skill activations. Armor stats have been run over the EU disc's tables, and
+reward pools. Armor stats have been run over the EU disc's tables, and
 defense played in PPSSPP past 127 and 255 (see "Armor stats"); the presets
 turn them on, rarity included, though what the game reads armor rarity
 for hasn't been checked. A PSP
@@ -57,8 +57,7 @@ web app shows as a tag):
 
 - A shuffle moves what's already in the game to new places: quest rewards,
   carves, gathering points, supply boxes, recipe materials, the smithy's
-  weapons and armor, armor skills (`armorSkills.mode shuffle`), what skill
-  points turn on (`skillActivations.mode`), shop stock,
+  weapons and armor, armor skills (`armorSkills.mode shuffle`), shop stock,
   the large and small monsters in quests, quests' maps and where their
   monsters start, and monsters' weaknesses. Nothing new is
   made; a weapon keeps its own stats wherever it turns up (randomized or
@@ -67,7 +66,7 @@ web app shows as a tag):
   prices, carry limits and stock size, quest rewards (`questRewards.mode randomize`), quest money and time limits,
   delivery targets, monster difficulty, size, crown spread, small monster counts, base HP
   and status resistance, new armor skills (`armorSkills.mode` `randomize`),
-  skill thresholds (`skillActivations.thresholds`), and weapons' attack, affinity and element or status values.
+  and weapons' attack, affinity and element or status values.
 
 | Setting                           | Default     | What it does                                                                                           |
 | --------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------ |
@@ -129,8 +128,6 @@ web app shows as a tag):
 | `armorSkills.enabled`             | off         | Change armor skills                                                                                    |
 | `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`)                 |
 | `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                                     |
-| `skillActivations.mode`           | `off`       | What each skill tree turns on: `off`, `shuffle` (trees trade them) or `split` (good and bad apart)     |
-| `skillActivations.thresholds`     | off         | Each skill needs 5 points more or fewer, between 10 and 20                                             |
 | `armorStats.defense`              | `off`       | Each piece's defense: `off`, `shuffle` (trade, with sphere caps) or `randomize`                        |
 | `armorStats.defenseSpread`        | 0.2         | How far defense moves, when randomized                                                                 |
 | `armorStats.resistances`          | `off`       | Each piece's five resistances: `off`, `shuffle` (trade all five) or `randomize`                        |
@@ -190,8 +187,8 @@ web app shows as a tag):
 Each preset replaces every option and keeps the seed. They're built on
 the shuffle and randomize split, and a test (`test/settings.test.ts`) keeps
 them to what's described here. Options not yet tried in game are in no
-preset: quest maps, monster starts, small monster species, the Veggie
-Elder's trades and skill activations. Turn those on yourself once you've tried them on your disc.
+preset: quest maps, monster starts, small monster species and the Veggie
+Elder's trades. Turn those on yourself once you've tried them on your disc.
 Armor stats are the exception: the presets turn on all four, though only
 defense has been played. Resistances, slots and rarity have only been run
 over the EU disc's tables, and what the game reads armor rarity for hasn't
@@ -224,7 +221,6 @@ and the quest map options, which rebuild quests (see "Quest maps" below).
 | weapon stats      | `WepBMValues` / `WepGunValues` in the EBOOT                                            | Attack, affinity, element or status (see below)               |
 | `armor`           | Armor create entries in the EBOOT                                                      | Which piece each place makes (see below)                      |
 | `armor-skills`    | `ArmorValues` skill entries in the EBOOT                                               | Each piece's skill trees and points (see below)               |
-| skill activations | The skill activation table in the EBOOT                                                | What each tree turns on at each point total (see below)       |
 | armor stats       | `ArmorValues` defense, resistances, slots, sphere caps and rarity in the EBOOT         | Each piece's numbers, kept, traded or varied (see below)      |
 | `shops`           | Shop item lists in `lobby_task.ovl`                                                    | Which items each shop sells (see below)                       |
 | `supplies`        | Supply box lists in each quest `.mib`                                                  | Item and amount of each stack (see below)                     |
@@ -562,74 +558,9 @@ pieces together (seven trees on the EU disc, Edgemaster and Fury among
 them). Shuffled, six of the seven fell below +10 from armor alone. The
 spoiler lists, for each of these trees, the most points armor alone gives
 one hunter: a piece per slot that one hunter type and sex can wear, with
-Torso Up pieces adding the chest's points again. Neither mode reads what
-a tree's points turn on (that's "Skill activations" below). Skills are a piece's own, so with `armor` they go
+Torso Up pieces adding the chest's points again. Neither mode reads or changes what a
+tree's points turn on (mhfu-extract's skill activation table). Skills are a piece's own, so with `armor` they go
 with the piece to its new place.
-
-### Skill activations
-
-`skillActivations.mode` and `skillActivations.thresholds`
-(`src/shuffles/skill-activations.ts`) change what a skill tree's points
-turn on, not the points: armor and decorations keep theirs, so a set built
-for Attack might now give Divine Protection. mhfu-extract's `data/skills.json`
-isn't read from the disc (it's the Blacksmith site's list), so the table was
-found here, and mhfu-extract reads it now (`tables/skill-activations.ts`).
-
-It's 98 rows of 7 bytes in the EBOOT, at EU file offset `0x1b6114` (FUC
-`0x1b12b4`, JP vaddr `0x089b2d00`; the same bytes on both, found on EU by
-its first three rows): a tree (`SkillID` 2 to 99, then a row starting
-`0xFF`) and the skill it turns on at -20, -15, -10, +10, +15 and +20
-points. A skill is an index into the activation names, 0 "No Skill" to
-217 "Auto-Reload": the EU message file's table 0 from entry 906, and a
-commented-out block in mhp2g-patterns' `equip.enum`. A tree with fewer
-levels repeats a skill: Paralysis is `03 03 03 01 02 02`, Para Duration
-[x2] at -10 and below, Halved at +10, Negated at +15 and +20. Torso Up has
-no row. The only code that reads it (EU `0x088d897c`) walks the rows to
-the `0xFF`, sums each tree's points, picks a column with the same six
-comparisons for every tree (`slti` -19, -14, -9, 20, 15, 10), and passes
-that column's skill to `0x088d8da4`, which appends it, with the tree and
-points, to a list of six in the structure it's given (+0x676 skills,
-+0x634 trees, +0x63a points). It doesn't check the skill for 0, so a
-total that reaches an empty column takes a place too. Eleven places call
-it; whether a seventh skill is dropped wasn't checked. So the point totals are code; per tree, only which skill
-each column gives can change. On the disc, every half (the three good
-columns, or the three bad ones) with a skill has one from 10 points, 50
-trees have no bad half, and no armor gives negative points to those (one
-decoration gives Auto-Reload -1).
-
-- **shuffle** (`skillActivations.mode shuffle`): trees trade whole rows,
-  good and bad skills together, so Attack might turn on Divine Protection
-  at +10 and Demonic Protection at -10.
-- **split**: good halves trade between trees, and bad halves between the
-  trees that have one, apart: a tree's bad skills come from another tree
-  than its good ones.
-
-Rows trade only between trees that suit the same pieces, as
-`armor-skills`' randomize judges it from the disc's armor and decorations
-(anyone, Blademasters, Gunners, or only pieces both can wear), so Reload
-Speed stays on a tree Gunner armor has. With `shuffle`, trees with a bad
-half trade only with others that have one, so trees no armor gives
-negative points to still turn on nothing below 0. Every skill stays on
-exactly one tree. A tree no armor or decoration has keeps its row (none
-on the EU disc).
-
-`skillActivations.thresholds`, with either mode or alone, moves each
-skill in a half one column (5 points) nearer or further, or leaves it,
-within 10 to 20 and still weakest first, drawn evenly from the ways that
-fit: a lone skill at +10 stays or needs +15; Recoil Reduction +2 at +20
-can come down to +15. A half with three skills can't move. Since the
-disc starts every half at 10, it mostly makes skills harder to turn on
-(and bad skills harder to fall into). Trees no decoration adds points to
-(seven on the EU disc, Edgemaster and Fury among them) keep their columns,
-since armor alone may not reach the next one.
-
-The spoiler lists each tree's skills with the points they need, and what
-it had. Run over the EU disc (`shuffle` with thresholds, seed `act1`), 96
-of 98 trees turn on something new, the written EBOOT reads back with the
-same 217 skills (every one from 1 to 217 is on some tree) and the same
-tree bytes, and nothing outside the table changes. Not played yet: that
-the status screen shows the new skills, and that a skill does what it
-always did whichever tree turns it on, haven't been checked in game.
 
 Armor stats (`armorStats.defense`, `armorStats.resistances`,
 `armorStats.slots`, `armorStats.rarity`; `src/shuffles/armor-stats.ts`)

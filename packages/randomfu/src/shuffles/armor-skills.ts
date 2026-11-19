@@ -41,8 +41,8 @@
  * together. Shuffled on the EU disc, six of the seven fell below +10 from
  * armor alone.
  *
- * Neither mode reads what a tree's points turn on (mhfu-extract's
- * `tables/skill-activations.ts`, changed by `skill-activations.ts`).
+ * Neither mode reads or changes what a tree's points turn on (mhfu-extract's
+ * `tables/skill-activations.ts`).
  */
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { HUNTER_TYPE_BITS } from "mhfu-extract/src/emit/armor.js";
@@ -72,7 +72,7 @@ const TORSO_UP = 1;
 const SHUFFLE_ATTEMPTS = 20;
 
 /** Which pieces a tree suits: anyone's, one hunter type's, or only pieces both can wear. */
-export type TreeUse = "anyone" | "blade" | "gun" | "both-only";
+type TreeUse = "anyone" | "blade" | "gun" | "both-only";
 
 interface Skill {
   tree: number;
@@ -92,7 +92,7 @@ interface Entry {
   skill: Skill;
 }
 
-export function treeName(tree: number): string {
+function treeName(tree: number): string {
   return tableName("SkillID", tree) ?? `Skill ${tree}`;
 }
 
@@ -285,39 +285,6 @@ function bestFromArmor(pieces: Piece[], skillsOf: (p: Piece) => Skill[], tree: n
   return best;
 }
 
-/** Trees some decoration adds points to. */
-function decorationTreesOf(eboot: Buffer, resolver: TableAddressResolver | undefined): Set<number> {
-  return new Set(
-    readDecorationSkills(new BinaryReader(eboot), resolver).flatMap((d) =>
-      d.skills.filter((s) => s.skill !== 0 && s.amount > 0).map((s) => s.skill),
-    ),
-  );
-}
-
-/**
- * The disc's skill trees: which pieces each suits (`treeUses`, Torso Up
- * left out; a tree no armor or decoration has isn't listed), and the trees
- * no decoration adds points to, so armor is their only source.
- */
-export function skillTrees(
-  eboot: Buffer,
-  resolver: TableAddressResolver | undefined,
-): { uses: Map<number, TreeUse>; armorOnly: number[] } {
-  const pieces = readPieces(eboot, resolver);
-  const decorationTrees = decorationTreesOf(eboot, resolver);
-  return {
-    uses: treeUses(pieces, decorationTrees, new Set([TORSO_UP])),
-    armorOnly: armorOnlyTrees(pieces, decorationTrees),
-  };
-}
-
-function armorOnlyTrees(pieces: Piece[], decorationTrees: Set<number>): number[] {
-  const armorTrees = new Set(pieces.flatMap((p) => p.before.map((s) => s.tree)));
-  return [...armorTrees]
-    .filter((t) => t !== 0 && t !== TORSO_UP && !decorationTrees.has(t))
-    .sort((a, b) => a - b);
-}
-
 export interface ArmorSkillOptions {
   mode: ArmorSkillMode;
   /** Trees no decoration has stay on their pieces and aren't drawn. */
@@ -332,8 +299,15 @@ export function randomizeArmorSkills(
   edits: Edits,
 ): ShuffleReport {
   const pieces = readPieces(eboot, resolver);
-  const decorationTrees = decorationTreesOf(eboot, resolver);
-  const armorOnly = armorOnlyTrees(pieces, decorationTrees);
+  const decorationTrees = new Set(
+    readDecorationSkills(new BinaryReader(eboot), resolver).flatMap((d) =>
+      d.skills.filter((s) => s.skill !== 0 && s.amount > 0).map((s) => s.skill),
+    ),
+  );
+  const armorTrees = new Set(pieces.flatMap((p) => p.before.map((s) => s.tree)));
+  const armorOnly = [...armorTrees]
+    .filter((t) => t !== 0 && t !== TORSO_UP && !decorationTrees.has(t))
+    .sort((a, b) => a - b);
   const kept = new Set([TORSO_UP, ...(keepArmorOnly ? armorOnly : [])]);
   const entries = pieces.flatMap((piece) =>
     piece.before.flatMap((skill, position) =>
