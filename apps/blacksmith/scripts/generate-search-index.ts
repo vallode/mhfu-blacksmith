@@ -185,6 +185,8 @@ const QUEST_BOARD_SHORT: Record<QuestHubSlug, string> = {
   "g-rank": "G",
   "training-school": "Training",
   "treasure-hunting": "Treasure",
+  event: "Event",
+  challenge: "Challenge",
 };
 const questDir = path.join(dataDir, "quests");
 for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) {

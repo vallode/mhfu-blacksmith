@@ -10,6 +10,8 @@ export const quests: Messages["quests"] = {
     // "Escuela de entrenamiento" overflows the board list at phone width.
     "training-school": "Entrenamiento",
     "treasure-hunting": "Búsqueda de tesoros",
+    event: "Eventos",
+    challenge: "Desafíos",
   },
   // Short enough for the corner of the quest page, like "CLEAR!!".
   cleared: "SUPERADA",

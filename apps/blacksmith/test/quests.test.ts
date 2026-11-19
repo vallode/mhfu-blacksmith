@@ -335,6 +335,13 @@ describe("quest lookups", () => {
     assert.deepEqual(questStarLevel("high-rank", 6), { g: false, stars: 6 });
   });
 
+  test("questStarLevel shows Event Quests' ★9-★11 as G★1-G★3, like the Guild's", () => {
+    assert.deepEqual(questStarLevel("event", 3), { g: false, stars: 3 });
+    assert.deepEqual(questStarLevel("event", 8), { g: false, stars: 8 });
+    assert.deepEqual(questStarLevel("event", 11), { g: true, stars: 3 });
+    assert.deepEqual(questStarLevel("challenge", 5), { g: false, stars: 5 });
+  });
+
   test("questStarLevels lists each star level once, lowest first", () => {
     assert.deepEqual(
       questStarLevels([{ stars: 3 }, { stars: 1 }, { stars: 3 }, { stars: 8 }]),

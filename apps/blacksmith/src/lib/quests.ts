@@ -6,7 +6,11 @@
 
 import { CROWN_ORDER, type Crown } from "./crowns";
 
-/** A quest board: Village, the three Guild ranks, Training School, Treasure Hunting. */
+/**
+ * A quest board: Village, the three Guild ranks, Training School, Treasure
+ * Hunting, then the downloaded Event and Challenge Quests (not on the disc;
+ * see mhfu-extract's README, "Downloadable quests").
+ */
 export const QUEST_HUBS = [
   { slug: "village", label: "Village", hub: "village", rank: null },
   { slug: "low-rank", label: "Guild Low Rank", hub: "guild", rank: "low-rank" },
@@ -14,10 +18,18 @@ export const QUEST_HUBS = [
   { slug: "g-rank", label: "Guild G Rank", hub: "guild", rank: "g-rank" },
   { slug: "training-school", label: "Training School", hub: "training-school", rank: null },
   { slug: "treasure-hunting", label: "Treasure Hunting", hub: "treasure-hunting", rank: null },
+  { slug: "event", label: "Event", hub: "event", rank: null },
+  { slug: "challenge", label: "Challenge", hub: "challenge", rank: null },
 ] as const;
 
 export type QuestHubSlug = (typeof QUEST_HUBS)[number]["slug"];
 export const QUEST_HUB_SLUGS: readonly QuestHubSlug[] = QUEST_HUBS.map((h) => h.slug);
+
+/**
+ * Boards of downloaded quests. A save has no cleared bit for them, so they
+ * stay out of a hunter's quest progress.
+ */
+export const DOWNLOADED_QUEST_HUBS: ReadonlySet<QuestHubSlug> = new Set(["event", "challenge"]);
 
 /** The hub page a data/quests record belongs on, from its `hub` and `rank`. */
 export function questHubSlug(hub: string, rank: string | null): QuestHubSlug | null {
@@ -365,7 +377,7 @@ export function questsOnHub(quests: Quest[], hub: string): Quest[] {
 
 /**
  * G Rank quests are stored at ★9-★11, after High Rank's ★6-★8. The game
- * shows them as G★1-G★3.
+ * shows them as G★1-G★3, and Event Quests number their stars the same way.
  */
 export const G_RANK_STAR_OFFSET = 8;
 
@@ -377,7 +389,8 @@ export interface StarLevel {
 
 /** The star level a quest on this hub (a QuestHubSlug) shows. */
 export function questStarLevel(hub: string, stars: number): StarLevel {
-  return hub === "g-rank" ? { g: true, stars: stars - G_RANK_STAR_OFFSET } : { g: false, stars };
+  const g = hub === "g-rank" || (hub === "event" && stars > G_RANK_STAR_OFFSET);
+  return g ? { g: true, stars: stars - G_RANK_STAR_OFFSET } : { g: false, stars };
 }
 
 /** The star levels a hub's quests span, lowest first. */
@@ -407,13 +420,15 @@ export interface SmallMonsterStage {
  * Where a small monster is most plentiful: for each star level of the village
  * and guild boards, the quests with the biggest total of it (every distinct
  * spawn table counted once), in board and star order. Star levels without it
- * are left out; Training School and Treasure Hunting are not stages of the game.
+ * are left out; Training School, Treasure Hunting and the downloaded quests
+ * are not stages of the game.
  */
 export function smallMonsterStages(quests: Quest[], name: string): SmallMonsterStage[] {
   const stages = new Map<string, SmallMonsterStage>();
   for (const quest of quests) {
     if (isHiddenQuest(quest.id)) continue;
     if (quest.hub === "training-school" || quest.hub === "treasure-hunting") continue;
+    if (DOWNLOADED_QUEST_HUBS.has(quest.hub)) continue;
     const at = quest.smallMonsters.findIndex((m) => m.name === name);
     const spawn = quest.smallSpawns[at];
     if (!spawn) continue;

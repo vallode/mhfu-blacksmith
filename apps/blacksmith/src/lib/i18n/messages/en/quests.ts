@@ -10,6 +10,8 @@ export const quests = {
     "g-rank": "Guild G Rank",
     "training-school": "Training School",
     "treasure-hunting": "Treasure Hunting",
+    event: "Event",
+    challenge: "Challenge",
   },
   /** A quest the loaded hunter has cleared, like the game's quest sheet. */
   cleared: "CLEAR!!",
