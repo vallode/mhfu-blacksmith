@@ -61,6 +61,7 @@ export const items = {
       shops: "Shops",
       trades: "Trades",
       combining: "Combining",
+      uses: "Used in",
     },
     noSources:
       "No monster drop, quest reward, gathering point, shop, trade or combination gives this item.",
@@ -136,6 +137,28 @@ export const items = {
     /** `bonuses` is "+5%, +10%, …". */
     booksNote: (last: number, bonuses: string) =>
       `Rates are before Books of Combos 1–${last} (${bonuses} for owning them in order from 1) and the Combination skill.`,
+  },
+  /** The Used in tab: the weapons, armor and decorations whose recipes take the item. */
+  uses: {
+    filterLabel: "Show gear of one kind",
+    create: "Forge",
+    improve: (from: string) => `Upgrade from ${from}`,
+    upgrade: "Upgrade",
+    alt: "Second recipe",
+    armorRank: (rank: string) => `${rank} armor`,
+    decorations: "Decorations",
+    weapons: "Weapons",
+    armor: "Armor",
+    all: "All",
+    /** `recipes` and `total` are formatted numbers. */
+    summary: (n: number, recipes: string, total: string) =>
+      `In ${recipes} ${n === 1 ? "recipe" : "recipes"} · ${total} for all of them`,
+    showAll: (count: string) => `Show all ${count}`,
+    showFewer: "Show fewer",
+    /** A filter button: "Weapons 105". */
+    kindCount: (kind: string, count: string) => `${kind} ${count}`,
+    /** A list's title: "Great Sword (14)". */
+    groupCount: (group: string, count: string) => `${group} (${count})`,
   },
   /** The Veggie Elder's trades: the item pages' Trades tab and /veggie-elder/. */
   veggieElder: {
