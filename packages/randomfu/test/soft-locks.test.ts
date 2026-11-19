@@ -42,6 +42,8 @@ interface QuestSpec {
   map: number;
   type?: number;
   target?: [number, number];
+  /** A second goal (header 0x74): hunt this monster, `count` of it. */
+  second?: [number, number];
   objective?: [number, number];
   large?: { em: number; stage: number; x?: number; power?: number }[];
   small?: [number, number][];
@@ -54,6 +56,11 @@ function quest(spec: QuestSpec, index = spec.questId): LoadedQuest {
   const [target, count] = spec.target ?? [spec.large?.[0]?.em ?? 0, 1];
   payload.writeUInt16LE(target, 112);
   payload.writeUInt16LE(count, 114);
+  if (spec.second) {
+    payload.writeUInt32LE(1, 0x74);
+    payload.writeUInt16LE(spec.second[0], 0x78);
+    payload.writeUInt16LE(spec.second[1], 0x7a);
+  }
   if (spec.objective) {
     payload.writeUInt32LE(1, 0x28);
     payload.writeUInt16LE(spec.objective[0], 0x2c);
@@ -137,6 +144,21 @@ test("a slay goal's small monsters, and a delivery's carved ones, never fall bel
   const keep = (q: LoadedQuest, em: number) => q === delivery && em === 70;
 
   assert.deepEqual([...smallMonsterFloors(monsters(slay), () => false)], [[61, 10]]);
+  // A second goal asks for 3 Velociprey (16) of 6 too.
+  const both = quest({
+    questId: 1004,
+    map: 2,
+    target: [61, 10],
+    second: [16, 3],
+    small: [
+      [61, 12],
+      [16, 6],
+    ],
+  });
+  assert.deepEqual([...smallMonsterFloors(monsters(both), () => false)].sort(), [
+    [16, 3],
+    [61, 10],
+  ]);
   assert.deepEqual([...smallMonsterFloors(monsters(objective), () => false)], [[63, 4]]);
   assert.deepEqual([...smallMonsterFloors(monsters(delivery), (em) => em === 70)], [[70, 4]]);
   // A delivery's target is an item, not a monster.
@@ -226,6 +248,46 @@ test("variant swaps keep their starts", () => {
       assert.equal(readStart(e.questNow(q), spawn!.offset).stage, stage);
     }
   }
+});
+
+test("a variant swap moves both goals of a two-goal quest", () => {
+  // Hunt the Rathian (1) and Rathalos (11); Pink Rathian (37) and Azure Rathalos (49) are on the map.
+  const pair = quest(
+    {
+      questId: 1001,
+      map: 2,
+      target: [1, 1],
+      second: [11, 1],
+      large: [
+        { em: 1, stage: 10 },
+        { em: 11, stage: 11, x: 1 },
+      ],
+    },
+    0,
+  );
+  const pink = quest({ questId: 1002, map: 2, large: [{ em: 37, stage: 10 }] }, 1);
+  const azure = quest({ questId: 1003, map: 2, large: [{ em: 49, stage: 11 }] }, 2);
+  const all = [pair, pink, azure];
+  let swapped = 0;
+  for (let seed = 0; seed < 20; seed++) {
+    const e = edits();
+    swapSpecies(
+      all.map(monsters),
+      "variants",
+      new Rng(`pair${seed}`),
+      e,
+      all,
+      () => 1,
+      collectStartPoints(all),
+      name,
+    );
+    const payload = e.questNow(pair);
+    const large = new Set(readSpawns(payload, pair.parsed.header).large.map((s) => s.monsterId));
+    const goals = [payload.readUInt16LE(0x70), payload.readUInt16LE(0x78)];
+    for (const id of goals) assert.ok(large.has(id), `seed ${seed}: goal ${id} is in the quest`);
+    if (!large.has(1) || !large.has(11)) swapped++;
+  }
+  assert.ok(swapped > 0, "the pair swapped at some seed");
 });
 
 test("a restart keeps points of the monster's kind and moves the rest to free ones, never shared", () => {

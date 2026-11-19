@@ -1,0 +1,6998 @@
+{
+  "quests": [
+    {
+      "id": 60010,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 14,
+      "fee": 2500,
+      "reward": 30000,
+      "penalty": 10000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 58,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 130,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 90,
+          "amount": 1
+        },
+        {
+          "item": 90,
+          "amount": 1
+        },
+        {
+          "item": 37,
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": 771,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 767,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 767,
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": 773,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 773,
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": 772,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 770,
+              "amount": 1
+            },
+            {
+              "chance": 1,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 228,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 905,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 58,
+          "quantity": 1,
+          "power": 14,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.8,
+            "status": 1
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60011,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 10,
+      "map": 22,
+      "fee": 2200,
+      "reward": 26100,
+      "penalty": 8700,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 87,
+        "amount": 2
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 59,
+          "amount": 5
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": 513,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 513,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 514,
+              "amount": 2
+            },
+            {
+              "chance": 12,
+              "item": 514,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 508,
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": 508,
+              "amount": 1
+            },
+            {
+              "chance": 13,
+              "item": 509,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 199,
+              "amount": 2
+            },
+            {
+              "chance": 12,
+              "item": 286,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 87,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0.10546875,
+            "silver": 0.078125,
+            "gold": 0.044921875
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 86,
+        "max": 127
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60012,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 10,
+      "map": 3,
+      "fee": 2000,
+      "reward": 24000,
+      "penalty": 8000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 84,
+        "amount": 2
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": 439,
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": 439,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 441,
+              "amount": 2
+            },
+            {
+              "chance": 12,
+              "item": 441,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 436,
+              "amount": 2
+            },
+            {
+              "chance": 17,
+              "item": 436,
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": 440,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 440,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 297,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 296,
+              "amount": 4
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 84,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0.06640625,
+            "silver": 0.13671875,
+            "gold": 0.033203125
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 115,
+        "min": 97,
+        "max": 143
+      },
+      "small_monsters": [
+        {
+          "monster": 19,
+          "max_quantity": 12,
+          "total_quantity": 36
+        },
+        {
+          "monster": 56,
+          "max_quantity": 8,
+          "total_quantity": 8
+        },
+        {
+          "monster": 13,
+          "max_quantity": 3,
+          "total_quantity": 3
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60013,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 9,
+      "map": 4,
+      "fee": 1500,
+      "reward": 18000,
+      "penalty": 6000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 85,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 73,
+          "amount": 2
+        },
+        {
+          "item": 73,
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": 452,
+              "amount": 2
+            },
+            {
+              "chance": 8,
+              "item": 452,
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": 446,
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": 453,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 450,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 454,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 447,
+              "amount": 2
+            },
+            {
+              "chance": 8,
+              "item": 455,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 297,
+              "amount": 3
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 85,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0.068359375,
+            "silver": 0.2509765625,
+            "gold": 0.123046875
+          }
+        },
+        {
+          "monster": 52,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0.068359375,
+            "silver": 0.2509765625,
+            "gold": 0.123046875
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 112,
+        "min": 95,
+        "max": 140
+      },
+      "small_monsters": [
+        {
+          "monster": 62,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 23,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 13,
+          "max_quantity": 3,
+          "total_quantity": 3
+        },
+        {
+          "monster": 4,
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
+        },
+        {
+          "monster": 19,
+          "max_quantity": 12,
+          "total_quantity": 12
+        },
+        {
+          "monster": 24,
+          "max_quantity": 2,
+          "total_quantity": 2
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60014,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 9,
+      "fee": 2750,
+      "reward": 33000,
+      "penalty": 11000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 43,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 66,
+          "amount": 2
+        },
+        {
+          "item": 66,
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": 642,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 642,
+              "amount": 1
+            },
+            {
+              "chance": 18,
+              "item": 653,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 639,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 650,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 644,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 655,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 636,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 647,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 645,
+              "amount": 4
+            },
+            {
+              "chance": 1,
+              "item": 94,
+              "amount": 52
+            },
+            {
+              "chance": 3,
+              "item": 95,
+              "amount": 24
+            },
+            {
+              "chance": 6,
+              "item": 301,
+              "amount": 1
+            },
+            {
+              "chance": 1,
+              "item": 301,
+              "amount": 2
+            },
+            {
+              "chance": 1,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 228,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 43,
+          "quantity": 1,
+          "power": 29,
+          "multipliers": {
+            "hp": 1.25,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.2802734375,
+            "gold": 0.09375
+          }
+        },
+        {
+          "monster": 14,
+          "quantity": 1,
+          "power": 29,
+          "multipliers": {
+            "hp": 1.25,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.2802734375,
+            "gold": 0.09375
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 120,
+        "min": 102,
+        "max": 150
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60015,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 9,
+      "fee": 3000,
+      "reward": 36000,
+      "penalty": 12000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 47,
+        "amount": 2
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 872,
+          "amount": 1
+        },
+        {
+          "item": 872,
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
+          "items": [
+            {
+              "chance": 2,
+              "item": 632,
+              "amount": 1
+            },
+            {
+              "chance": 12,
+              "item": 631,
+              "amount": 1
+            },
+            {
+              "chance": 14,
+              "item": 631,
+              "amount": 2
+            },
+            {
+              "chance": 14,
+              "item": 628,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 633,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 286,
+              "amount": 3
+            },
+            {
+              "chance": 10,
+              "item": 275,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 272,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 301,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 301,
+              "amount": 2
+            },
+            {
+              "chance": 1,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 228,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 905,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 47,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0.064453125,
+            "silver": 0.177734375,
+            "gold": 0.044921875
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 115,
+        "min": 97,
+        "max": 143
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60016,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 11,
+      "fee": 2500,
+      "reward": 30000,
+      "penalty": 10000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 53,
+        "amount": 2
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 22,
+          "amount": 1
+        },
+        {
+          "item": 22,
+          "amount": 1
+        },
+        {
+          "item": 22,
+          "amount": 1
+        },
+        {
+          "item": 22,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 59,
+          "amount": 5
+        },
+        {
+          "item": 869,
+          "amount": 1
+        },
+        {
+          "item": 869,
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": 467,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 466,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 461,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 461,
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": 463,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 459,
+              "amount": 2
+            },
+            {
+              "chance": 13,
+              "item": 464,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 297,
+              "amount": 5
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 905,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 53,
+          "quantity": 1,
+          "power": 29,
+          "multipliers": {
+            "hp": 1.25,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0.125,
+            "silver": 0.1220703125,
+            "gold": 0.0009765625
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 112,
+        "min": 95,
+        "max": 140
+      },
+      "small_monsters": [
+        {
+          "monster": 57,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 19,
+          "max_quantity": 12,
+          "total_quantity": 24
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60017,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 10,
+      "map": 22,
+      "fee": 3250,
+      "reward": 39000,
+      "penalty": 13000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 87,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 7,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": 905,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 517,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 481,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 469,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 583,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 582,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 278,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 455,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 452,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 454,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 199,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 508,
+              "amount": 2
+            },
+            {
+              "chance": 12,
+              "item": 514,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 301,
+              "amount": 1
+            },
+            {
+              "chance": 1,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 228,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 80,
+              "item": 478,
+              "amount": 3
+            },
+            {
+              "chance": 20,
+              "item": 481,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 586,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 453,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 513,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 46,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 45,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 85,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.169921875,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 87,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.087890625,
+            "gold": 0.10546875
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 106,
+        "min": 106,
+        "max": 121
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60018,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 5,
+      "fee": 3500,
+      "reward": 42000,
+      "penalty": 14000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 83,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 24,
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 7,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": 905,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 591,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 592,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 269,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 207,
+              "amount": 4
+            },
+            {
+              "chance": 4,
+              "item": 626,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 628,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 272,
+              "amount": 2
+            },
+            {
+              "chance": 6,
+              "item": 275,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 199,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 508,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 512,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 491,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 490,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 211,
+              "amount": 4
+            },
+            {
+              "chance": 5,
+              "item": 301,
+              "amount": 1
+            },
+            {
+              "chance": 1,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 228,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 589,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 625,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 506,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 60,
+              "item": 489,
+              "amount": 3
+            },
+            {
+              "chance": 40,
+              "item": 488,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 22,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 17,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 67,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.087890625,
+            "gold": 0.10546875
+          }
+        },
+        {
+          "monster": 83,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.1845703125,
+            "gold": 0.15234375
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 106,
+        "min": 106,
+        "max": 121
+      },
+      "small_monsters": [
+        {
+          "monster": 30,
+          "max_quantity": 3,
+          "total_quantity": 7
+        },
+        {
+          "monster": 29,
+          "max_quantity": 4,
+          "total_quantity": 7
+        },
+        {
+          "monster": 63,
+          "max_quantity": 3,
+          "total_quantity": 5
+        },
+        {
+          "monster": 25,
+          "max_quantity": 3,
+          "total_quantity": 4
+        },
+        {
+          "monster": 23,
+          "max_quantity": 3,
+          "total_quantity": 3
+        },
+        {
+          "monster": 5,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 73,
+          "max_quantity": 2,
+          "total_quantity": 3
+        },
+        {
+          "monster": 57,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 19,
+          "max_quantity": 20,
+          "total_quantity": 20
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60019,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 9,
+      "fee": 5000,
+      "reward": 60000,
+      "penalty": 20000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 89,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 8,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": 905,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 611,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 621,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 619,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 615,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 596,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 601,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 607,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 604,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 632,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 628,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 272,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 275,
+              "amount": 2
+            },
+            {
+              "chance": 6,
+              "item": 647,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 655,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 653,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 467,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 457,
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": 463,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 459,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 301,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 228,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 60,
+              "item": 610,
+              "amount": 3
+            },
+            {
+              "chance": 40,
+              "item": 613,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 60,
+              "item": 599,
+              "amount": 3
+            },
+            {
+              "chance": 40,
+              "item": 595,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 631,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 650,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 461,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 81,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 2.5
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 75,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 2.5
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 47,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 2.5
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 43,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 2.5
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 89,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 2.5
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 106,
+        "min": 106,
+        "max": 121
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60020,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 9,
+      "map": 10,
+      "fee": 700,
+      "reward": 8400,
+      "penalty": 2800,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 5,
+        "amount": 30
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 102,
+          "amount": 20
+        },
+        {
+          "item": 102,
+          "amount": 20
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": 322,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 322,
+              "amount": 5
+            },
+            {
+              "chance": 12,
+              "item": 322,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 323,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 321,
+              "amount": 8
+            },
+            {
+              "chance": 5,
+              "item": 324,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 296,
+              "amount": 4
+            },
+            {
+              "chance": 15,
+              "item": 43,
+              "amount": 10
+            },
+            {
+              "chance": 10,
+              "item": 94,
+              "amount": 26
+            },
+            {
+              "chance": 6,
+              "item": 95,
+              "amount": 12
+            },
+            {
+              "chance": 1,
+              "item": 225,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 225,
+              "amount": 1
+            },
+            {
+              "chance": 1,
+              "item": 226,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "monster_size": null,
+      "small_monsters": [
+        {
+          "monster": 5,
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
+        },
+        {
+          "monster": 4,
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60021,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 9,
+      "map": 9,
+      "fee": 1250,
+      "reward": 15000,
+      "penalty": 5000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 82,
+        "amount": 2
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": 381,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 373,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 373,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 374,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 375,
+              "amount": 2
+            },
+            {
+              "chance": 16,
+              "item": 375,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 380,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 380,
+              "amount": 1
+            },
+            {
+              "chance": 9,
+              "item": 376,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 377,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 285,
+              "amount": 4
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 82,
+          "quantity": 1,
+          "power": 29,
+          "multipliers": {
+            "hp": 1.25,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0.06640625,
+            "silver": 0.0703125,
+            "gold": 0.099609375
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 106,
+        "min": 90,
+        "max": 132
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60022,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 10,
+      "map": 19,
+      "fee": 1150,
+      "reward": 13500,
+      "penalty": 4500,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 83,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": 492,
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": 489,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 488,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 299,
+              "amount": 10
+            },
+            {
+              "chance": 6,
+              "item": 298,
+              "amount": 10
+            },
+            {
+              "chance": 10,
+              "item": 286,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 490,
+              "amount": 2
+            },
+            {
+              "chance": 18,
+              "item": 491,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 301,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 83,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 1
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 122,
+        "min": 122,
+        "max": 128
+      },
+      "small_monsters": [
+        {
+          "monster": 25,
+          "max_quantity": 4,
+          "total_quantity": 7
+        },
+        {
+          "monster": 63,
+          "max_quantity": 3,
+          "total_quantity": 4
+        },
+        {
+          "monster": 5,
+          "max_quantity": 2,
+          "total_quantity": 5
+        },
+        {
+          "monster": 30,
+          "max_quantity": 2,
+          "total_quantity": 3
+        },
+        {
+          "monster": 23,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 57,
+          "max_quantity": 2,
+          "total_quantity": 3
+        },
+        {
+          "monster": 29,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 19,
+          "max_quantity": 20,
+          "total_quantity": 20
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60023,
+      "hub": "event",
+      "rank": "low-rank",
+      "stars": 3,
+      "map": 2,
+      "fee": 500,
+      "reward": 6000,
+      "penalty": 2000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 6,
+        "amount": 2
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 102,
+          "amount": 10
+        },
+        {
+          "item": 116,
+          "amount": 5
+        },
+        {
+          "item": 131,
+          "amount": 15
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 66,
+          "amount": 2
+        },
+        {
+          "item": 66,
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": 273,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 273,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 385,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 385,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 382,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 393,
+              "amount": 2
+            },
+            {
+              "chance": 12,
+              "item": 266,
+              "amount": 3
+            },
+            {
+              "chance": 15,
+              "item": 282,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 391,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 224,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 224,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 6,
+          "quantity": 1,
+          "power": 10,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 1,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 50,
+        "min": 50,
+        "max": 50
+      },
+      "small_monsters": [
+        {
+          "monster": 19,
+          "max_quantity": 12,
+          "total_quantity": 24
+        },
+        {
+          "monster": 9,
+          "max_quantity": 1,
+          "total_quantity": 1
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60024,
+      "hub": "event",
+      "rank": "low-rank",
+      "stars": 5,
+      "map": 3,
+      "fee": 1050,
+      "reward": 12300,
+      "penalty": 4100,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 21,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 22,
+          "amount": 1
+        },
+        {
+          "item": 22,
+          "amount": 1
+        },
+        {
+          "item": 22,
+          "amount": 1
+        },
+        {
+          "item": 22,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 102,
+          "amount": 10
+        },
+        {
+          "item": 116,
+          "amount": 5
+        },
+        {
+          "item": 131,
+          "amount": 15
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 24,
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": 903,
+              "amount": 1
+            },
+            {
+              "chance": 12,
+              "item": 498,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 198,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 669,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 493,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 608,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 602,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 605,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 600,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 515,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 473,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 468,
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": 284,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 224,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 224,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 495,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 60,
+              "item": 597,
+              "amount": 3
+            },
+            {
+              "chance": 40,
+              "item": 593,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 470,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 48,
+          "quantity": 1,
+          "power": 11,
+          "multipliers": {
+            "hp": 0.65,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.22265625,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 75,
+          "quantity": 1,
+          "power": 11,
+          "multipliers": {
+            "hp": 0.65,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 21,
+          "quantity": 1,
+          "power": 11,
+          "multipliers": {
+            "hp": 0.65,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.1435546875,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 103,
+        "min": 97,
+        "max": 117
+      },
+      "small_monsters": [
+        {
+          "monster": 34,
+          "max_quantity": 4,
+          "total_quantity": 5
+        },
+        {
+          "monster": 66,
+          "max_quantity": 3,
+          "total_quantity": 4
+        },
+        {
+          "monster": 57,
+          "max_quantity": 1,
+          "total_quantity": 2
+        },
+        {
+          "monster": 63,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 19,
+          "max_quantity": 10,
+          "total_quantity": 25,
+          "endless": true
+        },
+        {
+          "monster": 9,
+          "max_quantity": 4,
+          "total_quantity": 7
+        },
+        {
+          "monster": 13,
+          "max_quantity": 2,
+          "total_quantity": 4
+        },
+        {
+          "monster": 25,
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
+        },
+        {
+          "monster": 23,
+          "max_quantity": 3,
+          "total_quantity": 5
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60025,
+      "hub": "event",
+      "rank": "low-rank",
+      "stars": 5,
+      "map": 9,
+      "fee": 1000,
+      "reward": 12000,
+      "penalty": 4000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 67,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 102,
+          "amount": 10
+        },
+        {
+          "item": 116,
+          "amount": 5
+        },
+        {
+          "item": 131,
+          "amount": 15
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": 903,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 447,
+              "amount": 1
+            },
+            {
+              "chance": 13,
+              "item": 448,
+              "amount": 1
+            },
+            {
+              "chance": 13,
+              "item": 451,
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": 523,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 546,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 529,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 273,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 526,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 493,
+              "amount": 1
+            },
+            {
+              "chance": 9,
+              "item": 510,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 509,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 507,
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": 284,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 224,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 224,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 444,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 520,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 504,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 52,
+          "quantity": 1,
+          "power": 11,
+          "multipliers": {
+            "hp": 0.65,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.1435546875,
+            "silver": 0.123046875,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 1,
+          "quantity": 1,
+          "power": 11,
+          "multipliers": {
+            "hp": 0.65,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 67,
+          "quantity": 1,
+          "power": 11,
+          "multipliers": {
+            "hp": 0.65,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.134765625,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 103,
+        "min": 97,
+        "max": 117
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60026,
+      "hub": "event",
+      "rank": "high-rank",
+      "stars": 7,
+      "map": 30,
+      "fee": 750,
+      "reward": 9000,
+      "penalty": 3000,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 927,
+          "amount": 1
+        },
+        {
+          "item": 927,
+          "amount": 1
+        },
+        {
+          "item": 927,
+          "amount": 1
+        },
+        {
+          "item": 927,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 102,
+          "amount": 10
+        },
+        {
+          "item": 116,
+          "amount": 5
+        },
+        {
+          "item": 131,
+          "amount": 15
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": 380,
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": 372,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 374,
+              "amount": 2
+            },
+            {
+              "chance": 26,
+              "item": 374,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 376,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 271,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 285,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 225,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 225,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 257,
+          "items": [
+            {
+              "chance": 100,
+              "item": 376,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 255,
+          "items": [
+            {
+              "chance": 50,
+              "item": 378,
+              "amount": 3
+            },
+            {
+              "chance": 50,
+              "item": 374,
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 253,
+          "items": [
+            {
+              "chance": 50,
+              "item": 380,
+              "amount": 2
+            },
+            {
+              "chance": 50,
+              "item": 372,
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 251,
+          "items": [
+            {
+              "chance": 50,
+              "item": 378,
+              "amount": 2
+            },
+            {
+              "chance": 50,
+              "item": 372,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 249,
+          "items": [
+            {
+              "chance": 40,
+              "item": 271,
+              "amount": 2
+            },
+            {
+              "chance": 60,
+              "item": 285,
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 82,
+          "quantity": 10,
+          "power": 19,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 2.7,
+            "defense": 0.85,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 96,
+        "min": 96,
+        "max": 96
+      },
+      "small_monsters": [
+        {
+          "monster": 16,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 4,
+          "max_quantity": 3,
+          "total_quantity": 3
+        },
+        {
+          "monster": 3,
+          "max_quantity": 10,
+          "total_quantity": 19
+        },
+        {
+          "monster": 13,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 12,
+          "max_quantity": 4,
+          "total_quantity": 4
+        },
+        {
+          "monster": 62,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 66,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 30,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 5,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 23,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 19,
+          "max_quantity": 3,
+          "total_quantity": 3,
+          "endless": true
+        },
+        {
+          "monster": 56,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 57,
+          "max_quantity": 3,
+          "total_quantity": 4
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60027,
+      "hub": "event",
+      "rank": "high-rank",
+      "stars": 7,
+      "map": 6,
+      "fee": 1200,
+      "reward": 14100,
+      "penalty": 4700,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 82,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 102,
+          "amount": 10
+        },
+        {
+          "item": 116,
+          "amount": 5
+        },
+        {
+          "item": 131,
+          "amount": 15
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 24,
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": 904,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 524,
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": 547,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 530,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 523,
+              "amount": 1
+            },
+            {
+              "chance": 16,
+              "item": 274,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 447,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 449,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 451,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 448,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 376,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 380,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 378,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 374,
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": 285,
+              "amount": 2
+            },
+            {
+              "chance": 1,
+              "item": 225,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 225,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 226,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 60,
+              "item": 527,
+              "amount": 3
+            },
+            {
+              "chance": 40,
+              "item": 521,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 445,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 372,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 1,
+          "quantity": 1,
+          "power": 22,
+          "multipliers": {
+            "hp": 0.85,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 52,
+          "quantity": 1,
+          "power": 22,
+          "multipliers": {
+            "hp": 0.85,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.15234375,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 82,
+          "quantity": 1,
+          "power": 22,
+          "multipliers": {
+            "hp": 0.85,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.15234375,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 105,
+        "max": 120
+      },
+      "small_monsters": [
+        {
+          "monster": 12,
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
+        },
+        {
+          "monster": 19,
+          "max_quantity": 13,
+          "total_quantity": 43,
+          "endless": true
+        },
+        {
+          "monster": 3,
+          "max_quantity": 3,
+          "total_quantity": 3,
+          "endless": true
+        },
+        {
+          "monster": 4,
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
+        },
+        {
+          "monster": 5,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 16,
+          "max_quantity": 4,
+          "total_quantity": 6
+        },
+        {
+          "monster": 57,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 66,
+          "max_quantity": 2,
+          "total_quantity": 2
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60028,
+      "hub": "event",
+      "rank": "high-rank",
+      "stars": 8,
+      "map": 22,
+      "fee": 2000,
+      "reward": 24000,
+      "penalty": 8000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 21,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 102,
+          "amount": 10
+        },
+        {
+          "item": 116,
+          "amount": 5
+        },
+        {
+          "item": 131,
+          "amount": 15
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": 904,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 430,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 437,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 435,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 628,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 274,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 211,
+              "amount": 2
+            },
+            {
+              "chance": 8,
+              "item": 627,
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": 582,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 581,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 277,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 280,
+              "amount": 3
+            },
+            {
+              "chance": 5,
+              "item": 516,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 474,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 468,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 515,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 285,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 300,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 226,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 226,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 433,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 624,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 579,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 471,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 51,
+          "quantity": 1,
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 17,
+          "quantity": 1,
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 15,
+          "quantity": 1,
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.193359375,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 21,
+          "quantity": 1,
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 110,
+        "max": 126
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60029,
+      "hub": "event",
+      "rank": "high-rank",
+      "stars": 8,
+      "map": 15,
+      "fee": 3000,
+      "reward": 36000,
+      "penalty": 12000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 71,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 97,
+          "amount": 40
+        },
+        {
+          "item": 100,
+          "amount": 30
+        },
+        {
+          "item": 117,
+          "amount": 5
+        },
+        {
+          "item": 130,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 85,
+          "amount": 5
+        },
+        {
+          "item": 872,
+          "amount": 2
+        },
+        {
+          "item": 88,
+          "amount": 5
+        },
+        {
+          "item": 37,
+          "amount": 2
+        },
+        {
+          "item": 72,
+          "amount": 1
+        },
+        {
+          "item": 72,
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": 795,
+              "amount": 1
+            },
+            {
+              "chance": 16,
+              "item": 797,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 799,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 801,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 792,
+              "amount": 1
+            },
+            {
+              "chance": 12,
+              "item": 776,
+              "amount": 1
+            },
+            {
+              "chance": 12,
+              "item": 780,
+              "amount": 1
+            },
+            {
+              "chance": 18,
+              "item": 775,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 216,
+              "amount": 1
+            },
+            {
+              "chance": 1,
+              "item": 225,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 225,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 226,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 71,
+          "quantity": 1,
+          "power": 10,
+          "multipliers": {
+            "hp": 0.45,
+            "attack": 2.5,
+            "defense": 0.85,
+            "status": 1.3
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [
+        {
+          "monster": 29,
+          "max_quantity": 1,
+          "total_quantity": 1
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60030,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 7,
+      "fee": 4500,
+      "reward": 54000,
+      "penalty": 18000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 2,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 130,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 872,
+          "amount": 2
+        },
+        {
+          "item": 88,
+          "amount": 5
+        },
+        {
+          "item": 37,
+          "amount": 2
+        },
+        {
+          "item": 873,
+          "amount": 3
+        },
+        {
+          "item": 873,
+          "amount": 3
+        },
+        {
+          "item": 873,
+          "amount": 3
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": 779,
+              "amount": 1
+            },
+            {
+              "chance": 12,
+              "item": 781,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 777,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 785,
+              "amount": 1
+            },
+            {
+              "chance": 12,
+              "item": 217,
+              "amount": 1
+            },
+            {
+              "chance": 18,
+              "item": 778,
+              "amount": 1
+            },
+            {
+              "chance": 17,
+              "item": 780,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 776,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 782,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 784,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 2,
+          "quantity": 1,
+          "power": 2,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.5
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60031,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 8,
+      "fee": 4500,
+      "reward": 54000,
+      "penalty": 18000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 36,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": 789,
+              "amount": 1
+            },
+            {
+              "chance": 12,
+              "item": 791,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 787,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 794,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 217,
+              "amount": 1
+            },
+            {
+              "chance": 19,
+              "item": 788,
+              "amount": 1
+            },
+            {
+              "chance": 18,
+              "item": 790,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 786,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 792,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 36,
+          "quantity": 1,
+          "power": 6,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.5
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60032,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 15,
+      "fee": 4500,
+      "reward": 54000,
+      "penalty": 18000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 71,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 130,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 85,
+          "amount": 5
+        },
+        {
+          "item": 872,
+          "amount": 2
+        },
+        {
+          "item": 88,
+          "amount": 5
+        },
+        {
+          "item": 37,
+          "amount": 2
+        },
+        {
+          "item": 72,
+          "amount": 1
+        },
+        {
+          "item": 72,
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": 796,
+              "amount": 1
+            },
+            {
+              "chance": 12,
+              "item": 798,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 802,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 800,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 217,
+              "amount": 1
+            },
+            {
+              "chance": 19,
+              "item": 795,
+              "amount": 1
+            },
+            {
+              "chance": 18,
+              "item": 797,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 801,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 792,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 71,
+          "quantity": 1,
+          "power": 11,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.5
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [
+        {
+          "monster": 29,
+          "max_quantity": 1,
+          "total_quantity": 1
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60033,
+      "hub": "event",
+      "rank": "high-rank",
+      "stars": 6,
+      "map": 10,
+      "fee": 400,
+      "reward": 4500,
+      "penalty": 1500,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 9,
+        "amount": 20
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 102,
+          "amount": 20
+        },
+        {
+          "item": 102,
+          "amount": 20
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": 942,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 942,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 940,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 940,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 941,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 941,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 906,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 81,
+              "amount": 1
+            },
+            {
+              "chance": 12,
+              "item": 169,
+              "amount": 3
+            },
+            {
+              "chance": 8,
+              "item": 861,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 862,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [],
+      "monster_size": null,
+      "small_monsters": [
+        {
+          "monster": 9,
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
+        },
+        {
+          "monster": 23,
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60034,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 8,
+      "fee": 5000,
+      "reward": 60000,
+      "penalty": 20000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 76,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 6,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": 221,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 940,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 941,
+              "amount": 2
+            },
+            {
+              "chance": 12,
+              "item": 804,
+              "amount": 1
+            },
+            {
+              "chance": 12,
+              "item": 803,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 806,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 807,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 808,
+              "amount": 2
+            },
+            {
+              "chance": 6,
+              "item": 805,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 300,
+              "amount": 2
+            },
+            {
+              "chance": 7,
+              "item": 301,
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": 226,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 228,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 76,
+          "quantity": 1,
+          "power": 17,
+          "multipliers": {
+            "hp": 1.5,
+            "attack": 3.5,
+            "defense": 0.75,
+            "status": 2
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60035,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 9,
+      "fee": 2750,
+      "reward": 33000,
+      "penalty": 11000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 81,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 2
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 7,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": 943,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 940,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 941,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 420,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 424,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 422,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 418,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 596,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 601,
+              "amount": 1
+            },
+            {
+              "chance": 7,
+              "item": 607,
+              "amount": 2
+            },
+            {
+              "chance": 6,
+              "item": 604,
+              "amount": 2
+            },
+            {
+              "chance": 2,
+              "item": 611,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 615,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 619,
+              "amount": 1
+            },
+            {
+              "chance": 6,
+              "item": 621,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 301,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 60,
+              "item": 414,
+              "amount": 3
+            },
+            {
+              "chance": 40,
+              "item": 411,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 60,
+              "item": 599,
+              "amount": 3
+            },
+            {
+              "chance": 40,
+              "item": 595,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 60,
+              "item": 610,
+              "amount": 3
+            },
+            {
+              "chance": 40,
+              "item": 613,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 40,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.169921875,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 75,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.099609375,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 81,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.099609375,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 104,
+        "min": 104,
+        "max": 119
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60037,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 27,
+      "fee": 1200,
+      "reward": 14100,
+      "penalty": 4700,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 75,
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 21,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 868,
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": 595,
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": 599,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 604,
+              "amount": 1
+            },
+            {
+              "chance": 9,
+              "item": 603,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 607,
+              "amount": 1
+            },
+            {
+              "chance": 9,
+              "item": 606,
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": 596,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 299,
+              "amount": 16
+            },
+            {
+              "chance": 9,
+              "item": 298,
+              "amount": 16
+            },
+            {
+              "chance": 8,
+              "item": 286,
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": 227,
+              "amount": 2
+            },
+            {
+              "chance": 3,
+              "item": 227,
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": 228,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 75,
+          "quantity": 1,
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.1064453125,
+            "gold": 0.193359375
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 114,
+        "min": 114,
+        "max": 131
+      },
+      "small_monsters": [
+        {
+          "monster": 13,
+          "max_quantity": 3,
+          "total_quantity": 7
+        },
+        {
+          "monster": 34,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 23,
+          "max_quantity": 3,
+          "total_quantity": 5
+        },
+        {
+          "monster": 57,
+          "max_quantity": 2,
+          "total_quantity": 4
+        },
+        {
+          "monster": 66,
+          "max_quantity": 4,
+          "total_quantity": 6
+        },
+        {
+          "monster": 25,
+          "max_quantity": 2,
+          "total_quantity": 4
+        },
+        {
+          "monster": 19,
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
+        },
+        {
+          "monster": 63,
+          "max_quantity": 1,
+          "total_quantity": 1
+        },
+        {
+          "monster": 56,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 9,
+          "max_quantity": 2,
+          "total_quantity": 2
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 60038,
+      "hub": "event",
+      "rank": "g-rank",
+      "stars": 11,
+      "map": 9,
+      "fee": 3500,
+      "reward": 42000,
+      "penalty": 14000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 89,
+        "amount": 2
+      },
+      "supplies": [
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 863,
+          "amount": 1
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 867,
+          "amount": 2
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 864,
+          "amount": 3
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 865,
+          "amount": 2
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 64,
+          "amount": 1
+        },
+        {
+          "item": 96,
+          "amount": 1
+        },
+        {
+          "item": 97,
+          "amount": 99
+        },
+        {
+          "item": 99,
+          "amount": 30
+        },
+        {
+          "item": 131,
+          "amount": 20
+        },
+        {
+          "item": 129,
+          "amount": 10
+        },
+        {
+          "item": 869,
+          "amount": 1
+        },
+        {
+          "item": 869,
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 7,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": 467,
+              "amount": 2
+            },
+            {
+              "chance": 14,
+              "item": 461,
+              "amount": 4
+            },
+            {
+              "chance": 20,
+              "item": 463,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 459,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 457,
+              "amount": 1
+            },
+            {
+              "chance": 8,
+              "item": 923,
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": 924,
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": 862,
+              "amount": 5
+            },
+            {
+              "chance": 4,
+              "item": 226,
+              "amount": 4
+            },
+            {
+              "chance": 4,
+              "item": 227,
+              "amount": 4
+            },
+            {
+              "chance": 6,
+              "item": 228,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "kind": "extra",
+          "draws": 1,
+          "condition": null,
+          "items": [
+            {
+              "chance": 100,
+              "item": 905,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 89,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 1,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 125,
+        "min": 125,
+        "max": 125
+      },
+      "small_monsters": [],
+      "requires": null,
+      "urgent": false
+    }
+  ]
+}

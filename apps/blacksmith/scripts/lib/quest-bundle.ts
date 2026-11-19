@@ -6,11 +6,13 @@
  */
 import {
   QUEST_HUBS,
+  QUEST_RANKS,
   QUEST_NON_MONSTERS,
   REWARD_KINDS,
   ROLL_OUTCOMES,
   questHp,
   questHubSlug,
+  type QuestRank,
   type CompactMonsterStats,
   type CompactQuest,
   type CompactQuestSize,
@@ -286,6 +288,7 @@ export function encodeQuestBundle({
       hasAreaMap(q.id) ? 1 : 0,
       small.counts,
       monsterSize(q),
+      q.rank === null ? null : QUEST_RANKS.indexOf(q.rank as QuestRank),
     ]);
   }
 

@@ -3,7 +3,7 @@
  * (`raw/attacks.json`).
  *
  * The record layout came from a first search for the Monster Hunter Wiki's
- * numbers (`overlay/attack-crib.json`); see `monsters/attacks.ts`. This dump
+ * numbers (`overlay/attack-crib.json`); see `monsters/attack-records.ts`. This dump
  * finds the tables by that layout instead, so it also covers the monsters
  * the crib lacks (subspecies, variants) and those whose wiki numbers don't
  * match. For working out where each monster's table starts and ends, each
@@ -27,7 +27,7 @@ import {
   type AttackTable,
   readAttackRecord,
   type AttackRecord,
-} from "../monsters/attacks.js";
+} from "../monsters/attack-records.js";
 import {
   fieldArg,
   indexRules,

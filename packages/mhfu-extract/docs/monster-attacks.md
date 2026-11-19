@@ -60,7 +60,7 @@ copied record.
 
 ## The record
 
-24 bytes (see `src/monsters/attacks.ts`): `+0x02` damage, `+0x08` guard
+24 bytes (see `src/monsters/attack-records.ts`): `+0x02` damage, `+0x08` guard
 knockback, `+0x09` element bits, `+0x0C`/`+0x0D` status bits, `+0x0E` status
 value, `+0x14` stun. These are confirmed against the wiki crib
 (`src/overlay/attack-crib.json`, 249 of its 259 attacks with damage and

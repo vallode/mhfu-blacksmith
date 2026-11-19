@@ -2,10 +2,10 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { OVL_HEADER_SIZE, parseOvl } from "../src/container/ovl.js";
 import { dumpAttacksRaw, type SearchFile } from "../src/emit/attacks-raw.js";
-import { ATTACK_RECORD_SIZE } from "../src/monsters/attacks.js";
+import { ATTACK_RECORD_SIZE } from "../src/monsters/attack-records.js";
 import { CodeGraph } from "../src/monsters/code-graph.js";
 import { MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "../src/monsters/hitzones.js";
-import { scanCode } from "../src/monsters/mips.js";
+import { scanCode } from "../src/monsters/mips-scan.js";
 
 const GAME_TASK_BASE = 0x09a5f200;
 const EM_BASE = 0x09d1a180;

@@ -10,6 +10,8 @@ export const quests = {
     "g-rank": "Guild G Rank",
     "training-school": "Training School",
     "treasure-hunting": "Treasure Hunting",
+    event: "Event",
+    challenge: "Challenge",
   },
   /** A quest the loaded hunter has cleared, like the game's quest sheet. */
   cleared: "CLEAR!!",
@@ -32,13 +34,13 @@ export const quests = {
     /** A star level tab, read out: "3 stars", "G 1 star". */
     starLevel: (stars: number, g: boolean) =>
       `${g ? "G " : ""}${stars} ${stars === 1 ? "star" : "stars"}`,
-    /** The type filter at the bottom of the list, showing every type. */
-    allTypes: "All quests",
-    typeFilter: "Quest type",
-    previousType: "Previous quest type",
-    nextType: "Next quest type",
-    /** The type filter's count, read out: "Quest type 2 of 4". */
-    typeOf: (n: number, total: number) => `Quest type ${n} of ${total}`,
+    /** The filter at the bottom of the list, showing every quest. */
+    allQuests: "All quests",
+    filter: "Quest filter",
+    previousFilter: "Previous filter",
+    nextFilter: "Next filter",
+    /** The filter's count, read out: "Filter 2 of 4". */
+    filterOf: (n: number, total: number) => `Filter ${n} of ${total}`,
   },
   /** Quest types (lib/quests QUEST_TYPES), as the board's type filter shows them. */
   types: {

@@ -15,6 +15,7 @@
  *   - area-maps.json             (each quest's gathering points on the map, see src/lib/area-maps.ts)
  *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - veggie-trades.json         (the Veggie Elder's trades, see src/lib/veggie-trades.ts)
+ *   - item-uses.json             (the gear whose recipes take each item, see src/lib/item-uses.ts)
  *   - awards.json                (the Guild Card awards' names and descriptions, by index)
  *   - data-manifest.json         ({ files, version })
  *   - locale-<code>.json         (game text in other languages, from data/locales;
@@ -24,10 +25,11 @@
  * Reuses the transform logic from src/lib (slugify, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
  *
- * Budget: asserts total public/data raw size < 1.85 MB and logs a gzip
+ * Budget: asserts total public/data raw size < 2.1 MB and logs a gzip
  * estimate (raised from 1.5 MB for quests.json, ~190 KB, from 1.6 MB for
- * item-places.json, ~80 KB, from 1.7 MB for area-maps.json, and from 1.8 MB
- * for veggie-trades.json, ~10 KB).
+ * item-places.json, ~80 KB, from 1.7 MB for area-maps.json, from 1.8 MB
+ * for veggie-trades.json, ~10 KB, and from 1.85 MB for item-uses.json,
+ * ~245 KB).
  */
 import fs from "fs";
 import path from "path";
@@ -78,6 +80,8 @@ import { encodeQuestBundle, monsterSizeRanges, type QuestRecord } from "./lib/qu
 import { buildLocaleBundles } from "./lib/locales";
 import type { AwardText } from "../src/lib/i18n/game-text";
 import { encodeCombinations, type CombinationsFile } from "../src/lib/combinations";
+import { encodeItemUses } from "../src/lib/item-uses";
+import { itemUsesFromData } from "./lib/item-uses-data";
 import { encodeVeggieTrades, type VeggieTradesFile } from "../src/lib/veggie-trades";
 import {
   buildItemPlaces,
@@ -105,7 +109,7 @@ const outDir = path.join(root, "public", "data");
 const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
 
-const BUDGET_BYTES = 1.85 * 1024 * 1024;
+const BUDGET_BYTES = 2.1 * 1024 * 1024;
 
 function readJson<T>(p: string): T {
   return JSON.parse(fs.readFileSync(p, "utf-8")) as T;
@@ -672,6 +676,9 @@ for (const category of MONSTER_CATEGORIES) {
     items,
   });
 }
+
+// Item uses: the gear whose recipes take each item (src/lib/item-uses.ts).
+push("item-uses.json", encodeItemUses(itemUsesFromData(dataDir), slugify));
 
 // Skills: data/skills.json as is (skill trees and their activations), for the
 // set builder.

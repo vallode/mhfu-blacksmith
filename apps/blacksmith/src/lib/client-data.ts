@@ -29,6 +29,7 @@ import {
   decodeTree,
 } from "./schema";
 import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES, type MonsterCategory } from "./constants";
+import { decodeItemUses, type ItemUse, type ItemUsesBundle } from "./item-uses";
 import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
@@ -800,4 +801,40 @@ export function useAwardText(): { awards: AwardText[] | null; error: boolean } {
     };
   }, []);
   return { awards, error };
+}
+
+// ---------------------------------------------------------------------------
+// Item uses: the gear whose recipes take each item (see src/lib/item-uses.ts)
+// ---------------------------------------------------------------------------
+let itemUsesCache: Map<number, ItemUse[]> | null = null;
+let itemUsesPromise: Promise<Map<number, ItemUse[]>> | null = null;
+
+/** What every item is used for, from item-uses.json. */
+export function getItemUses(): Promise<Map<number, ItemUse[]>> {
+  if (itemUsesCache) return Promise.resolve(itemUsesCache);
+  itemUsesPromise ??= fetchJson<ItemUsesBundle>("/data/item-uses.json")
+    .then((b) => (itemUsesCache = decodeItemUses(b, slugify)))
+    .catch((e) => {
+      itemUsesPromise = null; // allow a retry on the next call
+      throw e;
+    });
+  return itemUsesPromise;
+}
+
+/** `getItemUses` as a hook: null while loading or on error (`error` set). */
+export function useItemUses(): { uses: Map<number, ItemUse[]> | null; error: boolean } {
+  const [uses, setUses] = useState(itemUsesCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (itemUsesCache) return;
+    let cancelled = false;
+    getItemUses().then(
+      (u) => !cancelled && setUses(u),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { uses, error };
 }

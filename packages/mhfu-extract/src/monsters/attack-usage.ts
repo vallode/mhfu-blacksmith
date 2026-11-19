@@ -1,7 +1,7 @@
 /**
  * Which attack records each monster's code uses (vallode/mhfu-blacksmith#122).
  *
- * A monster attack hits through a shell (`monsters/attacks.ts`). Its class
+ * A monster attack hits through a shell (`monsters/attack-records.ts`). Its class
  * (a vtable in the EBOOT) has a setup that copies one record of the class's
  * table into the shell, by calling a record copier entry with the record
  * index in a2 and the struct after the table in a3. The index comes from
@@ -24,7 +24,7 @@
  */
 import type { BinaryReader } from "../binary/reader.js";
 import type { OvlFile } from "../container/ovl.js";
-import { ATTACK_RECORD_SIZE } from "./attacks.js";
+import { ATTACK_RECORD_SIZE } from "./attack-records.js";
 import type { CodeGraph } from "./code-graph.js";
 
 /** A symbolic value: what a register holds at some instruction. */

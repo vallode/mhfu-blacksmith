@@ -1,6 +1,6 @@
 /**
  * Who uses an attack table: from the code that builds a table's address
- * (`mips.ts`) up through callers and pointer lists to a `MonChunk` slot,
+ * (`mips-scan.ts`) up through callers and pointer lists to a `MonChunk` slot,
  * which names the monster (vallode/mhfu-blacksmith#122).
  *
  * Nodes are functions (a known start: a `jal` target or a prologue) and
@@ -18,7 +18,7 @@ import type { OvlFile } from "../container/ovl.js";
 import { OVL_HEADER_SIZE } from "../container/ovl.js";
 import { isUserAddress } from "./collision.js";
 import { MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "./hitzones.js";
-import { scanCode, type AddressUse, type CodeScan } from "./mips.js";
+import { scanCode, type AddressUse, type CodeScan } from "./mips-scan.js";
 
 export interface CodeFile {
   name: string;

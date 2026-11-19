@@ -20,7 +20,7 @@ import {
   findAttackTables,
   isAttackRecord,
   readAttackRecord,
-} from "../src/monsters/attacks.js";
+} from "../src/monsters/attack-records.js";
 import { MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "../src/monsters/hitzones.js";
 import { MONSTER_OVERLAY } from "../src/overlay/monsters.js";
 
