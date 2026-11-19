@@ -1426,7 +1426,7 @@ Other sources checked:
 `QuestScript` packets are an s16 opcode and three s16 arguments, from
 `header.questScriptPtr` up to the supplies. The script decides how a quest
 ends: what success, failure and Time Over do. The goals themselves aren't
-in it (see the objective slots below), which is why no packet names a
+in it (see the goal slots below), which is why no packet names a
 monster.
 
 **The interpreter** is the EU EBOOT's function at `0x0886E9F4`, a chain of
@@ -1437,8 +1437,9 @@ table's). The manager runs the script from a packet index, carried on from
 packet to packet in the same frame or kept for the next one ("waits"
 below). Labels are found by scanning from the start. The script's state
 is the manager's: a wait counter at `+0xc`, the time left in ticks at
-`+0x10`, and the two objectives at `+0x728`, 8 bytes each (flags, emID or
-item, a count that goes down), set from the header's objective slots. The
+`+0x10`, and the two goals at `+0x728`, 8 bytes each (flags, emID or
+item, a count that goes down), set from the header's goal slots at `0x6c`
+and `0x74` (by `0x0886E27C`; see below). The
 quest's state is a byte at `+0x2e` of the object the global `0x089CC438`
 points to (3 cleared, 5 ended, 6 leaving).
 
@@ -1492,7 +1493,19 @@ the EU disc.
 
 The goals live in the header instead:
 
-- `TargetID`/`TargetNum` (u16 at `0x70`/`0x72`).
+- **Two goal slots** at `0x6c` and `0x74`, each
+  `{ u32 flags, u16 id, u16 count }`, and how many of them must be met, the
+  byte at `0x6a` (1, the first; 2, both). The first slot's id and count are
+  `TargetID`/`TargetNum` (u16 at `0x70`/`0x72`); the hexpat leaves the
+  rest unnamed (`Unkn9` to `Unkn14`). Found in the EU EBOOT: the goal setup
+  (`0x0886E27C`) copies them to the manager's `+0x728`; a kill
+  (`0x0886AF2C`) counts down a goal with flag 1 for that emID and fails the
+  quest if the goal also has 0x100 (a capture goal, which no quest on the
+  disc has); a capture (`0x0886E5BC`) counts down any monster goal; a
+  delivery (flag 2) counts the item. The disc gives flag 1 ("Hunt") only to
+  large monsters that can be captured, 0x201 ("Slay") to small monsters and
+  the rest, 0x18004 to elder dragons (cleared by a repel), 2 to deliveries.
+  randomfu's `src/game/goals.ts` has the details.
 - **Two objective slots** at `0x28` and `0x30`, each
   `{ u32 kind, u16 id, u8 count, u8 slot }`. These are the hexpat's
   unnamed `UnknPTR3`, `Unkn1`, `Unkn2` and `Unkn3`, worked out on the EU
@@ -1503,10 +1516,11 @@ The goals live in the header instead:
 
   `raw/quests.json` decodes them as `objectives`, and `quest-probe` tabulates
   their kinds and whether a monster objective is the quest's `TargetID` or
-  one of its large monsters.
+  one of its large monsters. The goal setup doesn't read them (a quest to
+  slay 15 Blangos has `{ 1, Blango, 9 }` there), and what does isn't known.
 
 These fit the decomp's two `QuestTarget`s (an `emId` and a count each,
-`include/quest.hpp`). randomfu's swaps update `TargetID` and every
+`include/quest.hpp`). randomfu's swaps update both goals and every
 monster-kind objective, and need nothing in the script.
 
 For MH1/MHG, a community write-up (gist
