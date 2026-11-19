@@ -26,6 +26,7 @@ import {
 } from "./game/quest-fields.js";
 import { changeCarveCounts, collectCarveCounts } from "./shuffles/carve-counts.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
+import { randomizeGoals } from "./shuffles/quest-goals.js";
 import {
   collectGatheringSlots,
   randomizeGathering,
@@ -97,7 +98,7 @@ import {
   randomizeMonsterStats,
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
-import { randomizeMonsterAi } from "./shuffles/monster-ai.js";
+import { makeMonstersAggressive, randomizeMonsterAi, readScripts } from "./shuffles/monster-ai.js";
 import { writeGuides } from "./hints/guides.js";
 import { DEMO_OBJECTS } from "./blob/demo-object.js";
 import { decodeObjects } from "./blob/link.js";
@@ -362,6 +363,24 @@ export function randomize(
       );
     }
   }
+  // Goals after every shuffle that changes a quest's monsters, before small
+  // monster counts (which keep as many as a slay goal needs).
+  if (settings["questGoals.enabled"]) {
+    reports.push(
+      randomizeGoals(
+        game.quests,
+        input.quests,
+        {
+          capture: settings["questGoals.capture"],
+          small: settings["questGoals.smallMonsters"],
+        },
+        rng.fork("quest-goals"),
+        edits,
+        monsterName,
+        game.boards,
+      ),
+    );
+  }
   if (settings["questMonsters.difficulty"]) {
     reports.push(
       randomizeDifficulty(
@@ -458,17 +477,24 @@ export function randomize(
       );
     }
   }
-  if (settings["monsterAi.branches"]) {
-    reports.push(
-      randomizeMonsterAi(
-        settings["monsterAi.branchSpread"],
-        rng.fork("monster-ai"),
-        edits,
-        game.gameTask,
-        loadEmOverlays(game),
-        monsterName,
-      ),
-    );
+  const aggression = settings["monsterAi.aggression"];
+  if (settings["monsterAi.branches"] || aggression !== "off") {
+    const scripts = readScripts(game.gameTask, loadEmOverlays(game));
+    if (settings["monsterAi.branches"]) {
+      reports.push(
+        randomizeMonsterAi(
+          settings["monsterAi.branchSpread"],
+          rng.fork("monster-ai"),
+          edits,
+          scripts,
+          monsterName,
+        ),
+      );
+    }
+    // After the reroll, so it leans whatever odds the choices have by then.
+    if (aggression !== "off") {
+      reports.push(makeMonstersAggressive(aggression, edits, scripts, monsterName));
+    }
   }
 
   const questSlots = collectQuestRewardSlots(game.quests);

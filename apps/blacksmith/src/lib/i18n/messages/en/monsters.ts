@@ -134,6 +134,8 @@ export const monsters = {
     } as Record<string, string>,
     /** The switch over the 3D model, and its legend of parts. */
     show: "Hitzones",
+    /** Shows the attack hitboxes while the motion playing can hit. */
+    attacks: "Attacks",
     legend: "Hitzone parts",
   },
   breaks: {

@@ -11,6 +11,7 @@
  * defines is 0, so code can test for an optional feature. This runs in the
  * browser too, so the same object links at each region's address.
  */
+import { fnv1a } from "../hash.js";
 
 /** The blob header: 16 words in front of the code. */
 export const BLOB_HEADER_BYTES = 0x40;
@@ -129,12 +130,12 @@ export interface LinkedBlob {
 
 /** FNV-1a over the image with its build field zero; never 0. */
 function buildId(image: Buffer): number {
-  let hash = 0x811c9dc5;
-  for (let k = 0; k < image.length; k++) {
-    const byte = k >= HEADER.build && k < HEADER.build + 4 ? 0 : image[k]!;
-    hash = Math.imul(hash ^ byte, 0x01000193) >>> 0;
-  }
-  return hash || 1;
+  const bytes = function* () {
+    for (let k = 0; k < image.length; k++) {
+      yield k >= HEADER.build && k < HEADER.build + 4 ? 0 : image[k]!;
+    }
+  };
+  return fnv1a(bytes()) || 1;
 }
 
 /** Objects as `blob/build.mjs` writes them (base64), ready to link. */

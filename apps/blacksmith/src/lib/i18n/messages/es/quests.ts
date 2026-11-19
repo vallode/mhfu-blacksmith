@@ -10,6 +10,8 @@ export const quests: Messages["quests"] = {
     // "Escuela de entrenamiento" overflows the board list at phone width.
     "training-school": "Entrenamiento",
     "treasure-hunting": "Búsqueda de tesoros",
+    event: "Eventos",
+    challenge: "Desafíos",
   },
   // Short enough for the corner of the quest page, like "CLEAR!!".
   cleared: "SUPERADA",
@@ -26,11 +28,11 @@ export const quests: Messages["quests"] = {
     starLevel: (stars: number, g: boolean) =>
       `${g ? "G " : ""}${stars} ${stars === 1 ? "estrella" : "estrellas"}`,
     // Short, for the selector bar at the foot of the list at phone width.
-    allTypes: "Todas",
-    typeFilter: "Tipo de misión",
-    previousType: "Tipo de misión anterior",
-    nextType: "Tipo de misión siguiente",
-    typeOf: (n: number, total: number) => `Tipo de misión ${n} de ${total}`,
+    allQuests: "Todas",
+    filter: "Filtro de misiones",
+    previousFilter: "Filtro anterior",
+    nextFilter: "Filtro siguiente",
+    filterOf: (n: number, total: number) => `Filtro ${n} de ${total}`,
   },
   types: {
     hunting: "Caza",

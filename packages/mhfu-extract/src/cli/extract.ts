@@ -60,6 +60,7 @@ import { useMonsterNames } from "../strings/names.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
+import { readDlcQuests } from "../quests/dlc.js";
 import { findShops } from "../shops/shops.js";
 import {
   JP_BASE_ADDRESS,
@@ -81,6 +82,12 @@ export interface ExtractOptions {
   out: string;
   /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts), and the break reward code references in `raw/break-code.json` with the overlays in `raw/overlays/` (emit/break-code-raw.ts). */
   raw?: boolean;
+  /**
+   * The downloadable quests (src/quests/dlc.ts): a CWCheat file or a
+   * directory of `.mib` files. Without it, no Event or Challenge Quests are
+   * emitted, and `build-data` leaves theirs in `data/` as they are.
+   */
+  dlc?: string;
 }
 
 export interface SkippedQuest {
@@ -348,6 +355,18 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     manifest.region,
   );
   console.log(`Parsed ${quests.length} quests, skipped ${skipped.length}.`);
+  if (options.dlc) {
+    const dlc = readDlcQuests(options.dlc, manifest.region);
+    for (const q of dlc.quests) {
+      quests.push(q.parsed);
+      payloads.push({ parsed: q.parsed, payload: q.payload });
+      raw.push(dumpQuestRaw(`dlc/${q.source}`, q.payload, q.parsed, q.size));
+    }
+    for (const s of dlc.skipped) skipped.push({ path: `dlc/${s.source}`, reason: s.reason });
+    console.log(
+      `Read ${dlc.quests.length} downloadable quests from ${options.dlc}, skipped ${dlc.skipped.length}.`,
+    );
+  }
   if (options.raw) {
     const rawPath = path.join(options.out, "raw", "quests.json");
     await mkdir(path.dirname(rawPath), { recursive: true });

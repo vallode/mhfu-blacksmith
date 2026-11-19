@@ -6,18 +6,57 @@
 
 import { CROWN_ORDER, type Crown } from "./crowns";
 
-/** A quest board: Village, the three Guild ranks, Training School, Treasure Hunting. */
+/**
+ * A quest board: Village, the three Guild ranks, Training School, Treasure
+ * Hunting, then the downloaded Event and Challenge Quests (not on the disc;
+ * see mhfu-extract's README, "Downloadable quests"). `guildStars`: the
+ * board numbers its stars like the Guild's, ★9 and up showing as G★1-G★3
+ * (see `questStarLevel`).
+ */
 export const QUEST_HUBS = [
-  { slug: "village", label: "Village", hub: "village", rank: null },
-  { slug: "low-rank", label: "Guild Low Rank", hub: "guild", rank: "low-rank" },
-  { slug: "high-rank", label: "Guild High Rank", hub: "guild", rank: "high-rank" },
-  { slug: "g-rank", label: "Guild G Rank", hub: "guild", rank: "g-rank" },
-  { slug: "training-school", label: "Training School", hub: "training-school", rank: null },
-  { slug: "treasure-hunting", label: "Treasure Hunting", hub: "treasure-hunting", rank: null },
+  { slug: "village", label: "Village", hub: "village", rank: null, guildStars: false },
+  { slug: "low-rank", label: "Guild Low Rank", hub: "guild", rank: "low-rank", guildStars: true },
+  {
+    slug: "high-rank",
+    label: "Guild High Rank",
+    hub: "guild",
+    rank: "high-rank",
+    guildStars: true,
+  },
+  { slug: "g-rank", label: "Guild G Rank", hub: "guild", rank: "g-rank", guildStars: true },
+  {
+    slug: "training-school",
+    label: "Training School",
+    hub: "training-school",
+    rank: null,
+    guildStars: false,
+  },
+  {
+    slug: "treasure-hunting",
+    label: "Treasure Hunting",
+    hub: "treasure-hunting",
+    rank: null,
+    guildStars: false,
+  },
+  { slug: "event", label: "Event", hub: "event", rank: null, guildStars: true },
+  { slug: "challenge", label: "Challenge", hub: "challenge", rank: null, guildStars: false },
 ] as const;
 
 export type QuestHubSlug = (typeof QUEST_HUBS)[number]["slug"];
 export const QUEST_HUB_SLUGS: readonly QuestHubSlug[] = QUEST_HUBS.map((h) => h.slug);
+
+/**
+ * Boards of downloaded quests. A save has no cleared bit for them, so they
+ * stay out of a hunter's quest progress, and no copy of the game has them,
+ * so they aren't places to gather or stages of the game. They hold few
+ * enough quests that their page lists them all together, each with its star
+ * level, filtered by rank as well as type, instead of a star level at a time.
+ */
+export const DOWNLOADED_QUEST_HUBS: ReadonlySet<QuestHubSlug> = new Set(["event", "challenge"]);
+
+/** A quest's rank tier, as data/quests has it. */
+export const QUEST_RANKS = ["low-rank", "high-rank", "g-rank"] as const;
+export type QuestRank = (typeof QUEST_RANKS)[number];
 
 /** The hub page a data/quests record belongs on, from its `hub` and `rank`. */
 export function questHubSlug(hub: string, rank: string | null): QuestHubSlug | null {
@@ -58,6 +97,43 @@ export function questType(hub: string, goal: string | null): QuestType {
 /** The types a list of quests covers, in QUEST_TYPES order. */
 export function questTypesIn(quests: Pick<Quest, "type">[]): QuestType[] {
   return QUEST_TYPES.filter((t) => quests.some((q) => q.type === t));
+}
+
+/** The ranks a list of quests covers, lowest first. */
+export function questRanksIn(quests: Pick<Quest, "rank">[]): QuestRank[] {
+  return QUEST_RANKS.filter((r) => quests.some((q) => q.rank === r));
+}
+
+/** One step of a board's filter: a quest type, or (on a downloaded quests' board) a rank. */
+export type QuestFilter = { type: QuestType } | { rank: QuestRank };
+
+/**
+ * A board's filters, after "every quest": the ranks a downloaded quests'
+ * board's quests cover, then the types. Each kind only when there is more than one
+ * to choose between.
+ */
+export function questFilters(quests: Pick<Quest, "rank" | "type">[], hub: string): QuestFilter[] {
+  const ranks = DOWNLOADED_QUEST_HUBS.has(hub as QuestHubSlug) ? questRanksIn(quests) : [];
+  const types = questTypesIn(quests);
+  return [
+    ...(ranks.length > 1 ? ranks.map((rank) => ({ rank })) : []),
+    ...(types.length > 1 ? types.map((type) => ({ type })) : []),
+  ];
+}
+
+/** Whether a quest passes a filter (null: every quest does). */
+export function matchesQuestFilter(
+  quest: Pick<Quest, "rank" | "type">,
+  filter: QuestFilter | null,
+): boolean {
+  if (!filter) return true;
+  return "rank" in filter ? quest.rank === filter.rank : quest.type === filter.type;
+}
+
+/** Whether two filters are the same step (null is "every quest"). */
+export function sameQuestFilter(a: QuestFilter | null, b: QuestFilter | null): boolean {
+  if (!a || !b) return a === b;
+  return "rank" in a ? "rank" in b && a.rank === b.rank : "type" in b && a.type === b.type;
 }
 
 // ---------------------------------------------------------------------------
@@ -136,6 +212,7 @@ export type CompactQuest = [
   areaMap: 0 | 1,
   smallCounts: ([total: number] | [total: number, endless: 1])[], // parallel to smallMonsters
   size: CompactQuestSize | null, // null without large monsters
+  rank: number | null, // index into QUEST_RANKS; null without a rank tier
 ];
 
 export interface QuestsBundle {
@@ -211,6 +288,8 @@ export interface QuestRewardTable {
 export interface Quest {
   id: number;
   hub: QuestHubSlug;
+  /** The quest's rank tier; null without one (and in a bundle cached before ranks were added). */
+  rank: QuestRank | null;
   type: QuestType;
   stars: number;
   map: string | null;
@@ -286,9 +365,11 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       am,
       sc,
       sz,
+      rk,
     ]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
+      rank: rk === undefined || rk === null ? null : (QUEST_RANKS[rk] ?? null),
       type: questType(QUEST_HUBS[hub]?.slug ?? "village", str(g)),
       stars,
       map: str(map),
@@ -365,7 +446,8 @@ export function questsOnHub(quests: Quest[], hub: string): Quest[] {
 
 /**
  * G Rank quests are stored at ★9-★11, after High Rank's ★6-★8. The game
- * shows them as G★1-G★3.
+ * shows them as G★1-G★3, on every board that numbers its stars like the
+ * Guild's (`guildStars`: Event Quests do, the Village's ★9 doesn't).
  */
 export const G_RANK_STAR_OFFSET = 8;
 
@@ -377,7 +459,9 @@ export interface StarLevel {
 
 /** The star level a quest on this hub (a QuestHubSlug) shows. */
 export function questStarLevel(hub: string, stars: number): StarLevel {
-  return hub === "g-rank" ? { g: true, stars: stars - G_RANK_STAR_OFFSET } : { g: false, stars };
+  const guildStars = QUEST_HUBS.find((h) => h.slug === hub)?.guildStars ?? false;
+  const g = guildStars && stars > G_RANK_STAR_OFFSET;
+  return g ? { g: true, stars: stars - G_RANK_STAR_OFFSET } : { g: false, stars };
 }
 
 /** The star levels a hub's quests span, lowest first. */
@@ -403,17 +487,25 @@ export interface SmallMonsterStage {
   endless: Quest[];
 }
 
+/** The boards that are stages of the game, where `smallMonsterStages` looks. */
+const STAGE_HUBS: ReadonlySet<QuestHubSlug> = new Set([
+  "village",
+  "low-rank",
+  "high-rank",
+  "g-rank",
+]);
+
 /**
  * Where a small monster is most plentiful: for each star level of the village
- * and guild boards, the quests with the biggest total of it (every distinct
+ * and guild boards (`STAGE_HUBS`), the quests with the biggest total of it (every distinct
  * spawn table counted once), in board and star order. Star levels without it
- * are left out; Training School and Treasure Hunting are not stages of the game.
+ * are left out; Training School, Treasure Hunting and the downloaded quests
+ * are not stages of the game.
  */
 export function smallMonsterStages(quests: Quest[], name: string): SmallMonsterStage[] {
   const stages = new Map<string, SmallMonsterStage>();
   for (const quest of quests) {
-    if (isHiddenQuest(quest.id)) continue;
-    if (quest.hub === "training-school" || quest.hub === "treasure-hunting") continue;
+    if (isHiddenQuest(quest.id) || !STAGE_HUBS.has(quest.hub)) continue;
     const at = quest.smallMonsters.findIndex((m) => m.name === name);
     const spawn = quest.smallSpawns[at];
     if (!spawn) continue;
