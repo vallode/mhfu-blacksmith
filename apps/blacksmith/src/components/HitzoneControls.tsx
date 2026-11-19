@@ -19,7 +19,14 @@ export interface HitzoneBreak {
   name: string;
 }
 
+/** The attack hitboxes' switch, for a monster that has them. */
+export interface AttackSwitch {
+  show: boolean;
+  onShowChange: (show: boolean) => void;
+}
+
 interface Props {
+  /** Hitzone parts that have hitboxes; with none, there is no hitbox switch. */
   parts: HitzonePart[];
   /** Breakable parts, listed under the hitzone parts. */
   breaks?: HitzoneBreak[];
@@ -30,12 +37,14 @@ interface Props {
   onPin: (part: string | null) => void;
   /** A part hovered or focused in the legend; null when it leaves. */
   onHover: (part: string | null) => void;
+  attacks?: AttackSwitch;
 }
 
 /**
  * Over a monster's 3D model: a switch for its hitboxes and, while they show,
  * a legend of the hitzone parts in their colours, then its breakable parts.
  * Hovering or focusing an entry highlights its hitboxes; clicking pins it.
+ * Next to the hitbox switch, one for its attack hitboxes.
  */
 export default function HitzoneControls({
   parts,
@@ -45,24 +54,24 @@ export default function HitzoneControls({
   pinned,
   onPin,
   onHover,
+  attacks,
 }: Props) {
   const { hitzones: t, breaks: breakText } = useT().monsters;
   return (
     <>
-      <button
-        type="button"
-        onClick={() => onShowChange(!show)}
-        aria-pressed={show}
-        className={cn(
-          modelPanel,
-          modelPanelButton,
-          "absolute bottom-2 left-2 z-10",
-          show ? "text-stat" : "text-parchment",
+      <div className="absolute bottom-2 left-2 z-10 flex gap-2">
+        {parts.length > 0 && (
+          <Switch on={show} onChange={onShowChange}>
+            {t.show}
+          </Switch>
         )}
-      >
-        {t.show}
-      </button>
-      {show && (
+        {attacks && (
+          <Switch on={attacks.show} onChange={attacks.onShowChange}>
+            {t.attacks}
+          </Switch>
+        )}
+      </div>
+      {show && parts.length > 0 && (
         <ul
           aria-label={t.legend}
           className={cn(modelPanel, "absolute top-2 left-2 z-10 flex flex-col")}
@@ -101,6 +110,27 @@ export default function HitzoneControls({
         </ul>
       )}
     </>
+  );
+}
+
+function Switch({
+  on,
+  onChange,
+  children,
+}: {
+  on: boolean;
+  onChange: (on: boolean) => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => onChange(!on)}
+      aria-pressed={on}
+      className={cn(modelPanel, modelPanelButton, on ? "text-stat" : "text-parchment")}
+    >
+      {children}
+    </button>
   );
 }
 

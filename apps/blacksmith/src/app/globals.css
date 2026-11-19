@@ -135,6 +135,8 @@
   --color-hitbox-6: #7d86ff;
   --color-hitbox-7: #d36cff;
   --color-hitbox-8: #ff7ac8;
+  /* A monster's attack hitboxes, while they can hit. */
+  --color-attack: #ff2f2f;
 
   /* Pulsing green highlight behind hovered rows, cards and search results.
      The pulse animates only --glow-alpha (the strength of the background),
@@ -148,7 +150,12 @@
          transparent); */
   --color-hover-glow: rgb(3 119 3 / 0.84);
   --animate-hover-glow: glow-alpha 1s ease-in-out infinite alternate;
-  --gradient-hover-glow: linear-gradient(0.25turn, transparent, var(--color-hover-glow), transparent);
+  --gradient-hover-glow: linear-gradient(
+    0.25turn,
+    transparent,
+    var(--color-hover-glow),
+    transparent
+  );
 
   @keyframes glow-alpha {
     from {
@@ -258,7 +265,12 @@
 /* Pulsing green highlight (see --animate-hover-glow above) */
 @utility hover-glow {
   animation: var(--animate-hover-glow);
-  background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
+  background: linear-gradient(
+    0.25turn,
+    transparent,
+    color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
+    transparent
+  );
 }
 
 /* Icon colour tint (on an Icon's ::before): a mask shaped like the sprite,
@@ -682,7 +694,12 @@ img {
 
   &:hover {
     animation: var(--animate-hover-glow);
-    background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
+    background: linear-gradient(
+      0.25turn,
+      transparent,
+      color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
+      transparent
+    );
   }
 }
 

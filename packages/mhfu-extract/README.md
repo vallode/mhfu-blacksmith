@@ -519,6 +519,37 @@ Open questions:
 These dumps come from the disc, so they stay in `.cache/` like the rest of
 the extracted output.
 
+### Monster attacks
+
+A monster's attacks are objects its class's per-frame spawner makes while
+a motion plays, each with a row (timing, power, reaction, stun) and a list
+of shapes in the hitbox records' layout (`packages/randomfu/docs/monster-ai.md`,
+"Attack objects", has the format). The spawners branch every which way, and
+some change the row after making the object, so `src/monsters/attacks.ts`
+runs them rather than reading them, on a small Allegrex interpreter
+(`src/monsters/mips.ts`; VFPU instructions do nothing, unmapped memory
+reads 0):
+
+- **Sweep**: the class's vtable comes from the spawn switch's case for the
+  emID, and its overlay from which `emNN.ovl` its methods start functions
+  in. For each motion slot, a made-up monster plays it at frame 0, then at
+  every frame the spawner asked `FRAME_AT` about, until it asks about no new
+  one; every object the attack factories make is initialised and read back.
+  The EU disc's addresses are pinned, so only that disc gets attacks. The
+  whole sweep takes about 6 seconds.
+- **Site file**: `export-site` writes `public/models/monsters/emNN.attacks.json`:
+  per attack, its motion slot, the frames (60 fps) it can hit in
+  (`frame + 2·delay` up to `frame + 2·(delay + duration)`, delay and duration
+  being 30 Hz ticks), power, reaction, stun and capsules on their joints in
+  the bind pose. The 3D viewer shows them while the motion playing is in
+  that window.
+
+Gaps, logged by `export-site`: shapes on joints 0x7D-0x7F are placed by code
+(a sweep between two frames, or the object's own position) and are skipped;
+Bulldrome's attacks come from its action code, not its spawner, so it has
+none; and Mosswine, Bullfango, Felynes, Melynxes, Great Thunderbugs and
+Remobras make none this way either.
+
 ### Monster breaks
 
 Each monster's `breaks` (`data/monsters/*.json`) lists the body parts
@@ -724,7 +755,9 @@ file paths:
   (Veggie Elder, Poogie, ...) are skipped. Each monster also gets
   `monsters/emNN.hitboxes.json` (see "Monster hitboxes"), which needs
   `overlay/game_task.ovl` and the `emNN.ovl` files in the unpacked
-  directory; the log names any monster without one, and why.
+  directory; the log names any monster without one, and why. From the EU
+  disc, with `eboot.bin` and `overlay/game_sub.ovl` too, each also gets
+  `monsters/emNN.attacks.json` (see "Monster attacks").
 - **Weapons** need `eboot.bin`: each blademaster/gunner table entry, indexed
   by the game ID the site's weapon record carries, holds the model
   ID of its `weapon/weNNN.pac`. Verified on an EU EBOOT: all 1,500 weapons
