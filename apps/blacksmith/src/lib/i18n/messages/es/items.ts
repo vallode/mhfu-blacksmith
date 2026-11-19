@@ -53,6 +53,7 @@ export const items: Messages["items"] = {
       shops: "Tiendas",
       trades: "Trueques",
       combining: "Combinar",
+      uses: "Se usa en",
     },
     noSources:
       "Ningún monstruo, recompensa de misión, punto de recolección, tienda, trueque ni combinación da este objeto.",
@@ -100,6 +101,24 @@ export const items: Messages["items"] = {
       stages.length === 1
         ? `Fase ${stages[0]} de ${total}`
         : `Fases ${stages.slice(0, -1).join(", ")} y ${stages[stages.length - 1]} de ${total}`,
+  },
+  uses: {
+    filterLabel: "Mostrar equipo de un tipo",
+    create: "Forjar",
+    improve: (from: string) => `Mejorar desde ${from}`,
+    upgrade: "Mejorar",
+    alt: "Segunda receta",
+    armorRank: (rank: string) => `Armadura (${rank})`,
+    decorations: "Adornos",
+    weapons: "Armas",
+    armor: "Armaduras",
+    all: "Todo",
+    summary: (n: number, recipes: string, total: string) =>
+      `En ${recipes} ${n === 1 ? "receta" : "recetas"} · ${total} para todas`,
+    showAll: (count: string) => `Ver las ${count}`,
+    showFewer: "Ver menos",
+    kindCount: (kind: string, count: string) => `${kind} ${count}`,
+    groupCount: (group: string, count: string) => `${group} (${count})`,
   },
   combining: {
     madeFrom: "Se obtiene combinando",
