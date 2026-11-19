@@ -39,6 +39,9 @@ export interface Settings {
   "terms.time": boolean;
   "terms.timeSpread": number;
   "deliveries.enabled": boolean;
+  "questGoals.enabled": boolean;
+  "questGoals.capture": boolean;
+  "questGoals.smallMonsters": boolean;
   "trades.mode": Mode;
   "trades.mix": "elder" | "all";
   "trades.scope": "low" | "high" | "any";
@@ -111,6 +114,7 @@ export interface Settings {
   "monsterStats.statusSpread": number;
   "monsterAi.branches": boolean;
   "monsterAi.branchSpread": number;
+  "monsterAi.aggression": "off" | "more" | "relentless";
   "weaknesses.elements": boolean;
   "weaknesses.parts": boolean;
   "hints.bookshelf": boolean;
@@ -627,6 +631,33 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
+  },
+  {
+    key: "questGoals.enabled",
+    section: "Quest goals",
+    label: "Randomize quest goals",
+    help: "Each Village and Guild hunting quest asks for something else its own large monsters allow: to hunt another of them, or to capture one. A hunt never becomes a small monster quest. Quests whose monsters come in waves keep their target, and quests with two targets keep both. The goal line changes to match (in English); the title and description don't. Elder dragon, delivery, fortress and Treasure Hunting quests keep their goals.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "questGoals.capture",
+    section: "Quest goals",
+    label: "Capture goals",
+    help: "Goals can ask to capture a monster that can be captured. Killing it fails the quest, so bring traps and tranquilizers.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "questGoals.enabled",
+  },
+  {
+    key: "questGoals.smallMonsters",
+    section: "Quest goals",
+    label: "Change slaying quests",
+    help: "Quests that ask to slay a number of small monsters ask for a third to a half of another of the quest's small monsters (never Vespoids), or to hunt or capture one of its large monsters. Off, they keep their goals.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "questGoals.enabled",
   },
   {
     key: "trades.mode",
@@ -1654,6 +1685,29 @@ export const OPTIONS: readonly OptionDef[] = [
     type: SPREAD,
     default: 0.5,
     enabledBy: "monsterAi.branches",
+  },
+  {
+    key: "monsterAi.aggression",
+    section: "Monster stats",
+    label: "Aggression",
+    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, so it spends less time between them. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Monsters attack as often as they always did." },
+        {
+          value: "more",
+          label: "More aggressive",
+          help: "Each attack is twice as likely as before against the other moves.",
+        },
+        {
+          value: "relentless",
+          label: "Relentless",
+          help: "Each attack is four times as likely as before against the other moves.",
+        },
+      ],
+    },
+    default: "off",
   },
   {
     key: "weaknesses.elements",

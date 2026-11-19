@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn";
 import { hitzoneBest, hitzoneTable, hitzoneZero } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster, useQuests } from "@/lib/client-data";
-import ModelViewer, { type ModelCapsule } from "@/components/ModelViewer";
+import ModelViewer, { type ModelAttack, type ModelCapsule } from "@/components/ModelViewer";
 import HitzoneControls, { type HitzonePart } from "@/components/HitzoneControls";
 import MonsterBreaks from "@/components/MonsterBreaks";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
@@ -28,7 +28,12 @@ import CrownIcon from "@/components/CrownIcon";
 import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
-import { useMonsterHitboxes, useMonsterModel, type HitboxCapsule } from "@/lib/models";
+import {
+  useMonsterAttacks,
+  useMonsterHitboxes,
+  useMonsterModel,
+  type HitboxCapsule,
+} from "@/lib/models";
 import type { Monster, MonsterBreak } from "@/lib/types";
 import { useLocale } from "@/context/LanguageContext";
 import type { Messages } from "@/lib/i18n/messages";
@@ -121,6 +126,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const modelOpen = modelUrl !== null && openModel === modelUrl;
   const hitboxes = useMonsterHitboxes(modelUrl);
   const [showHitzones, setShowHitzones] = useState(false);
+  const attacks = useMonsterAttacks(modelUrl);
+  const [showAttacks, setShowAttacks] = useState(false);
+  const shownAttacks: ModelAttack[] | undefined = (showAttacks && attacks) || undefined;
   // A part or break hovered in the hitzone tab or the legend, and one picked
   // in the legend (which only shows with the hitboxes, so a pick ends with
   // them). Hitzone parts go by name, breaks by `breakKey`.
@@ -440,8 +448,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       {modelOpen && (
         <ModelPopover title={name} onClose={() => setOpenModel(null)}>
           <div className="relative h-full w-full">
-            <ModelViewer src={modelUrl} label={name} capsules={capsules} />
-            {hitboxParts.length > 0 && (
+            <ModelViewer src={modelUrl} label={name} capsules={capsules} attacks={shownAttacks} />
+            {(hitboxParts.length > 0 || attacks) && (
               <HitzoneControls
                 parts={hitboxParts}
                 breaks={breaks
@@ -452,6 +460,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 pinned={pinnedPart}
                 onPin={setPinnedPart}
                 onHover={setHoveredPart}
+                attacks={attacks ? { show: showAttacks, onShowChange: setShowAttacks } : undefined}
               />
             )}
           </div>

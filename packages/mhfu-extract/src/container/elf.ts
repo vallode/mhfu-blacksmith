@@ -24,6 +24,8 @@ export interface ElfSegment {
   offset: number;
   vaddr: number;
   fileSize: number;
+  /** Size in memory; past `fileSize` it is zeros. */
+  memSize: number;
   /** `vaddr - offset`, relocated to `PSP_USER_LOAD_ADDRESS` for a relocatable module. */
   base: number;
 }
@@ -48,6 +50,7 @@ export function elfLoadSegments(buf: Buffer): ElfSegment[] {
       offset,
       vaddr,
       fileSize,
+      memSize: buf.readUInt32LE(at + 0x14),
       base: (relocatable ? vaddr + PSP_USER_LOAD_ADDRESS : vaddr) - offset,
     });
   }

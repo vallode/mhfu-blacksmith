@@ -19,6 +19,7 @@
  */
 import type { OvlFile } from "../container/ovl.js";
 import type { BinaryReader } from "../binary/reader.js";
+import { familyOverlayId } from "./families.js";
 import { MONSTER_CHUNK_SIZE } from "./hitzones.js";
 
 /** `CollisionPTR` in `emChunk`, after BaseScale (+0x40), the shadow scales and one float. */
@@ -133,7 +134,8 @@ const emName = (id: number) => `em${String(id).padStart(2, "0")}.ovl`;
  * Reads one monster's collision records through its chunk's `CollisionPTR`,
  * checked against its skeleton (`jointCount` joints).
  *
- * The pointer leads into `game_task.ovl`, the monster's own `emNN.ovl`, or,
+ * The pointer leads into `game_task.ovl`, the monster's own `emNN.ovl` (its
+ * family's for Basarios and Black Gravios, `familyOverlayId`), or,
  * for monsters without one (variants such as Pink Rathian, and species such
  * as Rathalos), into another monster's overlay that the game loads for
  * them: per-monster overlays share load addresses, so the address alone
@@ -161,12 +163,12 @@ export function readMonsterCollision(
     const records = read(gameTask);
     return records ? { records } : { error: "the table in game_task.ovl doesn't fit the skeleton" };
   }
-  const own = emOvls.get(emId);
+  const ownId = familyOverlayId(emId);
+  const own = emOvls.get(ownId);
   if (own?.isOwnVaddr(pointer)) {
     const records = read(own);
-    return records
-      ? { records }
-      : { error: `the table in ${emName(emId)} doesn't fit the skeleton` };
+    if (!records) return { error: `the table in ${emName(ownId)} doesn't fit the skeleton` };
+    return ownId === emId ? { records } : { records, borrowedFrom: ownId };
   }
   const holders = [...emOvls].filter(([, ovl]) => ovl.isOwnVaddr(pointer));
   if (holders.length === 0) return { error: "CollisionPTR is outside every overlay" };

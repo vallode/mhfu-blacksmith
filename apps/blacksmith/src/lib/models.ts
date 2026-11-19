@@ -140,33 +140,68 @@ export interface HitboxCapsule {
   end: [number, number, number];
 }
 
-const hitboxFiles = new Map<string, Promise<HitboxCapsule[] | null>>();
+/** One attack a monster's motion makes (see packages/mhfu-extract `monsters/attacks.ts`). */
+export interface MonsterAttack {
+  /** The motion's slot (`MotionClip.slot`). */
+  slot: number;
+  /** Motion frames (60 fps) it can hit in: from `from` up to, not including, `to`. */
+  from: number;
+  to: number;
+  power: number;
+  reaction: number;
+  stun: number;
+  /** Its shapes, each on a joint (the model's `bone_<joint>`), placed in the bind pose. */
+  capsules: {
+    joint: number;
+    radius: number;
+    start: [number, number, number];
+    end: [number, number, number];
+  }[];
+}
+
+const sideFiles = new Map<string, Promise<unknown[] | null>>();
+
+/**
+ * A list from a file next to a monster's model (`emNN.<kind>.json`, read
+ * as `{ [key]: [...] }`); null while loading, or if it has none.
+ */
+function useModelFile<T>(modelUrl: string | null, kind: string, key: string): T[] | null {
+  const [items, setItems] = useState<T[] | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    setItems(null);
+    if (!modelUrl) return;
+    const url = modelUrl.replace(/\.glb$/, `.${kind}.json`);
+    let promise = sideFiles.get(url);
+    if (!promise) {
+      promise = fetch(url)
+        .then((res) => (res.ok ? (res.json() as Promise<Record<string, unknown[]>>) : null))
+        .then((file) => (file?.[key]?.length ? file[key] : null))
+        .catch(() => null);
+      sideFiles.set(url, promise);
+    }
+    promise.then((found) => {
+      if (!cancelled) setItems(found as T[] | null);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [modelUrl, kind, key]);
+  return items;
+}
 
 /**
  * A monster's hitboxes, from the file next to its model
  * (`/models/monsters/emNN.hitboxes.json`); null while loading or if it has none.
  */
 export function useMonsterHitboxes(modelUrl: string | null): HitboxCapsule[] | null {
-  const [capsules, setCapsules] = useState<HitboxCapsule[] | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    setCapsules(null);
-    if (!modelUrl) return;
-    const url = modelUrl.replace(/\.glb$/, ".hitboxes.json");
-    let promise = hitboxFiles.get(url);
-    if (!promise) {
-      promise = fetch(url)
-        .then((res) => (res.ok ? (res.json() as Promise<{ capsules: HitboxCapsule[] }>) : null))
-        .then((file) => (file?.capsules.length ? file.capsules : null))
-        .catch(() => null);
-      hitboxFiles.set(url, promise);
-    }
-    promise.then((found) => {
-      if (!cancelled) setCapsules(found);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [modelUrl]);
-  return capsules;
+  return useModelFile<HitboxCapsule>(modelUrl, "hitboxes", "capsules");
+}
+
+/**
+ * A monster's attacks, from the file next to its model
+ * (`/models/monsters/emNN.attacks.json`); null while loading or if it has none.
+ */
+export function useMonsterAttacks(modelUrl: string | null): MonsterAttack[] | null {
+  return useModelFile<MonsterAttack>(modelUrl, "attacks", "attacks");
 }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import CrownIcon, { useFormatChance } from "@/components/CrownIcon";
 import { useGameText, useT } from "@/context/LanguageContext";
-import { QUEST_HUBS, questHref, type BestCrown, type Quest } from "@/lib/quests";
+import { QUEST_HUBS, questHref, questStarLevel, type BestCrown, type Quest } from "@/lib/quests";
 
 /**
  * A monster's quests, one titled list per quest board, linking to each quest.
@@ -41,12 +41,16 @@ export default function MonsterQuests({
             <ul className="m-0 flex list-none flex-col gap-[0.4rem] p-0">
               {onHub.map((q) => {
                 const best = bestCrowns?.get(q.id);
+                const level = questStarLevel(hub.slug, q.stars);
                 return (
                   <li
                     key={q.id}
                     className="flex min-w-0 items-baseline gap-[0.8rem] leading-[1.25]"
                   >
-                    <span className="w-cells-3 flex-none text-stat">{q.stars}★</span>
+                    <span className="w-cells-3 flex-none text-stat">
+                      {level.g && "G"}
+                      {level.stars}★
+                    </span>
                     <Link
                       href={questHref(q)}
                       className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"

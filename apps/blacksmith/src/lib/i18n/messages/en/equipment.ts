@@ -300,6 +300,8 @@ export const equipment = {
     motion: "Motion",
     previousMotion: "Previous motion",
     nextMotion: "Next motion",
+    /** Read after the motion number of a motion with attack hitboxes. */
+    attackMotion: "attacks",
     play: "Play",
     pause: "Pause",
     /** The hunter's motions (lib/hunter names them in English). */

@@ -88,6 +88,8 @@ export function namedMonsters(doc: QuestDoc): number[] {
     .filter((o) => o.kind === OBJECTIVE_KIND_MONSTER)
     .map((o) => o.id);
   if (!isDelivery(doc) && doc.header.targetId !== 0) named.push(doc.header.targetId);
+  // The second goal (header 0x74: flags, 0x78: emID and count), a monster's with flag 1.
+  if (doc.header.unk74 & 1) named.push(doc.header.unk78 & 0xffff);
   return [...new Set(named)];
 }
 
