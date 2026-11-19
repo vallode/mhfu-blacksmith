@@ -183,21 +183,16 @@ export default withPWA({
         // see packages/mhfu-extract export-site): too big to precache, so keep
         // the ones a visitor has viewed. NetworkFirst, not CacheFirst: a model
         // is re-extracted in place (a GLB names its motions file), and a cached
-        // old one hid new motions until a hard refresh. Unchanged files cost a
-        // 304; offline, the cached copy serves.
-        urlPattern: /\/models\/(?!manifest\/).+\.(glb|bin|json)$/,
+        // old one hid new motions until a hard refresh. "no-cache" makes the fetch
+        // revalidate past the browser's HTTP cache, so unchanged files cost a
+        // 304; offline, the cached copy serves. No network timeout: a slow
+        // load would fall back to the stale copy. Also covers the manifest.
+        urlPattern: /\/models\/.+\.(glb|bin|json)$/,
         handler: "NetworkFirst",
         options: {
           cacheName: "models",
-          networkTimeoutSeconds: 5,
+          fetchOptions: { cache: "no-cache" },
           expiration: { maxEntries: 200, maxAgeSeconds: 30 * 24 * 60 * 60 },
-        },
-      },
-      {
-        urlPattern: /\/models\/manifest\/.+\.json$/,
-        handler: "NetworkFirst",
-        options: {
-          cacheName: "models",
         },
       },
       {
