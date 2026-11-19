@@ -35,7 +35,7 @@ come from hand-authored files under `src/overlay/` — see "Overlay data".
 ```bash
 # from the repo root
 pnpm --filter mhfu-extract unpack  --iso /path/to/mhfu.iso --out .cache/mhfu
-pnpm --filter mhfu-extract extract --unpacked .cache/mhfu --out .cache/mhfu/extracted
+pnpm --filter mhfu-extract extract --unpacked .cache/mhfu --out .cache/mhfu/extracted --dlc .cache/dlc/ULES01213.ini
 pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract compare --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data ../../data --markdown .cache/mhfu/changes.md
@@ -43,7 +43,7 @@ pnpm --filter mhfu-extract item-icons --unpacked .cache/mhfu
 pnpm --filter mhfu-extract area-maps --unpacked .cache/mhfu
 pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
 pnpm --filter mhfu-extract find-names --unpacked .cache/mhfu
-pnpm --filter mhfu-extract locales --unpacked .cache/mhfu --data ../../data
+pnpm --filter mhfu-extract locales --unpacked .cache/mhfu --data ../../data --dlc .cache/dlc/ULES01213.ini
 pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests.json --tsv .cache/mhfu/quest-size.tsv
 pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
 pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Velocidrome
@@ -950,6 +950,8 @@ and parses every real quest file (`listQuestFiles()` filters `DATA.BIN`'s
 excluding the 13 `level*.mib` files, which are the quest board, not
 quests: see "Quest text"). `src/emit/quests.ts`'s `emitQuestsFile(parsedQuests)` then maps
 them onto `data/quests/{village,guild,training-school,treasure-hunting}.json`
+(and the downloadable quests onto `event.json`/`challenge.json`: see
+"Downloadable quests")
 (schema: `data/schemas/quest.schema.json`) — the first `data/` category this
 pipeline designed from scratch, since (unlike weapons/armor/monsters/
 decorations) no such schema existed before this. All 551 real quests parse
@@ -999,6 +1001,35 @@ slot at the Japanese text, so a JP run gives Japanese `title`/`goal`/
 `fail`/`details`/`client`. The committed `data/quests/` comes from the EU
 disc, whose text is English. Every other quest field is in English,
 resolved through the same enums as equipment.
+
+### Downloadable quests
+
+The Event Quests (`60xxx`) and Challenge Quests (`61xxx`) were never on a
+disc: not the EU or JP retail `DATA.BIN`, nor FUComplete's. Capcom handed
+them out online, and the game kept each download in one of six slots in
+the save (`MHP2NDG.BIN`, game layer decrypted: `0x142300` onwards, `0x6810`
+bytes a slot, each wrapped in `QuestCipher` with the quest's file name,
+`m60035.mib`, after it). `extract --dlc <source>` and `locales --dlc
+<source>` add them, emitted as `data/quests/event.json` and
+`challenge.json` (`hub` `event` and `challenge`). Without `--dlc`,
+neither file is written, so `build-data` leaves the committed ones alone.
+
+`<source>` (`src/quests/dlc.ts`) is either a directory of `.mib` files,
+plain or `QuestCipher`-wrapped, or a CWCheat file that writes them into
+memory. The committed data comes from `Event-via-Code/ULES01213.ini` in
+[viciousShadow/MH-PSP-DLC](https://github.com/viciousShadow/MH-PSP-DLC),
+an archive of the PSP games' DLC: every MHFU quest (28 Event Quests, 14
+Challenge Quests) under `_C0 <DLC MHFU=<id>>` headings, and every MHP2G one
+(38 and 14, Japanese) under `<DLC MHP2G=<id>>`, as runs of 32-bit writes.
+A run is the plain `.mib`, except that every Event Quest carries ID 60038:
+the cheat swaps a quest into Twin Terrors' download slot. With the
+heading's ID put back, the six Event Quests in a 2010 EU save match the
+cheat's byte for byte. A JP run reads the MHP2G sections, which include
+the ten Japan-only Event Quests (`60001`-`60009`, `60036`).
+
+Event Quests number their stars like the Guild (★9-★11 are G★1-G★3) and
+use its rank tiers. Challenge Quests are rank 0, 3 or 4, like Subjugation
+Training, with Training School loadouts (`arena_sets`).
 
 ### Reward tables
 

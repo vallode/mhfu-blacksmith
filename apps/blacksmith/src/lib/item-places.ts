@@ -6,7 +6,7 @@
  * the tests build it from data/.
  */
 import { formatRank } from "./monster-drops";
-import { isHiddenQuest, questHubLabel, questHubSlug } from "./quests";
+import { DOWNLOADED_QUEST_HUBS, isHiddenQuest, questHubLabel, questHubSlug } from "./quests";
 
 export type GatherKind = "gather" | "mine" | "bug";
 
@@ -108,6 +108,12 @@ export interface ItemPlaces {
   shops: ShopPlace[];
 }
 
+/** Whether a quest is on a board of downloaded quests. */
+function isDownloaded(q: PlaceQuest): boolean {
+  const board = questHubSlug(q.hub, q.rank);
+  return board !== null && DOWNLOADED_QUEST_HUBS.has(board);
+}
+
 /** A quest's group: its rank, or its board when it has none. */
 function questGroup(q: PlaceQuest): string {
   if (q.rank) return formatRank(q.rank);
@@ -154,7 +160,9 @@ function pointsIn(layout: Layout, itemId: (name: string) => number | undefined) 
  * board), then map: a map's usual points are the set the most quests in the
  * group use there. Another set on the map (a gathering quest's, say) only
  * adds a row, naming its quests, for items the usual set doesn't give.
- * Hidden quests (`isHiddenQuest`) don't count.
+ * Hidden quests (`isHiddenQuest`) don't count, nor do the downloaded Event
+ * and Challenge Quests: no copy of the game has them, so their points aren't
+ * a place to go.
  */
 export function buildItemPlaces(
   gathering: GatheringFile,
@@ -180,7 +188,7 @@ export function buildItemPlaces(
     const byGroup = new Map<string, number[]>();
     for (const id of layout.quests) {
       const q = questById.get(id);
-      if (!q || isHiddenQuest(id)) continue;
+      if (!q || isHiddenQuest(id) || isDownloaded(q)) continue;
       const group = questGroup(q);
       byGroup.set(group, [...(byGroup.get(group) ?? []), id]);
     }
