@@ -31,6 +31,16 @@ export const QUEST_HUB_SLUGS: readonly QuestHubSlug[] = QUEST_HUBS.map((h) => h.
  */
 export const DOWNLOADED_QUEST_HUBS: ReadonlySet<QuestHubSlug> = new Set(["event", "challenge"]);
 
+/**
+ * Boards with few enough quests to list together, with their star level on
+ * each row, instead of one star level at a time.
+ */
+export const SINGLE_LIST_QUEST_HUBS: ReadonlySet<QuestHubSlug> = new Set(["event", "challenge"]);
+
+/** A quest's rank tier, as data/quests has it. */
+export const QUEST_RANKS = ["low-rank", "high-rank", "g-rank"] as const;
+export type QuestRank = (typeof QUEST_RANKS)[number];
+
 /** The hub page a data/quests record belongs on, from its `hub` and `rank`. */
 export function questHubSlug(hub: string, rank: string | null): QuestHubSlug | null {
   const match = QUEST_HUBS.find((h) => h.hub === hub && (h.rank === null || h.rank === rank));
@@ -70,6 +80,43 @@ export function questType(hub: string, goal: string | null): QuestType {
 /** The types a list of quests covers, in QUEST_TYPES order. */
 export function questTypesIn(quests: Pick<Quest, "type">[]): QuestType[] {
   return QUEST_TYPES.filter((t) => quests.some((q) => q.type === t));
+}
+
+/** The ranks a list of quests covers, lowest first. */
+export function questRanksIn(quests: Pick<Quest, "rank">[]): QuestRank[] {
+  return QUEST_RANKS.filter((r) => quests.some((q) => q.rank === r));
+}
+
+/** One step of a board's filter: a quest type, or (on a single-list board) a rank. */
+export type QuestFilter = { type: QuestType } | { rank: QuestRank };
+
+/**
+ * A board's filters, after "every quest": the ranks a single-list board's
+ * quests cover, then the types. Each kind only when there is more than one
+ * to choose between.
+ */
+export function questFilters(quests: Pick<Quest, "rank" | "type">[], hub: string): QuestFilter[] {
+  const ranks = SINGLE_LIST_QUEST_HUBS.has(hub as QuestHubSlug) ? questRanksIn(quests) : [];
+  const types = questTypesIn(quests);
+  return [
+    ...(ranks.length > 1 ? ranks.map((rank) => ({ rank })) : []),
+    ...(types.length > 1 ? types.map((type) => ({ type })) : []),
+  ];
+}
+
+/** Whether a quest passes a filter (null: every quest does). */
+export function matchesQuestFilter(
+  quest: Pick<Quest, "rank" | "type">,
+  filter: QuestFilter | null,
+): boolean {
+  if (!filter) return true;
+  return "rank" in filter ? quest.rank === filter.rank : quest.type === filter.type;
+}
+
+/** Whether two filters are the same step (null is "every quest"). */
+export function sameQuestFilter(a: QuestFilter | null, b: QuestFilter | null): boolean {
+  if (!a || !b) return a === b;
+  return "rank" in a ? "rank" in b && a.rank === b.rank : "type" in b && a.type === b.type;
 }
 
 // ---------------------------------------------------------------------------
@@ -148,6 +195,7 @@ export type CompactQuest = [
   areaMap: 0 | 1,
   smallCounts: ([total: number] | [total: number, endless: 1])[], // parallel to smallMonsters
   size: CompactQuestSize | null, // null without large monsters
+  rank: number | null, // index into QUEST_RANKS; null without a rank tier
 ];
 
 export interface QuestsBundle {
@@ -223,6 +271,8 @@ export interface QuestRewardTable {
 export interface Quest {
   id: number;
   hub: QuestHubSlug;
+  /** The quest's rank tier; null without one (and in a bundle cached before ranks were added). */
+  rank: QuestRank | null;
   type: QuestType;
   stars: number;
   map: string | null;
@@ -298,9 +348,11 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       am,
       sc,
       sz,
+      rk,
     ]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
+      rank: rk === undefined || rk === null ? null : (QUEST_RANKS[rk] ?? null),
       type: questType(QUEST_HUBS[hub]?.slug ?? "village", str(g)),
       stars,
       map: str(map),

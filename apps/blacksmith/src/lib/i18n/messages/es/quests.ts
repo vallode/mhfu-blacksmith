@@ -29,10 +29,10 @@ export const quests: Messages["quests"] = {
       `${g ? "G " : ""}${stars} ${stars === 1 ? "estrella" : "estrellas"}`,
     // Short, for the selector bar at the foot of the list at phone width.
     allTypes: "Todas",
-    typeFilter: "Tipo de misión",
-    previousType: "Tipo de misión anterior",
-    nextType: "Tipo de misión siguiente",
-    typeOf: (n: number, total: number) => `Tipo de misión ${n} de ${total}`,
+    typeFilter: "Filtro de misiones",
+    previousType: "Filtro anterior",
+    nextType: "Filtro siguiente",
+    typeOf: (n: number, total: number) => `Filtro ${n} de ${total}`,
   },
   types: {
     hunting: "Caza",

@@ -9,6 +9,8 @@ import {
 import {
   bestCrownQuests,
   decodeQuests,
+  matchesQuestFilter,
+  questFilters,
   questHp,
   questHref,
   questHubSlug,
@@ -21,6 +23,7 @@ import {
   questTypeLabel,
   questTypesIn,
   rewardTableHeading,
+  sameQuestFilter,
 } from "../src/lib/quests";
 
 const ITEM_IDS: Record<string, number> = { Map: 863, "Giaprey Hide": 342, "Rathian Scale+": 501 };
@@ -308,6 +311,64 @@ describe("encodeQuestBundle / decodeQuests", () => {
       decodeQuests(bundle).map((q) => q.requires),
       [10203, null],
     );
+  });
+});
+
+describe("board filters", () => {
+  const { bundle } = encode([
+    quest({ id: 60023, hub: "event", rank: "low-rank", stars: 3 }),
+    quest({
+      id: 60026,
+      hub: "event",
+      rank: "high-rank",
+      stars: 7,
+      goal: "Deliver a Paw Pass Ticket",
+    }),
+    quest({ id: 60010, hub: "event", rank: "g-rank", stars: 11, goal: "Slay the Yama Tsukami" }),
+    quest({ id: 61001, hub: "challenge", rank: null, stars: 1, goal: "Slay the Yian Garuga" }),
+    quest({ id: 10001, hub: "village", rank: "low-rank", stars: 1 }),
+    quest({ id: 10002, hub: "village", rank: "low-rank", stars: 1, goal: "Slay 10 Giaprey" }),
+  ]);
+  const quests = decodeQuests(bundle);
+  const on = (hub: string) => quests.filter((q) => q.hub === hub);
+
+  test("the bundle keeps each quest's rank", () => {
+    assert.deepEqual(
+      quests.map((q) => q.rank),
+      ["low-rank", "high-rank", "g-rank", null, "low-rank", "low-rank"],
+    );
+  });
+
+  test("a single-list board filters by rank, then type", () => {
+    assert.deepEqual(questFilters(on("event"), "event"), [
+      { rank: "low-rank" },
+      { rank: "high-rank" },
+      { rank: "g-rank" },
+      { type: "hunting" },
+      { type: "slaying" },
+      { type: "gathering" },
+    ]);
+    const g = on("event").filter((q) => matchesQuestFilter(q, { rank: "g-rank" }));
+    assert.deepEqual(
+      g.map((q) => q.id),
+      [60010],
+    );
+  });
+
+  test("other boards filter by type only, and a lone rank or type isn't a filter", () => {
+    assert.deepEqual(questFilters(on("village"), "village"), [
+      { type: "hunting" },
+      { type: "slaying" },
+    ]);
+    assert.deepEqual(questFilters(on("challenge"), "challenge"), []);
+  });
+
+  test("sameQuestFilter compares steps, with null as every quest", () => {
+    assert.ok(sameQuestFilter(null, null));
+    assert.ok(sameQuestFilter({ rank: "g-rank" }, { rank: "g-rank" }));
+    assert.ok(!sameQuestFilter({ rank: "g-rank" }, null));
+    assert.ok(!sameQuestFilter({ type: "hunting" }, { rank: "low-rank" }));
+    assert.ok(matchesQuestFilter(quests[0]!, null));
   });
 });
 
