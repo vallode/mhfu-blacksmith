@@ -59,8 +59,9 @@ const { HIPS, WAIST, CHEST, NECK, HEAD } = JOINT;
 /**
  * A piece's bones (by index) to player joints, -1 for none, per armor slot.
  * The decomp's entries can also carry a 0x40 flag on bones past the ones
- * here (rigid attachments some pieces add); the default set doesn't use them,
- * and `composeHunter` rejects a bone that has no entry.
+ * here (rigid attachments some pieces add, such as a helmet's hair): those
+ * ride with their nearest ancestor that has an entry, and `composeHunter`
+ * rejects a bone with neither.
  */
 export const ARMOR_JOINT_MAPS = {
   helmet: [-1, CHEST, NECK, HEAD],
@@ -131,12 +132,17 @@ export function readHunterPiece(slot: HunterSlot, entries: PacEntry[]): HunterPi
 
 /**
  * The pieces as one model on the player's skeleton (see the module comment).
- * Needs leggings, whose skeleton is the whole player's.
+ * The player skeleton is `skeleton`, or else the leggings' (whose skeleton
+ * is the whole player's). A few leggings carry a slightly different one, so
+ * pieces composed one at a time for the site's armor share one skeleton per
+ * sex, passed in, and line up whichever pieces are put together.
  */
-export function composeHunter(pieces: readonly HunterPiece[]): HunterModel {
-  const leggings = pieces.find((piece) => piece.slot === "leggings");
-  if (!leggings) throw new Error("A hunter needs leggings for the player skeleton");
-  const skeleton = leggings.bones;
+export function composeHunter(pieces: readonly HunterPiece[], skeleton?: Bone[]): HunterModel {
+  if (!skeleton) {
+    const leggings = pieces.find((piece) => piece.slot === "leggings");
+    if (!leggings) throw new Error("A hunter needs leggings for the player skeleton");
+    skeleton = leggings.bones;
+  }
   if (skeleton.length !== PLAYER_BONE_COUNT)
     throw new Error(`Player skeleton has ${skeleton.length} bones`);
   const playerPositions = bindPositions(skeleton);
@@ -151,17 +157,23 @@ export function composeHunter(pieces: readonly HunterPiece[]): HunterModel {
   for (const { slot, pmo, bones, textures: images } of pieces) {
     const map: readonly number[] = ARMOR_JOINT_MAPS[slot];
     const positions = bindPositions(bones);
-    const jointOf = (bone: number): number => {
-      const joint = map[bone];
-      if (joint === undefined || bones[bone] === undefined)
-        throw new Error(`${slot}: bone ${bone} has no player joint`);
-      return joint;
+    /**
+     * The bone the map places `bone` by: itself, or for a bone past the map
+     * (a helmet's hair or tail chain, which the game swings itself), the
+     * nearest ancestor on it, which carries it rigidly.
+     */
+    const mappedOf = (bone: number): number => {
+      for (let b: number | undefined = bone; b !== undefined && b >= 0; b = bones[b]?.parent)
+        if (map[b] !== undefined && bones[b] !== undefined) return b;
+      throw new Error(`${slot}: bone ${bone} has no player joint`);
     };
+    const jointOf = (bone: number): number => map[mappedOf(bone)]!;
     // How far each of the piece's bones is from its joint in the player's bind pose.
     const offsets = bones.map((_, bone): Vec3 => {
-      const joint = jointOf(bone);
+      const mapped = mappedOf(bone);
+      const joint = map[mapped]!;
       if (joint < 0) return [0, 0, 0];
-      return playerPositions[joint]!.map((c, k) => c - positions[bone]![k]!) as Vec3;
+      return playerPositions[joint]!.map((c, k) => c - positions[mapped]![k]!) as Vec3;
     });
 
     const textureBase = textures.length;

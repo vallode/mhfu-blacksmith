@@ -95,6 +95,20 @@ export function useWeaponModel(type: string, name: string | undefined): string |
   });
 }
 
+/**
+ * An armor piece's [male, female] model IDs in its slot's manifest. Pieces
+ * sold per sex under one name are keyed "<name>|<Sex>", so `sex` picks one.
+ */
+function armorModelIds(m: Manifest, name: string, sex: "Male" | "Female" | null): number[] | null {
+  const ids = (sex ? m[`${name}|${sex}`] : undefined) ?? m[name];
+  return Array.isArray(ids) ? ids : null;
+}
+
+/** The URL of a slot's armor model `id` for one sex; undefined for 0 (none). */
+function armorModelUrl(folder: string, sex: "m" | "f", id: number | undefined): string | undefined {
+  return id ? `/models/armor/${sex}_${folder}${pad(id, 3)}.glb` : undefined;
+}
+
 export interface ArmorModelUrls {
   male?: string;
   female?: string;
@@ -112,19 +126,60 @@ export function useArmorModel(
     name && folder ? `armor/${slot}` : null,
     `${name}|${single}`,
     (m) => {
-      if (!name) return null;
-      // Same-named male/female pieces are keyed "<name>|<Sex>".
-      const ids = (single ? m[`${name}|${single}`] : undefined) ?? m[name];
-      if (!Array.isArray(ids)) return null;
-      const url = (sexPrefix: "m" | "f", id: number) =>
-        id ? `/models/armor/${sexPrefix}_${folder}${pad(id, 3)}.glb` : undefined;
+      if (!name || !folder) return null;
+      const ids = armorModelIds(m, name, single);
+      if (!ids) return null;
       // A single-sex piece only shows that sex's model.
-      const male = single === "Female" ? undefined : url("m", ids[0]);
-      const female = single === "Male" ? undefined : url("f", ids[1]);
+      const male = single === "Female" ? undefined : armorModelUrl(folder, "m", ids[0]);
+      const female = single === "Male" ? undefined : armorModelUrl(folder, "f", ids[1]);
       return male || female ? { male, female } : null;
     },
   );
   return result;
+}
+
+/** Each sex's models of an armor set, one per slot that has one, in slot order. */
+export interface ArmorSetModelUrls {
+  male: string[];
+  female: string[];
+}
+
+/**
+ * The models of a set's pieces (`lib/armor-sets.ts`), per sex; null while the
+ * manifests load or until there's a set. Armor models sit on the player's
+ * skeleton (mhfu-extract's `export-site`), so one sex's pieces shown together
+ * are worn as in the game.
+ */
+export function useArmorSetModels(
+  set: Partial<Record<string, string | null>> | null,
+): ArmorSetModelUrls | null {
+  const pieces = set
+    ? Object.entries(set).filter((entry): entry is [string, string] => !!entry[1])
+    : [];
+  const key = pieces.map(([slot, name]) => `${slot}\t${name}`).join("\n");
+  const [found, setFound] = useState<{ key: string; urls: ArmorSetModelUrls } | null>(null);
+  useEffect(() => {
+    if (!key) return;
+    let cancelled = false;
+    const entries = key.split("\n").map((entry) => entry.split("\t") as [string, string]);
+    Promise.all(entries.map(([slot]) => loadManifest(`armor/${slot}`))).then((manifests) => {
+      const urls: ArmorSetModelUrls = { male: [], female: [] };
+      entries.forEach(([slot, name], i) => {
+        const m = manifests[i];
+        const folder = ARMOR_FOLDER[slot];
+        if (!m || !folder) return;
+        const male = armorModelUrl(folder, "m", armorModelIds(m, name, "Male")?.[0]);
+        const female = armorModelUrl(folder, "f", armorModelIds(m, name, "Female")?.[1]);
+        if (male) urls.male.push(male);
+        if (female) urls.female.push(female);
+      });
+      if (!cancelled) setFound({ key, urls });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [key]);
+  return found && found.key === key ? found.urls : null;
 }
 
 /** One monster hitbox: a capsule in the model's space (see packages/mhfu-extract `monsters/hitboxes.ts`). */
