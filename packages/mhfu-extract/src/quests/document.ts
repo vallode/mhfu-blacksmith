@@ -77,8 +77,10 @@ export interface QuestHeader {
   objectives: [Objective, Objective];
   /** Large monster size, in percent (u32 @ 0x38). */
   sizePercent: number;
-  hrpSuccess: number;
-  hrpFailure: number;
+  /** The hexpat's HRPSuccess (u32 @ 0x3c): the points a clear earns (README "Clear points"). */
+  clearPoints: number;
+  /** The hexpat's HRPFailure (u32 @ 0x40): 15 on every quest that has clear points, meaning unconfirmed. */
+  failurePoints: number;
   rank: number;
   spawn: number;
   supplyCond: number;
@@ -328,8 +330,8 @@ function readHeader(r: Reader): QuestHeader {
   return {
     objectives: [objective(0x28), objective(0x30)],
     sizePercent: r.u32(0x38),
-    hrpSuccess: r.u32(0x3c),
-    hrpFailure: r.u32(0x40),
+    clearPoints: r.u32(0x3c),
+    failurePoints: r.u32(0x40),
     rank: r.u8(0x44),
     spawn: r.u8(0x45),
     supplyCond: r.u8(0x46),
@@ -795,8 +797,8 @@ function writeHeader(w: Writer, h: QuestHeader): void {
     w.u8(o.slot);
   }
   w.u32(h.sizePercent);
-  w.u32(h.hrpSuccess);
-  w.u32(h.hrpFailure);
+  w.u32(h.clearPoints);
+  w.u32(h.failurePoints);
   for (const v of [
     h.rank,
     h.spawn,

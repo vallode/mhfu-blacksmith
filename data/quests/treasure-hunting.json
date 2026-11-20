@@ -9,6 +9,7 @@
       "fee": 500,
       "reward": 1000,
       "penalty": 340,
+      "clear_points": 200,
       "time_limit_minutes": 20,
       "target": null,
       "supplies": [
@@ -405,6 +406,7 @@
       "fee": 500,
       "reward": 1000,
       "penalty": 340,
+      "clear_points": 200,
       "time_limit_minutes": 20,
       "target": null,
       "supplies": [
@@ -823,6 +825,7 @@
       "fee": 500,
       "reward": 1000,
       "penalty": 340,
+      "clear_points": 200,
       "time_limit_minutes": 20,
       "target": null,
       "supplies": [
@@ -1234,6 +1237,7 @@
       "fee": 500,
       "reward": 1000,
       "penalty": 340,
+      "clear_points": 200,
       "time_limit_minutes": 20,
       "target": null,
       "supplies": [
@@ -1657,6 +1661,7 @@
       "fee": 500,
       "reward": 1000,
       "penalty": 340,
+      "clear_points": 200,
       "time_limit_minutes": 20,
       "target": null,
       "supplies": [
@@ -2085,6 +2090,7 @@
       "fee": 500,
       "reward": 1000,
       "penalty": 340,
+      "clear_points": 200,
       "time_limit_minutes": 20,
       "target": null,
       "supplies": [
@@ -2495,6 +2501,7 @@
       "fee": 500,
       "reward": 1000,
       "penalty": 340,
+      "clear_points": 200,
       "time_limit_minutes": 20,
       "target": null,
       "supplies": [

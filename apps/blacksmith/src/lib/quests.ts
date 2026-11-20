@@ -54,6 +54,15 @@ export const QUEST_HUB_SLUGS: readonly QuestHubSlug[] = QUEST_HUBS.map((h) => h.
  */
 export const DOWNLOADED_QUEST_HUBS: ReadonlySet<QuestHubSlug> = new Set(["event", "challenge"]);
 
+/**
+ * The data/ boards (a quest's `hub`) whose `clear_points` are Guild Points:
+ * the Guild's result screen shows them before "Current Guild Points". The
+ * Village's shows Pokke Points, and Training School and Challenge quests
+ * (from the Instructor) Training School points (mhfu-extract's README,
+ * "Clear points").
+ */
+export const GUILD_POINT_HUBS: ReadonlySet<string> = new Set(["guild", "event"]);
+
 /** A quest's rank tier, as data/quests has it. */
 export const QUEST_RANKS = ["low-rank", "high-rank", "g-rank"] as const;
 export type QuestRank = (typeof QUEST_RANKS)[number];
@@ -213,6 +222,7 @@ export type CompactQuest = [
   smallCounts: ([total: number] | [total: number, endless: 1])[], // parallel to smallMonsters
   size: CompactQuestSize | null, // null without large monsters
   rank: number | null, // index into QUEST_RANKS; null without a rank tier
+  guildPoints: number | null, // null off GUILD_POINT_HUBS
 ];
 
 export interface QuestsBundle {
@@ -295,6 +305,8 @@ export interface Quest {
   map: string | null;
   fee: number;
   reward: number;
+  /** Guild Points for a clear; null off the Guild's boards (and in a bundle cached before they were added). */
+  guildPoints: number | null;
   timeLimit: number;
   target: { monster: QuestMonster; amount: number } | null;
   largeMonsters: QuestMonster[];
@@ -366,6 +378,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       sc,
       sz,
       rk,
+      gp,
     ]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
@@ -375,6 +388,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       map: str(map),
       fee,
       reward,
+      guildPoints: gp ?? null,
       timeLimit,
       target: tg ? { monster: monsters[tg[0]]!, amount: tg[1] } : null,
       largeMonsters: lm.map((i) => monsters[i]!),
