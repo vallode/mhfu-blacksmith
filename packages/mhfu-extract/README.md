@@ -1064,6 +1064,27 @@ Event Quests number their stars like the Guild (★9-★11 are G★1-G★3) and
 use its rank tiers. Challenge Quests are rank 0, 3 or 4, like Subjugation
 Training, with Training School loadouts (`arena_sets`).
 
+### Clear points
+
+The header's u32 at `0x3c` (the hexpat's `HRPSuccess`) is the points a
+clear earns, emitted raw as `clear_points` on every quest. On the EU disc
+it grows with the stars (120 for quest 1, 3000 for `3233` "Absolute Zero")
+and is 0 on every gathering quest and the Basic Training quests. On the
+Guild's boards they are Guild Points (MHP2G's HRP): the result-screen
+strings in `_unindexed/4776.bin` run "<Quest Exp Points>", "Bonus Points",
+"Lost Points" and then "Current Guild Points:". The Village's result screen
+converts the reward into Pokke Points instead ("Reward Ttl/Pnt Convert",
+"Current Pokke Points:"), and the Training School has its own ("Training
+School Points Earned"), which is also where the Challenge Quests come from
+(client "Instructor" on 10 of the 14). So the site shows `clear_points` as
+Guild Points only on the Guild and Event boards. What the Village and
+Training School values do in game isn't confirmed.
+
+The u32 at `0x40` (`HRPFailure`) is 15 on every quest with clear points
+and 0 on the rest (but the unused `m50001`-`m50003`, 0 and 15). It may be the points a faint costs ("Lost Points" sits
+next to "<Fainted:%1dTime(s)>"), but that isn't confirmed, so it isn't
+emitted.
+
 ### Reward tables
 
 Each quest has a `RewardTBL[]`: 8-byte entries of `Unkn1` (u16), `Unkn2`

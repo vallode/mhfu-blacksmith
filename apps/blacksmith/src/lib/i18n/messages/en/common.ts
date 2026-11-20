@@ -66,4 +66,6 @@ export const common = {
   back: "Back",
   /** "4,500z" */
   zenny: (amount: string) => `${amount}z`,
+  /** Pokke Points, Guild Points: "1,500pts" */
+  points: (amount: string) => `${amount}pts`,
 };

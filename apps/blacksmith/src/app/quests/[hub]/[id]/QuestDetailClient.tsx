@@ -215,6 +215,13 @@ export default function QuestDetailClient({ hub, id }: Props) {
           <Stat label={d.fee}>
             <span className="text-white tabular-nums">{zenny(quest.fee)}</span>
           </Stat>
+          {quest.guildPoints !== null && quest.guildPoints > 0 && (
+            <Stat label={d.guildPoints}>
+              <span className="text-white tabular-nums">
+                {t.common.points(formatNumber(quest.guildPoints))}
+              </span>
+            </Stat>
+          )}
           {requires && (
             <Stat label={d.requires}>
               <Link
