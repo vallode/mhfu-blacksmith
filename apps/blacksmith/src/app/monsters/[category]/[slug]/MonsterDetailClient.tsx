@@ -88,8 +88,8 @@ const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
 /**
  * A Guild Card size record (percent) in centimetres, with the crown it earns.
  * A gold crown on the largest or a mini crown on the smallest already says
- * which record it is, so the label is left out then. The crown, label and size
- * stay on one line.
+ * which record it is, so the label is left out then. One row per record, the
+ * crowns in a fixed column so they line up.
  */
 function SizeRecord({
   size,
@@ -104,13 +104,18 @@ function SizeRecord({
   const crown = monster.crowns ? crownFor(size, monster.crowns) : null;
   const implied = crown === (kind === "largest" ? "gold" : "mini");
   return (
-    <span className="whitespace-nowrap">
-      {crown && <CrownIcon crown={crown} className="mr-[0.4rem] align-middle" />}
-      {!implied && <>{t.monsters.detail[kind]} </>}
-      <span className="text-white tabular-nums">
-        {t.monsters.detail.cm(formatNumber(Math.round(sizeInCm(size, monster.base_size ?? 0))))}
+    <div className="flex items-center whitespace-nowrap">
+      {/* A fixed slot, so the small mini crown centres under the big ones. */}
+      <span className="flex h-[22px] w-[21px] shrink-0 items-center justify-center">
+        {crown && <CrownIcon crown={crown} />}
       </span>
-    </span>
+      <span className="ml-[0.6rem]">
+        {!implied && <>{t.monsters.detail[kind]} </>}
+        <span className="text-white tabular-nums">
+          {t.monsters.detail.cm(formatNumber(Math.round(sizeInCm(size, monster.base_size ?? 0))))}
+        </span>
+      </span>
+    </div>
   );
 }
 
@@ -411,29 +416,30 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 )}
               </p>
             )}
+          </div>
+          <div className="flex shrink-0 flex-col items-center gap-[0.8rem] mobile:mx-auto">
+            <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated">
+              <img
+                className="h-[9rem] w-[9rem] object-contain pixelated"
+                src={`/images/monsters/${slug}.png`}
+                alt={name}
+                decoding="sync"
+                onError={hideBroken}
+              />
+            </div>
             {record &&
               monster.base_size !== undefined &&
               (record.largest > 0 || record.smallest > 0) && (
                 // A record the hunter hasn't set is 0; leave it out.
-                <p className="text-small whitespace-normal text-stat">
+                <div className="flex flex-col gap-[0.2rem] text-small text-stat">
                   {record.largest > 0 && (
                     <SizeRecord size={record.largest} monster={monster} kind="largest" />
                   )}
-                  {record.largest > 0 && record.smallest > 0 && " · "}
                   {record.smallest > 0 && (
                     <SizeRecord size={record.smallest} monster={monster} kind="smallest" />
                   )}
-                </p>
+                </div>
               )}
-          </div>
-          <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated mobile:mx-auto">
-            <img
-              className="h-[9rem] w-[9rem] object-contain pixelated"
-              src={`/images/monsters/${slug}.png`}
-              alt={name}
-              decoding="sync"
-              onError={hideBroken}
-            />
           </div>
         </div>
 

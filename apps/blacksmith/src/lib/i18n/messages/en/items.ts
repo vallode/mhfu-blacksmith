@@ -263,7 +263,6 @@ export const items = {
         `only on ${count} ${n === 1 ? "quest" : "quests"}`,
       /** `stars` is "G3★". */
       questReward: (stars: string) => `${stars} reward`,
-      pokkePoints: (amount: string) => `${amount}pts`,
     },
     /** Where to go: a gathering map's rank or board. */
     gatheringIn: (group: string) => `Gathering · ${group}`,

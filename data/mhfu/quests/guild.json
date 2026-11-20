@@ -9,6 +9,7 @@
       "fee": 100,
       "reward": 1200,
       "penalty": 400,
+      "clear_points": 120,
       "time_limit_minutes": 50,
       "target": {
         "monster": 77,
@@ -246,6 +247,7 @@
       "fee": 100,
       "reward": 1500,
       "penalty": 500,
+      "clear_points": 160,
       "time_limit_minutes": 50,
       "target": {
         "monster": 68,
@@ -483,6 +485,7 @@
       "fee": 100,
       "reward": 900,
       "penalty": 300,
+      "clear_points": 80,
       "time_limit_minutes": 50,
       "target": {
         "monster": 61,
@@ -701,6 +704,7 @@
       "fee": 100,
       "reward": 900,
       "penalty": 300,
+      "clear_points": 60,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -886,6 +890,7 @@
       "fee": 150,
       "reward": 1800,
       "penalty": 600,
+      "clear_points": 200,
       "time_limit_minutes": 50,
       "target": {
         "monster": 52,
@@ -1128,6 +1133,7 @@
       "fee": 100,
       "reward": 900,
       "penalty": 300,
+      "clear_points": 80,
       "time_limit_minutes": 50,
       "target": {
         "monster": 62,
@@ -1348,6 +1354,7 @@
       "fee": 100,
       "reward": 900,
       "penalty": 300,
+      "clear_points": 60,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -1525,6 +1532,7 @@
       "fee": 150,
       "reward": 1800,
       "penalty": 600,
+      "clear_points": 180,
       "time_limit_minutes": 50,
       "target": {
         "monster": 8,
@@ -1767,6 +1775,7 @@
       "fee": 180,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 200,
       "time_limit_minutes": 50,
       "target": {
         "monster": 48,
@@ -2014,6 +2023,7 @@
       "fee": 100,
       "reward": 900,
       "penalty": 300,
+      "clear_points": 160,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -2250,6 +2260,7 @@
       "fee": 180,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 280,
       "time_limit_minutes": 50,
       "target": {
         "monster": 15,
@@ -2498,6 +2509,7 @@
       "fee": 200,
       "reward": 2400,
       "penalty": 800,
+      "clear_points": 360,
       "time_limit_minutes": 50,
       "target": {
         "monster": 51,
@@ -2740,6 +2752,7 @@
       "fee": 100,
       "reward": 900,
       "penalty": 300,
+      "clear_points": 130,
       "time_limit_minutes": 50,
       "target": {
         "monster": 66,
@@ -2944,6 +2957,7 @@
       "fee": 200,
       "reward": 2400,
       "penalty": 800,
+      "clear_points": 320,
       "time_limit_minutes": 50,
       "target": {
         "monster": 21,
@@ -3201,6 +3215,7 @@
       "fee": 180,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 280,
       "time_limit_minutes": 50,
       "target": {
         "monster": 20,
@@ -3448,6 +3463,7 @@
       "fee": 220,
       "reward": 2700,
       "penalty": 900,
+      "clear_points": 360,
       "time_limit_minutes": 50,
       "target": {
         "monster": 67,
@@ -3707,6 +3723,7 @@
       "fee": 180,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 240,
       "time_limit_minutes": 50,
       "target": {
         "monster": 6,
@@ -3939,6 +3956,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 400,
       "time_limit_minutes": 50,
       "target": {
         "monster": 11,
@@ -4181,6 +4199,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 400,
       "time_limit_minutes": 50,
       "target": {
         "monster": 1,
@@ -4420,6 +4439,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -4531,6 +4551,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -4645,6 +4666,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -4761,6 +4783,7 @@
       "fee": 200,
       "reward": 2400,
       "penalty": 800,
+      "clear_points": 600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 77,
@@ -5007,6 +5030,7 @@
       "fee": 220,
       "reward": 2700,
       "penalty": 900,
+      "clear_points": 640,
       "time_limit_minutes": 50,
       "target": {
         "monster": 68,
@@ -5233,6 +5257,7 @@
       "fee": 150,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 540,
       "time_limit_minutes": 50,
       "target": {
         "monster": 35,
@@ -5459,6 +5484,7 @@
       "fee": 150,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 480,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -5659,6 +5685,7 @@
       "fee": 200,
       "reward": 2400,
       "penalty": 800,
+      "clear_points": 600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 27,
@@ -5893,6 +5920,7 @@
       "fee": 300,
       "reward": 3600,
       "penalty": 1200,
+      "clear_points": 700,
       "time_limit_minutes": 50,
       "target": {
         "monster": 38,
@@ -6121,6 +6149,7 @@
       "fee": 150,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 760,
       "time_limit_minutes": 50,
       "target": {
         "monster": 16,
@@ -6350,6 +6379,7 @@
       "fee": 150,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 640,
       "time_limit_minutes": 50,
       "target": {
         "monster": 19,
@@ -6570,6 +6600,7 @@
       "fee": 150,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 680,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -6767,6 +6798,7 @@
       "fee": 150,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 680,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -6960,6 +6992,7 @@
       "fee": 200,
       "reward": 2400,
       "penalty": 800,
+      "clear_points": 840,
       "time_limit_minutes": 50,
       "target": {
         "monster": 28,
@@ -7196,6 +7229,7 @@
       "fee": 220,
       "reward": 2700,
       "penalty": 900,
+      "clear_points": 840,
       "time_limit_minutes": 50,
       "target": {
         "monster": 8,
@@ -7438,6 +7472,7 @@
       "fee": 350,
       "reward": 4200,
       "penalty": 1400,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 48,
@@ -7674,6 +7709,7 @@
       "fee": 150,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 740,
       "time_limit_minutes": 50,
       "target": {
         "monster": 13,
@@ -7897,6 +7933,7 @@
       "fee": 150,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 680,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -8139,6 +8176,7 @@
       "fee": 150,
       "reward": 2100,
       "penalty": 700,
+      "clear_points": 680,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -8350,6 +8388,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 860,
       "time_limit_minutes": 50,
       "target": {
         "monster": 6,
@@ -8597,6 +8636,7 @@
       "fee": 220,
       "reward": 2700,
       "penalty": 900,
+      "clear_points": 800,
       "time_limit_minutes": 50,
       "target": {
         "monster": 68,
@@ -8825,6 +8865,7 @@
       "fee": 350,
       "reward": 4200,
       "penalty": 1400,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 52,
@@ -9057,6 +9098,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -9190,6 +9232,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -9312,6 +9355,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -9433,6 +9477,7 @@
       "fee": 500,
       "reward": 6000,
       "penalty": 2000,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 51,
@@ -9659,6 +9704,7 @@
       "fee": 450,
       "reward": 5400,
       "penalty": 1800,
+      "clear_points": 820,
       "time_limit_minutes": 50,
       "target": {
         "monster": 15,
@@ -9913,6 +9959,7 @@
       "fee": 450,
       "reward": 5400,
       "penalty": 1800,
+      "clear_points": 850,
       "time_limit_minutes": 50,
       "target": {
         "monster": 45,
@@ -10150,6 +10197,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 760,
       "time_limit_minutes": 50,
       "target": {
         "monster": 61,
@@ -10388,6 +10436,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 720,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -10624,6 +10673,7 @@
       "fee": 450,
       "reward": 5400,
       "penalty": 1800,
+      "clear_points": 850,
       "time_limit_minutes": 50,
       "target": {
         "monster": 21,
@@ -10871,6 +10921,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 760,
       "time_limit_minutes": 50,
       "target": {
         "monster": 62,
@@ -11097,6 +11148,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 760,
       "time_limit_minutes": 50,
       "target": {
         "monster": 24,
@@ -11313,6 +11365,7 @@
       "fee": 500,
       "reward": 6000,
       "penalty": 2000,
+      "clear_points": 880,
       "time_limit_minutes": 50,
       "target": {
         "monster": 46,
@@ -11559,6 +11612,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 760,
       "time_limit_minutes": 50,
       "target": {
         "monster": 66,
@@ -11802,6 +11856,7 @@
       "fee": 420,
       "reward": 5100,
       "penalty": 1700,
+      "clear_points": 850,
       "time_limit_minutes": 50,
       "target": {
         "monster": 39,
@@ -12044,6 +12099,7 @@
       "fee": 500,
       "reward": 6000,
       "penalty": 2000,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 67,
@@ -12293,6 +12349,7 @@
       "fee": 400,
       "reward": 4800,
       "penalty": 1600,
+      "clear_points": 820,
       "time_limit_minutes": 50,
       "target": {
         "monster": 20,
@@ -12540,6 +12597,7 @@
       "fee": 350,
       "reward": 4200,
       "penalty": 1400,
+      "clear_points": 760,
       "time_limit_minutes": 50,
       "target": {
         "monster": 5,
@@ -12748,6 +12806,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 800,
       "time_limit_minutes": 50,
       "target": {
         "monster": 57,
@@ -12966,6 +13025,7 @@
       "fee": 350,
       "reward": 4200,
       "penalty": 1400,
+      "clear_points": 800,
       "time_limit_minutes": 50,
       "target": {
         "monster": 31,
@@ -13207,6 +13267,7 @@
       "fee": 500,
       "reward": 6000,
       "penalty": 2000,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 67,
@@ -13435,6 +13496,7 @@
       "fee": 220,
       "reward": 2700,
       "penalty": 900,
+      "clear_points": 850,
       "time_limit_minutes": 50,
       "target": {
         "monster": 22,
@@ -13681,6 +13743,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 760,
       "time_limit_minutes": 50,
       "target": {
         "monster": 73,
@@ -13919,6 +13982,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 720,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -14150,6 +14214,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1000,
       "time_limit_minutes": 35,
       "target": {
         "monster": 7,
@@ -14381,6 +14446,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 800,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -14697,6 +14763,7 @@
       "fee": 250,
       "reward": 3000,
       "penalty": 1000,
+      "clear_points": 720,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -14913,6 +14980,7 @@
       "fee": 550,
       "reward": 6600,
       "penalty": 2200,
+      "clear_points": 960,
       "time_limit_minutes": 50,
       "target": {
         "monster": 75,
@@ -15160,6 +15228,7 @@
       "fee": 550,
       "reward": 6600,
       "penalty": 2200,
+      "clear_points": 960,
       "time_limit_minutes": 50,
       "target": {
         "monster": 75,
@@ -15412,6 +15481,7 @@
       "fee": 500,
       "reward": 6000,
       "penalty": 2000,
+      "clear_points": 1000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 14,
@@ -15658,6 +15728,7 @@
       "fee": 550,
       "reward": 6600,
       "penalty": 2200,
+      "clear_points": 1050,
       "time_limit_minutes": 50,
       "target": {
         "monster": 43,
@@ -15905,6 +15976,7 @@
       "fee": 500,
       "reward": 6000,
       "penalty": 2000,
+      "clear_points": 1000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 17,
@@ -16152,6 +16224,7 @@
       "fee": 550,
       "reward": 6600,
       "penalty": 2200,
+      "clear_points": 1050,
       "time_limit_minutes": 50,
       "target": {
         "monster": 47,
@@ -16398,6 +16471,7 @@
       "fee": 500,
       "reward": 6000,
       "penalty": 2000,
+      "clear_points": 1000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 11,
@@ -16644,6 +16718,7 @@
       "fee": 550,
       "reward": 6600,
       "penalty": 2200,
+      "clear_points": 1050,
       "time_limit_minutes": 50,
       "target": {
         "monster": 49,
@@ -16890,6 +16965,7 @@
       "fee": 450,
       "reward": 5400,
       "penalty": 1800,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 1,
@@ -17128,6 +17204,7 @@
       "fee": 500,
       "reward": 6000,
       "penalty": 2000,
+      "clear_points": 950,
       "time_limit_minutes": 50,
       "target": {
         "monster": 37,
@@ -17385,6 +17462,7 @@
       "fee": 550,
       "reward": 6600,
       "penalty": 2200,
+      "clear_points": 960,
       "time_limit_minutes": 50,
       "target": {
         "monster": 33,
@@ -17616,6 +17694,7 @@
       "fee": 700,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 1100,
       "time_limit_minutes": 50,
       "target": {
         "monster": 11,
@@ -17851,6 +17930,7 @@
       "fee": 700,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 60,
@@ -18094,6 +18174,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 65,
@@ -18359,6 +18440,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 65,
@@ -18618,6 +18700,7 @@
       "fee": 700,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 59,
@@ -18853,6 +18936,7 @@
       "fee": 700,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 59,
@@ -19083,6 +19167,7 @@
       "fee": 1000,
       "reward": 12000,
       "penalty": 4000,
+      "clear_points": 1200,
       "time_limit_minutes": 35,
       "target": {
         "monster": 55,
@@ -19304,6 +19389,7 @@
       "fee": 600,
       "reward": 7200,
       "penalty": 2400,
+      "clear_points": 1000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 15,
@@ -19511,6 +19597,7 @@
       "fee": 400,
       "reward": 4800,
       "penalty": 1600,
+      "clear_points": 800,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -19846,6 +19933,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -19983,6 +20071,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -20157,6 +20246,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -20314,6 +20404,7 @@
       "fee": 350,
       "reward": 4200,
       "penalty": 1400,
+      "clear_points": 800,
       "time_limit_minutes": 50,
       "target": {
         "monster": 77,
@@ -20555,6 +20646,7 @@
       "fee": 400,
       "reward": 4800,
       "penalty": 1600,
+      "clear_points": 800,
       "time_limit_minutes": 50,
       "target": {
         "monster": 68,
@@ -20786,6 +20878,7 @@
       "fee": 420,
       "reward": 5100,
       "penalty": 1700,
+      "clear_points": 850,
       "time_limit_minutes": 50,
       "target": {
         "monster": 27,
@@ -21013,6 +21106,7 @@
       "fee": 420,
       "reward": 5100,
       "penalty": 1700,
+      "clear_points": 1200,
       "time_limit_minutes": 50,
       "target": {
         "monster": 48,
@@ -21265,6 +21359,7 @@
       "fee": 420,
       "reward": 5100,
       "penalty": 1700,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 28,
@@ -21522,6 +21617,7 @@
       "fee": 400,
       "reward": 4800,
       "penalty": 1600,
+      "clear_points": 900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 8,
@@ -21764,6 +21860,7 @@
       "fee": 620,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 1300,
       "time_limit_minutes": 50,
       "target": {
         "monster": 48,
@@ -21990,6 +22087,7 @@
       "fee": 600,
       "reward": 7200,
       "penalty": 2400,
+      "clear_points": 1260,
       "time_limit_minutes": 50,
       "target": {
         "monster": 6,
@@ -22221,6 +22319,7 @@
       "fee": 420,
       "reward": 5100,
       "penalty": 1700,
+      "clear_points": 1250,
       "time_limit_minutes": 50,
       "target": {
         "monster": 52,
@@ -22437,6 +22536,7 @@
       "fee": 380,
       "reward": 4500,
       "penalty": 1500,
+      "clear_points": 1100,
       "time_limit_minutes": 50,
       "target": {
         "monster": 80,
@@ -22688,6 +22788,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -22862,6 +22963,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -23010,6 +23112,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -23162,6 +23265,7 @@
       "fee": 1000,
       "reward": 12000,
       "penalty": 4000,
+      "clear_points": 1500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 51,
@@ -23393,6 +23497,7 @@
       "fee": 620,
       "reward": 7500,
       "penalty": 2500,
+      "clear_points": 1350,
       "time_limit_minutes": 50,
       "target": {
         "monster": 51,
@@ -23631,6 +23736,7 @@
       "fee": 520,
       "reward": 6900,
       "penalty": 2300,
+      "clear_points": 1300,
       "time_limit_minutes": 50,
       "target": {
         "monster": 15,
@@ -23879,6 +23985,7 @@
       "fee": 620,
       "reward": 7500,
       "penalty": 2500,
+      "clear_points": 1330,
       "time_limit_minutes": 50,
       "target": {
         "monster": 45,
@@ -24162,6 +24269,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1380,
       "time_limit_minutes": 50,
       "target": {
         "monster": 20,
@@ -24388,6 +24496,7 @@
       "fee": 870,
       "reward": 10500,
       "penalty": 3500,
+      "clear_points": 1380,
       "time_limit_minutes": 50,
       "target": {
         "monster": 21,
@@ -24635,6 +24744,7 @@
       "fee": 620,
       "reward": 7500,
       "penalty": 2500,
+      "clear_points": 1330,
       "time_limit_minutes": 50,
       "target": {
         "monster": 1,
@@ -24876,6 +24986,7 @@
       "fee": 570,
       "reward": 6900,
       "penalty": 2300,
+      "clear_points": 1330,
       "time_limit_minutes": 50,
       "target": {
         "monster": 21,
@@ -25133,6 +25244,7 @@
       "fee": 620,
       "reward": 7500,
       "penalty": 2500,
+      "clear_points": 1350,
       "time_limit_minutes": 50,
       "target": {
         "monster": 46,
@@ -25380,6 +25492,7 @@
       "fee": 500,
       "reward": 6000,
       "penalty": 2000,
+      "clear_points": 1300,
       "time_limit_minutes": 50,
       "target": {
         "monster": 31,
@@ -25606,6 +25719,7 @@
       "fee": 620,
       "reward": 7500,
       "penalty": 2500,
+      "clear_points": 1400,
       "time_limit_minutes": 50,
       "target": {
         "monster": 67,
@@ -25859,6 +25973,7 @@
       "fee": 550,
       "reward": 6600,
       "penalty": 2200,
+      "clear_points": 1330,
       "time_limit_minutes": 50,
       "target": {
         "monster": 39,
@@ -26095,6 +26210,7 @@
       "fee": 670,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 1400,
       "time_limit_minutes": 50,
       "target": {
         "monster": 11,
@@ -26346,6 +26462,7 @@
       "fee": 1000,
       "reward": 12000,
       "penalty": 4000,
+      "clear_points": 1500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 67,
@@ -26579,6 +26696,7 @@
       "fee": 570,
       "reward": 6900,
       "penalty": 2300,
+      "clear_points": 1350,
       "time_limit_minutes": 50,
       "target": {
         "monster": 22,
@@ -26836,6 +26954,7 @@
       "fee": 500,
       "reward": 6000,
       "penalty": 2000,
+      "clear_points": 1300,
       "time_limit_minutes": 50,
       "target": {
         "monster": 63,
@@ -27084,6 +27203,7 @@
       "fee": 2000,
       "reward": 24000,
       "penalty": 8000,
+      "clear_points": 1600,
       "time_limit_minutes": 35,
       "target": {
         "monster": 50,
@@ -27320,6 +27440,7 @@
       "fee": 670,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 1300,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -27645,6 +27766,7 @@
       "fee": 670,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 1400,
       "time_limit_minutes": 50,
       "target": {
         "monster": 33,
@@ -27881,6 +28003,7 @@
       "fee": 320,
       "reward": 3900,
       "penalty": 1300,
+      "clear_points": 1000,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -28108,6 +28231,7 @@
       "fee": 600,
       "reward": 7200,
       "penalty": 2400,
+      "clear_points": 1300,
       "time_limit_minutes": 50,
       "target": {
         "monster": 82,
@@ -28330,6 +28454,7 @@
       "fee": 880,
       "reward": 10500,
       "penalty": 3500,
+      "clear_points": 1450,
       "time_limit_minutes": 50,
       "target": {
         "monster": 1,
@@ -28663,6 +28788,7 @@
       "fee": 900,
       "reward": 10800,
       "penalty": 3600,
+      "clear_points": 1450,
       "time_limit_minutes": 50,
       "target": {
         "monster": 46,
@@ -28983,6 +29109,7 @@
       "fee": 930,
       "reward": 11100,
       "penalty": 3700,
+      "clear_points": 1450,
       "time_limit_minutes": 50,
       "target": {
         "monster": 67,
@@ -29301,6 +29428,7 @@
       "fee": 1250,
       "reward": 15000,
       "penalty": 5000,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 75,
@@ -29542,6 +29670,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1700,
       "time_limit_minutes": 50,
       "target": {
         "monster": 53,
@@ -29780,6 +29909,7 @@
       "fee": 670,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 1550,
       "time_limit_minutes": 50,
       "target": {
         "monster": 75,
@@ -30033,6 +30163,7 @@
       "fee": 670,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 1500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 37,
@@ -30290,6 +30421,7 @@
       "fee": 670,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 1580,
       "time_limit_minutes": 50,
       "target": {
         "monster": 14,
@@ -30537,6 +30669,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1630,
       "time_limit_minutes": 50,
       "target": {
         "monster": 43,
@@ -30804,6 +30937,7 @@
       "fee": 1250,
       "reward": 15000,
       "penalty": 5000,
+      "clear_points": 1680,
       "time_limit_minutes": 50,
       "target": {
         "monster": 14,
@@ -31061,6 +31195,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1700,
       "time_limit_minutes": 50,
       "target": {
         "monster": 53,
@@ -31299,6 +31434,7 @@
       "fee": 670,
       "reward": 8100,
       "penalty": 2700,
+      "clear_points": 1580,
       "time_limit_minutes": 50,
       "target": {
         "monster": 17,
@@ -31561,6 +31697,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1680,
       "time_limit_minutes": 50,
       "target": {
         "monster": 47,
@@ -31843,6 +31980,7 @@
       "fee": 1250,
       "reward": 15000,
       "penalty": 5000,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 11,
@@ -32084,6 +32222,7 @@
       "fee": 1500,
       "reward": 18000,
       "penalty": 6000,
+      "clear_points": 1650,
       "time_limit_minutes": 50,
       "target": {
         "monster": 49,
@@ -32325,6 +32464,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1580,
       "time_limit_minutes": 50,
       "target": {
         "monster": 49,
@@ -32576,6 +32716,7 @@
       "fee": 830,
       "reward": 9900,
       "penalty": 3300,
+      "clear_points": 1650,
       "time_limit_minutes": 50,
       "target": {
         "monster": 41,
@@ -32816,6 +32957,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1650,
       "time_limit_minutes": 50,
       "target": {
         "monster": 42,
@@ -33056,6 +33198,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1700,
       "time_limit_minutes": 50,
       "target": {
         "monster": 33,
@@ -33167,6 +33310,7 @@
       "fee": 870,
       "reward": 10500,
       "penalty": 3500,
+      "clear_points": 1500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 54,
@@ -33437,6 +33581,7 @@
       "fee": 870,
       "reward": 10500,
       "penalty": 3500,
+      "clear_points": 1500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 54,
@@ -33685,6 +33830,7 @@
       "fee": 1000,
       "reward": 12000,
       "penalty": 4000,
+      "clear_points": 1500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 65,
@@ -33938,6 +34084,7 @@
       "fee": 1000,
       "reward": 12000,
       "penalty": 4000,
+      "clear_points": 1500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 65,
@@ -34207,6 +34354,7 @@
       "fee": 870,
       "reward": 10500,
       "penalty": 3500,
+      "clear_points": 1500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 59,
@@ -34467,6 +34615,7 @@
       "fee": 870,
       "reward": 10500,
       "penalty": 3500,
+      "clear_points": 1500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 59,
@@ -34728,6 +34877,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 2,
@@ -34978,6 +35128,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2800,
       "time_limit_minutes": 50,
       "target": {
         "monster": 36,
@@ -35127,6 +35278,7 @@
       "fee": 2000,
       "reward": 24000,
       "penalty": 8000,
+      "clear_points": 1800,
       "time_limit_minutes": 30,
       "target": {
         "monster": 55,
@@ -35335,6 +35487,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 76,
@@ -35437,6 +35590,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2800,
       "time_limit_minutes": 50,
       "target": {
         "monster": 71,
@@ -35693,6 +35847,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1580,
       "time_limit_minutes": 50,
       "target": {
         "monster": 81,
@@ -35931,6 +36086,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1580,
       "time_limit_minutes": 50,
       "target": {
         "monster": 81,
@@ -36195,6 +36351,7 @@
       "fee": 1600,
       "reward": 19200,
       "penalty": 6400,
+      "clear_points": 1700,
       "time_limit_minutes": 50,
       "target": {
         "monster": 1,
@@ -36410,6 +36567,7 @@
       "fee": 800,
       "reward": 9600,
       "penalty": 3200,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 14,
@@ -36667,6 +36825,7 @@
       "fee": 800,
       "reward": 9600,
       "penalty": 3200,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 33,
@@ -36763,6 +36922,7 @@
       "fee": 1250,
       "reward": 15000,
       "penalty": 5000,
+      "clear_points": 1700,
       "time_limit_minutes": 50,
       "target": {
         "monster": 75,
@@ -37103,6 +37263,7 @@
       "fee": 1250,
       "reward": 15000,
       "penalty": 5000,
+      "clear_points": 1700,
       "time_limit_minutes": 50,
       "target": {
         "monster": 11,
@@ -37447,6 +37608,7 @@
       "fee": 1380,
       "reward": 16500,
       "penalty": 5500,
+      "clear_points": 1750,
       "time_limit_minutes": 50,
       "target": {
         "monster": 17,
@@ -37802,6 +37964,7 @@
       "fee": 1380,
       "reward": 16500,
       "penalty": 5500,
+      "clear_points": 1750,
       "time_limit_minutes": 50,
       "target": {
         "monster": 14,
@@ -38154,6 +38317,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -38319,6 +38483,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -38479,6 +38644,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -38619,6 +38785,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -38788,6 +38955,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -38925,6 +39093,7 @@
       "fee": 650,
       "reward": 7800,
       "penalty": 2600,
+      "clear_points": 1300,
       "time_limit_minutes": 50,
       "target": {
         "monster": 57,
@@ -39172,6 +39341,7 @@
       "fee": 580,
       "reward": 6900,
       "penalty": 2300,
+      "clear_points": 1300,
       "time_limit_minutes": 50,
       "target": {
         "monster": 80,
@@ -39428,6 +39598,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 82,
@@ -39662,6 +39833,7 @@
       "fee": 1100,
       "reward": 13200,
       "penalty": 4400,
+      "clear_points": 1700,
       "time_limit_minutes": 50,
       "target": {
         "monster": 82,
@@ -39860,6 +40032,7 @@
       "fee": 1120,
       "reward": 13500,
       "penalty": 4500,
+      "clear_points": 1750,
       "time_limit_minutes": 50,
       "target": {
         "monster": 6,
@@ -40127,6 +40300,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 48,
@@ -40359,6 +40533,7 @@
       "fee": 880,
       "reward": 10500,
       "penalty": 3500,
+      "clear_points": 1680,
       "time_limit_minutes": 50,
       "target": {
         "monster": 86,
@@ -40616,6 +40791,7 @@
       "fee": 1250,
       "reward": 15000,
       "penalty": 5000,
+      "clear_points": 1750,
       "time_limit_minutes": 50,
       "target": {
         "monster": 48,
@@ -40873,6 +41049,7 @@
       "fee": 780,
       "reward": 9300,
       "penalty": 3100,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 15,
@@ -41132,6 +41309,7 @@
       "fee": 900,
       "reward": 10800,
       "penalty": 3600,
+      "clear_points": 1680,
       "time_limit_minutes": 50,
       "target": {
         "monster": 45,
@@ -41384,6 +41562,7 @@
       "fee": 1270,
       "reward": 15300,
       "penalty": 5100,
+      "clear_points": 1750,
       "time_limit_minutes": 50,
       "target": {
         "monster": 45,
@@ -41605,6 +41784,7 @@
       "fee": 800,
       "reward": 9600,
       "penalty": 3200,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 21,
@@ -41854,6 +42034,7 @@
       "fee": 930,
       "reward": 11100,
       "penalty": 3700,
+      "clear_points": 1680,
       "time_limit_minutes": 50,
       "target": {
         "monster": 46,
@@ -42096,6 +42277,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 52,
@@ -42347,6 +42529,7 @@
       "fee": 880,
       "reward": 10500,
       "penalty": 3500,
+      "clear_points": 1680,
       "time_limit_minutes": 50,
       "target": {
         "monster": 85,
@@ -42594,6 +42777,7 @@
       "fee": 880,
       "reward": 10500,
       "penalty": 3500,
+      "clear_points": 1680,
       "time_limit_minutes": 50,
       "target": {
         "monster": 85,
@@ -42846,6 +43030,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 20,
@@ -43097,6 +43282,7 @@
       "fee": 1350,
       "reward": 14100,
       "penalty": 4700,
+      "clear_points": 1750,
       "time_limit_minutes": 50,
       "target": {
         "monster": 39,
@@ -43311,6 +43497,7 @@
       "fee": 1750,
       "reward": 21000,
       "penalty": 7000,
+      "clear_points": 1850,
       "time_limit_minutes": 50,
       "target": {
         "monster": 86,
@@ -43663,6 +43850,7 @@
       "fee": 1850,
       "reward": 22200,
       "penalty": 7400,
+      "clear_points": 1860,
       "time_limit_minutes": 50,
       "target": {
         "monster": 15,
@@ -44039,6 +44227,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -44202,6 +44391,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -44349,6 +44539,7 @@
       "fee": 1050,
       "reward": 12600,
       "penalty": 4200,
+      "clear_points": 1850,
       "time_limit_minutes": 50,
       "target": {
         "monster": 81,
@@ -44616,6 +44807,7 @@
       "fee": 1050,
       "reward": 12600,
       "penalty": 4200,
+      "clear_points": 1850,
       "time_limit_minutes": 50,
       "target": {
         "monster": 81,
@@ -44878,6 +45070,7 @@
       "fee": 1920,
       "reward": 23100,
       "penalty": 7700,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 81,
@@ -45096,6 +45289,7 @@
       "fee": 1100,
       "reward": 13200,
       "penalty": 4400,
+      "clear_points": 1900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 83,
@@ -45339,6 +45533,7 @@
       "fee": 2000,
       "reward": 24000,
       "penalty": 8000,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 83,
@@ -45563,6 +45758,7 @@
       "fee": 2000,
       "reward": 24000,
       "penalty": 8000,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 48,
@@ -45778,6 +45974,7 @@
       "fee": 1000,
       "reward": 12000,
       "penalty": 4000,
+      "clear_points": 1800,
       "time_limit_minutes": 50,
       "target": {
         "monster": 67,
@@ -46010,6 +46207,7 @@
       "fee": 1120,
       "reward": 13500,
       "penalty": 4500,
+      "clear_points": 1900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 87,
@@ -46267,6 +46465,7 @@
       "fee": 1920,
       "reward": 23100,
       "penalty": 7700,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 67,
@@ -46505,6 +46704,7 @@
       "fee": 750,
       "reward": 9000,
       "penalty": 3000,
+      "clear_points": 1600,
       "time_limit_minutes": 50,
       "target": {
         "monster": 6,
@@ -46743,6 +46943,7 @@
       "fee": 1050,
       "reward": 12600,
       "penalty": 4200,
+      "clear_points": 1850,
       "time_limit_minutes": 50,
       "target": {
         "monster": 11,
@@ -47005,6 +47206,7 @@
       "fee": 1150,
       "reward": 13800,
       "penalty": 4600,
+      "clear_points": 1950,
       "time_limit_minutes": 50,
       "target": {
         "monster": 49,
@@ -47271,6 +47473,7 @@
       "fee": 1000,
       "reward": 12000,
       "penalty": 4000,
+      "clear_points": 1800,
       "time_limit_minutes": 50,
       "target": {
         "monster": 1,
@@ -47516,6 +47719,7 @@
       "fee": 1100,
       "reward": 13200,
       "penalty": 4400,
+      "clear_points": 1900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 37,
@@ -47759,6 +47963,7 @@
       "fee": 1050,
       "reward": 12600,
       "penalty": 4200,
+      "clear_points": 1850,
       "time_limit_minutes": 50,
       "target": {
         "monster": 40,
@@ -47979,6 +48184,7 @@
       "fee": 1920,
       "reward": 23100,
       "penalty": 7700,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 78,
@@ -48209,6 +48415,7 @@
       "fee": 1000,
       "reward": 12000,
       "penalty": 4000,
+      "clear_points": 1800,
       "time_limit_minutes": 50,
       "target": {
         "monster": 51,
@@ -48441,6 +48648,7 @@
       "fee": 1120,
       "reward": 13500,
       "penalty": 4500,
+      "clear_points": 1900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 84,
@@ -48685,6 +48893,7 @@
       "fee": 1120,
       "reward": 13500,
       "penalty": 4500,
+      "clear_points": 1900,
       "time_limit_minutes": 50,
       "target": {
         "monster": 84,
@@ -48923,6 +49132,7 @@
       "fee": 1000,
       "reward": 12000,
       "penalty": 4000,
+      "clear_points": 1800,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -49247,6 +49457,7 @@
       "fee": 2450,
       "reward": 29400,
       "penalty": 9800,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 1,
@@ -49584,6 +49795,7 @@
       "fee": 2500,
       "reward": 30000,
       "penalty": 10000,
+      "clear_points": 2100,
       "time_limit_minutes": 50,
       "target": {
         "monster": 81,
@@ -49940,6 +50152,7 @@
       "fee": 2500,
       "reward": 30000,
       "penalty": 10000,
+      "clear_points": 2100,
       "time_limit_minutes": 50,
       "target": {
         "monster": 49,
@@ -50295,6 +50508,7 @@
       "fee": 2500,
       "reward": 30000,
       "penalty": 10000,
+      "clear_points": 2100,
       "time_limit_minutes": 50,
       "target": {
         "monster": 67,
@@ -50590,6 +50804,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2500,
       "time_limit_minutes": 35,
       "target": {
         "monster": 50,
@@ -50815,6 +51030,7 @@
       "fee": 1150,
       "reward": 13800,
       "penalty": 4600,
+      "clear_points": 1950,
       "time_limit_minutes": 50,
       "target": {
         "monster": 75,
@@ -51062,6 +51278,7 @@
       "fee": 2100,
       "reward": 25200,
       "penalty": 8400,
+      "clear_points": 2050,
       "time_limit_minutes": 50,
       "target": {
         "monster": 75,
@@ -51303,6 +51520,7 @@
       "fee": 1150,
       "reward": 13800,
       "penalty": 4600,
+      "clear_points": 1950,
       "time_limit_minutes": 50,
       "target": {
         "monster": 14,
@@ -51565,6 +51783,7 @@
       "fee": 1250,
       "reward": 15000,
       "penalty": 5000,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 43,
@@ -51838,6 +52057,7 @@
       "fee": 2250,
       "reward": 27000,
       "penalty": 9000,
+      "clear_points": 2100,
       "time_limit_minutes": 50,
       "target": {
         "monster": 43,
@@ -52070,6 +52290,7 @@
       "fee": 1150,
       "reward": 13800,
       "penalty": 4600,
+      "clear_points": 1950,
       "time_limit_minutes": 50,
       "target": {
         "monster": 17,
@@ -52315,6 +52536,7 @@
       "fee": 1250,
       "reward": 15000,
       "penalty": 5000,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 47,
@@ -52581,6 +52803,7 @@
       "fee": 2250,
       "reward": 27000,
       "penalty": 9000,
+      "clear_points": 2100,
       "time_limit_minutes": 50,
       "target": {
         "monster": 47,
@@ -52823,6 +53046,7 @@
       "fee": 1350,
       "reward": 16200,
       "penalty": 5400,
+      "clear_points": 2050,
       "time_limit_minutes": 50,
       "target": {
         "monster": 41,
@@ -52934,6 +53158,7 @@
       "fee": 1300,
       "reward": 15600,
       "penalty": 5200,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 42,
@@ -53045,6 +53270,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2400,
       "time_limit_minutes": 50,
       "target": {
         "monster": 42,
@@ -53278,6 +53504,7 @@
       "fee": 2500,
       "reward": 30000,
       "penalty": 10000,
+      "clear_points": 2500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 89,
@@ -53505,6 +53732,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 53,
@@ -53732,6 +53960,7 @@
       "fee": 1150,
       "reward": 13800,
       "penalty": 4600,
+      "clear_points": 1950,
       "time_limit_minutes": 50,
       "target": {
         "monster": 33,
@@ -53840,6 +54069,7 @@
       "fee": 1250,
       "reward": 15000,
       "penalty": 5000,
+      "clear_points": 1950,
       "time_limit_minutes": 50,
       "target": {
         "monster": 33,
@@ -54082,6 +54312,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2400,
       "time_limit_minutes": 50,
       "target": {
         "monster": 75,
@@ -54443,6 +54674,7 @@
       "fee": 2500,
       "reward": 30000,
       "penalty": 10000,
+      "clear_points": 2300,
       "time_limit_minutes": 50,
       "target": {
         "monster": 17,
@@ -54820,6 +55052,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2400,
       "time_limit_minutes": 50,
       "target": {
         "monster": 11,
@@ -55165,6 +55398,7 @@
       "fee": 2500,
       "reward": 30000,
       "penalty": 10000,
+      "clear_points": 2300,
       "time_limit_minutes": 50,
       "target": {
         "monster": 53,
@@ -55477,6 +55711,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2400,
       "time_limit_minutes": 50,
       "target": {
         "monster": 14,
@@ -55809,6 +56044,7 @@
       "fee": 3000,
       "reward": 36000,
       "penalty": 12000,
+      "clear_points": 2400,
       "time_limit_minutes": 50,
       "target": {
         "monster": 81,
@@ -56113,6 +56349,7 @@
       "fee": 1420,
       "reward": 17100,
       "penalty": 5700,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 54,
@@ -56393,6 +56630,7 @@
       "fee": 1420,
       "reward": 17100,
       "penalty": 5700,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 54,
@@ -56646,6 +56884,7 @@
       "fee": 1550,
       "reward": 18600,
       "penalty": 6200,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 65,
@@ -56928,6 +57167,7 @@
       "fee": 1550,
       "reward": 18600,
       "penalty": 6200,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 65,
@@ -57202,6 +57442,7 @@
       "fee": 1420,
       "reward": 17100,
       "penalty": 5700,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 59,
@@ -57451,6 +57692,7 @@
       "fee": 1420,
       "reward": 17100,
       "penalty": 5700,
+      "clear_points": 2000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 59,
@@ -57717,6 +57959,7 @@
       "fee": 2500,
       "reward": 30000,
       "penalty": 10000,
+      "clear_points": 2500,
       "time_limit_minutes": 50,
       "target": {
         "monster": 58,
@@ -57910,6 +58153,7 @@
       "fee": 3500,
       "reward": 42000,
       "penalty": 14000,
+      "clear_points": 2500,
       "time_limit_minutes": 30,
       "target": {
         "monster": 55,
@@ -58123,6 +58367,7 @@
       "fee": 4500,
       "reward": 54000,
       "penalty": 18000,
+      "clear_points": 3000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 2,
@@ -58377,6 +58622,7 @@
       "fee": 4500,
       "reward": 54000,
       "penalty": 18000,
+      "clear_points": 3000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 36,
@@ -58525,6 +58771,7 @@
       "fee": 4500,
       "reward": 54000,
       "penalty": 18000,
+      "clear_points": 3000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 71,
@@ -58780,6 +59027,7 @@
       "fee": 5000,
       "reward": 60000,
       "penalty": 20000,
+      "clear_points": 3000,
       "time_limit_minutes": 50,
       "target": {
         "monster": 88,
@@ -58904,6 +59152,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -59015,6 +59264,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -59126,6 +59376,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -59237,6 +59488,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -59348,6 +59600,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -59459,6 +59712,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -59570,6 +59824,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -59681,6 +59936,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -59792,6 +60048,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -59903,6 +60160,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -60014,6 +60272,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -60125,6 +60384,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -60236,6 +60496,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -60347,6 +60608,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -60458,6 +60720,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -60569,6 +60832,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -60680,6 +60944,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -60791,6 +61056,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -60902,6 +61168,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -61013,6 +61280,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -61124,6 +61392,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -61235,6 +61504,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -61346,6 +61616,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -61457,6 +61728,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -61568,6 +61840,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -61679,6 +61952,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -61790,6 +62064,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -61901,6 +62176,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -62012,6 +62288,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -62123,6 +62400,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -62234,6 +62512,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -62345,6 +62624,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -62456,6 +62736,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -62567,6 +62848,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -62678,6 +62960,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -62789,6 +63072,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -62900,6 +63184,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -63011,6 +63296,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -63122,6 +63408,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -63233,6 +63520,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -63344,6 +63632,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -63455,6 +63744,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -63566,6 +63856,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -63677,6 +63968,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -63788,6 +64080,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -63899,6 +64192,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -64010,6 +64304,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -64121,6 +64416,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -64232,6 +64528,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -64343,6 +64640,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -64454,6 +64752,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -64565,6 +64864,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -64676,6 +64976,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -64787,6 +65088,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -64898,6 +65200,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -65009,6 +65312,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -65120,6 +65424,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -65231,6 +65536,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -65342,6 +65648,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -65453,6 +65760,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -65564,6 +65872,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -65675,6 +65984,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -65786,6 +66096,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -65897,6 +66208,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -66008,6 +66320,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -66119,6 +66432,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -66230,6 +66544,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -66341,6 +66656,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -66452,6 +66768,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -66563,6 +66880,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -66674,6 +66992,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -66785,6 +67104,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -66896,6 +67216,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -67007,6 +67328,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -67118,6 +67440,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -67229,6 +67552,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -67340,6 +67664,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -67451,6 +67776,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -67562,6 +67888,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -67673,6 +68000,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -67784,6 +68112,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -67895,6 +68224,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -68006,6 +68336,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -68117,6 +68448,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -68228,6 +68560,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -68339,6 +68672,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -68450,6 +68784,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -68561,6 +68896,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -68672,6 +69008,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [
@@ -68783,6 +69120,7 @@
       "fee": 0,
       "reward": 12,
       "penalty": 4,
+      "clear_points": 0,
       "time_limit_minutes": 50,
       "target": null,
       "supplies": [

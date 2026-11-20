@@ -34,6 +34,12 @@ export interface QuestHeader {
   gatheringItemsPtr: number;
   /** `MonSizeModifier` (u32 @ 56). */
   monSizeModifier: number;
+  /**
+   * The hexpat's `HRPSuccess` (u32 @ 60): the points a clear earns, Guild
+   * Points on the Guild's boards (README "Clear points"). Gathering quests
+   * have 0.
+   */
+  clearPoints: number;
   rank: number;
   spawn: number;
   supplyCond: number;
@@ -79,6 +85,7 @@ export function readQuestHeader(reader: BinaryReader): QuestHeader {
     gatheringLocTblPtr: reader.u32(28),
     gatheringItemsPtr: reader.u32(36),
     monSizeModifier: reader.u32(56),
+    clearPoints: reader.u32(60),
     rank: reader.u8(68),
     spawn: reader.u8(69),
     supplyCond: reader.u8(70),
