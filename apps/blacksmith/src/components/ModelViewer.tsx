@@ -13,6 +13,7 @@ import {
   type HunterMotion,
   type WeaponMount,
 } from "@/lib/hunter";
+import { hierarchicalPose } from "@/lib/bone-scaling";
 import { fetchMotions, inPlace, MOTION_FPS, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
@@ -123,6 +124,51 @@ function mountMesh(mesh: import("three").Mesh, mounted: CapsuleMount): void {
   mesh.matrix.premultiply(mounted.inverse);
   mesh.matrixAutoUpdate = false;
   mounted.parent.add(mesh);
+}
+
+/**
+ * Poses `root`'s skeletons as the game does once a motion has moved its
+ * bones: a bone's scale passes to its children per axis (see
+ * src/lib/bone-scaling.ts), which three.js's chain of matrices can't do.
+ * The returned function sets the bones' world matrices, which three.js then
+ * leaves alone; what hangs off a bone still follows it.
+ */
+function gamePose(THREE: Three, root: import("three").Object3D): () => void {
+  const order = new Map<import("three").Object3D, number>();
+  root.traverse((object) => order.set(object, order.size));
+  const bones = [
+    ...new Set(
+      [...order.keys()].flatMap(
+        (object) => (object as import("three").SkinnedMesh).skeleton?.bones ?? [],
+      ),
+    ),
+  ].sort((a, b) => (order.get(a) ?? 0) - (order.get(b) ?? 0));
+  const index = new Map(bones.map((bone, i) => [bone as import("three").Object3D, i]));
+  const parents = bones.map((bone) => (bone.parent && index.get(bone.parent)) ?? -1);
+  /** The bone at the top of each one's chain, whose parent's space the pose is in. */
+  const tops: number[] = [];
+  parents.forEach((parent, i) => tops.push(parent < 0 ? i : tops[parent]!));
+  for (const bone of bones) bone.matrixWorldAutoUpdate = false;
+  const pose = new Float64Array(bones.length * 16);
+  const local = new THREE.Matrix4();
+  return () => {
+    hierarchicalPose(
+      bones.map(({ position: p, quaternion: q, scale: s }, i) => ({
+        parent: parents[i]!,
+        position: [p.x, p.y, p.z],
+        quaternion: [q.x, q.y, q.z, q.w],
+        scale: [s.x, s.y, s.z],
+      })),
+      pose,
+    );
+    bones.forEach((bone, i) => {
+      const space = bones[tops[i]!]!.parent;
+      if (tops[i] === i) space?.updateWorldMatrix(true, false);
+      local.fromArray(pose, i * 16);
+      if (space) bone.matrixWorld.multiplyMatrices(space.matrixWorld, local);
+      else bone.matrixWorld.copy(local);
+    });
+  };
 }
 
 /** Opacity of an attack's capsules while it can hit. */
@@ -297,12 +343,15 @@ export default function ModelViewer({
       let frame = 0;
       const clock = new THREE.Clock();
       let mixer: import("three").AnimationMixer | null = null;
+      /** Poses the bones after the mixer moves them (gamePose); set with the mixer. */
+      let pose: (() => void) | null = null;
       const frameHooks = new Set<() => void>();
       /** The motion playing and its frame; set once motions load. */
       let now: SceneHandle["now"] = () => null;
       const animate = () => {
         frame = requestAnimationFrame(animate);
         mixer?.update(clock.getDelta());
+        pose?.();
         holdWeapon?.();
         for (const hook of frameHooks) hook();
         controls.update();
@@ -692,6 +741,7 @@ export default function ModelViewer({
               ),
           );
           mixer = new THREE.AnimationMixer(root);
+          pose = gamePose(THREE, root);
           // Each action plays once and stops on its last frame; the
           // "finished" handler below restarts it where the game would.
           const actions = clips.map((clip) => mixer!.clipAction(clip).setLoop(THREE.LoopOnce, 1));
@@ -707,6 +757,7 @@ export default function ModelViewer({
           for (let i = 0; i < GROUND_SAMPLES; i++) {
             first.time = (i / GROUND_SAMPLES) * clips[0]!.duration;
             mixer.update(0);
+            pose();
             floor = Math.min(floor, bounds(sample).min.y);
           }
           first.stop();
@@ -753,6 +804,7 @@ export default function ModelViewer({
           };
           apply();
           mixer.update(0);
+          pose();
           measure();
           // Frame the first motion's pose, unless the visitor has moved the camera.
           if (!interacted) fit?.();
