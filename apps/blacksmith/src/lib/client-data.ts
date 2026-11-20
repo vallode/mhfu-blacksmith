@@ -204,7 +204,7 @@ export function useMonster(category: string, slug: string): DetailState<Monster>
   return useBundle<Monster>(`monster-${category}`, (bundle, dict) => {
     const b = bundle as MonsterBundle;
     const cm = b.items.find((m) => m.s === slug);
-    return { item: cm ? decodeMonster(dict, cm, b.category, b.at) : null, tree: null };
+    return { item: cm ? decodeMonster(dict, cm, b.category) : null, tree: null };
   });
 }
 

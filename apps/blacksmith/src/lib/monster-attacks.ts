@@ -1,47 +1,54 @@
 /**
- * Monster attack records (data/monster-attacks.json). The disc has no attack
- * names, and many records share their numbers (separate hitboxes), so records
- * with identical numbers are grouped into one row with a count.
+ * A monster's attacks for its Attacks tab, from the attack file next to its
+ * model (`/models/monsters/emNN.attacks.json`, packages/mhfu-extract
+ * `monsters/attacks.ts`). The file has one entry per attack object a motion
+ * makes; the tab lists each motion once per set of numbers, with how many
+ * of its hits share them.
  */
-import type { MonsterAttackRow } from "./types";
+import type { MonsterAttack } from "./models";
 
-/** A record as in data/monster-attacks.json (the internal `record` reference is dropped). */
-export interface RawAttack {
+export interface AttackRow {
+  /** The motion's slot, as the 3D model's motion list numbers it. */
+  slot: number;
+  /** Hits in the motion with these numbers. */
+  hits: number;
   damage: number;
-  guard: number;
+  stun: number;
+  guard?: number;
   elements?: string[];
   statuses?: string[];
   statusValue?: number;
-  stun?: number;
 }
 
-const key = (a: RawAttack) =>
+const key = (a: MonsterAttack) =>
   JSON.stringify([
-    a.damage,
-    a.guard,
+    a.slot,
+    a.power,
+    a.stun,
+    a.guard ?? null,
     a.elements ?? [],
     a.statuses ?? [],
     a.statusValue ?? 0,
-    a.stun ?? 0,
   ]);
 
-/** Groups identical records into rows with a count, highest damage first. */
-export function groupAttacks(attacks: RawAttack[]): MonsterAttackRow[] {
-  const rows = new Map<string, MonsterAttackRow>();
+/** One row per motion and set of numbers, in motion order, the hardest hit first within a motion. */
+export function attackRows(attacks: readonly MonsterAttack[]): AttackRow[] {
+  const rows = new Map<string, AttackRow>();
   for (const a of attacks) {
     const k = key(a);
     const row = rows.get(k);
     if (row) {
-      row.count++;
+      row.hits++;
       continue;
     }
-    const next: MonsterAttackRow = { damage: a.damage, guard: a.guard, count: 1 };
+    const next: AttackRow = { slot: a.slot, hits: 1, damage: a.power, stun: a.stun };
+    if (a.guard !== undefined) next.guard = a.guard;
     if (a.elements?.length) next.elements = a.elements;
-    if (a.statuses?.length) next.statuses = a.statuses;
-    if (a.statusValue) next.statusValue = a.statusValue;
-    if (a.stun) next.stun = a.stun;
+    if (a.statuses?.length) {
+      next.statuses = a.statuses;
+      next.statusValue = a.statusValue ?? 0;
+    }
     rows.set(k, next);
   }
-  // Stable: ties keep the disc's order.
-  return [...rows.values()].sort((a, b) => b.damage - a.damage);
+  return [...rows.values()].sort((a, b) => a.slot - b.slot || b.damage - a.damage);
 }

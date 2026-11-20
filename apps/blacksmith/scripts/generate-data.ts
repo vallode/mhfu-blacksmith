@@ -57,7 +57,6 @@ import type {
   Dictionaries,
   CompactWeapon,
   CompactArmor,
-  CompactAttackFamily,
   CompactMonster,
   CompactDecoration,
   CompactTreeNode,
@@ -75,7 +74,6 @@ import {
   normalizeItemName,
   type ItemRecord,
 } from "../src/lib/items";
-import { groupAttacks, type RawAttack } from "../src/lib/monster-attacks";
 import { encodeQuestBundle, monsterSizeRanges, type QuestRecord } from "./lib/quest-bundle";
 import { buildLocaleBundles } from "./lib/locales";
 import type { AwardText } from "../src/lib/i18n/game-text";
@@ -96,11 +94,6 @@ import { flinchThreshold } from "../src/lib/monster-breaks";
 import { canCapture } from "../src/lib/monster-drops";
 import type { HitboxCapsule } from "../src/lib/models";
 import { readData } from "game-data";
-
-interface AttackFamily {
-  monsters: string[];
-  attacks: RawAttack[];
-}
 
 const root = process.cwd();
 const dataDir = DATA_DIR;
@@ -353,11 +346,8 @@ function hitzoneFlinch(m: Monster): (string | null)[] | null {
 function encodeMonster(
   m: Monster,
   sizeRange: { min: number; max: number } | undefined,
-  attackIndex: (fam: AttackFamily) => number,
 ): CompactMonster {
   const out: CompactMonster = { n: m.name, s: m.slug };
-  const fam = attackFamilyOf.get(m.name);
-  if (fam) out.at = attackIndex(fam);
   const d = internString(m.description);
   if (d !== undefined) out.d = d;
   if (m.hitzones && Object.keys(m.hitzones).length > 0) {
@@ -528,55 +518,15 @@ const quests = fs
 const sizeRanges = monsterSizeRanges(quests);
 
 // Monsters
-const monsterCategoryOf = new Map<string, string>();
-for (const category of MONSTER_CATEGORIES) {
-  const p = path.join(dataDir, "monsters", `${category}.json`);
-  if (!fs.existsSync(p)) continue;
-  for (const m of readData<{ monsters: Monster[] }>(dataDir, "monsters", `${category}.json`)
-    .monsters)
-    monsterCategoryOf.set(m.name, category);
-}
-const attackFamilyOf = new Map<string, AttackFamily>();
-for (const fam of readJson<{ families: AttackFamily[] }>(path.join(dataDir, "monster-attacks.json"))
-  .families) {
-  for (const name of fam.monsters) {
-    if (!monsterCategoryOf.has(name))
-      throw new Error(`monster-attacks.json: unknown monster ${name}`);
-    attackFamilyOf.set(name, fam);
-  }
-}
 for (const category of MONSTER_CATEGORIES) {
   const p = path.join(dataDir, "monsters", `${category}.json`);
   if (!fs.existsSync(p)) continue;
   const data = readData<{ monsters: Monster[] }>(dataDir, "monsters", `${category}.json`);
-  // Each attack family once per bundle, its monsters pointing at it.
-  const families: AttackFamily[] = [];
-  const attackIndex = (fam: AttackFamily) => {
-    if (!families.includes(fam)) families.push(fam);
-    return families.indexOf(fam);
-  };
   const items = data.monsters.map((m) =>
-    encodeMonster({ ...m, slug: slugify(m.name) }, sizeRanges.get(m.name), attackIndex),
+    encodeMonster({ ...m, slug: slugify(m.name) }, sizeRanges.get(m.name)),
   );
-  const at = families.map((fam): CompactAttackFamily => [
-    groupAttacks(fam.attacks).map((r) => [
-      r.damage,
-      r.guard,
-      r.count,
-      r.stun ?? 0,
-      r.statusValue ?? 0,
-      r.elements ?? [],
-      r.statuses ?? [],
-    ]),
-    fam.monsters.map((n) => [monsterCategoryOf.get(n) ?? "", n]),
-  ]);
   totalItems += items.length;
-  push(`monster-${category}.json`, {
-    kind: "monster",
-    category,
-    items,
-    ...(at.length ? { at } : {}),
-  });
+  push(`monster-${category}.json`, { kind: "monster", category, items });
 }
 
 // Quests: one bundle for every hub. Items are in-game IDs (names and icons

@@ -300,8 +300,14 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           },
         ]
       : [];
-  const attackTab: Tab[] = monster.attacks
-    ? [{ id: "attacks", label: "Attacks", content: <MonsterAttacks attacks={monster.attacks} /> }]
+  const attackTab: Tab[] = attacks?.length
+    ? [
+        {
+          id: "attacks",
+          label: t.monsters.detail.tabs.attacks,
+          content: <MonsterAttacks attacks={attacks} />,
+        },
+      ]
     : [];
   // One tab per rank's drop tables
   const dropTabs: Tab[] = Object.entries(monster.drops ?? {}).map(([rank, sources]) => ({

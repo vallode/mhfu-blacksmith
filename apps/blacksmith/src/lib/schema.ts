@@ -25,7 +25,6 @@ import type {
 } from "./types";
 import type { Crowns } from "./crowns";
 import { splitDropQuantity } from "./monster-drops";
-import { slugify } from "./slug";
 
 // ---------------------------------------------------------------------------
 // Dictionaries (shared across all bundles, emitted as dictionaries.json)
@@ -145,8 +144,6 @@ export interface CompactMonster {
   dr?: [number, [number, [number, number][]][]][];
   /** base_hp */
   hp?: number;
-  /** attacks: index of the monster's family in its bundle's `at` */
-  at?: number;
   /** base_size, in cm */
   bs?: number;
   /** crowns: [mini, silver, gold] in percent */
@@ -192,23 +189,10 @@ export interface ArmorBundle {
   tree: CompactTreeNode[];
   items: CompactArmor[];
 }
-/**
- * A monster family's attacks, once per bundle: [rows, monsters]. A row is
- * [damage, guard, count, stun, statusValue, elements, statuses] (zeros and
- * empty arrays when absent); monsters are [category, name] of every monster
- * in the family.
- */
-export type CompactAttackFamily = [
-  [number, number, number, number, number, string[], string[]][],
-  [string, string][],
-];
-
 export interface MonsterBundle {
   kind: "monster";
   category: string;
   items: CompactMonster[];
-  /** The attack families its monsters' `at` index */
-  at?: CompactAttackFamily[];
 }
 export interface DecorationBundle {
   kind: "decoration";
@@ -418,12 +402,7 @@ export const decodeMonsterListItem = (m: CompactMonster): MonsterListItem => ({
   ...(m.cr && { crowns: decodeCrowns(m.cr) }),
 });
 
-export function decodeMonster(
-  d: Dictionaries,
-  m: CompactMonster,
-  category: string,
-  attackFamilies: CompactAttackFamily[] = [],
-): Monster {
+export function decodeMonster(d: Dictionaries, m: CompactMonster, category: string): Monster {
   const hitzones: Monster["hitzones"] = {};
   if (m.hz) {
     for (const [partIdx, vals] of m.hz) {
@@ -467,22 +446,6 @@ export function decodeMonster(
     }
   }
 
-  const family = m.at === undefined ? undefined : attackFamilies[m.at];
-  const attacks: Monster["attacks"] = family && {
-    rows: family[0].map(([damage, guard, count, stun, statusValue, elements, statuses]) => ({
-      damage,
-      guard,
-      count,
-      ...(elements.length && { elements }),
-      ...(statuses.length && { statuses }),
-      ...(statusValue && { statusValue }),
-      ...(stun && { stun }),
-    })),
-    sharedWith: family[1]
-      .filter(([, name]) => name !== m.n)
-      .map(([cat, name]) => ({ name, category: cat, slug: slugify(name) })),
-  };
-
   return {
     name: m.n,
     slug: m.s,
@@ -491,7 +454,6 @@ export function decodeMonster(
     hitzones: m.hz ? hitzones : undefined,
     drops: m.dr ? drops : undefined,
     base_hp: m.hp,
-    attacks,
     base_size: m.bs,
     crowns: m.cr ? decodeCrowns(m.cr) : undefined,
     size_range: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,

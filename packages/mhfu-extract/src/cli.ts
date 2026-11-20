@@ -11,7 +11,6 @@
  *   tsx src/cli.ts area-maps --unpacked <dir> [--data <dir>] [--out <dir>]
  *   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only <categories>] [--out <path>] [--markdown <path>]
  *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
- *   tsx src/cli.ts attack-data --dump <attacks.json> [--out <path>]
  *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
  *   tsx src/cli.ts find-names --unpacked <dir> [--out <path>] [--tables <list>] [--all]
  *   tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots <map>] [--report <path>] [--dry-run] [--dlc <cheat .ini or .mib dir>]
@@ -21,7 +20,6 @@ import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.
 import { parseCategories, runCompare } from "./cli/compare.js";
 import { printDiffSummary, runDiff } from "./cli/diff.js";
 import { runExportSite } from "./cli/export-site.js";
-import { runAttackData } from "./cli/attacks-raw.js";
 import { runAreaMaps } from "./cli/area-maps.js";
 import { runItemIcons } from "./cli/item-icons.js";
 import { runExtract } from "./cli/extract.js";
@@ -76,7 +74,6 @@ const USAGE = `Usage:
   tsx src/cli.ts area-maps --unpacked <dir> [--data <dir>] [--out <dir>]
   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,items,quests,gathering,shops,combinations,veggie-trades,farm,awards] [--report <path>] [--markdown <path>] [--dry-run]
-  tsx src/cli.ts attack-data --dump <attacks.json> [--out <path>]
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
   tsx src/cli.ts find-names --unpacked <dir> [--out <path>] [--tables ItemID,emID,...] [--all]
   tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots spa=es,...] [--report <path>] [--dry-run] [--dlc <cheat .ini or .mib dir>]
@@ -164,13 +161,6 @@ export async function main(argv: string[]): Promise<void> {
       });
       const converted = results.filter((result) => !result.error).length;
       console.log(`\nDone. Converted ${converted} of ${results.length} packages.`);
-      return;
-    }
-    case "attack-data": {
-      await runAttackData({
-        raw: requireFlag(flags, "dump"),
-        out: flags.out ?? "../../data/monster-attacks.json",
-      });
       return;
     }
     case "export-site": {

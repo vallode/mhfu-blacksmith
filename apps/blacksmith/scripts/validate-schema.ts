@@ -33,7 +33,6 @@ const checks: [label: string, schema: string, files: string[]][] = [
   ["Pokke Farm", "farm", ["farm.json"]],
   ["Guild Card awards", "award", ["awards.json"]],
   ["skills", "skill", ["skills.json"]],
-  ["monster attacks", "monster-attacks", ["monster-attacks.json"]],
   ["string tables", "strings", jsonFiles("strings")],
   ["locales", "locale", jsonFiles("locales")],
 ];

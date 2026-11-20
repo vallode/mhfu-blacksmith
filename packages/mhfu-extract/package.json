@@ -15,7 +15,6 @@
     "compare": "tsx src/cli.ts compare",
     "build-data": "tsx src/cli.ts build-data",
     "quest-flags": "tsx src/cli.ts quest-flags",
-    "attack-data": "tsx src/cli.ts attack-data",
     "find-names": "tsx src/cli.ts find-names",
     "locales": "tsx src/cli.ts locales",
     "quest-probe": "tsx src/cli.ts quest-probe",
