@@ -74,6 +74,7 @@ export const quests = {
     minutes: (n: string) => `${n} min`,
     reward: "Reward:",
     fee: "Contract fee:",
+    guildPoints: "Guild Points:",
     requires: "Requires:",
     monsters: "Monsters:",
     /** The crowns the quest's monsters can be, and a note when they can't at first. */

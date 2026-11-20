@@ -550,6 +550,49 @@ Bulldrome's attacks come from its action code, not its spawner, so it has
 none; and Mosswine, Bullfango, Felynes, Melynxes, Great Thunderbugs and
 Remobras make none this way either.
 
+### Unused monster motions
+
+A monster's motion bank holds motions nothing in the game plays.
+`src/monsters/motion-use.ts` finds the ones its code can play, without
+running it:
+
+- **Players**: monster code plays a motion only through `0x09AC5228` and
+  `0x09AC8EE0` (EU), each taking an index into the emID's table of 8-byte
+  motion records (`0x09BD3780[emID]`, byte 0 the motion's slot). The
+  tables are near enough the identity, so what's used is decided by the
+  indices the code hands them.
+- **Walk**: from every method in the class's vtable, the code is followed
+  both ways at every branch and through jump tables, with the set of
+  values each register can hold (constants, arguments including `t0`-`t3`,
+  what they point at, the stack, a call's result). Functions are
+  summarised in terms of their arguments, so an index passed down through
+  helpers or read from a table handed to one (the movement helpers) comes
+  out as constants. A tail call (`j`) to a player is a play too. Where the
+  walk can't be sure it saw everything (recursion, a call depth of 24, a
+  pointer to the stack handed to a call, a branch out of the code), it
+  says so rather than guess. A play on another object (an effect, an
+  attack object) still counts its constant records as used, in case it is
+  the monster, but an index there it can't follow is let go. Every call to
+  the two players on the disc, tail calls included, is reached from some
+  class's vtable. About half a second a monster.
+- **Site file**: `export-site` writes
+  `public/models/monsters/emNN.unused-motions.json`, `{ "unused": [slot, …] }`,
+  for a monster with any, and removes an old one otherwise (always, for
+  a disc other than EU). The 3D viewer greys their numbers out.
+
+Species sharing a class (Rathian and Rathalos and their variants) aren't
+told apart: a motion one plays counts as used for all. A monster with an
+index the walk can't follow to a constant (from its state: Tigrex's
+family and Bulldrome) gets no file; the log says where. Lao-Shan
+Lung's records 20-31 can switch it to a shared table (record byte 3,
+`0x09BD38F0`) whose records are its alternates of walking motions 1-10;
+what allows the switch wasn't found, so those slots are never called
+unused.
+
+Checks it passed on the EU disc: every motion the Giadrome played in a
+PPSSPP log (1, 2, 6-9, 20-22, 25, 26, 30, 51) is used, and the unused
+lists didn't change when constant loads from game data were turned off.
+
 ### Monster breaks
 
 Each monster's `breaks` (`data/monsters/*.json`) lists the body parts
@@ -757,7 +800,8 @@ file paths:
   `overlay/game_task.ovl` and the `emNN.ovl` files in the unpacked
   directory; the log names any monster without one, and why. From the EU
   disc, with `eboot.bin` and `overlay/game_sub.ovl` too, each also gets
-  `monsters/emNN.attacks.json` (see "Monster attacks").
+  `monsters/emNN.attacks.json` (see "Monster attacks") and, if it has any,
+  `monsters/emNN.unused-motions.json` (see "Unused monster motions").
 - **Weapons** need `eboot.bin`: each blademaster/gunner table entry, indexed
   by the game ID the site's weapon record carries, holds the model
   ID of its `weapon/weNNN.pac`. Verified on an EU EBOOT: all 1,500 weapons
@@ -1063,6 +1107,27 @@ the ten Japan-only Event Quests (`60001`-`60009`, `60036`).
 Event Quests number their stars like the Guild (★9-★11 are G★1-G★3) and
 use its rank tiers. Challenge Quests are rank 0, 3 or 4, like Subjugation
 Training, with Training School loadouts (`arena_sets`).
+
+### Clear points
+
+The header's u32 at `0x3c` (the hexpat's `HRPSuccess`) is the points a
+clear earns, emitted raw as `clear_points` on every quest. On the EU disc
+it grows with the stars (120 for quest 1, 3000 for `3233` "Absolute Zero")
+and is 0 on every gathering quest and the Basic Training quests. On the
+Guild's boards they are Guild Points (MHP2G's HRP): the result-screen
+strings in `_unindexed/4776.bin` run "<Quest Exp Points>", "Bonus Points",
+"Lost Points" and then "Current Guild Points:". The Village's result screen
+converts the reward into Pokke Points instead ("Reward Ttl/Pnt Convert",
+"Current Pokke Points:"), and the Training School has its own ("Training
+School Points Earned"), which is also where the Challenge Quests come from
+(client "Instructor" on 10 of the 14). So the site shows `clear_points` as
+Guild Points only on the Guild and Event boards. What the Village and
+Training School values do in game isn't confirmed.
+
+The u32 at `0x40` (`HRPFailure`) is 15 on every quest with clear points
+and 0 on the rest (but the unused `m50001`-`m50003`, 0 and 15). It may be the points a faint costs ("Lost Points" sits
+next to "<Fainted:%1dTime(s)>"), but that isn't confirmed, so it isn't
+emitted.
 
 ### Reward tables
 

@@ -203,6 +203,8 @@ export interface EmittedQuest {
   fee: number;
   reward: number;
   penalty: number;
+  /** The header's points for a clear, raw: Guild Points on the Guild's boards (README "Clear points"). */
+  clear_points: number;
   time_limit_minutes: number;
   target: EmittedQuestTarget | null;
   supplies: EmittedSupply[];
@@ -453,6 +455,7 @@ export function emitQuest(
     fee: header.fee,
     reward: header.reward,
     penalty: header.penalty,
+    clear_points: header.clearPoints,
     // Raw ticks -> minutes: confirmed exact (no remainder) against every
     // real sample checked, e.g. quest ID 1's timeLimit=90000 -> 50 minutes.
     time_limit_minutes: Math.round(header.timeLimit / 1800),

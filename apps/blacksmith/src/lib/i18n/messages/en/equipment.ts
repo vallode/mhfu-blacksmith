@@ -59,6 +59,8 @@ export const equipment = {
     nextFilter: "Next filter",
     filterCount: (matched: number, total: number) => `${matched} of ${total} weapons`,
     rankGroup: "Armor rank",
+    /** The armor rank filter's first stop (lib/armor-rank-filter-store). */
+    allRanks: "All ranks",
     previousRank: "Previous rank",
     nextRank: "Next rank",
   },
@@ -304,6 +306,10 @@ export const equipment = {
     nextMotion: "Next motion",
     /** Read after the motion number of a motion with attack hitboxes. */
     attackMotion: "attacks",
+    /** Read after the motion number of a motion nothing in the game plays. */
+    unusedMotion: "unused",
+    /** Tooltip on an unused motion's number. */
+    unusedMotionHint: "Unused: nothing in the game plays this motion",
     play: "Play",
     pause: "Pause",
     /** The hunter's motions (lib/hunter names them in English). */

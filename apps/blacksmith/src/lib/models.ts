@@ -254,6 +254,16 @@ export function useMonsterHitboxes(modelUrl: string | null): HitboxCapsule[] | n
 }
 
 /**
+ * Slots of a monster's motions that nothing in the game plays, from the
+ * file next to its model (`/models/monsters/emNN.unused-motions.json`, see
+ * packages/mhfu-extract `monsters/motion-use.ts`); null while loading, or
+ * if it has none or they couldn't be told.
+ */
+export function useMonsterUnusedMotions(modelUrl: string | null): number[] | null {
+  return useModelFile<number>(modelUrl, "unused-motions", "unused");
+}
+
+/**
  * A monster's attacks, from the file next to its model
  * (`/models/monsters/emNN.attacks.json`); null while loading or if it has none.
  */
