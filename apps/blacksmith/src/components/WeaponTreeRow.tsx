@@ -77,8 +77,10 @@ function gameTextKind(basePath: string): GameTextKind {
 function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
   if (basePath.startsWith("/blacksmith/")) return `weapon-${node.type}`;
   if (basePath.startsWith("/armorsmith/")) {
-    // basePath is /armorsmith/<slot>/<rank>/ — the tree stays within one bundle
-    const rank = basePath.split("/")[3];
+    // basePath is /armorsmith/<slot>/<rank>/ — the tree stays within one
+    // bundle — or /armorsmith/<slot>/ in the all-rank views, whose slugs are
+    // <rank>/<slug>.
+    const rank = node.slug.includes("/") ? node.slug.split("/")[0] : basePath.split("/")[3];
     return `armor-${node.type}-${rank}`;
   }
   if (basePath.startsWith("/decorations/")) return "decorations";
@@ -214,7 +216,8 @@ export default function WeaponTreeRow({
   const { href, external: isExternal } = status;
   const owned = markOwned && status.owned;
   const craft = showCraftProgress ? status.craft : null;
-  const dimmed = filtered ? !filtered.match : false;
+  // The page's own row stays bright, whatever the filter.
+  const dimmed = filtered ? !filtered.match : !!node.dimmed && !isActive;
   const showPips = craft != null && craft.status !== "unknown";
   const ready = craft?.status === "ready" ? craft : null;
   // Weapons are forged; jewels are made.

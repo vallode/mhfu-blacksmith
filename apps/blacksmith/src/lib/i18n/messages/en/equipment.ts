@@ -59,6 +59,8 @@ export const equipment = {
     nextFilter: "Next filter",
     filterCount: (matched: number, total: number) => `${matched} of ${total} weapons`,
     rankGroup: "Armor rank",
+    /** The armor rank filter's first stop (lib/armor-rank-filter-store). */
+    allRanks: "All ranks",
     previousRank: "Previous rank",
     nextRank: "Next rank",
   },

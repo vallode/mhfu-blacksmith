@@ -42,6 +42,7 @@ import {
   WEAPON_CLASS_MULTIPLIER,
 } from "../src/lib/constants";
 import { slugify, armorSlugs } from "../src/lib/slug";
+import { groupArmorVersions, type ArmorVersion } from "../src/lib/armor-versions";
 import type {
   Weapon,
   ArmorPiece,
@@ -66,6 +67,7 @@ import type {
   EquipmentIds,
   CompactItem,
   ItemsBundle,
+  ArmorBundle,
 } from "../src/lib/schema";
 import { EQUIP_TYPE_SLOTS } from "../src/lib/schema";
 import {
@@ -476,6 +478,10 @@ for (const type of WEAPON_TYPES) {
 // (see buildArmorTree).
 for (const slot of ARMOR_SLOTS) {
   const allPieces = readData<{ armor: ArmorPiece[] }>(dataDir, "armor", `${slot}.json`).armor;
+  // Each rank's bundle, held back until every rank's rows have their version
+  // family (see src/lib/armor-versions.ts).
+  const bundles: ArmorBundle[] = [];
+  const versionRows: (ArmorVersion & { sex?: string; node: CompactTreeNode })[] = [];
   for (const rank of ARMOR_RANKS) {
     const pieces = allPieces.filter((p) => p.rank === rank);
     if (pieces.length === 0) continue;
@@ -493,19 +499,30 @@ for (const slot of ARMOR_SLOTS) {
     const minRankBySlug = new Map(items.map((i) => [i.s, i.mr]));
     const maxDefenceBySlug = new Map(items.map((i) => [i.s, i.md]));
     totalItems += items.length;
-    push(`armor-${slot}-${rank}.json`, {
-      kind: "armor",
+    const compact = compactTree(
+      tree,
       slot,
-      rank,
-      tree: compactTree(
-        tree,
-        slot,
-        (_type, slug) => minRankBySlug.get(slug),
-        (slug) => maxDefenceBySlug.get(slug),
-      ),
-      items,
-    });
+      (_type, slug) => minRankBySlug.get(slug),
+      (slug) => maxDefenceBySlug.get(slug),
+    );
+    bundles.push({ kind: "armor", slot, rank, tree: compact, items });
+    const sexBySlug = new Map(pieces.map((p, i) => [slugs[i], p.sex]));
+    for (const node of compact) {
+      versionRows.push({
+        rank,
+        slug: node.s,
+        name: node.n,
+        rarity: node.r ?? 0,
+        sex: sexBySlug.get(node.s),
+        node,
+      });
+    }
   }
+  const nodeOf = new Map(versionRows.map((v) => [`${v.rank}/${v.slug}`, v.node]));
+  groupArmorVersions(versionRows.map(({ node: _node, ...v }) => v)).forEach((family, f) => {
+    for (const v of family.versions) nodeOf.get(`${v.rank}/${v.slug}`)!.f = f;
+  });
+  for (const b of bundles) push(`armor-${slot}-${b.rank}.json`, b);
 }
 
 // Every quest, for the monsters' size ranges and the quests bundle.
