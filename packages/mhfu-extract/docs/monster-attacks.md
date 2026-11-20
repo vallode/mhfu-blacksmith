@@ -47,16 +47,25 @@ statuses (vallode/mhfu-blacksmith#122). Bytes `0x04`, `0x11`, `0x13`,
 `0x15` and `0x17` were zero in every row, the top two bits of `0x07` set,
 and `0x10` at most 5.
 
+## Dragon
+
+Bit `0x20` (dragon) is on 532 of the 1,903 attack hits `export-site` writes
+on the EU disc: nearly every hit of the elder dragons (Fatalis, Lao-Shan
+Lung, Kushala Daora, Teostra, Lunastra, Chameleos, Yama Tsukami) and some of
+Tigrex's, Nargacuga's, Akantor's and Ukanlos's, and three of the Rathians'
+and Rathaloses'. That agrees with the wiki, which gives Rathalos's Swoop (60
+damage, motion 41 in `em11.attacks.json`) and World Tour, and most of
+Tigrex's, Akantor's, Kushala Daora's and Lao-Shan Lung's attacks, the
+dragon element. Rathian shares Rathalos's code, so it has the same rows.
+
 ## Open questions
 
 - **Element bit `0x01`** is set in all but 3 rows, and **`0x08`** shows on
   Teostra's blast; neither is known. The site leaves both out.
-- **Dragon on Rathian and Rathalos.** The static search found four
-  76-damage rows and a Swoop-like row with bit `0x20` among the records
-  Rathian's and Rathalos's code uses, though the wiki gives none of their
-  attacks an element. Elsewhere `0x20` matches dragon (Lao-Shan Lung,
-  Kushala Daora, Fatalis, Tigrex's family). Worth checking against
-  `em11.attacks.json` and `em01.attacks.json` once they carry elements.
+- **Projectiles.** The sweep sees the attack objects a monster's own
+  spawner makes, not the projectiles its shots spawn, so fireballs, beams
+  and the like are mostly missing (only 12 fire hits across every monster
+  on the EU disc; Rathian's Fireball isn't among them).
 - **Reaction** (`0x03`) values: which hunter reaction each is.
 - **Bytes `0x07`, `0x10` and the rest** of the row.
 - **Gaps in the sweep** (README): shapes the game places in code (joints
