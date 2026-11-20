@@ -35,6 +35,8 @@
  * `monsters/emNN.attacks.json` (`monsters/attacks.ts`): the attack capsules
  * its motions make, with the frames they can hit in, found by running the
  * game's spawner code. Other discs' addresses aren't known, so they get none.
+ * Likewise `monsters/emNN.unused-motions.json` (`monsters/motion-use.ts`):
+ * the motions in its bank that none of its code plays.
  *
  * `public/models/hunter/` holds the hunter shown holding a weapon: `hunter.glb`
  * (the default armor set on the player's skeleton, `models/hunter.ts`), one
@@ -76,6 +78,7 @@ import {
   sweepMonsterAttacks,
   type ImageSegment,
 } from "../monsters/attacks.js";
+import { findMotionUse } from "../monsters/motion-use.js";
 import { readMonsterCollision } from "../monsters/collision.js";
 import { familyOverlayId } from "../monsters/families.js";
 import { buildSiteHitboxes, jointPositions } from "../monsters/hitboxes.js";
@@ -148,7 +151,7 @@ async function packageToGlb(
   clipOptions: ClipOptions,
   motionsFile: (motions: Buffer) => string,
   pose?: WeaponPoses,
-): Promise<{ glb: Buffer; motions?: Buffer } | null> {
+): Promise<{ glb: Buffer; motions?: Buffer; slots?: number[] } | null> {
   if (!isPac(buf)) return null;
   const entries = readPac(buf);
   const pmoEntry = entries.find((entry) => isPmo(entry.data));
@@ -201,7 +204,7 @@ async function packageToGlb(
         },
     rig && { bones: rig.bones, motionsFile: motions && motionsFile(motions) },
   );
-  return { glb, motions };
+  return { glb, motions, slots: rig?.clips?.map((clip) => clip.slot) };
 }
 
 /** A weapon's skeleton: the first `.ahi` after its mesh, if it parses. */
@@ -314,6 +317,8 @@ class Converter {
   private readonly done = new Map<string, string | null>();
   /** Motion files written, by content: monsters with the same motions share the first's. */
   private readonly motionFiles = new Map<string, string>();
+  /** The motion slots of each converted model, by its output path. */
+  readonly motionSlots = new Map<string, number[]>();
   /** Packages referenced by the game data but absent from the unpacked directory (e.g. a partial dump). */
   missing = 0;
   constructor(
@@ -361,6 +366,7 @@ class Converter {
           // Only now can others share it: a conversion that failed wrote nothing.
           if (motionsKey) this.motionFiles.set(motionsKey, ownMotions);
         } else await rm(motionsPath, { force: true });
+        if (converted.slots) this.motionSlots.set(relativeOut, converted.slots);
         result = relativeOut;
       } else {
         console.log(`skip ${source}: no mesh`);
@@ -544,6 +550,44 @@ async function exportAttacks(
   }
 }
 
+/**
+ * Writes `monsters/emNN.unused-motions.json`, `{ "unused": [slot, …] }`:
+ * the motions in a monster's bank that none of its code plays
+ * (`monsters/motion-use.ts`). A monster with none, or whose code couldn't
+ * be followed all the way, gets no file (an old one is removed); the reason
+ * is logged.
+ */
+async function exportUnusedMotions(
+  source: AttackSource | null,
+  emId: number,
+  slots: readonly number[] | undefined,
+  siteName: string,
+  out: string,
+): Promise<boolean> {
+  const file = path.join(out, "monsters", `em${String(emId).padStart(2, "0")}.unused-motions.json`);
+  const none = async (reason?: string) => {
+    if (reason) console.log(`no unused motions for ${siteName}: ${reason}`);
+    await rm(file, { force: true });
+    return false;
+  };
+  // Another disc's code addresses aren't known; a file from an earlier
+  // export into the same place mustn't outlive it.
+  if (!source) return none();
+  if (!slots) return none("its model has no motions");
+  try {
+    const use = findMotionUse(source.image, source.overlays, emId, familyOverlayId(emId));
+    if ("error" in use) return await none(use.error);
+    if (use.uncertain) return await none(use.uncertain);
+    const used = new Set([...use.used, ...use.undecided]);
+    const unused = slots.filter((slot) => !used.has(slot));
+    if (unused.length === 0) return await none("its code plays every motion");
+    await writeFile(file, `${JSON.stringify({ unused })}\n`);
+    return true;
+  } catch (err) {
+    return none(err instanceof Error ? err.message : String(err));
+  }
+}
+
 async function exportMonsters(
   options: ExportSiteOptions,
   converter: Converter,
@@ -558,6 +602,7 @@ async function exportMonsters(
   const attackSource = await loadAttackSource(options.unpacked, region, collision);
   let hitboxCount = 0;
   let attackCount = 0;
+  let unusedCount = 0;
   for (const file of files) {
     const id = Number.parseInt(file.slice(2), 10);
     const siteName = siteNames.get(id);
@@ -581,9 +626,11 @@ async function exportMonsters(
       (await exportAttacks(attackSource, path.join(emDir, file), id, siteName, options.out))
     )
       attackCount++;
+    const slots = converter.motionSlots.get(relative);
+    if (await exportUnusedMotions(attackSource, id, slots, siteName, options.out)) unusedCount++;
   }
   console.log(
-    `monsters: ${Object.keys(monsters).length}, with hitboxes: ${hitboxCount}, with attacks: ${attackCount}`,
+    `monsters: ${Object.keys(monsters).length}, with hitboxes: ${hitboxCount}, with attacks: ${attackCount}, with unused motions: ${unusedCount}`,
   );
   return monsters;
 }

@@ -57,6 +57,8 @@ interface Props {
   capsules?: ModelCapsule[];
   /** A monster's attacks, drawn while the motion playing can hit with them. */
   attacks?: ModelAttack[];
+  /** Slots of a monster's motions that nothing in the game plays. */
+  unusedMotions?: number[];
   /**
    * Show `src` (a weapon) in the hands of the hunter, playing this weapon
    * type's motions. If the hunter's model can't load, the weapon shows alone.
@@ -226,6 +228,7 @@ export default function ModelViewer({
   pair = false,
   capsules,
   attacks,
+  unusedMotions,
   hunter,
 }: Props) {
   const t = useT();
@@ -891,6 +894,7 @@ export default function ModelViewer({
   }, [attacks, status]);
 
   const attackSlots = new Set(attacks?.map((attack) => attack.slot));
+  const unused = motion !== null && (unusedMotions?.includes(motion.slot) ?? false);
 
   const playWidth = Math.max(t.equipment.model.play.length, t.equipment.model.pause.length);
 
@@ -938,13 +942,18 @@ export default function ModelViewer({
               ))}
             </select>
           ) : (
-            <span className="tabular-nums" aria-live="polite">
+            <span
+              className="tabular-nums"
+              aria-live="polite"
+              title={unused ? t.equipment.model.unusedMotionHint : undefined}
+            >
               {t.equipment.model.motion}{" "}
               {/* As wide as the largest number, so the panel keeps its size. */}
               <span
                 className={cn(
                   "inline-block text-right",
-                  attackSlots.has(motion.slot) && "text-negative",
+                  // An unused motion greys out, whether or not it would hit.
+                  unused ? "text-unavailable" : attackSlots.has(motion.slot) && "text-negative",
                 )}
                 style={{ width: `calc(var(--cell) * ${String(motion.count).length})` }}
               >
@@ -954,6 +963,7 @@ export default function ModelViewer({
               {attackSlots.has(motion.slot) && (
                 <span className="sr-only"> {t.equipment.model.attackMotion}</span>
               )}
+              {unused && <span className="sr-only"> {t.equipment.model.unusedMotion}</span>}
             </span>
           )}
           <button
