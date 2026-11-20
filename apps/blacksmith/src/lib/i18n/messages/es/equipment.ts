@@ -42,6 +42,7 @@ export const equipment: Messages["equipment"] = {
     nextFilter: "Filtro siguiente",
     filterCount: (matched: number, total: number) => `${matched} de ${total} armas`,
     rankGroup: "Rango de armadura",
+    allRanks: "Todos los rangos",
     previousRank: "Rango anterior",
     nextRank: "Rango siguiente",
   },
