@@ -971,7 +971,7 @@ function WayLine({ way }: { way: Way }) {
       ? way.price === null || way.price === undefined
         ? "—"
         : way.currency === "pokke-points"
-          ? t.items.wishlist.ways.pokkePoints(formatNumber(way.price))
+          ? t.common.points(formatNumber(way.price))
           : zenny(way.price)
       : `${formatNumber(way.chance ?? 0)}%`;
   const meta = [way.group && groupLabel(t, way.group), wayDetail(t, formatNumber, way)]

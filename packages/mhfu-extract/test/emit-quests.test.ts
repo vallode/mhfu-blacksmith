@@ -21,6 +21,7 @@ const GIADROME_HUNT: ParsedQuest = {
     gatheringLocTblPtr: 2476,
     gatheringItemsPtr: 1388,
     monSizeModifier: 0,
+    clearPoints: 120,
     rank: 0,
     spawn: 0,
     unknownFlags: [0, 0],
@@ -236,6 +237,13 @@ test("emitQuest puts quests 1-10 and 101-109 on Guild Low Rank (★1 and ★2)",
   assert.deepEqual([giadrome?.hub, giadrome?.rank], ["guild", "low-rank"]);
   assert.deepEqual([first?.hub, first?.rank], ["guild", "low-rank"]);
   assert.deepEqual([rathian?.hub, rathian?.rank], ["guild", "low-rank"]);
+});
+
+test("emitQuest keeps the header's clear points on every board", () => {
+  // Quest 1's header has 120; which boards call them Guild Points is the site's call.
+  assert.equal(emitQuest(GIADROME_HUNT)?.clear_points, 120);
+  assert.equal(emitQuest(VILLAGE_GIADROME)?.clear_points, 120);
+  assert.equal(withHeader(21001, 4)?.clear_points, 120);
 });
 
 test("emitQuest flags the Urgent Quests", () => {

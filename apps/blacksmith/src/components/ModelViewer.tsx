@@ -13,6 +13,7 @@ import {
   type HunterMotion,
   type WeaponMount,
 } from "@/lib/hunter";
+import type { GamePose } from "@/lib/bone-scaling";
 import { fetchMotions, inPlace, MOTION_FPS, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
@@ -249,6 +250,8 @@ export default function ModelViewer({
       // Models are meshopt-compressed (EXT_meshopt_compression; see packages/mhfu-extract).
       const { MeshoptDecoder } = await import("three/examples/jsm/libs/meshopt_decoder.module.js");
       const { OrbitControls } = await import("three/examples/jsm/controls/OrbitControls.js");
+      // Three.js-based, so it loads with three.
+      const boneScaling = await import("@/lib/bone-scaling");
       if (disposed) return;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -297,12 +300,15 @@ export default function ModelViewer({
       let frame = 0;
       const clock = new THREE.Clock();
       let mixer: import("three").AnimationMixer | null = null;
+      /** Poses the bones after the mixer moves them, when its motions need the game's scaling. */
+      let pose: GamePose | null = null;
       const frameHooks = new Set<() => void>();
       /** The motion playing and its frame; set once motions load. */
       let now: SceneHandle["now"] = () => null;
       const animate = () => {
         frame = requestAnimationFrame(animate);
         mixer?.update(clock.getDelta());
+        pose?.update();
         holdWeapon?.();
         for (const hook of frameHooks) hook();
         controls.update();
@@ -692,6 +698,12 @@ export default function ModelViewer({
               ),
           );
           mixer = new THREE.AnimationMixer(root);
+          // Only a motion that scales a bone with bones under it poses
+          // differently the game's way; the rest keep three.js's own.
+          const hasChildBones = (bone: number) =>
+            node(bone)?.children.some((child) => (child as import("three").Bone).isBone) ?? false;
+          if (sources.some((clip) => boneScaling.scalesParent(clip.tracks, hasChildBones)))
+            pose = new boneScaling.GamePose(root);
           // Each action plays once and stops on its last frame; the
           // "finished" handler below restarts it where the game would.
           const actions = clips.map((clip) => mixer!.clipAction(clip).setLoop(THREE.LoopOnce, 1));
@@ -707,6 +719,7 @@ export default function ModelViewer({
           for (let i = 0; i < GROUND_SAMPLES; i++) {
             first.time = (i / GROUND_SAMPLES) * clips[0]!.duration;
             mixer.update(0);
+            pose?.update();
             floor = Math.min(floor, bounds(sample).min.y);
           }
           first.stop();
@@ -753,6 +766,7 @@ export default function ModelViewer({
           };
           apply();
           mixer.update(0);
+          pose?.update();
           measure();
           // Frame the first motion's pose, unless the visitor has moved the camera.
           if (!interacted) fit?.();

@@ -172,6 +172,19 @@ describe("encodeQuestBundle / decodeQuests", () => {
     ]);
   });
 
+  test("keeps clear points as Guild Points on the Guild and Event boards only", () => {
+    const { bundle } = encode([
+      quest({ id: 1, hub: "guild", rank: "low-rank", clear_points: 120 }),
+      quest({ id: 60010, hub: "event", rank: "g-rank", clear_points: 2500 }),
+      quest({ id: 10006, hub: "village", rank: "low-rank", clear_points: 120 }),
+      quest({ id: 61001, hub: "challenge", clear_points: 300 }),
+    ]);
+    assert.deepEqual(
+      decodeQuests(bundle).map((q) => q.guildPoints),
+      [120, 2500, null, null],
+    );
+  });
+
   test("keeps each distinct supply row once, with how many times it repeats", () => {
     const map = { item: "Map", amount: 1 };
     const { bundle } = encode([

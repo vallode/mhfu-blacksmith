@@ -62,6 +62,7 @@ export const quests: Messages["quests"] = {
     minutes: (n: string) => `${n} min`,
     reward: "Recompensa:",
     fee: "Tarifa:",
+    guildPoints: "Puntos del Gremio:",
     requires: "Requiere:",
     monsters: "Monstruos:",
     crowns: "Coronas:",
