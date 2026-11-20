@@ -298,6 +298,10 @@ export const equipment = {
     nextMotion: "Next motion",
     /** Read after the motion number of a motion with attack hitboxes. */
     attackMotion: "attacks",
+    /** Read after the motion number of a motion nothing in the game plays. */
+    unusedMotion: "unused",
+    /** Tooltip on an unused motion's number. */
+    unusedMotionHint: "Unused: nothing in the game plays this motion",
     play: "Play",
     pause: "Pause",
     /** The hunter's motions (lib/hunter names them in English). */

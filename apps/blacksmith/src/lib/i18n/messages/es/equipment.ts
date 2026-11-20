@@ -247,6 +247,8 @@ export const equipment: Messages["equipment"] = {
     previousMotion: "Movimiento anterior",
     nextMotion: "Movimiento siguiente",
     attackMotion: "ataca",
+    unusedMotion: "sin usar",
+    unusedMotionHint: "Sin usar: nada en el juego reproduce este movimiento",
     play: "Reanudar",
     pause: "Pausa",
     sheathedIdle: "Arma enfundada",
