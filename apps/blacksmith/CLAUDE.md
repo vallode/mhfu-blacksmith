@@ -5,8 +5,11 @@ styled to look like the game's UI.
 
 Lives in `apps/blacksmith` (see the root `CLAUDE.md` for the repository
 layout); paths below are relative to it. It reads its game data from the root
-`data/` (`DATA_DIR`, `src/lib/paths.ts`) with `readData` from
-`packages/game-data`, never by parsing the files itself.
+`data/` (`DATA_DIR`; MHFU's is `data/mhfu/`, `GAME_DATA_DIR`, both in
+`src/lib/paths.ts`) with `readData` from `packages/game-data`, never by
+parsing the files itself. Game facts (weapon types, ranks, quest boards,
+which sections a game has) come from `game-data/games`, through
+`src/lib/constants.ts`.
 
 Checks (from `apps/blacksmith`): `pnpm lint`, `pnpm typecheck`, `pnpm test`;
 and `pnpm format:check` from the repository root.
@@ -185,7 +188,7 @@ a full dictionary.
 ### Game text
 
 Names of weapons, armor, items, monsters, skills, decorations and maps, and
-quest board text, come from the root `data/locales/<code>.json`. That file is keyed by
+quest board text, come from the root `data/mhfu/locales/<code>.json`. That file is keyed by
 English name or quest ID and extracted from the game disc
 (`packages/mhfu-extract`, its `locales` command), not hand-translated. `pnpm generate-data` copies it
 to `public/data/locale-<code>.json`. Display such names through

@@ -1,5 +1,5 @@
 /**
- * The Veggie Elder's trades (data/veggie-trades.json): the compact
+ * The Veggie Elder's trades (data/mhfu/veggie-trades.json): the compact
  * public/data/veggie-trades.json bundle generate-data writes (item IDs), and
  * an index of the trades that give each item and the ones that take it.
  * Pure, so the item pages build it on the client and the tests build it
@@ -11,7 +11,7 @@
  * kitchen skill), else the common one.
  */
 
-/** data/veggie-trades.json (data/schemas/veggie-trade.schema.json). */
+/** data/mhfu/veggie-trades.json (data/schemas/veggie-trade.schema.json). */
 export interface VeggieTradesFile {
   rare_chance: number;
   elders: { maps: string[]; trades: { give: string; common: string; rare: string }[] }[];

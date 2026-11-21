@@ -50,7 +50,7 @@ test("runDiff walks both directory trees and diffs shared files, reporting files
   const dataDir = await mkdtemp(path.join(tmpdir(), "mhfu-extract-diff-data-"));
   try {
     await mkdir(path.join(extractedDir, "weapons"), { recursive: true });
-    await mkdir(path.join(dataDir, "weapons"), { recursive: true });
+    await mkdir(path.join(dataDir, "mhfu", "weapons"), { recursive: true });
     await mkdir(path.join(dataDir, "schemas"), { recursive: true });
 
     await writeFile(
@@ -58,14 +58,19 @@ test("runDiff walks both directory trees and diffs shared files, reporting files
       JSON.stringify({ weapons: [{ name: "Carbalite Sword", attack: 100 }] }),
     );
     await writeFile(
-      path.join(dataDir, "weapons", "great-sword.json"),
+      path.join(dataDir, "mhfu", "weapons", "great-sword.json"),
       JSON.stringify({ weapons: [{ name: "Carbalite Sword", attack: 90 }] }),
     );
     // Only in extracted (e.g. the new quests category, not yet reviewed into data/).
     await writeFile(path.join(extractedDir, "quests.json"), JSON.stringify({ quests: [] }));
-    // Only in committed data/, and a schema file that should be excluded entirely.
-    await writeFile(path.join(dataDir, "decorations.json"), JSON.stringify({ decorations: [] }));
+    // Only in committed data/mhfu/; the shared schemas and the string tables are left out.
+    await writeFile(
+      path.join(dataDir, "mhfu", "decorations.json"),
+      JSON.stringify({ decorations: [] }),
+    );
     await writeFile(path.join(dataDir, "schemas", "weapon.schema.json"), JSON.stringify({}));
+    await mkdir(path.join(dataDir, "mhfu", "strings"), { recursive: true });
+    await writeFile(path.join(dataDir, "mhfu", "strings", "en.json"), JSON.stringify({}));
 
     const report = await runDiff({ extracted: extractedDir, data: dataDir });
 

@@ -1,7 +1,7 @@
 /**
  * Parses a real MHFU save (test/fixtures/MHP2NDG.BIN, a US/EU PPSSPP save that
  * still has the PSP hardware layer) through the site's own save worker, and
- * checks every item ID it contains against data/items.json.
+ * checks every item ID it contains against data/mhfu/items.json.
  *
  * The worker is loaded as-is: `self` is stubbed so its `onmessage` handler can
  * be called directly and its `postMessage` result captured.
@@ -15,7 +15,7 @@ import { AWARDS, awardProgress } from "../src/lib/awards";
 import { lookFromSave } from "../src/lib/hunter-look";
 import type { ItemRecord } from "../src/lib/items";
 import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { HR_URGENT_QUESTS, hunterRankFrom } from "../src/lib/hunter-rank";
 import { AWARD_RECORD_KEYS, getSave, saveFromCharacter, setSave } from "../src/lib/save-store";
 import { readData } from "game-data";
@@ -59,7 +59,7 @@ function ok(m: Message): WorkerResult {
 }
 
 const items = new Map(
-  (readData(DATA_DIR, "items.json").items as ItemRecord[]).map((i) => [i.id, i]),
+  (readData(DATA_DIR, GAME, "items.json").items as ItemRecord[]).map((i) => [i.id, i]),
 );
 const name = (id: number) => items.get(id)?.name;
 
@@ -129,12 +129,12 @@ test("pouch items resolve to the expected names", async () => {
   );
 });
 
-test("every item ID in the save is in data/items.json", async () => {
+test("every item ID in the save is in data/mhfu/items.json", async () => {
   const r = ok(await parse("us"));
   for (const h of r.characters) {
     if (!h) continue;
     for (const s of [...h.itemChest, ...h.itemPouch]) {
-      assert.ok(items.has(s.id), `${h.name}: item ID ${s.id} is not in data/items.json`);
+      assert.ok(items.has(s.id), `${h.name}: item ID ${s.id} is not in data/mhfu/items.json`);
       assert.ok(s.qty >= 1 && s.qty <= 99, `${h.name}: item ${s.id} has qty ${s.qty}`);
     }
   }
@@ -200,7 +200,7 @@ test("a file no region can decrypt says so", async () => {
 });
 
 // Equipment box slots resolve through data/equipment-ids.json (by equip type code).
-const equipmentIds = readData(DATA_DIR, "equipment-ids.json") as Record<
+const equipmentIds = readData(DATA_DIR, GAME, "equipment-ids.json") as Record<
   string,
   ({ name: string; type?: string } | null)[]
 >;
@@ -270,13 +270,13 @@ test("equipment IDs line up: a starter kit, and whole armor sets across all five
 // Decorations: bytes 6–11 of each equipment slot hold up to three jewel item IDs.
 const decorationSlots = new Map(
   (
-    readData(DATA_DIR, "decorations.json").decorations as {
+    readData(DATA_DIR, GAME, "decorations.json").decorations as {
       name: string;
       slots: number;
     }[]
   ).map((d) => [d.name, Number(d.slots)]),
 );
-/** Slot count of an equipment box piece, from data/weapons or data/armor. */
+/** Slot count of an equipment box piece, from data/mhfu/weapons or data/mhfu/armor. */
 const pieceSlots = (() => {
   const bySlot = new Map<string, Map<string, number>>();
   const add = (key: string, entries: { name: string; slots?: number | string }[]) => {
@@ -284,13 +284,13 @@ const pieceSlots = (() => {
     for (const e of entries) m.set(e.name, Number(e.slots ?? 0));
     bySlot.set(key, m);
   };
-  for (const f of fs.readdirSync(path.join(DATA_DIR, "weapons"))) {
-    const weapons = readData(DATA_DIR, "weapons", f).weapons;
+  for (const f of fs.readdirSync(path.join(GAME_DATA_DIR, "weapons"))) {
+    const weapons = readData(DATA_DIR, GAME, "weapons", f).weapons;
     add("melee", weapons);
     add("ranged", weapons);
   }
   for (const slot of ["leggings", "helmet", "plate", "gauntlets", "waist"]) {
-    add(slot, readData(DATA_DIR, "armor", `${slot}.json`).armor);
+    add(slot, readData(DATA_DIR, GAME, "armor", `${slot}.json`).armor);
   }
   return (s: { type: number; id: number }) => bySlot.get(EQUIP_SLOTS[s.type])?.get(equipName(s)!);
 })();
@@ -344,7 +344,7 @@ test("every decoration is a known jewel and the jewels fit the piece's slots", a
 const siteQuestIds = new Set(
   ["village", "guild", "training-school", "treasure-hunting"].flatMap((hub) =>
     (
-      readData(DATA_DIR, "quests", `${hub}.json`).quests as {
+      readData(DATA_DIR, GAME, "quests", `${hub}.json`).quests as {
         id: number;
       }[]
     ).map((q) => q.id),

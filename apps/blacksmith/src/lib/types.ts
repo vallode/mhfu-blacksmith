@@ -276,7 +276,7 @@ export interface Decoration {
   create_cost?: number | null;
   skills?: string[];
   create_mats?: Material[];
-  /** In-game item ID (data/items.json); decoded bundles only. */
+  /** In-game item ID (data/mhfu/items.json); decoded bundles only. */
   item_id?: number;
   /** A second recipe; the game lists the jewel once for each. */
   alternative_create_mats?: Material[] | null;

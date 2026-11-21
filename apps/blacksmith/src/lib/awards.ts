@@ -5,7 +5,7 @@
  * (`AwardRecords`: training, the farm, Felynes, treasures, map counters...).
  *
  * Awards are in the game's own order: an award's index in `AWARDS` is its
- * bit in the save and its ID in `data/awards.json`, which has its name and
+ * bit in the save and its ID in `data/mhfu/awards.json`, which has its name and
  * the game's description of it (fetched as `/data/awards.json`). Each rule
  * is the condition the game checks before it hands the award over, read from
  * the EU EBOOT and overlays (`packages/mhfu-extract/docs/awards.md` has the
@@ -75,7 +75,7 @@ export type AwardRule =
   | { kind: "untracked" };
 
 export interface Award {
-  /** The site's name for the award; its text is in `data/awards.json`, by index. */
+  /** The site's name for the award; its text is in `data/mhfu/awards.json`, by index. */
   id: string;
   group: AwardGroup;
   rule: AwardRule;

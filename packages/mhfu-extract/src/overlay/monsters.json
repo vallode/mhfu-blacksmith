@@ -1,7 +1,7 @@
 {
   "$comment": [
     "Presentation for monsters extracted from the disc (vallode/mhfu-blacksmith#35): the site name,",
-    "the data/monsters file and, per committed hitzone part and drop group, the disc slot it shows.",
+    "the data/mhfu/monsters file and, per committed hitzone part and drop group, the disc slot it shows.",
     "hitzones: part -> [table, row] in the emChunk HitzoneTbl list. drops: rank label -> group label",
     "-> \"kind/rank\", kind body|tail|shiny|capture|break:<type>, rank one of the disc slots, or",
     "\"carve:<n>\" for carve pointer n, a list code picks by rank (monsters/rewards.ts).",

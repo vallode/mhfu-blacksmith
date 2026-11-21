@@ -82,11 +82,11 @@ test("siteMonsterNames rejects overlay entries the disc no longer needs", () => 
   );
 });
 
-test("renameMonsters renames data/strings monsters and reports each change", () => {
+test("renameMonsters renames data/mhfu/strings monsters and reports each change", () => {
   const dir = mkdtempSync(path.join(tmpdir(), "monster-names-"));
   try {
-    mkdirSync(path.join(dir, "strings"));
-    const file = path.join(dir, "strings", "en.json");
+    mkdirSync(path.join(dir, "mhfu", "strings"), { recursive: true });
+    const file = path.join(dir, "mhfu", "strings", "en.json");
     writeFileSync(
       file,
       JSON.stringify({ monster: { "1": "Rathian", "86": "Plum Daimyo Hermitaur" } }),
@@ -118,8 +118,11 @@ test("discMonsterNames reads the name table, or gives null without one", () => {
   assert.equal(names?.[86], "Plum D.Hermitaur");
 });
 
-test("data/strings keeps monster.enum's spellings, for extracts that name monsters by it (JP)", () => {
-  const strings = StringTable.read(fileURLToPath(new URL("../../../data", import.meta.url)));
+test("data/mhfu/strings keeps monster.enum's spellings, for extracts that name monsters by it (JP)", () => {
+  const strings = StringTable.read(
+    fileURLToPath(new URL("../../../data", import.meta.url)),
+    "mhfu",
+  );
   const enums = loadEnums();
   for (const [id, name] of Object.entries(strings.doc.monster ?? {})) {
     const spelling = lookupName(enums, "emID", Number(id));

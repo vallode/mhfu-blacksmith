@@ -6,12 +6,12 @@
  *
  * - weapons and armor: game-data's equipment-ID view (slot -> ID -> site item),
  *   the same table `build-data` pairs equipment with;
- * - items: `data/items.json` by ID, under its name;
- * - decorations: `data/decorations.json` names, whose item ID comes from
- *   `data/items.json` like `build-data`'s decoration matching;
+ * - items: `data/mhfu/items.json` by ID, under its name;
+ * - decorations: `data/mhfu/decorations.json` names, whose item ID comes from
+ *   `data/mhfu/items.json` like `build-data`'s decoration matching;
  * - monsters: `overlay/monsters.json` (emID -> site name; the site's
  *   `src/lib/monster-ids.ts` is generated from the same pairs);
- * - skills: `data/skills.json` trees and their aliases, plus the armor and
+ * - skills: `data/mhfu/skills.json` trees and their aliases, plus the armor and
  *   decoration spellings in `overlay/skill-name-aliases.json`, each matched
  *   to its `SkillID` name.
  *
@@ -19,6 +19,7 @@
  * tables/quest-maps.ts), so it is never produced.
  */
 import { readData } from "game-data";
+import { GAME } from "../game.js";
 import path from "node:path";
 import { loadSiteIndex, type EquipmentSlot } from "../build/ids.js";
 import { MONSTER_OVERLAY } from "../overlay/monsters.js";
@@ -69,7 +70,11 @@ export function loadSiteKeys(dataDir: string): SiteKeys {
     // for matching older spellings, and nothing looks a translation up by one.
     add(keys, "ItemID", item.id, "item", [item.name]);
   }
-  const decorations = readData<{ decorations: { name: string }[] }>(dataDir, "decorations.json");
+  const decorations = readData<{ decorations: { name: string }[] }>(
+    dataDir,
+    GAME,
+    "decorations.json",
+  );
   for (const deco of decorations.decorations) {
     const id = site.itemIdOf(deco.name);
     if (id !== null) add(keys, "ItemID", id, "decoration", [deco.name]);
@@ -79,6 +84,7 @@ export function loadSiteKeys(dataDir: string): SiteKeys {
 
   const skills = readData<{ skills: { tree: string; aliases?: string[] }[] }>(
     dataDir,
+    GAME,
     "skills.json",
   );
   const skillIds = new Map<string, number>();

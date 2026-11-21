@@ -4,10 +4,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { mapIconSrc } from "../src/lib/maps";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { readData } from "game-data";
 
-const readJson = (file: string) => readData(DATA_DIR, file);
+const readJson = (file: string) => readData(DATA_DIR, GAME, file);
 
 test("day, night, size and floor variants share their map's icon", () => {
   assert.equal(mapIconSrc("Jungle (Night)"), "/images/maps/jungle.png");
@@ -19,7 +19,7 @@ test("day, night, size and floor variants share their map's icon", () => {
 
 test("every map in data/ has an icon that exists", () => {
   const maps = new Set<string>();
-  for (const file of fs.readdirSync(path.join(DATA_DIR, "quests"))) {
+  for (const file of fs.readdirSync(path.join(GAME_DATA_DIR, "quests"))) {
     const { quests } = readJson(path.join("quests", file)) as { quests: { map: string | null }[] };
     for (const q of quests) {
       if (q.map) maps.add(q.map);

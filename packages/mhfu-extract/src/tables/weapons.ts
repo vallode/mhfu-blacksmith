@@ -194,7 +194,7 @@ export function decodeShotCoat(value: number): ShotCoatFlags {
  * Bow's 6 named coating flags, mapped to their real bit positions within
  * the shared `WepGunValue.ShotCoatings` u32 — discovered (not guessed) by
  * correlating every real bow's raw `shotCoatings` value against its
- * committed `data/weapons/bow.json` `coatings` list. On the EU disc this
+ * committed `data/mhfu/weapons/bow.json` `coatings` list. On the EU disc this
  * layout is the only one of the 24 orderings of bits 2-5 that matches 98
  * of 106 bows (vallode/mhfu-blacksmith#32); the next best matches 79. The
  * 8 left are whole bow families the site lists differently (Blue Blade
@@ -206,7 +206,7 @@ export function decodeShotCoat(value: number): ShotCoatFlags {
  *
  * Declared here in `closerng, paralysis, poison, sleep, power, paint`
  * order — not bit order — because that's the dominant real ordering
- * `data/weapons/bow.json`'s committed `coatings` arrays use (confirmed by
+ * `data/mhfu/weapons/bow.json`'s committed `coatings` arrays use (confirmed by
  * frequency analysis across all real entries: this exact filtered ordering
  * exact-matches 99/116 committed arrays, far more than any other candidate
  * ordering tried, including strict bit order). Iteration/object-key order

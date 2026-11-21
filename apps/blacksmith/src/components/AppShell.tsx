@@ -9,6 +9,8 @@ import Icon from "@/components/Icon";
 import { useSectionHref, type MenuSection } from "@/app/MenuLink";
 import { cn } from "@/lib/cn";
 import { useT } from "@/context/LanguageContext";
+import { SITE_GAME } from "@/lib/constants";
+import type { GameSections } from "game-data/games";
 import { useSave } from "@/context/SaveContext";
 import type { Messages } from "@/lib/i18n/messages";
 
@@ -28,6 +30,8 @@ interface NavItem {
   tab?: boolean;
   /** Uses the 16px /images/<icon>-mini.png sprite (drawn at 2x) in the sidebar and tab bar. */
   mini?: boolean;
+  /** The game's section (its config's `sections`) the entry needs; the entry is left out without it. */
+  needs?: keyof GameSections;
 }
 
 /**
@@ -35,13 +39,14 @@ interface NavItem {
  * data, then your own. Search, the options and the hunter sit at the
  * bottom (OPTIONS_NAV, HunterRow).
  */
-const NAV_GROUPS: NavItem[][] = [
+const ALL_NAV_GROUPS: NavItem[][] = [
   [
     {
       label: "weapons",
       icon: "great-sword",
       match: "/blacksmith/",
       section: "weapons",
+      needs: "blacksmith",
       tab: true,
       mini: true,
     },
@@ -50,26 +55,59 @@ const NAV_GROUPS: NavItem[][] = [
       icon: "helmet",
       match: "/armorsmith/",
       section: "armor",
+      needs: "armorsmith",
       tab: true,
       mini: true,
     },
-    { label: "monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
+    {
+      label: "monsters",
+      icon: "claw",
+      match: "/monsters/",
+      section: "monsters",
+      tab: true,
+      needs: "monsters",
+    },
     {
       label: "decorations",
       icon: "decoration",
       match: "/decorations/",
       href: "/decorations/",
       mini: true,
+      needs: "decorations",
     },
-    { label: "quests", icon: "ticket", match: "/quests/", section: "quests", tab: true },
-    { label: "items", icon: "fluid", match: "/items/", href: "/items/" },
-    { label: "veggieElder", icon: "mushroom", match: "/veggie-elder/", href: "/veggie-elder/" },
+    {
+      label: "quests",
+      icon: "ticket",
+      match: "/quests/",
+      section: "quests",
+      tab: true,
+      needs: "quests",
+    },
+    { label: "items", icon: "fluid", match: "/items/", href: "/items/", needs: "items" },
+    {
+      label: "veggieElder",
+      icon: "mushroom",
+      match: "/veggie-elder/",
+      href: "/veggie-elder/",
+      needs: "veggieElder",
+    },
   ],
   [
-    { label: "sets", icon: "plate", match: "/set-builder/", href: "/set-builder/", mini: true },
-    { label: "wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/" },
+    {
+      label: "sets",
+      icon: "plate",
+      match: "/set-builder/",
+      href: "/set-builder/",
+      mini: true,
+      needs: "setBuilder",
+    },
+    { label: "wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/", needs: "wishlist" },
   ],
 ];
+/** The entries the game has sections for. */
+const NAV_GROUPS = ALL_NAV_GROUPS.map((group) =>
+  group.filter((item) => !item.needs || SITE_GAME.sections[item.needs]),
+);
 const OPTIONS_NAV: NavItem = {
   label: "options",
   icon: "part",
@@ -263,7 +301,9 @@ function SidebarContents({
           <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.options}</span>
         </Link>
 
-        <HunterRow pathname={pathname} railLabel={railLabel} rail={rail} />
+        {SITE_GAME.sections.hunterImport && (
+          <HunterRow pathname={pathname} railLabel={railLabel} rail={rail} />
+        )}
 
         {onToggle && (
           <button

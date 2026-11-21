@@ -1,5 +1,5 @@
 /**
- * `data/monsters/*.json`-shaped output from the monster overlays
+ * `data/mhfu/monsters/*.json`-shaped output from the monster overlays
  * (vallode/mhfu-blacksmith#35), for `compare` and `build-data`.
  *
  * The disc gives numbers: hitzone rows by table and row, drop lists by kind

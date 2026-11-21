@@ -104,7 +104,7 @@ describe("buildItemUses", () => {
   });
 });
 
-describe("item uses from data/", () => {
+describe("item uses from data/mhfu/", () => {
   const uses = itemUsesFromData(DATA_DIR);
 
   test("survive item-uses.json", () => {

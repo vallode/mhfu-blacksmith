@@ -1,7 +1,7 @@
 /**
  * `build-data`'s `items` target: writes each item's rarity, carry limit,
  * price, icon and colour from the disc's item table (`emit/items.ts`) into
- * `data/items.json`, pairing by ID, and the colour palette next to them.
+ * `data/mhfu/items.json`, pairing by ID, and the colour palette next to them.
  * Names, aliases, regions and placeholder flags stay as committed;
  * placeholders get no stats.
  */
@@ -50,7 +50,7 @@ export function mergeItemStats(
   colors?: string[],
 ): ItemStatsMerge {
   const doc = committed as ItemStatsMerge["content"];
-  if (!Array.isArray(doc?.items)) throw new Error("data/items.json has no items array");
+  if (!Array.isArray(doc?.items)) throw new Error("data/mhfu/items.json has no items array");
   const byId = new Map(disc.map((item) => [item.id, item]));
   const changes: ItemStatChange[] = [];
   const missing: ItemStatsMerge["missing"] = [];

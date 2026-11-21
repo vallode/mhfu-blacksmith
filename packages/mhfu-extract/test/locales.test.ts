@@ -302,7 +302,9 @@ describe("locale files", () => {
 
   test("the committed es.json passes, and the check catches bad files", async () => {
     const schema = await loadLocaleSchema(DATA);
-    const committed = JSON.parse(await readFile(path.join(DATA, "locales", "es.json"), "utf-8"));
+    const committed = JSON.parse(
+      await readFile(path.join(DATA, "mhfu", "locales", "es.json"), "utf-8"),
+    );
     assert.deepEqual(validateLocale(committed, schema), []);
     const bad = { nope: 1, item: { Potion: "" }, quest: { x1: { title: "t", monsters: "m" } } };
     assert.deepEqual(validateLocale(bad as LocaleFile, schema), [
@@ -332,7 +334,7 @@ describe("site names for game IDs", () => {
   });
 
   test("decorations come from their item IDs", () => {
-    const items = readData<{ items: { id: number; name: string }[] }>(DATA, "items.json");
+    const items = readData<{ items: { id: number; name: string }[] }>(DATA, "mhfu", "items.json");
     const jewel = items.items.find((i) => i.name === "Attack Jewel")!;
     const kinds = keys
       .get("ItemID")!
@@ -384,7 +386,7 @@ describe("locales command on a synthetic EU disc", () => {
       await writeFile(path.join(unpacked, "eboot.bin"), monsterNameEboot());
 
       // A data/ with the real site files the mapping needs, and an existing es.json.
-      await mkdir(path.join(data, "locales"), { recursive: true });
+      await mkdir(path.join(data, "mhfu", "locales"), { recursive: true });
       await mkdir(path.join(data, "schemas"), { recursive: true });
       for (const f of [
         "items.json",
@@ -394,14 +396,14 @@ describe("locales command on a synthetic EU disc", () => {
         "weapons",
         "strings",
       ]) {
-        await cp(path.join(DATA, f), path.join(data, f), { recursive: true });
+        await cp(path.join(DATA, "mhfu", f), path.join(data, "mhfu", f), { recursive: true });
       }
       await writeFile(
         path.join(data, "schemas", "locale.schema.json"),
         dataFile("schemas/locale.schema.json"),
       );
       await writeFile(
-        path.join(data, "locales", "es.json"),
+        path.join(data, "mhfu", "locales", "es.json"),
         serializeLocale({
           $comment: "existing",
           source: null,
@@ -428,7 +430,7 @@ describe("locales command on a synthetic EU disc", () => {
       const result = await runLocales({ unpacked, data });
       assert.deepEqual(Object.keys(result.written).sort(), ["de", "es", "fr", "it"]);
 
-      const es = JSON.parse(await readFile(path.join(data, "locales", "es.json"), "utf-8"));
+      const es = JSON.parse(await readFile(path.join(data, "mhfu", "locales", "es.json"), "utf-8"));
       assert.equal(es.$comment, "existing");
       assert.match(es.source, /^EU disc ULES01213, extracted \d{4}-\d\d-\d\d$/);
       assert.deepEqual(es.item, { Potion: "Poción" });
@@ -439,7 +441,7 @@ describe("locales command on a synthetic EU disc", () => {
       assert.deepEqual(es.award["47"], { name: "Premio 47" });
       assert.deepEqual(validateLocale(es, await loadLocaleSchema(data)), []);
 
-      const de = JSON.parse(await readFile(path.join(data, "locales", "de.json"), "utf-8"));
+      const de = JSON.parse(await readFile(path.join(data, "mhfu", "locales", "de.json"), "utf-8"));
       assert.equal(de.monster.Rathalos, `Rathalos${MONSTER_SUFFIX.de}`);
       assert.equal(de.quest["1001"].goal, TEXT.de.goal);
       assert.match(de.$comment, /^German game text/);

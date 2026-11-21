@@ -4,42 +4,42 @@ import path from "node:path";
 import { describe, it } from "node:test";
 import { compareTiers, STAGES } from "../src/lib/min-rank";
 import { loadMinRanks, type Recipes } from "../scripts/lib/min-rank-data";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { readData } from "game-data";
 
 const dataDir = DATA_DIR;
 const ranks = loadMinRanks(dataDir);
 
 const readList = (dir: string, file: string, field: string) =>
-  (readData(dataDir, dir, file) as Record<string, unknown[]>)[field] as ({
+  (readData(dataDir, GAME, dir, file) as Record<string, unknown[]>)[field] as ({
     name: string;
   } & Recipes)[];
 
 describe("min rank over the real data", () => {
   it("finds a route for every weapon and armor piece", () => {
-    for (const file of fs.readdirSync(path.join(dataDir, "weapons")))
+    for (const file of fs.readdirSync(path.join(GAME_DATA_DIR, "weapons")))
       for (const w of readList("weapons", file, "weapons"))
         assert.ok(ranks.weapon(file.replace(/\.json$/, ""), w.name), `${file}: ${w.name}`);
-    for (const file of fs.readdirSync(path.join(dataDir, "armor")))
+    for (const file of fs.readdirSync(path.join(GAME_DATA_DIR, "armor")))
       for (const p of readList("armor", file, "armor"))
         assert.ok(ranks.armor(p), `${file}: ${p.name}`);
   });
 
   it("never needs more than the last stage the selector offers", () => {
     const last = STAGES.at(-1)!;
-    for (const file of fs.readdirSync(path.join(dataDir, "weapons")))
+    for (const file of fs.readdirSync(path.join(GAME_DATA_DIR, "weapons")))
       for (const w of readList("weapons", file, "weapons")) {
         const needs = ranks.weapon(file.replace(/\.json$/, ""), w.name)!;
         assert.ok(compareTiers(needs, last) <= 0, `${file}: ${w.name}`);
       }
-    for (const file of fs.readdirSync(path.join(dataDir, "armor")))
+    for (const file of fs.readdirSync(path.join(GAME_DATA_DIR, "armor")))
       for (const p of readList("armor", file, "armor"))
         assert.ok(compareTiers(ranks.armor(p)!, last) <= 0, `${file}: ${p.name}`);
   });
 
   it("finds a route for every decoration, within the last stage", () => {
     const last = STAGES.at(-1)!;
-    const { decorations } = readData(dataDir, "decorations.json") as {
+    const { decorations } = readData(dataDir, GAME, "decorations.json") as {
       decorations: ({ name: string } & Recipes)[];
     };
     for (const d of decorations) {
@@ -52,7 +52,7 @@ describe("min rank over the real data", () => {
   it("treats materials only decorations use as gathered (Power Seed)", () => {
     const deco = (name: string) =>
       (
-        readData(dataDir, "decorations.json") as {
+        readData(dataDir, GAME, "decorations.json") as {
           decorations: ({ name: string } & Recipes)[];
         }
       ).decorations.find((d) => d.name === name)!;

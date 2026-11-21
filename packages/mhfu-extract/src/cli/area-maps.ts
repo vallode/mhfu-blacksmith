@@ -1,5 +1,5 @@
 /**
- * `area-maps` subcommand: writes the map textures `data/gathering.json` uses
+ * `area-maps` subcommand: writes the map textures `data/mhfu/gathering.json` uses
  * as PNGs, `area-maps/map<N>.png`, for the site's `public/images/`.
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -8,6 +8,7 @@ import { encodePng } from "../models/png.js";
 import { readTmh } from "../models/tmh.js";
 import { mapTextureFile } from "../tables/map-layout.js";
 import { readData } from "game-data";
+import { GAME } from "../game.js";
 
 export interface AreaMapsOptions {
   /** An `unpack` output directory. */
@@ -19,7 +20,11 @@ export interface AreaMapsOptions {
 }
 
 export async function runAreaMaps(options: AreaMapsOptions): Promise<number> {
-  const { layouts } = readData<{ layouts: { texture?: string }[] }>(options.data, "gathering.json");
+  const { layouts } = readData<{ layouts: { texture?: string }[] }>(
+    options.data,
+    GAME,
+    "gathering.json",
+  );
   const textures = new Set(layouts.flatMap((layout) => layout.texture ?? []));
   const out = path.join(options.out, "area-maps");
   await mkdir(out, { recursive: true });

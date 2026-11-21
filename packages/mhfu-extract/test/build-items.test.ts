@@ -93,7 +93,7 @@ test("mergeItemStats puts the disc's palette before the items, and keeps it when
   assert.deepEqual(mergeItemStats(content, disc).content.colors, colors);
 });
 
-test("runBuildData writes item stats into data/items.json, and a second run is a no-op", async () => {
+test("runBuildData writes item stats into data/mhfu/items.json, and a second run is a no-op", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "mhfu-extract-items-"));
   try {
     const data = path.join(root, "data");
@@ -105,12 +105,12 @@ test("runBuildData writes item stats into data/items.json, and a second run is a
 
     const report = await runBuildData({ extracted, data, only: ["items"] });
     assert.deepEqual(report.items!.filesWritten, ["items.json"]);
-    const written = await readFile(path.join(data, "items.json"), "utf-8");
+    const written = await readFile(path.join(data, "mhfu", "items.json"), "utf-8");
     assert.ok(written.endsWith("}\n"));
     // Stats on the record, its names in the string tables.
     assert.equal(JSON.parse(written).items[1].price, 66);
     assert.ok(!("name" in JSON.parse(written).items[1]));
-    assert.equal(readData(data, "items.json").items[1].name, "Potion");
+    assert.equal(readData(data, "mhfu", "items.json").items[1].name, "Potion");
 
     const again = await runBuildData({ extracted, data, only: ["items"] });
     assert.deepEqual(again.items!.filesWritten, []);

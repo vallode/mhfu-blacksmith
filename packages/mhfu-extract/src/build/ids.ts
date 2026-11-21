@@ -15,12 +15,13 @@
  * - **Site side.** Each weapon and armor record carries its game ID;
  *   game-data's `"equipment-ids.json"` view (`readData`) lists them per
  *   slot, ID -> site item. Decorations and materials resolve through
- *   `data/items.json`'s `name`/`aliases`, with the same normalization as
+ *   `data/mhfu/items.json`'s `name`/`aliases`, with the same normalization as
  *   the site's own `src/lib/items.ts`.
  */
 import { isPlaceholderName, loadEnums } from "../strings/enums.js";
 import type { NameTable } from "../strings/names.js";
 import { readData, readStringsDoc } from "game-data";
+import { GAME } from "../game.js";
 
 /** Keys of game-data's `equipment-ids.json` view. */
 export type EquipmentSlot =
@@ -106,7 +107,7 @@ export interface ItemRecord {
 export interface SiteIndex {
   /** game-data's `equipment-ids.json` view: slot -> ID -> site item (null for IDs the site doesn't list). */
   equipment: Record<EquipmentSlot, (EquipmentIdEntry | null)[]>;
-  /** `data/items.json` by ID. */
+  /** `data/mhfu/items.json` by ID. */
   items: Map<number, ItemRecord>;
   /** Item ID of a site material/decoration name (`name` or alias), or null if unknown/ambiguous. */
   itemIdOf(name: string): number | null;
@@ -117,7 +118,7 @@ export interface SiteIndex {
   ): number | null;
   /** Every game ID in `slot` whose site name is `name` (any weapon type / sex). */
   equipmentIdsByName(slot: EquipmentSlot, name: string): number[];
-  /** emID of a site monster name (`data/strings`), or null if no monster has it. */
+  /** emID of a site monster name (`data/mhfu/strings`), or null if no monster has it. */
   monsterIdOf(name: string): number | null;
 }
 
@@ -127,12 +128,12 @@ function equipmentKey(slot: EquipmentSlot, name: string, typeOrSex: string | und
 }
 
 export function loadSiteIndex(dataDir: string): SiteIndex {
-  const equipment = readData<SiteIndex["equipment"]>(dataDir, "equipment-ids.json");
-  const itemsFile = readData<{ items: ItemRecord[] }>(dataDir, "items.json");
+  const equipment = readData<SiteIndex["equipment"]>(dataDir, GAME, "equipment-ids.json");
+  const itemsFile = readData<{ items: ItemRecord[] }>(dataDir, GAME, "items.json");
 
   const items = new Map(itemsFile.items.map((i) => [i.id, i]));
   const monsterIds = new Map(
-    Object.entries((readStringsDoc(dataDir).monster ?? {}) as Record<string, string>).map(
+    Object.entries((readStringsDoc(dataDir, GAME).monster ?? {}) as Record<string, string>).map(
       ([id, name]) => [name, Number(id)],
     ),
   );

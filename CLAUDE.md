@@ -15,9 +15,12 @@ workspace:
 - `packages/game-data`: the one way into `data/`. Everything that reads the
   game data does so with its `readData`, and `build-data` writes with its
   `writeData`.
-- `data/`: the game data, shared by the site and the extractor. Records
+- `data/`: the game data, shared by the site and the extractor, one
+  directory per game (`data/mhfu/`; `data/schemas/` is shared). Records
   carry game IDs and refer to each other by ID; names are in
-  `data/strings/<lang>.json`. See `packages/game-data/README.md`.
+  `data/<game>/strings/<lang>.json`. Each game's config (weapon types,
+  ranks, which sections it has, …) is `game-data`'s `games.ts`. See
+  `packages/game-data/README.md`.
 
 Packages import each other by package name, never by a relative path out of
 their own directory (`mhfu-extract/src/container/image.js`, not

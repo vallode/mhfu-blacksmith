@@ -16,6 +16,7 @@ import type { BinaryReader } from "../binary/reader.js";
 import { readBlademasterWeapons, readModelToWeaponType } from "../tables/weapons.js";
 import type { TableAddressResolver } from "../tables/resolver.js";
 import { readData } from "game-data";
+import { GAME } from "../game.js";
 
 /** One horn's raw `NoteGLType` and its committed notes, e.g. `["w","a","b"]`. */
 export interface HornNotes {
@@ -329,10 +330,12 @@ export function hornNotesFromCommitted(
 ): HornNotes[] {
   const ids = readData<{ melee: ({ name: string; type?: string } | null)[] }>(
     dataDir,
+    GAME,
     "equipment-ids.json",
   );
   const committed = readData<{ weapons: { name: string; notes?: string[] | null }[] }>(
     dataDir,
+    GAME,
     "weapons/hunting-horn.json",
   );
   const notesByName = new Map(committed.weapons.map((w) => [w.name, w.notes ?? null]));
@@ -352,6 +355,7 @@ export function hornNotesFromCommitted(
 export function committedMelodyCombos(dataDir = REPO_DATA_DIR): string[][] {
   const committed = readData<{ weapons: { melodies?: { combo: string[] }[] }[] }>(
     dataDir,
+    GAME,
     "weapons/hunting-horn.json",
   );
   const seen = new Map<string, string[]>();

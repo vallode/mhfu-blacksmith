@@ -1,8 +1,8 @@
 /**
- * Maps raw decoration tables onto `data/decorations.json`'s schema shape.
+ * Maps raw decoration tables onto `data/mhfu/decorations.json`'s schema shape.
  *
  * Confirmed end-to-end against a real JP EBOOT + the committed
- * `data/decorations.json` (166/169 decorations name-resolved; of those,
+ * `data/mhfu/decorations.json` (166/169 decorations name-resolved; of those,
  * rarity matched 166/166, skills 139/166 exactly with the rest differing
  * only in enum-vs-legacy-site abbreviation spelling — e.g. our "Reload"
  * vs. the site's "Load" for the same SkillID — not value, cost 164/166).

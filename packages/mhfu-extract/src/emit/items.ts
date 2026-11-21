@@ -1,8 +1,8 @@
 /**
  * Maps the item table (`tables/items.ts`) onto the stats in
- * `data/items.json` (schema: `data/schemas/item.schema.json`): each item's
+ * `data/mhfu/items.json` (schema: `data/schemas/item.schema.json`): each item's
  * rarity, carry limit, price, icon shape and tint, by ItemID. Names come from the `ItemID`
- * enum, so `diff` can pair the entries with `data/items.json` by name;
+ * enum, so `diff` can pair the entries with `data/mhfu/items.json` by name;
  * `build-data` pairs them by ID and writes only the stats.
  */
 import type { BinaryReader } from "../binary/reader.js";

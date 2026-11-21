@@ -1,5 +1,5 @@
 /**
- * `data/locales/<code>.json` files: the site's game text in one language
+ * `data/mhfu/locales/<code>.json` files: the site's game text in one language
  * (schema `data/schemas/locale.schema.json`, read by the site's
  * `src/lib/i18n/game-text.ts`). Names are keyed by the site's English name
  * per kind, quest board text by quest ID, and award text by award index.

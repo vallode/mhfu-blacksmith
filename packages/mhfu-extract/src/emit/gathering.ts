@@ -1,6 +1,6 @@
 /**
  * Maps each quest's gathering points (`quests/gathering.ts`) onto
- * `data/gathering.json` (schema: `data/schemas/gathering.schema.json`).
+ * `data/mhfu/gathering.json` (schema: `data/schemas/gathering.schema.json`).
  *
  * Quests on one map and rank almost always share their points: the 551 EU
  * quests have about a hundred different sets. So the file holds each

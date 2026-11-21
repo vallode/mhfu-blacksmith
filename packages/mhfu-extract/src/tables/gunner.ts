@@ -4,7 +4,7 @@
  * `BGModTable`/`BGModLevel`) — MIT, see ../../NOTICE.md.
  *
  * Like tables/weapons.ts, these return raw values; the mapping onto the
- * `data/weapons/*.json` shape is in emit/weapons.ts.
+ * `data/mhfu/weapons/*.json` shape is in emit/weapons.ts.
  */
 import type { BinaryReader } from "../binary/reader.js";
 import { JP_TABLE_ADDRESSES, resolveTableOffset } from "./offsets.js";

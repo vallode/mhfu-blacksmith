@@ -20,14 +20,15 @@ import {
   type RecipeLike,
   type WeaponLike,
 } from "../../src/lib/min-rank";
-import { readData } from "game-data";
+import { gameDataDir, readData } from "game-data";
+import { GAME } from "../../src/lib/paths";
 
 export type Recipes = Partial<
   Record<"create_mats" | "improve_mats" | "alternative_create_mats", RecipeLike[] | null>
 >;
 
 export interface MinRanks {
-  /** Progress for a weapon by type (file name in data/weapons) and name. */
+  /** Progress for a weapon by type (file name in data/mhfu/weapons) and name. */
   weapon(type: string, name: string): Progress;
   /** Progress for an armor piece, from its create recipes. */
   armor(piece: Recipes): Progress;
@@ -40,8 +41,8 @@ export interface MinRanks {
 }
 
 export function loadMinRanks(dataDir: string): MinRanks {
-  const readJson = <T>(...p: string[]): T => readData(dataDir, ...p);
-  const list = (dir: string) => fs.readdirSync(path.join(dataDir, dir));
+  const readJson = <T>(...p: string[]): T => readData(dataDir, GAME, ...p);
+  const list = (dir: string) => fs.readdirSync(path.join(gameDataDir(dataDir, GAME), dir));
 
   const { index } = buildItemNameIndex(readJson<{ items: ItemRecord[] }>("items.json").items);
   const key = (name: string): string | undefined => {
@@ -79,7 +80,7 @@ export function loadMinRanks(dataDir: string): MinRanks {
     }
   for (const name of Object.keys(GATHER_TIERS)) {
     const k = key(name);
-    if (k === undefined) throw new Error(`GATHER_TIERS: "${name}" is not in data/items.json`);
+    if (k === undefined) throw new Error(`GATHER_TIERS: "${name}" is not in data/mhfu/items.json`);
     gathered.add(k);
   }
 

@@ -5,7 +5,7 @@ import path from "node:path";
 import { describe, test } from "node:test";
 import type { ItemPlaces } from "../src/lib/item-places";
 import type { ItemSources } from "../src/lib/item-sources";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { readData } from "game-data";
 
 import { slugify } from "../src/lib/slug";
@@ -621,9 +621,9 @@ describe("ways and destinations", () => {
 describe("game data", () => {
   test("every weapon's path from scratch starts with a create and ends with it", () => {
     // One lookup over every type: Dual Blades upgrade from Sword and Shield.
-    const dir = path.join(DATA_DIR, "weapons");
+    const dir = path.join(GAME_DATA_DIR, "weapons");
     const list = fs.readdirSync(dir).flatMap((file) => {
-      const { weapons } = readData(DATA_DIR, "weapons", file) as {
+      const { weapons } = readData(DATA_DIR, GAME, "weapons", file) as {
         weapons: Weapon[];
       };
       return weapons.map((w) => ({ ...w, slug: slugify(w.name) }));
@@ -664,7 +664,7 @@ describe("game data", () => {
   });
 
   test("every decoration has a recipe to make it by", () => {
-    const { decorations } = readData(DATA_DIR, "decorations.json") as {
+    const { decorations } = readData(DATA_DIR, GAME, "decorations.json") as {
       decorations: Decoration[];
     };
     assert.ok(decorations.length > 100);

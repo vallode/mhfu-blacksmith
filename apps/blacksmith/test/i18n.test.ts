@@ -8,7 +8,7 @@ import { detectLocale } from "../src/lib/i18n/locales";
 import { gameText, ENGLISH } from "../src/lib/i18n/game-text";
 import { MESSAGES } from "../src/lib/i18n/messages";
 import { englishNames } from "../scripts/lib/locales";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 
 describe("detectLocale", () => {
   test("matches the primary subtag", () => {
@@ -80,7 +80,7 @@ describe("messages", () => {
 });
 
 describe("englishNames", () => {
-  const names = englishNames(DATA_DIR);
+  const names = englishNames(DATA_DIR, GAME);
   test("collects each kind's English names from data/", () => {
     assert.ok(names.weapon.has("Hunter's Bow I"));
     assert.ok(names.armor.has("Mafumofu Hood"));

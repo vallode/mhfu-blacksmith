@@ -7,25 +7,25 @@ import fs from "fs";
 import path from "path";
 import { loadMinRanks, type Recipes } from "./lib/min-rank-data";
 import type { Progress } from "../src/lib/min-rank";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { readData } from "game-data";
 
 const dataDir = DATA_DIR;
 const ranks = loadMinRanks(dataDir);
 
 const weapons: Record<string, Record<string, Progress>> = {};
-for (const file of fs.readdirSync(path.join(dataDir, "weapons"))) {
+for (const file of fs.readdirSync(path.join(GAME_DATA_DIR, "weapons"))) {
   const type = file.replace(/\.json$/, "");
-  const list = readData(dataDir, "weapons", file) as {
+  const list = readData(dataDir, GAME, "weapons", file) as {
     weapons: { name: string }[];
   };
   weapons[type] = Object.fromEntries(list.weapons.map((w) => [w.name, ranks.weapon(type, w.name)]));
 }
 
 const armor: Record<string, Record<string, Progress>> = {};
-for (const file of fs.readdirSync(path.join(dataDir, "armor"))) {
+for (const file of fs.readdirSync(path.join(GAME_DATA_DIR, "armor"))) {
   const slot = file.replace(/\.json$/, "");
-  const list = readData(dataDir, "armor", file) as {
+  const list = readData(dataDir, GAME, "armor", file) as {
     armor: ({ name: string } & Recipes)[];
   };
   armor[slot] = Object.fromEntries(list.armor.map((p) => [p.name, ranks.armor(p)]));
@@ -33,7 +33,7 @@ for (const file of fs.readdirSync(path.join(dataDir, "armor"))) {
 
 const decorations: Record<string, Progress> = Object.fromEntries(
   (
-    readData(dataDir, "decorations.json") as {
+    readData(dataDir, GAME, "decorations.json") as {
       decorations: ({ name: string } & Recipes)[];
     }
   ).decorations.map((d) => [d.name, ranks.decoration(d)]),

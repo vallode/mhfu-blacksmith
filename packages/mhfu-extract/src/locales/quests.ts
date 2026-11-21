@@ -1,10 +1,10 @@
 /**
- * Quest board text in every language on the disc, for `data/locales/` (see
+ * Quest board text in every language on the disc, for `data/mhfu/locales/` (see
  * README, "Localized text").
  *
  * Every quest's `LangPTRs` has 7 slots (quests/parser.ts). On the EU disc
  * the first slot is English: it is the text in the committed
- * `data/quests/`. The other four language slots are German, French,
+ * `data/mhfu/quests/`. The other four language slots are German, French,
  * Spanish and Italian **by quest.hexpat's field names only** (`GerPTR`,
  * `FrePTR`, `SpaPTR`, `ItaPTR`); no disc data labels them. So each slot is
  * checked with a language guess over all its quests' text

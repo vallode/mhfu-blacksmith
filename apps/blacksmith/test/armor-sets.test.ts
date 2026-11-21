@@ -8,19 +8,21 @@ import {
   type SetPiece,
 } from "../src/lib/armor-sets";
 import { ARMOR_SLOTS, type ArmorSlot } from "../src/lib/constants";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 import type { EquipRef } from "../src/lib/schema";
 
 /** Every slot's pieces with their game IDs, as the site matches them. */
 function load(): Record<ArmorSlot, SetPiece[]> {
   const ids = readData<Record<string, ({ name: string; sex?: string } | null)[]>>(
     DATA_DIR,
+    GAME,
     "equipment-ids.json",
   );
   return Object.fromEntries(
     ARMOR_SLOTS.map((slot) => {
       const { armor } = readData<{ armor: Omit<SetPiece, "id">[] }>(
         DATA_DIR,
+        GAME,
         "armor",
         `${slot}.json`,
       );

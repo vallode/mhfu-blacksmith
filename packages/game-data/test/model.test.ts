@@ -21,13 +21,15 @@ import {
 } from "../src/index.js";
 
 const DATA = fileURLToPath(new URL("../../../data", import.meta.url));
+const GAME = "mhfu";
+const GAME_DIR = path.join(DATA, GAME);
 
 /** Every data file in the repository's data/, as paths inside it. */
 function dataFiles(): string[] {
   const top = ["items.json", "decorations.json", "skills.json", "gathering.json", "shops.json"];
   top.push("veggie-trades.json", "combinations.json", "farm.json", "awards.json");
   const dirs = ["weapons", "armor", "monsters", "quests"].flatMap((dir) =>
-    readdirSync(path.join(DATA, dir))
+    readdirSync(path.join(GAME_DIR, dir))
       .filter((f) => f.endsWith(".json"))
       .map((f) => `${dir}/${f}`),
   );
@@ -35,13 +37,13 @@ function dataFiles(): string[] {
 }
 
 describe("the committed data", () => {
-  const en = new StringTable(readStringsDoc(DATA));
-  const strings = { en, ja: new StringTable(readStringsDoc(DATA, "ja")) };
+  const en = new StringTable(readStringsDoc(DATA, GAME));
+  const strings = { en, ja: new StringTable(readStringsDoc(DATA, GAME, "ja")) };
 
   test("every file's named view converts back to the file and the strings it came from", () => {
     for (const rel of dataFiles()) {
       const kind = fileKind(rel)!;
-      const raw = readRawData(DATA, rel);
+      const raw = readRawData(DATA, GAME, rel);
       const named = hydrate(kind, raw, strings);
       const back = dehydrate(kind, named, stringResolver(en, raw));
       assert.equal(serializeData(back.raw), serializeData(raw), rel);
@@ -50,7 +52,7 @@ describe("the committed data", () => {
         ["en", back.strings.en],
         ["ja", back.strings.ja],
       ] as const) {
-        const have = readStringsDoc(DATA, lang) as Record<string, Record<string, unknown>>;
+        const have = readStringsDoc(DATA, GAME, lang) as Record<string, Record<string, unknown>>;
         for (const [kind, table] of Object.entries(doc)) {
           if (kind === "aliases") continue;
           for (const [key, value] of Object.entries(table as Record<string, string>))
@@ -62,35 +64,39 @@ describe("the committed data", () => {
 
   test("writing every file's named view back changes nothing", () => {
     for (const rel of dataFiles())
-      assert.deepEqual(writeData(DATA, rel, readData(DATA, rel), { dryRun: true }), [], rel);
+      assert.deepEqual(
+        writeData(DATA, GAME, rel, readData(DATA, GAME, rel), { dryRun: true }),
+        [],
+        rel,
+      );
   });
 
   test("the strings files are in their canonical layout", () => {
     for (const lang of ["en", "ja"])
       assert.equal(
-        readFileSync(path.join(DATA, "strings", `${lang}.json`), "utf-8"),
-        serializeStrings(readStringsDoc(DATA, lang)),
+        readFileSync(path.join(GAME_DIR, "strings", `${lang}.json`), "utf-8"),
+        serializeStrings(readStringsDoc(DATA, GAME, lang)),
       );
   });
 
   test("armor and decorations name every skill tree by its name, not an alias", () => {
-    const en = readStringsDoc(DATA);
+    const en = readStringsDoc(DATA, GAME);
     const trees = new Set(Object.values(en.skill ?? {}));
     for (const slot of ["helmet", "plate", "gauntlets", "waist", "leggings"]) {
-      for (const a of readRawData(DATA, "armor", `${slot}.json`).armor as {
+      for (const a of readRawData(DATA, GAME, "armor", `${slot}.json`).armor as {
         skills: Record<string, unknown>[] | null;
       }[])
         for (const s of a.skills ?? []) assert.ok(!("alias" in s), `${slot}: ${JSON.stringify(s)}`);
-      for (const a of readData(DATA, "armor", `${slot}.json`).armor as {
+      for (const a of readData(DATA, GAME, "armor", `${slot}.json`).armor as {
         skills: { name: string }[] | null;
       }[])
         for (const s of a.skills ?? []) assert.ok(trees.has(s.name), s.name);
     }
-    const hunter = readData(DATA, "armor/helmet.json").armor.find(
+    const hunter = readData(DATA, GAME, "armor/helmet.json").armor.find(
       (a: { name: string }) => a.name === "Hunter's Helm",
     );
     assert.deepEqual(hunter.skills[0], { name: "PsychicVis", amount: 3 });
-    const decorations = readData(DATA, "decorations.json").decorations as {
+    const decorations = readData(DATA, GAME, "decorations.json").decorations as {
       name: string;
       skills: string[];
     }[];
@@ -101,7 +107,7 @@ describe("the committed data", () => {
   });
 
   test("the equipment ID view lists every weapon and armor piece at its ID", () => {
-    const ids = readData(DATA, "equipment-ids.json");
+    const ids = readData(DATA, GAME, "equipment-ids.json");
     assert.deepEqual(Object.keys(ids), [
       "leggings",
       "helmet",
@@ -277,8 +283,9 @@ describe("importLegacy", () => {
 
 describe("writeData", () => {
   function fixture(t: TestContext): string {
-    const dir = mkdtempSync(path.join(tmpdir(), "game-data-write-"));
-    t.after(() => rmSync(dir, { recursive: true, force: true }));
+    const root = mkdtempSync(path.join(tmpdir(), "game-data-write-"));
+    t.after(() => rmSync(root, { recursive: true, force: true }));
+    const dir = path.join(root, GAME);
     const { files, en, ja } = importLegacy(legacy(), sources);
     for (const [rel, raw] of files) {
       mkdirSync(path.dirname(path.join(dir, rel)), { recursive: true });
@@ -287,52 +294,52 @@ describe("writeData", () => {
     mkdirSync(path.join(dir, "strings"));
     writeFileSync(path.join(dir, "strings", "en.json"), serializeStrings(en));
     writeFileSync(path.join(dir, "strings", "ja.json"), serializeStrings(ja));
-    return dir;
+    return root;
   }
 
   test("writes nothing for an unchanged view", (t) => {
     const dir = fixture(t);
     for (const rel of legacy().keys()) {
       if (rel === "equipment-ids.json") continue;
-      assert.deepEqual(writeData(dir, rel, readData(dir, rel)), [], rel);
+      assert.deepEqual(writeData(dir, GAME, rel, readData(dir, GAME, rel)), [], rel);
     }
   });
 
   test("writes new values to the record and new text to the strings", (t) => {
     const dir = fixture(t);
-    const quests = readData(dir, "quests/village.json");
+    const quests = readData(dir, GAME, "quests/village.json");
     quests.quests[0].title = "The Queen";
     quests.quests[0].supplies.push({ item: "ConstitutnJewel", amount: 1 });
-    assert.deepEqual(writeData(dir, "quests/village.json", quests), [
+    assert.deepEqual(writeData(dir, GAME, "quests/village.json", quests), [
       "quests/village.json",
       "strings/en.json",
     ]);
-    assert.equal(readStringsDoc(dir).quest?.["101"], "The Queen");
-    assert.deepEqual(readRawData(dir, "quests/village.json").quests[0].supplies, [
+    assert.equal(readStringsDoc(dir, GAME).quest?.["101"], "The Queen");
+    assert.deepEqual(readRawData(dir, GAME, "quests/village.json").quests[0].supplies, [
       { item: 1, amount: 1 },
       { item: 2, amount: 1 },
     ]);
-    assert.deepEqual(readData(dir, "quests/village.json"), quests);
+    assert.deepEqual(readData(dir, GAME, "quests/village.json"), quests);
   });
 
   test("dry runs write nothing, and unknown names are errors", (t) => {
     const dir = fixture(t);
-    const before = readFileSync(path.join(dir, "armor", "helmet.json"), "utf-8");
-    const armor = readData(dir, "armor/helmet.json");
+    const before = readFileSync(path.join(dir, GAME, "armor", "helmet.json"), "utf-8");
+    const armor = readData(dir, GAME, "armor/helmet.json");
     armor.armor[0].defence = 9;
-    assert.deepEqual(writeData(dir, "armor/helmet.json", armor, { dryRun: true }), [
+    assert.deepEqual(writeData(dir, GAME, "armor/helmet.json", armor, { dryRun: true }), [
       "armor/helmet.json",
     ]);
-    assert.equal(readFileSync(path.join(dir, "armor", "helmet.json"), "utf-8"), before);
+    assert.equal(readFileSync(path.join(dir, GAME, "armor", "helmet.json"), "utf-8"), before);
 
     armor.armor[0].create_mats[0].name = "Unobtainium";
     assert.throws(
-      () => writeData(dir, "armor/helmet.json", armor),
+      () => writeData(dir, GAME, "armor/helmet.json", armor),
       /no item is named "Unobtainium"/,
     );
     armor.armor[0].create_mats[0].name = "Iron Ore";
     armor.armor[0].name = "Not In The Tables";
-    assert.throws(() => writeData(dir, "armor/helmet.json", armor), /no helmet is named/);
+    assert.throws(() => writeData(dir, GAME, "armor/helmet.json", armor), /no helmet is named/);
   });
 });
 

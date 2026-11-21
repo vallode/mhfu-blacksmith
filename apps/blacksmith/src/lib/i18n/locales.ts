@@ -3,7 +3,7 @@
  * Europe, in English, French, German, Spanish and Italian (MHFU). A language
  * is listed here once it has a full interface dictionary in
  * `messages/<code>/`; game names and quest text come from
- * `data/locales/<code>.json` and fall back to English where that has gaps.
+ * `data/mhfu/locales/<code>.json` and fall back to English where that has gaps.
  */
 export const LOCALES = ["en", "es"] as const;
 

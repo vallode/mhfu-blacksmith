@@ -1,5 +1,5 @@
 /**
- * Maps the shops' stock (`shops/shops.ts`) onto `data/shops.json` (schema:
+ * Maps the shops' stock (`shops/shops.ts`) onto `data/mhfu/shops.json` (schema:
  * `data/schemas/shop.schema.json`).
  *
  * Each shop has one list per stage of the game; an item lists the stages

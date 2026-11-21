@@ -43,7 +43,7 @@ export interface SkillActivation {
   points: number;
 }
 
-/** A skill tree from data/skills.json. */
+/** A skill tree from data/mhfu/skills.json. */
 export interface SkillTreeData {
   /** The game's skill tree name (the disc's `SkillID` spelling). */
   tree: string;
@@ -83,7 +83,7 @@ export interface DecorationInput {
   skills?: string[];
   /** Earliest quest progress the decoration can be made at (see min-rank.ts). */
   minRank?: Tier;
-  /** The game's item ID (data/items.json), for share links. */
+  /** The game's item ID (data/mhfu/items.json), for share links. */
   itemId?: number;
 }
 
@@ -122,7 +122,7 @@ export interface Deco {
   points: Record<string, number>;
   /** Earliest quest progress the decoration can be made at. */
   minRank?: Tier;
-  /** The game's item ID (data/items.json), for share links. */
+  /** The game's item ID (data/mhfu/items.json), for share links. */
   itemId?: number;
 }
 

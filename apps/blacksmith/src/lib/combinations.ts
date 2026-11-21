@@ -1,11 +1,11 @@
 /**
- * Item combinations (data/combinations.json, the in-game Combination List):
+ * Item combinations (data/mhfu/combinations.json, the in-game Combination List):
  * the compact public/data/combinations.json bundle generate-data writes, and
  * an index of what each item is made from and used to make. Pure, so the item pages
  * build it on the client and the tests build it from data/.
  */
 
-/** One entry of data/combinations.json (see data/schemas/combination.schema.json). */
+/** One entry of data/mhfu/combinations.json (see data/schemas/combination.schema.json). */
 export interface CombinationRecord {
   number: number;
   result: { id: number; name: string };

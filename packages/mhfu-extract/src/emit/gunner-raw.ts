@@ -1,6 +1,6 @@
 /**
  * `extract --raw`: a numbers-only dump of what gunner extraction reads, for
- * correlating raw values against committed `data/weapons/{light-bowgun,
+ * correlating raw values against committed `data/mhfu/weapons/{light-bowgun,
  * heavy-bowgun,bow}.json` without shipping disc bytes
  * (vallode/mhfu-blacksmith#32).
  *
