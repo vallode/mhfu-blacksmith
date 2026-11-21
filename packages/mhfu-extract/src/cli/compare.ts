@@ -4,6 +4,7 @@
  * values order- and spelling-insensitively (see `build/compare.ts`). Use it
  * to decide which fields `build-data` can take from the disc.
  */
+import { assertMhfuExtraction } from "./extract-mhp2.js";
 import { writeFile } from "node:fs/promises";
 import { CATEGORIES, CATEGORY_NAMES, type CategoryName } from "../build/categories.js";
 import {
@@ -34,6 +35,7 @@ export function parseCategories(value: string | undefined): CategoryName[] {
 }
 
 export async function runCompare(options: CompareOptions): Promise<CategoryComparison[]> {
+  await assertMhfuExtraction(options.extracted);
   const names = options.only ?? CATEGORY_NAMES;
   const { site, committed, extracted, spellings } = await loadInputs(
     options.extracted,

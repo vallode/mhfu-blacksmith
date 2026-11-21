@@ -78,7 +78,8 @@ export class Iso9660Reader {
         if (!parsed) break; // padding to end of sector
         // Skip the "." and ".." self/parent entries (identifier length 1,
         // byte value 0x00 or 0x01).
-        if (parsed.entry.name.length > 0) entries.push(parsed.entry);
+        const name = parsed.entry.name;
+        if (name.length > 0 && name !== "\x00" && name !== "\x01") entries.push(parsed.entry);
         offset += parsed.recordLength;
       }
     }
@@ -87,6 +88,25 @@ export class Iso9660Reader {
 
   listRoot(): DirEntry[] {
     return this.readDirectory(this.rootEntry);
+  }
+
+  /** The entries of the directory at `path` ("/" or "" for the root). */
+  list(path: string): DirEntry[] {
+    if (path.split("/").filter(Boolean).length === 0) return this.listRoot();
+    const entry = this.stat(path);
+    if (!entry.isDirectory) throw new Error(`${path} is a file, not a directory`);
+    return this.readDirectory(entry);
+  }
+
+  /** True if `path` exists in the image (file or directory). */
+  exists(path: string): boolean {
+    try {
+      this.stat(path);
+      return true;
+    } catch (error) {
+      if (error instanceof Error && error.message.startsWith("Path not found")) return false;
+      throw error;
+    }
   }
 
   /** Resolves a "/"-separated path (case-insensitive) to its directory entry. */

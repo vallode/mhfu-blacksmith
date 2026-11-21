@@ -125,7 +125,7 @@ import {
   readGunnerWeapons,
   type WeaponTypeName,
 } from "../tables/weapons.js";
-import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
+import { assertMhfuUnpack, type UnpackManifest } from "./unpack.js";
 import { readData, readRawData, readStringsDoc } from "game-data";
 
 export interface ExportSiteOptions {
@@ -1118,7 +1118,7 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
   const unpackManifest = JSON.parse(
     await readFile(path.join(options.unpacked, "manifest.json"), "utf-8"),
   ) as UnpackManifest;
-  assertCurrentFileNames(unpackManifest, options.unpacked);
+  assertMhfuUnpack(unpackManifest, options.unpacked);
   const manifestDir = path.join(options.out, "manifest");
   const previous = await readManifest(manifestDir);
   await rm(path.join(options.out, "manifest.json"), { force: true }); // the old single-file manifest

@@ -25,7 +25,7 @@ import {
 import type { NameTable } from "../strings/names.js";
 import { JP_BASE_ADDRESS } from "../tables/offsets.js";
 import { sharpnessVaddrBase } from "../tables/sharpness.js";
-import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
+import { assertMhfuUnpack, type UnpackManifest } from "./unpack.js";
 
 export interface FindNamesOptions {
   unpacked: string;
@@ -87,7 +87,7 @@ export async function readManifest(unpacked: string): Promise<UnpackManifest> {
   const manifest: UnpackManifest = JSON.parse(
     await readFile(path.join(unpacked, "manifest.json"), "utf-8"),
   );
-  assertCurrentFileNames(manifest, unpacked);
+  assertMhfuUnpack(manifest, unpacked);
   return manifest;
 }
 

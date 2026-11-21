@@ -100,22 +100,30 @@ export function readDecorationSkills(
   const count = TABLE_COUNTS.decorations - 1; // 169 total incl. dummy -> 168 real
   const out: DecorationSkill[] = [];
   for (let i = 0; i < count; i++) {
-    const off = base + i * DECO_SKILL_ENTRY_SIZE;
-    const skills: DecorationSkillEntry[] = [];
-    for (let s = 0; s < 3; s++) {
-      skills.push({ skill: reader.u8(off + 8 + s * 2), amount: reader.s8(off + 9 + s * 2) });
-    }
-    out.push({
-      index: i,
-      reqSlots: reader.u8(off + 0),
-      unkn1: reader.u8(off + 1),
-      unkn2: reader.u16(off + 2),
-      unkn3: reader.u32(off + 4),
-      skills,
-      term: reader.u16(off + 14),
-    });
+    out.push(readDecorationSkillAt(reader, base + i * DECO_SKILL_ENTRY_SIZE, i));
   }
   return out;
+}
+
+/** One 16-byte `DecoSkills` entry at a file offset. MHF2 keeps the same layout (games/mhp2.ts). */
+export function readDecorationSkillAt(
+  reader: BinaryReader,
+  off: number,
+  index: number,
+): DecorationSkill {
+  const skills: DecorationSkillEntry[] = [];
+  for (let s = 0; s < 3; s++) {
+    skills.push({ skill: reader.u8(off + 8 + s * 2), amount: reader.s8(off + 9 + s * 2) });
+  }
+  return {
+    index,
+    reqSlots: reader.u8(off + 0),
+    unkn1: reader.u8(off + 1),
+    unkn2: reader.u16(off + 2),
+    unkn3: reader.u32(off + 4),
+    skills,
+    term: reader.u16(off + 14),
+  };
 }
 
 /**
