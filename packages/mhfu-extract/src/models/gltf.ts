@@ -73,6 +73,8 @@ export interface GlbOptions {
    * `extras.part` (three.js: the geometry's `userData.part`).
    */
   partOf?: GlbPartOf;
+  /** Values for the viewer, written into `asset.extras` (three.js: `gltf.asset.extras`). */
+  extras?: Record<string, unknown>;
   /**
    * Morph targets: the same model in other shapes, vertex for vertex and at
    * the same `scale` (weapon-pose.ts's sheathed pose). Each is written as
@@ -914,7 +916,14 @@ export async function buildGlb(
   const json = {
     asset: {
       version: "2.0",
-      ...(rig?.motionsFile ? { extras: { motions: rig.motionsFile } } : {}),
+      ...(rig?.motionsFile || options.extras
+        ? {
+            extras: {
+              ...options.extras,
+              ...(rig?.motionsFile ? { motions: rig.motionsFile } : {}),
+            },
+          }
+        : {}),
     },
     ...(extensions.length || optional.length
       ? { extensionsUsed: [...extensions, ...optional] }

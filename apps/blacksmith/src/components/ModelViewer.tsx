@@ -7,7 +7,8 @@ import { cn } from "@/lib/cn";
 import {
   fetchHunterClips,
   fetchHunterIdle,
-  HUNTER_FEMALE_MODEL,
+  HUNTER_BARE_FEMALE_MODEL,
+  HUNTER_BARE_MODEL,
   HUNTER_MODEL,
   SHEATHED_TARGET,
   WEAPON_MOUNTS,
@@ -18,11 +19,13 @@ import {
 import type { GamePose } from "@/lib/bone-scaling";
 import {
   dressHunter,
+  faceMask,
+  hideFace,
   type HunterOutfit,
   type HunterSlot,
   type WornPiece,
 } from "@/lib/hunter-armor";
-import { armorModelSlot } from "@/lib/models";
+import { armorModelFile, armorModelSlot } from "@/lib/models";
 import { fetchMotions, inPlace, MOTION_FPS, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
@@ -383,7 +386,13 @@ export default function ModelViewer({
         const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
         // Without the hunter (an export that couldn't make one), the weapon
         // or armor shows alone.
-        const bodyModel = wear?.sex === "female" ? HUNTER_FEMALE_MODEL : HUNTER_MODEL;
+        // Armor goes on the bare hunter of its sex; a weapon is held by the
+        // hunter in the default set.
+        const bodyModel = wear
+          ? wear.sex === "female"
+            ? HUNTER_BARE_FEMALE_MODEL
+            : HUNTER_BARE_MODEL
+          : HUNTER_MODEL;
         const [body, own, ...extra] = await Promise.all([
           hunter || wear ? loader.loadAsync(bodyModel).catch(() => null) : null,
           loader.loadAsync(src),
@@ -397,19 +406,25 @@ export default function ModelViewer({
           // Each piece goes in the slot its file is for (a set's first file
           // needn't be the page's piece), one a slot.
           const partUrls = partsKey ? partsKey.split("\n") : [];
-          const worn: WornPiece[] = [
+          const worn: (WornPiece & { url: string })[] = [
             {
               slot: (armorModelSlot(src) as HunterSlot | undefined) ?? wear.slot,
               model: own.scene,
+              url: src,
             },
           ];
           extra.forEach((part, i) => {
-            const slot = armorModelSlot(partUrls[i] ?? "") as HunterSlot | undefined;
+            const url = partUrls[i] ?? "";
+            const slot = armorModelSlot(url) as HunterSlot | undefined;
             if (part && slot && !worn.some((piece) => piece.slot === slot))
-              worn.push({ slot, model: part.scene });
+              worn.push({ slot, model: part.scene, url });
           });
           try {
             dressHunter(THREE, body.scene, worn);
+            // The face, less what the helmet worn hides.
+            const helmet = worn.find((piece) => piece.slot === "helmet");
+            const helmetId = helmet && armorModelFile(helmet.url)?.id;
+            if (helmetId) hideFace(body.scene, faceMask(body.asset.extras?.faceMasks, helmetId));
             return true;
           } catch {
             return false;

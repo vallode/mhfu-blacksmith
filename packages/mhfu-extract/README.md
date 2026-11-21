@@ -832,16 +832,17 @@ previous manifest, so a run without `eboot.bin` keeps weapons and armor.
 ### Hunter
 
 `export-site` writes a hunter for the weapon and armor pages' viewer to
-`public/models/hunter/` (1.4 MB in all, 245 two-piece weapon models grew by
+`public/models/hunter/` (1.5 MB in all, 245 two-piece weapon models grew by
 63 KB). Needs only `player/` and `motion/` from the
 unpacked directory; the log says `no hunter: ...` if it can't.
 
-| File                 | Size      | Holds                                                 |
-| -------------------- | --------- | ----------------------------------------------------- |
-| `hunter.glb`         | 50 KB     | Male Battle armor set, skinned to the player skeleton |
-| `hunter-female.glb`  |           | Female Battle armor set, on the female skeleton       |
-| `common.motions.bin` | 0.9 KB    | The sheathed standing motion, from `plcom_tbl.bin`    |
-| `wNN.motions.bin`    | 92-196 KB | Every motion of weapon class NN                       |
+| File                     | Size      | Holds                                                           |
+| ------------------------ | --------- | --------------------------------------------------------------- |
+| `hunter.glb`             | 57 KB     | Male Battle armor set and face, skinned to the player skeleton  |
+| `hunter-bare.glb`        | 48 KB     | Male hunter in the clothes under armor, with face and hairstyle |
+| `hunter-bare-female.glb` | 45 KB     | The same for the female hunter, on the female skeleton          |
+| `common.motions.bin`     | 0.9 KB    | The sheathed standing motion, from `plcom_tbl.bin`              |
+| `wNN.motions.bin`        | 92-196 KB | Every motion of weapon class NN                                 |
 
 - **Skeleton.** 21 bones (`src/models/hunter.ts` lists them), T-pose, origin
   at the hips, left +X, facing +Z. Bones 0-8 are part 0 and 9-20 part 1.
@@ -880,11 +881,30 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   it still can't texture. (`composeHunter` also used to let such an index
   fall onto the next piece's textures; each piece's textures are now mapped
   one by one.) The `models` subcommand doesn't add skin.
+- **Face and hair** (`src/models/face.ts`). Faces are
+  `player/<m|f>/face/`, a two-bone skeleton (root, head) drawn on the head
+  joint; hairstyles are `player/<m|f>/head/`, built like helmets (helmet
+  model 0 is hairstyle 0), and the game draws one when no helmet is worn.
+  Hair textures are grey, tinted by the player's hair colour; the hunters
+  use face 0, hairstyle 0 and a dark brown on the hair's material 0 (every
+  hairstyle on the disc has its hair there, and at most a small tie or
+  ornament on material 1; which materials the game tints isn't decoded).
+  Some helmets hide all of the face, or its material 0, where it would show
+  through: a table by helmet model in the EBOOT, copied from
+  `BODY_MODEL_MATERIAL_MASKS` in tclamb/mhp2g-decomp
+  (`player_manager.material_masks.cpp`) as `FACE_MASKS`. Each hunter's own
+  helmet's mask is applied at export, and the table is written into each
+  hunter as `asset.extras.faceMasks` for the helmets the site puts on.
+- **Bare hunter.** Each armor slot's model 0 (`m_body000.pac` and so on) is
+  what the hunter wears under armor; female-only pieces use it as their male
+  model. `hunter-bare*.glb` are those, with the face and the hairstyle in
+  the helmet's place.
 - **Wearing armor.** The armor pages' viewer puts a piece, or its full set,
-  on the hunter of its sex in place of the default pieces of their slots (the
-  site's `src/lib/hunter-armor.ts`). Each primitive of `hunter.glb` and
-  `hunter-female.glb` names its slot (`extras.part`, the index in
-  `HUNTER_ARMOR`); a piece with several textures has a primitive for each.
+  on the bare hunter of its sex in place of the pieces of their slots (the
+  site's `src/lib/hunter-armor.ts`), and hides the face as the helmet's mask
+  says. Each primitive of the hunters names its slot (`extras.part`, the
+  index in `HUNTER_ARMOR`), or for the face, `FACE_PART` (5) plus its
+  material; a piece with several textures has a primitive for each.
   Every armor piece has its own partial skeleton, and pieces of a slot don't
   all sit alike in theirs (the Giaprey Helm is modelled 12 units higher than
   the Battle Helm). So `export-site` places each armor model on its sex's

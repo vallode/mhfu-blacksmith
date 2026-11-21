@@ -51,10 +51,24 @@ const ARMOR_FOLDER: Record<string, string> = {
   leggings: "reg",
 };
 
+/** An armor model's slot, sex and model ID, read from its URL. */
+export interface ArmorModelFile {
+  slot: string;
+  sex: "m" | "f";
+  id: number;
+}
+
+/** The armor model at `url` (`.../m_hair065.glb`: helmet, male, 65), if it is one. */
+export function armorModelFile(url: string): ArmorModelFile | undefined {
+  const match = /\/([mf])_([a-z]+)(\d+)\.glb$/.exec(url);
+  if (!match) return undefined;
+  const slot = Object.keys(ARMOR_FOLDER).find((s) => ARMOR_FOLDER[s] === match[2]);
+  return slot ? { slot, sex: match[1] as "m" | "f", id: Number(match[3]) } : undefined;
+}
+
 /** The armor slot an armor model's URL is for (`.../m_hair065.glb`: "helmet"), if it is one. */
 export function armorModelSlot(url: string): string | undefined {
-  const folder = /\/[mf]_([a-z]+)\d+\.glb$/.exec(url)?.[1];
-  return Object.keys(ARMOR_FOLDER).find((slot) => ARMOR_FOLDER[slot] === folder);
+  return armorModelFile(url)?.slot;
 }
 
 /** Resolve a value from one manifest once it's loaded; null while loading, when absent, or offline without it. */

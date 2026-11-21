@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import ModelViewer from "@/components/ModelViewer";
 import { cn } from "@/lib/cn";
-import { HUNTER_FEMALE_MODEL, HUNTER_MODEL } from "@/lib/hunter";
+import { HUNTER_BARE_FEMALE_MODEL, HUNTER_BARE_MODEL } from "@/lib/hunter";
 import type { HunterSlot } from "@/lib/hunter-armor";
 import type { ArmorModelUrls, ArmorSetModelUrls } from "@/lib/models";
 import { modelPanel, modelPanelButton } from "@/styles/model";
@@ -28,11 +28,11 @@ const hunterChecks = new Map<string, Promise<boolean>>();
 const hunterFiles = new Map<string, boolean>();
 
 /**
- * Whether the hunter of `sex` was exported (older exports have no female
- * hunter); undefined until known.
+ * Whether the bare hunter of `sex`, which armor goes on, was exported
+ * (older exports have none); undefined until known.
  */
 function useHunterExists(sex: Sex): boolean | undefined {
-  const url = sex === "male" ? HUNTER_MODEL : HUNTER_FEMALE_MODEL;
+  const url = sex === "male" ? HUNTER_BARE_MODEL : HUNTER_BARE_FEMALE_MODEL;
   const [, setChecked] = useState(0);
   useEffect(() => {
     if (hunterFiles.has(url)) return;

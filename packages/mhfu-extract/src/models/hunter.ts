@@ -95,18 +95,29 @@ export const ARMOR_JOINT_MAPS = {
   leggings: Array.from({ length: PLAYER_BONE_COUNT }, (_, bone) => bone),
 } as const satisfies Record<string, readonly number[]>;
 
-export type HunterSlot = keyof typeof ARMOR_JOINT_MAPS;
+export type ArmorSlot = keyof typeof ARMOR_JOINT_MAPS;
 
 /**
- * The armor the site's hunters wear (`export-site`): each sex's model of
- * each slot's piece of this name, by data name. `composeHunter` puts the
- * pieces together in this order. In `hunter.glb` and `hunter-female.glb`
- * each primitive names its slot by index in this order (`extras.part`): the
- * site swaps a slot's piece for another by it (blacksmith's
- * `src/lib/hunter-armor.ts`). A piece with several textures has a primitive
- * for each.
+ * Each piece's joint map: the armor's, and the face's (face.ts), whose
+ * skeleton is a root and the head. A hairstyle goes on as a helmet.
  */
-export const HUNTER_ARMOR: Record<HunterSlot, string> = {
+export const PIECE_JOINT_MAPS = {
+  ...ARMOR_JOINT_MAPS,
+  face: [-1, HEAD],
+} as const satisfies Record<string, readonly number[]>;
+
+export type HunterSlot = keyof typeof PIECE_JOINT_MAPS;
+
+/**
+ * The armor the site's weapon-holding hunter wears (`export-site`): each
+ * sex's model of each slot's piece of this name, by data name.
+ * `composeHunter` puts the pieces together in this order. In the hunter
+ * GLBs each primitive names its slot by index in this order (`extras.part`;
+ * the face comes after, face.ts's `FACE_PART`): the site swaps a slot's
+ * piece for another by it (blacksmith's `src/lib/hunter-armor.ts`). A piece
+ * with several textures has a primitive for each.
+ */
+export const HUNTER_ARMOR: Record<ArmorSlot, string> = {
   helmet: "Battle Helm",
   plate: "Battle Mail",
   gauntlets: "Battle Vambraces",
@@ -126,6 +137,11 @@ export interface HunterModel {
   pmo: Pmo;
   /** The slot of each of `pmo`'s meshes. */
   meshSlots: HunterSlot[];
+  /**
+   * Where each mesh's piece's materials start in `pmo.materials`: a
+   * primitive's material in its own piece is its index less this.
+   */
+  meshMaterialBases: number[];
   textures: TmhImage[];
   /** The player's skeleton (the leggings'). */
   bones: Bone[];
@@ -185,12 +201,13 @@ export function composeHunter(pieces: readonly HunterPiece[], skeleton?: Bone[])
   const materials: Pmo["materials"] = [];
   const meshes: Pmo["meshes"] = [];
   const meshSlots: HunterSlot[] = [];
+  const meshMaterialBases: number[] = [];
   // Positions in model units, gathered first: the shared scale needs them all.
   type Placed = { position: Vec3; normal?: Vec3; scale: Vec3 };
   const placed: Placed[][][] = [];
 
   for (const { slot, pmo, bones, textures: images } of pieces) {
-    const map: readonly number[] = ARMOR_JOINT_MAPS[slot];
+    const map: readonly number[] = PIECE_JOINT_MAPS[slot];
     const positions = bindPositions(bones);
     /**
      * The bone the map places `bone` by: itself, or for a bone past the map
@@ -249,6 +266,7 @@ export function composeHunter(pieces: readonly HunterPiece[], skeleton?: Bone[])
         }),
       );
       meshSlots.push(slot);
+      meshMaterialBases.push(materialBase);
       meshes.push({
         uvScale: mesh.uvScale,
         primitives: mesh.primitives.map((primitive) => ({
@@ -271,6 +289,7 @@ export function composeHunter(pieces: readonly HunterPiece[], skeleton?: Bone[])
   return {
     bones: skeleton,
     meshSlots,
+    meshMaterialBases,
     textures,
     pmo: {
       radius: Math.hypot(...scale),

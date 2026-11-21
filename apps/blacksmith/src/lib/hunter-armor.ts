@@ -1,13 +1,14 @@
 /**
  * Dressing the viewer's hunter in an armor piece: the piece's model takes the
- * place of the default set's in its slot, skinned to the hunter's skeleton so
- * it moves with the hunter's motions.
+ * place of what the hunter wears in its slot, skinned to the hunter's
+ * skeleton so it moves with the hunter's motions.
  *
- * The hunter (`HUNTER_MODEL`, `HUNTER_FEMALE_MODEL` in `hunter.ts`) is the
- * default armor set of one sex composed on that sex's skeleton (mhfu-extract's
- * `models/hunter.ts`), each primitive naming its slot by index in
- * `HUNTER_SLOTS` (`extras.part`). A piece goes on the hunter of its own sex:
- * the two skeletons differ.
+ * The hunter (`HUNTER_BARE_MODEL`, `HUNTER_BARE_FEMALE_MODEL` in
+ * `hunter.ts`) is one sex in the clothes worn under armor, composed on that
+ * sex's skeleton (mhfu-extract's `models/hunter.ts`), each primitive naming
+ * its slot by index in `HUNTER_SLOTS` (`extras.part`); the hairstyle is its
+ * helmet. A piece goes on the hunter of its own sex: the two skeletons
+ * differ.
  *
  * Armor models from `export-site` (`armorToGlb`) already sit on the player
  * skeleton of their sex, with each vertex's player joints and weights in
@@ -19,6 +20,12 @@
  * It's a guess: pieces whose skeleton differs from the default's (the
  * Giaprey Helm) land too high or low.
  *
+ * The hunter has a face too (mhfu-extract's `models/face.ts`), its two
+ * materials tagged `FACE_PARTS`. A helmet can hide all of it or its
+ * material 0, where it would show through: `faceMask` reads which from the
+ * hunter's `asset.extras.faceMasks`, and `hideFace` hides it. (The hunters'
+ * own helmets' masks are applied when they're exported.)
+ *
  * three.js comes in as an argument, as the viewer imports it on demand.
  */
 import { ARMOR_SLOTS, type ArmorSlot } from "@/lib/constants";
@@ -29,6 +36,37 @@ export type HunterSlot = ArmorSlot;
 
 /** The slots, in the order the hunter's primitives number them (mhfu-extract's `HUNTER_ARMOR`). */
 export const HUNTER_SLOTS: readonly HunterSlot[] = ARMOR_SLOTS;
+
+/** Tags of the face's primitives (mhfu-extract's `FACE_PART`): its material 0, then 1. */
+export const FACE_PARTS = [5, 6] as const;
+
+/** The game's `MaterialMask` bits: which of the face's materials a helmet hides. */
+export const FACE_MASK = { MATERIAL_0: 1 << 1, MATERIAL_1: 1 << 2, ALL: 1 << 3 } as const;
+
+/**
+ * The face mask of helmet model `id` (`m_hair003.glb`: 3), from the
+ * hunter's `faceMasks` (by helmet model ID): 0 when it hides nothing.
+ */
+export function faceMask(faceMasks: unknown, id: number): number {
+  if (typeof faceMasks !== "object" || faceMasks === null) return 0;
+  const mask = (faceMasks as Record<string, unknown>)[String(id)];
+  return typeof mask === "number" ? mask : 0;
+}
+
+/** Hides the face's materials `mask` names on the hunter (the hunter model's scene). */
+export function hideFace(hunter: import("three").Object3D, mask: number) {
+  hunter.traverse((object) => {
+    const mesh = object as import("three").Mesh;
+    if (!mesh.isMesh) return;
+    const material = FACE_PARTS.indexOf(mesh.geometry.userData.part as 5 | 6);
+    if (material < 0) return;
+    if (
+      mask & FACE_MASK.ALL ||
+      mask & (material === 0 ? FACE_MASK.MATERIAL_0 : FACE_MASK.MATERIAL_1)
+    )
+      mesh.visible = false;
+  });
+}
 
 /**
  * The player joint each slot's piece is modelled around: the one its

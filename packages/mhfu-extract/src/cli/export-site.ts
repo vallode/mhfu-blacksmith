@@ -39,9 +39,11 @@
  * the motions in its bank that none of its code plays.
  *
  * `public/models/hunter/` holds the hunter shown holding a weapon or wearing
- * armor: `hunter.glb` (the default armor set on the player's skeleton,
- * `models/hunter.ts`), `hunter-female.glb` (the female set on the female
- * skeleton, for female armor), one
+ * armor: `hunter.glb` (the default armor set and face on the player's
+ * skeleton, `models/hunter.ts` and `models/face.ts`), which holds weapons;
+ * `hunter-bare.glb` and `hunter-bare-female.glb` (each sex in the clothes
+ * worn under armor, with the default face and hairstyle, on that sex's
+ * skeleton), which the site dresses in armor; one
  * `wNN.motions.bin` per weapon class and `common.motions.bin`, the common
  * motions the site uses (motion-pack.ts). Weapons are written in `part_<n>`
  * pieces (a shield, a second blade) so the site can carry them apart.
@@ -60,6 +62,7 @@ import {
   boneRoots,
   composeHunter,
   HUNTER_ARMOR,
+  type ArmorSlot,
   MISSING_TEXTURE,
   PLAYER_BONE_COUNT,
   readHunterPiece,
@@ -74,6 +77,17 @@ import { wearProps } from "../models/worn-props.js";
 import { isPac, readPac, type PacEntry } from "../models/pac.js";
 import { isPmo, type Pmo } from "../models/pmo.js";
 import { missingTextures, skinTexturePath, withSkin } from "../models/skin.js";
+import {
+  dyeHair,
+  FACE_MASKS,
+  FACE_PART,
+  facePath,
+  hairstylePath,
+  HUNTER_FACE,
+  HUNTER_HAIR_COLOR,
+  HUNTER_HAIRSTYLE,
+  maskFace,
+} from "../models/face.js";
 import { isTmh, readTmh, type TmhImage } from "../models/tmh.js";
 import {
   poseWeapon,
@@ -322,58 +336,83 @@ const WEAPON_CLASS_COUNT = 11;
 const COMMON_MOTION_SLOTS = new Set([0 * PLAYER_GROUP_SLOTS + 1]);
 
 async function exportHunter(
-  reader: BinaryReader,
-  region: Region,
   ids: EquipmentIds,
+  { models, skeletons, skins }: PlayerBase,
   options: ExportSiteOptions,
 ): Promise<void> {
   const dataBin = path.join(options.unpacked, "data-bin");
-  const models = readArmorModelIds(reader, MHP2G_PROFILE.resolverForRegion(region) ?? undefined);
-  /** The default set of one sex, composed on that sex's skeleton. */
-  const compose = async (sex: "m" | "f") => {
-    const skin = await readSkin(dataBin, sex);
-    return composeHunter(
-      await Promise.all(
-        (Object.entries(HUNTER_ARMOR) as [HunterSlot, string][]).map(async ([slot, name]) => {
-          const entry = models[slot].find((e) => ids[slot]?.[e.index]?.name === name);
-          if (!entry) throw new Error(`Default armor piece not found: ${name}`);
-          const id = sex === "m" ? entry.maleId : entry.femaleId;
-          const source = path.join(dataBin, armorModelPath(slot, sex, id));
-          return readHunterPiece(slot, readPac(await readFile(source)), skin);
-        }),
-      ),
+  const piece = async (slot: HunterSlot, file: string, sex: "m" | "f") =>
+    readHunterPiece(slot, readPac(await readFile(path.join(dataBin, file))), skins[sex]);
+  /**
+   * One sex's hunter, on the skeleton that sex's armor models are placed on
+   * (`playerSkeletons`), with the default face (face.ts) less what its
+   * helmet hides: in the default set, or `bare`, in the clothes under armor
+   * (each slot's model 0) and the default hairstyle, dyed.
+   */
+  const compose = async (sex: "m" | "f", bare: boolean) => {
+    const skeleton = skeletons[sex];
+    if (!skeleton) throw new Error(`no ${sex} player skeleton`);
+    let mask = 0;
+    const armor = await Promise.all(
+      (Object.entries(HUNTER_ARMOR) as [ArmorSlot, string][]).map(async ([slot, name]) => {
+        if (bare && slot === "helmet")
+          return dyeHair(
+            await piece(slot, hairstylePath(sex, HUNTER_HAIRSTYLE), sex),
+            HUNTER_HAIR_COLOR,
+          );
+        if (bare) return piece(slot, armorModelPath(slot, sex, 0), sex);
+        const entry = models[slot].find((e) => ids[slot]?.[e.index]?.name === name);
+        if (!entry) throw new Error(`Default armor piece not found: ${name}`);
+        const id = sex === "m" ? entry.maleId : entry.femaleId;
+        if (slot === "helmet") mask = FACE_MASKS[sex][id] ?? 0;
+        return piece(slot, armorModelPath(slot, sex, id), sex);
+      }),
     );
+    const face = maskFace(await piece("face", facePath(sex, HUNTER_FACE), sex), mask);
+    return composeHunter(face ? [...armor, face] : armor, skeleton);
   };
   const clipOptions = options.lossless ? {} : SITE_CLIP_OPTIONS;
   const dir = path.join(options.out, "hunter");
   await mkdir(dir, { recursive: true });
   let size = 0;
-  /** Writes a composed hunter, each primitive tagged with its slot (`HUNTER_ARMOR` order). */
-  const writeHunter = async (name: string, hunter: HunterModel) => {
-    const slots = Object.keys(HUNTER_ARMOR);
+  /**
+   * Writes a composed hunter. Each primitive is tagged with its part
+   * (`extras.part`): its slot's index in `HUNTER_ARMOR` order, or for the
+   * face, `FACE_PART` plus its material (0 or 1). `asset.extras.faceMasks`
+   * is the sex's `FACE_MASKS`, for the site to hide the face under a helmet.
+   */
+  const writeHunter = async (name: string, sex: "m" | "f", hunter: HunterModel) => {
+    const slots: string[] = Object.keys(HUNTER_ARMOR);
     const { glb } = await buildGlb(
       hunter.pmo,
       hunter.textures,
       name,
       {
         ...(options.lossless ? {} : SITE_GLB_OPTIONS),
-        partOf: (mesh) => slots.indexOf(hunter.meshSlots[mesh]!),
+        partOf: (mesh, primitive) => {
+          const slot = hunter.meshSlots[mesh]!;
+          if (slot !== "face") return slots.indexOf(slot);
+          const { materialIndex } = hunter.pmo.meshes[mesh]!.primitives[primitive]!;
+          return FACE_PART + materialIndex - hunter.meshMaterialBases[mesh]!;
+        },
+        extras: { faceMasks: FACE_MASKS[sex] },
       },
       { bones: hunter.bones },
     );
     await writeFile(path.join(dir, `${name}.glb`), glb);
     size += glb.length;
   };
-  const male = await compose("m");
+  const male = await compose("m", false);
   const { bones } = male;
-  await writeHunter("hunter", male);
-
-  // The female hunter wears the female pieces on her own skeleton, so the
-  // site can show female armor in place; she plays the same motions.
-  try {
-    await writeHunter("hunter-female", await compose("f"));
-  } catch (err) {
-    console.log(`no female hunter: ${err instanceof Error ? err.message : String(err)}`);
+  await writeHunter("hunter", "m", male);
+  // The bare hunters, for armor; they play the same motions.
+  for (const sex of ["m", "f"] as const) {
+    const name = sex === "m" ? "hunter-bare" : "hunter-bare-female";
+    try {
+      await writeHunter(name, sex, await compose(sex, true));
+    } catch (err) {
+      console.log(`no ${name}: ${err instanceof Error ? err.message : String(err)}`);
+    }
   }
 
   const writeClips = async (file: string, clips: ReturnType<typeof buildPlayerClips>) => {
@@ -816,18 +855,37 @@ async function playerSkeletons(
   return out;
 }
 
-async function exportArmor(
+/**
+ * What the armor models and the hunters are built from, read once: each
+ * slot's model IDs, and per sex the player skeleton (`playerSkeletons`) and
+ * skin textures (`readSkin`).
+ */
+interface PlayerBase {
+  models: ReturnType<typeof readArmorModelIds>;
+  skeletons: Partial<Record<"m" | "f", Bone[]>>;
+  skins: Record<"m" | "f", TmhImage[]>;
+}
+
+async function readPlayerBase(
   reader: BinaryReader,
   region: Region,
   ids: EquipmentIds,
-  converter: Converter,
   dataBin: string,
+): Promise<PlayerBase> {
+  const models = readArmorModelIds(reader, MHP2G_PROFILE.resolverForRegion(region) ?? undefined);
+  return {
+    models,
+    skeletons: await playerSkeletons(dataBin, models, ids),
+    skins: { m: await readSkin(dataBin, "m"), f: await readSkin(dataBin, "f") },
+  };
+}
+
+async function exportArmor(
+  ids: EquipmentIds,
+  converter: Converter,
+  { models, skeletons, skins }: PlayerBase,
 ): Promise<SiteModelManifest["armor"]> {
-  const resolver = MHP2G_PROFILE.resolverForRegion(region) ?? undefined;
   const armor: SiteModelManifest["armor"] = {};
-  const models = readArmorModelIds(reader, resolver);
-  const skeletons = await playerSkeletons(dataBin, models, ids);
-  const skins = { m: await readSkin(dataBin, "m"), f: await readSkin(dataBin, "f") };
   let count = 0;
   for (const [slot, entries] of Object.entries(models) as [
     SiteArmorSlot,
@@ -943,14 +1001,14 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
       manifest.weapons = await exportWeapons(reader, unpackManifest.region, ids, converter);
     }
     if (await exists(path.join(options.unpacked, "data-bin", "player"))) {
-      manifest.armor = await exportArmor(
+      const base = await readPlayerBase(
         reader,
         unpackManifest.region,
         ids,
-        converter,
         path.join(options.unpacked, "data-bin"),
       );
-      await exportHunter(reader, unpackManifest.region, ids, options).catch((err: unknown) => {
+      manifest.armor = await exportArmor(ids, converter, base);
+      await exportHunter(ids, base, options).catch((err: unknown) => {
         console.log(`no hunter: ${err instanceof Error ? err.message : String(err)}`);
       });
     }
