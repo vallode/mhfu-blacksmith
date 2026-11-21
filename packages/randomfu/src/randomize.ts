@@ -105,6 +105,7 @@ import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
 import { findKeyQuestSites, keyQuestsObjects, keyQuestsReport } from "./patches/key-quests.js";
 import { addNodeMap } from "./patches/node-map.js";
+import { findHitboxExterns, hitboxObjects } from "./patches/hitboxes.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
 import {
   ARMOR_BOX_TYPE,
@@ -976,6 +977,7 @@ export function randomize(
     }
   } else if (
     settings["hud.monsterHp"] !== "off" ||
+    settings["hud.attackHitboxes"] ||
     settings["quests.unknown"] ||
     settings["elites.enabled"] ||
     settings["pact.enabled"] ||
@@ -1017,6 +1019,25 @@ export function randomize(
         objects.push(...monsterHpObjects());
         Object.assign(externs, found);
         monsterHp = true;
+      }
+    }
+    let hitboxes = false;
+    if (settings["hud.attackHitboxes"]) {
+      const found =
+        typeof sites === "string"
+          ? sites
+          : findHitboxExterns(
+              game.eboot!,
+              sites.segment,
+              ovl.reader.buf,
+              ovl,
+              game.gameSub.ovl.reader.buf,
+            );
+      if (typeof found === "string") reports.push(notApplied("Attack hitboxes", found));
+      else {
+        objects.push(...hitboxObjects());
+        Object.assign(externs, found);
+        hitboxes = true;
       }
     }
     const prepared = !settings["quests.unknown"]
@@ -1139,7 +1160,10 @@ export function randomize(
       objects.push(...keyQuestsObjects());
       Object.assign(externs, keys.externs);
     }
-    if (typeof hookSites !== "string" && (monsterHp || unknown || elites || pact || luck || keys)) {
+    if (
+      typeof hookSites !== "string" &&
+      (monsterHp || hitboxes || unknown || elites || pact || luck || keys)
+    ) {
       const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         // Elites and the pact both bring the shared monster boosts: link them once.
         objects: objects.filter((o, k) => objects.findIndex((x) => x.name === o.name) === k),
