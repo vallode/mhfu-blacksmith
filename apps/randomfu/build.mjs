@@ -174,6 +174,7 @@ const assets = [
   "images/ukwn.png",
   "images/bone.png",
   "images/great-sword.png",
+  "images/hunting-horn.png",
   "images/helmet.png",
   "images/sac.png",
   "images/favicons/felyne-favicon.png",

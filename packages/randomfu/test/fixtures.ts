@@ -1,8 +1,8 @@
 /**
  * A tiny synthetic disc for tests: an ISO 9660 image with PARAM.SFO, a plain
  * ELF-magic EBOOT.BIN with a few recipes, and an encrypted DATA.BIN holding
- * five quests, a `game_task.ovl` with monster chunks and hitzones, and a
- * `game_sub.ovl` with reward tables.
+ * five quests, a `game_task.ovl` with monster chunks, hitzones and hunting
+ * horn songs, and a `game_sub.ovl` with reward tables.
  * No game data: every value is made up.
  */
 import { GAME_TAG_KEYS, TYPE01_TAG_KEYS } from "mhfu-extract/src/container/prx.js";
@@ -500,7 +500,34 @@ export const FIXTURE_TRADES: [number, number, number][][] = Array.from(
     }),
 );
 
-/** `game_task.ovl` with `MonChunk[90]` and the Veggie Elders' trades at JP's file offsets. */
+export interface FixtureSong {
+  /** Playing order, as colour codes. */
+  notes: string[];
+  /** A last note flagged optional, as the disc's white-white has. */
+  optional?: string;
+  effect: number;
+}
+
+const NOTE_BYTES: Record<string, number> = { w: 1, p: 2, b: 3, y: 4, r: 5, g: 6, a: 7 };
+
+/**
+ * A made-up hunting horn song table: Self-Improvement (0) on white-white
+ * and purple-purple, then 30 songs of two to four notes, effects 1-29 with
+ * the last two sharing one.
+ */
+export const FIXTURE_SONGS: FixtureSong[] = [
+  { notes: ["w", "w"], optional: "w", effect: 0 },
+  { notes: ["p", "p"], optional: "p", effect: 0 },
+  ...Array.from({ length: 30 }, (_, i): FixtureSong => ({
+    notes: Array.from({ length: 2 + (i % 3) }, (_, k) => "wpbyrga"[(i * 2 + k * 3 + 1) % 7]!),
+    effect: Math.min(i + 1, 29),
+  })),
+];
+
+/**
+ * `game_task.ovl` with `MonChunk[90]` and the Veggie Elders' trades at JP's
+ * file offsets, and the songs after them.
+ */
 export function buildGameTask(): Buffer {
   const chunks = GAME_TASK_JP.monsterChunks - GAME_TASK_JP.loadBase;
   let at = chunks + MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE;
@@ -513,7 +540,16 @@ export function buildGameTask(): Buffer {
   const trades = VEGGIE_TRADES_JP - TASK_LOAD;
   const tradesEnd =
     trades + FIXTURE_TRADES.reduce((n, rows) => n + rows.length * TRADE_ROW_SIZE + 2, 0);
-  const buf = ovlHeader("game_task.ovl", TASK_LOAD, Math.max(at, tradesEnd) - 0x80);
+  // The song table, after everything else: songs, an empty entry, then an effect byte each.
+  const songs = (Math.max(at, tradesEnd) + 3) & ~3;
+  const songsEnd = songs + (FIXTURE_SONGS.length + 1) * 4 + FIXTURE_SONGS.length;
+  const buf = ovlHeader("game_task.ovl", TASK_LOAD, songsEnd + 0x10 - 0x80);
+  FIXTURE_SONGS.forEach((song, i) => {
+    const stored = [...song.notes].reverse().map((n) => NOTE_BYTES[n]!);
+    if (song.optional) stored.unshift(NOTE_BYTES[song.optional]! | 0x80);
+    stored.forEach((b, k) => (buf[songs + i * 4 + k] = b));
+    buf[songs + (FIXTURE_SONGS.length + 1) * 4 + i] = song.effect;
+  });
   let row = trades;
   for (const rows of FIXTURE_TRADES) {
     for (const ids of rows) {

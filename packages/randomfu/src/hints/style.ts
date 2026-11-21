@@ -85,6 +85,16 @@ export const STYLE = {
     monster: COLOURS.orange,
     reward: COLOURS.amber,
   },
+  /** Hunting horn notes (♪), in the colours the game's own sheet music uses. */
+  horn: {
+    w: COLOURS.white,
+    p: COLOURS.magenta,
+    b: COLOURS.blue,
+    y: COLOURS.brightYellow,
+    r: COLOURS.red,
+    g: COLOURS.brightGreen,
+    a: COLOURS.lightBlue,
+  } as Record<string, Colour>,
 } as const;
 
 /** `text` in `colour`, back to white after. `compact` drops what the next code makes redundant. */

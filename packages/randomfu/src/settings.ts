@@ -67,6 +67,9 @@ export interface Settings {
   "weapons.statRange": "near" | "wide" | "any";
   "weapons.sharpness": boolean;
   "weapons.sharpnessMode": "shuffle" | "new";
+  "songs.enabled": boolean;
+  "songs.mix": "any" | "length";
+  "songs.keepSelfImprovement": boolean;
   "armor.enabled": boolean;
   "armor.scope": "rarity" | "rank" | "any";
   "armor.start": "smithy" | "rank" | "any";
@@ -1014,6 +1017,47 @@ export const OPTIONS: readonly OptionDef[] = [
     },
     default: "shuffle",
     enabledBy: "weapons.sharpness",
+  },
+  {
+    key: "songs.enabled",
+    section: "Hunting horn",
+    label: "Shuffle hunting horn songs",
+    help: "Songs trade effects: the notes that played Attack Up may now play Health Recovery or Wind Cancel, with that effect's strength and duration. Every song keeps its notes and every horn its three notes, so horns play the same sequences as before, with new effects. The bookshelf's sheet music and the Training School lesson say what each song now plays (EU disc).",
+    type: { kind: "boolean" },
+    default: false,
+    action: "shuffle",
+  },
+  {
+    key: "songs.mix",
+    section: "Hunting horn",
+    label: "Which songs trade",
+    help: "Whether an effect can move to a song of any length.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "any",
+          label: "Any song",
+          help: "Any song can play any effect, so a strong buff may now take two notes, or four.",
+        },
+        {
+          value: "length",
+          label: "Songs as long",
+          help: "Effects only trade between songs of as many notes, so a song takes as long to play as before.",
+        },
+      ],
+    },
+    default: "any",
+    enabledBy: "songs.enabled",
+  },
+  {
+    key: "songs.keepSelfImprovement",
+    section: "Hunting horn",
+    label: "Keep Self-Improvement",
+    help: "White-White and Purple-Purple stay Self-Improvement, so every horn can still raise its slow walking speed with two notes. Off, it moves like any effect, and some horns lose it.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "songs.enabled",
   },
   {
     key: "armor.enabled",

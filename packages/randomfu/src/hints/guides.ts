@@ -1,7 +1,8 @@
 /**
  * Writes the bookshelf guides chosen in the settings in one repack, so
- * they share their room: the Bestiary gets what it needs first (it has
- * the least to spare), the Almanac the rest, each shrinking itself to fit
+ * they share their room: the hunting horn sheet music (when the songs were
+ * shuffled) and the Bestiary get what they need first (they have the least
+ * to spare), the Almanac the rest, each shrinking itself to fit
  * (`GuidePlan.fit`). Runs after every shuffle.
  */
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
@@ -36,8 +37,11 @@ export function writeGuides(
   seed: string,
   edits: Edits,
   which: { bestiary: boolean; almanac: boolean },
+  /** The hunting horn sheet music, when the songs were shuffled: written first, at its own size. */
+  songbook: GuidePlan | null = null,
 ): ShuffleReport[] {
   const plans: GuidePlan[] = [];
+  if (songbook) plans.push(songbook);
   if (which.bestiary) plans.push(planBestiary(game, quests, seed, edits));
   if (which.almanac) plans.push(planAlmanac(game, quests, seed, edits));
   if (plans.length === 0) return [];
