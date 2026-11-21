@@ -74,6 +74,14 @@ export class Edits {
     return this.ebootCopy;
   }
 
+  /**
+   * Replaces the EBOOT with a rebuilt one (a longer ELF: weapon-tables.ts).
+   * Edits after this must call `eboot()` again rather than keep an old buffer.
+   */
+  replaceEboot(elf: Buffer): void {
+    this.ebootCopy = elf;
+  }
+
   /** The edited EBOOT, or null if nothing changed it. */
   changedEboot(): Buffer | null {
     return this.ebootCopy && !this.ebootCopy.equals(this.game.eboot) ? this.ebootCopy : null;

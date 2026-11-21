@@ -105,6 +105,7 @@ import { addCodeLoader } from "./patches/code-loader.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { addWeaponMashups } from "./patches/weapon-mashups.js";
 import { prepareWeaponStitcher, stitchObjects } from "./patches/weapon-stitcher.js";
+import { prepareRelics, relicsObjects } from "./patches/relic-weapons.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
 import {
   ARMOR_BOX_TYPE,
@@ -1090,9 +1091,25 @@ export function randomize(
       Object.assign(data, stitched.data);
     }
     const stitcher = typeof stitched === "string" ? null : stitched;
+    const relics = !settings["relics.enabled"]
+      ? null
+      : typeof sites === "string"
+        ? sites
+        : prepareRelics(game, edits, rng.fork("relics"), {
+            rolls: settings["relics.rolls"],
+            power: settings["relics.power"],
+            runSeed: rng.fork("relic-seed").int(0x100000000),
+          });
+    if (typeof relics === "string") reports.push(notApplied("Relics", relics));
+    else if (relics) {
+      objects.push(...relicsObjects());
+      Object.assign(externs, relics.externs);
+      Object.assign(data, relics.data);
+    }
+    const relicWeapons = typeof relics === "string" ? null : relics;
     if (
       typeof hookSites !== "string" &&
-      (monsterHp || unknown || elites || pact || luck || stitcher)
+      (monsterHp || unknown || elites || pact || luck || stitcher || relicWeapons)
     ) {
       const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         // Elites and the pact both bring the shared monster boosts: link them once.
@@ -1111,6 +1128,7 @@ export function randomize(
       reports.push(loader);
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (stitcher) reports.push(stitcher.finish(loader.applied));
+      if (relicWeapons) reports.push(relicWeapons.finish(loader.applied));
       if (luck) {
         reports.push(luck.finish(loader.applied));
         if (loader.applied && options.poogieTest) {

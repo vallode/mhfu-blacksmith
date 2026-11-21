@@ -120,6 +120,9 @@ export interface Settings {
   "hud.monsterHp": "off" | "painted" | "always";
   "pact.enabled": boolean;
   "poogie.enabled": boolean;
+  "relics.enabled": boolean;
+  "relics.rolls": "seeded" | "clock";
+  "relics.power": "fair" | "strong" | "wild";
   "elites.enabled": boolean;
   "elites.chance": number;
   "quests.unknown": boolean;
@@ -1754,6 +1757,65 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Pet Poogie at home before a hunt. If it lies down happily, that hunt's carves, captures, breaks and quest rewards lean towards rarer rewards: each draw rolls twice and keeps the rarer. Poogie remembers: after 50 happy hunts on a save it rolls three times, after 200 four. Its count is kept in the save, and carries over to discs from other seeds. Caps received Guild Cards at 3 to make room for its code.",
     type: { kind: "boolean" },
     default: true,
+  },
+  {
+    key: "relics.enabled",
+    section: "Relics",
+    label: "Relic weapons (prototype)",
+    help: "Quests now and then reward a relic stone of their rank (always the first quest you complete at each rank): a Relic Shard in Low Rank, a Relic Stone in High Rank, a Relic Core in G Rank. Each stone holds a weapon class, any of the eleven. At the smithy, Create turns your oldest stone into an Unpolished Relic of its class (the entry sits in that class's list), and Improve Weapon on it shows three relics to choose from, each with its own attack, affinity, element and slots, from a weapon of that class and rank. Keep one; the others are gone. The best go past the rank's strongest weapons. Up to 64 relics a side (melee, gunner). EU disc only, a prototype. Caps received Guild Cards at 3 to make room for its code.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "relics.rolls",
+    section: "Relics",
+    label: "Relic rolls",
+    help: "Where each relic's rolls come from.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "seeded",
+          label: "From the seed",
+          help: "The same seed rolls the same stone classes and relics, in the order you get them. Which quests drop a stone is still chance.",
+        },
+        {
+          value: "clock",
+          label: "From the clock",
+          help: "Every stone and relic is rolled anew when you get it.",
+        },
+      ],
+    },
+    default: "seeded",
+    enabledBy: "relics.enabled",
+  },
+  {
+    key: "relics.power",
+    section: "Relics",
+    label: "Relic power",
+    help: "How far past the rank's strong weapons the best relics go.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "fair",
+          label: "Fair",
+          help: "At best, as strong as the rank's strong weapons (the top tenth of its class).",
+        },
+        {
+          value: "strong",
+          label: "Strong",
+          help: "Up to 15% more attack than the rank's strong weapons.",
+        },
+        {
+          value: "wild",
+          label: "Wild",
+          help: "Up to 30% more attack than the rank's strong weapons.",
+        },
+      ],
+    },
+    default: "strong",
+    enabledBy: "relics.enabled",
   },
   {
     key: "elites.enabled",

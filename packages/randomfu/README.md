@@ -177,6 +177,9 @@ web app shows as a tag):
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                       |
 | `poogie.enabled`                  | on          | A happy pet before a hunt makes its rewards rarer, more so as affection grows (caps Guild Cards)             |
 | `pact.enabled`                    | off         | Hunter's Pact: penalties at each quest's start, each paying a reward (caps Guild Cards)                      |
+| `relics.enabled`                  | off         | Prototype: quest stones become relics, three rolled to pick from (EU disc only, caps Guild Cards)            |
+| `relics.rolls`                    | `seeded`    | Relic rolls from the run's `seeded` or the console's `clock`                                                 |
+| `relics.power`                    | `strong`    | How far the best relics pass the rank's best: `fair` (up to it), `strong`, `wild`                            |
 | `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)                        |
 | `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                                    |
 | `quests.unknown`                  | off         | "Unknown Monster?!" quests on Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards)       |
@@ -1519,6 +1522,56 @@ game's pointers before it reads or writes through them. Open: whether a faint ta
 quest's penalty off the reward and fails at 0 (one cart relies on it),
 when the supply box reads its list, and which of the two stamina fields is
 the current one (Weary caps both).
+
+## Relic weapons (prototype)
+
+`relics.enabled` (EU disc only; `src/patches/relic-weapons.ts`,
+`src/patches/weapon-tables.ts`, `blob/relic-weapons.c`; the design is in
+`docs/ruststone-weapons.md`). Quests now and then reward a relic stone of
+their rank (Relic Shard, Relic Stone, Relic Core on items 91, 92 and 465,
+which were unused); the first quest completed at each rank always does.
+Each stone rolls one of the eleven classes when it turns up. The smithy's
+Create list makes the oldest stone's Unpolished Relic of that class and
+rank, and Improve Weapon on an Unpolished Relic offers three relics rolled
+for it. The one the hunter improves into stays theirs; the other two go
+back to the pool.
+
+- **Room for new weapons.** The weapon tables (melee and ranged stats,
+  upgrades, description indexes and the Create list) are copied into a
+  new PT_LOAD segment (EU 0x09D65500) with room for 33 Unpolished Relics
+  (one per rank and class) and 64 relic instances a side, and every `lui`
+  pair that addressed the old tables in the EBOOT, `lobby_task`,
+  `game_task` and `edit_task` is repointed (EU: 47, 18, 7 and 1 sites).
+  The names and descriptions are added to every language's message file.
+- **What the game does with them** (tried in PPSSPP): Improve Weapon lists
+  any IDs in an entry's five upgrade targets, with their own stats, and
+  reads the table live, so the blob can rewrite records and targets at any
+  time. The fee is half the target's price. IDs past the game's own (1,501
+  and up, the rust range) show as "??????", so relics use IDs below that.
+  The Create list's tab is the class of the weapon it makes; an entry with
+  its material flag set shows once the material has been obtained.
+- **The rolls** (`roll` in `blob/relic-weapons.c`). A relic copies one of its
+  band's own weapons (model, sharpness, notes, shells), then spends a
+  budget of points (9, 12, 16 or 20 by tier: 60/28/10/2%) on attack,
+  affinity, element and slots, weighted by one of four archetypes (raw,
+  keen, element, slotted). Attack is 70% of the band's best (the 90th
+  percentile of the rank and class) plus 5% a notch; `relics.power` caps
+  attack and element at notch 6 (`fair`, the best), 9 (`strong`) or 12
+  (`wild`). Affinity is 6% a notch from -10%, slots one per two notches.
+- **The save.** A relic is (seed, band, candidate) in randomfu's save data
+  (`relic_kept`, 64 a side); every load re-rolls the records of those still
+  in the equipment box and frees the rest. The stone queues (one per rank,
+  up to 16) follow the stones in the item box and pouch: new ones join at
+  the back, used or sold ones leave from the front.
+- **Checked** (`test/relic-weapons.test.ts`): the blob, run in the MIPS
+  interpreter, queues stones and points the Create entries at the front
+  class, offers free instances, keeps the one improved into, rolls it the
+  same after a reload, and gives each rank's first stone. In PPSSPP on the
+  EU disc: Create made an Unpolished Long Sword from the front stone,
+  Improve offered three relics with their own stats, the kept relic held
+  its stats through a save and reload, and an Unpolished Hammer moved to
+  the Hammer tab. Not yet tried in game: a stone dropping from a quest's
+  rewards, and a ranged relic.
 
 ## Elite monsters
 
