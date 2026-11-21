@@ -1480,6 +1480,11 @@ drawn: shapes the monster's own code places (joint 0x7D), and hunters'
 attacks. The outline version was played on the EU disc in PPSSPP and worked; the
 shading hasn't been played yet, nor JP.
 
+Hunters' attacks use the same objects and shape records, but their shapes
+come from per-class, per-move tables: the weapon's ID and model never pick
+a shape, only how hard it hits. `docs/hunter-attacks.md` has the tables
+and the code path.
+
 ## Poogie's luck
 
 `poogie.enabled` (Modifications → Poogie in the web app, on by default).
