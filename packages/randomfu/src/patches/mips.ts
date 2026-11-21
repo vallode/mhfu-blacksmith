@@ -157,6 +157,10 @@ export class Assembler {
       (_pc, base) => ((0x09 << 26) | (reg << 21) | (reg << 16) | (address(base) & 0xffff)) >>> 0,
     );
   }
+  /** How many words so far. */
+  get length(): number {
+    return this.items.length;
+  }
   /** Where a label lands, in words from the start. */
   offsetOf(label: string): number {
     const target = this.labels.get(label);
