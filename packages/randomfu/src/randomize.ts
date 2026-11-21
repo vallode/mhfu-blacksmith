@@ -130,6 +130,7 @@ import {
 import { menuObjects, prepareMenu } from "./patches/menu.js";
 import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
 import { damageObjects, findDamageExterns } from "./patches/damage.js";
+import { patchElementMotion } from "./patches/element-motion.js";
 import { LOGIC_VERSION } from "./version.js";
 
 export { LOGIC_VERSION };
@@ -807,6 +808,12 @@ export function randomize(
         },
         edits,
       ),
+    );
+  }
+
+  if (settings["weapons.elementMotion"]) {
+    reports.push(
+      patchElementMotion(game.gameTask, game.gameSub, settings["weapons.elementMotionFrom"], edits),
     );
   }
 
