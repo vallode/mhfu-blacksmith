@@ -230,6 +230,8 @@ interface Hit {
   type: number;
   /** `+0x2B`: 0x80 a critical hit, 0x40 a negative one. */
   crit: number;
+  /** Whether the builder multiplied the motion value by 1.35 (`+0x31` 0, `+0x32` 0x12). */
+  spirit: boolean;
 }
 
 /** Runs `words` on one hit; the element registers' bits after. */
@@ -244,6 +246,8 @@ function runReads(words: readonly number[], hit: Hit): number[] {
   attack[0x2a] = hit.element;
   attack[0x1f] = hit.type;
   attack[0x2b] = hit.crit;
+  attack[0x31] = hit.spirit ? 0 : 2;
+  attack[0x32] = hit.spirit ? 0x12 : 0x12 - (hit.mv & 1) * 2;
   attack[0x1e] = hit.mv;
   attack[0x0f] = hit.ownerKind;
   memory.add(ATTACK, attack);
@@ -272,6 +276,7 @@ function hits(count: number): Hit[] {
     before: pick([0, 0x3f800000, rng.int(0x40000000)]),
     type: pick([0, 1, 2, 3, 0, 1, 0xa, 0xb, rng.int(256)]),
     crit: pick([0, 0, 0x40, 0x80, rng.int(256)]),
+    spirit: rng.int(4) === 0,
   }));
 }
 
@@ -290,8 +295,10 @@ test("element by motion value: game_sub's element reads do what the game's did",
 
 /** `value × f × √f`, `f = mv / threshold`, in the patch's float steps. */
 /** The motion value before a critical hit, as the patch works it back. */
-const base = ({ mv, crit }: Hit) =>
-  crit & 0x80 ? Math.floor((4 * mv + 4) / 5) : crit & 0x40 ? Math.floor((4 * mv + 2) / 3) : mv;
+function base({ mv, crit, spirit }: Hit): number {
+  const m = spirit ? Math.floor((20 * mv + 26) / 27) : mv;
+  return crit & 0x80 ? Math.floor((4 * m + 4) / 5) : crit & 0x40 ? Math.floor((4 * m + 2) / 3) : m;
+}
 
 const curve = (value: number, mv: number, threshold: number) => {
   const f = Math.fround(mv / threshold);
@@ -329,6 +336,7 @@ test("element by motion value: a Blademaster's element grows on a curve with the
     before: 0,
     type: 0,
     crit: 0,
+    spirit: false,
   };
   assert.equal(f32(runReads(assembleElementReads(26), charge)[0]!).toFixed(1), "522.1");
   // A side slash (36) 1.6 times; a bowgun's shot keeps its element.
@@ -344,4 +352,56 @@ test("element by motion value: a Blademaster's element grows on a curve with the
     "522.1",
   );
   assert.equal(f32(runReads(assembleElementReads(26), { ...charge, type: 0xb })[0]!), 60);
+});
+
+test("element by motion value: game_sub works back the motion value the game's affinity code and 1.35 left", () => {
+  const plain: Swing = {
+    weapon: true,
+    mv: 0,
+    element: 0,
+    affinity: 0,
+    counter: 0,
+    forced: 0,
+    felyne: 0,
+    species: 1,
+    flags: 0,
+    kinds: 0x10,
+  };
+  const modes = {
+    plain: {},
+    critical: { forced: 1 },
+    negative: { affinity: -100 },
+  } satisfies Record<string, Partial<Swing>>;
+  for (const threshold of [10, 26]) {
+    for (let m = 1; m <= 150; m++) {
+      for (const [mode, change] of Object.entries(modes)) {
+        for (const spirit of [false, true]) {
+          // The game's own affinity code, then the builder's 1.35 (EU 0x09B68984).
+          const after = run(AFFINITY_CODE, { ...plain, ...change, mv: m });
+          const mv = spirit
+            ? Math.trunc(Math.fround(Math.fround(after.mv) * Math.fround(1.35))) & 0xff
+            : after.mv;
+          const hit: Hit = {
+            kinds: 0x10,
+            element: 40,
+            mv,
+            owned: true,
+            ownerKind: 0,
+            weapon: 5,
+            before: 0,
+            type: 1,
+            crit: after.flags,
+            spirit,
+          };
+          const got = runReads(assembleElementReads(threshold), hit)[0]!;
+          const want = (n: number) => bits(n > threshold ? curve(40, n, threshold) : 40);
+          const ok = mode === "negative" ? [want(m), want(m - 1)] : [want(m)];
+          assert.ok(
+            ok.includes(got),
+            JSON.stringify({ threshold, m, mode, spirit, mv, got: f32(got) }),
+          );
+        }
+      }
+    }
+  }
 });

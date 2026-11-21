@@ -47,7 +47,9 @@
  * hunter's swing has a motion value over the threshold. The motion value is
  * the one before any critical hit, worked back from `+0x2B` (exactly for a
  * critical, to within one for a negative one), so affinity leaves the element
- * alone, as in the game. Only motion rows of types 0 to 3 (`+0x1F`), the
+ * alone, as in the game; so is the builder's later 1.35 (a hunter state,
+ * probably the Long Sword's spirit, that marks the attack `+0x31` 0 and
+ * `+0x32` 0x12). Only motion rows of types 0 to 3 (`+0x1F`), the
  * ones the weapons' table has, count: the hit function deals type 0xB as
  * fixed damage, its `+0x1E` the damage. The curve, not a straight `value × f`, is what puts an
  * elemental weapon ahead of a raw one by more the harder it hits: a hit's
@@ -291,13 +293,17 @@ export function findElementReads(ovl: OvlFile): number | null {
   return found;
 }
 
+/** The swing builder's `+0x32` when it multiplied the motion value by 1.35 (`+0x31` is 0). */
+const SPIRIT_MARK = 0x12;
+
 /** A Blademaster's weapon: the hunter's `+0x4E9` (the weapon getter's test). */
 const BLADEMASTER = 5;
 
 /**
  * The element reads, each element `value × (mv / threshold)^1.5` as a float
  * when a Blademaster hunter's swing (a motion row type 0 to 3 at `+0x1F`)
- * has a motion value (`+0x1E`, before any critical hit) over the threshold,
+ * has a motion value (`+0x1E`, before any critical hit or the builder's
+ * 1.35) over the threshold,
  * and `value` otherwise; padded with `nop`s to the same length. Uses `$v1`,
  * `$a0`, `$a1`, `$at`, `$f0` and `$f1`, which the call right after it
  * clobbers.
@@ -323,6 +329,24 @@ export function assembleElementReads(threshold: number): number[] {
   // a Blademaster hunter's swing has a motion value over it.
   a.i(LBU, s5, v1, 0x2a);
   a.i(LBU, s5, a0, 0x1e);
+  // After the affinity code, the swing builder multiplies the motion value
+  // by 1.35, truncated, for a hunter in one state (`+0x1E8` 6, `+0x410` bit
+  // 0x10; EU 0x09B68950), marking the attack `+0x31` 0, `+0x32` 0x12, which
+  // no motion row has: ceil(20x / 27) is the value before it again.
+  a.i(LBU, s5, at, 0x32);
+  a.i(ADDIU, zero, a1, SPIRIT_MARK);
+  a.branch(BNE, at, a1, "notSpirit");
+  a.i(LBU, s5, at, 0x31);
+  a.branch(BNE, at, zero, "notSpirit");
+  a.emit(0);
+  a.r(0, a0, a1, 4, SLL);
+  a.r(0, a0, at, 2, SLL);
+  a.r(a1, at, a0, 0, ADDU);
+  a.i(ADDIU, a0, a0, 26);
+  a.i(ADDIU, zero, a1, 27);
+  a.r(a0, a1, 0, 0, DIVU);
+  a.r(0, 0, a0, 0, MFLO);
+  a.label("notSpirit");
   // The motion value before a critical hit: the affinity code stored
   // floor(5m / 4) (flag 0x80) or floor(3m / 4) (0x40); ceil(4x / 5) is m
   // again, ceil(4x / 3) m or one less.

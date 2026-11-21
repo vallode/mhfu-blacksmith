@@ -513,7 +513,9 @@ enters into it. Status goes to the monster's buildup counters (EU
 The patch scales an element in game_sub, as the float (`value × f × √f`,
 `f = mv / threshold`, by the motion value before any critical, worked back
 from the critical flags in `+0x2B`, so affinity leaves the element alone as
-in the game), for a weapon's motion row only (types 0 to 3 at `+0x1F`: the
+in the game, and before the 1.35 the swing builder then applies in one hunter
+state, probably the Long Sword's spirit, which marks the attack `+0x31` 0 and
+`+0x32` 0x12), for a weapon's motion row only (types 0 to 3 at `+0x1F`: the
 hit function deals type 0xB as fixed damage, its `+0x1E` the damage), when the attack's
 owner is a hunter with a Blademaster weapon (`+0x4E9` is 5, the getter's
 own test). It scales status in game_task: it rewrites the affinity code with
