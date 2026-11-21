@@ -114,6 +114,9 @@ export interface Settings {
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
+  "mods.weaponMashups": "off" | "class" | "any" | "wild";
+  "mods.weaponStitcher": "off" | "class" | "any" | "wild";
+  "mods.weaponRelics": boolean;
   "hud.monsterHp": "off" | "painted" | "always";
   "pact.enabled": boolean;
   "poogie.enabled": boolean;
@@ -1638,6 +1641,34 @@ export const OPTIONS: readonly OptionDef[] = [
     default: false,
   },
   {
+    key: "mods.weaponMashups",
+    section: "Extras",
+    label: "Mashed-up weapon looks",
+    help: "Every melee weapon gets a new look put together from parts of the game's own: a handle, a head, sometimes another guard, small trim or a glow, its shield or second blade, and now and then a new colour. Bows and bowguns get another of their class's body, barrel, stock, crossbow limbs or quiver. Looks only: stats don't change. Weapons sharing a model change together; a few are left as they are where nothing fits their file.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Off", help: "Weapons look as they do." },
+        {
+          value: "class",
+          label: "Within a class",
+          help: "Parts come from the same class: a Great Sword is built from Great Swords.",
+        },
+        {
+          value: "any",
+          label: "Across classes",
+          help: "Heads, guards and trim come from any melee class, scaled to fit: about half the weapons carry another class's head, so a Lance can carry a Hammer's.",
+        },
+        {
+          value: "wild",
+          label: "Anything goes",
+          help: "Nearly every melee weapon carries another class's head, scaled to fit, with more borrowed guards and trim: Dual Blades with little hammer or great sword heads, Great Swords built up from sword and shield blades.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
     key: "questMonsters.text",
     section: "Extras",
     label: "Rename monsters in quest text",
@@ -1669,6 +1700,44 @@ export const OPTIONS: readonly OptionDef[] = [
       ],
     },
     default: "off",
+  },
+  {
+    key: "mods.weaponStitcher",
+    section: "Extras",
+    label: "Weapon looks stitched in game (prototype)",
+    help: "Your weapon is put together in game from other weapons' parts: with relics, a relic gets a look of its own that it keeps; without, every weapon gets a new look each time the game builds it (when you set out on a quest, go back to the village or change equipment at home). A melee weapon gets a handle, a head, sometimes another guard, small trim or a glow, its shield or second blade; a bow or bowgun another of its class's body, barrel, stock, crossbow limbs or quiver; now and then a new colour. As mashed-up looks have, but rolled in game, so it differs every time. Looks only: stats don't change. Other hunters' weapons stay as they are. A prototype: tried in PPSSPP on the EU disc. Caps received Guild Cards at 3 to make room for its code.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Off", help: "Your weapon looks as it does." },
+        {
+          value: "class",
+          label: "Within a class",
+          help: "Parts come from your weapon's class: a Great Sword is built from Great Swords. Bows and bowguns always are.",
+        },
+        {
+          value: "any",
+          label: "Across classes",
+          help: "Heads and guards come from any melee class, scaled to fit: about half the time your weapon carries another class's head.",
+        },
+        {
+          value: "wild",
+          label: "Anything goes",
+          help: "Nearly every time your weapon carries another class's head, scaled to fit, with more borrowed guards.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "mods.weaponRelics",
+    section: "Extras",
+    label: "Relic weapons keep their look",
+    help: "Only relics are stitched, and each keeps the look it rolls. The relics are one cheap starter per class and everything it upgrades into: Bone Blade, Bone, Hunter's Dagger, Bone Scythe, War Hammer, Ivory Horn, Iron Lance, Bone Gunlance, Shooter's Barrel, Bone Shooter and Hunter's Bow I (wherever the weapon shuffle puts them). A relic rolls its look the first time you take it out after crafting it (or upgrading it), and keeps it; craft another for another look. Every other weapon looks as it does. Off: every weapon gets a new look on every load.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "mods.weaponStitcher",
+    enabledWhen: ["class", "any", "wild"],
   },
   {
     key: "pact.enabled",

@@ -104,7 +104,9 @@ export class Cpu {
           target = u(rs);
           set(rd, pc + 8);
         } else if (funct === 0x10) set(rd, this.hi);
+        else if (funct === 0x11) this.hi = r[rs]! | 0;
         else if (funct === 0x12) set(rd, this.lo);
+        else if (funct === 0x13) this.lo = r[rs]! | 0;
         else if (funct === 0x18) {
           const p = BigInt(r[rs]!) * BigInt(r[rt]!);
           this.lo = Number(BigInt.asIntN(32, p));

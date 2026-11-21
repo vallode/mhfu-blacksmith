@@ -139,6 +139,18 @@ struct rf_load {
  */
 #define RF_HOOK_PICK 5
 
+/*
+ * rf_hook6 isn't a callback hook either: it runs at the start of the game's
+ * weapon model build, `void rf_hook6(u8 *resources, u8 *hunter, u32 n)`,
+ * with the build's own arguments, before the game goes on with the build.
+ * The weapon's package is already in its slot's buffer (resources + 0x80258
+ * + slot * 4, slot (n & 0xff) * 8 + 6), so the hook may write another over
+ * it, no bigger than the slot (resources + 0x80318 + slot * 4). One feature
+ * defines it (stitch.c); without one, or before the blob loads, the build
+ * runs as it is.
+ */
+#define RF_HOOK_BUILD 6
+
 typedef void (*rf_hook_fn)(u8 *arg);
 void rf_on(u32 hook, rf_hook_fn fn);
 

@@ -48,6 +48,8 @@ const UNTRIED: readonly OptionKey[] = [
   "questMonsters.smallSpecies",
   "trades.mode",
   "mods.nodeMap",
+  "mods.weaponMashups",
+  "mods.weaponStitcher",
   "elites.enabled",
   "monsterAi.branches",
 ];

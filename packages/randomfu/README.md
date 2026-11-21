@@ -68,116 +68,118 @@ web app shows as a tag):
   and status resistance, new armor skills (`armorSkills.mode` `randomize`),
   and weapons' attack, affinity and element or status values.
 
-| Setting                           | Default     | What it does                                                                                           |
-| --------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------ |
-| `questRewards.mode`               | `shuffle`   | `off`, `shuffle` reward slots between quests, or `randomize` them                                      |
-| `questRewards.scope`              | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`                |
-| `questRewards.slots`              | ±30%        | With `randomize`: how far a main reward list's number of slots can move                                |
-| `questRewards.keepItems`          | on          | With `randomize`, every reward item stays a reward at its star level                                   |
-| `questRewards.draws`              | 0%          | How far the number of times a main reward list is drawn (`Unkn2 >> 8`) can move; any mode              |
-| `questRewards.chances`            | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`                 |
-| `monsterRewards.mode`             | `shuffle`   | `off`, `shuffle` carves and shiny drops between monsters, or `randomize` them                          |
-| `monsterRewards.scope`            | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`                |
-| `monsterRewards.chances`          | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`                 |
-| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                                      |
-| `carveCounts.mode`                | `off`       | `off`, `shuffle` body and tail carve counts between monsters, or `randomize` them                      |
-| `carveCounts.max`                 | 4           | With `randomize`: the largest count rolled                                                             |
-| `gathering.mode`                  | `off`       | `off`, `shuffle` gathering point pairs between quests, or `randomize` them                             |
-| `gathering.scope`                 | `star`      | How far pairs trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`                |
-| `gathering.chances`               | `rarity`    | With `randomize`: odds `rarity` (the table's own), `reasonable` (×0.5 to 2) or `any`                   |
-| `gathering.keepItems`             | on          | With `randomize`, every gatherable item stays findable at its star level                               |
-| `gathering.counts`                | off         | Randomize each point's `gathers` and `most_gathers` (see below)                                        |
-| `gathering.countSpread`           | 50%         | With `counts`: how far a point's counts move from their value, up or down                              |
-| `supplies.mode`                   | `off`       | `off`, `shuffle` supply box stacks between quests, or `randomize` them                                 |
-| `supplies.scope`                  | `star`      | How far stacks trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`               |
-| `supplies.slots`                  | ±30%        | With `randomize`: how far a box's number of stacks can move                                            |
-| `supplies.keepEssentials`         | on          | Keep maps, ballista and cannon ammo and the other quest-only supplies                                  |
-| `terms.money`                     | off         | Randomize quest money: fees, reward money and penalties                                                |
-| `terms.moneySpread`               | 0.5         | How far they move                                                                                      |
-| `terms.time`                      | off         | Randomize time limits                                                                                  |
-| `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                                     |
-| `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                                                 |
-| `trades.mode`                     | `off`       | `off`, `shuffle` what the Veggie Elder's trades give, or `randomize` it                                |
-| `trades.mix`                      | `elder`     | Within each hunting ground's Elder, or between `all` of them                                           |
-| `trades.scope`                    | `low`       | With `randomize`, the items trades can give besides their own: `low` / `high` rank, `any`              |
-| `recipes.mode`                    | `off`       | `off`, `shuffle` crafting and upgrade materials between slots, or `randomize` them                     |
-| `recipes.scope`                   | `star`      | How far materials move or are drawn from: `star`, `rank`, `adjacent` ranks or `any`                    |
-| `recipes.amounts`                 | off         | Randomize material amounts                                                                             |
-| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                                               |
-| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                                          |
-| `costs.enabled`                   | off         | Randomize crafting costs                                                                               |
-| `costs.spread`                    | 0.5         | How far costs move                                                                                     |
-| `weapons.enabled`                 | off         | Shuffle which weapons the smithy makes                                                                 |
-| `weapons.mix`                     | `same-type` | Whether a spot keeps its weapon type (`any-type`: any Blademaster or Gunner type)                      |
-| `weapons.attack`                  | off         | Randomize each weapon's attack                                                                         |
-| `weapons.attackSpread`            | 0.2         | How far it moves                                                                                       |
-| `weapons.affinity`                | off         | Randomize each weapon's affinity, in steps of 5%                                                       |
-| `weapons.affinitySpread`          | 15          | How many points it can move                                                                            |
-| `weapons.element`                 | off         | Randomize element and status values of weapons that have one                                           |
-| `weapons.elementSpread`           | 0.3         | How far they move                                                                                      |
-| `weapons.elementGain`             | 0           | Chance a Blademaster weapon or bow with no element or status gains one                                 |
-| `weapons.elementKind`             | off         | A weapon's element or status can become any other (bows: elements only)                                |
-| `weapons.slots`                   | off         | Randomize each weapon's decoration slots, 0 to 3                                                       |
-| `weapons.slotSpread`              | 1           | How many slots it can gain or lose                                                                     |
-| `weapons.statRange`               | `near`      | Rarities either side stats stay within (`near` 1, `wide` 3, `any`)                                     |
-| `weapons.sharpness`               | off         | Blademaster weapons of a type and rarity trade sharpness                                               |
-| `weapons.sharpnessMode`           | `shuffle`   | `new`: every bar the weapons use also gets new colors                                                  |
-| `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                                   |
-| `armorSkills.enabled`             | off         | Change armor skills                                                                                    |
-| `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`)                 |
-| `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                                     |
-| `armorStats.defense`              | `off`       | Each piece's defense: `off`, `shuffle` (trade, with sphere caps) or `randomize`                        |
-| `armorStats.defenseSpread`        | 0.2         | How far defense moves, when randomized                                                                 |
-| `armorStats.resistances`          | `off`       | Each piece's five resistances: `off`, `shuffle` (trade all five) or `randomize`                        |
-| `armorStats.resistanceSpread`     | 2           | How many points each resistance can move, when randomized                                              |
-| `armorStats.slots`                | `off`       | Each piece's decoration slots: `off`, `shuffle` or `randomize`                                         |
-| `armorStats.rarity`               | `off`       | Each piece's rarity: `off`, `shuffle` (within its rank) or `randomize`                                 |
-| `armorStats.raritySpread`         | 1           | How many levels rarity can move, when randomized                                                       |
-| `shops.mode`                      | `off`       | `off`, `shuffle` the items shops sell between shops, or `randomize` them                               |
-| `shops.scope`                     | `low`       | With `randomize`, the items shops can sell besides their own: `low` / `high` rank, `any`               |
-| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                                                |
-| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                                        |
-| `shops.special`                   | off         | Include the Point Exchange (Armor Spheres, jewels, Pokke Tickets)                                      |
-| `shops.countSpread`               | 0           | With `randomize`: how much more or fewer items each shop sells                                         |
-| `shops.prices`                    | off         | Randomize prices of what shops sell, with or without `shops.mode`                                      |
-| `shops.priceSpread`               | 0.5         | How far prices move                                                                                    |
-| `shops.stacks`                    | off         | Randomize carry limits of what shops sell, with or without `shops.mode`                                |
-| `shops.stackSpread`               | 0.5         | How far carry limits move                                                                              |
-| `questMaps.enabled`               | off         | Move quests to other maps                                                                              |
-| `questMaps.pool`                  | `any`       | The other `time` of day only, or `any` map with all of the quest's large monsters                      |
-| `questMaps.starts`                | off         | Shuffle where each large monster starts on its map                                                     |
-| `questMonsters.mode`              | `off`       | `off`, `shuffle` large monsters into their variants, or `randomize` them                               |
-| `questMonsters.scope`             | `rank`      | With `randomize`, any monster on the map found at the same `rank`, `adjacent` ranks, `any`             |
-| `questMonsters.text`              | on          | Rename swapped monsters in the quest's text                                                            |
-| `questMonsters.difficulty`        | off         | Randomize each large monster's difficulty level (`power`)                                              |
-| `questMonsters.difficultySpread`  | 4           | How many levels it can move                                                                            |
-| `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                                          |
-| `questMonsters.size`              | off         | Randomize each quest's monster size (its size percentage)                                              |
-| `questMonsters.sizeSpread`        | 0.2         | How far it moves (kept between 50% and 200%)                                                           |
-| `questMonsters.crowns`            | off         | Change each quest's crown spread (the range its monsters' sizes roll in)                               |
-| `questMonsters.crownSpread`       | `random`    | One of the four that vary size at `random`, the `wide`st (85-125%) everywhere, or `none`               |
-| `questMonsters.smallSpecies`      | off         | Shuffle which small monsters each quest has                                                            |
-| `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                                         |
-| `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                                                    |
-| `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                                       |
-| `monsterStats.hpSpread`           | 0.25        | How far HP moves                                                                                       |
-| `monsterStats.size`               | off         | Randomize each monster's base size                                                                     |
-| `monsterStats.sizeSpread`         | 0.2         | How far size moves (at most 50%)                                                                       |
-| `monsterStats.status`             | off         | Randomize poison, paralysis, sleep and KO resistance                                                   |
-| `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                               |
-| `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                        |
-| `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                          |
-| `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                            |
-| `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                      |
-| `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
-| `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
-| `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
-| `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
-| `poogie.enabled`                  | on          | A happy pet before a hunt makes its rewards rarer, more so as affection grows (caps Guild Cards)       |
-| `pact.enabled`                    | off         | Hunter's Pact: penalties at each quest's start, each paying a reward (caps Guild Cards)                |
-| `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)                  |
-| `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                              |
-| `quests.unknown`                  | off         | "Unknown Monster?!" quests on Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards) |
+| Setting                           | Default     | What it does                                                                                                 |
+| --------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------ |
+| `questRewards.mode`               | `shuffle`   | `off`, `shuffle` reward slots between quests, or `randomize` them                                            |
+| `questRewards.scope`              | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`                      |
+| `questRewards.slots`              | ±30%        | With `randomize`: how far a main reward list's number of slots can move                                      |
+| `questRewards.keepItems`          | on          | With `randomize`, every reward item stays a reward at its star level                                         |
+| `questRewards.draws`              | 0%          | How far the number of times a main reward list is drawn (`Unkn2 >> 8`) can move; any mode                    |
+| `questRewards.chances`            | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`                       |
+| `monsterRewards.mode`             | `shuffle`   | `off`, `shuffle` carves and shiny drops between monsters, or `randomize` them                                |
+| `monsterRewards.scope`            | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`                      |
+| `monsterRewards.chances`          | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`                       |
+| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                                            |
+| `carveCounts.mode`                | `off`       | `off`, `shuffle` body and tail carve counts between monsters, or `randomize` them                            |
+| `carveCounts.max`                 | 4           | With `randomize`: the largest count rolled                                                                   |
+| `gathering.mode`                  | `off`       | `off`, `shuffle` gathering point pairs between quests, or `randomize` them                                   |
+| `gathering.scope`                 | `star`      | How far pairs trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`                      |
+| `gathering.chances`               | `rarity`    | With `randomize`: odds `rarity` (the table's own), `reasonable` (×0.5 to 2) or `any`                         |
+| `gathering.keepItems`             | on          | With `randomize`, every gatherable item stays findable at its star level                                     |
+| `gathering.counts`                | off         | Randomize each point's `gathers` and `most_gathers` (see below)                                              |
+| `gathering.countSpread`           | 50%         | With `counts`: how far a point's counts move from their value, up or down                                    |
+| `supplies.mode`                   | `off`       | `off`, `shuffle` supply box stacks between quests, or `randomize` them                                       |
+| `supplies.scope`                  | `star`      | How far stacks trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`                     |
+| `supplies.slots`                  | ±30%        | With `randomize`: how far a box's number of stacks can move                                                  |
+| `supplies.keepEssentials`         | on          | Keep maps, ballista and cannon ammo and the other quest-only supplies                                        |
+| `terms.money`                     | off         | Randomize quest money: fees, reward money and penalties                                                      |
+| `terms.moneySpread`               | 0.5         | How far they move                                                                                            |
+| `terms.time`                      | off         | Randomize time limits                                                                                        |
+| `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                                           |
+| `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                                                       |
+| `trades.mode`                     | `off`       | `off`, `shuffle` what the Veggie Elder's trades give, or `randomize` it                                      |
+| `trades.mix`                      | `elder`     | Within each hunting ground's Elder, or between `all` of them                                                 |
+| `trades.scope`                    | `low`       | With `randomize`, the items trades can give besides their own: `low` / `high` rank, `any`                    |
+| `recipes.mode`                    | `off`       | `off`, `shuffle` crafting and upgrade materials between slots, or `randomize` them                           |
+| `recipes.scope`                   | `star`      | How far materials move or are drawn from: `star`, `rank`, `adjacent` ranks or `any`                          |
+| `recipes.amounts`                 | off         | Randomize material amounts                                                                                   |
+| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                                                     |
+| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                                                |
+| `costs.enabled`                   | off         | Randomize crafting costs                                                                                     |
+| `costs.spread`                    | 0.5         | How far costs move                                                                                           |
+| `weapons.enabled`                 | off         | Shuffle which weapons the smithy makes                                                                       |
+| `weapons.mix`                     | `same-type` | Whether a spot keeps its weapon type (`any-type`: any Blademaster or Gunner type)                            |
+| `weapons.attack`                  | off         | Randomize each weapon's attack                                                                               |
+| `weapons.attackSpread`            | 0.2         | How far it moves                                                                                             |
+| `weapons.affinity`                | off         | Randomize each weapon's affinity, in steps of 5%                                                             |
+| `weapons.affinitySpread`          | 15          | How many points it can move                                                                                  |
+| `weapons.element`                 | off         | Randomize element and status values of weapons that have one                                                 |
+| `weapons.elementSpread`           | 0.3         | How far they move                                                                                            |
+| `weapons.elementGain`             | 0           | Chance a Blademaster weapon or bow with no element or status gains one                                       |
+| `weapons.elementKind`             | off         | A weapon's element or status can become any other (bows: elements only)                                      |
+| `weapons.slots`                   | off         | Randomize each weapon's decoration slots, 0 to 3                                                             |
+| `weapons.slotSpread`              | 1           | How many slots it can gain or lose                                                                           |
+| `weapons.statRange`               | `near`      | Rarities either side stats stay within (`near` 1, `wide` 3, `any`)                                           |
+| `weapons.sharpness`               | off         | Blademaster weapons of a type and rarity trade sharpness                                                     |
+| `weapons.sharpnessMode`           | `shuffle`   | `new`: every bar the weapons use also gets new colors                                                        |
+| `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                                         |
+| `armorSkills.enabled`             | off         | Change armor skills                                                                                          |
+| `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`)                       |
+| `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                                           |
+| `armorStats.defense`              | `off`       | Each piece's defense: `off`, `shuffle` (trade, with sphere caps) or `randomize`                              |
+| `armorStats.defenseSpread`        | 0.2         | How far defense moves, when randomized                                                                       |
+| `armorStats.resistances`          | `off`       | Each piece's five resistances: `off`, `shuffle` (trade all five) or `randomize`                              |
+| `armorStats.resistanceSpread`     | 2           | How many points each resistance can move, when randomized                                                    |
+| `armorStats.slots`                | `off`       | Each piece's decoration slots: `off`, `shuffle` or `randomize`                                               |
+| `armorStats.rarity`               | `off`       | Each piece's rarity: `off`, `shuffle` (within its rank) or `randomize`                                       |
+| `armorStats.raritySpread`         | 1           | How many levels rarity can move, when randomized                                                             |
+| `shops.mode`                      | `off`       | `off`, `shuffle` the items shops sell between shops, or `randomize` them                                     |
+| `shops.scope`                     | `low`       | With `randomize`, the items shops can sell besides their own: `low` / `high` rank, `any`                     |
+| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                                                      |
+| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                                              |
+| `shops.special`                   | off         | Include the Point Exchange (Armor Spheres, jewels, Pokke Tickets)                                            |
+| `shops.countSpread`               | 0           | With `randomize`: how much more or fewer items each shop sells                                               |
+| `shops.prices`                    | off         | Randomize prices of what shops sell, with or without `shops.mode`                                            |
+| `shops.priceSpread`               | 0.5         | How far prices move                                                                                          |
+| `shops.stacks`                    | off         | Randomize carry limits of what shops sell, with or without `shops.mode`                                      |
+| `shops.stackSpread`               | 0.5         | How far carry limits move                                                                                    |
+| `questMaps.enabled`               | off         | Move quests to other maps                                                                                    |
+| `questMaps.pool`                  | `any`       | The other `time` of day only, or `any` map with all of the quest's large monsters                            |
+| `questMaps.starts`                | off         | Shuffle where each large monster starts on its map                                                           |
+| `questMonsters.mode`              | `off`       | `off`, `shuffle` large monsters into their variants, or `randomize` them                                     |
+| `questMonsters.scope`             | `rank`      | With `randomize`, any monster on the map found at the same `rank`, `adjacent` ranks, `any`                   |
+| `questMonsters.text`              | on          | Rename swapped monsters in the quest's text                                                                  |
+| `questMonsters.difficulty`        | off         | Randomize each large monster's difficulty level (`power`)                                                    |
+| `questMonsters.difficultySpread`  | 4           | How many levels it can move                                                                                  |
+| `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                                                |
+| `questMonsters.size`              | off         | Randomize each quest's monster size (its size percentage)                                                    |
+| `questMonsters.sizeSpread`        | 0.2         | How far it moves (kept between 50% and 200%)                                                                 |
+| `questMonsters.crowns`            | off         | Change each quest's crown spread (the range its monsters' sizes roll in)                                     |
+| `questMonsters.crownSpread`       | `random`    | One of the four that vary size at `random`, the `wide`st (85-125%) everywhere, or `none`                     |
+| `questMonsters.smallSpecies`      | off         | Shuffle which small monsters each quest has                                                                  |
+| `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                                               |
+| `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                                                          |
+| `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                                             |
+| `monsterStats.hpSpread`           | 0.25        | How far HP moves                                                                                             |
+| `monsterStats.size`               | off         | Randomize each monster's base size                                                                           |
+| `monsterStats.sizeSpread`         | 0.2         | How far size moves (at most 50%)                                                                             |
+| `monsterStats.status`             | off         | Randomize poison, paralysis, sleep and KO resistance                                                         |
+| `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                                     |
+| `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                              |
+| `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                                |
+| `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                                  |
+| `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                            |
+| `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                        |
+| `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                       |
+| `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                                 |
+| `mods.weaponMashups`              | off         | Weapon models rebuilt from parts of the game's own: within a class, (melee) across classes, or anything goes |
+| `mods.weaponStitcher`             | off         | Prototype: the weapon stitched anew in game at every build (caps Guild Cards)                                |
+| `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                       |
+| `poogie.enabled`                  | on          | A happy pet before a hunt makes its rewards rarer, more so as affection grows (caps Guild Cards)             |
+| `pact.enabled`                    | off         | Hunter's Pact: penalties at each quest's start, each paying a reward (caps Guild Cards)                      |
+| `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)                        |
+| `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                                    |
+| `quests.unknown`                  | off         | "Unknown Monster?!" quests on Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards)       |
 
 ### Presets
 
@@ -985,6 +987,220 @@ texture gets the union. The markers use palette entries the art leaves
 unused (every map has over 200), so nothing else recolours and file sizes
 are unchanged. Checked in PPSSPP on the Snowy Mountains map.
 
+**Weapon mashups** (`mods.weaponMashups`, `src/patches/weapon-mashups.ts`,
+`src/forge/`) rebuilds every melee weapon model (`weapon/weNNN.pac`) from
+parts of the disc's own, the way procedural weapon games assemble theirs
+from slots (Borderlands' barrel, grip and stock; Tinkers' Construct's head,
+binding and handle; Starbound's handle and blade with a colour swap).
+
+- **Cutting** (`parts.ts`). Every melee model lies along +z with the fist
+  at the origin. Its pieces are the strips joined by shared vertex
+  positions. The cut is where the weapon first widens out of its grip
+  (twice the grip's width, measured in 4-unit slices): below it is the
+  handle, above it the head (the biggest pieces), a guard (short, wide
+  pieces sitting on the cut, in the classes that have one), and extras (the
+  small pieces). Blended pieces are effects, and the pieces on the
+  skeleton's other roots are the second piece (shield, other blade). A few
+  models don't cut (nothing above the grip, no opaque main piece) and give
+  no parts.
+- **Assembling** (`assemble.ts`). The model being replaced is the frame:
+  its file, skeleton and texture layout, and the bones its handle and head
+  follow. The handle is one of the frame class's, where it was, and has
+  to run through the fist: over half the great swords and lances, and many
+  gunlances, have their grip inside the blade or vamplate piece and only a
+  pommel below it, so they don't lend handles (a head on such a pommel left
+  the hand holding nothing in game). The head (with its own trim, and its
+  own guard unless another is rolled) is moved so its cut sits on the
+  handle's; a head that carries its own grip keeps its place at the fist
+  instead, over the handle. A head that hangs on its own shaft (the
+  handle runs on up past the cut to where the head widens out, as in Dual
+  Diablo's club and the gunhammers' drums) goes on no other handle: on
+  one it floated above the hilt in game. Nor does a head with nothing within
+  8 of the grip's axis (Amezari Claws' claw curls out beside its grip), and
+  a handle with pieces rising more than 8 past its cut and more than 12 out
+  from the axis takes no other head (34 of 309: Polytan's grip is a horn
+  curving away, Bronze Coin's the lower half of a cleaver, and another head
+  stood beside them; Polytan's looked off on anything). Trim reaching more
+  than 8 below its cut isn't borrowed either (66 of 2,419 pieces: slivers
+  of grips and blades, such as a strip of Polytan's horn grip). Every head on another handle is then seated on its
+  shaft: its lowest triangle within 6 of the axis is let down to 1 below the
+  top of the handle's (handles end anywhere from well below their cut to
+  above it). Triangles, not vertices: a model's vertices are its corners,
+  and a blade 16 wide has none near the axis it crosses. Before, 121 of 806
+  weapons (two seeds of anything goes) had a gap of 2 or more between grip
+  and head, or no head over the grip at all; now 32, by a cruder measure
+  (vertices near the axis), and none in the worst of them as rendered.
+  "Across classes" takes the head
+  from another class half the time and "Anything goes" nine times in ten
+  (with guards and trim more often too); the other class is picked evenly,
+  not by how many models it has, so gunlances and horns turn up as often as
+  swords and shields. Moved onto another handle, a head leaves behind trim
+  and glows reaching more than 8 below its cut (Bronze Coin's glow runs from
+  its grip to its tip, over what is cut as its handle). A head from another
+  class is scaled about where it sits to the frame class's median head
+  length, but no more than half again as wide as the class's median head
+  (the wider of x and y) and no bulkier (its box's volume, across, through
+  and from the cut up), within 0.25x to 3x. Blades are flat and hammer and
+  horn heads blocks, so length alone made a dual blade's length of hammer
+  (Devil Masher at 0.98x, as wide as it was long); held back by bulk it
+  comes out a mace's head (0.68x). A lance's head goes on dual blades at
+  about 0.35x and a great sword's at 0.4x, and a sword and shield's blade
+  on a great sword or long sword at up to 3x (the old 0.5x to 2x left a
+  lance's head 1.4 times a dual blade's length, and a sword and shield's
+  blade on a great sword 0.8 of its). A head from another class, or over
+  another guard, is let down onto the top of what is under it as placed:
+  its own guard, sized as a guard, can be far shorter than the head's
+  scale makes the gap above the cut (Rouge Flames' blade starts 13 above
+  its cut, over its guard, and at a great sword's 2.48x floated 32 up over
+  a guard of 14). Dual blades face the other
+  way from the other classes, edge on +x (Dual Tomahawk's axe against
+  Halberd's and Decider's, Double Dragon's spines against Hidden Blaze's),
+  so their parts are turned half about the grip's axis on another class's
+  frame and the other way round; untouched, a dual blades head on a great
+  sword was swung back first. A guard of another model replaces the head's
+  half the time in classes with guards, where the head starts, scaled to
+  the frame class's median guard width (0.6x to 1.6x), as is a head's own
+  guard from another class (in hammers and horns, which have no guards, by
+  the head's scale), and around another class's head no wider than 1.5
+  times the head as placed (a lance's claw of a guard dwarfed a little mace
+  head on dual blades). Only guards around the shaft are borrowed: 7 of the
+  67 are a few plates off one side (Gatling Lance's three, the rest of its
+  vamplate below the cut with the head), and they hung beside the weapon.
+  On a frame with a 16-bit palette (one bit of alpha), a head that is
+  mostly glow isn't picked: AncientFatalisBuster's body is drawn blended,
+  and what was left was a few scraps. Up to two small pieces of trim (40 triangles
+  or fewer) are set along the head, brought in to its sides and scaled for
+  the frame's class (classes' median head lengths, 0.25x to 3x). Frames
+  with 32-bit palettes can borrow another model's effect, sized and
+  brought in the same way (sized by the head's scale, a hammer's glow on a
+  great sword with a sword and shield blade hung beside it), set as far
+  along the head as along its own, and no larger than this head is to its
+  own head nor longer than it (kept at its own height, Jail Hammer's ring
+  hung past a short blade's tip; 13 of 1,209 forged weapons over three wild
+  seeds borrowed one). Trim and glows are kept within the head's length. The second
+  piece is the frame's, or 30% of the time another of its class with the
+  same skeleton, on its own bones. Dual blades get a matching pair instead:
+  the second blade lies where the first does (along +z, the fist at the
+  origin; Dual Tomahawk's two are the same), on bones of its own that the
+  poses put in the other hand, so it is built from the same parts, skinned
+  to the bones most of the second piece's vertices below and above the cut
+  follow. Every other vertex is skinned whole
+  to the frame's handle or head bone, so the game's poses (great sword and
+  long sword bones; `mhfu-extract` `weapon-pose.ts`) still move it.
+- **Texture** (`atlas.ts`). Each source model's texture is cropped to what
+  its parts use, shelf-packed into the frame's 64x64 texture at the scale
+  its parts are drawn (up to 1x: a great sword's head at 0.35x on dual
+  blades took its full texture, finer than the handle's), all scaled down
+  together until they fit, and quantized to its 256-colour palette by
+  median cut. Models whose UVs wrap past the texture's edge give no parts.
+  15% of weapons get one material over everything and 30% over the head:
+  a luminance ramp (gold, obsidian, bone, ruby, jade, frost, rust, steel)
+  mixed three quarters into each pixel.
+- **Fit**. The PMO is written by `mhfu-extract`'s `writePmo` with one mesh
+  per source blend and a vertex group per bone and material. The package
+  has to fit the frame's file, since DATA.BIN files can't grow, and that,
+  not the rules, is what kept big heads off small weapons: dual blade and
+  sword and shield files are 12 to 18 KB, of which the texture and
+  skeleton take about 6, and a hammer, horn or gunlance head has 230 to
+  350 vertices (each about 24 bytes written), twice that for a pair. So a
+  head is picked from those that could fit: the vertices the frame's own
+  model has, for the bytes it takes, scaled to the room its file leaves
+  the model (`vertexRoom`), against the head's and handle's (twice for a
+  pair, else with the second piece), and a class from those with such a
+  head. A recipe that still doesn't fit is tried without trim and borrowed
+  effects, then (for a pair) with the second piece as it was, before up to
+  eight recipes are rolled per model. A part drawn below 0.8x is
+  simplified (`simplify.ts`), since it kept its source's detail: finer than
+  the weapon around it, and too heavy for the file. Its vertices are
+  clustered on a grid of 0.8 of its median edge over its scale, kept apart
+  by which way they face (the two sides of a thin blade) and by which
+  quarter of the texture they are on (merged across, a hammer's sides
+  smeared), each cluster one vertex at their average with the UV of the
+  one nearest, as a triangle list. A head at 0.35x keeps about 57% of its
+  vertices. Without the facing and UV buckets it kept fewer, but blades
+  folded and textures smeared; on whole models at 1x, welding duplicate
+  vertices saves 2%, and every weapon on the disc uses the same vertex
+  format (u16 UVs, s8 normals, s16 positions), so none smaller was tried.
+  In three seeds of anything goes, simplifying cut recipes turned down
+  for size from 99 to 71 on sword and shield frames, pairs given up for
+  size from 155 to 138, and recipes stripped of trim from 387 to 318.
+  On the EU disc, before: 36% of the forged melee weapons had another
+  class's head (dual blades took a great sword's, hammer's, horn's or
+  gunlance's 3 to 4 times in three seeds, the rest didn't fit), and 16
+  models a seed kept their look. Now every one of the 403 models is
+  rebuilt, half with another class's head across classes (90% with
+  anything goes), each class pair tens of times in three seeds, and 45 of
+  the 49 dual blades models are matching pairs.
+- **Bows and bowguns** (`gunner-parts.ts`, `gunner-assemble.ts`,
+  `src/patches/gunner-mashups.ts`), from their own class in either mode.
+  Gunner models also lie along +z with the fist at the origin (muzzle or
+  upper tip toward +z), but they fold on their bones: the game's poses
+  (`mhfu-extract` `weapon-pose.ts`) swing a heavy bowgun's barrel (bone 2)
+  half a turn about x at its hinge, (0, -31, 11) on most models, out from
+  under the stock, and open a bow's lower limb (bone 2) by its fold type's
+  angle. So parts are cut and placed as the drawn weapon shows them, and
+  each vertex keeps its bones (mapped onto the frame's skeleton: the same
+  bone where it hangs from the same parent, else its parent's) and weights,
+  and is folded back by the inverse of the frame's blended drawn skin.
+  Sheathing then folds the weapon the frame's way, whatever model or fold
+  type a part came from (a few heavy bowguns are modelled unfolded, bone 2
+  already turned). A heavy bowgun is a body (bone 1, and the pieces of the
+  folding bone behind the hinge: many hang the receiver there, and the
+  cannons their breech and carriage) and a barrel (the folding bone's
+  pieces ahead of the hinge, whole). Some bodies end at the hinge, others
+  carry the receiver far ahead of it (to z 109 on model 403, whose barrel
+  starts there), so a body takes only barrels that leave no gap of more
+  than 6 along its bore (triangles within 10 of x = 0 and 12 of the
+  hinge's height): about 60% of pairs, at least 2 barrels for every body.
+  A light bowgun is one bone along a
+  bore at x -4, y -27, cut at z 48 (barrel ahead) and z -20 (stock
+  behind), pieces running across a cut split by strip; its crossbow limbs
+  and string are the pieces with a tenth or more of their weight on bone 3
+  (at z 57-65 on the bore; one model gives its whole welded gun a speck of
+  bone 3). The barrel slides along the bore to where the body's own
+  started, the limbs to the frame's bone 3. A bow is one part (riser and
+  upper limb are often one piece) and its quiver (the second root) comes
+  from a bow with the same skeleton. Every texture is one 64x64 8-bit image
+  with a 16- or 32-bit palette, and a part draws with texels scattered
+  over most of it, so the melee forge's one box per donor model only fits
+  two or three donors at half size. The gunner forge packs UV islands
+  instead (`gunner-atlas.ts`): the texels each island's triangles cover,
+  plus a texel of border, fitted together as shapes, texel for texel when
+  they fit and else all scaled down alike. Mashups keep about 0.75 of their
+  texture's size on the EU disc (median; the parts' texels together often
+  outnumber the 64x64). Vertex groups are split by the bones their
+  strips use, so a vertex carries only the weights it needs: rebuilding a
+  model from its own parts comes out the original's size or smaller. On
+  the EU disc 133 of 134 gunner models were rebuilt.
+- **Looking through a disc's weapons** (`scripts/equip-live.ts`). With
+  the game running in PPSSPP and its remote debugger on (Settings > Tools >
+  Developer tools), `pnpm --filter randomfu equip:live` swaps the hunter's
+  melee weapon for a random one of the same class on every space press, on
+  the spot, in quests and the village, drawn or sheathed (`--id` picks
+  one; b puts one in the equipment box instead; c allows any melee class,
+  equipped for the next stage load). It does what the house's equipment
+  change does, run by the game itself: tear the weapon model down
+  (`0x08868680`), copy the new `.pac` into the hunter's weapon resource
+  slot (raw DATA.BIN copies, slot 6 of `*0x08A62C5C`), set the weapon
+  (`0x08821BD4`), build the model (`0x08868234`), point the hunter at the
+  model's table entry (`0x088DAD58`) and pose its parts (`0x088CF210`).
+  The teardown also clears hunter +0x1ac, which only the hunter's creation
+  sets; without it the hunter can't move or attack with the weapon drawn,
+  so the swap sets it back. While the game is paused, the tool writes the
+  file and a routine into the PSP's volatile memory (which the game leaves
+  empty), and a jump to the routine over the start of a function the game
+  runs every frame (`0x088971A0`); the next pause puts that start back.
+  Things that went wrong on the way: writing a model over the loaded
+  `.pac` changes only its texture and hangs the game (the model is built
+  from it once); writing the equipped weapon's copies (twice in the save
+  data, once in the hunter, each after `e4 9a 67 ff`) changes the menus
+  but not the model, as a stage load keeps a loaded resource slot whatever
+  it holds; hunter 1's resource slots are marked unloaded in a quest
+  but their memory holds other data (writing there broke the motions); and PPSSPP 1.19.3 crashed soon after every
+  use of the debugger's breakpoints or register writes, and after dozens
+  of `memory.read` calls while the game ran (each pauses and resumes it),
+  but never when the tool pauses once and reads and writes inside it.
+
 `supplies` changes what each quest's supply box holds. The box is a list
 of `{ u16 item, u16 amount }` at the header's `SuppliesPTR`, ending at item
 0 (whose amount field holds the quest ID). On the EU disc every quest has
@@ -1428,6 +1644,182 @@ Tried in PPSSPP with the quest moved to the Village 2★ board for an early
 save: it shows on the board, loads a rolled hunt and plays through. Not yet
 tried: the 8★ and G★3 boards themselves, rolled starts, ad-hoc play, and each region
 separately.
+
+## Weapon stitcher (prototype)
+
+`mods.weaponStitcher` gives the hunter's weapon a look stitched in game from
+the forges' parts: with `mods.weaponRelics` (on by default) only relics are
+stitched, each keeping the look it rolls; without, every weapon gets a new
+look every time the game builds it (a stage load, an equipment change at
+home). The looks are stitched (see Weapon mashups and Gunner mashups) by blob
+code (`blob/stitch.c`, `src/patches/weapon-stitcher.ts`,
+`src/forge/stitch*.ts`). Its modes are Weapon mashups': "class" (every part
+from the weapon's class, at its own size), "any" (the head from another
+class half the time) and "wild" (nine times in ten, with more borrowed
+guards). Bows and bowguns are stitched within their class in every mode,
+as Gunner mashups mixes them.
+
+- **The build.** One EBOOT function builds a hunter's weapon model (EU
+  0x08868234, JP 0x0886822C), `build(resources, hunter, n)`, when the
+  hunter is made for a stage and from `lobby_task`'s equipment change. Slot
+  `(n & 0xff) * 8 + 6` is the weapon's: its DATA.BIN package is already in
+  the slot's buffer (`resources + 0x80258 + slot * 4`), and the build makes
+  the model and texture from those bytes. The slot's capacity
+  (`+0x80318`) is 0x5800 bytes for every hunter's weapon; vanilla weapon
+  packages are 10,240 to 22,528. The file it holds (`+0x80408`, u16) is the
+  model plus 0xD50 (EU) or 0xD3C (JP). Hook 6 (`docs/code-loader.md`)
+  runs `rf_hook6` before the build; for the hunter's own weapon (n = 0) it
+  writes a stitched package over the buffer if one fits the slot, and
+  otherwise leaves DATA.BIN's bytes.
+- **Relics** (`src/forge/relics.ts`). The relics are the upgrade lines of
+  one starter per class: Bone Blade, Bone, Hunter's Dagger, Bone Scythe,
+  War Hammer, Ivory Horn, Iron Lance, Bone Gunlance, Shooter's Barrel, Bone
+  Shooter and Hunter's Bow I, followed from their create entries in the
+  edited EBOOT (so through the weapon shuffle) along the upgrade entries:
+  429 weapons on 186 models on the EU disc (417 melee; the bowguns upgrade
+  into nothing, the bow line has 10). A relic's seed is bytes 4-5 of its
+  equipment box slot, 0 on every weapon in the game's own saves (armor
+  keeps its upgrade level there). Read offline from the EU EBOOT and
+  `lobby_task`: equipping copies all 12 bytes from the box to the
+  hunter's equipped set (EBOOT 0x08850910), and the hunter's block keeps
+  the equipped weapon's box index at +0x4020 (0xFFFF for none); crafting
+  adds the weapon to the box (0x08850724) with bytes 4-5 at 0, and an
+  upgrade (`lobby_task` 0x09AA5D20) rewrites the weapon's slot with them
+  at 0 (a special weapon's upgrade keeps them). So at the build, `rf_hook6`
+  follows the save pointer (found by Poogie's luck's signature) to the
+  equipped slot; if it holds a relic of the model being built, bytes 4-5
+  at 0 get a seed from the clock, written back to the slot and the copies
+  of it (the equipped set, the save's other copy, the hunter's at
+  +0x4E8), and the look is rolled from the seed and the model
+  (`relicState`). Any other weapon keeps DATA.BIN's bytes. So a relic
+  rolls its look the first time it is taken out after it is crafted or
+  upgraded, and keeps it through saves; crafting another rolls another.
+  Tried in PPSSPP on the EU disc ("any" mode): a Bone Blade rolled a seed
+  at the first build and kept it in its slot and both equipped copies; at
+  home another Bone Blade rolled its own look, the first came back with
+  its look, and Bone Club stayed stock (the house's change sets the index
+  before it builds); after saving and reloading the look was the same, and
+  the box showed nothing odd; upgrading the relic to Bone Blade+ zeroed
+  the seed, and the next build rolled a new one. The smithy doesn't build
+  the model again, so an upgraded relic shows its new look after the next
+  area change.
+- **More than one texture.** The build loads every image of a weapon's TMH
+  (its count at `+8`, 8 GE commands each), and a material's
+  `textureIndex` picks one (armor already uses index 1), with the palette
+  size from the image's own header (`CLOAD` loads `(count + 7) / 8`
+  blocks). So a stitched weapon carries each part's own small image
+  (16x16 to 64x64, up to 64 colours) instead of one shared atlas.
+- **`FORGE.BIN`** (`/PSP_GAME/USRDIR`, `stitch-library.ts`): per class,
+  its usual guard width and how much another class's parts are scaled on
+  it; per melee model, an index entry (class, shape, what its parts can be
+  used for) and a record of a few placement numbers (its cut, where its
+  shaft ends on the grip's axis, its guard's top, its head's and guard's
+  widths, its head's scale on each class as `headScaleFor` works it out)
+  with seat tables (how low its head and guard reach within each distance
+  of the axis, so a scaled head is seated as the forge seats it) and its
+  blocks:
+  handle, head, guard, the head's trim and glows above and below its cut,
+  second piece, and a fewer-vertex take of the first four (`simplify.ts`
+  at half scale). Each piece of trim (up to 40 triangles) and each glow
+  above a head's cut also gets a block of its own on its role's image, in
+  a table of pieces other heads may borrow (model, block, bounds), and a
+  record has its head's length and sides. A block is a 16-byte head
+  pointing at its body and its image record, each packed (`lz.ts`: LZ4
+  sequences, unpacked in place over their own last bytes). A body is its
+  chunks, each a GE vertex format, bones and draw commands, then its
+  vertices with only what the chunk draws (positions in 1/32 units,
+  normal, bone slot, UV) and its indices as deltas in the package's own
+  width; identical bodies are kept once. On the EU disc: 2.0 MB of
+  blocks, 1.3 MB of fewer-vertex takes, 2.8 MB of images (3.7, 2.2 and
+  4.7 MB unpacked).
+- **Stitching** (`blob/stitch.c`, about 1,400 lines; `stitch.ts` is the same
+  in TypeScript). A recipe as Weapon mashups' `rollRecipe` rolls one in
+  the setting's mode (another handle of the class; a head, in "any" and
+  "wild" mode from another class, picked evenly, half or nine times in
+  ten; sometimes another guard, from any class outside "class" mode; up
+  to two pieces of borrowed trim and, 15 times in 100, a borrowed glow, from
+  the classes the head may come from; the second piece or a donor's; a
+  material over all or the head), with
+  xorshift seeded from `sceKernelGetSystemTimeLow`, and sizes it as
+  `rollRecipe` does: the head at its precomputed scale for the frame's
+  class, a guard to the class's usual guard width but no wider than half
+  again the head. Placement is integer, scales in Q12 fixed point: a part
+  from another class is scaled about its cut and, between dual blades and
+  the rest, turned half about the grip's axis; a head carrying its own
+  grip goes onto the handle's cut, let down onto what is under it; borrowed
+  trim sits 0.25 to 0.85 along the head, sized for the frame's class; a
+  borrowed glow sits as far along the head as along its own, no larger
+  than the class scale, nor than this head's length over its own head's,
+  and no longer than the head (kept on its own weapon's height, a hammer's
+  ring hung past a short blade's tip). Both are kept within the head's
+  length and moved in across to the middle of the head's sides, as
+  `forgeWeapon` does; then the weapon is seated on the shaft's top by its
+  seat tables. A part scaled under 0.8
+  takes its fewer-vertex block. Dual blades get the same parts again on
+  the second blade's bones. Then the
+  package: one vertex group per part chunk on its bone, positions
+  re-quantized to the new bounds, materials pointing at the parts' images,
+  palettes recoloured along the material's ramp, and the frame's skeleton.
+  Too big for the slot, it is tried without trim and borrowed glows, then with
+  the fewer-vertex blocks, then without the matching second blade, then
+  rolled again (6 rolls).
+- **Checked** (`test/stitch.test.ts`): the blob, run in the MIPS
+  interpreter, writes the same bytes as `stitch.ts` in every mode, and the
+  parts land where the forge (`assemble.ts`) puts them at the same scales,
+  within quantization; a borrowed glow is also checked to be within the
+  head's length. Over every EU melee model, three builds each per
+  mode (with bows and bowguns in the library, and borrowed trim and
+  glows), the blob's 3,627 packages were the TypeScript's byte for byte
+  and all fit the slot (on the first roll: class 99%, any 97%, wild 95%).
+  The head came from another class in 52% of "any" builds and 88% of
+  "wild" ones, scaled 0.34 to 2.4 (10th to 90th percentile, median 0.80).
+  Against the forge, over the first build of each model per mode, the 760
+  without fewer-vertex blocks (which the forge simplifies its own way), the parts
+  were within 0.06 units but for 21 recipes, all with a part scaled under
+  0.8, which the forge simplifies even without a fewer-vertex block
+  (borrowed trim from a smaller class, guards at 0.65 and 0.74): against
+  the forge without simplifying, those builds were within 0.08 units. 2,440
+  pieces (2,346 trim, 94 glows) add 0.35 MB to FORGE.BIN. The stitcher is
+  about 92 KB of the blob, 24 KB of code and 68 KB of buffers (the blob's
+  file grows by both), most of it a 28 KB arena: a roll's blocks are
+  unpacked into it, and once a take's blocks, images and skeleton are
+  there, the package is written straight over the slot buffer.
+- **Bows and bowguns** (`stitch-gunner.ts`). Each also has an index entry
+  (its class 8 to 10, shape, which of its slots can be used) and a record:
+  its skeleton's parents, each bone's drawn-pose skin (a Q14 3x3 and a
+  translation), a light bowgun's barrel start and limb bone z, a heavy
+  bowgun's list of models whose barrel meets its body (`gapBetween`), and
+  blocks for body, stock, barrel, limbs and quiver, cut as Gunner mashups
+  cuts them. A gunner block keeps the drawn weapon's positions and each
+  vertex's two strongest source bones with their weights. A recipe is
+  rolled as `rollGunnerRecipe` rolls one: a body; a heavy bowgun's barrel
+  that meets it; a light bowgun's stock, barrel (slid along the bore onto
+  where the body's barrel started) and, half the time, crossbow limbs
+  (slid to the frame's limb bone); the quiver or another of the same
+  skeleton; a material. Stitched, each vertex's bones are mapped onto the
+  frame's (the same bone under the same parent, else its parent's), and
+  the vertex is unposed into the frame's bind pose by the inverse of the
+  frame's drawn skins blended by its weights (cofactors in 32-bit
+  integers; a blend too flat to invert, half on a bone that turns half a
+  turn, takes its strongest bone's skin), so the drawn weapon shows the
+  parts where they were and sheathing folds it the frame's way. Each
+  vertex group's palette is its vertices' frame bones. One take per
+  recipe; the materials keep the frame's last material word. Over every
+  EU bow and bowgun (51 light, 44 heavy, 39 bows), three builds each, the
+  blob's 402 packages were the TypeScript's byte for byte and all fit the
+  slot (on the first roll: light 80%, heavy 65%, bows 67%; packages reach
+  22,496 of 22,528 bytes), and against the gunner forge the parts were
+  within 0.13 units; one wild build of each melee model with them in the
+  library was byte for byte too. FORGE.BIN with them and the pieces: 7.4
+  MB for 537 models (13.0 MB unpacked, as it was before packing); the blob:
+  157 KB with every feature.
+
+Tried in PPSSPP on the EU disc: the weapon is stitched, textured from its
+parts' images (so a weapon's several textures load), and stitched again on
+stage loads and on going in and out of the house; in "wild" mode too, where
+other classes' heads look right but some scales want tuning. Not yet tried: the JP
+disc, bows and bowguns in game, other hunters' weapons (left as they are),
+and a weapon change in the house's equipment box.
 
 ## Code loader (prototype)
 
