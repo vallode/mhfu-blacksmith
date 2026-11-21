@@ -666,6 +666,36 @@ skill numbers are the `Skills 2` list in `equip.enum`: 69 Bomber,
 under its `data/items.json` name. `success_rate` is the rate class's,
 before books and skills.
 
+### Skill activations
+
+What each skill tree turns on at which point total is a table in
+`EBOOT.BIN` that `eboot.hexpat` doesn't describe, read by
+`src/tables/skill-activations.ts` (`readSkillActivations`). It's 98 rows
+of 7 bytes at EU file offset `0x1b6114` (FUC `0x1b12b4`, JP vaddr
+`0x089b2d00`; the same bytes on both, found on EU by its first three
+rows): a tree (`SkillID` 2 to 99, then a row starting `0xFF`) and the
+skill it turns on at -20, -15, -10, +10, +15 and +20 points. A skill is
+an index into the activation names, 0 "No Skill" to 217 "Auto-Reload":
+the EU message file's table 0 from entry 906, and the commented-out
+`Skills 2` block in `equip.enum` (`skillEffectNames` in
+`src/strings/enums.ts`). A tree with fewer levels repeats a skill:
+Paralysis is `03 03 03 01 02 02`, Para Duration [x2] at -10 and below,
+Halved at +10, Negated at +15 and +20. Torso Up has no row.
+
+The only code that reads it (EU `0x088d897c`, eleven callers) walks the
+rows to the `0xFF`, sums each tree's points, picks a column with the same
+six comparisons for every tree (`slti` -19, -14, -9, 20, 15, 10), and
+passes that column's skill to `0x088d8da4`, which appends it, with the
+tree and points, to a list of six in the structure it's given (+0x676
+skills, +0x634 trees, +0x63a points). It doesn't check the skill for 0,
+so a total that reaches an empty column takes a place too; whether a
+seventh skill is dropped wasn't checked. So the point totals are code,
+and per tree only which skill each column gives is data. On the disc,
+every half (the three good columns, or the three bad ones) with a skill
+has one from 10 points, all 217 skills are on some tree, 50 trees have
+no bad half, and no armor gives negative points to those (one decoration
+gives Auto-Reload -1). Nothing writes it to `data/` yet.
+
 ## 3D models (experimental)
 
 ```bash

@@ -566,9 +566,8 @@ pieces together (seven trees on the EU disc, Edgemaster and Fury among
 them). Shuffled, six of the seven fell below +10 from armor alone. The
 spoiler lists, for each of these trees, the most points armor alone gives
 one hunter: a piece per slot that one hunter type and sex can wear, with
-Torso Up pieces adding the chest's points again. Skill activation thresholds aren't read:
-mhfu-extract has no table for them, none was found in the EBOOT, and
-neither mode needs them. Skills are a piece's own, so with `armor` they go
+Torso Up pieces adding the chest's points again. Neither mode reads or changes what a
+tree's points turn on (mhfu-extract's skill activation table). Skills are a piece's own, so with `armor` they go
 with the piece to its new place.
 
 Armor stats (`armorStats.defense`, `armorStats.resistances`,

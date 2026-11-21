@@ -41,9 +41,8 @@
  * together. Shuffled on the EU disc, six of the seven fell below +10 from
  * armor alone.
  *
- * The activation thresholds (10 points for a skill, -10 for a bad one) are
- * not read: mhfu-extract has no table for them and none was found in the
- * EBOOT, and neither mode needs them.
+ * Neither mode reads or changes what a tree's points turn on (mhfu-extract's
+ * `tables/skill-activations.ts`).
  */
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { HUNTER_TYPE_BITS } from "mhfu-extract/src/emit/armor.js";

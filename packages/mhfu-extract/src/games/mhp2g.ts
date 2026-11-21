@@ -16,6 +16,7 @@ import { EU_ALL_SIGNATURES } from "../tables/eu-signatures.js";
 import {
   DECO_SKILL_ENTRY_SIZE,
   DUAL_ATTRIBUTE_ENTRY_SIZE,
+  SKILL_ACTIVATION_ENTRY_SIZE,
   EQUIP_CREATE_ENTRY_SIZE,
   EQUIP_UPGRADE_ENTRY_SIZE,
   ITEM_ENTRY_SIZE,
@@ -64,6 +65,10 @@ const FIXED_STRIDE_TABLES: Readonly<
   },
   decorationValues: { entrySize: ITEM_ENTRY_SIZE, count: TABLE_COUNTS.decorations },
   itemTable: { entrySize: ITEM_ENTRY_SIZE, count: TABLE_COUNTS.items },
+  skillActivations: {
+    entrySize: SKILL_ACTIVATION_ENTRY_SIZE,
+    count: TABLE_COUNTS.skillActivations,
+  },
 };
 
 /** Entry size only, for tables whose overall count isn't a single fixed number (see recipes.ts). */
