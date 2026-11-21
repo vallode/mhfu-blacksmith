@@ -526,8 +526,10 @@ shots don't change. Seen in game (EU, the patch written into RAM, a thunder
 220 Great Sword): each hit's element damage was `22 × (mv / 26)^1.5 ×
 hitzone`, as the tests have it (a level 2 charge on a 25% part 29 against
 the game's 5), and the monster lost raw plus element (`+0x2E4`, 145 HP for
-three hits). That was before the motion row type and critical checks; those
-are checked only in the tests.
+three hits). With every swing made a critical (a test-only change), a
+critical's element was a plain hit's (a level 2 charge on the same 25% part
+29.69 either way) while its raw still grew by 1.25. Negative affinity and
+fixed-damage (type 0xB) attacks are checked only in the tests.
 
 `gathering` changes the pairs (value, item) in the gathering item tables of
 Village and Guild quests. Tables keep their length and the quest file its
