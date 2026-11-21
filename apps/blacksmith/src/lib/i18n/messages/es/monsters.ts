@@ -20,6 +20,30 @@ export const monsters: Messages["monsters"] = {
       hitzones: "Zonas débiles",
       quests: "Misiones",
       spawns: "Dónde abunda",
+      attacks: "Ataques",
+    },
+  },
+  attacks: {
+    note: "Los golpes de cada movimiento, numerados como en la lista de movimientos del modelo 3D. El daño es antes del multiplicador de ataque de la misión.",
+    columns: {
+      motion: "Mov.",
+      hits: "Golpes",
+      damage: "Daño",
+      stun: "KO",
+      guard: "Bloqueo",
+      effects: "Efectos",
+    },
+    titles: {
+      hits: "Golpes del movimiento con estos valores",
+      stun: "Acumulación de KO",
+      guard: "Retroceso al bloquear",
+    },
+    hits: (n: string) => `×${n}`,
+    status: (status: string, value: string) => `${status} ${value}`,
+    statuses: {
+      snowman: "Muñeco de nieve",
+      soiled: "Sucio",
+      "defense down": "Defensa reducida",
     },
   },
   list: {

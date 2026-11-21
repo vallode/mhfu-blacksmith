@@ -30,7 +30,36 @@ export const monsters = {
       quests: "Quests",
       /** A small monster's tab: the quests with the most of it. */
       spawns: "Most plentiful",
+      attacks: "Attacks",
     },
+  },
+  /** The Attacks tab: each motion's hits, from the game's attack code. */
+  attacks: {
+    note: "Each motion's hits, numbered as in the 3D model's motion list. Damage is before the quest's attack multiplier.",
+    columns: {
+      motion: "Motion",
+      hits: "Hits",
+      damage: "Damage",
+      stun: "Stun",
+      guard: "Guard",
+      effects: "Effects",
+    },
+    /** Column headers' hover text. */
+    titles: {
+      hits: "Hits in the motion with these numbers",
+      stun: "Stun buildup",
+      guard: "Guard knockback",
+    },
+    /** How many of the motion's hits have these numbers: "×3". */
+    hits: (n: string) => `×${n}`,
+    /** A status and its buildup: "Poison 25". */
+    status: (status: string, value: string) => `${status} ${value}`,
+    /** Statuses `common.elements` doesn't have. */
+    statuses: {
+      snowman: "Snowman",
+      soiled: "Soiled",
+      "defense down": "Defense down",
+    } as Record<string, string>,
   },
   /** A monster type's list down the left. */
   list: {

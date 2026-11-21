@@ -1,1 +1,1 @@
-{"attacks":[{"slot":23,"from":32,"to":92,"power":20,"reaction":2,"stun":2,"capsules":[{"joint":0,"radius":100,"start":[0,100,100],"end":[0,100,100]}]}]}
+{"attacks":[{"slot":23,"from":32,"to":92,"power":20,"reaction":2,"stun":2,"guard":40,"capsules":[{"joint":0,"radius":100,"start":[0,100,100],"end":[0,100,100]}]}]}

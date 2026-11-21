@@ -14,6 +14,8 @@
  *   row 0x00 u8 delay, 0x01 u8 duration: 60 fps frames on the disc, halved
  *               by the loader into the game's 30 Hz ticks in the object
  *   row 0x02 u8 power, 0x03 u8 the hunter's reaction, 0x14 u8 stun
+ *   row 0x08 u8 guard knockback, 0x09 u8 element bits (ELEMENT_BITS)
+ *   row 0x0C, 0x0D u8 status bits (STATUS_BITS), 0x0E u8 the status's buildup
  *   row 0x0A u8 shape list, into the class's table of them (object +0x34)
  *
  * The object is harmless for `delay` ticks, can hit for `duration` ticks,
@@ -74,6 +76,36 @@ const STEP_LIMIT = 300_000;
 const MAX_SHAPES = 32;
 /** Joints from here on are placed by code, not by the skeleton. */
 export const FIRST_SPECIAL_JOINT = 0x7d;
+
+/**
+ * Row byte 0x09's element bits. Bit 0 is set in nearly every row and 0x08
+ * (Teostra's blast) isn't known; both are left out. Named, like the status
+ * bits, from the rows whose numbers match one of the Monster Hunter Wiki's
+ * attacks (vallode/mhfu-blacksmith#122, `docs/monster-attacks.md`).
+ */
+export const ELEMENT_BITS: Record<number, string> = {
+  0x04: "fire",
+  0x10: "water",
+  0x20: "dragon",
+  0x40: "thunder",
+  0x80: "ice",
+};
+
+/** Row bytes 0x0C and 0x0D's status bits, as `0x0C | 0x0D << 8`. */
+export const STATUS_BITS: Record<number, string> = {
+  0x0001: "sleep",
+  0x0002: "poison",
+  0x0004: "paralysis",
+  0x0200: "snowman",
+  0x0400: "soiled",
+  0x1000: "defense down",
+};
+
+/** The named bits set in `value`, in bit order; unnamed bits are left out. */
+const bitNames = (value: number, names: Record<number, string>) =>
+  Object.entries(names)
+    .filter(([bit]) => value & Number(bit))
+    .map(([, name]) => name);
 
 const isUserAddress = (v: number) => v >= 0x08800000 && v < 0x0a000000;
 
@@ -386,6 +418,13 @@ export interface SiteAttack {
   /** How the hunter reacts (row byte 3; its values aren't mapped yet). */
   reaction: number;
   stun: number;
+  /** Guard knockback. */
+  guard: number;
+  /** Elements it deals (`ELEMENT_BITS`); absent for none. */
+  elements?: string[];
+  /** Statuses it inflicts (`STATUS_BITS`), with their buildup; absent for none. */
+  statuses?: string[];
+  statusValue?: number;
   capsules: SiteAttackCapsule[];
 }
 
@@ -437,6 +476,8 @@ export function buildSiteAttacks(
       });
     }
     if (capsules.length === 0 || duration === 0) continue;
+    const elements = bitNames(spawn.row[9]!, ELEMENT_BITS);
+    const statuses = bitNames(spawn.row[0x0c]! | (spawn.row[0x0d]! << 8), STATUS_BITS);
     const attack: SiteAttack = {
       slot: spawn.slot,
       from: Math.round(spawn.frame + 2 * delay),
@@ -444,6 +485,9 @@ export function buildSiteAttacks(
       power: spawn.row[2]!,
       reaction: spawn.row[3]!,
       stun: spawn.row[0x14]!,
+      guard: spawn.row[8]!,
+      ...(elements.length ? { elements } : {}),
+      ...(statuses.length ? { statuses, statusValue: spawn.row[0x0e]! } : {}),
       capsules,
     };
     const key = JSON.stringify(attack);
