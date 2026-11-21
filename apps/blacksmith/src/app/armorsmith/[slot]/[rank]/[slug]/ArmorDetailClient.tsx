@@ -22,7 +22,8 @@ import type { ArmorSlot, ArmorRank } from "@/lib/constants";
 import { useArmorPiece } from "@/lib/client-data";
 import ArmorModelViewer from "@/components/ArmorModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
-import { useArmorModel } from "@/lib/models";
+import { useArmorModel, useArmorSetModels } from "@/lib/models";
+import { useArmorSet } from "@/lib/armor-set-data";
 import Loading from "@/components/Loading";
 import WishlistButton from "@/components/WishlistButton";
 import { useGameText, useT } from "@/context/LanguageContext";
@@ -40,6 +41,8 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
   const [openModel, setOpenModel] = useState<string | null>(null);
   const modelKey = models ? `${slot}/${piece?.name}` : null;
   const modelOpen = modelKey !== null && openModel === modelKey;
+  // The piece's set, worked out once the model opens (it reads every slot's bundle).
+  const setModels = useArmorSetModels(useArmorSet(slot, rank, slug, modelOpen));
   const t = useT();
   const game = useGameText();
   const ta = t.equipment.armor;
@@ -186,7 +189,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
       </DetailCard>
       {modelOpen && models && (
         <ModelPopover title={name} onClose={() => setOpenModel(null)}>
-          <ArmorModelViewer models={models} label={name} />
+          <ArmorModelViewer models={models} setModels={setModels} label={name} />
         </ModelPopover>
       )}
     </>

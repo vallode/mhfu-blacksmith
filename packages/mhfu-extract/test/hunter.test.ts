@@ -92,6 +92,40 @@ test("composeHunter moves a piece's vertices onto the player skeleton and joints
   assert.ok(Math.abs(vertex.position[1]! * pmo.scale[1] - 15.4) < 1e-6);
 });
 
+test("composeHunter puts a lone piece on a skeleton it's given", () => {
+  const arms = piece(
+    "gauntlets",
+    Array.from({ length: 10 }, (_, i) => bone(i, i - 1, [0, 0, 0])),
+    [1],
+  );
+  const { pmo, bones } = composeHunter([arms], playerSkeleton());
+  assert.equal(bones.length, PLAYER_BONE_COUNT);
+  assert.equal(pmo.meshes.length, 1);
+  assert.deepEqual(pmo.meshes[0]!.primitives[0]!.bones, [JOINT.CHEST]);
+  const vertex = pmo.meshes[0]!.primitives[0]!.geometry.vertices[0]!;
+  assert.ok(Math.abs(vertex.position[1]! * pmo.scale[1] - 15.4) < 1e-6);
+});
+
+test("composeHunter carries a bone past the joint map with its mapped ancestor", () => {
+  // A helmet's head bone (3) and a hair bone (4) hanging from it.
+  const helmet = piece(
+    "helmet",
+    [
+      bone(0, -1, [0, 0, 0]),
+      bone(1, 0, [0, 0, 0]),
+      bone(2, 1, [0, 0, 0]),
+      bone(3, 2, [0, 0, 0]),
+      bone(4, 3, [0, 5, 0]),
+    ],
+    [4],
+  );
+  const { pmo } = composeHunter([helmet], playerSkeleton());
+  assert.deepEqual(pmo.meshes[0]!.primitives[0]!.bones, [JOINT.HEAD]);
+  // The head sits 14.4 higher in the player (the chest's height), and so does the hair.
+  const vertex = pmo.meshes[0]!.primitives[0]!.geometry.vertices[0]!;
+  assert.ok(Math.abs(vertex.position[1]! * pmo.scale[1] - 15.4) < 1e-6);
+});
+
 test("composeHunter needs leggings, and bones with a joint", () => {
   const arms = piece("gauntlets", [bone(0, -1, [0, 0, 0])], [0]);
   assert.throws(() => composeHunter([arms]), /leggings/);

@@ -64,6 +64,12 @@ interface Props {
    * type's motions. If the hunter's model can't load, the weapon shows alone.
    */
   hunter?: string;
+  /**
+   * More .glb files shown with `src`, in the same space: the rest of an
+   * armor set, whose pieces all sit on the player's skeleton. One that can't
+   * load is left out.
+   */
+  parts?: string[];
 }
 
 type Three = typeof import("three");
@@ -230,6 +236,7 @@ export default function ModelViewer({
   attacks,
   unusedMotions,
   hunter,
+  parts,
 }: Props) {
   const t = useT();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -238,6 +245,8 @@ export default function ModelViewer({
   const sceneRef = useRef<SceneHandle | null>(null);
   const [motion, setMotion] = useState<MotionState | null>(null);
   const playerRef = useRef<MotionPlayer | null>(null);
+  // The effect below re-runs on the list's contents, not its identity.
+  const partsKey = parts?.join("\n") ?? "";
 
   useEffect(() => {
     const container = containerRef.current;
@@ -355,15 +364,19 @@ export default function ModelViewer({
       try {
         const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
         // Without the hunter (an export that couldn't make one), the weapon shows alone.
-        const [body, own] = await Promise.all([
+        const [body, own, ...extra] = await Promise.all([
           hunter ? loader.loadAsync(HUNTER_MODEL).catch(() => null) : null,
           loader.loadAsync(src),
+          ...(partsKey ? partsKey.split("\n") : []).map((url) =>
+            loader.loadAsync(url).catch(() => null),
+          ),
         ]);
         if (disposed) return;
         const gltf = body ?? own;
         const weapon = body && own.scene;
         const holding = body ? hunter : undefined;
         model = gltf.scene;
+        for (const part of extra) if (part) model.add(part.scene);
         const copies = [model];
         if (weapon && holding) {
           scene.add(model);
@@ -822,7 +835,7 @@ export default function ModelViewer({
       disposed = true;
       cleanup();
     };
-  }, [src, pair, hunter]);
+  }, [src, pair, hunter, partsKey]);
 
   // Capsules live in their own group, rebuilt when they change; there are
   // few (Rathian has 32), so rebuilding is cheaper than diffing.
