@@ -149,7 +149,7 @@ export function weaponPoses(type: WeaponTypeName, modelId: number): WeaponPoses 
  * (posed chain x inverse of the bind chain). A bone under a posed one moves
  * with it. Undefined for a bone that doesn't move.
  */
-function skinMatrices(bones: readonly Bone[], poses: BonePoses): (Mat4 | undefined)[] {
+export function skinMatrices(bones: readonly Bone[], poses: BonePoses): (Mat4 | undefined)[] {
   const bind: Mat4[] = [];
   const posed: Mat4[] = [];
   const moved: boolean[] = [];

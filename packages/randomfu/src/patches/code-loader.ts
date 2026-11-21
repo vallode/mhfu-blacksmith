@@ -37,13 +37,16 @@ import type { ShuffleReport } from "../shuffles/shuffle.js";
 import {
   HOOK,
   assembleHooks,
+  assembleBuildHook,
   assemblePickHook,
   hookCode,
   writeHookCalls,
+  writeBuildHook,
   writePickHook,
   writeQuestLoadCalls,
   type HookSites,
   type PadSites,
+  type BuildSite,
   type PickSite,
   type QuestLoadSites,
 } from "./game-hooks.js";
@@ -326,6 +329,8 @@ export interface CodeLoaderOptions {
     pick?: PickSite;
     /** `lobby_task`'s call to the quest card (hook 6): its file offset and the card. */
     questCard?: { call: number; card: number; lobbyTask: LoadedOverlay };
+    /** The game's weapon build, for a blob that defines `rf_hook7` (hook 7). */
+    build?: BuildSite;
   };
   /** The blob's externs that are found per disc. */
   externs?: Readonly<Record<string, number>>;
@@ -421,7 +426,8 @@ export function addCodeLoader(
   const questLoader = hooks?.questLoad?.sites.loader;
   const hookWords = hooks ? assembleHooks(0, blobAddress, calls, questLoader).code.length : 0;
   const pickWords = hooks?.pick ? assemblePickHook(0, blobAddress, hooks.pick).length : 0;
-  const caveWords = words + hookWords + pickWords;
+  const buildWords = hooks?.build ? assembleBuildHook(0, blobAddress, hooks.build).length : 0;
+  const caveWords = words + hookWords + pickWords + buildWords;
   if (caveWords > space.freeCaveWords) {
     return skipped(`the loader needs ${caveWords} cave words, and ${space.freeCaveWords} are free`);
   }
@@ -460,6 +466,12 @@ export function addCodeLoader(
       space.writeCave(pickAt, assemblePickHook(pickAt, blobAddress, hooks.pick));
       writePickHook(out, segment, hooks.pick, pickAt);
       hooksAt += `, picker ${hex(pickAt)}`;
+    }
+    if (hooks.build) {
+      const buildAt = space.allocateCave(buildWords);
+      space.writeCave(buildAt, assembleBuildHook(buildAt, blobAddress, hooks.build));
+      writeBuildHook(out, segment, hooks.build, buildAt);
+      hooksAt += `, build ${hex(buildAt)}`;
     }
   }
   return {

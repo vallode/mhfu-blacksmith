@@ -7,7 +7,8 @@
   "type": "module",
   "scripts": {
     "test": "tsx --test test/**/*.test.ts",
-    "typecheck": "tsc --noEmit -p ."
+    "typecheck": "tsc --noEmit -p .",
+    "equip:live": "tsx scripts/equip-live.ts"
   },
   "dependencies": {
     "mhfu-extract": "workspace:*"

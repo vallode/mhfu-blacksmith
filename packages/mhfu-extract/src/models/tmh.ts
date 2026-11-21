@@ -54,6 +54,21 @@ function directColor(
 }
 
 /**
+ * Encodes an RGBA8 colour as a direct-color GE pixel (formats 0-3), the
+ * inverse of `directColor` up to the format's precision. Returns the u16 for
+ * formats 0-2 and the u32 (R in the low byte) for format 3.
+ */
+export function encodeDirectColor([r, g, b, a]: readonly number[], format: number): number {
+  const q = (value: number, bits: number) => Math.round((value! * ((1 << bits) - 1)) / 255);
+  if (format === 3) return (r! | (g! << 8) | (b! << 16) | (a! << 24)) >>> 0;
+  if (format === 0) return q(r!, 5) | (q(g!, 6) << 5) | (q(b!, 5) << 11);
+  if (format === 1)
+    return q(r!, 5) | (q(g!, 5) << 5) | (q(b!, 5) << 10) | ((a! >= 128 ? 1 : 0) << 15);
+  if (format === 2) return q(r!, 4) | (q(g!, 4) << 4) | (q(b!, 4) << 8) | (q(a!, 4) << 12);
+  throw new Error(`Not a direct-color format: ${format}`);
+}
+
+/**
  * Moves an image between row-major and the GE's swizzled order: 16-byte x
  * 8-row blocks, left to right then top to bottom.
  */

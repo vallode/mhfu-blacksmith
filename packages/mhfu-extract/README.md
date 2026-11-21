@@ -674,6 +674,9 @@ pnpm --filter mhfu-extract models --in .cache/mhfu/data-bin --out .cache/mhfu/gl
 
 # the models the website shows -> ../../apps/blacksmith/public/models/ + manifest.json
 pnpm --filter mhfu-extract export-site --unpacked .cache/mhfu
+
+# writes every model package back and checks it comes out unchanged
+pnpm --filter mhfu-extract model-roundtrip --in .cache/mhfu/data-bin
 ```
 
 `models` converts `.pac` model packages (a PMO 1.0 mesh plus a `.TMH`
@@ -720,6 +723,17 @@ Notes:
 - Loaders need the meshopt decoder: three.js's `GLTFLoader` with
   `setMeshoptDecoder(MeshoptDecoder)` (`three/examples/jsm/libs/`), as
   `src/components/ModelViewer.tsx` does.
+
+`pmo-file.ts` and `writePac` (`pac.ts`) go the other way, for putting
+edited models on a disc: `parsePmoFile` reads a PMO into the records,
+vertex integers, indices and draw commands it stores, and `writePmo` lays
+them out again (tables on 16-byte boundaries; each vertex group's display
+list, then its vertices, then its indices, each from a 16-byte boundary).
+On an EU disc `model-roundtrip` writes all 4,245 packages in DATA.BIN
+(weapons, monsters, armor, stages) back byte for byte, up to the end of
+their last entry; the sector padding after it isn't zeros and isn't kept.
+randomfu's weapon mashups (`mods.weaponMashups`) write models edited
+this way, and they draw right in PPSSPP.
 
 Status:
 

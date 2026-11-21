@@ -50,6 +50,10 @@
  * 6. Quest card (optional, `quests.keyLabel`): `lobby_task`'s one call to
  *    the quest counter's card (see `key-quests.ts`), every frame the card
  *    shows. The hook gets the counter object.
+ * 7. Build (optional, `mods.weaponStitcher`): the EBOOT's weapon model
+ *    build (see `weapon-stitcher.ts`). Its first two words jump to a stub
+ *    that calls the blob's `rf_hook7` with the build's own arguments when the
+ *    blob defines one, then runs those two words and goes on with the build.
  *
  * The quest loader (EU 0x08870AEC) is `(quest, u16 id, buf)`, a two-step
  * state machine the caller runs every frame until it returns 1: step 0
@@ -99,6 +103,7 @@ export const HOOK = {
   rewards: 4,
   pick: 5,
   questCard: 6,
+  build: 7,
 } as const;
 
 /** The game's picker (hook 5): its address and its first two words, which the stub runs instead. */
@@ -444,6 +449,57 @@ export function assemblePickHook(at: number, blob: number, site: PickSite): numb
 /** Points the picker's first two words at hook 5's stub. */
 export function writePickHook(eboot: Buffer, segment: Segment, site: PickSite, stub: number): void {
   const offset = segment.offset + (site.picker - segment.vaddr);
+  eboot.writeUInt32LE(((0x02 << 26) | ((stub >>> 2) & 0x03ffffff)) >>> 0, offset);
+  eboot.writeUInt32LE(0, offset + 4);
+}
+
+/** The game's weapon build (hook 7): its address and its first two words, which the stub runs. */
+export interface BuildSite {
+  build: number;
+  prologue: readonly [number, number];
+}
+
+/**
+ * Hook 7's stub at `at`: with the blob loaded and its `rf_hook7` defined, it
+ * calls that in a 32-byte frame (the O32 code may use `sp+0..15`) with the
+ * build's `$a0`-`$a2`, which it keeps for the build. Then, either way, it
+ * runs the build's first two words and jumps to the third. The temporaries
+ * are free at the build's entry (it takes three arguments).
+ */
+export function assembleBuildHook(at: number, blob: number, site: BuildSite): number[] {
+  const a = new Assembler();
+  const { zero, a0, a1, a2, t0, t9 } = R;
+  const nop = () => a.emit(0);
+  emitBlobCheck(a, blob, "game");
+  a.i(LW, t0, t9, HEADER.hooks + HOOK.build * 4);
+  a.branch(BEQ, t9, zero, "game");
+  nop();
+  a.i(ADDIU, SP, SP, -32);
+  a.i(SW, SP, RA, 28);
+  a.i(SW, SP, a0, 16);
+  a.i(SW, SP, a1, 20);
+  a.r(t9, zero, RA, 0, JALR);
+  a.i(SW, SP, a2, 24);
+  a.i(LW, SP, a0, 16);
+  a.i(LW, SP, a1, 20);
+  a.i(LW, SP, a2, 24);
+  a.i(LW, SP, RA, 28);
+  a.i(ADDIU, SP, SP, 32);
+  a.label("game");
+  a.emit(site.prologue[0]);
+  a.j(site.build + 8);
+  a.emit(site.prologue[1]);
+  return a.link(at);
+}
+
+/** Points the build's first two words at hook 7's stub. */
+export function writeBuildHook(
+  eboot: Buffer,
+  segment: Segment,
+  site: BuildSite,
+  stub: number,
+): void {
+  const offset = segment.offset + (site.build - segment.vaddr);
   eboot.writeUInt32LE(((0x02 << 26) | ((stub >>> 2) & 0x03ffffff)) >>> 0, offset);
   eboot.writeUInt32LE(0, offset + 4);
 }

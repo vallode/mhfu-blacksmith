@@ -54,3 +54,32 @@ export function readPac(buf: Buffer): PacEntry[] {
   }
   return entries;
 }
+
+/**
+ * A `.pac` package of `entries`, laid out as the game's are: the header
+ * padded to 16 bytes, then each entry from a 16-byte boundary. An empty
+ * entry is an unused (0, 0) slot. The result isn't padded to whole sectors.
+ */
+export function writePac(entries: Buffer[]): Buffer {
+  const align16 = (n: number) => (n + 15) & ~15;
+  const offsets: number[] = [];
+  // Without entries the package is just its header, unpadded.
+  let size = 4 + entries.length * 8;
+  for (const entry of entries) {
+    if (entry.length === 0) {
+      offsets.push(0);
+      continue;
+    }
+    offsets.push(align16(size));
+    size = align16(size) + entry.length;
+  }
+  const buf = Buffer.alloc(size);
+  buf.writeUInt32LE(entries.length, 0);
+  entries.forEach((entry, i) => {
+    if (entry.length === 0) return;
+    buf.writeUInt32LE(offsets[i]!, 4 + i * 8);
+    buf.writeUInt32LE(entry.length, 8 + i * 8);
+    entry.copy(buf, offsets[i]!);
+  });
+  return buf;
+}

@@ -105,6 +105,9 @@ import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
 import { findKeyQuestSites, keyQuestsObjects, keyQuestsReport } from "./patches/key-quests.js";
 import { addNodeMap } from "./patches/node-map.js";
+import { addWeaponMashups } from "./patches/weapon-mashups.js";
+import { prepareWeaponStitcher, stitchObjects } from "./patches/weapon-stitcher.js";
+import { prepareRelics, relicsObjects } from "./patches/relic-weapons.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
 import {
   ARMOR_BOX_TYPE,
@@ -980,7 +983,9 @@ export function randomize(
     settings["elites.enabled"] ||
     settings["pact.enabled"] ||
     settings["poogie.enabled"] ||
-    settings["quests.keyLabel"]
+    settings["quests.keyLabel"] ||
+    settings["mods.weaponStitcher"] !== "off" ||
+    settings["relics.enabled"]
   ) {
     // Each feature is resolved on its own first: one that doesn't match this
     // disc is left out, and the loader (which caps Guild Cards) only goes in
@@ -1127,6 +1132,36 @@ export function randomize(
       Object.assign(externs, poogie.externs);
     }
     const luck = typeof poogie === "string" ? null : poogie;
+    const stitchMode = settings["mods.weaponStitcher"];
+    const stitched =
+      stitchMode === "off"
+        ? null
+        : typeof hookSites === "string"
+          ? hookSites
+          : prepareWeaponStitcher(game, edits, stitchMode, settings["mods.weaponRelics"]);
+    if (typeof stitched === "string") reports.push(notApplied("Weapon stitcher", stitched));
+    else if (stitched) {
+      objects.push(...stitchObjects());
+      Object.assign(externs, stitched.externs);
+      Object.assign(data, stitched.data);
+    }
+    const stitcher = typeof stitched === "string" ? null : stitched;
+    const relics = !settings["relics.enabled"]
+      ? null
+      : typeof sites === "string"
+        ? sites
+        : prepareRelics(game, edits, rng.fork("relics"), {
+            rolls: settings["relics.rolls"],
+            power: settings["relics.power"],
+            runSeed: rng.fork("relic-seed").int(0x100000000),
+          });
+    if (typeof relics === "string") reports.push(notApplied("Relics", relics));
+    else if (relics) {
+      objects.push(...relicsObjects());
+      Object.assign(externs, relics.externs);
+      Object.assign(data, relics.data);
+    }
+    const relicWeapons = typeof relics === "string" ? null : relics;
     const { ovl: lobbyOvl } = game.lobbyTask;
     const keySites = !settings["quests.keyLabel"]
       ? null
@@ -1139,7 +1174,10 @@ export function randomize(
       objects.push(...keyQuestsObjects());
       Object.assign(externs, keys.externs);
     }
-    if (typeof hookSites !== "string" && (monsterHp || unknown || elites || pact || luck || keys)) {
+    if (
+      typeof hookSites !== "string" &&
+      (monsterHp || unknown || elites || pact || luck || stitcher || relicWeapons || keys)
+    ) {
       const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         // Elites and the pact both bring the shared monster boosts: link them once.
         objects: objects.filter((o, k) => objects.findIndex((x) => x.name === o.name) === k),
@@ -1149,6 +1187,7 @@ export function randomize(
           ...(typeof sites !== "string" && { gameTask: game.gameTask }),
           ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
           ...(luck && { pick: luck.pick }),
+          ...(stitcher && { build: stitcher.build }),
           ...(keys && {
             questCard: { call: keys.call, card: keys.card, lobbyTask: game.lobbyTask },
           }),
@@ -1158,6 +1197,8 @@ export function randomize(
       });
       reports.push(loader);
       if (unknown) reports.push(unknown.finish(loader.applied));
+      if (stitcher) reports.push(stitcher.finish(loader.applied));
+      if (relicWeapons) reports.push(relicWeapons.finish(loader.applied));
       if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {
         reports.push(luck.finish(loader.applied));
@@ -1179,6 +1220,11 @@ export function randomize(
   );
 
   if (settings["mods.nodeMap"]) reports.push(addNodeMap(game, edits));
+  if (settings["mods.weaponMashups"] !== "off") {
+    reports.push(
+      addWeaponMashups(game, rng.fork("weapon-mashups"), edits, settings["mods.weaponMashups"]),
+    );
+  }
 
   return {
     edits,

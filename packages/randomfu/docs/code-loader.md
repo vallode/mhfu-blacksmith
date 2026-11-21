@@ -146,6 +146,7 @@ reaches. Twelve words per stub and 15 for `dispatch`.
 | 4    | rewards     | the quest reward roll (EU 0x0886F894), once a completed quest  | 0x08875284                                | found by signature                        |
 | 5    | pick        | replaces the weighted picker (`poogie-luck.ts`)                | 0x0887265C (the picker's first two words) | 0x08872654                                |
 | 6    | quest card  | the quest counter's card (EU 0x09A8CA40), in town              | `lobby_task` 0x09A8BF08                   | `lobby_task` 0x09A87078                   |
+| 7    | build       | runs before the weapon build (`weapon-stitcher.ts`)            | 0x08868234 (the build's first two words)  | 0x0886822C                                |
 
 Hooks 0 and 1 pass the HUD object (EU 0x09A04BA0, right after the save
 struct), hook 3 a `struct rf_load` (below), hook 4 the results step's
@@ -177,6 +178,13 @@ with the picker's `$a0` and `$a1` in a 32-byte frame and returns its `$v0`
 to the picker's caller; without it, it runs the two words and jumps to the
 picker's third. The picker only calls the RNG, so the temporaries the stub
 uses are free. One feature defines `rf_hook5` (`blob/poogie.c`).
+
+Hook 7 is the same shape on the weapon model build: its first two words
+become `j stub; nop`, and the stub (23 words) calls `rf_hook7` with the
+build's `$a0`-`$a2` in a 32-byte frame, keeping them, then runs the two
+words and jumps to the build's third either way. The build takes three
+arguments, so the temporaries are free. One feature defines `rf_hook7`
+(`blob/stitch.c`).
 
 In the blob, `blob/runtime.c` defines `rf_init` and `rf_hook0`…, and
 features register callbacks with `rf_on(RF_HOOK_*, fn)` from their init

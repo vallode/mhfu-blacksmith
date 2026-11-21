@@ -42,6 +42,8 @@ const BLOBS = {
   elite: [["elite.c"], "src/blob"],
   unknownQuests: [["unknown-quests.c"], "src/blob"],
   poogie: [["poogie.c"], "src/blob"],
+  stitch: [["stitch.c"], "src/blob"],
+  relicWeapons: [["relic-weapons.c"], "src/blob"],
   keyQuests: [["key-quests.c"], "src/blob"],
   linkTest: [["link-test.c"], "test"],
   commonTest: [["test/common-a.c", "test/common-b.c"], "test", ["-fcommon"]],

@@ -45,6 +45,19 @@ struct rf_save_data {
   u16 poogie_happy;   /* hunts after Poogie was happy to be petted */
   u16 poogie_tumbles; /* times Poogie knocked the hunter over */
   u8 poogie_counted;  /* which of the pet flags are already counted (poogie.c) */
+  /* Relics (relic-weapons.c) */
+  u8 relic_given;            /* ranks whose first stone was given, as bits */
+  u8 relic_queue_len[3];     /* stones held, per rank */
+  u8 relic_queue[3][16];     /* each held stone's class, oldest first */
+  u16 relic_stones_seen[3];  /* stones rolled so far, per rank */
+  u16 relic_seed[33];        /* each band's next offer's seed; 0 none yet */
+  u16 relic_polished[33];    /* offers taken so far, per band */
+  u16 relic_candidate[33][3]; /* the instance IDs each band offers; 0 none */
+  struct rf_relic {
+    u16 seed; /* 0: a free instance */
+    u8 band;
+    u8 k;
+  } relic_kept[2][64]; /* melee, ranged */
 };
 
 /* The save's randomfu data, set up by rf_init before any feature's init. */
@@ -145,6 +158,18 @@ struct rf_load {
  * own picker runs.
  */
 #define RF_HOOK_PICK 5
+
+/*
+ * rf_hook7 isn't a callback hook either: it runs at the start of the game's
+ * weapon model build, `void rf_hook7(u8 *resources, u8 *hunter, u32 n)`,
+ * with the build's own arguments, before the game goes on with the build.
+ * The weapon's package is already in its slot's buffer (resources + 0x80258
+ * + slot * 4, slot (n & 0xff) * 8 + 6), so the hook may write another over
+ * it, no bigger than the slot (resources + 0x80318 + slot * 4). One feature
+ * defines it (stitch.c); without one, or before the blob loads, the build
+ * runs as it is.
+ */
+#define RF_HOOK_BUILD 7
 
 typedef void (*rf_hook_fn)(u8 *arg);
 void rf_on(u32 hook, rf_hook_fn fn);
