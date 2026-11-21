@@ -88,6 +88,7 @@ export const site: Messages["site"] = {
     reset: "Restablecer",
   },
   saveSync: {
+    fileTitle: "Archivo de guardado",
     title: "Sincronizar partida",
     unsupported:
       "Este navegador no permite sincronizar la partida automáticamente. Puedes subir tu archivo de guardado a mano desde la página del cazador.",
@@ -123,6 +124,30 @@ export const site: Messages["site"] = {
           : "Vuelve a dar acceso a tu archivo de guardado para mantener tu perfil de cazador sincronizado.",
       notNow: "Ahora no",
     },
+  },
+  ppssppLink: {
+    title: "Enlace con PPSSPP",
+    intro:
+      "¿Juegas en PPSSPP? Enlaza el sitio con él y tu cazador llega directamente del juego cada vez que vuelves a esta pestaña, hayas guardado o no.",
+    setup:
+      "En PPSSPP, activa Ajustes → Herramientas → Herramientas de desarrollo → Permitir depurador remoto. La primera vez, el sitio pregunta al servidor de PPSSPP (report.ppsspp.org) en qué puerto está.",
+    link: "Enlazar con PPSSPP",
+    unlink: "Desenlazar",
+    syncNow: "Sincronizar",
+    syncing: "Leyendo el juego…",
+    searching: "Buscando PPSSPP…",
+    linked: (game: string, ago: string) => `Enlazado con ${game}, sincronizado ${ago}`,
+    notFound: "PPSSPP no responde. ¿Está abierto y con el depurador remoto permitido?",
+    noGame: "PPSSPP está abierto, pero sin ningún juego.",
+    otherGame: (game: string) => `PPSSPP está ejecutando otro juego (${game}).`,
+    noHunter: "Carga un cazador en el juego y vuelve a esta pestaña.",
+    fileSkipped:
+      "Mientras el sitio está enlazado con PPSSPP, toma el cazador del juego y no del archivo de guardado.",
+    port: "Puerto",
+    portHint:
+      "Si el sitio no encuentra PPSSPP por sí solo (Safari hace la consulta a través de Retransmisión privada de iCloud, que oculta que estás en la red de PPSSPP), escribe el puerto de PPSSPP: RemoteISOPort en PSP/SYSTEM/ppsspp.ini, en la carpeta de PPSSPP.",
+    connect: "Conectar",
+    liveHunter: "En el juego",
   },
   offline: {
     title: "Datos sin conexión",
