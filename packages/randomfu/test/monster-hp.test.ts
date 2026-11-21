@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
 import { BLOB_MAGIC, HEADER, linkBlob } from "../src/blob/link.js";
 import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
-import { monsterHpObjects } from "../src/patches/monster-hp.js";
+import { MODE, monsterHpObjects } from "../src/patches/monster-hp.js";
 import { Cpu } from "./mips-cpu.js";
 
 const BLOB = 0x099a1820;
@@ -42,10 +42,10 @@ interface Draw {
 }
 
 /** The blob, the hooks and a quest in a CPU: the HUD routines record what they draw. */
-function quest(mode: "painted" | "always") {
+function quest(mode: keyof typeof MODE) {
   const blob = linkBlob([...runtime(), ...monsterHpObjects()], BLOB, {
     ...EXTERNS,
-    rf_monster_hp_mode: mode === "painted" ? 1 : 2,
+    rf_monster_hp_mode: MODE[mode],
   });
   const cpu = new Cpu();
   cpu.write(BLOB, blob.image);
@@ -139,6 +139,20 @@ test("the gauge shows only while the map shows the monster, in the painted mode"
   assert.deepEqual(q.frame(), []);
   q.painted.add(m);
   assert.equal(fills(q.frame())[0]!.w, 80);
+});
+
+test("off draws nothing, and a mode chosen in game wins over the disc's", () => {
+  const q = quest("off");
+  const m = q.monster(0, LARGE, 300, 480);
+  assert.deepEqual(q.frame(), []);
+  // `struct rf_save_data`'s monster_hp (`blob/rf.h`): the menu's choice + 1.
+  const saved = 0x09999c60 + 0x666e0 + 14;
+  q.cpu.setU8(saved, 3); // always
+  assert.equal(fills(q.frame())[0]!.w, 50);
+  q.cpu.setU8(saved, 2); // on the map
+  assert.deepEqual(q.frame(), []);
+  q.painted.add(m);
+  assert.equal(fills(q.frame())[0]!.w, 50);
 });
 
 test("damage leaves a yellow trail that drains a pixel a frame", () => {

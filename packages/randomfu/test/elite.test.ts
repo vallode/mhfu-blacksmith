@@ -324,7 +324,7 @@ test("monster health alone links without elites", () => {
     rf_map_shows: 0x08844578,
     rf_hud_sprite: 0x0882af70,
     rf_hud_sprites: 0x089391a8,
-    rf_monster_hp_mode: 2,
+    rf_monster_hp_mode: 3, // always (its mode + 1)
   });
   assert.equal(blob.symbols.get("rf_add_booster"), undefined);
 });

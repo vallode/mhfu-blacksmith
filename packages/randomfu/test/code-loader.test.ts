@@ -27,7 +27,15 @@ import {
   guildCardSpace,
 } from "../src/patches/guild-card-space.js";
 import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
-import { HOOK, PAD_READ_SIGNATURE, findPadSites } from "../src/patches/game-hooks.js";
+import {
+  HOOK,
+  MENU,
+  PAD_READ_SIGNATURE,
+  assembleHooks,
+  assemblePickHook,
+  findPadSites,
+  type MenuSites,
+} from "../src/patches/game-hooks.js";
 import { PICKER_SIGNATURE, poogieObjects } from "../src/patches/poogie-luck.js";
 import { Cpu } from "./mips-cpu.js";
 
@@ -491,4 +499,44 @@ test("addCodeLoader takes nothing when other features left too little room", () 
     assert.equal(space.freeCaveWords, caveWords, why);
     assert.deepEqual(space.freeSlots, slots, why);
   }
+});
+
+test("the cave holds the loader with every hook, or with the START menus and the default hooks", () => {
+  const g = syntheticGame();
+  const space = guildCardSpace(g.elf, g.sub, g.edits);
+  assert.ok(typeof space !== "string");
+  const free = space.freeCaveWords;
+  const imports = Object.fromEntries(
+    Object.keys(NIDS).map((name, k) => [name, 0x08900000 + k * 8]),
+  ) as unknown as Imports;
+  const loader = assembleLoader(0, {
+    ...{ saveStruct: 0x09999c60, blob: 0x099a1820, room: 0x60000, build: 1 },
+    ...{ memcpy: 0x08800000, memset: 0x08800010, imports },
+  }).code.length;
+  const pick = assemblePickHook(0, 0x099a1820, { picker: 0x08872654, prologue: [0, 0] }).length;
+  const call = (target: number) => ({ call: 0x08810000, target });
+  const menus: MenuSites[] = [MENU.quest, MENU.village].map((menu) => ({
+    ...{ menu, entry: 11, placeholder: 0x78, label: call(0x09a63198) },
+    ...{ select: call(0x08849120), run: call(0x08849214), draw: call(0x0883fad4) },
+  }));
+  const base = [HOOK.questFrame, HOOK.hud, HOOK.pad, HOOK.rewards].map((hook) => ({
+    hook,
+    target: 0x08840000 + hook * 0x100,
+  }));
+  const words = (o: { card?: boolean; load?: boolean; hit?: boolean; menus?: boolean }) =>
+    loader +
+    pick +
+    assembleHooks(
+      0,
+      0x099a1820,
+      o.card ? [...base, { hook: HOOK.questCard, target: 0x09a8ca40 }] : base,
+      o.load ? 0x08870aec : undefined,
+      o.hit ? 0x09c44f08 : undefined,
+      o.menus ? menus : [],
+    ).code.length;
+  // randomize leaves the menus (and the features only they turn on) out when they don't fit.
+  const all = words({ card: true, load: true, hit: true });
+  assert.ok(all <= free, `every option on but the menus: ${all} of ${free} words`);
+  const defaults = words({ hit: true, menus: true });
+  assert.ok(defaults <= free, `Poogie's luck and the START menus: ${defaults} of ${free} words`);
 });

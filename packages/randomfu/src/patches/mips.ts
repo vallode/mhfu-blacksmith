@@ -145,6 +145,18 @@ export class Assembler {
       return ((0x03 << 26) | (((base + target * 4) >>> 2) & 0x03ffffff)) >>> 0;
     });
   }
+  /** `lui reg, hi` + `addiu reg, reg, lo`: a label's address; needs `link(base)`. */
+  addressOf(reg: number, label: string): void {
+    const address = (base: number) => {
+      const target = this.labels.get(label);
+      if (target === undefined) throw new Error(`No label ${label}`);
+      return base + target * 4;
+    };
+    this.items.push((_pc, base) => ((0x0f << 26) | (reg << 16) | hi16(address(base))) >>> 0);
+    this.items.push(
+      (_pc, base) => ((0x09 << 26) | (reg << 21) | (reg << 16) | (address(base) & 0xffff)) >>> 0,
+    );
+  }
   /** Where a label lands, in words from the start. */
   offsetOf(label: string): number {
     const target = this.labels.get(label);

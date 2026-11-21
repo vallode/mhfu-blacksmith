@@ -1,5 +1,6 @@
 /*
- * Attack hitboxes (the hud.attackHitboxes option): every monster attack
+ * Attack hitboxes (the hud.attackHitboxes option, and a setting in randomfu's
+ * START menu entry): every monster attack
  * that can hit right now, its shapes filled in translucent red over the
  * scene with the HUD's translucent fill, in strips. See
  * ../docs/code-loader.md and src/patches/hitboxes.ts, which finds the
@@ -17,6 +18,17 @@ extern u8 *const rf_monsters[]; /* the global holding the monster manager */
 extern u8 *const rf_attacks[];  /* the global holding the attack objects' pool */
 extern u8 *const rf_camera[];   /* the global holding the renderer: its view and projection */
 extern const u8 rf_fill[];      /* fill(hud, x, y, w, h, r, g, b, alpha): translucent */
+/* A constant, not an address: the disc's default, off 0 or on 1, + 1 (an extern's address is never 0). */
+extern const u8 rf_hitboxes_mode[];
+
+#define MODES 2 /* off, on */
+
+/* On or off: as chosen in game (kept in randomfu's save data), else the disc's. */
+static u32 on(void) {
+  const struct rf_save_data *d = rf_save_data();
+  u32 chosen = d ? d->hitboxes : 0;
+  return chosen && chosen <= MODES ? chosen - 1 : (u32)rf_hitboxes_mode - 1;
+}
 
 /* The pool: a list of live attack objects. */
 #define ATTACK_LIST 0x502c
@@ -228,6 +240,7 @@ static void shape(const u8 *renderer, const u8 *attack, const u8 *m, const u8 *s
 }
 
 static void draw(u8 *hud) {
+  if (on() != 1) return;
   if (!game_task_loaded()) return;
   u8 *manager = *rf_monsters, *pool = *rf_attacks, *renderer = *rf_camera;
   u8 *hunter = *(u8 **)(hud + HUD_HUNTER);
@@ -252,8 +265,27 @@ static void draw(u8 *hud) {
   }
 }
 
+/* --- The setting, in randomfu's START menu entry (menu.c), when the disc has it. --- */
+
+__attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
+
+static const char *const mode_names[MODES] = {"Off", "On"};
+static void set_on(u32 choice) {
+  struct rf_save_data *d = rf_save_data();
+  if (d && choice < MODES) d->hitboxes = (u8)(choice + 1);
+}
+static const struct rf_setting setting = {
+    "Attack hitboxes",
+    "Shade in red each monster\nattack that can hit you\nright now: the parts that\nhurt, and projectiles like\nfireballs.",
+    mode_names,
+    MODES,
+    on,
+    set_on,
+};
+
 void rf_hitboxes_init(u32 reason, u8 *save) {
   (void)reason;
   (void)save;
   rf_on(RF_HOOK_HUD, draw);
+  if (rf_add_setting) rf_add_setting(&setting);
 }

@@ -117,6 +117,7 @@ export function findHitboxExterns(
   gameTask: Buffer,
   ovl: OvlFile,
   gameSub: Buffer,
+  on: boolean,
 ): Record<string, number> | string {
   const [projection, view, fill] = findUnique(vanillaEboot, segment, [
     PROJECTION_SIGNATURE,
@@ -145,6 +146,8 @@ export function findHitboxExterns(
     rf_attacks: [...pools][0]!,
     rf_camera: hiLo(at32(projection + 0x0c), at32(projection + 0x10)),
     rf_fill: fill,
+    // Off or on, + 1: an extern's address is never 0 (`blob/hitboxes.c`).
+    rf_hitboxes_mode: on ? 2 : 1,
   };
 }
 

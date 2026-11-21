@@ -25,6 +25,7 @@ const EXTERNS = {
   rf_attacks: 0x09c18fd0,
   rf_camera: 0x089cbbe4,
   rf_fill: 0x0882d8dc,
+  rf_hitboxes_mode: 2, // on (+ 1)
 };
 const AREA = 3;
 const SLOT = 2;
@@ -223,4 +224,15 @@ test("nothing outside a quest", () => {
   q.shapes([{ joint: 3, type: 0, radius: 100, start: [0, 0, 0] }]);
   q.cpu.write(EXTERNS.rf_game_task + 0x20, Buffer.from("lobby_task\0"));
   assert.deepEqual(q.frame(), []);
+});
+
+test("off in the START menu's setting draws nothing, and on again draws", () => {
+  const q = quest();
+  q.shapes([{ joint: 3, type: 0, radius: 100, start: [0, 0, 0] }]);
+  // `struct rf_save_data`'s hitboxes (`blob/rf.h`): the menu's choice + 1.
+  const saved = 0x09999c60 + 0x666e0 + 15;
+  q.cpu.setU8(saved, 1);
+  assert.deepEqual(q.frame(), []);
+  q.cpu.setU8(saved, 2);
+  assert.ok(q.frame().length > 0);
 });
