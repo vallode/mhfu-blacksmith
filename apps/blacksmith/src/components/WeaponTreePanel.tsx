@@ -1,22 +1,48 @@
 "use client";
 
 /**
- * The weapon tree sidebar card. With a hunter loaded it also shows the filter
- * bar at the bottom of the card, in the style of the game's "◀ Set 7  7/20 ▶"
- * selector: rows that don't match the filter are dimmed in place, so the
- * tree's lines and indentation never move.
+ * The weapon tree sidebar card, with the sort bar (TreeSortBar) over its
+ * bottom. The bar's menu picks the view (the upgrade tree, or the weapons
+ * listed by element or by rarity) and the filters: element, and with a
+ * hunter loaded the hunter filter. Rows that don't match the filters are
+ * dimmed in place, so the tree's lines and indentation never move.
  */
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Card from "./Card";
 import CardBox from "./CardBox";
+import ElementGlyph from "./ElementGlyph";
 import TreeScroll from "./TreeScroll";
+import TreeSortBar, { type SortSection } from "./TreeSortBar";
+import WeaponTreeGroups from "./WeaponTreeGroups";
 import WeaponTreeRow from "./WeaponTreeRow";
-import SelectorBar, { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
+import { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
 import { useVisibleTree } from "@/hooks/useVisibleTree";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { TreeFilterContext, WeaponTreeContext } from "@/context/TreeFilterContext";
-import { cycleTreeFilter, filterTree, type TreeFilterId } from "@/lib/tree-filter";
-import { readTreeFilter, writeTreeFilter } from "@/lib/tree-filter-store";
+import {
+  ELEMENT_FILTERS,
+  filterTree,
+  TREE_FILTERS,
+  TREE_VIEWS,
+  type ElementFilterId,
+  type TreeFilterId,
+  type TreeViewId,
+} from "@/lib/tree-filter";
+import {
+  elementFilterCounts,
+  groupByElement,
+  groupByRarity,
+  groupMatchesElementFilter,
+  treeWeapons,
+} from "@/lib/tree-groups";
+import {
+  readElementFilter,
+  readTreeFilter,
+  readTreeView,
+  writeElementFilter,
+  writeTreeFilter,
+  writeTreeView,
+} from "@/lib/tree-filter-store";
 import type { WeaponTreeNode } from "@/lib/types";
 import { useT } from "@/context/LanguageContext";
 
@@ -33,63 +59,136 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
   const tt = t.equipment.tree;
   const basePath = `/blacksmith/${type}/`;
   const treeKey = `weapon-${type}`;
-  // Read on mount: nothing renders from it until a hunter is loaded, which
-  // is never the case on the first (hydrating) render.
-  const [filter, setFilter] = useState<TreeFilterId>(readTreeFilter);
+  // Read on mount: nothing renders from them until the tree's bundle has
+  // loaded, which is never the case on the first (hydrating) render.
+  const [view, setView] = useState<TreeViewId>(readTreeView);
+  const [element, setElement] = useState<ElementFilterId>(readElementFilter);
+  const [hunterFilter, setHunterFilter] = useState<TreeFilterId>(readTreeFilter);
+  // The hunter filter waits, unused, while no hunter is loaded.
+  const hunter = progress.active ? hunterFilter : "all";
 
   // The rows the hunter's quest progress (a preference) leaves in.
   const visibleTree = useVisibleTree(tree, type, basePath, activeSlug);
+  const weapons = useMemo(
+    () => (visibleTree ? treeWeapons(visibleTree, type, basePath) : []),
+    [visibleTree, type, basePath],
+  );
+  const counts = useMemo(() => elementFilterCounts(weapons), [weapons]);
 
   // Recomputed every render: craftCheck answers null until a bundle has
   // loaded, and the provider re-renders us when it arrives.
-  const result =
-    progress.active && visibleTree
-      ? filterTree(visibleTree, type, basePath, progress, filter)
-      : null;
+  const result = visibleTree
+    ? filterTree(visibleTree, type, basePath, progress, { hunter, element })
+    : null;
 
-  const step = (by: 1 | -1) => {
-    setFilter((current) => {
-      const next = cycleTreeFilter(current, by);
-      writeTreeFilter(next);
-      return next;
+  const groups =
+    view === "element"
+      ? groupByElement(weapons).filter((g) => groupMatchesElementFilter(g, element))
+      : view === "rarity"
+        ? groupByRarity(weapons)
+        : null;
+
+  const sections: SortSection[] = [
+    {
+      title: tt.sortView,
+      options: TREE_VIEWS.map((v) => ({
+        key: v,
+        label: t.equipment.treeViews[v],
+        selected: v === view,
+        choose: () => {
+          setView(v);
+          writeTreeView(v);
+        },
+      })),
+    },
+    {
+      title: tt.sortElement,
+      // Elements this tree has none of are left out, unless chosen in another tree.
+      options: ELEMENT_FILTERS.filter((f) => f === "all" || f === element || counts[f] > 0).map(
+        (f) => ({
+          key: f,
+          label: t.equipment.treeElementFilters[f],
+          glyph: <ElementGlyph filter={f} />,
+          count: counts[f],
+          selected: f === element,
+          choose: () => {
+            setElement(f);
+            writeElementFilter(f);
+          },
+        }),
+      ),
+    },
+  ];
+  if (progress.active) {
+    sections.push({
+      title: tt.sortHunter,
+      options: TREE_FILTERS.map((f) => ({
+        key: f.id,
+        label: t.equipment.treeFilters[f.id],
+        selected: f.id === hunterFilter,
+        choose: () => {
+          setHunterFilter(f.id);
+          writeTreeFilter(f.id);
+        },
+      })),
     });
-  };
+  }
+
+  const summary = tt.sortSummary(
+    [
+      t.equipment.treeViews[view],
+      element !== "all" && t.equipment.treeElementFilters[element],
+      hunter !== "all" && t.equipment.treeFilters[hunter],
+    ].filter((part): part is string => !!part),
+  );
 
   return (
-    // Takes the tree card's place in .split-page; above the card (z-1) so the
-    // bar and its arrows draw over the frame.
+    // Takes the tree card's place in .split-page.
     <CardBox data-tree-panel>
       <Card variant="weapon-tree">
-        <TreeScroll treeKey={treeKey} activeSlug={activeSlug}>
+        {/* Each view keeps its own scroll position. */}
+        <TreeScroll
+          key={view}
+          treeKey={view === "tree" ? treeKey : `${treeKey}:${view}`}
+          activeSlug={activeSlug}
+        >
           <TreeFilterContext.Provider value={result}>
             <WeaponTreeContext.Provider value={visibleTree}>
-              {visibleTree?.map((node) => (
-                <ul key={node.slug}>
-                  <WeaponTreeRow
-                    node={node}
-                    sectionType={type}
-                    basePath={basePath}
-                    treeKey={treeKey}
-                    activeSlug={activeSlug}
-                  />
-                </ul>
-              ))}
+              {groups ? (
+                <WeaponTreeGroups
+                  groups={groups}
+                  sectionType={type}
+                  basePath={basePath}
+                  treeKey={treeKey}
+                  activeSlug={activeSlug}
+                />
+              ) : (
+                visibleTree?.map((node) => (
+                  <ul key={node.slug}>
+                    <WeaponTreeRow
+                      node={node}
+                      sectionType={type}
+                      basePath={basePath}
+                      treeKey={treeKey}
+                      activeSlug={activeSlug}
+                    />
+                  </ul>
+                ))
+              )}
             </WeaponTreeContext.Provider>
           </TreeFilterContext.Provider>
-          {/* Room to scroll the last rows clear of the filter bar. */}
+          {/* Room to scroll the last rows clear of the sort bar. */}
           {result && <div style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />}
         </TreeScroll>
       </Card>
 
       {result && (
-        <SelectorBar
-          label={t.equipment.treeFilters[filter]}
-          groupLabel={tt.filterGroup}
-          previousLabel={tt.previousFilter}
-          nextLabel={tt.nextFilter}
-          onStep={step}
+        <TreeSortBar
+          sections={sections}
+          summary={summary}
           count={`${result.matched}/${result.total}`}
-          countLabel={tt.filterCount(result.matched, result.total)}
+          label={tt.sortBarLabel(summary, tt.filterCount(result.matched, result.total))}
+          menuLabel={tt.sortMenu}
         />
       )}
     </CardBox>

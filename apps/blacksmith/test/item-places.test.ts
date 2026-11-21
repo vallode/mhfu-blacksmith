@@ -73,6 +73,7 @@ const quests = [
   { id: 3001, hub: "guild", rank: "g-rank" },
   { id: 20001, hub: "training-school", rank: null },
   { id: 30001, hub: "guild", rank: "low-rank" }, // hidden
+  { id: 60010, hub: "event", rank: "g-rank" },
 ];
 
 const shops: ShopsFile = {
@@ -152,6 +153,20 @@ describe("item places", () => {
         mapQuest: 20001,
       },
     ]);
+  });
+
+  test("leaves out the downloaded quests' points, which no copy of the game has", () => {
+    const event: GatheringFile = {
+      layouts: [
+        {
+          map: "Old Desert",
+          quests: [60010],
+          areas: [{ area: 3, nodes: [node("mine", [["Iron Ore", 30]])] }],
+        },
+      ],
+    };
+    const only = buildItemPlaces(event, { shops: [] }, { points: [] }, quests, itemId);
+    assert.equal(only.get(1)?.gathering.length ?? 0, 0);
   });
 
   test("names a quest's own points only for items the map's usual points don't give", () => {

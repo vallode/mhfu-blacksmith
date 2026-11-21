@@ -11,7 +11,15 @@
  */
 import { useCallback, useSyncExternalStore } from "react";
 import { ARMOR_RANKS, ARMOR_SLOTS, WEAPON_TYPES } from "./constants";
-import { entryKey, type GearRef, type WishlistEntry } from "./wishlist";
+import {
+  addEntries,
+  entryKey,
+  hasAll,
+  MAX_DECORATION_COUNT,
+  type GearRef,
+  type GearWant,
+  type WishlistEntry,
+} from "./wishlist";
 
 const KEY = "wishlist";
 /** Sent on this window when the list changes here (other tabs get `storage`). */
@@ -27,14 +35,21 @@ function isEntry(x: unknown): x is WishlistEntry {
   if (e.kind === "weapon") {
     return (
       (WEAPON_TYPES as readonly string[]).includes(e.type) &&
-      (e.from === undefined || e.from === null || typeof e.from === "string")
+      (e.from === undefined || e.from === null || typeof e.from === "string") &&
+      (e.made === undefined || typeof e.made === "string")
     );
   }
+  if (e.kind === "decoration") return e.count === undefined || isCount(e.count);
   return (
     e.kind === "armor" &&
     (ARMOR_SLOTS as readonly string[]).includes(e.slot) &&
     (ARMOR_RANKS as readonly string[]).includes(e.rank)
   );
+}
+
+/** A decoration entry's count: a whole number from 1 to MAX_DECORATION_COUNT. */
+export function isCount(n: unknown): n is number {
+  return Number.isInteger(n) && (n as number) >= 1 && (n as number) <= MAX_DECORATION_COUNT;
 }
 
 /** The stored list, without anything malformed or listed twice. */
@@ -63,9 +78,25 @@ function readRaw(): string | null {
   }
 }
 
-export function writeWishlist(entries: WishlistEntry[]): boolean {
+/**
+ * The stored entries this build can't read, such as a newer build's kinds of
+ * gear. Writes keep them, so an older tab doesn't delete what a newer one added.
+ */
+export function unreadableEntries(raw: string | null): unknown[] {
   try {
-    localStorage.setItem(KEY, JSON.stringify(entries));
+    const parsed = JSON.parse(raw ?? "[]") as unknown;
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((e) => typeof e === "object" && e !== null && !isEntry(e));
+  } catch {
+    return [];
+  }
+}
+
+/** Saves the list, after it the stored entries this build can't read unless `keepUnreadable` is false. */
+export function writeWishlist(entries: WishlistEntry[], keepUnreadable = true): boolean {
+  try {
+    const kept = keepUnreadable ? unreadableEntries(localStorage.getItem(KEY)) : [];
+    localStorage.setItem(KEY, JSON.stringify([...entries, ...kept]));
   } catch {
     return false;
   }
@@ -105,7 +136,7 @@ export function toggleEntry(entries: WishlistEntry[], ref: GearRef): [WishlistEn
   if (entries.some((e) => entryKey(e) === key)) {
     return [entries.filter((e) => entryKey(e) !== key), false];
   }
-  return [[{ ...ref, addedAt: Date.now() } as WishlistEntry, ...entries], true];
+  return [addEntries(entries, [ref])[0], true];
 }
 
 export interface Wishlist {
@@ -114,10 +145,25 @@ export interface Wishlist {
   has(ref: GearRef): boolean;
   /** Adds or removes the gear; false if storage refused the write. */
   toggle(ref: GearRef): boolean;
-  /** Changes an entry's recipe or starting weapon. */
+  /** Whether every wanted gear is listed, each decoration at least as many times. */
+  hasAll(wants: readonly GearWant[]): boolean;
+  /**
+   * Adds every wanted gear not listed and raises listed decorations to the
+   * count wanted (see `addEntries`). How many entries changed, or null if
+   * storage refused the write.
+   */
+  addAll(wants: readonly GearWant[]): number | null;
+  /**
+   * Changes an entry's recipe, starting weapon, (decorations) count, or the
+   * furthest weapon made along its path (`made: undefined` clears it).
+   */
   update(
     key: string,
-    patch: Partial<Pick<WishlistEntry, "recipe">> & { from?: string | null },
+    patch: Partial<Pick<WishlistEntry, "recipe">> & {
+      from?: string | null;
+      count?: number;
+      made?: string;
+    },
   ): void;
   remove(key: string): void;
   clear(): void;
@@ -132,7 +178,15 @@ export function useWishlist(): Wishlist {
     [list],
   );
   const toggle = useCallback((ref: GearRef) => writeWishlist(toggleEntry(snapshot(), ref)[0]), []);
+  const hasAllOf = useCallback((wants: readonly GearWant[]) => hasAll(list, wants), [list]);
+  const addAll = useCallback((wants: readonly GearWant[]) => {
+    const [next, changed] = addEntries(snapshot(), wants);
+    if (changed === 0) return 0;
+    return writeWishlist(next) ? changed : null;
+  }, []);
   const update = useCallback<Wishlist["update"]>((key, patch) => {
+    // A count the list wouldn't read back would drop the whole entry.
+    if (patch.count !== undefined && !isCount(patch.count)) return;
     writeWishlist(
       snapshot().map((e) => (entryKey(e) === key ? ({ ...e, ...patch } as WishlistEntry) : e)),
     );
@@ -141,8 +195,8 @@ export function useWishlist(): Wishlist {
     writeWishlist(snapshot().filter((e) => entryKey(e) !== key));
   }, []);
   const clear = useCallback(() => {
-    writeWishlist([]);
+    writeWishlist([], false);
   }, []);
 
-  return { entries, has, toggle, update, remove, clear };
+  return { entries, has, toggle, hasAll: hasAllOf, addAll, update, remove, clear };
 }

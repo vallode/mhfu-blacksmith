@@ -14,7 +14,7 @@ import {
 } from "./game/tiers.js";
 import { Rng } from "./rng.js";
 import type { Settings } from "./settings.js";
-import { pieceName, readArmorPieces, shuffleArmor } from "./shuffles/armor.js";
+import { drawStarterArmor, pieceName, readArmorPieces, shuffleArmor } from "./shuffles/armor.js";
 import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { ARMOR_STATS, randomizeArmorStats } from "./shuffles/armor-stats.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
@@ -26,6 +26,7 @@ import {
 } from "./game/quest-fields.js";
 import { changeCarveCounts, collectCarveCounts } from "./shuffles/carve-counts.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
+import { randomizeGoals } from "./shuffles/quest-goals.js";
 import {
   collectGatheringSlots,
   randomizeGathering,
@@ -97,11 +98,12 @@ import {
   randomizeMonsterStats,
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
-import { randomizeMonsterAi } from "./shuffles/monster-ai.js";
+import { makeMonstersAggressive, randomizeMonsterAi, readScripts } from "./shuffles/monster-ai.js";
 import { writeGuides } from "./hints/guides.js";
 import { DEMO_OBJECTS } from "./blob/demo-object.js";
 import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
+import { findKeyQuestSites, keyQuestsObjects, keyQuestsReport } from "./patches/key-quests.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { addWeaponMashups } from "./patches/weapon-mashups.js";
 import { prepareWeaponStitcher, stitchObjects } from "./patches/weapon-stitcher.js";
@@ -364,6 +366,24 @@ export function randomize(
       );
     }
   }
+  // Goals after every shuffle that changes a quest's monsters, before small
+  // monster counts (which keep as many as a slay goal needs).
+  if (settings["questGoals.enabled"]) {
+    reports.push(
+      randomizeGoals(
+        game.quests,
+        input.quests,
+        {
+          capture: settings["questGoals.capture"],
+          small: settings["questGoals.smallMonsters"],
+        },
+        rng.fork("quest-goals"),
+        edits,
+        monsterName,
+        game.boards,
+      ),
+    );
+  }
   if (settings["questMonsters.difficulty"]) {
     reports.push(
       randomizeDifficulty(
@@ -460,17 +480,24 @@ export function randomize(
       );
     }
   }
-  if (settings["monsterAi.branches"]) {
-    reports.push(
-      randomizeMonsterAi(
-        settings["monsterAi.branchSpread"],
-        rng.fork("monster-ai"),
-        edits,
-        game.gameTask,
-        loadEmOverlays(game),
-        monsterName,
-      ),
-    );
+  const aggression = settings["monsterAi.aggression"];
+  if (settings["monsterAi.branches"] || aggression !== "off") {
+    const scripts = readScripts(game.gameTask, loadEmOverlays(game));
+    if (settings["monsterAi.branches"]) {
+      reports.push(
+        randomizeMonsterAi(
+          settings["monsterAi.branchSpread"],
+          rng.fork("monster-ai"),
+          edits,
+          scripts,
+          monsterName,
+        ),
+      );
+    }
+    // After the reroll, so it leans whatever odds the choices have by then.
+    if (aggression !== "off") {
+      reports.push(makeMonstersAggressive(aggression, edits, scripts, monsterName));
+    }
   }
 
   const questSlots = collectQuestRewardSlots(game.quests);
@@ -710,7 +737,9 @@ export function randomize(
 
   // The smithy's store and a new hunter's equipment follow the weapons and
   // armor shuffles: found once, for both.
-  const followsGear = settings["weapons.enabled"] || settings["armor.enabled"];
+  const startArmor = settings["armor.start"];
+  const followsGear =
+    settings["weapons.enabled"] || settings["armor.enabled"] || startArmor !== "smithy";
   const store = followsGear ? findSmithyStore(game.lobbyTask) : null;
   const starter = followsGear ? findStarterBox(game.editTask) : null;
   const gear = [store, starter].filter((list) => list !== null);
@@ -777,11 +806,35 @@ export function randomize(
 
   // Armor only changes which piece each create entry makes, so the recipe
   // shuffles' spoiler names the new pieces.
+  // A drawn starting set takes its entries out of the box's list first, so
+  // the armor shuffle doesn't move them.
+  if (starter && startArmor !== "smithy") {
+    drawStarterArmor(
+      game.eboot,
+      game.resolver,
+      starter,
+      startArmor,
+      rng.fork("starting-armor"),
+      edits,
+    );
+  }
   if (settings["armor.enabled"]) {
-    reports.push(shuffleArmor(game.eboot, game.resolver, rng.fork("armor"), edits, gear));
+    reports.push(
+      shuffleArmor(
+        game.eboot,
+        game.resolver,
+        settings["armor.scope"],
+        rng.fork("armor"),
+        edits,
+        gear,
+      ),
+    );
   }
   if (followsGear) {
-    reports.push(gearReport("Smithy store", store), gearReport("Starting equipment", starter));
+    if (settings["weapons.enabled"] || settings["armor.enabled"]) {
+      reports.push(gearReport("Smithy store", store));
+    }
+    reports.push(gearReport("Starting equipment", starter));
   }
 
   // Stats are the pieces' own, in bytes the armor and skill shuffles don't
@@ -930,7 +983,9 @@ export function randomize(
     settings["elites.enabled"] ||
     settings["pact.enabled"] ||
     settings["poogie.enabled"] ||
-    settings["mods.weaponStitcher"] !== "off"
+    settings["quests.keyLabel"] ||
+    settings["mods.weaponStitcher"] !== "off" ||
+    settings["relics.enabled"]
   ) {
     // Each feature is resolved on its own first: one that doesn't match this
     // disc is left out, and the loader (which caps Guild Cards) only goes in
@@ -1107,9 +1162,21 @@ export function randomize(
       Object.assign(data, relics.data);
     }
     const relicWeapons = typeof relics === "string" ? null : relics;
+    const { ovl: lobbyOvl } = game.lobbyTask;
+    const keySites = !settings["quests.keyLabel"]
+      ? null
+      : typeof hookSites === "string"
+        ? hookSites
+        : findKeyQuestSites(lobbyOvl.reader.buf, lobbyOvl.loadBase, game.eboot);
+    if (typeof keySites === "string") reports.push(notApplied("Key quests", keySites));
+    const keys = typeof keySites === "string" ? null : keySites;
+    if (keys) {
+      objects.push(...keyQuestsObjects());
+      Object.assign(externs, keys.externs);
+    }
     if (
       typeof hookSites !== "string" &&
-      (monsterHp || unknown || elites || pact || luck || stitcher || relicWeapons)
+      (monsterHp || unknown || elites || pact || luck || stitcher || relicWeapons || keys)
     ) {
       const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         // Elites and the pact both bring the shared monster boosts: link them once.
@@ -1121,6 +1188,9 @@ export function randomize(
           ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
           ...(luck && { pick: luck.pick }),
           ...(stitcher && { build: stitcher.build }),
+          ...(keys && {
+            questCard: { call: keys.call, card: keys.card, lobbyTask: game.lobbyTask },
+          }),
         },
         externs,
         data,
@@ -1129,6 +1199,7 @@ export function randomize(
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (stitcher) reports.push(stitcher.finish(loader.applied));
       if (relicWeapons) reports.push(relicWeapons.finish(loader.applied));
+      if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {
         reports.push(luck.finish(loader.applied));
         if (loader.applied && options.poogieTest) {

@@ -82,12 +82,60 @@ test("composeHunter moves a piece's vertices onto the player skeleton and joints
     Array.from({ length: 10 }, (_, i) => bone(i, i - 1, [0, 0, 0])),
     [1],
   );
-  const { pmo, textures, bones } = composeHunter([legs, arms]);
+  const { pmo, textures, bones, meshSlots } = composeHunter([legs, arms]);
   assert.equal(bones.length, PLAYER_BONE_COUNT);
+  assert.deepEqual(meshSlots, ["leggings", "gauntlets"]);
   assert.equal(textures.length, 2);
   assert.equal(pmo.meshes[1]!.primitives[0]!.materialIndex, 1);
   // Bone 1 maps to the chest, and its vertices rise by the chest's height.
   assert.deepEqual(pmo.meshes[1]!.primitives[0]!.bones, [JOINT.CHEST]);
+  const vertex = pmo.meshes[1]!.primitives[0]!.geometry.vertices[0]!;
+  assert.ok(Math.abs(vertex.position[1]! * pmo.scale[1] - 15.4) < 1e-6);
+});
+
+test("composeHunter puts a lone piece on a skeleton it's given", () => {
+  const arms = piece(
+    "gauntlets",
+    Array.from({ length: 10 }, (_, i) => bone(i, i - 1, [0, 0, 0])),
+    [1],
+  );
+  const { pmo, bones } = composeHunter([arms], playerSkeleton());
+  assert.equal(bones.length, PLAYER_BONE_COUNT);
+  assert.equal(pmo.meshes.length, 1);
+  assert.deepEqual(pmo.meshes[0]!.primitives[0]!.bones, [JOINT.CHEST]);
+  const vertex = pmo.meshes[0]!.primitives[0]!.geometry.vertices[0]!;
+  assert.ok(Math.abs(vertex.position[1]! * pmo.scale[1] - 15.4) < 1e-6);
+});
+
+test("composeHunter carries a bone past the joint map with its mapped ancestor", () => {
+  // A helmet's head bone (3) and a hair bone (4) hanging from it.
+  const helmet = piece(
+    "helmet",
+    [
+      bone(0, -1, [0, 0, 0]),
+      bone(1, 0, [0, 0, 0]),
+      bone(2, 1, [0, 0, 0]),
+      bone(3, 2, [0, 0, 0]),
+      bone(4, 3, [0, 5, 0]),
+    ],
+    [4],
+  );
+  const { pmo } = composeHunter([helmet], playerSkeleton());
+  assert.deepEqual(pmo.meshes[0]!.primitives[0]!.bones, [JOINT.HEAD]);
+  // The head sits 14.4 higher in the player (the chest's height), and so does the hair.
+  const vertex = pmo.meshes[0]!.primitives[0]!.geometry.vertices[0]!;
+  assert.ok(Math.abs(vertex.position[1]! * pmo.scale[1] - 15.4) < 1e-6);
+});
+
+test("composeHunter puts a face on the head joint", () => {
+  const legs = piece("leggings", playerSkeleton(), [JOINT.HIPS]);
+  // A face's skeleton: a root and the head, both at the origin.
+  const face = piece("face", [bone(0, -1, [0, 0, 0]), bone(1, 0, [0, 0, 0])], [1]);
+  const { pmo, meshSlots, meshMaterialBases } = composeHunter([legs, face], playerSkeleton());
+  assert.deepEqual(meshSlots, ["leggings", "face"]);
+  assert.deepEqual(meshMaterialBases, [0, 1]);
+  assert.deepEqual(pmo.meshes[1]!.primitives[0]!.bones, [JOINT.HEAD]);
+  // The head sits at the chest's height in the test skeleton.
   const vertex = pmo.meshes[1]!.primitives[0]!.geometry.vertices[0]!;
   assert.ok(Math.abs(vertex.position[1]! * pmo.scale[1] - 15.4) < 1e-6);
 });
@@ -172,4 +220,87 @@ test("buildGlb writes one named node per piece when a model has several", async 
     ["part_0", "part_1"],
   );
   assert.equal(json.meshes.length, 2);
+});
+
+test("buildGlb keeps a skinned model's pieces on one mesh, each primitive naming its piece", async () => {
+  const legs = piece("leggings", playerSkeleton(), [JOINT.HIPS]);
+  const head = piece(
+    "helmet",
+    [0, 1, 2, 3].map((i) => bone(i, i - 1, [0, 0, 0])),
+    [3],
+  );
+  const hunter = composeHunter([head, legs]);
+  const { glb } = await buildGlb(
+    hunter.pmo,
+    [],
+    "hunter",
+    {
+      compress: false,
+      webp: false,
+      partOf: (mesh) => (hunter.meshSlots[mesh] === "helmet" ? 0 : 4),
+    },
+    { bones: hunter.bones },
+  );
+  const json = JSON.parse(glb.subarray(20, 20 + glb.readUInt32LE(12)).toString("utf-8")) as {
+    nodes: { mesh?: number; skin?: number }[];
+    meshes: { primitives: { extras?: { part: number } }[] }[];
+  };
+  assert.equal(json.meshes.length, 1);
+  assert.deepEqual(json.nodes[0], { mesh: 0, skin: 0 });
+  assert.deepEqual(
+    json.meshes[0]!.primitives.map((primitive) => primitive.extras?.part),
+    [0, 4],
+  );
+});
+
+test("composeHunter keeps a texture index past a piece's own off the next piece's textures", () => {
+  const skin = { width: 1, height: 1, rgba: Buffer.alloc(4), hasAlpha: false };
+  const legs = piece("leggings", playerSkeleton(), [JOINT.HIPS]);
+  const arms = piece(
+    "gauntlets",
+    Array.from({ length: 10 }, (_, i) => bone(i, i - 1, [0, 0, 0])),
+    [1],
+  );
+  // The leggings' material points one past their own texture: the skin's slot.
+  legs.pmo.materials[0] = { ...legs.pmo.materials[0]!, textureIndex: 1 };
+  const bare = composeHunter([legs, arms]);
+  // Without a skin, it is no texture at all, not the gauntlets'.
+  assert.ok(bare.pmo.materials[0]!.textureIndex >= bare.textures.length);
+  assert.equal(bare.pmo.materials[1]!.textureIndex, 1);
+
+  // With the skin after each piece's own textures, both pieces share one image.
+  legs.textures = [...legs.textures, skin];
+  arms.textures = [...arms.textures, skin];
+  const dressed = composeHunter([legs, arms]);
+  assert.equal(dressed.textures.length, 3);
+  assert.equal(dressed.textures[dressed.pmo.materials[0]!.textureIndex], skin);
+  assert.equal(dressed.pmo.materials[1]!.textureIndex, 2);
+});
+
+test("a piece placed alone on a given skeleton keeps its player joints as _JOINTS_0 and _WEIGHTS_0", async () => {
+  const skeleton = playerSkeleton();
+  const arms = piece(
+    "gauntlets",
+    Array.from({ length: 10 }, (_, i) => bone(i, i - 1, [0, 0, 0])),
+    [1],
+  );
+  // No leggings needed when the skeleton is given; the chest bone rises to the chest.
+  const placed = composeHunter([arms], skeleton);
+  const vertex = placed.pmo.meshes[0]!.primitives[0]!.geometry.vertices[0]!;
+  assert.ok(Math.abs(vertex.position[1]! * placed.pmo.scale[1] - 15.4) < 1e-6);
+  const { glb } = await buildGlb(placed.pmo, [], "arms", {
+    compress: false,
+    webp: false,
+    jointWeights: true,
+  });
+  const json = JSON.parse(glb.subarray(20, 20 + glb.readUInt32LE(12)).toString("utf-8")) as {
+    nodes: { mesh?: number; skin?: number; scale?: number[] }[];
+    meshes: { primitives: { attributes: Record<string, number> }[] }[];
+    skins?: unknown[];
+  };
+  const attributes = json.meshes[0]!.primitives[0]!.attributes;
+  assert.ok("_JOINTS_0" in attributes && "_WEIGHTS_0" in attributes);
+  assert.ok(!("JOINTS_0" in attributes));
+  assert.equal(json.skins, undefined);
+  assert.ok(json.nodes[0]!.scale);
 });

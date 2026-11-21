@@ -1,12 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { SaveLook } from "@/lib/hunter-look";
 import type { AwardRecords, EquipSlot, MonsterRecord } from "@/lib/save-store";
 
 /** One hunter, as the worker parses it; it always reads the award records (`AwardRecords`). */
 export interface CharacterResult extends Required<AwardRecords> {
   name: string;
   sex: "Male" | "Female";
+  /** The look picked at character creation. */
+  look: SaveLook;
   zenny: number;
   /** Total play time in seconds. */
   playTime: number;

@@ -29,6 +29,7 @@ void rf_hook1(u8 *arg) { run(RF_HOOK_HUD, arg); }
 void rf_hook2(u8 *arg) { run(RF_HOOK_PAD, arg); }
 void rf_hook3(u8 *arg) { run(RF_HOOK_QUEST_LOAD, arg); }
 void rf_hook4(u8 *arg) { run(RF_HOOK_REWARDS, arg); }
+void rf_hook6(u8 *arg) { run(RF_HOOK_QUEST_CARD, arg); }
 
 __attribute__((weak)) void rf_monster_hp_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_pact_init(u32 reason, u8 *save);
@@ -36,6 +37,7 @@ __attribute__((weak)) void rf_monsters_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_elite_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_unknown_quests_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_poogie_init(u32 reason, u8 *save);
+__attribute__((weak)) void rf_key_quests_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_relics_init(u32 reason, u8 *save);
 
 static struct rf_save_data *save_data;
@@ -56,5 +58,6 @@ void rf_init(u32 reason, u8 *save, u8 *blob) {
   if (rf_elite_init) rf_elite_init(reason, save);
   if (rf_unknown_quests_init) rf_unknown_quests_init(reason, save);
   if (rf_poogie_init) rf_poogie_init(reason, save);
+  if (rf_key_quests_init) rf_key_quests_init(reason, save);
   if (rf_relics_init) rf_relics_init(reason, save);
 }

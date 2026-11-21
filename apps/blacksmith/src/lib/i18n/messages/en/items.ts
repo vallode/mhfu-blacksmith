@@ -61,6 +61,7 @@ export const items = {
       shops: "Shops",
       trades: "Trades",
       combining: "Combining",
+      uses: "Used in",
     },
     noSources:
       "No monster drop, quest reward, gathering point, shop, trade or combination gives this item.",
@@ -137,6 +138,28 @@ export const items = {
     booksNote: (last: number, bonuses: string) =>
       `Rates are before Books of Combos 1–${last} (${bonuses} for owning them in order from 1) and the Combination skill.`,
   },
+  /** The Used in tab: the weapons, armor and decorations whose recipes take the item. */
+  uses: {
+    filterLabel: "Show gear of one kind",
+    create: "Forge",
+    improve: (from: string) => `Upgrade from ${from}`,
+    upgrade: "Upgrade",
+    alt: "Second recipe",
+    armorRank: (rank: string) => `${rank} armor`,
+    decorations: "Decorations",
+    weapons: "Weapons",
+    armor: "Armor",
+    all: "All",
+    /** `recipes` and `total` are formatted numbers. */
+    summary: (n: number, recipes: string, total: string) =>
+      `In ${recipes} ${n === 1 ? "recipe" : "recipes"} · ${total} for all of them`,
+    showAll: (count: string) => `Show all ${count}`,
+    showFewer: "Show fewer",
+    /** A filter button: "Weapons 105". */
+    kindCount: (kind: string, count: string) => `${kind} ${count}`,
+    /** A list's title: "Great Sword (14)". */
+    groupCount: (group: string, count: string) => `${group} (${count})`,
+  },
   /** The Veggie Elder's trades: the item pages' Trades tab and /veggie-elder/. */
   veggieElder: {
     /** The Trades tab's lists. */
@@ -161,14 +184,14 @@ export const items = {
     pickItem:
       "Pick an item to see what the Veggie Elder gives for it. Each hunting ground has its own list.",
   },
-  /** /wishlist/: the gear the player starred and the materials it needs. */
+  /** /wishlist/: the gear and decorations the player starred and the materials they need. */
   wishlist: {
     /** Card titles. */
     title: "Wishlist",
     materials: "Materials",
     whereToGo: "Where to go",
     empty:
-      "Nothing on your wishlist yet. Press the star beside a weapon or armor piece's name to add it, and its materials add up here with where to get them. The wishlist is kept in this browser.",
+      "Nothing on your wishlist yet. Press the star beside a weapon, armor piece or decoration's name to add it, or add a whole set from the Set builder, and its materials add up here with where to get them. The wishlist is kept in this browser.",
     loadError: "Couldn't load the wishlist's gear.",
     retry: "Try again",
     whereToGoNote: "The monsters and maps that give the most of the materials you still need.",
@@ -178,6 +201,17 @@ export const items = {
     removeLabel: (name: string) => `Remove ${name} from the wishlist`,
     missingGear: "Not in this version's data any more.",
     ownedNote: "Your hunter has this already, so its materials are left out.",
+    /** A decoration the loaded hunter has enough of, free in their item box and pouch. */
+    enoughNote: (have: string) =>
+      `Your hunter has ${have} in their item box already, so its materials are left out.`,
+    /** A decoration's count: how many jewels to have. */
+    countLabel: (name: string) => `How many ${name} to have`,
+    /** The count between − and +: "×3". */
+    countValue: (count: string) => `×${count}`,
+    oneFewer: "One fewer",
+    oneMore: "One more",
+    /** Jewels set in equipment don't count: taking one out breaks it. */
+    inBox: (have: string, toMake: string) => `${have} in your item box · ${toMake} to make`,
     noRecipe: "No recipe makes this.",
     recipe: "Recipe",
     /** By lib/wishlist Recipe. */
@@ -188,6 +222,15 @@ export const items = {
     from: "From",
     ownedOption: (name: string) => `${name} (owned)`,
     wholePath: "Nothing (whole path)",
+    /** The tick box beside each weapon of an upgrade path, and its tooltips. */
+    madeLabel: (name: string) => `Made ${name}`,
+    markMade: "Tick off as made",
+    unmarkMade: "Not made yet",
+    /** A step ticked because the loaded hunter owns it, or a weapon further along. */
+    ownedStepLabel: (name: string) => `Made ${name} (from your save)`,
+    ownedStep: "Your save shows this made",
+    /** Under an upgrade path when the save ticked some of it. */
+    fromSaveNote: "Grey ticks come from your loaded save.",
     cost: "Cost:",
     /** The loaded hunter's zenny, after the cost. */
     youHave: (amount: string) => `(you have ${amount})`,
@@ -220,7 +263,6 @@ export const items = {
         `only on ${count} ${n === 1 ? "quest" : "quests"}`,
       /** `stars` is "G3★". */
       questReward: (stars: string) => `${stars} reward`,
-      pokkePoints: (amount: string) => `${amount}pts`,
     },
     /** Where to go: a gathering map's rank or board. */
     gatheringIn: (group: string) => `Gathering · ${group}`,

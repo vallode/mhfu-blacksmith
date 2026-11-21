@@ -63,10 +63,12 @@ export interface CompactTreeNode {
   t?: string; // type (omitted when it equals the bundle's own type)
   r?: number | null; // rarity
   c?: string; // color
-  e?: string; // element
+  e?: string; // element (the first, on a dual-element weapon)
+  e2?: string; // a dual-element weapon's second element
   m?: MinRankTuple; // earliest quest progress needed to make it
   d?: number; // armor max defence
   a?: 1; // alias: listed again under another parent, its branch is under the first
+  f?: number; // armor: version family, shared by the piece's versions at every rank (lib/armor-versions)
   k?: CompactTreeNode[]; // children
 }
 
@@ -290,9 +292,11 @@ export function decodeTreeNode(node: CompactTreeNode, bundleType: string): Weapo
     rarity: node.r ?? undefined,
     color: node.c,
     element: node.e,
+    elements: node.e && node.e2 ? [node.e, node.e2] : undefined,
     min_rank: decodeMinRank(node.m),
     max_defence: node.d,
     alias: node.a === 1 || undefined,
+    family: node.f,
     children: node.k?.map((c) => decodeTreeNode(c, bundleType)),
   };
 }

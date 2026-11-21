@@ -87,7 +87,10 @@ export interface WeaponTreeNode {
   type: string;
   rarity?: number;
   color?: string;
+  /** The weapon's element, lower-case ("fire"); the first one of a dual-element weapon. */
   element?: string;
+  /** Every element of a dual-element weapon, in order; absent for one element or none. */
+  elements?: string[];
   /** Earliest quest progress needed to make it; absent when no route is known. */
   min_rank?: MinRank;
   /** Armor only: defence at the highest upgrade level. */
@@ -103,6 +106,16 @@ export interface WeaponTreeNode {
    * nested under it any more (its parent was pruned out of the tree).
    */
   parentHref?: string;
+  /**
+   * Armor only: the piece's version family, shared with its versions at the
+   * other ranks (Rathalos Helm, Rathalos Helm S, Rathalos Helm X).
+   */
+  family?: number;
+  /**
+   * Shown faded: outside the tree's filter, but kept for context (an armor
+   * piece's versions at other ranks under a rank filter).
+   */
+  dimmed?: boolean;
   children?: WeaponTreeNode[];
 }
 

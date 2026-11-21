@@ -1,7 +1,7 @@
 /**
  * `FORGE.BIN`: the melee forge's parts, cut ahead of time, for the weapon
  * stitcher in the blob (`blob/stitch.c`) to build a new weapon from every
- * time the game builds the hunter's weapon (hook 6). `stitch.ts` is the same
+ * time the game builds the hunter's weapon (hook 7). `stitch.ts` is the same
  * stitcher in TypeScript, which the blob's output is checked against.
  *
  * Every model's parts are grouped into blocks, one per role (its handle,

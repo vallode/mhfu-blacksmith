@@ -209,3 +209,39 @@ test("armor: the smithy's store sells the piece now in each sold piece's places"
   assert.ok(movedAny, "some seed changes what the store sells");
   close();
 });
+
+test("armor.scope: places trade across rarities (rank, any), still with the same wearers", async () => {
+  const { game, close } = await load();
+  const crossed = new Set<string>();
+  for (const scope of ["rank", "any"] as const) {
+    for (const seed of ["a", "b", "c", "d", "e", "f", "g", "h"]) {
+      const result = randomize(game, settingsWith(seed, ["armor"], { "armor.scope": scope }));
+      const sigma = substitution(game.eboot, result.edits.eboot());
+      for (const [key, to] of sigma) {
+        const [slot, index] = key.split(":") as [ArmorSlot, string];
+        const from = piece(slot, Number(index))!;
+        const now = piece(slot, to)!;
+        assert.equal(now.hunterType, from.hunterType, `${scope} ${key} -> ${to}: wearers`);
+        if (now.rarity !== from.rarity) crossed.add(scope);
+      }
+      // A line names the new piece's rarity only when it differs from the place's.
+      const report = result.reports.find((r) => r.title === "Armor progression")!;
+      for (const line of report.lines) {
+        const place = line.where.split(", rarity ")[1]!;
+        const named = /\(rarity (\d+)/.exec(line.text)?.[1];
+        assert.notEqual(named, place, line.text);
+      }
+    }
+  }
+  // Every fixture piece is Low Rank, so both scopes mix head rarities 1 and 2.
+  assert.deepEqual([...crossed].sort(), ["any", "rank"]);
+  close();
+});
+
+test("armor.scope rarity draws the same permutation as before the option existed", async () => {
+  const { game, close } = await load();
+  const a = randomize(game, settingsWith("same", ["armor"]));
+  const b = randomize(game, settingsWith("same", ["armor"], { "armor.scope": "rarity" }));
+  assert.ok(a.edits.eboot().equals(b.edits.eboot()));
+  close();
+});

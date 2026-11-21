@@ -63,4 +63,5 @@ export const common: Messages["common"] = {
   close: "Cerrar",
   back: "Atrás",
   zenny: (amount: string) => `${amount}z`,
+  points: (amount: string) => `${amount} ptos.`,
 };

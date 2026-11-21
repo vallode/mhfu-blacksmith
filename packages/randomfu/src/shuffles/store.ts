@@ -40,6 +40,8 @@ export interface GearList {
   maxId: number;
   /** Spoiler lines, as the shuffles add them. */
   lines: SpoilerLine[];
+  /** Notes the shuffles add to the list's spoiler section. */
+  notes: string[];
 }
 
 /** The smithy's store in `lobby`, or null when there's none. */
@@ -52,7 +54,7 @@ export function findSmithyStore(lobby: LoadedOverlay): GearList | null {
     category,
     id,
   }));
-  return { title: "Smithy store", overlay: lobby, entries, maxId: 0x10000, lines: [] };
+  return { title: "Smithy store", overlay: lobby, entries, maxId: 0x10000, lines: [], notes: [] };
 }
 
 /** A new hunter's equipment box in `edit`, or null when it isn't found (or there's no `edit`). */
@@ -66,7 +68,14 @@ export function findStarterBox(edit: LoadedOverlay | null): GearList | null {
     worn,
   }));
   // The IDs are sign-extended `addiu` immediates.
-  return { title: "Starting equipment", overlay: edit, entries, maxId: 0x8000, lines: [] };
+  return {
+    title: "Starting equipment",
+    overlay: edit,
+    entries,
+    maxId: 0x8000,
+    lines: [],
+    notes: [],
+  };
 }
 
 /**
@@ -132,7 +141,7 @@ export function gearReport(title: GearTitle, list: GearList | null): ShuffleRepo
   const notes = NOTES[title];
   return {
     title,
-    notes: list ? notes.found : [notes.missing],
+    notes: list ? [...notes.found, ...list.notes] : [notes.missing],
     lines: list?.lines ?? [],
   };
 }

@@ -53,7 +53,9 @@ export const SIZE_VARIATIONS = [
 /**
  * The header's two objective slots, `{ u32 kind, u16 id, u8 count, u8 slot }`.
  * The hexpat leaves these unnamed (`UnknPTR3` to `Unkn3`); the layout comes
- * from comparing quests on the EU disc.
+ * from comparing quests on the EU disc. They aren't what the game checks to
+ * clear a quest: that's the goal slots (`goals.ts`), and what reads these
+ * isn't known. Swaps keep them naming the quest's monsters all the same.
  */
 export const OBJECTIVE_OFFSETS = [0x28, 0x30] as const;
 export const OBJECTIVE_ID_OFFSET = 4;

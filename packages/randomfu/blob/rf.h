@@ -138,7 +138,14 @@ struct rf_load {
  *   u16 each) and before the reward screen shows them.
  */
 #define RF_HOOK_REWARDS 4
-#define RF_HOOKS 5
+/*
+ * RF_HOOK_QUEST_CARD: just after lobby_task draws the quest counter's card
+ *   (the Village Chief's and the Guild's), every frame it shows. The
+ *   argument is the counter object. Draw here with the HUD's routines and
+ *   the printer: the card leaves its layers set.
+ */
+#define RF_HOOK_QUEST_CARD 6
+#define RF_HOOKS 7
 
 /*
  * rf_hook5 isn't a callback hook: it replaces the EBOOT's weighted picker,
@@ -153,8 +160,8 @@ struct rf_load {
 #define RF_HOOK_PICK 5
 
 /*
- * rf_hook6 isn't a callback hook either: it runs at the start of the game's
- * weapon model build, `void rf_hook6(u8 *resources, u8 *hunter, u32 n)`,
+ * rf_hook7 isn't a callback hook either: it runs at the start of the game's
+ * weapon model build, `void rf_hook7(u8 *resources, u8 *hunter, u32 n)`,
  * with the build's own arguments, before the game goes on with the build.
  * The weapon's package is already in its slot's buffer (resources + 0x80258
  * + slot * 4, slot (n & 0xff) * 8 + 6), so the hook may write another over
@@ -162,7 +169,7 @@ struct rf_load {
  * defines it (stitch.c); without one, or before the blob loads, the build
  * runs as it is.
  */
-#define RF_HOOK_BUILD 6
+#define RF_HOOK_BUILD 7
 
 typedef void (*rf_hook_fn)(u8 *arg);
 void rf_on(u32 hook, rf_hook_fn fn);

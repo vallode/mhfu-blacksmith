@@ -52,6 +52,8 @@ const UNTRIED: readonly OptionKey[] = [
   "mods.weaponStitcher",
   "elites.enabled",
   "monsterAi.branches",
+  "quests.keyLabel",
+  "questGoals.enabled",
 ];
 
 test("presets do what their help says", () => {

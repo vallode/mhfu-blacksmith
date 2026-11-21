@@ -108,6 +108,7 @@ export const monsters: Messages["monsters"] = {
       other: "Otro",
     },
     show: "Zonas débiles",
+    attacks: "Ataques",
     legend: "Partes del monstruo",
   },
   breaks: {

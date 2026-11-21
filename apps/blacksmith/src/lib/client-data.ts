@@ -28,7 +28,14 @@ import {
   decodeDecoration,
   decodeTree,
 } from "./schema";
-import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES, type MonsterCategory } from "./constants";
+import {
+  ARMOR_RANKS,
+  ARMOR_SLOTS,
+  MONSTER_CATEGORIES,
+  type ArmorRank,
+  type MonsterCategory,
+} from "./constants";
+import { decodeItemUses, type ItemUse, type ItemUsesBundle } from "./item-uses";
 import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
@@ -278,6 +285,53 @@ export function useArmorTree(slot: string, rank: string): ListState<never> {
     const b = bundle as ArmorBundle;
     return { tree: decodeTree(b.tree, b.slot), items: null };
   });
+}
+
+/** One version of an armor piece: its rank and its row in that rank's tree. */
+export interface ArmorVersionRow {
+  rank: ArmorRank;
+  node: WeaponTreeNode;
+  /** The row's place in that rank's tree (by rarity). */
+  order: number;
+}
+
+/**
+ * Every armor piece in a slot with its versions at every rank (see
+ * lib/armor-versions), from the slot's three rank bundles: one entry per
+ * piece, low rank first, in the order of each piece's first version. Null
+ * until every rank has loaded.
+ */
+export function useArmorVersions(slot: string): ArmorVersionRow[][] | null {
+  const files = ARMOR_RANKS.map((rank) => `armor-${slot}-${rank}`);
+  const [, forceUpdate] = useState(0);
+  const key = files.join(",");
+  useEffect(() => {
+    if (files.every((f) => bundleCache.has(f))) return;
+    let cancelled = false;
+    Promise.all(files.map((f) => getBundle(f))).then(() => {
+      if (!cancelled) forceUpdate((n) => n + 1);
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+  const bundles = files.map((f) => bundleCache.get(f) as ArmorBundle | undefined);
+  const ready = bundles.every(Boolean);
+  return useMemo(() => {
+    if (!ready) return null;
+    const families = new Map<number, ArmorVersionRow[]>();
+    const singles: ArmorVersionRow[][] = [];
+    for (const b of bundles as ArmorBundle[]) {
+      for (const [order, node] of decodeTree(b.tree, b.slot).entries()) {
+        const row = { rank: b.rank as ArmorRank, node, order };
+        if (node.family === undefined) singles.push([row]);
+        else families.set(node.family, [...(families.get(node.family) ?? []), row]);
+      }
+    }
+    return [...[...families.entries()].sort((a, b) => a[0] - b[0]).map(([, v]) => v), ...singles];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, key]);
 }
 
 export function useMonsterList(category: string): ListState<MonsterListItem> {
@@ -800,4 +854,40 @@ export function useAwardText(): { awards: AwardText[] | null; error: boolean } {
     };
   }, []);
   return { awards, error };
+}
+
+// ---------------------------------------------------------------------------
+// Item uses: the gear whose recipes take each item (see src/lib/item-uses.ts)
+// ---------------------------------------------------------------------------
+let itemUsesCache: Map<number, ItemUse[]> | null = null;
+let itemUsesPromise: Promise<Map<number, ItemUse[]>> | null = null;
+
+/** What every item is used for, from item-uses.json. */
+export function getItemUses(): Promise<Map<number, ItemUse[]>> {
+  if (itemUsesCache) return Promise.resolve(itemUsesCache);
+  itemUsesPromise ??= fetchJson<ItemUsesBundle>("/data/item-uses.json")
+    .then((b) => (itemUsesCache = decodeItemUses(b, slugify)))
+    .catch((e) => {
+      itemUsesPromise = null; // allow a retry on the next call
+      throw e;
+    });
+  return itemUsesPromise;
+}
+
+/** `getItemUses` as a hook: null while loading or on error (`error` set). */
+export function useItemUses(): { uses: Map<number, ItemUse[]> | null; error: boolean } {
+  const [uses, setUses] = useState(itemUsesCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (itemUsesCache) return;
+    let cancelled = false;
+    getItemUses().then(
+      (u) => !cancelled && setUses(u),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { uses, error };
 }

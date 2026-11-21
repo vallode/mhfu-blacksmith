@@ -1,8 +1,9 @@
 "use client";
 
 /**
- * The wishlist page: the weapons and armor the player starred, each with the
- * recipe to make it by (and, for an upgrade, the weapon to start from); every
+ * The wishlist page: the weapons, armor and decorations the player starred,
+ * each with the recipe to make it by (for an upgrade, the weapon to start
+ * from; for a decoration, how many to have); every
  * material they add up to, with what the loaded hunter already has and the
  * best ways to get the rest; and the monsters and maps that give the most of
  * what's missing. The list lives in localStorage (wishlist-store.ts); the
@@ -39,20 +40,28 @@ import type { GameText } from "@/lib/i18n/game-text";
 import type { Messages } from "@/lib/i18n/messages";
 import {
   decodeArmor,
+  decodeDecoration,
   decodeTree,
   type ArmorBundle,
   type Bundle,
+  type DecorationBundle,
   type Dictionaries,
   type WeaponBundle,
 } from "@/lib/schema";
-import type { ArmorPiece, Weapon } from "@/lib/types";
+import type { ArmorPiece, Decoration, Weapon } from "@/lib/types";
 import {
   armorSteps,
   bestDestinations,
+  decorationNeed,
+  decorationSteps,
   defaultRecipe,
+  entryCount,
   entryHref,
   entryKey,
   itemWays,
+  MAX_DECORATION_COUNT,
+  stepsDone,
+  untickedMade,
   recipesOf,
   totalCost,
   totalMaterials,
@@ -62,6 +71,7 @@ import {
   type Ancestor,
   type CraftStep,
   type Destination,
+  type Gear,
   type MaterialNeed,
   type Recipe,
   type Way,
@@ -82,18 +92,25 @@ import {
 // ---------------------------------------------------------------------------
 
 const bundleFile = (e: WishlistEntry) =>
-  e.kind === "weapon" ? `weapon-${e.type}` : `armor-${e.slot}-${e.rank}`;
+  e.kind === "weapon"
+    ? `weapon-${e.type}`
+    : e.kind === "armor"
+      ? `armor-${e.slot}-${e.rank}`
+      : "decorations";
 
-/** Each armor bundle's pieces, decoded once. */
-const decodedArmor = new WeakMap<ArmorBundle, ArmorPiece[]>();
+/** Each armor and decoration bundle's gear, decoded once. */
+const decoded = new WeakMap<ArmorBundle | DecorationBundle, Gear[]>();
 
-function decodeBundle(bundle: Bundle, dict: Dictionaries): (Weapon | ArmorPiece)[] {
+function decodeBundle(bundle: Bundle, dict: Dictionaries): Gear[] {
   if (bundle.kind === "weapon") return decodeWeaponBundle(bundle, dict);
-  const b = bundle as ArmorBundle;
-  let list = decodedArmor.get(b);
+  const b = bundle as ArmorBundle | DecorationBundle;
+  let list = decoded.get(b);
   if (!list) {
-    list = b.items.map((a) => decodeArmor(dict, a, b.slot));
-    decodedArmor.set(b, list);
+    list =
+      b.kind === "decoration"
+        ? b.items.map((d) => decodeDecoration(dict, d))
+        : b.items.map((a) => decodeArmor(dict, a, b.slot));
+    decoded.set(b, list);
   }
   return list;
 }
@@ -125,7 +142,7 @@ function weaponsByName(dict: Dictionaries): Map<string, Weapon> {
 
 interface LoadedGear {
   /** Each needed bundle's gear, by bundle file */
-  bundles: Map<string, (Weapon | ArmorPiece)[]>;
+  bundles: Map<string, Gear[]>;
   /** Every loaded weapon by name (empty when the wishlist has none) */
   byName: Map<string, Weapon>;
 }
@@ -134,7 +151,7 @@ interface LoadedGear {
 function loadedGear(filesKey: string, weapons: boolean): LoadedGear | null {
   const dict = peekDictionaries();
   if (!dict) return null;
-  const bundles = new Map<string, (Weapon | ArmorPiece)[]>();
+  const bundles = new Map<string, Gear[]>();
   for (const f of filesKey ? filesKey.split(",") : []) {
     const b = peekBundle(f);
     if (!b) return null;
@@ -192,7 +209,7 @@ interface GearRow {
   key: string;
   href: string;
   /** null when the data no longer has it */
-  gear: Weapon | ArmorPiece | null;
+  gear: Gear | null;
   recipes: Recipe[];
   recipe: Recipe | undefined;
   /** Upgrades: the weapons up its tree, nearest first */
@@ -200,17 +217,24 @@ interface GearRow {
   /** Upgrades: where the path starts (see `WeaponEntry.from`) */
   from: string | null | undefined;
   steps: CraftStep[];
-  /** The loaded hunter has it already */
+  /** How many of `steps`, from the first, are made: ticked off, or up to one the hunter owns */
+  done: number;
+  /** How many of `steps`, from the first, the loaded hunter is past (`stepsDone`) */
+  fromSave: number;
+  /** How many the entry wants (decorations; one for the rest) */
+  count: number;
+  /** Decorations: how many the loaded hunter has free, in their item box and pouch (null without a save) */
+  have: number | null;
+  /** The loaded hunter has it already (for a decoration, `count` of it) */
   owned: boolean;
 }
 
 function resolveRows(
   entries: WishlistEntry[],
-  {
-    bundles,
-    byName,
-  }: { bundles: Map<string, (Weapon | ArmorPiece)[]>; byName: Map<string, Weapon> },
+  { bundles, byName }: LoadedGear,
   owned: Set<string> | null,
+  /** The loaded hunter's item box and pouch, by item ID */
+  items: Map<number, number> | null,
 ): GearRow[] {
   return entries.map((entry) => {
     const key = entryKey(entry);
@@ -229,10 +253,25 @@ function resolveRows(
       ancestors: [],
       from: undefined,
       steps: [],
+      done: 0,
+      fromSave: 0,
+      count: entryCount(entry),
+      have: null,
       owned: owned?.has(href) ?? false,
     };
     if (!found) return row;
     row.recipes = recipesOf(found);
+    if (entry.kind === "decoration") {
+      const deco = found as Decoration;
+      const id = deco.item_id;
+      row.have = items && id !== undefined ? (items.get(id) ?? 0) : null;
+      const { toMake, owned: enough } = decorationNeed(row.count, row.have);
+      row.owned = enough;
+      row.recipe =
+        entry.recipe && row.recipes.includes(entry.recipe) ? entry.recipe : defaultRecipe(found);
+      if (row.recipe) row.steps = decorationSteps(deco, href, row.recipe, toMake);
+      return row;
+    }
     if (entry.kind === "armor") {
       row.recipe =
         entry.recipe && row.recipes.includes(entry.recipe) ? entry.recipe : defaultRecipe(found);
@@ -262,6 +301,7 @@ function resolveRows(
           : (row.ancestors.find((a) => owned?.has(a.href))?.slug ?? row.ancestors[0]?.slug);
     }
     row.steps = weaponSteps(weapon, row.recipe, row.from, byName);
+    ({ done: row.done, fromSave: row.fromSave } = stepsDone(row.steps, entry.made, owned));
     return row;
   });
 }
@@ -293,16 +333,17 @@ export default function WishlistClient() {
   );
   const ownedGear = useMemo(() => (ids && save ? ownedHrefs(ids, save) : null), [ids, save]);
 
+  // Jewels are items: counted from the item box only when material counts are on.
   const rows = useMemo(
-    () => (entries && gear ? resolveRows(entries, gear, ownedGear) : null),
-    [entries, gear, ownedGear],
+    () => (entries && gear ? resolveRows(entries, gear, ownedGear, owned) : null),
+    [entries, gear, ownedGear, owned],
   );
 
   const plan = useMemo(() => {
     if (!rows || !items) return null;
     const crafts = rows
       .filter((r) => r.gear && !r.owned && r.steps.length > 0)
-      .map((r) => ({ gear: r.gear!.name, steps: r.steps }));
+      .map((r) => ({ gear: r.gear!.name, steps: r.steps.slice(r.done) }));
     const needs = totalMaterials(crafts, items.idOf).map((need) => {
       const id = need.itemId;
       const ways =
@@ -356,6 +397,9 @@ export default function WishlistClient() {
             </Link>
             <Link href="/armorsmith/" className={ui.button}>
               {t.common.sections.armor}
+            </Link>
+            <Link href="/decorations/" className={ui.button}>
+              {t.common.sections.decorations}
             </Link>
           </div>
         </WishCard>
@@ -437,6 +481,10 @@ function WishCard({
 const select =
   "max-w-full min-w-0 cursor-pointer border border-hr bg-black/45 px-[0.6rem] py-[0.3rem] font-[inherit] text-fine text-white focus-visible:border-white focus-visible:outline-none";
 
+/** The tick box beside each craft of an upgrade path. */
+const stepBox =
+  "flex size-[2rem] flex-none items-center justify-center border border-hr bg-black/45 p-0 text-fine leading-none text-positive";
+
 /** "4,500z", in the site's language. */
 function useZenny(): (n: number) => string {
   const t = useT();
@@ -456,10 +504,14 @@ function GearList({
 }) {
   const tw = useT().items.wishlist;
   const game = useGameText();
+  const { formatNumber } = useLocale();
   return (
     <ul className="m-0 flex list-none flex-col p-0">
       {rows.map((r) => {
         const name = r.gear ? game.name(r.entry.kind, r.gear.name) : r.entry.slug;
+        const counter = r.entry.kind === "decoration" && (
+          <DecorationCount row={r} wishlist={wishlist} />
+        );
         return (
           <li
             key={r.key}
@@ -488,9 +540,14 @@ function GearList({
             {!r.gear ? (
               <p className={ui.error}>{tw.missingGear}</p>
             ) : r.owned ? (
-              <p className={ui.note}>{tw.ownedNote}</p>
+              <>
+                {counter}
+                <p className={ui.note}>
+                  {r.have !== null ? tw.enoughNote(formatNumber(r.have)) : tw.ownedNote}
+                </p>
+              </>
             ) : (
-              <GearRecipe row={r} wishlist={wishlist} ownedGear={ownedGear} />
+              <GearRecipe row={r} wishlist={wishlist} ownedGear={ownedGear} counter={counter} />
             )}
           </li>
         );
@@ -499,8 +556,54 @@ function GearList({
   );
 }
 
+const stepButton =
+  "size-[2.6rem] flex-none cursor-pointer border border-hr bg-black/45 p-0 font-[inherit] text-sub leading-none text-white hover:hover-glow focus-visible:hover-glow disabled:cursor-default disabled:opacity-40";
+
+/** How many of a decoration to have: − 3 +. */
+function DecorationCount({ row, wishlist }: { row: GearRow; wishlist: Wishlist }) {
+  const tw = useT().items.wishlist;
+  const game = useGameText();
+  const { formatNumber } = useLocale();
+  const { count } = row;
+  const set = (n: number) => wishlist.update(row.key, { count: n });
+  return (
+    <div
+      role="group"
+      aria-label={tw.countLabel(game.name("decoration", row.gear?.name ?? row.entry.slug))}
+      className="flex flex-none items-center gap-[0.4rem]"
+    >
+      <button
+        type="button"
+        aria-label={tw.oneFewer}
+        title={tw.oneFewer}
+        className={stepButton}
+        disabled={count <= 1}
+        onClick={() => set(count - 1)}
+      >
+        −
+      </button>
+      <span className="w-cells-4 text-center text-sub text-white tabular-nums" aria-live="polite">
+        {tw.countValue(formatNumber(count))}
+      </span>
+      <button
+        type="button"
+        aria-label={tw.oneMore}
+        title={tw.oneMore}
+        className={stepButton}
+        disabled={count >= MAX_DECORATION_COUNT}
+        onClick={() => set(count + 1)}
+      >
+        +
+      </button>
+    </div>
+  );
+}
+
 function GearIcon({ row }: { row: GearRow }) {
   const g = row.gear;
+  if (row.entry.kind === "decoration") {
+    return <Icon type="decoration" color={(g as Decoration | null)?.color} alt="" />;
+  }
   if (row.entry.kind === "weapon") {
     const w = g as Weapon | null;
     return <Icon type={row.entry.type} rarity={w?.rarity} color={w?.color} alt="" />;
@@ -518,21 +621,27 @@ function GearRecipe({
   row,
   wishlist,
   ownedGear,
+  counter,
 }: {
   row: GearRow;
   wishlist: Wishlist;
   /** Hrefs of the gear the loaded hunter owns */
   ownedGear: Set<string> | null;
+  /** Decorations: how many to have, first on the recipe line */
+  counter?: React.ReactNode;
 }) {
   const tw = useT().items.wishlist;
   const game = useGameText();
   const zenny = useZenny();
-  const { recipes, recipe, ancestors, from, steps } = row;
+  const { formatNumber } = useLocale();
+  const { recipes, recipe, ancestors, from, steps, have, done, fromSave } = row;
   if (!recipe) return <p className={ui.note}>{tw.noRecipe}</p>;
-  const cost = steps.reduce((s, st) => s + st.cost, 0);
+  // What's left to pay: the crafts not yet ticked off.
+  const cost = totalCost([{ steps: steps.slice(done) }]);
   return (
     <div className="flex flex-col gap-[0.6rem] text-fine text-white/60">
       <div className="flex flex-wrap items-center gap-x-[1.2rem] gap-y-[0.6rem]">
+        {counter}
         {recipes.length > 1 ? (
           <label className="flex items-center gap-[0.6rem]">
             <span className="text-stat">{tw.recipe}</span>
@@ -572,23 +681,80 @@ function GearRecipe({
             </select>
           </label>
         )}
+        {have !== null && have > 0 && (
+          <span>
+            {tw.inBox(formatNumber(have), formatNumber(decorationNeed(row.count, have).toMake))}
+          </span>
+        )}
         <span className="ml-auto text-white">{zenny(cost)}</span>
       </div>
       {steps.length > 1 && (
-        <ol className="m-0 flex list-none flex-wrap gap-x-[0.6rem] gap-y-[0.2rem] p-0 whitespace-normal">
-          {steps.map((s, i) => (
-            <li key={i}>
-              {i > 0 && <span className="text-muted">→ </span>}
-              <Link href={s.href} className="text-white/80 underline-offset-4 hover:underline">
-                {game.name(row.entry.kind, s.name)}
-              </Link>
-              {s.recipe !== "improve" && (
-                <span className="text-white/50"> {tw.stepRecipes[s.recipe]}</span>
-              )}
-            </li>
-          ))}
+        // On phones the tick boxes' hit areas reach past them (`stepHit`), so
+        // the rows are spaced to keep them off the links around them.
+        <ol className="m-0 flex list-none flex-wrap items-center gap-x-[0.6rem] gap-y-[0.4rem] p-0 whitespace-normal mobile:gap-y-[1.2rem] mobile:py-[0.4rem]">
+          {steps.map((s, i) => {
+            const made = i < done;
+            const name = game.name(row.entry.kind, s.name);
+            return (
+              <li key={i} className="flex min-w-0 items-center gap-[0.6rem] mobile:gap-[1.2rem]">
+                {i > 0 && <span className="text-muted">→</span>}
+                {i < fromSave ? (
+                  // Ticked by the save: it can't be unticked here, so it isn't a box.
+                  <span
+                    role="img"
+                    aria-label={tw.ownedStepLabel(name)}
+                    title={tw.ownedStep}
+                    className={cn(stepBox, "border-transparent bg-transparent text-white/50")}
+                  >
+                    ✓
+                  </span>
+                ) : (
+                  i < steps.length - 1 && (
+                    // The last craft makes the gear itself: made, it's owned, not ticked off.
+                    <button
+                      type="button"
+                      aria-pressed={made}
+                      aria-label={tw.madeLabel(name)}
+                      title={made ? tw.unmarkMade : tw.markMade}
+                      className="group -m-[0.6rem] flex-none cursor-pointer border-none bg-transparent p-[0.6rem] focus-visible:outline-none mobile:-m-[1rem] mobile:p-[1rem]"
+                      // Ticking a craft ticks every one before it; unticking it unticks the ones after.
+                      onClick={() =>
+                        wishlist.update(row.key, {
+                          made: made ? untickedMade(steps, i, fromSave) : s.slug,
+                        })
+                      }
+                    >
+                      <span
+                        className={cn(
+                          stepBox,
+                          "group-hover:border-white group-focus-visible:border-white",
+                        )}
+                      >
+                        {made && "✓"}
+                      </span>
+                    </button>
+                  )
+                )}
+                <span className={cn("min-w-0", made && "opacity-50")}>
+                  <Link
+                    href={s.href}
+                    className={cn(
+                      "text-white/80 underline-offset-4 hover:underline",
+                      made && "line-through",
+                    )}
+                  >
+                    {name}
+                  </Link>
+                  {s.recipe !== "improve" && (
+                    <span className="text-white/50"> {tw.stepRecipes[s.recipe]}</span>
+                  )}
+                </span>
+              </li>
+            );
+          })}
         </ol>
       )}
+      {fromSave > 0 && <p className="m-0 whitespace-normal text-white/50">{tw.fromSaveNote}</p>}
     </div>
   );
 }
@@ -632,7 +798,7 @@ function Materials({
   const counted = needs.some((n) => n.have !== null);
   return (
     <>
-      <p className="flex flex-wrap gap-x-[1.6rem] gap-y-[0.4rem] text-white">
+      <p className="flex flex-wrap gap-x-[1.6rem] gap-y-[0.4rem] whitespace-normal text-white">
         <span>
           <span className="text-stat">{tw.cost} </span>
           {zenny(cost)}
@@ -805,7 +971,7 @@ function WayLine({ way }: { way: Way }) {
       ? way.price === null || way.price === undefined
         ? "—"
         : way.currency === "pokke-points"
-          ? t.items.wishlist.ways.pokkePoints(formatNumber(way.price))
+          ? t.common.points(formatNumber(way.price))
           : zenny(way.price)
       : `${formatNumber(way.chance ?? 0)}%`;
   const meta = [way.group && groupLabel(t, way.group), wayDetail(t, formatNumber, way)]

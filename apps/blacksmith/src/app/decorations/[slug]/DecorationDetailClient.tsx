@@ -23,6 +23,7 @@ import { usePreferences } from "@/context/PreferencesContext";
 import { useDecoration } from "@/lib/client-data";
 import { attachedDecorationCounts, ownedItemCounts } from "@/lib/hunter-progress";
 import Loading from "@/components/Loading";
+import WishlistButton from "@/components/WishlistButton";
 import { useLocale } from "@/context/LanguageContext";
 
 interface Props {
@@ -73,6 +74,7 @@ export default function DecorationDetailClient({ slug }: Props) {
       <DetailHeader>
         <Icon type="decoration" size="large" color={deco.color} alt={name} />
         <DetailName>{name}</DetailName>
+        <WishlistButton gear={{ kind: "decoration", slug }} name={name} className="ml-[0.4rem]" />
       </DetailHeader>
 
       <DetailBody>

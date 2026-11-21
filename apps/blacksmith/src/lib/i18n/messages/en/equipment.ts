@@ -46,13 +46,44 @@ export const equipment = {
     maxDefenceTitle: (value: number) => `Max defence ${value}`,
     /** The material squares on a weapon row. */
     materialsOwned: (have: number, total: number) => `${have} of ${total} materials owned`,
-    filterGroup: "Weapon tree filter",
+    /** The weapon tree's sort bar (TreeSortBar) and its menu. */
+    sortMenu: "Sort and filter",
+    sortBarLabel: (summary: string, count: string) => `Sort and filter: ${summary}, ${count}`,
+    sortView: "View",
+    sortElement: "Element",
+    sortHunter: "Hunter",
+    /** The bar's read-out: the view, then any filters. */
+    sortSummary: (parts: string[]) => parts.join(" · "),
+    rarityGroup: (rarity: number) => `Rarity ${rarity}`,
     previousFilter: "Previous filter",
     nextFilter: "Next filter",
     filterCount: (matched: number, total: number) => `${matched} of ${total} weapons`,
     rankGroup: "Armor rank",
+    /** The armor rank filter's first stop (lib/armor-rank-filter-store). */
+    allRanks: "All ranks",
     previousRank: "Previous rank",
     nextRank: "Next rank",
+  },
+  /** The weapon tree's views (lib/tree-filter `TreeViewId`). */
+  treeViews: {
+    tree: "Upgrade tree",
+    element: "By element",
+    rarity: "By rarity",
+  },
+  /** The weapon tree's element filter (lib/tree-filter `ElementFilterId`). */
+  treeElementFilters: {
+    all: "All elements",
+    any: "Any element",
+    fire: "Fire",
+    water: "Water",
+    thunder: "Thunder",
+    ice: "Ice",
+    dragon: "Dragon",
+    status: "Any status",
+    poison: "Poison",
+    paralysis: "Paralysis",
+    sleep: "Sleep",
+    none: "No element",
   },
   /** The weapon tree filter (lib/tree-filter `TreeFilterId`). */
   treeFilters: {
@@ -237,7 +268,7 @@ export const equipment = {
     attached: (count: string) => `+${count} attached`,
     recipesLabel: (name: string) => `${name} recipes`,
   },
-  /** The star beside a weapon's or armor piece's name, and its toasts. */
+  /** The star beside a weapon's, armor piece's or decoration's name, and its toasts. */
   wishlist: {
     add: "Add to wishlist",
     remove: "Remove from wishlist",
@@ -262,16 +293,48 @@ export const equipment = {
     /** The model's accessible name: "Rathalos Helm (male)". */
     maleModel: (name: string) => `${name} (male)`,
     femaleModel: (name: string) => `${name} (female)`,
+    /** The armor model's switch between the piece and the full set it belongs to. */
+    setSwitchLabel: "Show",
+    piece: "Piece",
+    fullSet: "Full set",
+    /** The full set's accessible name, before the sex: "Rathalos Helm and the rest of its set". */
+    setModel: (name: string) => `${name} and the rest of its set`,
+    /** The armor model's switch that puts the piece on the hunter. */
+    onHunter: "On hunter",
+    /** The accessible name of a piece worn by the hunter: "Rathalos Helm (male), on a hunter". */
+    wornModel: (model: string) => `${model}, on a hunter`,
+    /** The button that opens the hunter's look pickers, and their group's name. */
+    look: "Look",
+    face: "Face",
+    hairstyle: "Hair",
+    hairColor: "Hair colour",
+    clothing: "Clothes",
+    /** A picker's value: "3/32". */
+    lookValue: (value: number, count: number) => `${value}/${count}`,
+    previousOption: (name: string) => `Previous ${name.toLowerCase()}`,
+    nextOption: (name: string) => `Next ${name.toLowerCase()}`,
+    /** Puts the loaded save's hunter's look on the hunter. */
+    myHunter: (name: string) => `${name}'s look`,
+    /** Puts the default look back. */
+    defaultLook: "Default",
     /** The motion controls over an animated model. */
     motions: "Motions",
     motion: "Motion",
     previousMotion: "Previous motion",
     nextMotion: "Next motion",
+    /** Read after the motion number of a motion with attack hitboxes. */
+    attackMotion: "attacks",
+    /** Read after the motion number of a motion nothing in the game plays. */
+    unusedMotion: "unused",
+    /** Tooltip on an unused motion's number. */
+    unusedMotionHint: "Unused: nothing in the game plays this motion",
     play: "Play",
     pause: "Pause",
     /** The hunter's motions (lib/hunter names them in English). */
     sheathedIdle: "Sheathed idle",
     drawnIdle: "Drawn idle",
+    /** Standing in armor, no weapon. */
+    idle: "Idle",
     moveN: (n: number) => `Move ${n}`,
     attackN: (n: number) => `Attack ${n}`,
   },

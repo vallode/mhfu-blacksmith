@@ -47,9 +47,12 @@
  *    stub that tail-calls the blob's `rf_hook5` with the picker's own
  *    arguments when the blob defines one, and otherwise runs those two words
  *    and goes on with the game's picker.
- * 6. Build (optional, `mods.weaponStitcher`): the EBOOT's weapon model
+ * 6. Quest card (optional, `quests.keyLabel`): `lobby_task`'s one call to
+ *    the quest counter's card (see `key-quests.ts`), every frame the card
+ *    shows. The hook gets the counter object.
+ * 7. Build (optional, `mods.weaponStitcher`): the EBOOT's weapon model
  *    build (see `weapon-stitcher.ts`). Its first two words jump to a stub
- *    that calls the blob's `rf_hook6` with the build's own arguments when the
+ *    that calls the blob's `rf_hook7` with the build's own arguments when the
  *    blob defines one, then runs those two words and goes on with the build.
  *
  * The quest loader (EU 0x08870AEC) is `(quest, u16 id, buf)`, a two-step
@@ -99,7 +102,8 @@ export const HOOK = {
   questLoad: 3,
   rewards: 4,
   pick: 5,
-  build: 6,
+  questCard: 6,
+  build: 7,
 } as const;
 
 /** The game's picker (hook 5): its address and its first two words, which the stub runs instead. */
@@ -449,14 +453,14 @@ export function writePickHook(eboot: Buffer, segment: Segment, site: PickSite, s
   eboot.writeUInt32LE(0, offset + 4);
 }
 
-/** The game's weapon build (hook 6): its address and its first two words, which the stub runs. */
+/** The game's weapon build (hook 7): its address and its first two words, which the stub runs. */
 export interface BuildSite {
   build: number;
   prologue: readonly [number, number];
 }
 
 /**
- * Hook 6's stub at `at`: with the blob loaded and its `rf_hook6` defined, it
+ * Hook 7's stub at `at`: with the blob loaded and its `rf_hook7` defined, it
  * calls that in a 32-byte frame (the O32 code may use `sp+0..15`) with the
  * build's `$a0`-`$a2`, which it keeps for the build. Then, either way, it
  * runs the build's first two words and jumps to the third. The temporaries
@@ -488,7 +492,7 @@ export function assembleBuildHook(at: number, blob: number, site: BuildSite): nu
   return a.link(at);
 }
 
-/** Points the build's first two words at hook 6's stub. */
+/** Points the build's first two words at hook 7's stub. */
 export function writeBuildHook(
   eboot: Buffer,
   segment: Segment,

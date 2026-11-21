@@ -53,6 +53,7 @@ export const items: Messages["items"] = {
       shops: "Tiendas",
       trades: "Trueques",
       combining: "Combinar",
+      uses: "Se usa en",
     },
     noSources:
       "Ningún monstruo, recompensa de misión, punto de recolección, tienda, trueque ni combinación da este objeto.",
@@ -101,6 +102,24 @@ export const items: Messages["items"] = {
         ? `Fase ${stages[0]} de ${total}`
         : `Fases ${stages.slice(0, -1).join(", ")} y ${stages[stages.length - 1]} de ${total}`,
   },
+  uses: {
+    filterLabel: "Mostrar equipo de un tipo",
+    create: "Forjar",
+    improve: (from: string) => `Mejorar desde ${from}`,
+    upgrade: "Mejorar",
+    alt: "Segunda receta",
+    armorRank: (rank: string) => `Armadura (${rank})`,
+    decorations: "Adornos",
+    weapons: "Armas",
+    armor: "Armaduras",
+    all: "Todo",
+    summary: (n: number, recipes: string, total: string) =>
+      `En ${recipes} ${n === 1 ? "receta" : "recetas"} · ${total} para todas`,
+    showAll: (count: string) => `Ver las ${count}`,
+    showFewer: "Ver menos",
+    kindCount: (kind: string, count: string) => `${kind} ${count}`,
+    groupCount: (group: string, count: string) => `${group} (${count})`,
+  },
   combining: {
     madeFrom: "Se obtiene combinando",
     usedIn: "Sirve para crear",
@@ -138,7 +157,7 @@ export const items: Messages["items"] = {
     materials: "Materiales",
     whereToGo: "Adónde ir",
     empty:
-      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma o pieza de armadura para añadirla, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
+      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma, pieza de armadura o adorno para añadirlo, o añade un conjunto entero desde el Creador de conjuntos, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
     loadError: "No se pudo cargar el equipo de la lista de deseos.",
     retry: "Reintentar",
     whereToGoNote: "Los monstruos y mapas que dan más de los materiales que aún te faltan.",
@@ -147,6 +166,13 @@ export const items: Messages["items"] = {
     removeLabel: (name: string) => `Quitar ${name} de la lista de deseos`,
     missingGear: "Ya no está en los datos de esta versión.",
     ownedNote: "Tu cazador ya lo tiene, así que sus materiales no se cuentan.",
+    enoughNote: (have: string) =>
+      `Tu cazador ya tiene ${have} en la caja de objetos, así que sus materiales no se cuentan.`,
+    countLabel: (name: string) => `Cuántos ${name} tener`,
+    countValue: (count: string) => `×${count}`,
+    oneFewer: "Uno menos",
+    oneMore: "Uno más",
+    inBox: (have: string, toMake: string) => `${have} en la caja de objetos · ${toMake} por crear`,
     noRecipe: "Ninguna receta lo crea.",
     recipe: "Receta",
     recipes: { create: "Crear", alt: "Receta alt.", improve: "Mejorar" },
@@ -154,6 +180,12 @@ export const items: Messages["items"] = {
     from: "Desde",
     ownedOption: (name: string) => `${name} (obtenido)`,
     wholePath: "Nada (toda la ruta)",
+    madeLabel: (name: string) => `Hecho: ${name}`,
+    markMade: "Marcar como hecho",
+    unmarkMade: "Aún no hecho",
+    ownedStepLabel: (name: string) => `Hecho: ${name} (según tu partida)`,
+    ownedStep: "Tu partida muestra que ya está hecho",
+    fromSaveNote: "Las marcas grises vienen de tu partida cargada.",
     cost: "Precio:",
     youHave: (amount: string) => `(tienes ${amount})`,
     materialsCount: "Materiales:",
@@ -179,7 +211,6 @@ export const items: Messages["items"] = {
       onlyOnQuests: (n: number, count: string) =>
         n === 1 ? `solo en ${count} misión` : `solo en ${count} misiones`,
       questReward: (stars: string) => `recompensa ${stars}`,
-      pokkePoints: (amount: string) => `${amount} ptos.`,
     },
     gatheringIn: (group: string) => `Recolección · ${group}`,
     materialCount: (n: number, count: string) =>

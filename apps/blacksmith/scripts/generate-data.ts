@@ -15,6 +15,7 @@
  *   - area-maps.json             (each quest's gathering points on the map, see src/lib/area-maps.ts)
  *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - veggie-trades.json         (the Veggie Elder's trades, see src/lib/veggie-trades.ts)
+ *   - item-uses.json             (the gear whose recipes take each item, see src/lib/item-uses.ts)
  *   - awards.json                (the Guild Card awards' names and descriptions, by index)
  *   - data-manifest.json         ({ files, version })
  *   - locale-<code>.json         (game text in other languages, from data/locales;
@@ -24,10 +25,11 @@
  * Reuses the transform logic from src/lib (slugify, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
  *
- * Budget: asserts total public/data raw size < 1.85 MB and logs a gzip
+ * Budget: asserts total public/data raw size < 2.1 MB and logs a gzip
  * estimate (raised from 1.5 MB for quests.json, ~190 KB, from 1.6 MB for
- * item-places.json, ~80 KB, from 1.7 MB for area-maps.json, and from 1.8 MB
- * for veggie-trades.json, ~10 KB).
+ * item-places.json, ~80 KB, from 1.7 MB for area-maps.json, from 1.8 MB
+ * for veggie-trades.json, ~10 KB, and from 1.85 MB for item-uses.json,
+ * ~245 KB).
  */
 import fs from "fs";
 import path from "path";
@@ -40,6 +42,7 @@ import {
   WEAPON_CLASS_MULTIPLIER,
 } from "../src/lib/constants";
 import { slugify, armorSlugs } from "../src/lib/slug";
+import { groupArmorVersions, type ArmorVersion } from "../src/lib/armor-versions";
 import type {
   Weapon,
   ArmorPiece,
@@ -64,6 +67,7 @@ import type {
   EquipmentIds,
   CompactItem,
   ItemsBundle,
+  ArmorBundle,
 } from "../src/lib/schema";
 import { EQUIP_TYPE_SLOTS } from "../src/lib/schema";
 import {
@@ -76,6 +80,8 @@ import { encodeQuestBundle, monsterSizeRanges, type QuestRecord } from "./lib/qu
 import { buildLocaleBundles } from "./lib/locales";
 import type { AwardText } from "../src/lib/i18n/game-text";
 import { encodeCombinations, type CombinationsFile } from "../src/lib/combinations";
+import { encodeItemUses } from "../src/lib/item-uses";
+import { itemUsesFromData } from "./lib/item-uses-data";
 import { encodeVeggieTrades, type VeggieTradesFile } from "../src/lib/veggie-trades";
 import {
   buildItemPlaces,
@@ -98,7 +104,7 @@ const outDir = path.join(root, "public", "data");
 const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
 
-const BUDGET_BYTES = 1.85 * 1024 * 1024;
+const BUDGET_BYTES = 2.1 * 1024 * 1024;
 
 function readJson<T>(p: string): T {
   return JSON.parse(fs.readFileSync(p, "utf-8")) as T;
@@ -179,6 +185,7 @@ function compactTreeNode(
   if (node.rarity !== undefined) out.r = node.rarity === null ? null : (toNum(node.rarity) ?? null);
   if (node.color) out.c = node.color;
   if (node.element) out.e = node.element;
+  if (node.elements && node.elements.length > 1) out.e2 = node.elements[1];
   const mr = minRankOf?.(node.type || bundleType, node.slug);
   if (mr) out.m = mr;
   const md = maxDefenceOf?.(node.slug);
@@ -471,6 +478,10 @@ for (const type of WEAPON_TYPES) {
 // (see buildArmorTree).
 for (const slot of ARMOR_SLOTS) {
   const allPieces = readData<{ armor: ArmorPiece[] }>(dataDir, "armor", `${slot}.json`).armor;
+  // Each rank's bundle, held back until every rank's rows have their version
+  // family (see src/lib/armor-versions.ts).
+  const bundles: ArmorBundle[] = [];
+  const versionRows: (ArmorVersion & { sex?: string; node: CompactTreeNode })[] = [];
   for (const rank of ARMOR_RANKS) {
     const pieces = allPieces.filter((p) => p.rank === rank);
     if (pieces.length === 0) continue;
@@ -488,19 +499,30 @@ for (const slot of ARMOR_SLOTS) {
     const minRankBySlug = new Map(items.map((i) => [i.s, i.mr]));
     const maxDefenceBySlug = new Map(items.map((i) => [i.s, i.md]));
     totalItems += items.length;
-    push(`armor-${slot}-${rank}.json`, {
-      kind: "armor",
+    const compact = compactTree(
+      tree,
       slot,
-      rank,
-      tree: compactTree(
-        tree,
-        slot,
-        (_type, slug) => minRankBySlug.get(slug),
-        (slug) => maxDefenceBySlug.get(slug),
-      ),
-      items,
-    });
+      (_type, slug) => minRankBySlug.get(slug),
+      (slug) => maxDefenceBySlug.get(slug),
+    );
+    bundles.push({ kind: "armor", slot, rank, tree: compact, items });
+    const sexBySlug = new Map(pieces.map((p, i) => [slugs[i], p.sex]));
+    for (const node of compact) {
+      versionRows.push({
+        rank,
+        slug: node.s,
+        name: node.n,
+        rarity: node.r ?? 0,
+        sex: sexBySlug.get(node.s),
+        node,
+      });
+    }
   }
+  const nodeOf = new Map(versionRows.map((v) => [`${v.rank}/${v.slug}`, v.node]));
+  groupArmorVersions(versionRows.map(({ node: _node, ...v }) => v)).forEach((family, f) => {
+    for (const v of family.versions) nodeOf.get(`${v.rank}/${v.slug}`)!.f = f;
+  });
+  for (const b of bundles) push(`armor-${slot}-${b.rank}.json`, b);
 }
 
 // Every quest, for the monsters' size ranges and the quests bundle.
@@ -621,6 +643,9 @@ for (const category of MONSTER_CATEGORIES) {
     items,
   });
 }
+
+// Item uses: the gear whose recipes take each item (src/lib/item-uses.ts).
+push("item-uses.json", encodeItemUses(itemUsesFromData(dataDir), slugify));
 
 // Skills: data/skills.json as is (skill trees and their activations), for the
 // set builder.

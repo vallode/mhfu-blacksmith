@@ -39,6 +39,18 @@ export function maskWord(word: number): number {
   return word >>> 0;
 }
 
+/**
+ * Every I-type immediate and J-type target masked, R-type and Allegrex
+ * (SPECIAL2, SPECIAL3) words as they are: for code that differs between
+ * discs only in addresses and offsets, which `maskWord` keeps.
+ */
+export function maskImmediates(word: number): number {
+  const op = word >>> 26;
+  if (op === 0x02 || op === 0x03) return (word & 0xfc000000) >>> 0;
+  if (op === 0 || op === 0x1c || op === 0x1f) return word >>> 0;
+  return (word & 0xffff0000) >>> 0;
+}
+
 export interface Segment {
   offset: number;
   vaddr: number;
@@ -68,16 +80,17 @@ export function findUnique(
   elf: Buffer,
   segment: Segment,
   signatures: readonly (readonly number[])[],
+  mask: (word: number) => number = maskWord,
 ): (number | null)[] {
   const found: (number | null)[] = signatures.map(() => null);
   const ambiguous = signatures.map(() => false);
   const end = segment.offset + segment.size;
   for (let at = segment.offset; at + 4 <= end; at += 4) {
-    const first = maskWord(elf.readUInt32LE(at));
+    const first = mask(elf.readUInt32LE(at));
     signatures.forEach((signature, s) => {
       if (first !== signature[0] || at + signature.length * 4 > end) return;
       for (let k = 1; k < signature.length; k++) {
-        if (maskWord(elf.readUInt32LE(at + k * 4)) !== signature[k]) return;
+        if (mask(elf.readUInt32LE(at + k * 4)) !== signature[k]) return;
       }
       if (found[s] !== null) ambiguous[s] = true;
       found[s] = segment.vaddr + (at - segment.offset);

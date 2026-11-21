@@ -42,7 +42,8 @@ import {
   MULTIPLIER_SET_OFFSET,
 } from "mhfu-extract/src/monsters/hitzones.js";
 import type { LoadedQuest } from "../game/load.js";
-import { RECORD_TARGET_ID, type BoardFile } from "../game/board.js";
+import { RECORD_TARGET_ID, recordBase, type BoardFile } from "../game/board.js";
+import { GOAL_MONSTER, readGoals, writeGoal } from "../game/goals.js";
 import { DELIVERY_TYPE, QUEST_TYPE } from "../game/quest-fields.js";
 import {
   readSpawns,
@@ -452,6 +453,10 @@ export function swapSpecies(
     const delivery = payload[QUEST_TYPE] === DELIVERY_TYPE;
     const target = mapping.get(payload.readUInt16LE(TARGET_ID_OFFSET));
     if (target !== undefined && !delivery) payload.writeUInt16LE(target, TARGET_ID_OFFSET);
+    // And the second goal's ("Hunt the Rathalos and Rathian").
+    const second = readGoals(payload)[1]!;
+    const secondNext = second.flags & GOAL_MONSTER ? mapping.get(second.id) : undefined;
+    if (secondNext !== undefined) writeGoal(payload, 1, { ...second, id: secondNext });
     for (const objective of OBJECTIVE_OFFSETS) {
       if (payload.readUInt32LE(objective) !== OBJECTIVE_KIND_MONSTER) continue;
       const idAt = objective + OBJECTIVE_ID_OFFSET;
@@ -465,6 +470,11 @@ export function swapSpecies(
         const at = record.offset + RECORD_TARGET_ID;
         const next = mapping.get(board.data.readUInt16LE(at));
         if (next !== undefined) edits.dataFile(board.index).writeUInt16LE(next, at);
+        const base = recordBase(record);
+        const goal = readGoals(board.data, base)[1]!;
+        const goalNext = goal.flags & GOAL_MONSTER ? mapping.get(goal.id) : undefined;
+        if (goalNext !== undefined)
+          writeGoal(edits.dataFile(board.index), 1, { ...goal, id: goalNext }, base);
       }
     }
     changed.set(quest.index, mapping);
@@ -610,7 +620,7 @@ export function randomizeDifficulty(
 }
 
 /** Counts at or above this are left alone: 99 looks like "keeps coming". */
-const SPECIAL_COUNT = 99;
+export const SPECIAL_COUNT = 99;
 
 /**
  * How many of each small monster a quest must keep, by emID: a slay goal's
@@ -622,8 +632,9 @@ const SPECIAL_COUNT = 99;
 export function smallMonsterFloors(
   q: QuestMonsters,
   keep: (emId: number) => boolean,
+  /** The quest as it is now: the goals shuffle may have changed its goals. */
+  payload: Buffer = q.quest.file.payload,
 ): Map<number, number> {
-  const payload = q.quest.file.payload;
   const own = new Map<number, number>();
   const endless = new Set<number>();
   for (const { monsterId, quantity } of q.spawns.small) {
@@ -638,6 +649,8 @@ export function smallMonsterFloors(
   };
   if (payload[QUEST_TYPE] !== DELIVERY_TYPE) {
     want(payload.readUInt16LE(TARGET_ID_OFFSET), payload.readUInt16LE(TARGET_ID_OFFSET + 2));
+    const second = readGoals(payload)[1]!;
+    if (second.flags & GOAL_MONSTER) want(second.id, second.count);
   }
   for (const objective of OBJECTIVE_OFFSETS) {
     if (payload.readUInt32LE(objective) !== OBJECTIVE_KIND_MONSTER) continue;
@@ -677,7 +690,11 @@ export function randomizeSmallCounts(
     }
     // A goal that asks for more than the new counts give keeps the quest's own.
     let kept = false;
-    for (const [emId, need] of smallMonsterFloors(q, (em) => keep(q.quest, em))) {
+    for (const [emId, need] of smallMonsterFloors(
+      q,
+      (em) => keep(q.quest, em),
+      edits.questNow(q.quest),
+    )) {
       const mine = q.spawns.small.filter((s) => s.monsterId === emId);
       const total = mine.reduce((n, s) => n + (next.get(s) ?? s.quantity), 0);
       if (total >= need) continue;

@@ -18,12 +18,18 @@
   src: url("fonts/biz-udgothic-latin-400-normal.woff2") format("woff2");
 }
 
-@keyframes opacity-alternate {
+@property --glow-alpha {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+@keyframes glow-alpha {
   from {
-    opacity: 1;
+    --glow-alpha: 1;
   }
   to {
-    opacity: 0.6;
+    --glow-alpha: 0.6;
   }
 }
 
@@ -152,10 +158,13 @@ code {
 
 /* The site's teal in-game frame (card-frame-teal), as on its Options menu. */
 .frame {
+  --frame-pad-top: 2.2rem;
+  --frame-pad-x: 2.4rem;
+  --frame-pad-bottom: 2rem;
   display: block;
   max-width: 96rem;
   margin: 0 auto;
-  padding: 2.2rem 2.4rem 2rem;
+  padding: var(--frame-pad-top) var(--frame-pad-x) var(--frame-pad-bottom);
   border-style: solid;
   border-image: var(--image-card-frame-teal) 24 fill / 18px round;
   image-rendering: pixelated;
@@ -163,6 +172,37 @@ code {
 
 .frame > * {
   image-rendering: auto;
+}
+
+/* The step header and Back / Next stay in the window while a long step
+   scrolls between them, each drawn as an edge of the card: the header with
+   the frame's top band and corners, Back / Next with its bottom ones. They
+   lie exactly over the card's own edges until the page scrolls, and their
+   side bands over its sides, so the card seems cut to the window. The
+   frame's 3px border is matched so the geometry lines up. */
+.card-head,
+.nav {
+  position: sticky;
+  z-index: 5;
+  margin-inline: calc(-1 * (var(--frame-pad-x) + 3px));
+  padding-inline: var(--frame-pad-x);
+  border: 3px solid;
+  background: rgb(22 26 32 / 0.92) padding-box;
+  backdrop-filter: blur(0.6rem);
+  image-rendering: pixelated;
+
+  & > * {
+    image-rendering: auto;
+  }
+}
+
+.card-head {
+  top: 0;
+  margin-top: calc(-1 * (var(--frame-pad-top) + 3px));
+  margin-bottom: 1.8rem;
+  padding-block: var(--frame-pad-top) 1rem;
+  border-bottom: 0;
+  border-image: var(--image-card-frame-teal) 24 / 18px 18px 0 round;
 }
 
 /* Yellow title on the flat grey selector bar, pulled out to sit just inside
@@ -202,7 +242,7 @@ code {
 
   @media (hover: hover) {
     &:hover {
-      background: var(--gradient-hover-glow);
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }
@@ -250,6 +290,8 @@ code {
   z-index: 10;
   display: flex;
   flex-direction: column;
+  max-height: 70vh;
+  overflow-y: auto;
   margin: 3px 0 0;
   padding: 0.6rem;
   list-style: none;
@@ -305,7 +347,7 @@ code {
 
   @media (hover: hover) {
     &:enabled:not([aria-current]):hover {
-      background: var(--gradient-hover-glow);
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }
@@ -322,7 +364,7 @@ code {
 .progress {
   display: flex;
   gap: 0.4rem;
-  margin: 0.8rem 0 1.8rem;
+  margin: 0.8rem 0 0;
 
   & span {
     flex: 1 1 0;
@@ -483,7 +525,7 @@ code {
   @media (hover: hover) {
     &:enabled:hover {
       color: white;
-      background: var(--gradient-hover-glow);
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }
@@ -579,7 +621,7 @@ textarea.text-input {
     content: "";
     position: absolute;
     inset: 0.8rem 1rem;
-    background: var(--gradient-hover-glow);
+    background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
     animation: var(--animate-hover-glow);
     visibility: hidden;
     pointer-events: none;
@@ -711,7 +753,7 @@ textarea.text-input {
 
   @media (hover: hover) {
     &:not(:has(input:checked, input:disabled)):hover {
-      background: var(--gradient-hover-glow);
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }
@@ -1131,12 +1173,25 @@ input[type="range"] {
 /* ─── Back / Next ──────────────────────────────────────────────────────────── */
 
 .nav {
+  bottom: 0;
   display: flex;
   align-items: center;
   gap: 1.6rem;
   margin-top: 2.4rem;
-  padding-top: 1.4rem;
-  border-top: 3px solid rgb(255 255 255 / 0.2);
+  margin-bottom: calc(-1 * (var(--frame-pad-bottom) + 3px));
+  padding-block: 1.4rem var(--frame-pad-bottom);
+  border-top: 0;
+  border-image: var(--image-card-frame-teal) 24 / 0 18px 18px round;
+
+  /* The rule above Back / Next, inside the side bands. */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: var(--frame-pad-x);
+    left: var(--frame-pad-x);
+    border-top: 3px solid rgb(255 255 255 / 0.2);
+  }
 }
 
 .nav-status {
@@ -1218,7 +1273,10 @@ input[type="range"] {
   }
 
   .frame {
-    padding: 1.8rem 1.6rem 1.6rem;
+    --frame-pad-top: 1.8rem;
+    --frame-pad-x: 1.6rem;
+    --frame-pad-bottom: 1.6rem;
+    padding: var(--frame-pad-top) var(--frame-pad-x) var(--frame-pad-bottom);
   }
 
   .menu-header {

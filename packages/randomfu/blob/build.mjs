@@ -44,6 +44,7 @@ const BLOBS = {
   poogie: [["poogie.c"], "src/blob"],
   stitch: [["stitch.c"], "src/blob"],
   relicWeapons: [["relic-weapons.c"], "src/blob"],
+  keyQuests: [["key-quests.c"], "src/blob"],
   linkTest: [["link-test.c"], "test"],
   commonTest: [["test/common-a.c", "test/common-b.c"], "test", ["-fcommon"]],
 };

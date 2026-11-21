@@ -113,7 +113,7 @@ What exists now (see `weapon-table-expansion.md` on the
   (PPSSPP, EU).
 - **Blob code in game** **[known]**: the code loader runs C at save load
   (`rf_init`), in quests (per frame, the HUD, the pad, the quest loader,
-  after the reward roll) and at the weapon build (hook 6).
+  after the reward roll) and at the weapon build (hook 7).
 - **Save room** **[known]**: `RF_SAVE_DATA` is 4,216 bytes (one freed
   Guild Card slot), of which a header and Poogie use 13. The code loader
   frees 93 slots, so more room is one `allocateSlots` call away.

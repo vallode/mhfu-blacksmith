@@ -1,5 +1,6 @@
 /**
- * The hunter shown holding a weapon in the 3D viewer: the rigged model and
+ * The hunter shown holding a weapon (or wearing an armor piece,
+ * `hunter-armor.ts`) in the 3D viewer: the rigged model and
  * per-weapon-class motions `export-site` writes (see mhfu-extract's README,
  * "Hunter"), which of those to offer, and where a weapon rides on the
  * skeleton.
@@ -8,6 +9,13 @@ import { fetchMotions, type MotionClip } from "@/lib/motions";
 
 const HUNTER_DIR = "/models/hunter";
 export const HUNTER_MODEL = `${HUNTER_DIR}/hunter.glb`;
+/**
+ * Each sex's hunter in the clothes worn under armor, with a face and
+ * hairstyle: the one armor goes on. Only in exports made since they were
+ * added.
+ */
+export const HUNTER_BARE_MODEL = `${HUNTER_DIR}/hunter-bare.glb`;
+export const HUNTER_BARE_FEMALE_MODEL = `${HUNTER_DIR}/hunter-bare-female.glb`;
 
 /** The player's joints (mhfu-extract's `src/models/hunter.ts`). */
 export const JOINT = { CHEST: 10, LEFT_HAND: 14, RIGHT_HAND: 18 } as const;
@@ -28,11 +36,12 @@ export const WEAPON_CLASS: Record<string, number> = {
 };
 
 /**
- * What a hunter clip is, for its name in the viewer: the two idles, or the
- * weapon file's Nth movement or attack (the disc names none of them).
+ * What a hunter clip is, for its name in the viewer: the idles (standing
+ * with a weapon away or drawn, or in armor alone), or the weapon file's Nth
+ * movement or attack (the disc names none of them).
  */
 export type HunterMotion =
-  { kind: "sheathed-idle" | "drawn-idle" } | { kind: "move" | "attack"; n: number };
+  { kind: "sheathed-idle" | "drawn-idle" | "idle" } | { kind: "move" | "attack"; n: number };
 
 /** A hunter's clip, as the viewer lists it. */
 export interface HunterClip extends MotionClip {
@@ -48,17 +57,28 @@ const DRAWN_IDLE_SLOT = 1;
 /** The common standing motion, weapon put away. */
 const SHEATHED_IDLE_SLOT = 1;
 
+/**
+ * The common standing motion: what the hunter does with nothing in hand.
+ * Named `kind`: "sheathed-idle" beside a weapon, "idle" for armor alone.
+ */
+export async function fetchHunterIdle(
+  kind: "sheathed-idle" | "idle",
+  signal?: AbortSignal,
+): Promise<HunterClip[]> {
+  const common = await fetchMotions(`${HUNTER_DIR}/common.motions.bin`, signal);
+  return common
+    .filter((clip) => clip.slot === SHEATHED_IDLE_SLOT)
+    .map((clip): HunterClip => ({ ...clip, motion: { kind }, sheathed: true }));
+}
+
 /** The clips the viewer offers for a weapon type: sheathed idle, the drawn stance, then the rest of its file. */
 export async function fetchHunterClips(type: string, signal?: AbortSignal): Promise<HunterClip[]> {
   const weaponClass = WEAPON_CLASS[type];
   if (weaponClass === undefined) return [];
-  const [weapon, common] = await Promise.all([
+  const [weapon, sheathed] = await Promise.all([
     fetchMotions(`${HUNTER_DIR}/w${String(weaponClass).padStart(2, "0")}.motions.bin`, signal),
-    fetchMotions(`${HUNTER_DIR}/common.motions.bin`, signal),
+    fetchHunterIdle("sheathed-idle", signal),
   ]);
-  const sheathed = common
-    .filter((clip) => clip.slot === SHEATHED_IDLE_SLOT)
-    .map((clip): HunterClip => ({ ...clip, motion: { kind: "sheathed-idle" }, sheathed: true }));
   // Weapon clips by file group: 0 movement and stance, 1 a lone action,
   // 2 on attacks. No other naming is on the disc.
   const count = { move: 0, attack: 0 };

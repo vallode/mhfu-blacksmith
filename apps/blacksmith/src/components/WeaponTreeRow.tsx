@@ -37,6 +37,11 @@ interface WeaponTreeRowProps {
    * turn it off, or the page would jump down to it.
    */
   scroll?: boolean;
+  /**
+   * The weapon has a row higher up the same list (a dual-element weapon in
+   * the by-element view): that one gets the id TreeScroll looks up.
+   */
+  listedAgain?: boolean;
 }
 
 // Each row is a full-width line with a highlight strip drawn by ::before.
@@ -72,8 +77,10 @@ function gameTextKind(basePath: string): GameTextKind {
 function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
   if (basePath.startsWith("/blacksmith/")) return `weapon-${node.type}`;
   if (basePath.startsWith("/armorsmith/")) {
-    // basePath is /armorsmith/<slot>/<rank>/ — the tree stays within one bundle
-    const rank = basePath.split("/")[3];
+    // basePath is /armorsmith/<slot>/<rank>/ — the tree stays within one
+    // bundle — or /armorsmith/<slot>/ in the all-rank views, whose slugs are
+    // <rank>/<slug>.
+    const rank = node.slug.includes("/") ? node.slug.split("/")[0] : basePath.split("/")[3];
     return `armor-${node.type}-${rank}`;
   }
   if (basePath.startsWith("/decorations/")) return "decorations";
@@ -175,6 +182,7 @@ export default function WeaponTreeRow({
   nested = false,
   hasNextSibling = false,
   scroll = true,
+  listedAgain = false,
 }: WeaponTreeRowProps) {
   // A branch holding the active row opens, so arriving at a weapon (from the
   // global search, say) shows it even if its branch was collapsed earlier.
@@ -208,7 +216,8 @@ export default function WeaponTreeRow({
   const { href, external: isExternal } = status;
   const owned = markOwned && status.owned;
   const craft = showCraftProgress ? status.craft : null;
-  const dimmed = filtered ? !filtered.match : false;
+  // The page's own row stays bright, whatever the filter.
+  const dimmed = filtered ? !filtered.match : !!node.dimmed && !isActive;
   const showPips = craft != null && craft.status !== "unknown";
   const ready = craft?.status === "ready" ? craft : null;
   // Weapons are forged; jewels are made.
@@ -297,7 +306,7 @@ export default function WeaponTreeRow({
         <Link
           // An alias row repeats a weapon listed above: only the first gets the
           // id that TreeScroll and the alias marker look up.
-          id={node.alias ? undefined : node.slug}
+          id={node.alias || listedAgain ? undefined : node.slug}
           className={rowClass}
           href={href}
           scroll={scroll}
@@ -320,7 +329,7 @@ export default function WeaponTreeRow({
           {inner}
         </Link>
       ) : (
-        <span id={node.alias ? undefined : node.slug} className={rowClass}>
+        <span id={node.alias || listedAgain ? undefined : node.slug} className={rowClass}>
           {inner}
         </span>
       )}

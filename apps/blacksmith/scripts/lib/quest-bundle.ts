@@ -5,12 +5,15 @@
  * pages; strings and identical reward tables are stored once.
  */
 import {
+  GUILD_POINT_HUBS,
   QUEST_HUBS,
+  QUEST_RANKS,
   QUEST_NON_MONSTERS,
   REWARD_KINDS,
   ROLL_OUTCOMES,
   questHp,
   questHubSlug,
+  type QuestRank,
   type CompactMonsterStats,
   type CompactQuest,
   type CompactQuestSize,
@@ -28,6 +31,7 @@ export interface QuestRecord {
   map: string | null;
   fee: number;
   reward: number;
+  clear_points?: number;
   time_limit_minutes: number;
   target: { monster: string; amount: number } | null;
   supplies: { item: string; amount: number }[];
@@ -286,6 +290,8 @@ export function encodeQuestBundle({
       hasAreaMap(q.id) ? 1 : 0,
       small.counts,
       monsterSize(q),
+      q.rank === null ? null : QUEST_RANKS.indexOf(q.rank as QuestRank),
+      GUILD_POINT_HUBS.has(q.hub) ? (q.clear_points ?? null) : null,
     ]);
   }
 

@@ -15,8 +15,8 @@
  * `+0x80318` (0x5800 for every hunter's weapon) and the DATA.BIN file it
  * holds at `+0x80408` (u16), the weapon model plus a base per region.
  *
- * The patch hooks the build (hook 6, `game-hooks.ts`): the blob's
- * `rf_hook6` (`blob/stitch.c`) writes a stitched package over the buffer
+ * The patch hooks the build (hook 7, `game-hooks.ts`): the blob's
+ * `rf_hook7` (`blob/stitch.c`) writes a stitched package over the buffer
  * for the hunter's own weapon (n = 0) when one fits, from `FORGE.BIN`
  * (`forge/stitch-library.ts`), a file of its own in `/PSP_GAME/USRDIR`.
  * Anything that fails keeps DATA.BIN's bytes. With relics (`forge/relics.ts`)

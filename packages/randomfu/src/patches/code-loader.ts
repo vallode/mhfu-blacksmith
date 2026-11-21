@@ -35,6 +35,7 @@ import type { Edits } from "../edits.js";
 import type { LoadedOverlay } from "../game/load.js";
 import type { ShuffleReport } from "../shuffles/shuffle.js";
 import {
+  HOOK,
   assembleHooks,
   assembleBuildHook,
   assemblePickHook,
@@ -326,7 +327,9 @@ export interface CodeLoaderOptions {
     questLoad?: { sites: QuestLoadSites; lobbyTask: LoadedOverlay };
     /** The game's picker, for a blob that defines `rf_hook5` (hook 5). */
     pick?: PickSite;
-    /** The game's weapon build, for a blob that defines `rf_hook6` (hook 6). */
+    /** `lobby_task`'s call to the quest card (hook 6): its file offset and the card. */
+    questCard?: { call: number; card: number; lobbyTask: LoadedOverlay };
+    /** The game's weapon build, for a blob that defines `rf_hook7` (hook 7). */
     build?: BuildSite;
   };
   /** The blob's externs that are found per disc. */
@@ -416,7 +419,10 @@ export function addCodeLoader(
     imports: imports as Imports,
   };
   const words = assembleLoader(0, addresses).code.length;
-  const calls = hooks ? hookCode(hooks.sites) : [];
+  const calls: { hook: number; target: number }[] = [
+    ...(hooks ? hookCode(hooks.sites) : []),
+    ...(hooks?.questCard ? [{ hook: HOOK.questCard, target: hooks.questCard.card }] : []),
+  ];
   const questLoader = hooks?.questLoad?.sites.loader;
   const hookWords = hooks ? assembleHooks(0, blobAddress, calls, questLoader).code.length : 0;
   const pickWords = hooks?.pick ? assemblePickHook(0, blobAddress, hooks.pick).length : 0;
@@ -445,6 +451,10 @@ export function addCodeLoader(
     space.writeCave(hookAt, hookStubs.code);
     const gameTask = hooks.gameTask ? edits.overlay(hooks.gameTask) : null;
     writeHookCalls(out, gameTask, hooks.sites, hookStubs.stubs);
+    if (hooks.questCard) {
+      const lobbyTask = edits.overlay(hooks.questCard.lobbyTask);
+      lobbyTask.writeUInt32LE(jal(hookStubs.stubs[calls.length - 1]!), hooks.questCard.call);
+    }
     if (hooks.questLoad && hookStubs.questLoad) {
       if (!gameTask) throw new Error("The quest load hook needs game_task");
       const lobbyTask = edits.overlay(hooks.questLoad.lobbyTask);

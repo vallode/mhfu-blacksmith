@@ -216,6 +216,9 @@ export interface FixtureQuest {
   delivery?: { itemId: number; amount: number };
   /** Quest text: English (three slots) and one other language (the other four). */
   text?: { title: string; goal: string; otherGoal: string };
+  /** The goal slots (header 0x6C, 0x74; `game/goals.ts`), all to be met, and the quest type's low byte (4 if not given). */
+  goals?: { flags: number; id: number; count: number }[];
+  questType?: number;
 }
 
 export type FixtureText = [string, string, string, string, string, string];
@@ -415,6 +418,15 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   header[104] = GATHERING_MAP;
   // TargetID: the first monster, unless it's a delivery quest's item (written above).
   if (!q.delivery) header.writeUInt16LE(q.monsters[0] ?? 0, 112);
+  if (q.goals) {
+    q.goals.forEach((g, i) => {
+      header.writeUInt32LE(g.flags, 0x6c + i * 8);
+      header.writeUInt16LE(g.id, 0x70 + i * 8);
+      header.writeUInt16LE(g.count, 0x72 + i * 8);
+    });
+    header[0x6a] = q.goals.length;
+    header[76] = q.questType ?? 4;
+  }
   // Objective slots: one names the monster, the other an item with the same number.
   header.writeUInt32LE(1, 0x28);
   header.writeUInt16LE(q.monsters[0] ?? 0, 0x2c);

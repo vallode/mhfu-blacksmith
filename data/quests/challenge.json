@@ -1,0 +1,6968 @@
+{
+  "quests": [
+    {
+      "id": 61001,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 1,
+      "map": 20,
+      "fee": 0,
+      "reward": 6000,
+      "penalty": 2000,
+      "clear_points": 300,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": 78,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 20,
+              "item": 224,
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": 223,
+              "amount": 3
+            },
+            {
+              "chance": 5,
+              "item": 224,
+              "amount": 3
+            },
+            {
+              "chance": 20,
+              "item": 944,
+              "amount": 3
+            },
+            {
+              "chance": 15,
+              "item": 945,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 68,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 68,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 43,
+          "items": [
+            {
+              "chance": 100,
+              "item": 31,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 78,
+          "quantity": 1,
+          "power": 9,
+          "multipliers": {
+            "hp": 0.55,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [
+        {
+          "monster": 12,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 19,
+          "max_quantity": 7,
+          "total_quantity": 14,
+          "endless": true
+        },
+        {
+          "monster": 3,
+          "max_quantity": 2,
+          "total_quantity": 2
+        },
+        {
+          "monster": 66,
+          "max_quantity": 4,
+          "total_quantity": 8
+        },
+        {
+          "monster": 62,
+          "max_quantity": 4,
+          "total_quantity": 12
+        }
+      ],
+      "arena_sets": [
+        {
+          "players": 4,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 169,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 247,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 263,
+              "level": 0,
+              "decorations": [
+                998
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 19,
+              "level": 0,
+              "decorations": [
+                989
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 19,
+              "level": 0,
+              "decorations": [
+                989
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 23,
+              "level": 0,
+              "decorations": [
+                989
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 11,
+              "amount": 5
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 64,
+              "amount": 2
+            },
+            {
+              "item": 80,
+              "amount": 3
+            },
+            {
+              "item": 61,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 49,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 7,
+              "level": 3,
+              "decorations": [
+                1022
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 7,
+              "level": 3,
+              "decorations": [
+                968
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 7,
+              "level": 3,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 7,
+              "level": 3,
+              "decorations": [
+                1022
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 9,
+              "level": 3,
+              "decorations": [
+                1022
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 163,
+              "amount": 7
+            },
+            {
+              "item": 164,
+              "amount": 3
+            },
+            {
+              "item": 177,
+              "amount": 10
+            },
+            {
+              "item": 161,
+              "amount": 2
+            },
+            {
+              "item": 253,
+              "amount": 2
+            },
+            {
+              "item": 235,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 64,
+              "amount": 2
+            },
+            {
+              "item": 61,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 90,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 317,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 5,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 13,
+              "level": 0,
+              "decorations": [
+                1039
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 13,
+              "level": 0,
+              "decorations": [
+                1039
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 5,
+              "level": 1039,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 16,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 7,
+              "amount": 5
+            },
+            {
+              "item": 11,
+              "amount": 5
+            },
+            {
+              "item": 64,
+              "amount": 2
+            },
+            {
+              "item": 61,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 138,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 23,
+              "level": 2,
+              "decorations": [
+                963
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 19,
+              "level": 2,
+              "decorations": [
+                955
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 17,
+              "level": 2,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 21,
+              "level": 2,
+              "decorations": [
+                955
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 20,
+              "level": 2,
+              "decorations": [
+                955
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 64,
+              "amount": 2
+            },
+            {
+              "item": 869,
+              "amount": 1
+            },
+            {
+              "item": 80,
+              "amount": 1
+            },
+            {
+              "item": 61,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 5,
+              "attachments": 36,
+              "decorations": [
+                978,
+                978,
+                978
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 4,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 4,
+              "level": 4,
+              "decorations": [
+                978
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 4,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 4,
+              "level": 4,
+              "decorations": [
+                978
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 6,
+              "level": 4,
+              "decorations": [
+                975
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 96,
+              "amount": 255
+            },
+            {
+              "item": 97,
+              "amount": 90
+            },
+            {
+              "item": 98,
+              "amount": 70
+            },
+            {
+              "item": 99,
+              "amount": 30
+            },
+            {
+              "item": 102,
+              "amount": 60
+            },
+            {
+              "item": 105,
+              "amount": 5
+            },
+            {
+              "item": 120,
+              "amount": 12
+            },
+            {
+              "item": 121,
+              "amount": 8
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 11,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 80,
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61002,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 3,
+      "map": 9,
+      "fee": 0,
+      "reward": 7500,
+      "penalty": 2500,
+      "clear_points": 400,
+      "time_limit_minutes": 20,
+      "target": {
+        "monster": 79,
+        "amount": 2
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 20,
+              "item": 87,
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": 86,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 86,
+              "amount": 3
+            },
+            {
+              "chance": 15,
+              "item": 87,
+              "amount": 2
+            },
+            {
+              "chance": 22,
+              "item": 178,
+              "amount": 10
+            },
+            {
+              "chance": 3,
+              "item": 178,
+              "amount": 20
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 38,
+          "items": [
+            {
+              "chance": 100,
+              "item": 31,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 79,
+          "quantity": 1,
+          "power": 22,
+          "multipliers": {
+            "hp": 0.85,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.4
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [
+        {
+          "monster": 29,
+          "max_quantity": 5,
+          "total_quantity": 5
+        }
+      ],
+      "arena_sets": [
+        {
+          "players": 4,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 461,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 140,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 147,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 145,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 143,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 141,
+              "level": 4,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 867,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 869,
+              "amount": 1
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 2,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 130,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 137,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 135,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 133,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 131,
+              "level": 4,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 867,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 869,
+              "amount": 1
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 425,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 80,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 87,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 82,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 80,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 80,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 867,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 504,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 76,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 83,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 78,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 76,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 76,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 867,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 869,
+              "amount": 1
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 46,
+              "attachments": 36,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 93,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 100,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 98,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 96,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 96,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 96,
+              "amount": 255
+            },
+            {
+              "item": 97,
+              "amount": 90
+            },
+            {
+              "item": 103,
+              "amount": 30
+            },
+            {
+              "item": 114,
+              "amount": 20
+            },
+            {
+              "item": 125,
+              "amount": 2
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 869,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61003,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 4,
+      "map": 22,
+      "fee": 0,
+      "reward": 60000,
+      "penalty": 20000,
+      "clear_points": 300,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": 21,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 30,
+              "item": 234,
+              "amount": 3
+            },
+            {
+              "chance": 10,
+              "item": 234,
+              "amount": 5
+            },
+            {
+              "chance": 20,
+              "item": 236,
+              "amount": 3
+            },
+            {
+              "chance": 10,
+              "item": 236,
+              "amount": 5
+            },
+            {
+              "chance": 20,
+              "item": 240,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 240,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 44,
+          "items": [
+            {
+              "chance": 100,
+              "item": 32,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 21,
+          "quantity": 1,
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 120,
+        "min": 120,
+        "max": 120
+      },
+      "small_monsters": [],
+      "arena_sets": [
+        {
+          "players": 4,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 157,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 247,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 418,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 309,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 110,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 573,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 249,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 5
+            },
+            {
+              "item": 872,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 411,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 310,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 90,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 76,
+              "attachments": 36,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 241,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 96,
+              "amount": 255
+            },
+            {
+              "item": 97,
+              "amount": 60
+            },
+            {
+              "item": 100,
+              "amount": 30
+            },
+            {
+              "item": 106,
+              "amount": 9
+            },
+            {
+              "item": 113,
+              "amount": 30
+            },
+            {
+              "item": 119,
+              "amount": 8
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61004,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 5,
+      "map": 26,
+      "fee": 0,
+      "reward": 21000,
+      "penalty": 7000,
+      "clear_points": 500,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 81,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 20,
+              "item": 225,
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": 224,
+              "amount": 3
+            },
+            {
+              "chance": 10,
+              "item": 225,
+              "amount": 3
+            },
+            {
+              "chance": 15,
+              "item": 946,
+              "amount": 3
+            },
+            {
+              "chance": 15,
+              "item": 34,
+              "amount": 3
+            },
+            {
+              "chance": 5,
+              "item": 34,
+              "amount": 5
+            },
+            {
+              "chance": 10,
+              "item": 899,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 51,
+          "items": [
+            {
+              "chance": 100,
+              "item": 32,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 85,
+          "quantity": 1,
+          "power": 19,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 2.7,
+            "defense": 0.85,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 37,
+          "quantity": 1,
+          "power": 19,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 2.7,
+            "defense": 0.85,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 81,
+          "quantity": 1,
+          "power": 19,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 2.7,
+            "defense": 0.85,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [
+        {
+          "monster": 23,
+          "max_quantity": 3,
+          "total_quantity": 3
+        },
+        {
+          "monster": 62,
+          "max_quantity": 4,
+          "total_quantity": 8
+        },
+        {
+          "monster": 66,
+          "max_quantity": 4,
+          "total_quantity": 4
+        },
+        {
+          "monster": 19,
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
+        },
+        {
+          "monster": 5,
+          "max_quantity": 2,
+          "total_quantity": 3
+        },
+        {
+          "monster": 24,
+          "max_quantity": 7,
+          "total_quantity": 7
+        },
+        {
+          "monster": 12,
+          "max_quantity": 4,
+          "total_quantity": 4
+        }
+      ],
+      "arena_sets": [
+        {
+          "players": 4,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 932,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 221,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 228,
+              "level": 4,
+              "decorations": [
+                964,
+                964
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 227,
+              "level": 4,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 320,
+              "level": 4,
+              "decorations": [
+                964,
+                964
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 318,
+              "level": 4,
+              "decorations": [
+                964,
+                964
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 8
+            },
+            {
+              "item": 13,
+              "amount": 1
+            },
+            {
+              "item": 64,
+              "amount": 3
+            },
+            {
+              "item": 66,
+              "amount": 2
+            },
+            {
+              "item": 73,
+              "amount": 2
+            },
+            {
+              "item": 11,
+              "amount": 2
+            },
+            {
+              "item": 872,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 282,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 222,
+              "level": 2,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 229,
+              "level": 2,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 229,
+              "level": 2,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 318,
+              "level": 2,
+              "decorations": [
+                1094
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 330,
+              "level": 2,
+              "decorations": [
+                965
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 2
+            },
+            {
+              "item": 73,
+              "amount": 2
+            },
+            {
+              "item": 11,
+              "amount": 2
+            },
+            {
+              "item": 868,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 63,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 47,
+              "level": 9,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 49,
+              "level": 9,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 51,
+              "level": 9,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 302,
+              "level": 9,
+              "decorations": [
+                1028,
+                1028
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 300,
+              "level": 9,
+              "decorations": [
+                1109
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 73,
+              "amount": 2
+            },
+            {
+              "item": 11,
+              "amount": 2
+            },
+            {
+              "item": 871,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 782,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 49,
+              "level": 3,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 51,
+              "level": 3,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 53,
+              "level": 3,
+              "decorations": [
+                1038
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 306,
+              "level": 3,
+              "decorations": [
+                1038,
+                1038,
+                1038
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 304,
+              "level": 3,
+              "decorations": [
+                1038,
+                1038
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 73,
+              "amount": 3
+            },
+            {
+              "item": 11,
+              "amount": 2
+            },
+            {
+              "item": 869,
+              "amount": 1
+            },
+            {
+              "item": 24,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 102,
+              "attachments": 132,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 48,
+              "level": 7,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 50,
+              "level": 7,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 52,
+              "level": 7,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 299,
+              "level": 7,
+              "decorations": [
+                983,
+                983
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 297,
+              "level": 7,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 96,
+              "amount": 255
+            },
+            {
+              "item": 97,
+              "amount": 90
+            },
+            {
+              "item": 98,
+              "amount": 90
+            },
+            {
+              "item": 99,
+              "amount": 50
+            },
+            {
+              "item": 102,
+              "amount": 30
+            },
+            {
+              "item": 111,
+              "amount": 30
+            },
+            {
+              "item": 113,
+              "amount": 30
+            },
+            {
+              "item": 114,
+              "amount": 30
+            },
+            {
+              "item": 120,
+              "amount": 12
+            },
+            {
+              "item": 121,
+              "amount": 8
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 73,
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61005,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 2,
+      "map": 9,
+      "fee": 0,
+      "reward": 4800,
+      "penalty": 1600,
+      "clear_points": 200,
+      "time_limit_minutes": 20,
+      "target": {
+        "monster": 68,
+        "amount": 2
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": 48,
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": 43,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 43,
+              "amount": 4
+            },
+            {
+              "chance": 15,
+              "item": 47,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 47,
+              "amount": 3
+            },
+            {
+              "chance": 5,
+              "item": 48,
+              "amount": 3
+            },
+            {
+              "chance": 10,
+              "item": 49,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 49,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 37,
+          "items": [
+            {
+              "chance": 60,
+              "item": 13,
+              "amount": 1
+            },
+            {
+              "chance": 40,
+              "item": 14,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 68,
+          "quantity": 1,
+          "power": 14,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 1.9,
+            "defense": 0.9,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 1
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 210,
+        "min": 210,
+        "max": 210
+      },
+      "small_monsters": [
+        {
+          "monster": 29,
+          "max_quantity": 9,
+          "total_quantity": 9
+        }
+      ],
+      "arena_sets": [
+        {
+          "players": 4,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 538,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 23,
+              "level": 1,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 48,
+              "level": 1,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 50,
+              "level": 1,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 17,
+              "level": 1,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 49,
+              "level": 1,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 64,
+              "amount": 2
+            },
+            {
+              "item": 60,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 547,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 23,
+              "level": 1,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 48,
+              "level": 1,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 50,
+              "level": 1,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 17,
+              "level": 1,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 49,
+              "level": 1,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 64,
+              "amount": 2
+            },
+            {
+              "item": 60,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 229,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 23,
+              "level": 1,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 48,
+              "level": 1,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 50,
+              "level": 1,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 17,
+              "level": 1,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 49,
+              "level": 1,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 64,
+              "amount": 2
+            },
+            {
+              "item": 60,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 565,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 23,
+              "level": 1,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 48,
+              "level": 1,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 50,
+              "level": 1,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 17,
+              "level": 1,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 49,
+              "level": 1,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 64,
+              "amount": 2
+            },
+            {
+              "item": 60,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 303,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 17,
+              "level": 1,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 48,
+              "level": 1,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 50,
+              "level": 1,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 16,
+              "level": 1,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 49,
+              "level": 1,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 130,
+              "amount": 50
+            },
+            {
+              "item": 134,
+              "amount": 20
+            },
+            {
+              "item": 132,
+              "amount": 10
+            },
+            {
+              "item": 133,
+              "amount": 10
+            },
+            {
+              "item": 135,
+              "amount": 3
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61006,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 3,
+      "map": 26,
+      "fee": 0,
+      "reward": 7500,
+      "penalty": 2500,
+      "clear_points": 400,
+      "time_limit_minutes": 30,
+      "target": {
+        "monster": 80,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 30,
+              "item": 161,
+              "amount": 5
+            },
+            {
+              "chance": 5,
+              "item": 161,
+              "amount": 10
+            },
+            {
+              "chance": 15,
+              "item": 76,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 76,
+              "amount": 3
+            },
+            {
+              "chance": 15,
+              "item": 250,
+              "amount": 3
+            },
+            {
+              "chance": 5,
+              "item": 250,
+              "amount": 5
+            },
+            {
+              "chance": 20,
+              "item": 252,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 39,
+          "items": [
+            {
+              "chance": 100,
+              "item": 31,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 80,
+          "quantity": 1,
+          "power": 24,
+          "multipliers": {
+            "hp": 1.75,
+            "attack": 3.5,
+            "defense": 0.7,
+            "status": 2.3
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [
+        {
+          "monster": 19,
+          "max_quantity": 10,
+          "total_quantity": 39,
+          "endless": true
+        },
+        {
+          "monster": 24,
+          "max_quantity": 10,
+          "total_quantity": 32
+        }
+      ],
+      "arena_sets": [
+        {
+          "players": 4,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 364,
+              "decorations": [
+                1028,
+                1028
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 271,
+              "level": 3,
+              "decorations": [
+                1084
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 55,
+              "level": 5,
+              "decorations": [
+                1028,
+                1028
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 273,
+              "level": 3,
+              "decorations": [
+                1028
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 268,
+              "level": 3,
+              "decorations": [
+                1028,
+                1028
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 266,
+              "level": 3,
+              "decorations": [
+                1032
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 187,
+              "amount": 3
+            },
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 65,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 658,
+              "decorations": [
+                1071
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 150,
+              "level": 3,
+              "decorations": [
+                952
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 157,
+              "level": 3,
+              "decorations": [
+                995
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 156,
+              "level": 3,
+              "decorations": [
+                1071
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 154,
+              "level": 3,
+              "decorations": [
+                995
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 152,
+              "level": 3,
+              "decorations": [
+                1071
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 187,
+              "amount": 3
+            },
+            {
+              "item": 153,
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 570,
+              "decorations": [
+                1039,
+                1039
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 222,
+              "level": 10,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 191,
+              "level": 7,
+              "decorations": [
+                1039,
+                1039,
+                1039
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 229,
+              "level": 10,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 226,
+              "level": 10,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 223,
+              "level": 10,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 187,
+              "amount": 3
+            },
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 65,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 117,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 178,
+              "level": 5,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 185,
+              "level": 5,
+              "decorations": [
+                1005
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 184,
+              "level": 5,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 182,
+              "level": 5,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 178,
+              "level": 5,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 187,
+              "amount": 3
+            },
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 71,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 102,
+              "attachments": 36,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 75,
+              "level": 6,
+              "decorations": [
+                997
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 82,
+              "level": 6,
+              "decorations": [
+                1070
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 77,
+              "level": 6,
+              "decorations": [
+                1070
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 75,
+              "level": 6,
+              "decorations": [
+                1070
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 75,
+              "level": 6,
+              "decorations": [
+                1072
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 187,
+              "amount": 3
+            },
+            {
+              "item": 96,
+              "amount": 255
+            },
+            {
+              "item": 97,
+              "amount": 50
+            },
+            {
+              "item": 103,
+              "amount": 20
+            },
+            {
+              "item": 104,
+              "amount": 20
+            },
+            {
+              "item": 111,
+              "amount": 20
+            },
+            {
+              "item": 116,
+              "amount": 12
+            },
+            {
+              "item": 118,
+              "amount": 12
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61007,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 4,
+      "map": 9,
+      "fee": 0,
+      "reward": 24000,
+      "penalty": 8000,
+      "clear_points": 600,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 81,
+        "amount": 2
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": 899,
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": 299,
+              "amount": 10
+            },
+            {
+              "chance": 15,
+              "item": 299,
+              "amount": 15
+            },
+            {
+              "chance": 25,
+              "item": 899,
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": 147,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 147,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 47,
+          "items": [
+            {
+              "chance": 100,
+              "item": 32,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 81,
+          "quantity": 2,
+          "power": 26,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [],
+      "arena_sets": [
+        {
+          "players": 4,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 914,
+              "decorations": [
+                1046,
+                1046
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 363,
+              "level": 7,
+              "decorations": [
+                1041,
+                1041
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 243,
+              "level": 13,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 362,
+              "level": 7,
+              "decorations": [
+                983,
+                1067
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 356,
+              "level": 7,
+              "decorations": [
+                1067
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 354,
+              "level": 7,
+              "decorations": [
+                1067
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 5
+            },
+            {
+              "item": 84,
+              "amount": 10
+            },
+            {
+              "item": 87,
+              "amount": 2
+            },
+            {
+              "item": 872,
+              "amount": 2
+            },
+            {
+              "item": 86,
+              "amount": 3
+            },
+            {
+              "item": 83,
+              "amount": 10
+            },
+            {
+              "item": 35,
+              "amount": 10
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 603,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 307,
+              "level": 0,
+              "decorations": [
+                1114
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 322,
+              "level": 0,
+              "decorations": [
+                1114
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 318,
+              "level": 0,
+              "decorations": [
+                1056,
+                1056
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 300,
+              "level": 0,
+              "decorations": [
+                1063
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 298,
+              "level": 0,
+              "decorations": [
+                962
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 5
+            },
+            {
+              "item": 868,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 1012,
+              "decorations": [
+                1068
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 309,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 324,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 308,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 302,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 300,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 869,
+              "amount": 1
+            },
+            {
+              "item": 871,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 805,
+              "decorations": [
+                1069
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 376,
+              "level": 0,
+              "decorations": [
+                1103
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 316,
+              "level": 0,
+              "decorations": [
+                1091
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 300,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 369,
+              "level": 0,
+              "decorations": [
+                1069
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 292,
+              "level": 0,
+              "decorations": [
+                1103
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 868,
+              "amount": 1
+            },
+            {
+              "item": 61,
+              "amount": 5
+            },
+            {
+              "item": 872,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 299,
+              "decorations": [
+                1056,
+                1056
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 320,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 334,
+              "level": 0,
+              "decorations": [
+                1101
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 319,
+              "level": 0,
+              "decorations": [
+                1056,
+                1056
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 313,
+              "level": 0,
+              "decorations": [
+                1032
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 311,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 130,
+              "amount": 50
+            },
+            {
+              "item": 134,
+              "amount": 20
+            },
+            {
+              "item": 131,
+              "amount": 20
+            },
+            {
+              "item": 132,
+              "amount": 20
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 869,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61008,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 5,
+      "map": 22,
+      "fee": 0,
+      "reward": 27000,
+      "penalty": 9000,
+      "clear_points": 600,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 43,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": 900,
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": 37,
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": 900,
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": 34,
+              "amount": 3
+            },
+            {
+              "chance": 10,
+              "item": 34,
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 52,
+          "items": [
+            {
+              "chance": 60,
+              "item": 861,
+              "amount": 1
+            },
+            {
+              "chance": 40,
+              "item": 862,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 87,
+          "quantity": 1,
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 45,
+          "quantity": 1,
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 43,
+          "quantity": 1,
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [],
+      "arena_sets": [
+        {
+          "players": 4,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 871,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 307,
+              "level": 0,
+              "decorations": [
+                1107
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 322,
+              "level": 0,
+              "decorations": [
+                1096
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 306,
+              "level": 0,
+              "decorations": [
+                1079
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 300,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 298,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 64,
+              "amount": 2
+            },
+            {
+              "item": 66,
+              "amount": 3
+            },
+            {
+              "item": 872,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 618,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 287,
+              "level": 8,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 303,
+              "level": 8,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 289,
+              "level": 8,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 284,
+              "level": 8,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 282,
+              "level": 8,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 3
+            },
+            {
+              "item": 868,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 1006,
+              "decorations": [
+                986,
+                986
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 309,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 324,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 308,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 302,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 300,
+              "level": 0,
+              "decorations": [
+                1080,
+                986
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 3
+            },
+            {
+              "item": 869,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 758,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 301,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 316,
+              "level": 0,
+              "decorations": [
+                984,
+                984
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 300,
+              "level": 0,
+              "decorations": [
+                1053
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 385,
+              "level": 0,
+              "decorations": [
+                984,
+                984
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 383,
+              "level": 0,
+              "decorations": [
+                984
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 3
+            },
+            {
+              "item": 871,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 293,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 328,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 343,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 327,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 321,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 319,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 130,
+              "amount": 50
+            },
+            {
+              "item": 131,
+              "amount": 20
+            },
+            {
+              "item": 132,
+              "amount": 20
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 3
+            },
+            {
+              "item": 872,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61009,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 4,
+      "map": 9,
+      "fee": 0,
+      "reward": 12000,
+      "penalty": 4000,
+      "clear_points": 500,
+      "time_limit_minutes": 40,
+      "target": {
+        "monster": 16,
+        "amount": 50
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": 63,
+              "amount": 10
+            },
+            {
+              "chance": 25,
+              "item": 94,
+              "amount": 20
+            },
+            {
+              "chance": 20,
+              "item": 95,
+              "amount": 15
+            },
+            {
+              "chance": 5,
+              "item": 63,
+              "amount": 20
+            },
+            {
+              "chance": 15,
+              "item": 66,
+              "amount": 3
+            },
+            {
+              "chance": 10,
+              "item": 66,
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 44,
+          "items": [
+            {
+              "chance": 100,
+              "item": 31,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 14,
+          "quantity": 1,
+          "power": 24,
+          "multipliers": {
+            "hp": 1.75,
+            "attack": 3.5,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [
+        {
+          "monster": 16,
+          "max_quantity": 60,
+          "total_quantity": 60
+        }
+      ],
+      "arena_sets": [
+        {
+          "players": 4,
+          "point_multiplier": 90,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 264,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 3,
+              "level": 13,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 3,
+              "level": 13,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 3,
+              "level": 13,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 3,
+              "level": 13,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 5,
+              "level": 13,
+              "decorations": [
+                962
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 5
+            },
+            {
+              "item": 869,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 385,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 14,
+              "level": 9,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 13,
+              "level": 9,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 13,
+              "level": 9,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 13,
+              "level": 9,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 16,
+              "level": 9,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 5
+            },
+            {
+              "item": 869,
+              "amount": 2
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 392,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 5,
+              "level": 12,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 5,
+              "level": 12,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 5,
+              "level": 12,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 5,
+              "level": 12,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 7,
+              "level": 12,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 5
+            },
+            {
+              "item": 869,
+              "amount": 2
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 110,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 527,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 9,
+              "level": 15,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 9,
+              "level": 15,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 9,
+              "level": 15,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 9,
+              "level": 15,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 11,
+              "level": 15,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 5
+            },
+            {
+              "item": 869,
+              "amount": 2
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 37,
+              "attachments": 36,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 183,
+              "level": 14,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 247,
+              "level": 9,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 189,
+              "level": 9,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 187,
+              "level": 9,
+              "decorations": [
+                975
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 183,
+              "level": 9,
+              "decorations": [
+                975
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 96,
+              "amount": 255
+            },
+            {
+              "item": 97,
+              "amount": 70
+            },
+            {
+              "item": 98,
+              "amount": 70
+            },
+            {
+              "item": 102,
+              "amount": 30
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 3
+            },
+            {
+              "item": 869,
+              "amount": 2
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61010,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 5,
+      "map": 9,
+      "fee": 0,
+      "reward": 24000,
+      "penalty": 8000,
+      "clear_points": 700,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": 89,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 55,
+              "item": 902,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 902,
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": 862,
+              "amount": 1
+            },
+            {
+              "chance": 35,
+              "item": 147,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 47,
+          "items": [
+            {
+              "chance": 100,
+              "item": 32,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 89,
+          "quantity": 1,
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 1,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [],
+      "arena_sets": [
+        {
+          "players": 4,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 873,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 339,
+              "level": 6,
+              "decorations": [
+                1028,
+                1028
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 354,
+              "level": 6,
+              "decorations": [
+                965,
+                965
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 338,
+              "level": 6,
+              "decorations": [
+                1094
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 332,
+              "level": 6,
+              "decorations": [
+                965,
+                965
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 330,
+              "level": 6,
+              "decorations": [
+                965,
+                965
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 870,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 869,
+              "amount": 1
+            },
+            {
+              "item": 61,
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 95,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 631,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 396,
+              "level": 7,
+              "decorations": [
+                1052
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 318,
+              "level": 7,
+              "decorations": [
+                1056
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 302,
+              "level": 7,
+              "decorations": [
+                1114
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 389,
+              "level": 7,
+              "decorations": [
+                1042,
+                1042
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 294,
+              "level": 7,
+              "decorations": [
+                1090
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 868,
+              "amount": 1
+            },
+            {
+              "item": 59,
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 1090,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 402,
+              "level": 7,
+              "decorations": [
+                1093
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 417,
+              "level": 7,
+              "decorations": [
+                1069
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 401,
+              "level": 7,
+              "decorations": [
+                964,
+                964
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 395,
+              "level": 7,
+              "decorations": [
+                964,
+                964
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 393,
+              "level": 7,
+              "decorations": [
+                964,
+                964
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 870,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 13,
+              "amount": 2
+            },
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 60,
+              "amount": 5
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 105,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 778,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 317,
+              "level": 7,
+              "decorations": [
+                1064
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 407,
+              "level": 7,
+              "decorations": [
+                984,
+                984
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 391,
+              "level": 7,
+              "decorations": [
+                968,
+                968
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 310,
+              "level": 7,
+              "decorations": [
+                968,
+                968,
+                968
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 383,
+              "level": 7,
+              "decorations": [
+                1064
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 870,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 871,
+              "amount": 1
+            },
+            {
+              "item": 872,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 203,
+              "attachments": 36,
+              "decorations": [
+                1011
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 328,
+              "level": 5,
+              "decorations": [
+                982,
+                982
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 343,
+              "level": 5,
+              "decorations": [
+                953,
+                953,
+                953
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 327,
+              "level": 5,
+              "decorations": [
+                982,
+                982
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 321,
+              "level": 5,
+              "decorations": [
+                982,
+                982
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 319,
+              "level": 5,
+              "decorations": [
+                982,
+                982
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 870,
+              "amount": 3
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 96,
+              "amount": 255
+            },
+            {
+              "item": 97,
+              "amount": 60
+            },
+            {
+              "item": 99,
+              "amount": 60
+            },
+            {
+              "item": 100,
+              "amount": 60
+            },
+            {
+              "item": 106,
+              "amount": 9
+            },
+            {
+              "item": 108,
+              "amount": 3
+            },
+            {
+              "item": 109,
+              "amount": 3
+            },
+            {
+              "item": 110,
+              "amount": 3
+            },
+            {
+              "item": 117,
+              "amount": 12
+            },
+            {
+              "item": 119,
+              "amount": 8
+            },
+            {
+              "item": 121,
+              "amount": 8
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61011,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 4,
+      "map": 30,
+      "fee": 0,
+      "reward": 2400,
+      "penalty": 400,
+      "clear_points": 200,
+      "time_limit_minutes": 15,
+      "target": {
+        "monster": 81,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 15,
+              "item": 941,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 941,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 34,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 33,
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": 919,
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": 9,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 41,
+          "items": [
+            {
+              "chance": 100,
+              "item": 48,
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 81,
+          "quantity": 1,
+          "power": 16,
+          "multipliers": {
+            "hp": 1,
+            "attack": 2.2,
+            "defense": 0.8,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [],
+      "arena_sets": [
+        {
+          "players": 2,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 551,
+              "decorations": [
+                962,
+                962
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 251,
+              "level": 8,
+              "decorations": [
+                1096
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 267,
+              "level": 8,
+              "decorations": [
+                968,
+                968
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 86,
+              "level": 8,
+              "decorations": [
+                968,
+                968
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 84,
+              "level": 8,
+              "decorations": [
+                967,
+                968
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 84,
+              "level": 8,
+              "decorations": [
+                1063
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 3
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 497,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 178,
+              "level": 8,
+              "decorations": [
+                1042,
+                1070
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 242,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 184,
+              "level": 8,
+              "decorations": [
+                1087
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 182,
+              "level": 8,
+              "decorations": [
+                1087
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 178,
+              "level": 8,
+              "decorations": [
+                1087
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 3
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 868,
+              "amount": 1
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 399,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 92,
+              "level": 6,
+              "decorations": [
+                1039
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 99,
+              "level": 6,
+              "decorations": [
+                1039
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 97,
+              "level": 6,
+              "decorations": [
+                1039
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 95,
+              "level": 6,
+              "decorations": [
+                1039
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 95,
+              "level": 6,
+              "decorations": [
+                1039
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 3
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 871,
+              "amount": 1
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 130,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 160,
+              "level": 9,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 243,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 166,
+              "level": 9,
+              "decorations": [
+                1069
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 164,
+              "level": 9,
+              "decorations": [
+                1069
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 160,
+              "level": 9,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 5
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 872,
+              "amount": 1
+            },
+            {
+              "item": 64,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 93,
+              "attachments": 36,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 197,
+              "level": 8,
+              "decorations": [
+                1091
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 204,
+              "level": 8,
+              "decorations": [
+                1091
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 203,
+              "level": 8,
+              "decorations": [
+                1091
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 201,
+              "level": 8,
+              "decorations": [
+                962,
+                1091
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 197,
+              "level": 8,
+              "decorations": [
+                1091
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 96,
+              "amount": 255
+            },
+            {
+              "item": 97,
+              "amount": 90
+            },
+            {
+              "item": 99,
+              "amount": 60
+            },
+            {
+              "item": 111,
+              "amount": 20
+            },
+            {
+              "item": 113,
+              "amount": 20
+            },
+            {
+              "item": 108,
+              "amount": 3
+            },
+            {
+              "item": 105,
+              "amount": 9
+            },
+            {
+              "item": 125,
+              "amount": 2
+            },
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 869,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61012,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 4,
+      "map": 9,
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 500,
+      "clear_points": 300,
+      "time_limit_minutes": 15,
+      "target": {
+        "monster": 75,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 15,
+              "item": 941,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 941,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 34,
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": 33,
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": 919,
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": 9,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 41,
+          "items": [
+            {
+              "chance": 100,
+              "item": 48,
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 75,
+          "quantity": 1,
+          "power": 17,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 2.3,
+            "defense": 0.8,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [
+        {
+          "monster": 29,
+          "max_quantity": 5,
+          "total_quantity": 5
+        }
+      ],
+      "arena_sets": [
+        {
+          "players": 2,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 450,
+              "decorations": [
+                968,
+                968
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 190,
+              "level": 6,
+              "decorations": [
+                1046,
+                1046
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 155,
+              "level": 6,
+              "decorations": [
+                968
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 196,
+              "level": 6,
+              "decorations": [
+                968,
+                968
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 194,
+              "level": 6,
+              "decorations": [
+                983,
+                1046
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 190,
+              "level": 6,
+              "decorations": [
+                1046,
+                1046
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 1
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 871,
+              "amount": 1
+            },
+            {
+              "item": 872,
+              "amount": 2
+            },
+            {
+              "item": 84,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 391,
+              "decorations": [
+                954
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 267,
+              "level": 6,
+              "decorations": [
+                1056
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 240,
+              "level": 18,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 269,
+              "level": 6,
+              "decorations": [
+                954
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 264,
+              "level": 6,
+              "decorations": [
+                1056
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 262,
+              "level": 6,
+              "decorations": [
+                1056
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 1
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 868,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 428,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 271,
+              "level": 6,
+              "decorations": [
+                1084
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 383,
+              "level": 6,
+              "decorations": [
+                1032
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 367,
+              "level": 6,
+              "decorations": [
+                1109
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 268,
+              "level": 6,
+              "decorations": [
+                1084
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 359,
+              "level": 6,
+              "decorations": [
+                1084
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 1
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 869,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 808,
+              "decorations": [
+                1014
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 370,
+              "level": 6,
+              "decorations": [
+                1091
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 64,
+              "level": 17,
+              "decorations": [
+                1091
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 369,
+              "level": 6,
+              "decorations": [
+                1091
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 363,
+              "level": 6,
+              "decorations": [
+                1091
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 56,
+              "level": 17,
+              "decorations": [
+                1091
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 1
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 868,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 162,
+              "decorations": [
+                987
+              ]
+            },
+            {
+              "slot": "leggings",
+              "id": 185,
+              "level": 6,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 191,
+              "level": 7,
+              "decorations": [
+                1080,
+                977
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 191,
+              "level": 6,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 189,
+              "level": 6,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 185,
+              "level": 6,
+              "decorations": [
+                1080
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 7,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 1
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 130,
+              "amount": 50
+            },
+            {
+              "item": 131,
+              "amount": 20
+            },
+            {
+              "item": 132,
+              "amount": 20
+            },
+            {
+              "item": 872,
+              "amount": 2
+            },
+            {
+              "item": 869,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61013,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 5,
+      "map": 9,
+      "fee": 0,
+      "reward": 3000,
+      "penalty": 500,
+      "clear_points": 300,
+      "time_limit_minutes": 20,
+      "target": {
+        "monster": 81,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 15,
+              "item": 941,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 941,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 34,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 33,
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": 920,
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": 9,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 47,
+          "items": [
+            {
+              "chance": 100,
+              "item": 48,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 85,
+          "quantity": 1,
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 87,
+          "quantity": 1,
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        },
+        {
+          "monster": 81,
+          "quantity": 1,
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
+      "small_monsters": [],
+      "arena_sets": [
+        {
+          "players": 2,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 910,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 384,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 399,
+              "level": 0,
+              "decorations": [
+                997
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 383,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 377,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 375,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 64,
+              "amount": 5
+            },
+            {
+              "item": 66,
+              "amount": 2
+            },
+            {
+              "item": 872,
+              "amount": 2
+            },
+            {
+              "item": 87,
+              "amount": 2
+            },
+            {
+              "item": 73,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 609,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 317,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 332,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 316,
+              "level": 0,
+              "decorations": [
+                1069
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 310,
+              "level": 0,
+              "decorations": [
+                1109
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 308,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 1
+            },
+            {
+              "item": 868,
+              "amount": 1
+            },
+            {
+              "item": 73,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 262,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 363,
+              "level": 0,
+              "decorations": [
+                1016
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 378,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 362,
+              "level": 0,
+              "decorations": [
+                1041
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 356,
+              "level": 0,
+              "decorations": [
+                1041
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 354,
+              "level": 0,
+              "decorations": [
+                1016
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 871,
+              "amount": 1
+            },
+            {
+              "item": 73,
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 403,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 378,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 393,
+              "level": 0,
+              "decorations": [
+                986
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 377,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 371,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 369,
+              "level": 0,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 66,
+              "amount": 1
+            },
+            {
+              "item": 87,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 174,
+              "attachments": 36,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 308,
+              "level": 6,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 323,
+              "level": 6,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 307,
+              "level": 6,
+              "decorations": [
+                962
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 301,
+              "level": 6,
+              "decorations": [
+                1078
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 299,
+              "level": 6,
+              "decorations": [
+                1021
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 96,
+              "amount": 255
+            },
+            {
+              "item": 97,
+              "amount": 90
+            },
+            {
+              "item": 100,
+              "amount": 50
+            },
+            {
+              "item": 111,
+              "amount": 30
+            },
+            {
+              "item": 113,
+              "amount": 30
+            },
+            {
+              "item": 110,
+              "amount": 3
+            },
+            {
+              "item": 118,
+              "amount": 12
+            },
+            {
+              "item": 120,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 869,
+              "amount": 1
+            },
+            {
+              "item": 73,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 61014,
+      "hub": "challenge",
+      "rank": null,
+      "stars": 5,
+      "map": 9,
+      "fee": 0,
+      "reward": 4500,
+      "penalty": 500,
+      "clear_points": 400,
+      "time_limit_minutes": 20,
+      "target": {
+        "monster": 89,
+        "amount": 1
+      },
+      "supplies": [],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 15,
+              "item": 941,
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": 941,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 34,
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": 33,
+              "amount": 3
+            },
+            {
+              "chance": 25,
+              "item": 920,
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": 9,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "kind": "conditional",
+          "draws": null,
+          "condition": 45,
+          "items": [
+            {
+              "chance": 100,
+              "item": 48,
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": 89,
+          "quantity": 1,
+          "power": 23,
+          "multipliers": {
+            "hp": 1.5,
+            "attack": 2.9,
+            "defense": 0.75,
+            "status": 1.4
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 1,
+            "gold": 0
+          }
+        }
+      ],
+      "monster_size": {
+        "modifier": 125,
+        "min": 125,
+        "max": 125
+      },
+      "small_monsters": [],
+      "arena_sets": [
+        {
+          "players": 2,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 877,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 321,
+              "level": 0,
+              "decorations": [
+                1028,
+                1028
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 336,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 320,
+              "level": 0,
+              "decorations": [
+                1028,
+                1028
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 314,
+              "level": 0,
+              "decorations": [
+                1028,
+                1028
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 312,
+              "level": 0,
+              "decorations": [
+                1109
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 3
+            },
+            {
+              "item": 186,
+              "amount": 3
+            },
+            {
+              "item": 868,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 672,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 303,
+              "level": 0,
+              "decorations": [
+                1063
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 318,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "plate",
+              "id": 302,
+              "level": 0,
+              "decorations": [
+                1096
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 296,
+              "level": 0,
+              "decorations": [
+                967
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 294,
+              "level": 0,
+              "decorations": [
+                967
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 2
+            },
+            {
+              "item": 87,
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 1019,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 327,
+              "level": 0,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 342,
+              "level": 0,
+              "decorations": [
+                1039,
+                1039,
+                1039
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 326,
+              "level": 0,
+              "decorations": [
+                1039,
+                1039
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 320,
+              "level": 0,
+              "decorations": [
+                1059
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 318,
+              "level": 0,
+              "decorations": [
+                1059
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 3
+            },
+            {
+              "item": 869,
+              "amount": 1
+            },
+            {
+              "item": 868,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "melee",
+              "id": 737,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 325,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "helmet",
+              "id": 340,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 324,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "gauntlets",
+              "id": 318,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            },
+            {
+              "slot": "waist",
+              "id": 316,
+              "level": 0,
+              "decorations": [
+                1080
+              ]
+            }
+          ],
+          "items": [
+            {
+              "item": 153,
+              "amount": 10
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 3
+            },
+            {
+              "item": 868,
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "players": 0,
+          "point_multiplier": 100,
+          "equipment": [
+            {
+              "slot": "ranged",
+              "id": 241,
+              "attachments": 36,
+              "decorations": []
+            },
+            {
+              "slot": "leggings",
+              "id": 364,
+              "level": 6,
+              "decorations": []
+            },
+            {
+              "slot": "helmet",
+              "id": 379,
+              "level": 6,
+              "decorations": [
+                1041,
+                1041
+              ]
+            },
+            {
+              "slot": "plate",
+              "id": 363,
+              "level": 6,
+              "decorations": []
+            },
+            {
+              "slot": "gauntlets",
+              "id": 357,
+              "level": 6,
+              "decorations": []
+            },
+            {
+              "slot": "waist",
+              "id": 355,
+              "level": 6,
+              "decorations": []
+            }
+          ],
+          "items": [
+            {
+              "item": 96,
+              "amount": 255
+            },
+            {
+              "item": 97,
+              "amount": 60
+            },
+            {
+              "item": 99,
+              "amount": 50
+            },
+            {
+              "item": 100,
+              "amount": 40
+            },
+            {
+              "item": 109,
+              "amount": 2
+            },
+            {
+              "item": 114,
+              "amount": 40
+            },
+            {
+              "item": 122,
+              "amount": 10
+            },
+            {
+              "item": 126,
+              "amount": 2
+            },
+            {
+              "item": 8,
+              "amount": 10
+            },
+            {
+              "item": 870,
+              "amount": 2
+            },
+            {
+              "item": 865,
+              "amount": 10
+            },
+            {
+              "item": 37,
+              "amount": 3
+            },
+            {
+              "item": 871,
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "requires": null,
+      "urgent": false
+    }
+  ]
+}

@@ -213,6 +213,10 @@ export const setBuilder: Messages["setBuilder"] = {
     jewels: "Adornos",
     swapsTitle: "Alternativas que mantienen tus habilidades",
     openPage: (name: string) => `Abrir la página de ${name}`,
+    addToWishlist: "Añadir conjunto a la lista",
+    onWishlist: "En tu lista de deseos",
+    setAdded: "Has añadido el conjunto a tu lista de deseos.",
+    setAddedWithJewels: "Has añadido el conjunto a tu lista de deseos, con sus adornos.",
     // Short: both buttons share one line on a phone.
     alwaysUse: "Usar siempre",
     alwaysUseLabel: (name: string) => `Usar siempre ${name}: fijarla en todos los conjuntos`,

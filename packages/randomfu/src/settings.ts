@@ -39,6 +39,9 @@ export interface Settings {
   "terms.time": boolean;
   "terms.timeSpread": number;
   "deliveries.enabled": boolean;
+  "questGoals.enabled": boolean;
+  "questGoals.capture": boolean;
+  "questGoals.smallMonsters": boolean;
   "trades.mode": Mode;
   "trades.mix": "elder" | "all";
   "trades.scope": "low" | "high" | "any";
@@ -65,6 +68,8 @@ export interface Settings {
   "weapons.sharpness": boolean;
   "weapons.sharpnessMode": "shuffle" | "new";
   "armor.enabled": boolean;
+  "armor.scope": "rarity" | "rank" | "any";
+  "armor.start": "smithy" | "rank" | "any";
   "armorSkills.enabled": boolean;
   "armorSkills.mode": "shuffle" | "randomize";
   "armorSkills.keepArmorOnly": boolean;
@@ -109,6 +114,7 @@ export interface Settings {
   "monsterStats.statusSpread": number;
   "monsterAi.branches": boolean;
   "monsterAi.branchSpread": number;
+  "monsterAi.aggression": "off" | "more" | "relentless";
   "weaknesses.elements": boolean;
   "weaknesses.parts": boolean;
   "hints.bookshelf": boolean;
@@ -126,6 +132,7 @@ export interface Settings {
   "elites.enabled": boolean;
   "elites.chance": number;
   "quests.unknown": boolean;
+  "quests.keyLabel": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -632,6 +639,33 @@ export const OPTIONS: readonly OptionDef[] = [
     action: "randomize",
   },
   {
+    key: "questGoals.enabled",
+    section: "Quest goals",
+    label: "Randomize quest goals",
+    help: "Each Village and Guild hunting quest asks for something else its own large monsters allow: to hunt another of them, or to capture one. A hunt never becomes a small monster quest. Quests whose monsters come in waves keep their target, and quests with two targets keep both. The goal line changes to match (in English); the title and description don't. Elder dragon, delivery, fortress and Treasure Hunting quests keep their goals.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "questGoals.capture",
+    section: "Quest goals",
+    label: "Capture goals",
+    help: "Goals can ask to capture a monster that can be captured. Killing it fails the quest, so bring traps and tranquilizers.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "questGoals.enabled",
+  },
+  {
+    key: "questGoals.smallMonsters",
+    section: "Quest goals",
+    label: "Change slaying quests",
+    help: "Quests that ask to slay a number of small monsters ask for a third to a half of another of the quest's small monsters (never Vespoids), or to hunt or capture one of its large monsters. Off, they keep their goals.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "questGoals.enabled",
+  },
+  {
     key: "trades.mode",
     section: "Veggie Elder",
     label: "The Veggie Elder's trades",
@@ -990,10 +1024,67 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "armor.enabled",
     section: "Armor",
     label: "Shuffle which armor the smithy makes",
-    help: "Each spot in the smithy makes a different armor piece for the same slot and rarity, wearable by the same hunters (Blademaster, Gunner or both; male, female or both). Spots keep their materials; pieces keep their stats, skills and cost. The smithy's store follows: it sells the pieces now in the spots of the ones it sold.",
+    help: "Each spot in the smithy makes a different armor piece for the same slot, wearable by the same hunters (Blademaster, Gunner or both; male, female or both), of a rarity the armor rarity range allows. Spots keep their materials; pieces keep their stats, skills and cost. The smithy's store follows: it sells the pieces now in the spots of the ones it sold.",
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
+  },
+  {
+    key: "armor.scope",
+    section: "Armor",
+    label: "Armor rarity range",
+    help: "Which pieces a smithy spot can get, by the rarity of the piece it made.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rarity",
+          label: "Same rarity",
+          help: "A rarity 3 spot makes another rarity 3 piece.",
+        },
+        {
+          value: "rank",
+          label: "Same rank",
+          help: "A Low Rank spot makes any Low Rank piece (rarity 1 to 5), High Rank any High Rank piece, G Rank any G Rank piece.",
+        },
+        {
+          value: "any",
+          label: "Any rarity",
+          help: "Any spot can make any piece, so a Low Rank recipe can give G Rank armor and the other way round. The store's first pieces can be anything too.",
+        },
+      ],
+    },
+    default: "rarity",
+    enabledBy: "armor.enabled",
+  },
+  {
+    key: "armor.start",
+    section: "Armor",
+    label: "Starting armor",
+    help: "The armor in a new hunter's equipment box: the Mafumofu set, worn but for the hood.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "smithy",
+          label: "From the smithy",
+          help: "The Mafumofu set, or with the armor shuffle on, the pieces now in its spots in the smithy.",
+        },
+        {
+          value: "rank",
+          label: "Any Low Rank piece",
+          action: "randomize",
+          help: "Each piece is any Low Rank piece the smithy makes for its slot that a new hunter can wear: for Blademasters (the starting weapon is one) and both sexes.",
+        },
+        {
+          value: "any",
+          label: "Any piece",
+          action: "randomize",
+          help: "Each piece is any piece the smithy makes for its slot that a new hunter can wear, G Rank included.",
+        },
+      ],
+    },
+    default: "smithy",
   },
   {
     key: "armorSkills.enabled",
@@ -1602,6 +1693,29 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "monsterAi.branches",
   },
   {
+    key: "monsterAi.aggression",
+    section: "Monster stats",
+    label: "Aggression",
+    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, so it spends less time between them. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Monsters attack as often as they always did." },
+        {
+          value: "more",
+          label: "More aggressive",
+          help: "Each attack is twice as likely as before against the other moves.",
+        },
+        {
+          value: "relentless",
+          label: "Relentless",
+          help: "Each attack is four times as likely as before against the other moves.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
     key: "weaknesses.elements",
     section: "Weaknesses",
     label: "Shuffle elemental weaknesses",
@@ -1840,6 +1954,14 @@ export const OPTIONS: readonly OptionDef[] = [
     section: "Unknown Monster?! quests",
     label: "Unknown Monster?! quests",
     help: "Adds an investigation quest to the Guild 8★ and G★3 boards (high and G rank; low rank is left as it was). Each time you accept it, it rolls a monster met on that map in any quest, the map, size, crowns, difficulty for the rank, the rewards and whether you start in base camp or a random area (where that map's quests do either). The board doesn't say what you'll find, and the quest names the monster once it starts. Solo only: in ad-hoc play the others get a different roll. Caps received Guild Cards at 3 to make room for the code.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "quests.keyLabel",
+    section: "Key quests",
+    label: "Mark key quests",
+    help: "The Village Chief's quest card (and likely the Guild's, not yet tried) shows a yellow ★ in its top right corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
     type: { kind: "boolean" },
     default: false,
   },
@@ -2101,7 +2223,7 @@ export const PRESETS: readonly Preset[] = [
       "How often each quest's main reward list is drawn, and small monster counts",
       "Each quest's monster size, crown spread and difficulty; each monster's base HP, size and status resistance",
       "Weapon attack, affinity, element and slots; armor defense, resistances, slots and rarity",
-      "Armor gets new skills",
+      "Armor gets new skills, and a new hunter starts in random Low Rank armor",
     ],
     changes: {
       "questRewards.mode": "off",
@@ -2115,6 +2237,7 @@ export const PRESETS: readonly Preset[] = [
       "terms.money": true,
       "terms.time": true,
       "deliveries.enabled": true,
+      "armor.start": "rank",
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",
       "questMonsters.size": true,
@@ -2126,7 +2249,7 @@ export const PRESETS: readonly Preset[] = [
     points: [
       "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before",
       "Gathering points draw from the whole rank; shops add Low Rank items and change prices",
-      "Armor skills are shuffled while armor stats get new values",
+      "Armor skills are shuffled while armor stats get new values; a new hunter starts in random Low Rank armor",
       "Monster difficulty stays within its rank",
     ],
     changes: {
@@ -2137,6 +2260,7 @@ export const PRESETS: readonly Preset[] = [
       "weapons.enabled": true,
       "weapons.sharpness": true,
       "armor.enabled": true,
+      "armor.start": "rank",
       "armorSkills.enabled": true,
       "questRewards.draws": 0.3,
       "shops.mode": "randomize",
@@ -2163,6 +2287,7 @@ export const PRESETS: readonly Preset[] = [
       "Recipes can use materials from anywhere, so they may need G Rank parts in Low Rank",
       "Weapons can change type, take any stat at any rarity, gain or change elements and slots, and get new sharpness bars",
       "Any monster can turn up on a map it lives on; quests can give any crown or difficulty",
+      "Armor can come from any rarity, and a new hunter starts in any armor",
       "Armor gets new skills, even ones that may become impossible to activate",
       "Shops and gathering points can give anything",
     ],
@@ -2187,6 +2312,8 @@ export const PRESETS: readonly Preset[] = [
       "weapons.elementKind": true,
       "weapons.slotSpread": 2,
       "armor.enabled": true,
+      "armor.scope": "any",
+      "armor.start": "any",
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",
       "armorSkills.keepArmorOnly": false,

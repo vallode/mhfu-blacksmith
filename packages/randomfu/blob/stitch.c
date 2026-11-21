@@ -3,7 +3,7 @@
  * hunter's weapon model (stage loads, the house's equipment change), a new
  * look for it, stitched from the forges' parts in FORGE.BIN.
  *
- * rf_hook6 runs at the start of the game's weapon build (rf.h,
+ * rf_hook7 runs at the start of the game's weapon build (rf.h,
  * RF_HOOK_BUILD), when the weapon's package from DATA.BIN is already in its
  * slot's buffer. For the hunter's own weapon it rolls a recipe (another
  * handle of its class, a head, in "any" and "wild" mode often from another
@@ -1387,7 +1387,7 @@ static u32 relic_seed(u8 *hunter, u32 model) {
   return seed;
 }
 
-void rf_hook6(u8 *res, u8 *hunter, u32 n) {
+void rf_hook7(u8 *res, u8 *hunter, u32 n) {
   if ((n & 0xff) != 0) return;
   u8 *buffer = *(u8 **)(res + RES_BUFFER + WEAPON_SLOT * 4);
   u32 capacity = *(u32 *)(res + RES_CAPACITY + WEAPON_SLOT * 4);

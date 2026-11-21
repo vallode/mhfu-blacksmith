@@ -51,6 +51,26 @@ const ARMOR_FOLDER: Record<string, string> = {
   leggings: "reg",
 };
 
+/** An armor model's slot, sex and model ID, read from its URL. */
+export interface ArmorModelFile {
+  slot: string;
+  sex: "m" | "f";
+  id: number;
+}
+
+/** The armor model at `url` (`.../m_hair065.glb`: helmet, male, 65), if it is one. */
+export function armorModelFile(url: string): ArmorModelFile | undefined {
+  const match = /\/([mf])_([a-z]+)(\d+)\.glb$/.exec(url);
+  if (!match) return undefined;
+  const slot = Object.keys(ARMOR_FOLDER).find((s) => ARMOR_FOLDER[s] === match[2]);
+  return slot ? { slot, sex: match[1] as "m" | "f", id: Number(match[3]) } : undefined;
+}
+
+/** The armor slot an armor model's URL is for (`.../m_hair065.glb`: "helmet"), if it is one. */
+export function armorModelSlot(url: string): string | undefined {
+  return armorModelFile(url)?.slot;
+}
+
 /** Resolve a value from one manifest once it's loaded; null while loading, when absent, or offline without it. */
 function useManifestValue<T>(
   manifest: string | null,
@@ -95,6 +115,25 @@ export function useWeaponModel(type: string, name: string | undefined): string |
   });
 }
 
+/**
+ * An armor piece's [male, female] model IDs in its slot's manifest. Pieces
+ * sold per sex under one name are keyed "<name>|<Sex>", so `sex` picks one.
+ */
+function armorModelIds(m: Manifest, name: string, sex: "Male" | "Female" | null): number[] | null {
+  const ids = (sex ? m[`${name}|${sex}`] : undefined) ?? m[name];
+  return Array.isArray(ids) ? ids : null;
+}
+
+/** The URL of a slot's armor model `id` for one sex; undefined for 0 (none). */
+function armorModelUrl(folder: string, sex: "m" | "f", id: number | undefined): string | undefined {
+  return id ? `/models/armor/${sex}_${folder}${pad(id, 3)}.glb` : undefined;
+}
+
+/** The URL of a slot's armor model `id` for one sex, 0 included (the clothes under armor). */
+export function armorSlotModelUrl(slot: string, sex: "m" | "f", id: number): string {
+  return `/models/armor/${sex}_${ARMOR_FOLDER[slot]}${pad(id, 3)}.glb`;
+}
+
 export interface ArmorModelUrls {
   male?: string;
   female?: string;
@@ -112,19 +151,60 @@ export function useArmorModel(
     name && folder ? `armor/${slot}` : null,
     `${name}|${single}`,
     (m) => {
-      if (!name) return null;
-      // Same-named male/female pieces are keyed "<name>|<Sex>".
-      const ids = (single ? m[`${name}|${single}`] : undefined) ?? m[name];
-      if (!Array.isArray(ids)) return null;
-      const url = (sexPrefix: "m" | "f", id: number) =>
-        id ? `/models/armor/${sexPrefix}_${folder}${pad(id, 3)}.glb` : undefined;
+      if (!name || !folder) return null;
+      const ids = armorModelIds(m, name, single);
+      if (!ids) return null;
       // A single-sex piece only shows that sex's model.
-      const male = single === "Female" ? undefined : url("m", ids[0]);
-      const female = single === "Male" ? undefined : url("f", ids[1]);
+      const male = single === "Female" ? undefined : armorModelUrl(folder, "m", ids[0]);
+      const female = single === "Male" ? undefined : armorModelUrl(folder, "f", ids[1]);
       return male || female ? { male, female } : null;
     },
   );
   return result;
+}
+
+/** Each sex's models of an armor set, one per slot that has one, in slot order. */
+export interface ArmorSetModelUrls {
+  male: string[];
+  female: string[];
+}
+
+/**
+ * The models of a set's pieces (`lib/armor-sets.ts`), per sex; null while the
+ * manifests load or until there's a set. Armor models sit on the player's
+ * skeleton (mhfu-extract's `export-site`), so one sex's pieces shown together
+ * are worn as in the game.
+ */
+export function useArmorSetModels(
+  set: Partial<Record<string, string | null>> | null,
+): ArmorSetModelUrls | null {
+  const pieces = set
+    ? Object.entries(set).filter((entry): entry is [string, string] => !!entry[1])
+    : [];
+  const key = pieces.map(([slot, name]) => `${slot}\t${name}`).join("\n");
+  const [found, setFound] = useState<{ key: string; urls: ArmorSetModelUrls } | null>(null);
+  useEffect(() => {
+    if (!key) return;
+    let cancelled = false;
+    const entries = key.split("\n").map((entry) => entry.split("\t") as [string, string]);
+    Promise.all(entries.map(([slot]) => loadManifest(`armor/${slot}`))).then((manifests) => {
+      const urls: ArmorSetModelUrls = { male: [], female: [] };
+      entries.forEach(([slot, name], i) => {
+        const m = manifests[i];
+        const folder = ARMOR_FOLDER[slot];
+        if (!m || !folder) return;
+        const male = armorModelUrl(folder, "m", armorModelIds(m, name, "Male")?.[0]);
+        const female = armorModelUrl(folder, "f", armorModelIds(m, name, "Female")?.[1]);
+        if (male) urls.male.push(male);
+        if (female) urls.female.push(female);
+      });
+      if (!cancelled) setFound({ key, urls });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [key]);
+  return found && found.key === key ? found.urls : null;
 }
 
 /** One monster hitbox: a capsule in the model's space (see packages/mhfu-extract `monsters/hitboxes.ts`). */
@@ -140,33 +220,78 @@ export interface HitboxCapsule {
   end: [number, number, number];
 }
 
-const hitboxFiles = new Map<string, Promise<HitboxCapsule[] | null>>();
+/** One attack a monster's motion makes (see packages/mhfu-extract `monsters/attacks.ts`). */
+export interface MonsterAttack {
+  /** The motion's slot (`MotionClip.slot`). */
+  slot: number;
+  /** Motion frames (60 fps) it can hit in: from `from` up to, not including, `to`. */
+  from: number;
+  to: number;
+  power: number;
+  reaction: number;
+  stun: number;
+  /** Its shapes, each on a joint (the model's `bone_<joint>`), placed in the bind pose. */
+  capsules: {
+    joint: number;
+    radius: number;
+    start: [number, number, number];
+    end: [number, number, number];
+  }[];
+}
+
+const sideFiles = new Map<string, Promise<unknown[] | null>>();
+
+/**
+ * A list from a file next to a monster's model (`emNN.<kind>.json`, read
+ * as `{ [key]: [...] }`); null while loading, or if it has none.
+ */
+function useModelFile<T>(modelUrl: string | null, kind: string, key: string): T[] | null {
+  const [items, setItems] = useState<T[] | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    setItems(null);
+    if (!modelUrl) return;
+    const url = modelUrl.replace(/\.glb$/, `.${kind}.json`);
+    let promise = sideFiles.get(url);
+    if (!promise) {
+      promise = fetch(url)
+        .then((res) => (res.ok ? (res.json() as Promise<Record<string, unknown[]>>) : null))
+        .then((file) => (file?.[key]?.length ? file[key] : null))
+        .catch(() => null);
+      sideFiles.set(url, promise);
+    }
+    promise.then((found) => {
+      if (!cancelled) setItems(found as T[] | null);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [modelUrl, kind, key]);
+  return items;
+}
 
 /**
  * A monster's hitboxes, from the file next to its model
  * (`/models/monsters/emNN.hitboxes.json`); null while loading or if it has none.
  */
 export function useMonsterHitboxes(modelUrl: string | null): HitboxCapsule[] | null {
-  const [capsules, setCapsules] = useState<HitboxCapsule[] | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    setCapsules(null);
-    if (!modelUrl) return;
-    const url = modelUrl.replace(/\.glb$/, ".hitboxes.json");
-    let promise = hitboxFiles.get(url);
-    if (!promise) {
-      promise = fetch(url)
-        .then((res) => (res.ok ? (res.json() as Promise<{ capsules: HitboxCapsule[] }>) : null))
-        .then((file) => (file?.capsules.length ? file.capsules : null))
-        .catch(() => null);
-      hitboxFiles.set(url, promise);
-    }
-    promise.then((found) => {
-      if (!cancelled) setCapsules(found);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [modelUrl]);
-  return capsules;
+  return useModelFile<HitboxCapsule>(modelUrl, "hitboxes", "capsules");
+}
+
+/**
+ * Slots of a monster's motions that nothing in the game plays, from the
+ * file next to its model (`/models/monsters/emNN.unused-motions.json`, see
+ * packages/mhfu-extract `monsters/motion-use.ts`); null while loading, or
+ * if it has none or they couldn't be told.
+ */
+export function useMonsterUnusedMotions(modelUrl: string | null): number[] | null {
+  return useModelFile<number>(modelUrl, "unused-motions", "unused");
+}
+
+/**
+ * A monster's attacks, from the file next to its model
+ * (`/models/monsters/emNN.attacks.json`); null while loading or if it has none.
+ */
+export function useMonsterAttacks(modelUrl: string | null): MonsterAttack[] | null {
+  return useModelFile<MonsterAttack>(modelUrl, "attacks", "attacks");
 }

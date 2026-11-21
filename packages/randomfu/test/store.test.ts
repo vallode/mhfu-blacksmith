@@ -14,6 +14,9 @@ import {
   buildEditTask,
   buildFixtureDisc,
   buildLobbyTask,
+  FIXTURE_ARMOR,
+  FIXTURE_ARMOR_CREATE,
+  FIXTURE_RECIPES,
   FIXTURE_STARTER,
   FIXTURE_STARTER_WORN,
   FIXTURE_STORE_LISTS,
@@ -144,5 +147,65 @@ test("a new hunter's equipment box follows the weapons and armor shuffles, as th
   const other = randomize(game, settingsWith("a", ["recipes"]));
   assert.ok(!other.reports.some((r) => r.title === "Starting equipment"));
   assert.ok(!other.edits.files.has(game.editTask!.index), "not even copied");
+  source.close();
+});
+
+test("armor.start draws a new hunter's armor from what a new hunter can wear, apart from the shuffle", async () => {
+  const file = path.join(tempDir(), "disc.iso");
+  writeFileSync(file, buildFixtureDisc());
+  const { source, iso } = openDiscImage(file);
+  const game = await loadGame(source, iso);
+  const { idAt } = buildEditTask();
+  const slotOf = { 0: "leg", 1: "head", 2: "chest", 3: "arm", 4: "waist" } as const;
+  // Pieces some create entry makes, by slot.
+  const made = new Set([
+    ...FIXTURE_RECIPES.map((r) => `head:${r.index}`),
+    ...Object.entries(FIXTURE_ARMOR_CREATE).flatMap(([slot, entries]) =>
+      entries.map(([, piece]) => `${slot}:${piece}`),
+    ),
+  ]);
+  // For Blademasters and both sexes: bits 1, 2 and 4.
+  const wearable = (slot: string, id: number) =>
+    made.has(`${slot}:${id}`) &&
+    FIXTURE_ARMOR.some((a) => a.slot === slot && a.index === id && (a.hunterType & 7) === 7);
+  const seen = new Set<string>();
+  for (const start of ["rank", "any"] as const) {
+    for (const seed of ["a", "b", "c", "d", "e", "f"]) {
+      for (const shuffles of [[], ["armor"], ["weapons", "armor"]] as const) {
+        const settings = settingsWith(seed, [...shuffles], { "armor.start": start });
+        const result = randomize(game, settings);
+        const box = result.edits.overlay(game.editTask!);
+        FIXTURE_STARTER.forEach(([category, id], k) => {
+          const now = box.readUInt16LE(idAt[k]!);
+          if (category > 4) {
+            if (shuffles.length === 0) assert.equal(now, id, "weapons stay without their shuffle");
+            return;
+          }
+          const slot = slotOf[category as keyof typeof slotOf];
+          assert.ok(wearable(slot, now), `${seed} ${start}: ${slot} ${id} -> ${now}`);
+          seen.add(`${slot}:${now}`);
+        });
+        const report = result.reports.find((r) => r.title === "Starting equipment")!;
+        const armorLines = report.lines.filter((l) => l.where.startsWith("Armor:"));
+        assert.equal(armorLines.length, 3, "one line per armor ID in the box");
+        assert.ok(armorLines.every((l) => / -> /.test(l.text)));
+        assert.match(report.notes.join(" "), /doesn't follow the armor shuffle/);
+        assert.equal(
+          result.reports.some((r) => r.title === "Smithy store"),
+          shuffles.length > 0,
+          "the store is reported only when a shuffle moves it",
+        );
+        if (shuffles.length > 0) {
+          // The draw has its own stream: the smithy shuffles as without it.
+          const alone = randomize(game, settingsWith(seed, [...shuffles]));
+          assert.ok(result.edits.eboot().equals(alone.edits.eboot()));
+        }
+      }
+    }
+  }
+  // The leg (worn) draws from all three legs; the heads from the five for anyone.
+  for (const piece of ["leg:1", "leg:2", "leg:3", "head:1", "head:5"]) {
+    assert.ok(seen.has(piece), piece);
+  }
   source.close();
 });

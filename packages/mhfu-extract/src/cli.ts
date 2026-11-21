@@ -3,7 +3,7 @@
  * mhfu-extract CLI entrypoint. See README's "Usage" section.
  *
  *   tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
- *   tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw]
+ *   tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw] [--dlc <cheat .ini or .mib dir>]
  *   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
  *   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
  *   tsx src/cli.ts model-roundtrip --in <file.pac|dir>
@@ -14,7 +14,7 @@
  *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
  *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
  *   tsx src/cli.ts find-names --unpacked <dir> [--out <path>] [--tables <list>] [--all]
- *   tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots <map>] [--report <path>] [--dry-run]
+ *   tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots <map>] [--report <path>] [--dry-run] [--dlc <cheat .ini or .mib dir>]
  */
 import { fileURLToPath } from "node:url";
 import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.js";
@@ -68,7 +68,7 @@ function requireFlag(flags: Record<string, string>, name: string): string {
 
 const USAGE = `Usage:
   tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
-  tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw]
+  tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw] [--dlc <cheat .ini or .mib dir>]
   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
@@ -78,7 +78,7 @@ const USAGE = `Usage:
   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,items,quests,gathering,shops,combinations,veggie-trades,farm,awards] [--report <path>] [--markdown <path>] [--dry-run]
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
   tsx src/cli.ts find-names --unpacked <dir> [--out <path>] [--tables ItemID,emID,...] [--all]
-  tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots spa=es,...] [--report <path>] [--dry-run]
+  tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots spa=es,...] [--report <path>] [--dry-run] [--dlc <cheat .ini or .mib dir>]
   tsx src/cli.ts quest-probe --quests <raw/quests.json> [--tsv <path>]
   tsx src/cli.ts quest-text-scan --unpacked <dir> --quest <id> [--out <path>]
   tsx src/cli.ts messages --unpacked <dir> --file <index> [--grep <word>] [--table <n> [--from <i>] [--count <n>]]`;
@@ -140,6 +140,7 @@ export async function main(argv: string[]): Promise<void> {
         unpacked: requireFlag(flags, "unpacked"),
         out: requireFlag(flags, "out"),
         raw: flags.raw === "true",
+        dlc: flags.dlc,
       });
       console.log(
         `\nDone. Parsed ${manifest.questsParsed} quests (${manifest.questsSkipped.length} skipped).`,
@@ -251,6 +252,7 @@ export async function main(argv: string[]): Promise<void> {
         slots: flags.slots,
         report: flags.report,
         dryRun: flags["dry-run"] === "true",
+        dlc: flags.dlc,
       });
       return;
     }

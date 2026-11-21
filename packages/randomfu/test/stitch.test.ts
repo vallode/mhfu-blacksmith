@@ -330,7 +330,7 @@ function machine(forge: Buffer, mode: StitchMode = "class", relics: Relic[] | nu
     cpu.fill(BUFFER, CAP, 0xee);
     cpu.write(BUFFER, pac);
     cpu.setU16(RES + 0x80408 + SLOT * 2, FILE_BASE + model);
-    cpu.call(blob.symbols.get("rf_hook6")!, [RES, HUNTER, n]);
+    cpu.call(blob.symbols.get("rf_hook7")!, [RES, HUNTER, n]);
     assert.equal(open, 0, "FORGE.BIN is closed again");
   };
   return { cpu, blob, build, status, io };
@@ -597,13 +597,13 @@ test("a material recolours a palette entry along its ramp, in either palette for
   assert.equal(recolor(0x1234, 1, 0), 0x1234);
 });
 
-test("hook 6 runs the blob's build hook with the build's arguments, then the build", () => {
+test("hook 7 runs the blob's build hook with the build's arguments, then the build", () => {
   const { pacs, forge } = library();
   const { cpu, blob, status } = machine(forge);
   const site = { build: BUILD, prologue: [0x27bdffd0, 0xafbf002c] as const };
   const stub = assembleBuildHook(HOOKS, BLOB, site);
   cpu.load(HOOKS, stub);
-  assert.equal(cpu.u32(BLOB + 16 + HOOK.build * 4), blob.symbols.get("rf_hook6"));
+  assert.equal(cpu.u32(BLOB + 16 + HOOK.build * 4), blob.symbols.get("rf_hook7"));
   let seen: number[] = [];
   cpu.native.set(BUILD + 8, () => {
     seen = [4, 5, 6].map((r) => cpu.reg[r]! >>> 0);

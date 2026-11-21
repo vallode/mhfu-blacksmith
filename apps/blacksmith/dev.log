@@ -1,0 +1,25 @@
+$ next dev --port 3123
+ ⚠ Specified "rewrites" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+ ⚠ Specified "rewrites" will not automatically work with "output: export". See more info here: https://nextjs.org/docs/messages/export-no-custom-routes
+   ▲ Next.js 15.5.19
+   - Local:        http://localhost:3123
+   - Network:      http://192.0.2.2:3123
+   - Experiments (use with caution):
+     ✓ viewTransition
+
+ ✓ Starting...
+ ○ (pwa) PWA support is disabled.
+ ✓ Ready in 2.5s
+ ○ Compiling /hunter ...
+ ✓ Compiled /hunter in 6.7s (1037 modules)
+ GET /hunter/ 200 in 7526ms
+ ○ Compiling /wishlist ...
+ ✓ Compiled /wishlist in 4.2s (1045 modules)
+ GET /wishlist/ 200 in 4819ms
+ GET /hunter/ 200 in 146ms
+ GET /wishlist/ 200 in 99ms
+ ✓ Compiled in 818ms (1045 modules)
+ GET /hunter/ 200 in 742ms
+ GET /wishlist/ 200 in 134ms
+[ELIFECYCLE] Command failed.
+[?25h

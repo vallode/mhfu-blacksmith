@@ -24,7 +24,9 @@ expected) but not yet played in game. Star-level tiers, gathering sources,
 against the synthetic disc the tests build (`test/fixtures.ts`). `armor-skills`
 has been written to the EU disc and read back, but not yet played; so have
 quest maps, monster starts, small monster species and the wider quest
-reward pools. Armor stats have been run over the EU disc's tables, and
+reward pools, and `questGoals` (its goals and board copies re-read as written
+over six seeds with every monster option on; no capture goal has been played
+yet). Armor stats have been run over the EU disc's tables, and
 defense played in PPSSPP past 127 and 255 (see "Armor stats"); the presets
 turn them on, rarity included, though what the game reads armor rarity
 for hasn't been checked. A PSP
@@ -97,6 +99,9 @@ web app shows as a tag):
 | `terms.time`                      | off         | Randomize time limits                                                                                        |
 | `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                                           |
 | `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                                                       |
+| `questGoals.enabled`              | off         | Randomize what hunting and slaying quests ask for (see "Quest goals")                                        |
+| `questGoals.capture`              | on          | Goals can ask for a capture                                                                                  |
+| `questGoals.smallMonsters`        | on          | Slaying quests can ask for other small monsters, or a large one                                              |
 | `trades.mode`                     | `off`       | `off`, `shuffle` what the Veggie Elder's trades give, or `randomize` it                                      |
 | `trades.mix`                      | `elder`     | Within each hunting ground's Elder, or between `all` of them                                                 |
 | `trades.scope`                    | `low`       | With `randomize`, the items trades can give besides their own: `low` / `high` rank, `any`                    |
@@ -123,6 +128,8 @@ web app shows as a tag):
 | `weapons.sharpness`               | off         | Blademaster weapons of a type and rarity trade sharpness                                                     |
 | `weapons.sharpnessMode`           | `shuffle`   | `new`: every bar the weapons use also gets new colors                                                        |
 | `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                                         |
+| `armor.scope`                     | `rarity`    | Which pieces a place can get: the same `rarity`, the same `rank` (Low, High or G), or `any`                  |
+| `armor.start`                     | `smithy`    | A new hunter's armor: what the smithy's spots make (`smithy`), any Low Rank piece (`rank`), or `any`         |
 | `armorSkills.enabled`             | off         | Change armor skills                                                                                          |
 | `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`)                       |
 | `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                                           |
@@ -167,6 +174,7 @@ web app shows as a tag):
 | `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                                     |
 | `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                              |
 | `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                                |
+| `monsterAi.aggression`            | `off`       | `off`, `more` (attacks twice as likely against other moves) or `relentless` (four times)                     |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                                  |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                            |
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                        |
@@ -183,6 +191,7 @@ web app shows as a tag):
 | `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)                        |
 | `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                                    |
 | `quests.unknown`                  | off         | "Unknown Monster?!" quests on Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards)       |
+| `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards)       |
 
 ### Presets
 
@@ -194,16 +203,16 @@ Elder's trades. Turn those on yourself once you've tried them on your disc.
 Armor stats are the exception: the presets turn on all four, though only
 defense has been played. Resistances, slots and rarity have only been run
 over the EU disc's tables, and what the game reads armor rarity for hasn't
-been checked. Monster health, elite monsters and the Unknown Monster quests are off in every
-preset, since they cap Guild Cards.
+been checked. Monster health, elite monsters, the Unknown Monster quests and the key quest
+label are off in every preset, since they cap Guild Cards.
 
-| Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                          |
-| ------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                                                                                                                                           |
-| Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills and stats (by rarity; rarity within its rank), shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                     |
-| Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon and armor stats, new armor skills |
-| Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled, new armor stats, difficulty within its rank                                                                                                                 |
-| Chaos        | Shuffle + randomize | As Full, with recipes and rewards from anywhere, any Blademaster or Gunner type, any monster, new armor skills (armor-only skill trees too), any item in shops, gathering points and supply boxes, any crown spread and difficulty, wide spreads (armor stats too)                                        |
+| Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                                                   |
+| ------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                                                                                                                                                                    |
+| Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills and stats (by rarity; rarity within its rank), shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                                              |
+| Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon and armor stats, new armor skills, Low Rank starting armor |
+| Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled, new armor stats, Low Rank starting armor, difficulty within its rank                                                                                                                 |
+| Chaos        | Shuffle + randomize | As Full, with recipes and rewards from anywhere, any Blademaster or Gunner type, armor of any rarity in the smithy and the starting box, any monster, new armor skills (armor-only skill trees too), any item in shops, gathering points and supply boxes, any crown spread and difficulty, wide spreads (armor stats too)         |
 
 ## Shuffles
 
@@ -228,6 +237,7 @@ and the quest map options, which rebuild quests (see "Quest maps" below).
 | `supplies`        | Supply box lists in each quest `.mib`                                                  | Item and amount of each stack (see below)                     |
 | `terms`           | Quest header fee, reward, penalty, time limit                                          | The numbers, varied (see below)                               |
 | `deliveries`      | Delivery quest header target and goal line                                             | Which item and how many (see below)                           |
+| `quest-goals`     | The quest header's goal slots and type, the board's copy, the goal line                | Hunt, capture or slay, which monster, how many (see below)    |
 | quest maps        | Each quest `.mib`, rebuilt; the board's map byte                                       | The map, its gathering and small monsters, starts             |
 | `veggie-trades`   | The Veggie Elder's trade lists in `game_task.ovl`                                      | What each trade gives (see below)                             |
 | quest monsters    | Spawn records in each quest `.mib`                                                     | Which large monsters, their level, small counts               |
@@ -493,9 +503,12 @@ unchanged. It is independent of `gathering.mode`; `deliveries` reads the
 counts as they end up.
 
 `armor` gives each armor place in the smithy (a create entry) a different
-piece of the same slot and rarity, wearable by the same hunters. A piece's
+piece of the same slot, wearable by the same hunters, of the same rarity
+(`armor.scope rarity`), the same rank (`rank`: Low Rank is rarity 1 to 5,
+High 6 to 8, G 9 and up) or any rarity (`any`). A spoiler line names the
+new piece's rarity when it differs from the place's. A piece's
 `HunterType` is a bit field (1 male, 2 female, 4 Blademaster, 8 Gunner),
-and pieces only trade with pieces of the same rarity and the same value,
+and pieces only trade with pieces of the same value (and rarity or rank),
 so a place both sexes could use never gets a male- or female-only piece,
 and a Gunner place never gets a Blademaster piece. One substitution per
 slot is applied to every create entry, so where a piece had two recipes,
@@ -510,6 +523,19 @@ before the recipe shuffles, whose spoiler lines then name the new pieces.
 The smithy's store follows it: where it sold a piece, it sells the piece
 now in that piece's places, at the new piece's own price. The store's
 categories 0-4 are leg, head, chest, arm and waist.
+
+A new hunter's Mafumofu set follows `armor` too, unless `armor.start`
+says otherwise. Its body pieces are rarity 1 and for anyone, and on the EU
+disc only three pieces per slot are (Mafumofu, Leather, Chain), so at one
+rarity a hunter nearly always starts in Leather or Chain. With
+`armor.start rank` or `any`, each piece in the box is instead drawn from
+every piece the smithy makes for its slot that a new hunter can wear: for
+Blademasters (the box's worn weapon is one, whatever the weapon shuffle
+does) and both sexes, Low Rank only with `rank`. It draws from its own
+random stream, so the smithy shuffles the same with it on, and doesn't need
+`armor` on. The box's second run of Mafumofu pieces gets the same pieces.
+Pieces are drawn by their rarity and wearers on the disc. Not yet tried in
+game.
 
 `armor-skills` changes the skill points on each piece the smithy makes.
 A piece's `ArmorValue` has five entries of a skill tree (u8) and points
@@ -858,8 +884,11 @@ rerolls the weights of the monsters' AI choices. Monster AI is bytecode in
   `game_task.ovl` or the family's `emNN.ovl`. The emNN overlays share one
   load address, so a root goes to the monster's own overlay if it reads
   there, or else the one overlay where all its roots read. Basarios and
-  Black Gravios read in two and are left alone.
-- A root is up to 20 table pointers to script entry points. `80 00 N` is a
+  Black Gravios read in em17 and em83; their class code and roots are
+  Gravios's, so they take em17 and change with Gravios.
+- A root is table pointers to script entry points, usually 20 (fewer, or up
+  to 25 for monsters that use `82 a n` above `a` 4; the scripts behind the
+  extra ones sit among the others', so reading 20 finds every choice). `80 00 N` is a
   weighted choice: N entries `80 k w <body>`, then `80 FF`; the game rolls
   0 to 31 and walks the weights, which add up to 32.
 - Each weight is multiplied by a factor within the spread and the choice is
@@ -871,6 +900,30 @@ rerolls the weights of the monsters' AI choices. Monster AI is bytecode in
   EU and FUC discs. Species that share scripts change together.
 
 Not yet tried in game.
+
+**Monster aggression** (`monsterAi.aggression`, `makeMonstersAggressive` in
+`src/shuffles/monster-ai.ts`) leans the same choices towards attacks.
+
+- Which entries lead to attacks can't be read without a disassembler, so it
+  is data (`src/shuffles/monster-attacks.ts`), worked out from the EU disc
+  as `docs/monster-ai.md` describes: for each script file, the choices that
+  mix attacks with other moves (2,156 in 17 files), by their index in
+  `findChoices`, with one letter per entry.
+- An attack spawns a hit that knocks the hunter back or stuns; walking
+  contact (no knockback, no stun) doesn't count, and em54's aura object
+  (Kushala Daora, Teostra, Lunastra) does. Choices with an entry nobody
+  could classify are left alone (38, mostly Great Thunderbug, Fatalis, the
+  Vespoids and Bulldrome), as are the 2 that Hermitaur and Ceanataur share
+  but disagree on.
+- Attack entries' weights are multiplied by 2 (`more`) or 4 (`relentless`)
+  and the choice is scaled back to 32, every possible entry keeping at
+  least 1. It runs after `monsterAi.branches`, on the rerolled weights.
+- A file is changed only if its choices and their vanilla weights hash to
+  what the data was made from; the EU and FUC discs both match.
+
+Tried in game on the EU disc at four times: Giadrome was clearly more
+aggressive. Species with walking contact and the elder dragons haven't been
+played.
 
 **The bookshelf guides** rewrite runs of the house bookshelf's articles
 (Open Bookshelf, Info Magazine) and make them readable from the start
@@ -1279,6 +1332,88 @@ its gathering points, whether or not `deliveries` is on, and the monster
 reward shuffle never moves it off the carves of a monster in that quest at
 its rank: Anteka Antlers, Popo Tongues and Piscine Livers are carved, not
 gathered, on the EU disc. So every delivery quest can still be finished.
+
+### Quest goals
+
+What clears a quest, found in the EU EBOOT (`src/game/goals.ts`): the
+quest manager sets up two goals from the header, the slots at `+0x6c` and
+`+0x74`, each `{ u32 flags, u16 id, u16 count }` (the first's id and count
+are `TargetID` and `TargetNum`), and the byte at `+0x6a` says how many must
+be met (1, the first; 2, both). The two "objective" slots at `+0x28` and
+`+0x30` aren't read by that setup (a quest to slay 15 Blangos has
+`{ 1, Blango, 9 }` there). A kill counts down a goal with flag 1 for that
+monster, and fails the quest if the goal also has 0x100; a capture counts
+down any monster goal. On the disc's Village and Guild quests:
+
+| Flags     | Goal line                 | Given to                                                                   |
+| --------- | ------------------------- | -------------------------------------------------------------------------- |
+| `1`       | Hunt (kill or capture)    | Large monsters that can be captured, only                                  |
+| `0x201`   | Slay                      | Small monsters, and the large ones that can't be captured (Kirin, Akantor) |
+| `0x101`   | Capture (a kill fails it) | No quest                                                                   |
+| `0x18004` | Slay or repel             | Elder dragons                                                              |
+| `2`       | Deliver                   | Deliveries                                                                 |
+
+Nothing was found that reads 0x200. The quest type's first byte (+76) is
+1 for a single Slay goal and 4 for a hunt, two-goal ones included.
+
+`questGoals` gives each Village and Guild hunting or slaying quest a goal
+its own monsters allow (a hunt stays a large monster's), after every shuffle that changes them (map moves,
+small monster species, large monster swaps) and before small monster
+counts, which then keep enough for a new Slay goal:
+
+- Hunt one of its large monsters, Slay it where it can't be captured, or
+  (`questGoals.capture`) capture one that can. A monster can be captured
+  if some Village or Guild quest on the disc hunts it with flag 1 (43 on
+  the EU disc).
+- (`questGoals.smallMonsters`) A slaying quest (a goal of small monsters)
+  can instead ask for a third to a half of another of its small monsters
+  (5 at least, never more than 55% of them, in fives from 10 up; an
+  endless spawn counts as 60), or for one of its large monsters as above.
+  The disc asks for 15 of 31 Blangos and 20 of 52 Genprey. Off, slaying
+  quests keep their goals.
+
+A hunt never becomes a small monster goal: tried in game, a Bulldrome hunt
+that became "Slay 15 Vespoids" was no hunt at all. No new goal asks for
+Vespoids (a quest that asked for them can keep them), nor Rocks or Great
+Thunderbugs: Vespoids keep coming in most quests, so they were often the
+only small monster with enough of them, and made 41 of one seed's 83 small
+goals. A goal kind is drawn first, then a goal of it; drawing the quest's
+own goal leaves it as it was. Which large monsters a goal can name: in a
+quest with one group of them, each that's there from the start (no flag
+or timer in its record, quantity 1), as many as it has records; in a quest
+whose monsters come in waves (more than one group: the Tigrex quests that
+send a Khezu, then a Giadrome), only the goal's own. A quest with two goals
+("Hunt the Rathalos and Rathian") keeps both monsters, each hunted or
+captured. The goal slots, `+0x6a` and the type byte are written to the
+quest and to its board records, which must carry the same goals as the
+quest (one that doesn't keeps its goals, and is listed).
+
+The goal line is written in English for every language, in the disc's
+style ("Hunt the Rathalos", "Capture the Rathian", "Slay 20 Genprey",
+"Hunt the Rathalos and capture the Rathian"), wrapped at 28 columns over
+at most two lines as the EU disc's are. Plurals are the disc's own where
+its goals count the monster ("Blangos", 32 of them), else the name for
+the Raptors and herbivores ("Velociprey", "Aptonoth") and an s for the
+rest. The line is repacked with the quest's other strings
+(`writeQuestText`), so it has room; a goal whose line wouldn't fit in the
+quest or a board record is passed over. The title and description aren't
+changed: a quest called "Slay the Great Kut-Ku!" can ask for a capture.
+
+Left alone: deliveries, gathering and Paw Pass Ticket quests; Treasure
+Hunting, fortress and "Survive until Time Over" quests (their scripts end
+them another way: opcodes 42, 44, 53, 57); elder dragons' slay-or-repel
+goals; and any quest whose goals aren't one or two plain hunts or slays of
+monsters it has. Over six EU seeds, with and without every monster option
+on, 149 to 176 of the 291 eligible quests change (most of them to captures,
+about ten to other small monsters), and every goal re-read from the
+written disc names a monster the quest has, as many as it has, a capture
+only of a capturable one, and the same goals and line on the board.
+
+Large monster swaps now move the second goal with its monster too (they
+moved only `TargetID` before, so a swapped "Rathalos and Rathian" quest
+still asked for the old second monster), and the Unknown Monster quests
+only take a quest as a template while its goal is a plain hunt or slay of
+its one monster.
 
 ### Veggie Elder trades
 
@@ -1720,8 +1855,8 @@ as Gunner mashups mixes them.
   the model and texture from those bytes. The slot's capacity
   (`+0x80318`) is 0x5800 bytes for every hunter's weapon; vanilla weapon
   packages are 10,240 to 22,528. The file it holds (`+0x80408`, u16) is the
-  model plus 0xD50 (EU) or 0xD3C (JP). Hook 6 (`docs/code-loader.md`)
-  runs `rf_hook6` before the build; for the hunter's own weapon (n = 0) it
+  model plus 0xD50 (EU) or 0xD3C (JP). Hook 7 (`docs/code-loader.md`)
+  runs `rf_hook7` before the build; for the hunter's own weapon (n = 0) it
   writes a stitched package over the buffer if one fits the slot, and
   otherwise leaves DATA.BIN's bytes.
 - **Relics** (`src/forge/relics.ts`). The relics are the upgrade lines of
@@ -1738,7 +1873,7 @@ as Gunner mashups mixes them.
   the equipped weapon's box index at +0x4020 (0xFFFF for none); crafting
   adds the weapon to the box (0x08850724) with bytes 4-5 at 0, and an
   upgrade (`lobby_task` 0x09AA5D20) rewrites the weapon's slot with them
-  at 0 (a special weapon's upgrade keeps them). So at the build, `rf_hook6`
+  at 0 (a special weapon's upgrade keeps them). So at the build, `rf_hook7`
   follows the save pointer (found by Poogie's luck's signature) to the
   equipped slot; if it holds a relic of the model being built, bytes 4-5
   at 0 get a seed from the clock, written back to the slot and the copies
@@ -1874,6 +2009,40 @@ other classes' heads look right but some scales want tuning. Not yet tried: the 
 disc, bows and bowguns in game, other hunters' weapons (left as they are),
 and a weapon change in the house's equipment box.
 
+## Key quests
+
+`quests.keyLabel` marks key quests where you pick them: when the quest
+counter's card (the Village Chief's, and likely the Guild's, which share
+the code) shows a key quest, a yellow star (★) shows in the card's top right
+corner, drawn as the card draws "CLEAR!!" in its top left. Key quests are
+the ones a star needs cleared before its Urgent Quest shows. The quests
+themselves and their titles aren't changed. It runs as blob code on the
+code loader (below), so it caps Guild Cards at 3.
+
+What it found (EU and JP (FUC), in `lobby_task.ovl`; `src/patches/key-quests.ts`
+has the details):
+
+- The card is drawn by one function (EU 0x09A8CA40), called from one place
+  in the counter's draw step every frame it shows. It reads the shown
+  quest from a copy of its board record at a fixed address (EU
+  0x09B03F40), which a getter returns. Bit 26 of the record's quest type
+  marks a key quest (77 records on the EU boards), bit 25 an Urgent Quest.
+- It draws its lines with a print routine that draws text over a drop
+  shadow, after setting the printer's glyph size. "CLEAR!!" is glyph size
+  14, yellow over shadow colour 1, 8 pixels in from the card's left (the
+  card's place and size and "CLEAR!!"'s are in a layout table). The star, the
+  font's own ★ (the quest details show levels as "LV★★★"), is drawn the
+  same way just after the card, 8 pixels in from its right, clear of the
+  quest type centred on the same row.
+- The two discs' card functions are the same words but for immediates, so
+  it's found by its masked first words, and the routines, globals and
+  layout by what it does with them. Both discs' text is UTF-8 (the quest
+  details' "LV★" on FUC too), so the star is the same bytes on both.
+
+Tried in PPSSPP on EU at the Village Chief with "Key Quest!" in the same
+corner; the star itself hasn't been seen in game yet. Not yet tried: the
+Guild's counters, and JP.
+
 ## Code loader (prototype)
 
 `?loader-demo` in the web app's address (see `apps/randomfu`) caps received
@@ -1882,7 +2051,7 @@ struct) into room for randomfu's own code and data. Its demo blob adds 1000
 zenny on every save load, so it's seen to run; it does in PPSSPP on EU and
 JP (FUC). It's not for play. `docs/code-loader.md` has the design: the
 address, when it loads, the blob format, game hooks, the C toolchain and
-the PRX alternative. Poogie's luck, monster health and the Hunter's Pact are built on it.
+the PRX alternative. Poogie's luck, monster health, the Hunter's Pact and the key quest label are built on it.
 
 - **Room.** The save struct is static (an arena in the EBOOT's BSS), so the
   freed slots are at a fixed address per region: EU `0x099A1820`, JP
@@ -1931,6 +2100,10 @@ monsters, and one or two monsters past 32767 HP. With them, none.
 | Too few carves for a delivery                                   | Small monster counts never lower the monsters it's carved from                        |
 | A "Slay N" goal asks for more small monsters than the quest has | Small monster counts keep the goal's species at least at its count                    |
 | A goal's small monster is swapped or moved away                 | Small monster species and quest maps leave the goal's monsters and quest              |
+| A swap leaves a goal naming a monster the quest no longer has   | Swaps move both goals and the board's copy with the monster                           |
+| A goal asks to capture a monster that can't be captured         | Capture goals only name monsters some quest on the disc hunts with flag 1             |
+| A new goal asks for more monsters than the quest has            | Quest goals count the quest's own records; small monster counts keep the goal's count |
+| A goal names a monster that arrives late, or in a later wave    | Quest goals only name monsters there from the start, in quests with one group         |
 | A monster starts where it can't stand (water, sand, a nest)     | Swaps and Unknown Monster quests only start monsters where the disc starts their kind |
 | A monster's HP wraps past 32767                                 | Base HP, swaps and difficulty stay where HP fits; the pact and elites cap their own   |
 | The Paw Pass Ticket goes missing on a gathering quest           | Its supply box stack always stays                                                     |
@@ -1938,9 +2111,10 @@ monsters, and one or two monsters past 32767 HP. With them, none.
 Not covered: what a player chooses (a Hunter's Pact penalty, turning
 `supplies.keepEssentials` or `shops.keepEssentials` off), and odds (a
 randomized delivery asks for no more than its points give on average, so
-an unlucky run can fall short; retrying the quest rolls again). MHFU has
-no capture-only quests ("Hunt" takes a kill or a capture), so a monster
-that can't be captured never blocks one.
+an unlucky run can fall short; retrying the quest rolls again). The disc
+has no capture-only quests ("Hunt" takes a kill or a capture); with
+`questGoals.capture`, killing a capture goal's monster fails the quest, as
+the player is told by the goal line.
 
 ## How it writes the disc
 
@@ -1985,6 +2159,16 @@ that can't be captured never blocks one.
   file's own copy of the text, if anywhere, isn't known. Whether the game
   pays out, times or checks a delivery from the board's copy of the header
   or the quest file's isn't known either: both get the same values.
+- Capture goals in game. The kill check fails a goal with 0x100 and the
+  capture check counts any monster goal (`src/game/goals.ts`), but no
+  quest on the disc has one, so whether the quest clears on a capture,
+  fails on a kill, and what the end screen says, hasn't been played.
+- What reads the goal flag 0x200 and the "objective" slots at `+0x28` and
+  `+0x30`, if anything does; the goal shuffle leaves the objectives as
+  they were. Whether the game reads the board record's copy of the goals
+  at all, or only the quest file's: both get the same.
+- What the quest type's first byte does beyond the kind: the goal shuffle
+  keeps the disc's pairing (1 for one Slay goal, 4 otherwise).
 - Large monster counts. What `quantity` means for a large monster (it's 1
   in 536 of 554 records, 10 or 5 in a few), and how it relates to the
   header's `TargetNum`, isn't known.

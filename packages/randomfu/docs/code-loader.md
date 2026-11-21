@@ -145,11 +145,12 @@ reaches. Twelve words per stub and 15 for `dispatch`.
 | 3    | quest load  | the quest loader (EU 0x08870AEC), accepting and departing      | `lobby_task` +0x2F424, `game_task` +0x6B8 | `lobby_task` +0x2F0B4, `game_task` +0x6A8 |
 | 4    | rewards     | the quest reward roll (EU 0x0886F894), once a completed quest  | 0x08875284                                | found by signature                        |
 | 5    | pick        | replaces the weighted picker (`poogie-luck.ts`)                | 0x0887265C (the picker's first two words) | 0x08872654                                |
-| 6    | build       | runs before the weapon build (`weapon-stitcher.ts`)            | 0x08868234 (the build's first two words)  | 0x0886822C                                |
+| 6    | quest card  | the quest counter's card (EU 0x09A8CA40), in town              | `lobby_task` 0x09A8BF08                   | `lobby_task` 0x09A87078                   |
+| 7    | build       | runs before the weapon build (`weapon-stitcher.ts`)            | 0x08868234 (the build's first two words)  | 0x0886822C                                |
 
 Hooks 0 and 1 pass the HUD object (EU 0x09A04BA0, right after the save
 struct), hook 3 a `struct rf_load` (below), hook 4 the results step's
-object. Hook 2 passes the system's `SceCtrlData` that `padRead` (called
+object, hook 6 the quest counter's object. Hook 2 passes the system's `SceCtrlData` that `padRead` (called
 once a frame by the main loop, EU 0x0888FD5C) reads into: buttons a u32 at
 `+4`, the stick bytes at `+8`, `+9`. It runs before `padRead` checks the
 game's input lock (the pad object's `+0x17`, which shops and dialogues
@@ -178,11 +179,11 @@ to the picker's caller; without it, it runs the two words and jumps to the
 picker's third. The picker only calls the RNG, so the temporaries the stub
 uses are free. One feature defines `rf_hook5` (`blob/poogie.c`).
 
-Hook 6 is the same shape on the weapon model build: its first two words
-become `j stub; nop`, and the stub (23 words) calls `rf_hook6` with the
+Hook 7 is the same shape on the weapon model build: its first two words
+become `j stub; nop`, and the stub (23 words) calls `rf_hook7` with the
 build's `$a0`-`$a2` in a 32-byte frame, keeping them, then runs the two
 words and jumps to the build's third either way. The build takes three
-arguments, so the temporaries are free. One feature defines `rf_hook6`
+arguments, so the temporaries are free. One feature defines `rf_hook7`
 (`blob/stitch.c`).
 
 In the blob, `blob/runtime.c` defines `rf_init` and `rf_hook0`…, and
@@ -435,6 +436,26 @@ imported by both EBOOTs. The tables are linked after the code as the
 `rf_uq_data` symbol (`linkBlob`'s `data`), so the blob has them at a known
 address; `test/unknown-quests.test.ts` runs the stub and blob against a fake
 loader.
+
+## Key quests
+
+`blob/key-quests.c` on hook 6 (`README.md` has what it does for the
+player). The hook wraps `lobby_task`'s one call of the quest counter's
+card function, so it runs every frame the card shows, after the card is
+drawn. The blob reads the shown quest's type from the record copy the
+card draws from (EU 0x09B03F40, JP 0x09AFECD8) and, with bit 26 set, draws
+a yellow ★ in the card's top right corner with `print(printer, x, y, shadow,
+colour, text, dx, dy)` (EU 0x0889198C, JP 0x0889144C), as the card draws
+"CLEAR!!" in its top left. It sets the
+printer's glyph size bytes (`+0x12C`, `+0x12D`, `+0x15F`) to 14 for the
+print and puts them back: the bytes the game's setter (EU 0x08890DE8)
+writes, which `findKeyQuestSites` checks in the EBOOT, since the line height
+(`+0x15F`) can also be set on its own. The ★ is UTF-8, as both discs'
+text is. Every address and the label's place are link-time constants that
+`findKeyQuestSites` reads from `lobby_task`; the hook's call is patched in
+the overlay (`code-loader.ts`, `hooks.questCard`). `test/key-quests.test.ts`
+runs the stub and blob in the interpreter, and `test/code-loader.test.ts`
+checks the call goes to hook 6's stub.
 
 ## Toolchain
 
