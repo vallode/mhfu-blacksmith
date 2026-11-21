@@ -1,7 +1,8 @@
 /**
  * Just enough of a MIPS CPU to run patch and blob code in tests: the integer
- * ops they use (multiply, unsigned divide, variable shifts and nor too), with delay slots
- * and branch-likely, over sparse 64 KB pages. Game functions
+ * ops they use (multiply, divide, variable shifts and nor too), with delay slots
+ * and branch-likely, and the single-precision FPU (`blob/hitboxes.c`), over
+ * sparse 64 KB pages. Game functions
  * the code calls are JavaScript (`native`): they get the CPU and return
  * `$v0`.
  */
@@ -9,6 +10,10 @@ export class Cpu {
   readonly reg = new Int32Array(32);
   hi = 0;
   lo = 0;
+  /** FPU registers, as floats and as raw bits, and the condition flag. */
+  readonly fbits = new Uint32Array(32);
+  readonly f = new Float32Array(this.fbits.buffer);
+  fcc = false;
   /** Addresses that run JavaScript instead of code, then return to `$ra`. */
   readonly native = new Map<number, (cpu: Cpu) => number>();
   /** Every native call, in order: its address and `$a0`–`$a2`. */
@@ -113,6 +118,11 @@ export class Cpu {
           const p = BigInt(u(rs)) * BigInt(u(rt));
           this.lo = Number(p & 0xffffffffn) | 0;
           this.hi = Number(p >> 32n) | 0;
+        } else if (funct === 0x1a) {
+          if (r[rt] !== 0) {
+            this.lo = Math.trunc(r[rs]! / r[rt]!) | 0;
+            this.hi = (r[rs]! % r[rt]!) | 0;
+          }
         } else if (funct === 0x1b) {
           if (u(rt) !== 0) {
             this.lo = Math.floor(u(rs) / u(rt)) | 0;
@@ -175,7 +185,49 @@ export class Cpu {
       } else if (op === 0x28) this.setU8(at(), u(rt));
       else if (op === 0x29) this.setU16(at(), u(rt));
       else if (op === 0x2b) this.setU32(at(), u(rt));
-      else throw new Error(`op ${op.toString(16)} at ${pc.toString(16)}`);
+      else if (op === 0x31) this.fbits[rt] = this.u32(at());
+      else if (op === 0x39) this.setU32(at(), this.fbits[rt]!);
+      else if (op === 0x11) {
+        const f = this.f;
+        const fs = rd;
+        const fd = sa;
+        const funct = w & 63;
+        if (rs === 0x00) set(rt, this.fbits[fs]!);
+        else if (rs === 0x04) this.fbits[fs] = u(rt);
+        else if (rs === 0x08) {
+          // bc1f, bc1t, and their likely forms, which skip the delay slot when not taken.
+          if (this.fcc === ((rt & 1) === 1)) target = pc + 4 + simm * 4;
+          else if (rt & 2) {
+            pc = next + 4;
+            next = pc + 4;
+            continue;
+          }
+        } else if (rs === 0x10) {
+          const a = f[fs]!;
+          const b = f[rt]!;
+          if (funct === 0x00) f[fd] = a + b;
+          else if (funct === 0x01) f[fd] = a - b;
+          else if (funct === 0x02) f[fd] = a * b;
+          else if (funct === 0x03) f[fd] = a / b;
+          else if (funct === 0x04) f[fd] = Math.sqrt(a);
+          else if (funct === 0x05) f[fd] = Math.abs(a);
+          else if (funct === 0x06) f[fd] = a;
+          else if (funct === 0x07) f[fd] = -a;
+          else if (funct === 0x0d || funct === 0x24) {
+            // trunc.w.s; cvt.w.s truncates too, as the game sets the FPU.
+            const t = Math.trunc(a);
+            this.fbits[fd] =
+              Number.isNaN(a) || t >= 2 ** 31 || t < -(2 ** 31) ? 0x7fffffff : t >>> 0;
+          } else if (funct >= 0x30) {
+            const unordered = Number.isNaN(a) || Number.isNaN(b);
+            this.fcc =
+              (unordered && (funct & 1) !== 0) ||
+              (!unordered && a === b && (funct & 2) !== 0) ||
+              (!unordered && a < b && (funct & 4) !== 0);
+          } else throw new Error(`fpu funct ${funct.toString(16)} at ${pc.toString(16)}`);
+        } else if (rs === 0x14 && funct === 0x20) f[fd] = this.fbits[fs]! | 0;
+        else throw new Error(`cop1 ${rs} at ${pc.toString(16)}`);
+      } else throw new Error(`op ${op.toString(16)} at ${pc.toString(16)}`);
       pc = next;
       next = target !== null ? target >>> 0 : pc + 4;
     }

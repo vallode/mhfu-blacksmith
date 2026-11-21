@@ -181,6 +181,7 @@ web app shows as a tag):
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
+| `hud.attackHitboxes`              | off         | Shade every monster attack that can hit right now, over the scene (caps Guild Cards)                   |
 | `poogie.enabled`                  | on          | A happy pet before a hunt makes its rewards rarer, more so as affection grows (caps Guild Cards)       |
 | `pact.enabled`                    | off         | Hunter's Pact: penalties at each quest's start, each paying a reward (caps Guild Cards)                |
 | `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)                  |
@@ -198,7 +199,7 @@ Elder's trades. Turn those on yourself once you've tried them on your disc.
 Armor stats are the exception: the presets turn on all four, though only
 defense has been played. Resistances, slots and rarity have only been run
 over the EU disc's tables, and what the game reads armor rarity for hasn't
-been checked. Monster health, elite monsters, the Unknown Monster quests and the key quest
+been checked. Monster health, attack hitboxes, elite monsters, the Unknown Monster quests and the key quest
 label are off in every preset, since they cap Guild Cards.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                                                   |
@@ -1252,6 +1253,38 @@ What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
 Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
 dies or leaves the area, and `painted` shows it once a Paintball hits. Not
 yet tried: JP in game, captures, and two large monsters in one area.
+
+## Attack hitboxes
+
+`hud.attackHitboxes` shades, in translucent red, every monster attack that
+can hit the hunter right now: each sphere and capsule filled in where it
+falls on screen, with the HUD's translucent fill in strips 2 pixels tall.
+It shows exactly what the game tests against the hunter, frame by frame,
+so an attack's shading appears when it becomes able to hit and goes when
+it stops. (A first version drew opaque red outlines with the HUD's line
+routine; they were too loud.) It runs as blob code on the code
+loader's HUD hook (below), so it caps Guild Cards at 3, and hides with the
+hunter's gauges.
+
+What it found (EU and JP; `src/patches/hitboxes.ts` has the details):
+
+- Attacks are attack objects in a list behind a `game_task` global. Each
+  frame `game_sub` tests those whose `+0x14` is 2 against the hunters, one
+  shape at a time: the hurtboxes' 0x28-byte records, placed on the owning
+  monster's joint matrices (`*(m + 0x190) + joint × 0x250 + 0xD0`) and
+  scaled by its model scale. Projectiles carry their own two points
+  instead.
+- The camera's view matrix and the 3D projection sit in the renderer, at
+  `+0xB80` and `+0xC00`. The GE itself never sees the view: the game
+  multiplies it into every model's matrix.
+- The HUD has a translucent fill (the Hunter's Pact shades the screen
+  with it), and an opaque line routine next to the gauges' fill.
+
+Projected from savestates of a Yian Kut-Ku fight, the fireball's shape
+sits on the fireball and the monsters' hurtboxes on their bodies. Not
+drawn: shapes the monster's own code places (joint 0x7D), and hunters'
+attacks. The outline version was played on the EU disc in PPSSPP and worked; the
+shading hasn't been played yet, nor JP.
 
 ## Poogie's luck
 
