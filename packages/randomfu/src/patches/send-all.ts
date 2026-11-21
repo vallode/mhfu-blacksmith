@@ -14,14 +14,17 @@
  *   rolls the rewards into the save's `+0x390` (32 slots of u16 item, s16
  *   amount: 8 a row, 4 rows; the Felyne comrade's items use 2), then runs
  *   the reward screen each frame: `update(hud, 1)` (EU 0x08823E18) and
- *   `draw(hud, 0)` (EU 0x08824B14), right after it.
+ *   `draw(hud, 0)` (EU 0x08824B14), right after it. Town (`lobby_task`)
+ *   runs the same screen with `update(hud, 0)` and `draw(hud, 1)`, whose
+ *   own list (EU 0x089AD0FC, rows 22) this leaves at three rows.
  * - The screen's state is in the HUD object: `+0x120A` (0 the menu, 1
  *   taking items to the pouch, 2 sending them to the box, 3 swapping with
  *   the pouch, 4 the "Sell remaining items?" question, 6 done), `+0x120B`
  *   the menu row, `+0x120C` the item cursor, `+0x1214` the time left
  *   (3600, a tick a frame) and `+0x1218` set for the comrade's items.
  * - The menu is a list window from a template (EU 0x08938628, only this
- *   screen's: rows at `+0xA`, 3) whose names are game_task message IDs
+ *   screen's: rows at `+0xA`, 3, and the row height at `+8`, which the draw
+ *   writes before each list) whose names are game_task message IDs
  *   (box()'s names 4): "Take reward", "Send to Item Box", "End" (EU
  *   0x089B5564), or "Take Comrade's Items" first (EU 0x089B556C). Each list
  *   is 3 IDs and a 0xFFFF; box() stops at its rows, so the 0xFFFF can be a
@@ -40,18 +43,21 @@
  * - Ending with rewards left sells them: their sell price (the item table's
  *   `+0x10`) times the amount goes to the zenny.
  *
- * The EBOOT changes: the template's rows to 4, each list's 0xFFFF to End's
- * ID (so row 2 reads "End" unless the blob renames it), `nav`'s 3 to 4 and
- * the back button's row 2 to 3, and the rows 20 pixels high with the window
- * 14 higher, to clear the time left below it. Without the blob the new row
- * ends, as End.
+ * The EBOOT changes, for the quest's screen and not town's: each draw branch
+ * writes its rows with its row height (an `sw` of both halves for the
+ * `sh`), 4 rows of 20 pixels for the quest's two lists and 3 of 22 for
+ * town's, with the window 14 higher (town's too) to clear the time left
+ * below it; each quest list's 0xFFFF becomes End's ID (so row 2 reads "End"
+ * unless the blob renames it); and the update's `nav` rows and back row
+ * become 3 + and 2 + its second argument (`$s7`: 1 in the quest, 0 in
+ * town). Without the blob the new row ends, as End.
  */
 import { SEND_ALL_OBJECTS } from "../blob/send-all-object.js";
 import { decodeObjects } from "../blob/link.js";
 import type { ShuffleReport } from "../shuffles/shuffle.js";
 import type { HookCall, HookSites } from "./game-hooks.js";
 import { BOX_SIGNATURE } from "./menu.js";
-import { findUnique, hiLo, jumpTarget, luiLwAddress, maskImmediates } from "./mips.js";
+import { findUnique, hi16, hiLo, jalTo, jumpTarget, luiLwAddress, maskImmediates } from "./mips.js";
 
 /** The reward screen's update (EU 0x08823E18), masked. */
 export const REWARD_UPDATE_SIGNATURE = [
@@ -129,19 +135,76 @@ const DRAW_WORDS: readonly [number, number][] = [
   [0x528, 0x24090000],
 ];
 const NAMES_MESSAGES = 0x24090004; // li $t1, 4
+/**
+ * The update and draw's second argument says whose screen it is (above), so
+ * each must be called with 0 or 1 (`move $a1, $zero` or `li $a1, 1` in the
+ * delay slot). Checked on each disc, in the EBOOT and the overlays given:
+ * every `jal`, and no pointer to them (a word, or a `lui` and `addiu` making
+ * the address) that could call them otherwise.
+ */
+const SECOND_ARGS = [0x00002821, 0x24050001];
+
+/** Code to check for calls to the draw: the buffer and the bytes of it that are code. */
+export interface CodeRange {
+  code: Buffer;
+  offset: number;
+  size: number;
+}
+
+/** The `jal`s of `target` in `ranges`, by what's in their delay slot; null if anything else refers to it. */
+function callsTo(ranges: readonly CodeRange[], target: number): number[] | null {
+  const jal = jalTo(target);
+  const hi = target >>> 16;
+  const high = ((target + 0x8000) >>> 16) & 0xffff;
+  const low = target & 0xffff;
+  const slots: number[] = [];
+  for (const { code, offset, size } of ranges) {
+    const end = Math.min(code.length, offset + size);
+    const word = (at: number) => (at + 4 <= end ? code.readUInt32LE(at) : 0);
+    for (let at = offset; at + 4 <= end; at += 4) {
+      const w = word(at);
+      if (w === jal) slots.push(word(at + 4));
+      else if (w === target) return null;
+      else if (w >>> 26 === 0x0f && ((w & 0xffff) === high || (w & 0xffff) === hi)) {
+        // lui $r: an addiu (its sign-adjusted half) or ori of the low half on $r in the next few words.
+        const r = (w >>> 16) & 31;
+        for (let k = 1; k <= 4; k++) {
+          const next = word(at + k * 4);
+          const op = next >>> 26;
+          if (((next >>> 21) & 31) !== r || (next & 0xffff) !== low) continue;
+          if ((op === 0x09 && (w & 0xffff) === high) || (op === 0x0d && (w & 0xffff) === hi)) {
+            return null;
+          }
+        }
+      }
+    }
+  }
+  return slots;
+}
 const TEMPLATE_ROWS = 0xa;
 /** The window's top, in the template. */
 const TEMPLATE_Y = 0x2;
+/** The row height, the half before the rows. */
+const TEMPLATE_ROW_HEIGHT = 0x8;
 /**
- * The row heights the draw sets in the template before each list: `li $v1`,
- * 24 for the comrade's and 22 for the rewards'. Four rows of them would run
- * into the time left below, so both are made 20 and the window moved up 14,
- * where its bottom was with the rewards' three (the comrade's ends 6 higher).
+ * Where each draw branch sets the template's row height: `li $v1, height;
+ * lui $v0, hi(template); sh $v1, lo(template + 8)($v0)`, after `lui $v0`
+ * (the same) and `sw` of its names. Four rows of the quest's heights (24 the
+ * comrade's, 22 the rewards') would run into the time left below, so they're
+ * made 20 and the window moved up 14, where its bottom was with the rewards'
+ * three (the comrade's ends 6 higher). Town's keeps 3 rows of 22.
  */
-const ROW_HEIGHTS = { comrade: [0x474, 0x24030018], rewards: [0x500, 0x24030016] } as const;
+const BRANCHES = [
+  { offset: 0x474, height: 24, rows: 4 }, // the comrade's
+  { offset: 0x4c0, height: 22, rows: 3 }, // town's
+  { offset: 0x500, height: 22, rows: 4 }, // the rewards'
+] as const;
 const ROW_HEIGHT = 20;
 const RAISE = 14;
 const LIST_ROWS = 3;
+/** The update's `nav` rows and back row, from its second argument in `$s7`: `addiu $a3, $s7, 3`. */
+const ROWS_BY_ARG = 0x26e70003;
+const BACK_ROW_BY_ARG = 0x26e20002;
 
 /** box()'s names 4: `lui $v0; jal msg; lw $a0`, its IDs in `$a2` (`lw $a2, 0x14($s4)`). */
 const BOX = { names: 0x2a8, call: 0x328 } as const;
@@ -165,7 +228,11 @@ export interface SendAll {
 }
 
 /** The reward screen's sites, the blob's externs and the EBOOT changes, or why they can't be found. */
-export function prepareSendAll(vanillaEboot: Buffer, sites: HookSites): SendAll | string {
+export function prepareSendAll(
+  vanillaEboot: Buffer,
+  sites: HookSites,
+  overlays: readonly CodeRange[] = [],
+): SendAll | string {
   const { segment } = sites;
   const [update, draw, list, help] = findUnique(
     vanillaEboot,
@@ -190,6 +257,13 @@ export function prepareSendAll(vanillaEboot: Buffer, sites: HookSites): SendAll 
   if (at(update + UPDATE.rows) !== ROWS_WORD || at(update + UPDATE.backRow) !== BACK_ROW_WORD) {
     return "this EBOOT's reward menu doesn't have the rows randomfu expects";
   }
+  const code = [{ code: vanillaEboot, ...segment }, ...overlays];
+  for (const target of [update, draw]) {
+    const slots = callsTo(code, target);
+    if (!slots?.length || slots.some((slot) => !SECOND_ARGS.includes(slot))) {
+      return "this disc runs the reward screen in a way randomfu doesn't expect";
+    }
+  }
   if (!matches(list, BOX_WORDS) || at(list + BOX.names) !== BOX_NAMES_WORD) {
     return "this EBOOT's list window code doesn't match";
   }
@@ -203,10 +277,19 @@ export function prepareSendAll(vanillaEboot: Buffer, sites: HookSites): SendAll 
   if (![template + TEMPLATE_ROWS, rewardNames + 6, comradeNames + 6, helpRect].every(inSegment)) {
     return "this EBOOT's reward menu wasn't found";
   }
-  if (
-    Object.values(ROW_HEIGHTS).some(([offset, word]) => at(draw + offset) !== word) ||
-    half(template + TEMPLATE_Y) < RAISE
-  ) {
+  const templateLui = 0x3c020000 | hi16(template);
+  const heightLow = (template + TEMPLATE_ROW_HEIGHT) & 0xffff;
+  const laidOut = BRANCHES.every(({ offset, height }) => {
+    const word = (k: number) => at(draw + offset + k * 4);
+    return (
+      word(-2) === templateLui &&
+      word(-1) >>> 16 === 0xac43 && // sw $v1, names($v0)
+      word(0) === (0x24030000 | height) &&
+      word(1) === templateLui &&
+      word(2) === (0xa4430000 | heightLow) >>> 0 // sh $v1, height($v0)
+    );
+  });
+  if (!laidOut || half(template + TEMPLATE_Y) < RAISE || (template + TEMPLATE_ROW_HEIGHT) % 4) {
     return "this EBOOT's reward menu isn't laid out as randomfu expects";
   }
   if (half(template + TEMPLATE_ROWS) !== LIST_ROWS) {
@@ -239,16 +322,21 @@ export function prepareSendAll(vanillaEboot: Buffer, sites: HookSites): SendAll 
     },
     calls: [{ call: label, target: jumpTarget(at(label), label) }],
     patch(eboot) {
-      eboot.writeUInt16LE(LIST_ROWS + 1, offsetOf(template + TEMPLATE_ROWS));
       eboot.writeUInt16LE(half(template + TEMPLATE_Y) - RAISE, offsetOf(template + TEMPLATE_Y));
-      for (const [offset, word] of Object.values(ROW_HEIGHTS)) {
-        eboot.writeUInt32LE(((word & ~0xffff) | ROW_HEIGHT) >>> 0, offsetOf(draw + offset));
+      for (const { offset, height, rows } of BRANCHES) {
+        // lui $v1, rows; ori $v1, $v1, height; sw $v1, height($v0): both halves.
+        const words = [
+          0x3c030000 | rows,
+          0x34630000 | (rows === LIST_ROWS ? height : ROW_HEIGHT),
+          0xac430000 | heightLow,
+        ];
+        words.forEach((w, k) => eboot.writeUInt32LE(w >>> 0, offsetOf(draw + offset + k * 4)));
       }
       for (const names of [rewardNames, comradeNames]) {
         eboot.writeUInt16LE(half(names + 4), offsetOf(names + 6)); // End's ID, again
       }
-      eboot.writeUInt32LE(ROWS_WORD + 1, offsetOf(update + UPDATE.rows));
-      eboot.writeUInt32LE(BACK_ROW_WORD + 1, offsetOf(update + UPDATE.backRow));
+      eboot.writeUInt32LE(ROWS_BY_ARG, offsetOf(update + UPDATE.rows));
+      eboot.writeUInt32LE(BACK_ROW_BY_ARG, offsetOf(update + UPDATE.backRow));
     },
   };
 }

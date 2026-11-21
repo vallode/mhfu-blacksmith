@@ -5,7 +5,8 @@
  */
 #include "rf.h"
 
-#define PER_HOOK 6
+/* Callbacks a hook can take: test/blob-link.test.ts checks the features' rf_on calls fit. */
+#define PER_HOOK 8
 
 /* Zeroed data comes zeroed from the file, so every load starts empty. */
 static rf_hook_fn hooks[RF_HOOKS][PER_HOOK];

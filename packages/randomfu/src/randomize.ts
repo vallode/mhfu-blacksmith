@@ -1248,7 +1248,13 @@ export function randomize(
     // Send All to Item Box: on the menu's hooks, so it goes in (and out) with them.
     let sendAll: SendAll | null = null;
     if (menus && sendAllOn && typeof sites !== "string") {
-      const found = prepareSendAll(game.eboot!, sites);
+      // The overlays the game runs, for calls to the reward screen's draw from them.
+      const overlays = [ovl, game.lobbyTask.ovl].map(({ reader }) => ({
+        code: reader.buf,
+        offset: 0,
+        size: reader.buf.length,
+      }));
+      const found = prepareSendAll(game.eboot!, sites, overlays);
       if (typeof found === "string") reports.push(notApplied("Send All to Item Box", found));
       else {
         optional.push(...sendAllObjects());
@@ -1322,6 +1328,8 @@ export function randomize(
               "it goes in with the START menu entry, which didn't fit",
             ),
           );
+        } else {
+          reports.push(notApplied("Send All to Item Box", "the code loader isn't on this disc"));
         }
       }
       if (unknown) reports.push(unknown.finish(loader.applied));

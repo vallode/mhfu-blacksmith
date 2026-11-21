@@ -1770,8 +1770,8 @@ Guild's counters, and JP.
 `rewards.sendAll` adds a row to the reward screen's menu after a quest,
 between "Send to Item Box" and "End": Send All to Item Box sends every
 reward the Item Box can take at once (the comrade's items too), as Send to
-Item Box does one by one, and plays its sound. With nothing left the screen
-ends, as End does. What doesn't fit, or can't go in the box, stays, with the
+Item Box does one by one, and plays its sound. With nothing left in
+any of the rewards' slots the screen ends, as End does. What doesn't fit, or can't go in the box, stays, with the
 menu, to take or sell as before. Its help bar says so. It's
 blob code (`blob/send-all.c`) on the pad hook and the START menu's hook,
 so it goes in with the START menu entry and caps Guild Cards; a disc whose
@@ -1785,12 +1785,18 @@ details):
   each frame of the results step. Its state is a byte (0 the menu), with
   the menu's row beside it. The rewards are 32 slots of item and amount in
   the save (16 for the Felyne comrade's items).
+- Town runs the same screen (in `lobby_task`, likely for items it hands
+  over, such as Trenya's or the farm's), telling the update and draw apart
+  by their second argument, with a third list of its own. Town's is left as
+  it is, three rows.
 - The menu is a list window from a template only this screen uses, its
-  labels game message IDs: three and a 0xFFFF a list. Making it four rows
-  (the template's rows, the update's row count and the row the back button
-  jumps to) and writing End's ID over the 0xFFFF gives a fourth row that
+  labels game message IDs: three and a 0xFFFF a list. Making the quest's
+  four rows (each list writes its rows with its row height, and the
+  update's row count and the row the back button jumps to follow its second
+  argument) and writing End's ID over the 0xFFFF gives a fourth row that
   reads and works as End; the blob renames the third and takes the confirm
-  button on it. Without the blob, the disc has two End rows.
+  button on it. Without the blob, the disc has two End rows, and the last
+  one's help bar shows the game's message for row 3 (row + 4), not End's.
 - Sending an item is three EBOOT calls (can the box take it, add it, which
   returns what didn't fit, and mark it seen); the blob makes the same ones.
 - The help bar takes the row + 4 as its message, which would give End the
@@ -1799,8 +1805,11 @@ details):
 
 The four rows would run into the time left below the window, so the rows
 are 20 pixels high (from 22, and 24 for the comrade's) and the window 14
-higher. Tried in PPSSPP on EU: the row, its help, sending and ending. JP
-builds (its code matches) but hasn't been played.
+higher (town's window moves up with it). randomfu checks on each disc that
+the screen is only called with 0 or 1 for its second argument, from the
+EBOOT and the overlays. Tried in PPSSPP on EU: the row, the layout, sending
+and ending, and a town screen keeping its three rows. Not yet seen in game: the help bar's text on the new row and End,
+and JP, which builds (its code matches) but hasn't been played.
 
 ## Code loader (prototype)
 

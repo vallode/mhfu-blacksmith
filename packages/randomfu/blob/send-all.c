@@ -77,7 +77,10 @@ typedef u32 (*can_store_fn)(u8 *, u32);
 typedef u32 (*add_fn)(u8 *, u32, u32, u32);
 typedef void (*seen_fn)(u8 *, u32);
 
-/* Sends what fits, and ends the screen if that was all of it. */
+/*
+ * Sends what fits, and ends the screen if no reward is left in any slot (as
+ * End, which would otherwise ask to sell them; the comrade's screen shows 16).
+ */
 static void send_all(void) {
   u16 *slot = (u16 *)(save + REWARDS);
   const u32 slots = hud[COMRADE] ? COMRADE_SLOTS : SLOTS;
@@ -103,6 +106,13 @@ static void send_all(void) {
   if (left) {
     sound(SOUND_REFUSED);
     return;
+  }
+  /* As End's check, which adds up the amounts of the slots with an item. */
+  for (u32 k = slots; k < SLOTS; k++, slot += 2) {
+    if (slot[0] && slot[1]) {
+      sound(SOUND_SENT);
+      return;
+    }
   }
   sound(sent ? SOUND_SENT : SOUND_END);
   hud[STATE] = DONE;
