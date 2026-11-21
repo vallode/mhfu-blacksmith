@@ -293,6 +293,30 @@ export const equipment = {
     /** The model's accessible name: "Rathalos Helm (male)". */
     maleModel: (name: string) => `${name} (male)`,
     femaleModel: (name: string) => `${name} (female)`,
+    /** The armor model's switch between the piece and the full set it belongs to. */
+    setSwitchLabel: "Show",
+    piece: "Piece",
+    fullSet: "Full set",
+    /** The full set's accessible name, before the sex: "Rathalos Helm and the rest of its set". */
+    setModel: (name: string) => `${name} and the rest of its set`,
+    /** The armor model's switch that puts the piece on the hunter. */
+    onHunter: "On hunter",
+    /** The accessible name of a piece worn by the hunter: "Rathalos Helm (male), on a hunter". */
+    wornModel: (model: string) => `${model}, on a hunter`,
+    /** The button that opens the hunter's look pickers, and their group's name. */
+    look: "Look",
+    face: "Face",
+    hairstyle: "Hair",
+    hairColor: "Hair colour",
+    clothing: "Clothes",
+    /** A picker's value: "3/32". */
+    lookValue: (value: number, count: number) => `${value}/${count}`,
+    previousOption: (name: string) => `Previous ${name.toLowerCase()}`,
+    nextOption: (name: string) => `Next ${name.toLowerCase()}`,
+    /** Puts the loaded save's hunter's look on the hunter. */
+    myHunter: (name: string) => `${name}'s look`,
+    /** Puts the default look back. */
+    defaultLook: "Default",
     /** The motion controls over an animated model. */
     motions: "Motions",
     motion: "Motion",
@@ -300,11 +324,17 @@ export const equipment = {
     nextMotion: "Next motion",
     /** Read after the motion number of a motion with attack hitboxes. */
     attackMotion: "attacks",
+    /** Read after the motion number of a motion nothing in the game plays. */
+    unusedMotion: "unused",
+    /** Tooltip on an unused motion's number. */
+    unusedMotionHint: "Unused: nothing in the game plays this motion",
     play: "Play",
     pause: "Pause",
     /** The hunter's motions (lib/hunter names them in English). */
     sheathedIdle: "Sheathed idle",
     drawnIdle: "Drawn idle",
+    /** Standing in armor, no weapon. */
+    idle: "Idle",
     moveN: (n: number) => `Move ${n}`,
     attackN: (n: number) => `Attack ${n}`,
   },

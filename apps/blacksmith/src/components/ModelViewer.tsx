@@ -6,6 +6,9 @@ import { capsuleBone } from "@/lib/capsule-bone";
 import { cn } from "@/lib/cn";
 import {
   fetchHunterClips,
+  fetchHunterIdle,
+  HUNTER_BARE_FEMALE_MODEL,
+  HUNTER_BARE_MODEL,
   HUNTER_MODEL,
   SHEATHED_TARGET,
   WEAPON_MOUNTS,
@@ -14,6 +17,28 @@ import {
   type WeaponMount,
 } from "@/lib/hunter";
 import type { GamePose } from "@/lib/bone-scaling";
+import {
+  dressHunter,
+  dyeHair,
+  faceMask,
+  hideFace,
+  skinHunter,
+  type DressSlot,
+  type HunterOutfit,
+  type HunterSlot,
+  type WornPiece,
+} from "@/lib/hunter-armor";
+import {
+  clampLook,
+  CLOTHING_SLOTS,
+  DEFAULT_LOOK,
+  faceUrl,
+  fetchLookData,
+  hairstyleUrl,
+  skinUrl,
+  type HunterLook,
+} from "@/lib/hunter-look";
+import { armorModelFile, armorModelSlot, armorSlotModelUrl } from "@/lib/models";
 import { fetchMotions, inPlace, MOTION_FPS, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
@@ -57,11 +82,26 @@ interface Props {
   capsules?: ModelCapsule[];
   /** A monster's attacks, drawn while the motion playing can hit with them. */
   attacks?: ModelAttack[];
+  /** Slots of a monster's motions that nothing in the game plays. */
+  unusedMotions?: number[];
   /**
    * Show `src` (a weapon) in the hands of the hunter, playing this weapon
    * type's motions. If the hunter's model can't load, the weapon shows alone.
    */
   hunter?: string;
+  /**
+   * Show `src` (an armor piece, with `parts`: its set) worn by the hunter of
+   * its sex, standing idle, in place of the default set's pieces of their
+   * slots. If the hunter's model can't load, the pieces show alone. The
+   * hunter takes `wear.look`, which can change while it's shown.
+   */
+  wear?: HunterOutfit;
+  /**
+   * More .glb files shown with `src`, in the same space: the rest of an
+   * armor set, whose pieces all sit on the player's skeleton. One that can't
+   * load is left out.
+   */
+  parts?: string[];
 }
 
 type Three = typeof import("three");
@@ -151,6 +191,8 @@ interface SceneHandle {
   frameHooks: Set<() => void>;
   /** The motion playing and its frame (60 fps); null before motions load. */
   now: () => { slot: number; frame: number } | null;
+  /** Dresses the hunter wearing armor in a look; absent for other models. */
+  relook?: (look: HunterLook) => Promise<void>;
   /** The bone a capsule (in the bind pose) rides on; null for an unskinned model. */
   mount: (
     start: ModelCapsule["start"],
@@ -209,6 +251,8 @@ function motionLabel(t: Messages, motion: HunterMotion): string {
       return m.sheathedIdle;
     case "drawn-idle":
       return m.drawnIdle;
+    case "idle":
+      return m.idle;
     case "move":
       return m.moveN(motion.n);
     case "attack":
@@ -226,7 +270,10 @@ export default function ModelViewer({
   pair = false,
   capsules,
   attacks,
+  unusedMotions,
   hunter,
+  parts,
+  wear,
 }: Props) {
   const t = useT();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -235,6 +282,16 @@ export default function ModelViewer({
   const sceneRef = useRef<SceneHandle | null>(null);
   const [motion, setMotion] = useState<MotionState | null>(null);
   const playerRef = useRef<MotionPlayer | null>(null);
+  // The effect below re-runs on the list's contents, not its identity.
+  const partsKey = parts?.join("\n") ?? "";
+  const look = wear?.look;
+  const lookKey = look ? `${look.face}|${look.hair}|${look.hairColor}|${look.clothing}` : "";
+  /** The look to show, for the model's first showing (the effect below follows later changes). */
+  const lookRef = useRef(look);
+  useEffect(() => {
+    lookRef.current = look;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lookKey]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -351,16 +408,134 @@ export default function ModelViewer({
 
       try {
         const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-        // Without the hunter (an export that couldn't make one), the weapon shows alone.
-        const [body, own] = await Promise.all([
-          hunter ? loader.loadAsync(HUNTER_MODEL).catch(() => null) : null,
+        // Without the hunter (an export that couldn't make one), the weapon
+        // or armor shows alone.
+        // Armor goes on the bare hunter of its sex; a weapon is held by the
+        // hunter in the default set.
+        const bodyModel = wear
+          ? wear.sex === "female"
+            ? HUNTER_BARE_FEMALE_MODEL
+            : HUNTER_BARE_MODEL
+          : HUNTER_MODEL;
+        const [body, own, ...extra] = await Promise.all([
+          hunter || wear ? loader.loadAsync(bodyModel).catch(() => null) : null,
           loader.loadAsync(src),
+          ...(partsKey ? partsKey.split("\n") : []).map((url) =>
+            loader.loadAsync(url).catch(() => null),
+          ),
         ]);
         if (disposed) return;
-        const gltf = body ?? own;
-        const weapon = body && own.scene;
-        const holding = body ? hunter : undefined;
+        // Each piece goes in the slot its file is for (a set's first file
+        // needn't be the page's piece), one a slot.
+        const worn: (WornPiece & { url: string })[] = [];
+        const wearing = (() => {
+          if (!body || !wear) return false;
+          const partUrls = partsKey ? partsKey.split("\n") : [];
+          worn.push({
+            slot: (armorModelSlot(src) as HunterSlot | undefined) ?? wear.slot,
+            model: own.scene,
+            url: src,
+          });
+          extra.forEach((part, i) => {
+            const url = partUrls[i] ?? "";
+            const slot = armorModelSlot(url) as HunterSlot | undefined;
+            if (part && slot && !worn.some((piece) => piece.slot === slot))
+              worn.push({ slot, model: part.scene, url });
+          });
+          try {
+            dressHunter(THREE, body.scene, worn);
+            return true;
+          } catch {
+            return false;
+          }
+        })();
+        /**
+         * Dresses the hunter in a look (hunter-look.ts) around the armor it
+         * wears: its face, its hairstyle under no helmet, its clothes in the
+         * slots it wears no armor in; then dyes the hair, gives the skin the
+         * face's tone, and hides what the helmet hides of the face. Only the
+         * latest call goes on, once its pieces load.
+         */
+        let relook: SceneHandle["relook"];
+        if (wearing && body && wear) {
+          const hunterScene = body.scene;
+          const sex = wear.sex === "female" ? "f" : "m";
+          const helmet = worn.find((piece) => piece.slot === "helmet");
+          const helmetId = helmet ? armorModelFile(helmet.url)?.id : undefined;
+          const wornSlots = new Set<DressSlot>(worn.map((piece) => piece.slot));
+          const pieceLoads = new Map<string, Promise<{ scene: import("three").Object3D } | null>>();
+          const loadPiece = (url: string) => {
+            let load = pieceLoads.get(url);
+            if (!load) {
+              load = loader.loadAsync(url).catch(() => null);
+              pieceLoads.set(url, load);
+            }
+            return load;
+          };
+          const textureLoader = new THREE.TextureLoader();
+          const skinLoads = new Map<string, Promise<import("three").Texture | null>>();
+          const loadSkin = (url: string) => {
+            let load = skinLoads.get(url);
+            if (!load) {
+              load = textureLoader.loadAsync(url).catch(() => null);
+              skinLoads.set(url, load);
+            }
+            return load;
+          };
+          // The bare hunter comes dressed in the default look.
+          let dressedIn = JSON.stringify(DEFAULT_LOOK);
+          let latest = 0;
+          relook = async (picked) => {
+            const call = ++latest;
+            const options = (await fetchLookData())?.[sex];
+            if (disposed || call !== latest || !options) return;
+            const look = clampLook(picked, options);
+            if (JSON.stringify(look) !== dressedIn) {
+              const tone = options.faceSkinTones[look.face] ?? 0;
+              const wanted: [DressSlot, string][] = [["face", faceUrl(sex, look.face)]];
+              if (!wornSlots.has("helmet")) wanted.push(["helmet", hairstyleUrl(sex, look.hair)]);
+              for (const slot of CLOTHING_SLOTS)
+                if (!wornSlots.has(slot))
+                  wanted.push([
+                    slot,
+                    armorSlotModelUrl(
+                      slot,
+                      sex,
+                      options.clothing[slot][look.clothing]?.[tone] ?? 0,
+                    ),
+                  ]);
+              const [loaded, images] = await Promise.all([
+                Promise.all(wanted.map(([, url]) => loadPiece(url))),
+                Promise.all(
+                  Array.from({ length: options.skinImages }, (_, k) =>
+                    loadSkin(skinUrl(sex, tone, k)),
+                  ),
+                ),
+              ]);
+              if (disposed || call !== latest) return;
+              const pieces = wanted.flatMap(([slot], i) => {
+                const piece = loaded[i];
+                return piece ? [{ slot, model: piece.scene }] : [];
+              });
+              try {
+                dressHunter(THREE, hunterScene, pieces);
+              } catch {
+                return;
+              }
+              dyeHair(hunterScene, look.hairColor);
+              skinHunter(hunterScene, (k) => images[k] ?? undefined);
+              dressedIn = JSON.stringify(look);
+            }
+            if (helmetId) hideFace(hunterScene, faceMask(options.faceMasks, helmetId));
+          };
+          await relook(lookRef.current ?? DEFAULT_LOOK);
+          if (disposed) return;
+        }
+        const weapon = body && hunter ? own.scene : null;
+        const gltf = weapon || wearing ? body! : own;
+        const holding = weapon ? hunter : undefined;
         model = gltf.scene;
+        if (!wearing) for (const part of extra) if (part) model.add(part.scene);
         const copies = [model];
         if (weapon && holding) {
           scene.add(model);
@@ -639,6 +814,7 @@ export default function ModelViewer({
             jointMount: (joint) => jointMounts.get(joint) ?? null,
             frameHooks,
             now: () => now(),
+            relook,
           };
           setStatus("ready");
           animate();
@@ -651,11 +827,13 @@ export default function ModelViewer({
         const motionsFile = (gltf.asset.extras as { motions?: unknown } | undefined)?.motions;
         const motions: Promise<MotionClip[]> = holding
           ? fetchHunterClips(holding, abort.signal).catch(() => [])
-          : typeof motionsFile === "string" && !pair
-            ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
-                // The model still shows, just still.
-                .catch(() => [])
-            : Promise.resolve([]);
+          : wearing
+            ? fetchHunterIdle("idle", abort.signal).catch(() => [])
+            : typeof motionsFile === "string" && !pair
+              ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
+                  // The model still shows, just still.
+                  .catch(() => [])
+              : Promise.resolve([]);
         const early = await Promise.race([
           motions,
           new Promise<null>((resolve) => setTimeout(() => resolve(null), MOTIONS_WAIT_MS)),
@@ -819,7 +997,17 @@ export default function ModelViewer({
       disposed = true;
       cleanup();
     };
-  }, [src, pair, hunter]);
+    // `wear` is compared by its fields: callers pass a fresh object each render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [src, pair, hunter, partsKey, wear?.slot, wear?.sex]);
+
+  // A new look goes on the hunter already shown.
+  useEffect(() => {
+    if (status !== "ready" || !look) return;
+    void sceneRef.current?.relook?.(look);
+    // `look` is compared by its fields, as `wear` is above.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status, lookKey]);
 
   // Capsules live in their own group, rebuilt when they change; there are
   // few (Rathian has 32), so rebuilding is cheaper than diffing.
@@ -891,6 +1079,7 @@ export default function ModelViewer({
   }, [attacks, status]);
 
   const attackSlots = new Set(attacks?.map((attack) => attack.slot));
+  const unused = motion !== null && (unusedMotions?.includes(motion.slot) ?? false);
 
   const playWidth = Math.max(t.equipment.model.play.length, t.equipment.model.pause.length);
 
@@ -938,13 +1127,18 @@ export default function ModelViewer({
               ))}
             </select>
           ) : (
-            <span className="tabular-nums" aria-live="polite">
+            <span
+              className="tabular-nums"
+              aria-live="polite"
+              title={unused ? t.equipment.model.unusedMotionHint : undefined}
+            >
               {t.equipment.model.motion}{" "}
               {/* As wide as the largest number, so the panel keeps its size. */}
               <span
                 className={cn(
                   "inline-block text-right",
-                  attackSlots.has(motion.slot) && "text-negative",
+                  // An unused motion greys out, whether or not it would hit.
+                  unused ? "text-unavailable" : attackSlots.has(motion.slot) && "text-negative",
                 )}
                 style={{ width: `calc(var(--cell) * ${String(motion.count).length})` }}
               >
@@ -954,6 +1148,7 @@ export default function ModelViewer({
               {attackSlots.has(motion.slot) && (
                 <span className="sr-only"> {t.equipment.model.attackMotion}</span>
               )}
+              {unused && <span className="sr-only"> {t.equipment.model.unusedMotion}</span>}
             </span>
           )}
           <button

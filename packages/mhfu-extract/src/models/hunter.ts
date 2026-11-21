@@ -22,6 +22,7 @@ import { isAhi, readAhi } from "./ahi.js";
 import { bindMatrices } from "./animation.js";
 import type { PacEntry } from "./pac.js";
 import { isPmo, readPmo, type Pmo } from "./pmo.js";
+import { withSkin } from "./skin.js";
 import { isTmh, readTmh, type TmhImage } from "./tmh.js";
 
 type Vec3 = [number, number, number];
@@ -59,8 +60,9 @@ const { HIPS, WAIST, CHEST, NECK, HEAD } = JOINT;
 /**
  * A piece's bones (by index) to player joints, -1 for none, per armor slot.
  * The decomp's entries can also carry a 0x40 flag on bones past the ones
- * here (rigid attachments some pieces add); the default set doesn't use them,
- * and `composeHunter` rejects a bone that has no entry.
+ * here (rigid attachments some pieces add, such as a helmet's hair): those
+ * ride with their nearest ancestor that has an entry, and `composeHunter`
+ * rejects a bone with neither.
  */
 export const ARMOR_JOINT_MAPS = {
   helmet: [-1, CHEST, NECK, HEAD],
@@ -93,7 +95,35 @@ export const ARMOR_JOINT_MAPS = {
   leggings: Array.from({ length: PLAYER_BONE_COUNT }, (_, bone) => bone),
 } as const satisfies Record<string, readonly number[]>;
 
-export type HunterSlot = keyof typeof ARMOR_JOINT_MAPS;
+export type ArmorSlot = keyof typeof ARMOR_JOINT_MAPS;
+
+/**
+ * Each piece's joint map: the armor's, and the face's (look.ts), whose
+ * skeleton is a root and the head. A hairstyle goes on as a helmet.
+ */
+export const PIECE_JOINT_MAPS = {
+  ...ARMOR_JOINT_MAPS,
+  face: [-1, HEAD],
+} as const satisfies Record<string, readonly number[]>;
+
+export type HunterSlot = keyof typeof PIECE_JOINT_MAPS;
+
+/**
+ * The armor the site's weapon-holding hunter wears (`export-site`): each
+ * sex's model of each slot's piece of this name, by data name.
+ * `composeHunter` puts the pieces together in this order. In the hunter
+ * GLBs each primitive names its slot by index in this order (`extras.part`;
+ * the face comes after, look.ts's `FACE_PART`): the site swaps a slot's
+ * piece for another by it (blacksmith's `src/lib/hunter-armor.ts`). A piece
+ * with several textures has a primitive for each.
+ */
+export const HUNTER_ARMOR: Record<ArmorSlot, string> = {
+  helmet: "Battle Helm",
+  plate: "Battle Mail",
+  gauntlets: "Battle Vambraces",
+  waist: "Battle Tasset",
+  leggings: "Battle Greaves",
+};
 
 /** One armor piece's mesh, skeleton and textures. */
 export interface HunterPiece {
@@ -105,18 +135,39 @@ export interface HunterPiece {
 
 export interface HunterModel {
   pmo: Pmo;
+  /** The slot of each of `pmo`'s meshes. */
+  meshSlots: HunterSlot[];
+  /**
+   * Where each mesh's piece's materials start in `pmo.materials`: a
+   * primitive's material in its own piece is its index less this.
+   */
+  meshMaterialBases: number[];
   textures: TmhImage[];
   /** The player's skeleton (the leggings'). */
   bones: Bone[];
 }
+
+/**
+ * Texture indices from here on have no image: a piece's material that
+ * indexes past its own textures (and the skin's) keeps its index above this.
+ */
+export const MISSING_TEXTURE = 0x10000;
 
 /** The world position of each bone in the bind pose. */
 function bindPositions(bones: readonly Bone[]): Vec3[] {
   return bindMatrices(bones).map((m) => [m[12]!, m[13]!, m[14]!]);
 }
 
-/** The armor piece of `slot` in a package's entries. */
-export function readHunterPiece(slot: HunterSlot, entries: PacEntry[]): HunterPiece {
+/**
+ * The armor piece of `slot` in a package's entries. `skin` is the skin
+ * tone's textures, which the piece's materials index after its own
+ * (skin.ts).
+ */
+export function readHunterPiece(
+  slot: HunterSlot,
+  entries: PacEntry[],
+  skin: readonly TmhImage[] = [],
+): HunterPiece {
   const pmoEntry = entries.find((entry) => isPmo(entry.data));
   const ahi = entries.find((entry) => isAhi(entry.data));
   const tmh = entries.find((entry) => isTmh(entry.data));
@@ -125,18 +176,23 @@ export function readHunterPiece(slot: HunterSlot, entries: PacEntry[]): HunterPi
     slot,
     pmo: readPmo(pmoEntry.data),
     bones: readAhi(ahi.data),
-    textures: tmh ? readTmh(tmh.data) : [],
+    textures: withSkin(tmh ? readTmh(tmh.data) : [], skin),
   };
 }
 
 /**
  * The pieces as one model on the player's skeleton (see the module comment).
- * Needs leggings, whose skeleton is the whole player's.
+ * The player skeleton is `skeleton`, or else the leggings' (whose skeleton
+ * is the whole player's). A few leggings carry a slightly different one, so
+ * pieces composed one at a time for the site's armor share one skeleton per
+ * sex, passed in, and line up whichever pieces are put together.
  */
-export function composeHunter(pieces: readonly HunterPiece[]): HunterModel {
-  const leggings = pieces.find((piece) => piece.slot === "leggings");
-  if (!leggings) throw new Error("A hunter needs leggings for the player skeleton");
-  const skeleton = leggings.bones;
+export function composeHunter(pieces: readonly HunterPiece[], skeleton?: Bone[]): HunterModel {
+  if (!skeleton) {
+    const leggings = pieces.find((piece) => piece.slot === "leggings");
+    if (!leggings) throw new Error("A hunter needs leggings for the player skeleton");
+    skeleton = leggings.bones;
+  }
   if (skeleton.length !== PLAYER_BONE_COUNT)
     throw new Error(`Player skeleton has ${skeleton.length} bones`);
   const playerPositions = bindPositions(skeleton);
@@ -144,31 +200,49 @@ export function composeHunter(pieces: readonly HunterPiece[]): HunterModel {
   const textures: TmhImage[] = [];
   const materials: Pmo["materials"] = [];
   const meshes: Pmo["meshes"] = [];
+  const meshSlots: HunterSlot[] = [];
+  const meshMaterialBases: number[] = [];
   // Positions in model units, gathered first: the shared scale needs them all.
   type Placed = { position: Vec3; normal?: Vec3; scale: Vec3 };
   const placed: Placed[][][] = [];
 
   for (const { slot, pmo, bones, textures: images } of pieces) {
-    const map: readonly number[] = ARMOR_JOINT_MAPS[slot];
+    const map: readonly number[] = PIECE_JOINT_MAPS[slot];
     const positions = bindPositions(bones);
-    const jointOf = (bone: number): number => {
-      const joint = map[bone];
-      if (joint === undefined || bones[bone] === undefined)
-        throw new Error(`${slot}: bone ${bone} has no player joint`);
-      return joint;
+    /**
+     * The bone the map places `bone` by: itself, or for a bone past the map
+     * (a helmet's hair or tail chain, which the game swings itself), the
+     * nearest ancestor on it, which carries it rigidly.
+     */
+    const mappedOf = (bone: number): number => {
+      for (let b: number | undefined = bone; b !== undefined && b >= 0; b = bones[b]?.parent)
+        if (map[b] !== undefined && bones[b] !== undefined) return b;
+      throw new Error(`${slot}: bone ${bone} has no player joint`);
     };
+    const jointOf = (bone: number): number => map[mappedOf(bone)]!;
     // How far each of the piece's bones is from its joint in the player's bind pose.
     const offsets = bones.map((_, bone): Vec3 => {
-      const joint = jointOf(bone);
+      const mapped = mappedOf(bone);
+      const joint = map[mapped]!;
       if (joint < 0) return [0, 0, 0];
-      return playerPositions[joint]!.map((c, k) => c - positions[bone]![k]!) as Vec3;
+      return playerPositions[joint]!.map((c, k) => c - positions[mapped]![k]!) as Vec3;
     });
 
-    const textureBase = textures.length;
+    // Each of the piece's images, by index, at its place in the model's
+    // list. An image the pieces share (the skin) goes in once. An index past
+    // the piece's images gets one of its own past the model's, so it can't
+    // land on another piece's texture.
+    const textureOf = images.map((image) => {
+      let index = textures.indexOf(image);
+      if (index < 0) index = textures.push(image) - 1;
+      return index;
+    });
     const materialBase = materials.length;
-    textures.push(...images);
     materials.push(
-      ...pmo.materials.map((m) => ({ ...m, textureIndex: m.textureIndex + textureBase })),
+      ...pmo.materials.map((m) => ({
+        ...m,
+        textureIndex: textureOf[m.textureIndex] ?? MISSING_TEXTURE + m.textureIndex,
+      })),
     );
 
     const meshBase = meshes.length;
@@ -191,6 +265,8 @@ export function composeHunter(pieces: readonly HunterPiece[]): HunterModel {
           return { position, normal: v.normal as Vec3 | undefined, scale: pmo.scale };
         }),
       );
+      meshSlots.push(slot);
+      meshMaterialBases.push(materialBase);
       meshes.push({
         uvScale: mesh.uvScale,
         primitives: mesh.primitives.map((primitive) => ({
@@ -212,6 +288,8 @@ export function composeHunter(pieces: readonly HunterPiece[]): HunterModel {
   ) as Vec3;
   return {
     bones: skeleton,
+    meshSlots,
+    meshMaterialBases,
     textures,
     pmo: {
       radius: Math.hypot(...scale),

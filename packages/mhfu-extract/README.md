@@ -554,6 +554,49 @@ Bulldrome's attacks come from its action code, not its spawner, so it has
 none; and Mosswine, Bullfango, Felynes, Melynxes, Great Thunderbugs and
 Remobras make none this way either.
 
+### Unused monster motions
+
+A monster's motion bank holds motions nothing in the game plays.
+`src/monsters/motion-use.ts` finds the ones its code can play, without
+running it:
+
+- **Players**: monster code plays a motion only through `0x09AC5228` and
+  `0x09AC8EE0` (EU), each taking an index into the emID's table of 8-byte
+  motion records (`0x09BD3780[emID]`, byte 0 the motion's slot). The
+  tables are near enough the identity, so what's used is decided by the
+  indices the code hands them.
+- **Walk**: from every method in the class's vtable, the code is followed
+  both ways at every branch and through jump tables, with the set of
+  values each register can hold (constants, arguments including `t0`-`t3`,
+  what they point at, the stack, a call's result). Functions are
+  summarised in terms of their arguments, so an index passed down through
+  helpers or read from a table handed to one (the movement helpers) comes
+  out as constants. A tail call (`j`) to a player is a play too. Where the
+  walk can't be sure it saw everything (recursion, a call depth of 24, a
+  pointer to the stack handed to a call, a branch out of the code), it
+  says so rather than guess. A play on another object (an effect, an
+  attack object) still counts its constant records as used, in case it is
+  the monster, but an index there it can't follow is let go. Every call to
+  the two players on the disc, tail calls included, is reached from some
+  class's vtable. About half a second a monster.
+- **Site file**: `export-site` writes
+  `public/models/monsters/emNN.unused-motions.json`, `{ "unused": [slot, …] }`,
+  for a monster with any, and removes an old one otherwise (always, for
+  a disc other than EU). The 3D viewer greys their numbers out.
+
+Species sharing a class (Rathian and Rathalos and their variants) aren't
+told apart: a motion one plays counts as used for all. A monster with an
+index the walk can't follow to a constant (from its state: Tigrex's
+family and Bulldrome) gets no file; the log says where. Lao-Shan
+Lung's records 20-31 can switch it to a shared table (record byte 3,
+`0x09BD38F0`) whose records are its alternates of walking motions 1-10;
+what allows the switch wasn't found, so those slots are never called
+unused.
+
+Checks it passed on the EU disc: every motion the Giadrome played in a
+PPSSPP log (1, 2, 6-9, 20-22, 25, 26, 30, 51) is used, and the unused
+lists didn't change when constant loads from game data were turned off.
+
 ### Monster breaks
 
 Each monster's `breaks` (`data/mhfu/monsters/*.json`) lists the body parts
@@ -761,7 +804,8 @@ file paths:
   `overlay/game_task.ovl` and the `emNN.ovl` files in the unpacked
   directory; the log names any monster without one, and why. From the EU
   disc, with `eboot.bin` and `overlay/game_sub.ovl` too, each also gets
-  `monsters/emNN.attacks.json` (see "Monster attacks").
+  `monsters/emNN.attacks.json` (see "Monster attacks") and, if it has any,
+  `monsters/emNN.unused-motions.json` (see "Unused monster motions").
 - **Weapons** need `eboot.bin`: each blademaster/gunner table entry, indexed
   by the game ID the site's weapon record carries, holds the model
   ID of its `weapon/weNNN.pac`. Verified on an EU EBOOT: all 1,500 weapons
@@ -791,16 +835,21 @@ previous manifest, so a run without `eboot.bin` keeps weapons and armor.
 
 ### Hunter
 
-`export-site` writes a hunter for the weapon pages' viewer to
-`public/models/hunter/` (1.4 MB in all, 245 two-piece weapon models grew by
+`export-site` writes a hunter for the weapon and armor pages' viewer to
+`public/models/hunter/` (1.5 MB in all, 245 two-piece weapon models grew by
 63 KB). Needs only `player/` and `motion/` from the
 unpacked directory; the log says `no hunter: ...` if it can't.
 
-| File                 | Size      | Holds                                                 |
-| -------------------- | --------- | ----------------------------------------------------- |
-| `hunter.glb`         | 50 KB     | Male Battle armor set, skinned to the player skeleton |
-| `common.motions.bin` | 0.9 KB    | The sheathed standing motion, from `plcom_tbl.bin`    |
-| `wNN.motions.bin`    | 92-196 KB | Every motion of weapon class NN                       |
+| File                      | Size      | Holds                                                            |
+| ------------------------- | --------- | ---------------------------------------------------------------- |
+| `hunter.glb`              | 57 KB     | Male Battle armor set and face, skinned to the player skeleton   |
+| `hunter-bare.glb`         | 48 KB     | Male hunter in the clothes under armor, with face and hairstyle  |
+| `hunter-bare-female.glb`  | 45 KB     | The same for the female hunter, on the female skeleton           |
+| `common.motions.bin`      | 0.9 KB    | The sheathed standing motion, from `plcom_tbl.bin`               |
+| `wNN.motions.bin`         | 92-196 KB | Every motion of weapon class NN                                  |
+| `look/<s>_faceNNN.glb`    | 1 MB all  | Each face and hairstyle (`<s>_headNNN.glb`), for the look picker |
+| `skin/<s>_<tone>_<k>.png` | 64 KB all | Each skin tone's images                                          |
+| `look.json`               | 2 KB      | What the look picker offers, by sex (`SiteLook`)                 |
 
 - **Skeleton.** 21 bones (`src/models/hunter.ts` lists them), T-pose, origin
   at the hips, left +X, facing +Z. Bones 0-8 are part 0 and 9-20 part 1.
@@ -827,8 +876,67 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   node per piece.
 - **Open.** Where the game puts a weapon isn't decoded. In hand, weapons sit in the fist (the middle of the gauntlets' hand vertices), gripped along the wrist joint's Z axis. The great sword, long sword, hammer and hunting horn are the right hand's (it draws and sheathes them alone), but while both hands hold one the right fist stays on the left fist's Z axis at a set distance (53, 62, 79 and 42) in most frames, turning about it, while the left fist wanders in the right's frame. So the viewer moves these to the left fist, along that axis, whenever the right fist is on it, and back to the right fist (in the place they share in the drawn stance) when it isn't. The fists don't say how far round its length a weapon is turned: these take the roll the right fist's own frame gives them, as one-handed weapons do, which matches the game for the Ravager Blade. Bowguns are in the right fist, turned so the stock reaches the left fist in most frames. All of this is a fit to the motions, not read from the game; at the end of a sheathe the weapon is still in the hand, since when the game moves it to the back isn't known. On the
   back they're placed by eye (`WEAPON_MOUNTS` in the site's `src/lib/hunter.ts`),
-  so a sheathed weapon is only roughly where the game has it. Only the male
-  Battle set is exported.
+  so a sheathed weapon is only roughly where the game has it. Weapons are
+  shown on the male hunter only.
+- **Skin.** Some armor materials index past the end of their package's
+  own `.TMH` images: the parts that show skin (thighs, hips, a neck). The
+  disc keeps four skin tones per sex outside every armor package,
+  `player/<m|f>/skin/<m|f>_skin000-003.tmh`, so `export-site` puts the first
+  tone's images after each piece's own (`src/models/skin.ts`), for armor and
+  the hunters alike, and marks each material drawn with one with its index
+  (material `extras.skin`), for the site to swap in another tone. That index mapping is inferred from the file layout,
+  not read from game code: the export lists any armor model whose materials
+  it still can't texture. (`composeHunter` also used to let such an index
+  fall onto the next piece's textures; each piece's textures are now mapped
+  one by one.) The `models` subcommand doesn't add skin.
+- **Face and hair** (`src/models/look.ts`). Faces are
+  `player/<m|f>/face/`, a two-bone skeleton (root, head) drawn on the head
+  joint; hairstyles are `player/<m|f>/head/`, built like helmets (helmet
+  model 0 is hairstyle 0), and the game draws one when no helmet is worn.
+  Hair textures are grey, tinted by the player's hair colour; the hunters
+  use face 0, hairstyle 0 and a dark brown on the hair's material 0 (every
+  hairstyle on the disc has its hair there, and at most a small tie or
+  ornament on material 1; which materials the game tints isn't decoded).
+  Some helmets hide all of the face, or its material 0, where it would show
+  through: a table by helmet model in the EBOOT, copied from
+  `BODY_MODEL_MATERIAL_MASKS` in tclamb/mhp2g-decomp
+  (`player_manager.material_masks.cpp`) as `FACE_MASKS`. Each hunter's own
+  helmet's mask is applied at export, and the table is written into
+  `look.json` for the helmets the site puts on.
+- **Look** (`exportLook`). A save's hunter has a face, hairstyle, hair
+  colour and clothes (`UserData` in tclamb/mhp2g-decomp's `game_sys.hpp`;
+  the site's save worker reads them). Each face has a skin tone
+  (`FACE_SKIN_TONES`), and the clothes are armor models picked by clothing
+  and tone (`CLOTHING_MODELS`, from `player_manager.skin.cpp`): the same
+  clothes in four models, the skin drawn into each one's own texture.
+  Clothing 2 at tone 0 is model 0, the bare hunter's. `export-site` writes
+  every face and hairstyle placed on the player skeleton like armor, tagged
+  by part (a face's `FACE_PART` + material, a hairstyle's hair
+  `HAIR_PART`, 7, undyed), every clothing model with the armor, the skin
+  tones as PNGs and `look.json`, so the armor viewer can dress its hunter
+  as a player picks or as a loaded save's hunter looks.
+- **Bare hunter.** Each armor slot's model 0 (`m_body000.pac` and so on) is
+  what the hunter wears under armor; female-only pieces use it as their male
+  model. `hunter-bare*.glb` are those, with the face and the hairstyle in
+  the helmet's place.
+- **Wearing armor.** The armor pages' viewer puts a piece, or its full set,
+  on the bare hunter of its sex in place of the pieces of their slots (the
+  site's `src/lib/hunter-armor.ts`), and hides the face as the helmet's mask
+  says. Each primitive of the hunters names its slot (`extras.part`, the
+  index in `HUNTER_ARMOR`), or for the face, `FACE_PART` (5) plus its
+  material, or for the hair `HAIR_PART`; a piece with several textures has
+  a primitive for each.
+  Every armor piece has its own partial skeleton, and pieces of a slot don't
+  all sit alike in theirs (the Giaprey Helm is modelled 12 units higher than
+  the Battle Helm). So `export-site` places each armor model on its sex's
+  player skeleton (the default leggings'), as `composeHunter` places the
+  hunter's pieces (`armorToGlb`), and stores each vertex's player joints and
+  weights as `_JOINTS_0` and `_WEIGHTS_0` (`jointWeights` in `gltf.ts`;
+  renderers ignore them). The site skins those to the hunter as they are. A
+  bone past the slot's joint map (a helmet's hair) rides with its nearest
+  mapped ancestor; a piece that still can't be placed is logged and left in
+  its own skeleton's place, where the site can only guess. The female hunter
+  plays the motions built on the male skeleton.
 - **Posed weapon bones** (`models/weapon-pose.ts`). Some weapons skin
   pieces to extra bones that the game moves at run time, and no motion file
   animates them: the Ravager Blade's (`we012`) claws are weighted 0.87/0.13

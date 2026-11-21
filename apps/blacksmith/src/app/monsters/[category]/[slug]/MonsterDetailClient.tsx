@@ -32,6 +32,7 @@ import {
   useMonsterAttacks,
   useMonsterHitboxes,
   useMonsterModel,
+  useMonsterUnusedMotions,
   type HitboxCapsule,
 } from "@/lib/models";
 import type { Monster, MonsterBreak } from "@/lib/types";
@@ -132,6 +133,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const hitboxes = useMonsterHitboxes(modelUrl);
   const [showHitzones, setShowHitzones] = useState(false);
   const attacks = useMonsterAttacks(modelUrl);
+  const unusedMotions = useMonsterUnusedMotions(modelUrl);
   const [showAttacks, setShowAttacks] = useState(false);
   const shownAttacks: ModelAttack[] | undefined = (showAttacks && attacks) || undefined;
   // A part or break hovered in the hitzone tab or the legend, and one picked
@@ -454,7 +456,13 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       {modelOpen && (
         <ModelPopover title={name} onClose={() => setOpenModel(null)}>
           <div className="relative h-full w-full">
-            <ModelViewer src={modelUrl} label={name} capsules={capsules} attacks={shownAttacks} />
+            <ModelViewer
+              src={modelUrl}
+              label={name}
+              capsules={capsules}
+              attacks={shownAttacks}
+              unusedMotions={unusedMotions ?? undefined}
+            />
             {(hitboxParts.length > 0 || attacks) && (
               <HitzoneControls
                 parts={hitboxParts}

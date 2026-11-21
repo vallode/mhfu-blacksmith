@@ -67,10 +67,24 @@ export interface GlbOptions {
   textureQuality?: number;
   /**
    * Which piece of a model a primitive belongs to (see `GlbPartOf`). More than
-   * one piece: each gets its own mesh and node, `part_0`, `part_1`, ..., in
-   * the model's space, so a viewer can move them apart. Unskinned models only.
+   * one piece, unskinned: each gets its own mesh and node, `part_0`, `part_1`,
+   * ..., in the model's space, so a viewer can move them apart. Skinned, the
+   * model stays one mesh on its skin and each primitive names its piece in
+   * `extras.part` (three.js: the geometry's `userData.part`).
    */
   partOf?: GlbPartOf;
+  /**
+   * Keep the model one mesh whatever `partOf` says, each primitive naming its
+   * piece in `extras.part`, as a skinned model does: for a piece the viewer
+   * skins to another model and needs to tell its primitives apart (a face's
+   * two materials, a hairstyle's hair).
+   */
+  tagParts?: boolean;
+  /**
+   * Values for the viewer on the material of each texture index, in its
+   * `extras` (three.js: the material's `userData`); undefined for none.
+   */
+  materialExtras?: (textureIndex: number) => Record<string, unknown> | undefined;
   /**
    * Morph targets: the same model in other shapes, vertex for vertex and at
    * the same `scale` (weapon-pose.ts's sheathed pose). Each is written as
@@ -78,6 +92,13 @@ export interface GlbOptions {
    * `extras.targetNames`, at weight 0. Unskinned models only.
    */
   targets?: GlbTarget[];
+  /**
+   * Unskinned: also store each vertex's joints and weights (from its
+   * primitive's bone palette), as the application-specific attributes
+   * `_JOINTS_0` and `_WEIGHTS_0`, which renderers ignore. For a model a
+   * viewer skins to another's skeleton (an armor piece on the hunter).
+   */
+  jointWeights?: boolean;
 }
 
 /** A morph target: the model's `pmo` in another shape. */
@@ -439,11 +460,10 @@ export async function buildGlb(
     mesh.primitives.every((p) => p.geometry.vertices.every(isExactVertex)),
   );
   const skinned = !!rig?.bones.length;
-  const layout = skinned ? skinnedLayout(exact ? EXACT : FLOATS) : exact ? EXACT : FLOATS;
+  const weighted = skinned || !!options.jointWeights;
+  const layout = weighted ? skinnedLayout(exact ? EXACT : FLOATS) : exact ? EXACT : FLOATS;
   const targets = options.targets ?? [];
   if (targets.length && skinned) throw new Error("morph targets on a skinned model");
-  // Each piece's node would need the skin, and its joints the pieces' places.
-  if (options.partOf && skinned) throw new Error("pieces of a skinned model");
   for (const target of targets)
     if (target.pmo.scale.some((s, k) => s !== pmo.scale[k]))
       throw new Error(`morph target ${target.name} has another scale`);
@@ -676,7 +696,7 @@ export async function buildGlb(
           type: "VEC2",
         },
       ];
-  if (skinned)
+  if (weighted)
     accessors.push(
       {
         bufferView: vertexView,
@@ -794,6 +814,10 @@ export async function buildGlb(
     }
     const alpha = texture !== undefined && textures[source.textureIndex]!.hasAlpha;
     if (effect) usesUnlit = true;
+    const extras = {
+      ...(effect ? { blend: effect } : {}),
+      ...options.materialExtras?.(source.textureIndex),
+    };
     materials.push({
       pbrMetallicRoughness: {
         ...(textureInfo ? { baseColorTexture: textureInfo } : {}),
@@ -804,10 +828,11 @@ export async function buildGlb(
       // subtractive mode, so `extras.blend` names it for the viewer, which
       // otherwise draws it alpha-blended.
       ...(effect
-        ? { alphaMode: "BLEND", extensions: { KHR_materials_unlit: {} }, extras: { blend: effect } }
+        ? { alphaMode: "BLEND", extensions: { KHR_materials_unlit: {} } }
         : alpha
           ? { alphaMode: "MASK", alphaCutoff: 0.5 }
           : {}),
+      ...(Object.keys(extras).length ? { extras } : {}),
       doubleSided: true,
     });
     index = materials.length - 1;
@@ -831,7 +856,11 @@ export async function buildGlb(
         POSITION: 0,
         NORMAL: 1,
         TEXCOORD_0: 2,
-        ...(skinned ? { JOINTS_0: 3, WEIGHTS_0: 4 } : {}),
+        ...(skinned
+          ? { JOINTS_0: 3, WEIGHTS_0: 4 }
+          : weighted
+            ? { _JOINTS_0: 3, _WEIGHTS_0: 4 }
+            : {}),
       },
       ...(targetAccessors.length ? { targets: targetAccessors } : {}),
       indices: accessors.length - 1,
@@ -869,19 +898,29 @@ export async function buildGlb(
   ];
   // Optional: a viewer without it draws the layer lit.
   const optional = usesUnlit ? ["KHR_materials_unlit"] : [];
-  // One mesh per piece, unless the model is whole (the usual case).
+  // One mesh per piece, unless the model is whole (the usual case). A
+  // skinned model's pieces share its skin, so they stay one mesh, each
+  // primitive naming its piece.
   const parts = [...new Set(gltfPrimitives.map((primitive) => primitive.part))].sort(
     (a, b) => a - b,
   );
   const meshPrimitives = (part: number) =>
     gltfPrimitives.filter((p) => p.part === part).map(({ part: _, ...primitive }) => primitive);
-  const whole = parts.length <= 1;
+  const whole = parts.length <= 1 || skinned || !!options.tagParts;
+  const tagged = (parts.length > 1 && skinned) || !!options.tagParts;
   // A mesh's morph targets, named (three.js reads `extras.targetNames`) and off.
   const morph = targets.length
     ? { weights: targets.map(() => 0), extras: { targetNames: targets.map((t) => t.name) } }
     : {};
   const meshes = whole
-    ? [{ primitives: gltfPrimitives.map(({ part: _, ...primitive }) => primitive), ...morph }]
+    ? [
+        {
+          primitives: gltfPrimitives.map(({ part, ...primitive }) =>
+            tagged ? { ...primitive, extras: { part } } : primitive,
+          ),
+          ...morph,
+        },
+      ]
     : parts.map((part) => ({ primitives: meshPrimitives(part), ...morph }));
   // Positions are in source units (normalized s16); unskinned, the model's
   // scale goes on the node.
