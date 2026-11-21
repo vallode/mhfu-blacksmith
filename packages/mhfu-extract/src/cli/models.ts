@@ -28,7 +28,8 @@ export interface ModelResult {
   error?: string;
 }
 
-async function listPacs(input: string): Promise<string[]> {
+/** `input` if it is a file, else every `.pac` under it, sorted. */
+export async function listPacs(input: string): Promise<string[]> {
   if (!(await stat(input)).isDirectory()) return [input];
   const entries = await readdir(input, { recursive: true, withFileTypes: true });
   return entries

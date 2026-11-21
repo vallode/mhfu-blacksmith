@@ -6,6 +6,7 @@
  *   tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw]
  *   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
  *   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
+ *   tsx src/cli.ts model-roundtrip --in <file.pac|dir>
  *   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
  *   tsx src/cli.ts item-icons --unpacked <dir> [--out <dir>]
  *   tsx src/cli.ts area-maps --unpacked <dir> [--data <dir>] [--out <dir>]
@@ -25,6 +26,7 @@ import { runItemIcons } from "./cli/item-icons.js";
 import { runExtract } from "./cli/extract.js";
 import { runFindNames } from "./cli/find-names.js";
 import { runLocales } from "./cli/locales.js";
+import { runModelRoundTrip } from "./cli/model-roundtrip.js";
 import { runModels } from "./cli/models.js";
 import { runQuestFlags } from "./cli/quest-flags.js";
 import { runQuestTextScan } from "./cli/quest-text-scan.js";
@@ -160,6 +162,16 @@ export async function main(argv: string[]): Promise<void> {
       });
       const converted = results.filter((result) => !result.error).length;
       console.log(`\nDone. Converted ${converted} of ${results.length} packages.`);
+      return;
+    }
+    case "model-roundtrip": {
+      const results = await runModelRoundTrip(requireFlag(flags, "in"));
+      const failed = results.filter((result) => result.problem);
+      for (const { source, problem } of failed) console.log(`${source}: ${problem}`);
+      console.log(
+        `${results.length - failed.length} of ${results.length} packages written back unchanged.`,
+      );
+      if (failed.length > 0) process.exitCode = 1;
       return;
     }
     case "export-site": {

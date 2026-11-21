@@ -11,13 +11,15 @@
  *   0x20 u32 mesh table        0x24 u32 vertex-group table
  *   0x28 u32 material map      0x2c u32 bone palette
  *   0x30 u32 material table    0x34 u32 display-list base
- * Mesh (0x18): f32[2] UV scale (u, v), u32 flags, u32 blend, u16 ?, u16
- *   material slot base, u16 vertex-group count, u16 first vertex group.
+ * Mesh (0x18): f32[2] UV scale (u, v), u32 flags, u32 blend, u16 material
+ *   slot count, u16 material slot base, u16 vertex-group count, u16 first
+ *   vertex group.
  *   The blend word is the GE ALPHA command (0xDF) the mesh draws with, or 0
  *   when it draws opaque; see `meshBlend`.
  * Vertex group (0x10): u8 material slot (relative to the mesh's base), u8
- *   palette entry count, u16 first palette entry, u32 display-list offset
- *   (relative to display-list base), u32, u32.
+ *   palette entry count, u16 first palette entry, then the offsets of its
+ *   display list, vertices and indices (u32 each, from the display-list base).
+ *   `pmo-file.ts` reads and writes every field.
  * Bone palette: (u8 matrix slot, u8 bone) pairs. Before drawing, a group
  *   loads its entries into the GE's bone matrix slots; a vertex's weights
  *   apply to slots 0, 1, ... Slots keep their bone until reloaded, within a
