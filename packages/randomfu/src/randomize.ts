@@ -135,6 +135,7 @@ import {
   type MenuSites,
 } from "./patches/game-hooks.js";
 import { menuObjects, prepareMenu } from "./patches/menu.js";
+import { prepareSendAll, type SendAll, sendAllObjects, sendAllReport } from "./patches/send-all.js";
 import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
 import { damageObjects, findDamageExterns } from "./patches/damage.js";
 import { LOGIC_VERSION } from "./version.js";
@@ -1225,7 +1226,10 @@ export function randomize(
     }
     // randomfu's START menu entry, where the features with settings can be changed in game.
     let menus: MenuSites[] | null = null;
-    if ((hit || monsterHp || hitboxes || camera) && typeof sites !== "string") {
+    const sendAllOn = settings["rewards.sendAll"];
+    if (sendAllOn && typeof sites === "string")
+      reports.push(notApplied("Send All to Item Box", sites));
+    if ((hit || monsterHp || hitboxes || camera || sendAllOn) && typeof sites !== "string") {
       const found = prepareMenu(game.eboot!, sites);
       if (typeof found === "string") {
         reports.push(
@@ -1234,15 +1238,36 @@ export function randomize(
             `${found}; monster health, attack hitboxes, damage numbers and the camera keep this disc's settings`,
           ),
         );
+        if (sendAllOn) reports.push(notApplied("Send All to Item Box", found));
       } else {
         optional.push(...menuObjects());
         Object.assign(externs, found.externs);
         menus = found.sites;
       }
     }
+    // Send All to Item Box: on the menu's hooks, so it goes in (and out) with them.
+    let sendAll: SendAll | null = null;
+    if (menus && sendAllOn && typeof sites !== "string") {
+      const found = prepareSendAll(game.eboot!, sites);
+      if (typeof found === "string") reports.push(notApplied("Send All to Item Box", found));
+      else {
+        optional.push(...sendAllObjects());
+        Object.assign(externs, found.externs);
+        sendAll = found;
+      }
+    }
     if (
       typeof hookSites !== "string" &&
-      (monsterHp || hitboxes || unknown || elites || pact || luck || keys || hit || camera)
+      (monsterHp ||
+        hitboxes ||
+        unknown ||
+        elites ||
+        pact ||
+        luck ||
+        keys ||
+        hit ||
+        camera ||
+        sendAll)
     ) {
       const install = (lean: boolean) => {
         const all = lean ? objects : [...objects, ...optional];
@@ -1260,7 +1285,7 @@ export function randomize(
             }),
             // The hit hook is damage numbers' alone.
             ...(hit && !(lean && numbers === "off") && { hit }),
-            ...(menus && !lean && { menus }),
+            ...(menus && !lean && { menus, calls: sendAll?.calls ?? [] }),
           },
           externs,
           data,
@@ -1286,6 +1311,19 @@ export function randomize(
       reports.push(loader);
       // A lean loader leaves out the camera's code when its options are off.
       cameraLinked = loader.applied && camera && (cameraOn || !wentLean);
+      if (sendAll) {
+        if (loader.applied && !wentLean) {
+          sendAll.patch(edits.eboot());
+          reports.push(sendAllReport());
+        } else if (loader.applied) {
+          reports.push(
+            notApplied(
+              "Send All to Item Box",
+              "it goes in with the START menu entry, which didn't fit",
+            ),
+          );
+        }
+      }
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {

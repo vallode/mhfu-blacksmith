@@ -95,6 +95,9 @@
  *   `buttons & 0x2008`). For the last entry the stub dispatches
  *   `RF_MENU_RUN` and returns its result.
  *
+ * Other calls can go through the same stub (`calls`), as sites from 8 on
+ * (`CALL_SITE`): the reward screen's label getter (`send-all.ts`).
+ *
  * A stub saves the call's arguments' first register and its result, so the
  * hook gets the HUD object (the `SceCtrlData` for hook 2, the results step's
  * object for hook 4) in `$a0` and the
@@ -145,6 +148,12 @@ export const HOOK = {
 
 /** `struct rf_menu`'s phase (`blob/rf.h`). */
 export const MENU_PHASE = { label: 0, select: 1, run: 2, draw: 3 } as const;
+/**
+ * Other game calls hook 8's stub takes (`assembleHooks`' `calls`), by the
+ * `site` it gives them: the first is 8, after both menus' four.
+ */
+export const CALL_SITE = { rewardLabel: 8 } as const;
+const FIRST_CALL_SITE = 8;
 
 /** The game's picker (hook 5): its address and its first two words, which the stub runs instead. */
 export interface PickSite {
@@ -566,12 +575,15 @@ export function assembleHooks(
   questLoader?: number,
   hit?: number,
   menus: readonly MenuSites[] = [],
+  calls: readonly HookCall[] = [],
 ): {
   code: number[];
   stubs: number[];
   questLoad?: { accept: number; depart: number };
   hit?: number;
   menus: MenuStubs[];
+  /** Each of `calls`' entry. */
+  calls: number[];
 } {
   const a = new Assembler();
   const { zero, v0, a0, a1, a2, t0, t1, t2, t3, t4, t9 } = R;
@@ -656,9 +668,9 @@ export function assembleHooks(
     a.i(ADDIU, SP, SP, frame.size);
   }
 
-  if (menus.length) {
+  if (menus.length || calls.length) {
     // The START menus: each call goes through two words that name it (its
-    // menu * 4 + MENU_PHASE) to one stub, which dispatches a `struct
+    // menu * 4 + MENU_PHASE, or FIRST_CALL_SITE + k for `calls`) to one stub, which dispatches a `struct
     // rf_menu` at sp+16: the call's $a0-$a3, $s0 and $s2 (the label loops'
     // row), the site, the game's function, and `handled` and `result`. The
     // blob does the rest, the game's call included; unless it sets
@@ -673,6 +685,11 @@ export function assembleHooks(
         a.branch(BEQ, zero, zero, "menu");
         a.i(ADDIU, zero, t4, menu.menu * 4 + phase);
       }
+    }
+    for (const k of calls.keys()) {
+      a.label(`call${k}`);
+      a.branch(BEQ, zero, zero, "menu");
+      a.i(ADDIU, zero, t4, FIRST_CALL_SITE + k);
     }
     a.label("menu");
     a.i(ADDIU, SP, SP, -size);
@@ -711,6 +728,7 @@ export function assembleHooks(
       game[menu.menu * 4 + MENU_PHASE.run] = menu.run.target;
       game[menu.menu * 4 + MENU_PHASE.draw] = menu.draw.target;
     }
+    for (const [k, call] of calls.entries()) game[FIRST_CALL_SITE + k] = call.target;
     for (let k = 0; k < game.length; k++) a.emit(game[k] ?? 0);
   }
 
@@ -744,6 +762,7 @@ export function assembleHooks(
       run: at + a.offsetOf(`menu${k}run`) * 4,
       draw: at + a.offsetOf(`menu${k}draw`) * 4,
     })),
+    calls: calls.map((_, k) => at + a.offsetOf(`call${k}`) * 4),
   };
 }
 

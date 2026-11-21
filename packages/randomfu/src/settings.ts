@@ -131,6 +131,7 @@ export interface Settings {
   "elites.chance": number;
   "quests.unknown": boolean;
   "quests.keyLabel": boolean;
+  "rewards.sendAll": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -1900,6 +1901,14 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The Village Chief's quest card (and likely the Guild's, not yet tried) shows a yellow ★ in its top right corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "rewards.sendAll",
+    section: "Reward screen",
+    label: "Send All to Item Box",
+    help: "The reward screen's menu after a quest gets a row between Send to Item Box and End: Send All to Item Box sends every reward the Item Box can take in one go, the comrade's items too, and ends the screen. What doesn't fit stays, with the menu, to take or sell as before. It goes in with the START menu's randomfu entry, so a disc with too many other new features to fit that leaves it out too.",
+    type: { kind: "boolean" },
+    default: true,
   },
 ];
 

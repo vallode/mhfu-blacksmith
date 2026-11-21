@@ -45,6 +45,7 @@ import {
   writePickHook,
   writeQuestLoadCalls,
   type HitSite,
+  type HookCall,
   type MenuSites,
   type HookSites,
   type PadSites,
@@ -334,6 +335,8 @@ export interface CodeLoaderOptions {
     hit?: HitSite;
     /** The START menus' calls (hook 8), for randomfu's own entry. */
     menus?: readonly MenuSites[];
+    /** Other EBOOT calls through hook 8's stub, as its sites from 8 on (`CALL_SITE`). */
+    calls?: readonly HookCall[];
   };
   /** The blob's externs that are found per disc. */
   externs?: Readonly<Record<string, number>>;
@@ -429,7 +432,7 @@ export function addCodeLoader(
   const questLoader = hooks?.questLoad?.sites.loader;
   const hit = hooks?.hit?.target;
   const hookWords = hooks
-    ? assembleHooks(0, blobAddress, calls, questLoader, hit, hooks.menus).code.length
+    ? assembleHooks(0, blobAddress, calls, questLoader, hit, hooks.menus, hooks.calls).code.length
     : 0;
   const pickWords = hooks?.pick ? assemblePickHook(0, blobAddress, hooks.pick).length : 0;
   const caveWords = words + hookWords + pickWords;
@@ -452,7 +455,15 @@ export function addCodeLoader(
   let hooksAt = "";
   if (hooks) {
     const hookAt = space.allocateCave(hookWords);
-    const hookStubs = assembleHooks(hookAt, blobAddress, calls, questLoader, hit, hooks.menus);
+    const hookStubs = assembleHooks(
+      hookAt,
+      blobAddress,
+      calls,
+      questLoader,
+      hit,
+      hooks.menus,
+      hooks.calls,
+    );
     space.writeCave(hookAt, hookStubs.code);
     const gameTask = hooks.gameTask ? edits.overlay(hooks.gameTask) : null;
     writeHookCalls(out, gameTask, hooks.sites, hookStubs.stubs);
@@ -470,6 +481,9 @@ export function addCodeLoader(
     }
     for (const [k, menu] of (hooks.menus ?? []).entries()) {
       writeMenuCalls(out, segment, menu, hookStubs.menus[k]!);
+    }
+    for (const [k, call] of (hooks.calls ?? []).entries()) {
+      out.writeUInt32LE(jal(hookStubs.calls[k]!), segment.offset + (call.call - segment.vaddr));
     }
     hooksAt = `, hooks ${hex(hookAt)}`;
     if (hooks.pick) {

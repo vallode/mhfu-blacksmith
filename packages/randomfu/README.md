@@ -191,6 +191,7 @@ web app shows as a tag):
 | `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                              |
 | `quests.unknown`                  | off         | "Unknown Monster?!" quests on Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards) |
 | `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards) |
+| `rewards.sendAll`                 | on          | A Send All to Item Box row in the reward screen's menu (caps Guild Cards)                              |
 
 ### Presets
 
@@ -1763,6 +1764,43 @@ has the details):
 Tried in PPSSPP on EU at the Village Chief with "Key Quest!" in the same
 corner; the star itself hasn't been seen in game yet. Not yet tried: the
 Guild's counters, and JP.
+
+## Send All to Item Box
+
+`rewards.sendAll` adds a row to the reward screen's menu after a quest,
+between "Send to Item Box" and "End": Send All to Item Box sends every
+reward the Item Box can take at once (the comrade's items too), as Send to
+Item Box does one by one, and plays its sound. With nothing left the screen
+ends, as End does. What doesn't fit, or can't go in the box, stays, with the
+menu, to take or sell as before. Its help bar says so. It's
+blob code (`blob/send-all.c`) on the pad hook and the START menu's hook,
+so it goes in with the START menu entry and caps Guild Cards; a disc whose
+loader only fits without the menu leaves it out.
+
+What it found (EU and JP (FUC), the same EBOOT code but for addresses and
+the confirm button, × on EU and ○ on JP; `src/patches/send-all.ts` has the
+details):
+
+- The reward screen is EBOOT code on the HUD object, an update and a draw
+  each frame of the results step. Its state is a byte (0 the menu), with
+  the menu's row beside it. The rewards are 32 slots of item and amount in
+  the save (16 for the Felyne comrade's items).
+- The menu is a list window from a template only this screen uses, its
+  labels game message IDs: three and a 0xFFFF a list. Making it four rows
+  (the template's rows, the update's row count and the row the back button
+  jumps to) and writing End's ID over the 0xFFFF gives a fourth row that
+  reads and works as End; the blob renames the third and takes the confirm
+  button on it. Without the blob, the disc has two End rows.
+- Sending an item is three EBOOT calls (can the box take it, add it, which
+  returns what didn't fit, and mark it seen); the blob makes the same ones.
+- The help bar takes the row + 4 as its message, which would give End the
+  wrong text: the blob sets End's on that row and draws its own window for
+  the new one.
+
+The four rows would run into the time left below the window, so the rows
+are 20 pixels high (from 22, and 24 for the comrade's) and the window 14
+higher. Tried in PPSSPP on EU: the row, its help, sending and ending. JP
+builds (its code matches) but hasn't been played.
 
 ## Code loader (prototype)
 
