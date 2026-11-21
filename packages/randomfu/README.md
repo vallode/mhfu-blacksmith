@@ -511,7 +511,10 @@ enters into it. Status goes to the monster's buildup counters (EU
 0x09C44F08) as it is.
 
 The patch scales an element in game_sub, as the float (`value × f × √f`,
-`f = mv / threshold`, by the motion value after any critical), when the attack's
+`f = mv / threshold`, by the motion value before any critical, worked back
+from the critical flags in `+0x2B`, so affinity leaves the element alone as
+in the game), for a weapon's motion row only (types 0 to 3 at `+0x1F`: the
+hit function deals type 0xB as fixed damage, its `+0x1E` the damage), when the attack's
 owner is a hunter with a Blademaster weapon (`+0x4E9` is 5, the getter's
 own test). It scales status in game_task: it rewrites the affinity code with
 integer maths (the same results for every input) and uses the room it
@@ -523,7 +526,8 @@ shots don't change. Seen in game (EU, the patch written into RAM, a thunder
 220 Great Sword): each hit's element damage was `22 × (mv / 26)^1.5 ×
 hitzone`, as the tests have it (a level 2 charge on a 25% part 29 against
 the game's 5), and the monster lost raw plus element (`+0x2E4`, 145 HP for
-three hits).
+three hits). That was before the motion row type and critical checks; those
+are checked only in the tests.
 
 `gathering` changes the pairs (value, item) in the gathering item tables of
 Village and Guild quests. Tables keep their length and the quest file its

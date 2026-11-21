@@ -44,8 +44,12 @@
  *
  * An element is scaled in game_sub, as the float it becomes, so it has no
  * u8 cap: `value × f × √f`, `f = mv / threshold`, when a Blademaster
- * hunter's hit has a motion value over the threshold, the one after a
- * critical hit. The curve, not a straight `value × f`, is what puts an
+ * hunter's swing has a motion value over the threshold. The motion value is
+ * the one before any critical hit, worked back from `+0x2B` (exactly for a
+ * critical, to within one for a negative one), so affinity leaves the element
+ * alone, as in the game. Only motion rows of types 0 to 3 (`+0x1F`), the
+ * ones the weapons' table has, count: the hit function deals type 0xB as
+ * fixed damage, its `+0x1E` the damage. The curve, not a straight `value × f`, is what puts an
  * elemental weapon ahead of a raw one by more the harder it hits: a hit's
  * raw damage already grows in step with its motion value.
  *
@@ -292,8 +296,9 @@ const BLADEMASTER = 5;
 
 /**
  * The element reads, each element `value × (mv / threshold)^1.5` as a float
- * when a Blademaster hunter's hit has a motion value (`+0x1E`) over the
- * threshold, and `value` otherwise; padded with `nop`s to the same length. Uses `$v1`,
+ * when a Blademaster hunter's swing (a motion row type 0 to 3 at `+0x1F`)
+ * has a motion value (`+0x1E`, before any critical hit) over the threshold,
+ * and `value` otherwise; padded with `nop`s to the same length. Uses `$v1`,
  * `$a0`, `$a1`, `$at`, `$f0` and `$f1`, which the call right after it
  * clobbers.
  */
@@ -315,9 +320,35 @@ export function assembleElementReads(threshold: number): number[] {
 
   a.i(LHU, s5, v0, 0x28); // the game's own first word
   // The branch target: the factor's numerator in $a0, the threshold unless
-  // a Blademaster hunter's motion value is over it.
+  // a Blademaster hunter's swing has a motion value over it.
   a.i(LBU, s5, v1, 0x2a);
   a.i(LBU, s5, a0, 0x1e);
+  // The motion value before a critical hit: the affinity code stored
+  // floor(5m / 4) (flag 0x80) or floor(3m / 4) (0x40); ceil(4x / 5) is m
+  // again, ceil(4x / 3) m or one less.
+  a.i(LBU, s5, at, 0x2b);
+  a.i(ANDI, at, a1, 0x80);
+  a.branch(BEQ, a1, zero, "notCritical");
+  a.i(ANDI, at, a1, 0x40);
+  a.i(ADDIU, zero, a1, 5);
+  a.branch(BEQ, zero, zero, "uncrit");
+  a.i(ADDIU, zero, at, 4);
+  a.label("notCritical");
+  a.branch(BEQ, a1, zero, "base");
+  a.i(ADDIU, zero, a1, 3);
+  a.i(ADDIU, zero, at, 2);
+  a.label("uncrit"); // a0 = (4 × a0 + at) / a1
+  a.r(0, a0, a0, 2, SLL);
+  a.r(a0, at, a0, 0, ADDU);
+  a.r(a0, a1, 0, 0, DIVU);
+  a.r(0, 0, a0, 0, MFLO);
+  a.label("base");
+  // Only a weapon's motion row (types 0 to 3 at +0x1F; type 0xB is fixed
+  // damage, its +0x1E the damage), over the threshold.
+  a.i(LBU, s5, at, 0x1f);
+  a.i(SLTIU, at, at, 4);
+  a.branch(BEQL, at, zero, "scale");
+  plain();
   a.i(SLTIU, a0, at, threshold + 1);
   a.branch(BNEL, at, zero, "scale");
   plain();
@@ -402,8 +433,8 @@ export function patchElementMotion(
   return {
     title: TITLE,
     notes: [
-      `A Blademaster hit carries its weapon's element times (motion value / ${threshold})^1.5, when that's more than 1: a Great Sword's side slash (motion value 36) ${factor(36)} times as much, its draw slash (48) ${factor(48)}, its level 3 charge (110) ${factor(110)}; a Dual Blades or Sword and Shield hit the same as before. Status builds up times motion value / ${threshold}, up to 2550 shown a hit.`,
-      "The weapon screens show the usual values. The element follows the hit's motion value after a critical hit; status, the one before it. The element skills multiply first.",
+      `A Blademaster swing carries its weapon's element times (motion value / ${threshold})^1.5, when that's more than 1: a Great Sword's side slash (motion value 36) ${factor(36)} times as much, its draw slash (48) ${factor(48)}, its level 3 charge (110) ${factor(110)}; a hit with motion value ${threshold} or less (Dual Blades hits are 6 to 25) the same as before. Status builds up times motion value / ${threshold}, up to 2550 shown a hit.`,
+      "The weapon screens show the usual values. Both use the motion value before any critical hit, so affinity changes neither, as in the game. The element skills multiply first.",
     ],
     lines: [],
     summary: `${TITLE}: from motion value ${threshold}`,

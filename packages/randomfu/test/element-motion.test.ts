@@ -126,7 +126,7 @@ test("element by motion value: scales status by the motion value before a critic
   }
 });
 
-test("element by motion value: a level 3 charge and a Dual Blades hit at 22", () => {
+test("element by motion value: game_task scales status, capped, for a level 3 charge and a Dual Blades hit at 22", () => {
   const swing = {
     kinds: 1,
     weapon: true,
@@ -226,6 +226,10 @@ interface Hit {
   weapon: number;
   /** What the element registers held before. */
   before: number;
+  /** The motion row's type, `+0x1F`: 0 to 3 a weapon's, 0xB fixed damage. */
+  type: number;
+  /** `+0x2B`: 0x80 a critical hit, 0x40 a negative one. */
+  crit: number;
 }
 
 /** Runs `words` on one hit; the element registers' bits after. */
@@ -238,6 +242,8 @@ function runReads(words: readonly number[], hit: Hit): number[] {
   const attack = new Uint8Array(0x100);
   new DataView(attack.buffer).setUint16(0x28, hit.kinds, true);
   attack[0x2a] = hit.element;
+  attack[0x1f] = hit.type;
+  attack[0x2b] = hit.crit;
   attack[0x1e] = hit.mv;
   attack[0x0f] = hit.ownerKind;
   memory.add(ATTACK, attack);
@@ -264,6 +270,8 @@ function hits(count: number): Hit[] {
     ownerKind: pick([0, 0, 0, 1]),
     weapon: pick([5, 5, 5, 0, 6]),
     before: pick([0, 0x3f800000, rng.int(0x40000000)]),
+    type: pick([0, 1, 2, 3, 0, 1, 0xa, 0xb, rng.int(256)]),
+    crit: pick([0, 0, 0x40, 0x80, rng.int(256)]),
   }));
 }
 
@@ -273,7 +281,7 @@ const bits = (value: number) => new Uint32Array(new Float32Array([value]).buffer
 test("element by motion value: game_sub's element reads do what the game's did", () => {
   for (const hit of hits(3000)) {
     assert.deepEqual(
-      runReads(assembleElementReads(255), hit),
+      runReads(assembleElementReads(400), hit), // no motion value, worked back from a negative critical (at most 341), passes 400
       runReads(ELEMENT_READS, hit),
       JSON.stringify(hit),
     );
@@ -281,6 +289,10 @@ test("element by motion value: game_sub's element reads do what the game's did",
 });
 
 /** `value × f × √f`, `f = mv / threshold`, in the patch's float steps. */
+/** The motion value before a critical hit, as the patch works it back. */
+const base = ({ mv, crit }: Hit) =>
+  crit & 0x80 ? Math.floor((4 * mv + 4) / 5) : crit & 0x40 ? Math.floor((4 * mv + 2) / 3) : mv;
+
 const curve = (value: number, mv: number, threshold: number) => {
   const f = Math.fround(mv / threshold);
   return Math.fround(value * Math.fround(f * Math.fround(Math.sqrt(f))));
@@ -291,8 +303,12 @@ test("element by motion value: a Blademaster's element grows on a curve with the
     for (const hit of hits(1500)) {
       const game = runReads(ELEMENT_READS, hit);
       const scaled =
-        hit.owned && hit.ownerKind === 0 && hit.weapon === 5 && hit.mv > threshold
-          ? bits(curve(hit.element, hit.mv, threshold))
+        hit.owned &&
+        hit.ownerKind === 0 &&
+        hit.weapon === 5 &&
+        hit.type < 4 &&
+        base(hit) > threshold
+          ? bits(curve(hit.element, base(hit), threshold))
           : bits(hit.element);
       const want = ELEMENT_REGS.map(([flag], k) => (hit.kinds & flag ? scaled : game[k]!));
       assert.deepEqual(
@@ -311,6 +327,8 @@ test("element by motion value: a Blademaster's element grows on a curve with the
     ownerKind: 0,
     weapon: 5,
     before: 0,
+    type: 0,
+    crit: 0,
   };
   assert.equal(f32(runReads(assembleElementReads(26), charge)[0]!).toFixed(1), "522.1");
   // A side slash (36) 1.6 times; a bowgun's shot keeps its element.
@@ -319,4 +337,11 @@ test("element by motion value: a Blademaster's element grows on a curve with the
     "97.8",
   );
   assert.equal(f32(runReads(assembleElementReads(26), { ...charge, weapon: 6 })[0]!), 60);
+  // A critical level 3 charge (137) carries what a plain one does; fixed
+  // damage (type 0xB, +0x1E the damage) keeps its element.
+  assert.equal(
+    f32(runReads(assembleElementReads(26), { ...charge, mv: 137, crit: 0x80 })[0]!).toFixed(1),
+    "522.1",
+  );
+  assert.equal(f32(runReads(assembleElementReads(26), { ...charge, type: 0xb })[0]!), 60);
 });
