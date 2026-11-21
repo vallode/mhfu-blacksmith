@@ -18,6 +18,7 @@
  * `"Defence"` for `"Defense"`) are not, and a spelling difference alone is
  * not a value disagreement.
  */
+import { assertMhfuExtraction } from "./extract-mhp2.js";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { canonicalDecorationSkill, canonicalSkillName } from "../overlay/skill-name-aliases.js";
@@ -168,6 +169,7 @@ export function diffFile(file: string, extracted: unknown, committed: unknown): 
 }
 
 export async function runDiff(options: DiffOptions): Promise<DiffReport> {
+  await assertMhfuExtraction(options.extracted);
   const extractedFiles = await listJsonFiles(options.extracted);
   // Schemas and string tables have no extracted counterpart; records are
   // compared in their named view (readData), as extract writes them.

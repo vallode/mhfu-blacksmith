@@ -242,12 +242,7 @@ code {
 
   @media (hover: hover) {
     &:hover {
-      background: linear-gradient(
-        0.25turn,
-        transparent,
-        color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
-        transparent
-      );
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }
@@ -352,12 +347,7 @@ code {
 
   @media (hover: hover) {
     &:enabled:not([aria-current]):hover {
-      background: linear-gradient(
-        0.25turn,
-        transparent,
-        color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
-        transparent
-      );
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }
@@ -535,12 +525,7 @@ code {
   @media (hover: hover) {
     &:enabled:hover {
       color: white;
-      background: linear-gradient(
-        0.25turn,
-        transparent,
-        color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
-        transparent
-      );
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }
@@ -636,12 +621,7 @@ textarea.text-input {
     content: "";
     position: absolute;
     inset: 0.8rem 1rem;
-    background: linear-gradient(
-      0.25turn,
-      transparent,
-      color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
-      transparent
-    );
+    background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
     animation: var(--animate-hover-glow);
     visibility: hidden;
     pointer-events: none;
@@ -773,12 +753,7 @@ textarea.text-input {
 
   @media (hover: hover) {
     &:not(:has(input:checked, input:disabled)):hover {
-      background: linear-gradient(
-        0.25turn,
-        transparent,
-        color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
-        transparent
-      );
+      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
       animation: var(--animate-hover-glow);
     }
   }

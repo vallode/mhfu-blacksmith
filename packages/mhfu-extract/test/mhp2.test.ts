@@ -4,7 +4,8 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { test } from "node:test";
 import { BinaryReader } from "../src/binary/reader.js";
-import { runExtractMhp2 } from "../src/cli/extract-mhp2.js";
+import { assertMhfuExtraction, runExtractMhp2 } from "../src/cli/extract-mhp2.js";
+import { main } from "../src/cli.js";
 import {
   checkMhp2Tables,
   MHP2_ARMOR_ENTRY_SIZE,
@@ -280,4 +281,86 @@ test("readMhp2Text fails a name table whose extra names aren't placeholders", ()
   const leg = result.checks.find((c) => c.name === "leg names: one per entry")!;
   assert.equal(leg.ok, false);
   assert.match(leg.detail, /312 names \(table 15\) for 309 entries, the 3 extra not placeholders/);
+});
+
+test("checkMhp2Tables fails a gunner weapon whose model maps to a blade type", () => {
+  const buf = fixtureEboot();
+  // Gunner entry 2 on model 5, a hammer.
+  buf.writeUInt16LE(5, T.weaponsGunner.offset + 2 * MHP2_GUNNER_ENTRY_SIZE);
+  const check = checkMhp2Tables(new BinaryReader(buf), readMhp2Tables(new BinaryReader(buf))).find(
+    (c) => c.name === "every weapon's model has a weapon type of its kind",
+  )!;
+  assert.equal(check.ok, false);
+  assert.match(check.detail, /0 blademaster .*, 1 gunner/);
+});
+
+/** An MHF2 unpack in a temp dir with this EBOOT and the fixture message files. */
+function fixtureUnpack(eboot: Buffer): { dir: string; unpacked: string } {
+  const dir = mkdtempSync(path.join(tmpdir(), "mhfu-extract-mhp2-"));
+  const unpacked = path.join(dir, "unpacked");
+  mkdirSync(path.join(unpacked, "data-bin", "_unindexed"), { recursive: true });
+  writeFileSync(path.join(unpacked, "eboot.bin"), eboot);
+  MHP2_EU_MESSAGE_FILES.forEach((index, i) =>
+    writeFileSync(
+      path.join(unpacked, "data-bin", "_unindexed", `${index}.bin`),
+      fixtureMessages(i === 0 ? "" : "é"),
+    ),
+  );
+  writeFileSync(
+    path.join(unpacked, "manifest.json"),
+    JSON.stringify({
+      game: "mhp2",
+      region: "eu",
+      discId: "ULES00851",
+      isoPath: "",
+      fileCount: 0,
+      unpackedAt: "",
+    }),
+  );
+  return { dir, unpacked };
+}
+
+test("runExtractMhp2 turns away an EBOOT of the wrong size before reading it", async () => {
+  const { dir, unpacked } = fixtureUnpack(Buffer.alloc(1024));
+  try {
+    await assert.rejects(
+      runExtractMhp2({ unpacked, out: path.join(dir, "out") }),
+      /isn't the EU MHF2 one .*: 1024 bytes, expected 1424032/,
+    );
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("extract on an MHF2 unpack refuses MHFU-only flags", async () => {
+  const { dir, unpacked } = fixtureUnpack(fixtureEboot());
+  try {
+    for (const flag of [["--raw"], ["--dlc", "quests"]]) {
+      await assert.rejects(
+        main(["extract", "--unpacked", unpacked, "--out", path.join(dir, "out"), ...flag]),
+        new RegExp(`${flag[0]} reads MHFU's quests and tables`),
+      );
+    }
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("assertMhfuExtraction refuses MHF2 extract output and passes MHFU's", async () => {
+  const dir = mkdtempSync(path.join(tmpdir(), "mhfu-extract-extraction-"));
+  try {
+    await assertMhfuExtraction(dir); // no EXTRACTION.json
+    writeFileSync(
+      path.join(dir, "EXTRACTION.json"),
+      JSON.stringify({ region: "jp", discId: "ULJM05500" }),
+    );
+    await assertMhfuExtraction(dir);
+    writeFileSync(
+      path.join(dir, "EXTRACTION.json"),
+      JSON.stringify({ game: "mhp2", region: "eu" }),
+    );
+    await assert.rejects(assertMhfuExtraction(dir), /is mhp2 extract output, not MHFU's/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });

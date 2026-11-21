@@ -181,6 +181,13 @@ export async function main(argv: string[]): Promise<void> {
         await readFile(path.join(unpacked, "manifest.json"), "utf-8"),
       ) as UnpackManifest;
       if (manifestGame(unpackManifest) === "mhp2") {
+        for (const flag of ["raw", "dlc"]) {
+          if (flags[flag] !== undefined) {
+            throw new Error(
+              `--${flag} reads MHFU's quests and tables; MHF2's extract has no such option.`,
+            );
+          }
+        }
         const result = await runExtractMhp2({ unpacked, out: requireFlag(flags, "out") });
         const failed = result.checks.filter((c) => !c.ok).length;
         console.log(`\nDone. MHF2 tables extracted; ${failed} check(s) failed.`);

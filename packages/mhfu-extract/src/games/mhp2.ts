@@ -43,6 +43,8 @@ import {
   type WeaponTypeName,
 } from "../tables/weapons.js";
 
+const GUNNER_TYPES: ReadonlySet<WeaponTypeName> = new Set(["light-bowgun", "heavy-bowgun", "bow"]);
+
 /** Size of the decrypted EU MHF2 EBOOT these offsets were found in. */
 export const MHP2_EU_EBOOT_BYTES = 1_424_032;
 
@@ -313,13 +315,22 @@ export function checkMhp2Tables(reader: BinaryReader, tables: Mhp2Tables): Mhp2C
     `${badSharpness.length} out of range`,
   );
 
-  const untyped = [...tables.blademaster, ...tables.gunner].filter(
-    (w) => w.weaponType === null && w.modelId !== 0,
-  );
+  // The model map runs on past the real models into padding, which reads as
+  // type 0 (great sword), so a type alone proves little: a blademaster's must
+  // be a blade, a gunner's a bowgun or bow. Model 0 is the placeholder.
+  const wrongKind = (
+    weapons: { modelId: number; weaponType: WeaponTypeName | null }[],
+    gun: boolean,
+  ) =>
+    weapons.filter(
+      (w) => w.modelId !== 0 && (w.weaponType === null || GUNNER_TYPES.has(w.weaponType) !== gun),
+    ).length;
+  const badBlade = wrongKind(tables.blademaster, false);
+  const badGun = wrongKind(tables.gunner, true);
   check(
-    "every weapon's model has a weapon type",
-    untyped.length === 0,
-    `${untyped.length} without`,
+    "every weapon's model has a weapon type of its kind",
+    badBlade + badGun === 0,
+    `${badBlade} blademaster weapons without a blade type, ${badGun} gunner weapons without a bowgun or bow type`,
   );
 
   const nonMonotonic = tables.sharpness.filter((s) => {

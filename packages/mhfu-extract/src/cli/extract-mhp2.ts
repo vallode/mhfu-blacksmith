@@ -9,6 +9,7 @@ import path from "node:path";
 import { BinaryReader } from "../binary/reader.js";
 import {
   checkMhp2Tables,
+  MHP2_EU_EBOOT_BYTES,
   MHP2_EU_TABLES,
   MHP2_REGULAR_ITEMS,
   readMhp2Tables,
@@ -27,6 +28,26 @@ export interface Mhp2ExtractionManifest {
   counts: Record<string, number>;
   /** Where each table was read from, as hex file offsets in eboot.bin. */
   offsets: Record<string, string>;
+}
+
+/**
+ * Throw if `dir` holds another game's `extract` output. MHFU's
+ * EXTRACTION.json has no `game`; MHF2's says "mhp2" and its files, though
+ * some share MHFU's names (items.json), have other shapes, which build-data,
+ * diff and compare would misread.
+ */
+export async function assertMhfuExtraction(dir: string): Promise<void> {
+  let manifest: { game?: unknown };
+  try {
+    manifest = JSON.parse(await readFile(path.join(dir, "EXTRACTION.json"), "utf-8"));
+  } catch {
+    return; // No manifest: nothing says it isn't MHFU's; the command's own reads decide.
+  }
+  if (manifest.game !== undefined && manifest.game !== "mhp2g") {
+    throw new Error(
+      `${dir} is ${String(manifest.game)} extract output, not MHFU's: this command reads MHFU's data/ shapes. See README's "Other games".`,
+    );
+  }
 }
 
 export async function runExtractMhp2(options: {
@@ -48,12 +69,14 @@ export async function runExtractMhp2(options: {
     throw new Error(`${options.unpacked} was unpacked with --skip-eboot, so it has no eboot.bin.`);
   }
   const reader = new BinaryReader(await readFile(path.join(options.unpacked, "eboot.bin")));
+  // Before reading: a shorter EBOOT would otherwise fail on an out-of-range read.
+  if (reader.buf.length !== MHP2_EU_EBOOT_BYTES) {
+    throw new Error(
+      `This EBOOT isn't the EU MHF2 one the table offsets were found in: ${reader.buf.length} bytes, expected ${MHP2_EU_EBOOT_BYTES}.`,
+    );
+  }
   const tables = readMhp2Tables(reader);
   const checks = checkMhp2Tables(reader, tables);
-  if (!checks[0]!.ok) {
-    for (const c of checks) console.log(`  ${c.ok ? "ok  " : "FAIL"} ${c.name}: ${c.detail}`);
-    throw new Error("This EBOOT isn't the EU MHF2 one the table offsets were found in.");
-  }
 
   const messageFiles = await Promise.all(
     MHP2_EU_MESSAGE_FILES.map((i) =>

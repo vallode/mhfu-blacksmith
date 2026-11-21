@@ -269,8 +269,12 @@ were found with `table-probe`; the module comment has the field-by-field
 evidence. The checks: the EBOOT is the EU MHF2 one (by size); MHF2's own
 armor pointers are spaced exactly as the armor tables, which were found by
 content; every blademaster sharpness ID is in the sharpness table; every
-weapon's model has a weapon type; sharpness thresholds never decrease; and
-armor rarity stays at 10 or under. Names and descriptions come from MHF2's
+weapon's model has a type of its kind (a blade for blademaster weapons, a
+bowgun or bow for gunner ones; the model map runs on into padding that reads
+as great sword, so a type alone proves nothing); sharpness thresholds never
+decrease; and armor rarity stays at 10 or under. `build-data`, `diff` and
+`compare` refuse this output (its `EXTRACTION.json` says `"game": "mhp2"`),
+as `extract` refuses MHFU-only flags (`--raw`, `--dlc`) on an MHF2 unpack. Names and descriptions come from MHF2's
 own message files (`src/games/mhp2-text.ts`): `message-probe` found DATA.BIN
 3-7, one file per language, whose tables pair up (names, descriptions) with
 the equipment tables by size. The English file is picked as the one with the

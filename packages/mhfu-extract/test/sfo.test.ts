@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { detectDisc, detectRegion, parseSfo } from "../src/container/sfo.js";
+import { detectDisc, detectRegion, isGame, parseSfo } from "../src/container/sfo.js";
 
 /** A PARAM.SFO with string entries; `usedLen` overrides an entry's recorded length. */
 function buildSfo(entries: { key: string; value: string; maxLen: number; usedLen?: number }[]) {
@@ -56,4 +56,14 @@ test("detectDisc names the game and region of each retail MHF1, MHF2 and MHFU di
 test("detectRegion still only accepts MHFU discs", () => {
   const sfo = parseSfo(buildSfo([{ key: "DISC_ID", value: "ULJM05156", maxLen: 16 }]));
   assert.deepEqual(detectRegion(sfo), { region: null, discId: "ULJM05156" });
+});
+
+test("isGame takes the three games only, not object property names", () => {
+  assert.deepEqual(["mhp", "mhp2", "mhp2g"].map(isGame), [true, true, true]);
+  assert.deepEqual(["constructor", "toString", "__proto__", "mhp3"].map(isGame), [
+    false,
+    false,
+    false,
+    false,
+  ]);
 });

@@ -74,7 +74,7 @@ export const KNOWN_DISCS: Readonly<Record<string, { game: Game; region: Region }
 };
 
 export function isGame(value: string): value is Game {
-  return value in GAME_NAMES;
+  return Object.hasOwn(GAME_NAMES, value);
 }
 
 export function isRegion(value: string): value is Region {
