@@ -52,6 +52,9 @@ struct rf_save_data {
   u8 monster_hp;
   /* Attack hitboxes (hitboxes.c): the same, off 0 or on 1 + 1 */
   u8 hitboxes;
+  /* The camera (camera.c): the same, each its choice + 1 */
+  u8 camera_fov;
+  u8 camera_distance;
 };
 
 /* The save's randomfu data, set up by rf_init before any feature's init. */

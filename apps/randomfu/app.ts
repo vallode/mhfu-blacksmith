@@ -113,9 +113,10 @@ const OPTION_STEPS: Step[] = [
       "Unknown Monster?! quests",
       "Key quests",
       "HUD",
+      "Camera",
     ],
     intro:
-      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code, which caps received Guild Cards at 3 to make room for it. Monster health, damage numbers and attack hitboxes are on every disc, switched in game from the START menu's randomfu entry, so every disc caps Guild Cards; their options only pick how a disc starts. Of the rest only Poogie's luck is on unless you turn the others on. Elite monsters and damage numbers haven't been tried in game yet.",
+      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code, which caps received Guild Cards at 3 to make room for it. Monster health, damage numbers, attack hitboxes and the camera are on every disc, switched in game from the START menu's randomfu entry, so every disc caps Guild Cards; their options only pick how a disc starts. Of the rest only Poogie's luck is on unless you turn the others on. Elite monsters and damage numbers haven't been tried in game yet.",
   },
   {
     id: "extras",
@@ -145,6 +146,7 @@ const SECTION_ICONS: Record<string, Sprite> = {
   Deliveries: { icon: "egg", tint: "var(--color-parchment)" },
   "Quest goals": { icon: "scroll", tint: "var(--color-gem-orange)" },
   "Quest maps": { icon: "binoculars" },
+  Camera: { icon: "binoculars", tint: "var(--color-gem-cyan)" },
   "Hunter's Pact": { icon: "ko", tint: "var(--color-gem-red)" },
   Poogie: { icon: "meat", tint: "var(--color-gem-pink)" },
   "Quest monsters": { icon: "monsters/flying-wyvern", tint: "var(--color-gem-orange)" },

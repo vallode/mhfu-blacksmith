@@ -428,3 +428,24 @@ test("Poogie's luck is reported when on, and the test notice shows only when it 
   assert.ok(!off.reports.some((r) => r.title === "Poogie"));
   close();
 });
+
+test("the camera is reported when on and it can't go in, and not when it's off", async () => {
+  const { game, close } = await load(fixtureFile());
+  const wide = applySettings(defaultSettings("c"), {
+    "camera.fov": "wider",
+    "camera.distance": "farther",
+  });
+  // The fixture's EBOOT has none of the game's code: no projection update to patch.
+  const on = randomize(game, wide);
+  const camera = on.reports.filter((r) => r.title === "Camera");
+  assert.equal(camera.length, 1);
+  assert.match(camera[0]!.summary ?? "", /Camera: not applied/);
+  const demo = randomize(game, wide, { loaderDemo: true });
+  assert.match(
+    demo.reports.find((r) => r.title === "Camera")?.summary ?? "",
+    /not applied \(the loader demo's blob/,
+  );
+  const off = randomize(game, defaultSettings("c"));
+  assert.ok(!off.reports.some((r) => r.title === "Camera"));
+  close();
+});
