@@ -108,6 +108,10 @@ export class Cpu {
         else if (funct === 0x09) {
           target = u(rs);
           set(rd, pc + 8);
+        } else if (funct === 0x0a) {
+          if (r[rt] === 0) set(rd, u(rs)); // movz
+        } else if (funct === 0x0b) {
+          if (r[rt] !== 0) set(rd, u(rs)); // movn
         } else if (funct === 0x10) set(rd, this.hi);
         else if (funct === 0x12) set(rd, this.lo);
         else if (funct === 0x18) {

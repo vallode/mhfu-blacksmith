@@ -111,6 +111,12 @@ import {
   patchFov,
   prepareCamera,
 } from "./patches/camera.js";
+import {
+  patchQuestEnd,
+  questEndExterns,
+  questEndObjects,
+  questEndReport,
+} from "./patches/quest-end.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findHitboxExterns, hitboxObjects } from "./patches/hitboxes.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
@@ -979,6 +985,17 @@ export function randomize(
   }
 
   const testing: string[] = [];
+  // The wait after a quest: an EBOOT patch whose data word is the disc's
+  // choice, so it works with no blob; the blob changes the word in game.
+  // The EBOOT is patched before the blob is linked, so the blob only goes in
+  // to write a word that's there.
+  const questEndOn = settings["quest.endWait"] !== "normal";
+  let questEndAt: number | string | null = null;
+  const patchQuestEndNow = (): number | string =>
+    (questEndAt = !game.eboot
+      ? "the EBOOT wasn't loaded"
+      : patchQuestEnd(edits.eboot(), settings["quest.endWait"]));
+  let questEndInGame = false;
   if (options.loaderDemo) {
     const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
       objects: decodeObjects(DEMO_OBJECTS),
@@ -1007,6 +1024,7 @@ export function randomize(
         summary: `Camera: not applied (${why})`,
       });
     }
+    if (questEndOn) patchQuestEndNow();
   } else {
     // Each feature is resolved on its own first: one that doesn't match this
     // disc is left out, and the loader (which caps Guild Cards) only goes in
@@ -1090,6 +1108,15 @@ export function randomize(
       (cameraOn ? objects : optional).push(...cameraObjects());
       Object.assign(externs, cameraFound);
       camera = true;
+    }
+    let questEnd = false;
+    if (questEndOn || typeof sites !== "string") {
+      const word = patchQuestEndNow();
+      if (typeof word !== "string" && typeof sites !== "string") {
+        optional.push(...questEndObjects());
+        Object.assign(externs, questEndExterns(word, settings));
+        questEnd = true;
+      }
     }
     const prepared = !settings["quests.unknown"]
       ? null
@@ -1236,13 +1263,16 @@ export function randomize(
     const sendAllOn = settings["rewards.sendAll"];
     if (sendAllOn && typeof sites === "string")
       reports.push(notApplied("Send All to Item Box", sites));
-    if ((hit || monsterHp || hitboxes || camera || sendAllOn) && typeof sites !== "string") {
+    if (
+      (hit || monsterHp || hitboxes || camera || questEnd || sendAllOn) &&
+      typeof sites !== "string"
+    ) {
       const found = prepareMenu(game.eboot!, sites);
       if (typeof found === "string") {
         reports.push(
           notApplied(
             "randomfu's START menu entry",
-            `${found}; monster health, attack hitboxes, damage numbers and the camera keep this disc's settings`,
+            `${found}; monster health, attack hitboxes, damage numbers, the camera and the wait after a quest keep this disc's settings`,
           ),
         );
         if (sendAllOn) reports.push(notApplied("Send All to Item Box", found));
@@ -1280,6 +1310,7 @@ export function randomize(
         keys ||
         hit ||
         camera ||
+        questEnd ||
         sendAll)
     ) {
       const install = (lean: boolean) => {
@@ -1324,6 +1355,9 @@ export function randomize(
       reports.push(loader);
       // A lean loader leaves out the camera's code when its options are off.
       cameraLinked = loader.applied && camera && (cameraOn || !wentLean);
+      // Its code is always optional: the EBOOT patch alone carries the disc's
+      // choice. It's a setting only when the START menu entry went in too.
+      questEndInGame = loader.applied && questEnd && !wentLean && menus !== null;
       if (sendAll) {
         if (loader.applied && !wentLean) {
           sendAll.patch(edits.eboot());
@@ -1358,6 +1392,20 @@ export function randomize(
         reports.push(cameraReport(settings, cameraLinked));
       }
     }
+  }
+
+  if (questEndOn) {
+    const why = typeof questEndAt === "string" ? questEndAt : null;
+    reports.push(
+      why === null
+        ? questEndReport(settings, questEndInGame)
+        : {
+            title: "Quest end",
+            notes: [`The wait after a quest isn't in this image: ${why}.`],
+            lines: [],
+            summary: `Quest end: not applied (${why})`,
+          },
+    );
   }
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.
