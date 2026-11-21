@@ -16,7 +16,13 @@ import {
   type WeaponMount,
 } from "@/lib/hunter";
 import type { GamePose } from "@/lib/bone-scaling";
-import { dressHunter, type HunterOutfit } from "@/lib/hunter-armor";
+import {
+  dressHunter,
+  type HunterOutfit,
+  type HunterSlot,
+  type WornPiece,
+} from "@/lib/hunter-armor";
+import { armorModelSlot } from "@/lib/models";
 import { fetchMotions, inPlace, MOTION_FPS, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
@@ -68,11 +74,17 @@ interface Props {
    */
   hunter?: string;
   /**
-   * Show `src` (an armor piece) worn by the hunter of its sex, standing idle,
-   * in place of the default set's piece of its slot. If the hunter's model
-   * can't load, the piece shows alone.
+   * Show `src` (an armor piece, with `parts`: its set) worn by the hunter of
+   * its sex, standing idle, in place of the default set's pieces of their
+   * slots. If the hunter's model can't load, the pieces show alone.
    */
   wear?: HunterOutfit;
+  /**
+   * More .glb files shown with `src`, in the same space: the rest of an
+   * armor set, whose pieces all sit on the player's skeleton. One that can't
+   * load is left out.
+   */
+  parts?: string[];
 }
 
 type Three = typeof import("three");
@@ -241,6 +253,7 @@ export default function ModelViewer({
   attacks,
   unusedMotions,
   hunter,
+  parts,
   wear,
 }: Props) {
   const t = useT();
@@ -250,6 +263,8 @@ export default function ModelViewer({
   const sceneRef = useRef<SceneHandle | null>(null);
   const [motion, setMotion] = useState<MotionState | null>(null);
   const playerRef = useRef<MotionPlayer | null>(null);
+  // The effect below re-runs on the list's contents, not its identity.
+  const partsKey = parts?.join("\n") ?? "";
 
   useEffect(() => {
     const container = containerRef.current;
@@ -367,17 +382,34 @@ export default function ModelViewer({
       try {
         const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
         // Without the hunter (an export that couldn't make one), the weapon
-        // or armor piece shows alone.
+        // or armor shows alone.
         const bodyModel = wear?.sex === "female" ? HUNTER_FEMALE_MODEL : HUNTER_MODEL;
-        const [body, own] = await Promise.all([
+        const [body, own, ...extra] = await Promise.all([
           hunter || wear ? loader.loadAsync(bodyModel).catch(() => null) : null,
           loader.loadAsync(src),
+          ...(partsKey ? partsKey.split("\n") : []).map((url) =>
+            loader.loadAsync(url).catch(() => null),
+          ),
         ]);
         if (disposed) return;
         const wearing = (() => {
           if (!body || !wear) return false;
+          // Each piece goes in the slot its file is for (a set's first file
+          // needn't be the page's piece), one a slot.
+          const partUrls = partsKey ? partsKey.split("\n") : [];
+          const worn: WornPiece[] = [
+            {
+              slot: (armorModelSlot(src) as HunterSlot | undefined) ?? wear.slot,
+              model: own.scene,
+            },
+          ];
+          extra.forEach((part, i) => {
+            const slot = armorModelSlot(partUrls[i] ?? "") as HunterSlot | undefined;
+            if (part && slot && !worn.some((piece) => piece.slot === slot))
+              worn.push({ slot, model: part.scene });
+          });
           try {
-            dressHunter(THREE, body.scene, wear.slot, own.scene);
+            dressHunter(THREE, body.scene, worn);
             return true;
           } catch {
             return false;
@@ -387,6 +419,7 @@ export default function ModelViewer({
         const gltf = weapon || wearing ? body! : own;
         const holding = weapon ? hunter : undefined;
         model = gltf.scene;
+        if (!wearing) for (const part of extra) if (part) model.add(part.scene);
         const copies = [model];
         if (weapon && holding) {
           scene.add(model);
@@ -849,7 +882,7 @@ export default function ModelViewer({
     };
     // `wear` is compared by its fields: callers pass a fresh object each render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [src, pair, hunter, wear?.slot, wear?.sex]);
+  }, [src, pair, hunter, partsKey, wear?.slot, wear?.sex]);
 
   // Capsules live in their own group, rebuilt when they change; there are
   // few (Rathian has 32), so rebuilding is cheaper than diffing.

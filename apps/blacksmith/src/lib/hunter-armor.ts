@@ -9,10 +9,10 @@
  * `HUNTER_SLOTS` (`extras.part`). A piece goes on the hunter of its own sex:
  * the two skeletons differ.
  *
- * Armor models exported since mhfu-extract placed them (`placeArmor` in
- * `export-site`) already sit on the player skeleton of their sex, with each
- * vertex's player joints and weights in `_JOINTS_0` and `_WEIGHTS_0`: those
- * go on as they are. An older export's piece sits where its package's own
+ * Armor models from `export-site` (`armorToGlb`) already sit on the player
+ * skeleton of their sex, with each vertex's player joints and weights in
+ * `_JOINTS_0` and `_WEIGHTS_0`: those go on as they are, and a whole set goes
+ * on at once. A piece without them sits where its package's own
  * skeleton puts it, roughly around the joint its first bone maps to
  * (`SLOT_ROOT`) at the origin. That one is moved to that joint and takes its
  * weights from the default piece of the same slot, vertex by nearest vertex.
@@ -121,18 +121,23 @@ export function transferSkin(
   return { joints, weights };
 }
 
+/** An armor piece to put on the hunter: its slot and its loaded glTF scene. */
+export interface WornPiece {
+  slot: HunterSlot;
+  model: import("three").Object3D;
+}
+
 /**
- * Puts `piece` (an armor piece's loaded glTF scene) on the hunter (the
- * hunter model's scene) in place of the default set's piece of `slot`. Its
- * meshes move into the hunter's model, keeping their materials; the replaced
- * default meshes are dropped. Throws, leaving the hunter as it was, when its
- * model isn't laid out as expected.
+ * Puts `pieces` on the hunter (the hunter model's scene), each in place of
+ * the default set's piece of its slot: one piece, or a whole set. Their
+ * meshes move into the hunter's model, keeping their materials; the
+ * replaced default meshes are dropped. Throws, leaving the hunter as it
+ * was, when its model isn't laid out as expected or a piece has no mesh.
  */
 export function dressHunter(
   THREE: Three,
   hunter: import("three").Object3D,
-  slot: HunterSlot,
-  piece: import("three").Object3D,
+  pieces: readonly WornPiece[],
 ) {
   const defaults: import("three").SkinnedMesh[] = [];
   hunter.traverse((object) => {
@@ -144,10 +149,8 @@ export function dressHunter(
   const tagged = defaults.every((mesh) => typeof mesh.geometry.userData.part === "number");
   if (!tagged && defaults.length !== HUNTER_SLOTS.length)
     throw new Error(`hunter has ${defaults.length} untagged meshes, not one a slot`);
-  const replaced = defaults.filter(
-    (mesh, i) => HUNTER_SLOTS[tagged ? (mesh.geometry.userData.part as number) : i] === slot,
-  );
-  if (replaced.length === 0) throw new Error(`hunter has no ${slot}`);
+  const slotOf = (mesh: import("three").SkinnedMesh, i: number) =>
+    HUNTER_SLOTS[tagged ? (mesh.geometry.userData.part as number) : i];
   hunter.updateMatrixWorld(true);
   const { skeleton, bindMatrix } = defaults[0]!;
   // Skinned, the model's scale is in the inverse bind matrices: in the bind
@@ -160,103 +163,115 @@ export function dressHunter(
   const fromModel = toModel.clone().invert();
   const vertex = new THREE.Vector3();
 
-  // The default piece's vertices, in the model's units, as weights to copy.
-  const source = { positions: [] as number[], joints: [] as number[], weights: [] as number[] };
-  for (const mesh of replaced) {
-    const { position, skinIndex, skinWeight } = mesh.geometry.attributes;
-    if (!position || !skinIndex || !skinWeight) throw new Error(`${slot}: no skin`);
-    // A glTF mesh's primitives share their vertices: take the slot's own.
-    const index = mesh.geometry.index;
-    const used = index ? new Set(Array.from(index.array)) : Array(position.count).keys();
-    for (const i of used) {
-      vertex.fromBufferAttribute(position, i).applyMatrix4(toModel);
-      source.positions.push(vertex.x, vertex.y, vertex.z);
-      source.joints.push(
-        skinIndex.getX(i),
-        skinIndex.getY(i),
-        skinIndex.getZ(i),
-        skinIndex.getW(i),
-      );
-      source.weights.push(
-        skinWeight.getX(i),
-        skinWeight.getY(i),
-        skinWeight.getZ(i),
-        skinWeight.getW(i),
-      );
+  const dressed: {
+    replaced: import("three").SkinnedMesh[];
+    meshes: import("three").SkinnedMesh[];
+  }[] = [];
+  for (const { slot, model: piece } of pieces) {
+    const replaced = defaults.filter((mesh, i) => slotOf(mesh, i) === slot);
+    if (replaced.length === 0) throw new Error(`hunter has no ${slot}`);
+
+    // The default piece's vertices, in the model's units, as weights to copy.
+    const source = { positions: [] as number[], joints: [] as number[], weights: [] as number[] };
+    for (const mesh of replaced) {
+      const { position, skinIndex, skinWeight } = mesh.geometry.attributes;
+      if (!position || !skinIndex || !skinWeight) throw new Error(`${slot}: no skin`);
+      // A glTF mesh's primitives share their vertices: take the slot's own.
+      const index = mesh.geometry.index;
+      const used = index ? new Set(Array.from(index.array)) : Array(position.count).keys();
+      for (const i of used) {
+        vertex.fromBufferAttribute(position, i).applyMatrix4(toModel);
+        source.positions.push(vertex.x, vertex.y, vertex.z);
+        source.joints.push(
+          skinIndex.getX(i),
+          skinIndex.getY(i),
+          skinIndex.getZ(i),
+          skinIndex.getW(i),
+        );
+        source.weights.push(
+          skinWeight.getX(i),
+          skinWeight.getY(i),
+          skinWeight.getZ(i),
+          skinWeight.getW(i),
+        );
+      }
     }
+
+    const root = skeleton.bones[SLOT_ROOT[slot]];
+    if (!root) throw new Error(`${slot}: no joint ${SLOT_ROOT[slot]}`);
+    const offset = root.getWorldPosition(new THREE.Vector3());
+    const meshes: import("three").SkinnedMesh[] = [];
+    piece.updateMatrixWorld(true);
+    piece.traverse((object) => {
+      const mesh = object as import("three").Mesh;
+      if (!mesh.isMesh) return;
+      const {
+        position,
+        normal,
+        uv,
+        _joints_0: ownJoints,
+        _weights_0: ownWeights,
+      } = mesh.geometry.attributes;
+      if (!position) return;
+      // A piece exported on the player skeleton (`_JOINTS_0`, `_WEIGHTS_0`)
+      // is already in place, with the game's own weights.
+      const placed = Boolean(ownJoints && ownWeights);
+      const normalMatrix = new THREE.Matrix3().getNormalMatrix(mesh.matrixWorld);
+      const positions = new Float32Array(position.count * 3);
+      const stored = new Float32Array(position.count * 3);
+      const normals = normal ? new Float32Array(normal.count * 3) : null;
+      for (let i = 0; i < position.count; i++) {
+        vertex.fromBufferAttribute(position, i).applyMatrix4(mesh.matrixWorld);
+        if (!placed) vertex.add(offset);
+        vertex.toArray(positions, i * 3);
+        vertex.applyMatrix4(fromModel).toArray(stored, i * 3);
+        if (normal && normals)
+          // three.js skins normals by the skinning matrix itself, which
+          // scales them as positions: store them divided by that scale.
+          vertex
+            .fromBufferAttribute(normal, i)
+            .applyMatrix3(normalMatrix)
+            .transformDirection(fromModel)
+            .toArray(normals, i * 3);
+      }
+      const { joints, weights } =
+        ownJoints && ownWeights
+          ? {
+              joints: Uint16Array.from({ length: position.count * 4 }, (_, k) =>
+                ownJoints.getComponent(k >> 2, k & 3),
+              ),
+              weights: Float32Array.from({ length: position.count * 4 }, (_, k) =>
+                ownWeights.getComponent(k >> 2, k & 3),
+              ),
+            }
+          : transferSkin(positions, source);
+      const geometry = new THREE.BufferGeometry();
+      geometry.setAttribute("position", new THREE.BufferAttribute(stored, 3));
+      if (normals) geometry.setAttribute("normal", new THREE.BufferAttribute(normals, 3));
+      if (uv) geometry.setAttribute("uv", uv);
+      geometry.setAttribute("skinIndex", new THREE.BufferAttribute(joints, 4));
+      geometry.setAttribute("skinWeight", new THREE.BufferAttribute(weights, 4));
+      if (mesh.geometry.index) geometry.setIndex(mesh.geometry.index);
+      const skinned = new THREE.SkinnedMesh(geometry, mesh.material);
+      skinned.name = `${slot}_${meshes.length}`;
+      meshes.push(skinned);
+    });
+    if (meshes.length === 0) throw new Error(`${slot}: no mesh`);
+    dressed.push({ replaced, meshes });
   }
 
-  const root = skeleton.bones[SLOT_ROOT[slot]];
-  if (!root) throw new Error(`${slot}: no joint ${SLOT_ROOT[slot]}`);
-  const offset = root.getWorldPosition(new THREE.Vector3());
-  const meshes: import("three").SkinnedMesh[] = [];
-  piece.updateMatrixWorld(true);
-  piece.traverse((object) => {
-    const mesh = object as import("three").Mesh;
-    if (!mesh.isMesh) return;
-    const {
-      position,
-      normal,
-      uv,
-      _joints_0: ownJoints,
-      _weights_0: ownWeights,
-    } = mesh.geometry.attributes;
-    if (!position) return;
-    // A piece exported on the player skeleton (`_JOINTS_0`, `_WEIGHTS_0`)
-    // is already in place, with the game's own weights.
-    const placed = Boolean(ownJoints && ownWeights);
-    const normalMatrix = new THREE.Matrix3().getNormalMatrix(mesh.matrixWorld);
-    const positions = new Float32Array(position.count * 3);
-    const stored = new Float32Array(position.count * 3);
-    const normals = normal ? new Float32Array(normal.count * 3) : null;
-    for (let i = 0; i < position.count; i++) {
-      vertex.fromBufferAttribute(position, i).applyMatrix4(mesh.matrixWorld);
-      if (!placed) vertex.add(offset);
-      vertex.toArray(positions, i * 3);
-      vertex.applyMatrix4(fromModel).toArray(stored, i * 3);
-      if (normal && normals)
-        // three.js skins normals by the skinning matrix itself, which
-        // scales them as positions: store them divided by that scale.
-        vertex
-          .fromBufferAttribute(normal, i)
-          .applyMatrix3(normalMatrix)
-          .transformDirection(fromModel)
-          .toArray(normals, i * 3);
+  // Only now change the hunter, once every piece is ready.
+  for (const { replaced, meshes } of dressed) {
+    const place = replaced[0]!;
+    for (const mesh of meshes) {
+      mesh.position.copy(place.position);
+      mesh.quaternion.copy(place.quaternion);
+      mesh.scale.copy(place.scale);
+      place.parent!.add(mesh);
+      mesh.bind(skeleton, bindMatrix);
     }
-    const { joints, weights } =
-      ownJoints && ownWeights
-        ? {
-            joints: Uint16Array.from({ length: position.count * 4 }, (_, k) =>
-              ownJoints.getComponent(k >> 2, k & 3),
-            ),
-            weights: Float32Array.from({ length: position.count * 4 }, (_, k) =>
-              ownWeights.getComponent(k >> 2, k & 3),
-            ),
-          }
-        : transferSkin(positions, source);
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute("position", new THREE.BufferAttribute(stored, 3));
-    if (normals) geometry.setAttribute("normal", new THREE.BufferAttribute(normals, 3));
-    if (uv) geometry.setAttribute("uv", uv);
-    geometry.setAttribute("skinIndex", new THREE.BufferAttribute(joints, 4));
-    geometry.setAttribute("skinWeight", new THREE.BufferAttribute(weights, 4));
-    if (mesh.geometry.index) geometry.setIndex(mesh.geometry.index);
-    const skinned = new THREE.SkinnedMesh(geometry, mesh.material);
-    skinned.name = `${slot}_${meshes.length}`;
-    meshes.push(skinned);
-  });
-  if (meshes.length === 0) throw new Error(`${slot}: no mesh`);
-
-  // Only now change the hunter, once the piece is ready.
-  const place = replaced[0]!;
-  for (const mesh of meshes) {
-    mesh.position.copy(place.position);
-    mesh.quaternion.copy(place.quaternion);
-    mesh.scale.copy(place.scale);
-    place.parent!.add(mesh);
-    mesh.bind(skeleton, bindMatrix);
+    // Never drawn, so nothing to free; their vertices are shared with the
+    // other slots' meshes, so their geometry mustn't be disposed either.
+    for (const mesh of replaced) mesh.removeFromParent();
   }
-  // Never drawn, so nothing to free; their vertices are shared with the
-  // other slots' meshes, so their geometry mustn't be disposed either.
-  for (const mesh of replaced) mesh.removeFromParent();
 }
