@@ -43,6 +43,10 @@ const BLOBS = {
   unknownQuests: [["unknown-quests.c"], "src/blob"],
   poogie: [["poogie.c"], "src/blob"],
   keyQuests: [["key-quests.c"], "src/blob"],
+  damage: [["damage.c"], "src/blob"],
+  menu: [["menu.c"], "src/blob"],
+  // Projects 3D shapes: Allegrex's FPU, single precision only.
+  hitboxes: [["hitboxes.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
   linkTest: [["link-test.c"], "test"],
   commonTest: [["test/common-a.c", "test/common-b.c"], "test", ["-fcommon"]],
 };

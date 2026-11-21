@@ -105,6 +105,7 @@ import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
 import { findKeyQuestSites, keyQuestsObjects, keyQuestsReport } from "./patches/key-quests.js";
 import { addNodeMap } from "./patches/node-map.js";
+import { findHitboxExterns, hitboxObjects } from "./patches/hitboxes.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
 import {
   ARMOR_BOX_TYPE,
@@ -119,8 +120,16 @@ import {
 import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
-import { findHookSites, findPadSites } from "./patches/game-hooks.js";
+import {
+  findHitSite,
+  findHookSites,
+  findPadSites,
+  type HitSite,
+  type MenuSites,
+} from "./patches/game-hooks.js";
+import { menuObjects, prepareMenu } from "./patches/menu.js";
 import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
+import { damageObjects, findDamageExterns } from "./patches/damage.js";
 import { LOGIC_VERSION } from "./version.js";
 
 export { LOGIC_VERSION };
@@ -974,17 +983,12 @@ export function randomize(
         summary: `Poogie: not applied (${why})`,
       });
     }
-  } else if (
-    settings["hud.monsterHp"] !== "off" ||
-    settings["quests.unknown"] ||
-    settings["elites.enabled"] ||
-    settings["pact.enabled"] ||
-    settings["poogie.enabled"] ||
-    settings["quests.keyLabel"]
-  ) {
+  } else {
     // Each feature is resolved on its own first: one that doesn't match this
     // disc is left out, and the loader (which caps Guild Cards) only goes in
-    // for the ones that do.
+    // for the ones that do. Monster health, attack hitboxes and damage numbers
+    // can be turned on in game (the START menu's randomfu entry), so they go
+    // in even when they're off; only an option that's on reports not fitting.
     const notApplied = (title: string, why: string): ShuffleReport => ({
       title,
       notes: [`${title} isn't in this image: ${why}.`],
@@ -1000,7 +1004,7 @@ export function randomize(
       : "the EBOOT wasn't loaded";
     const mode = settings["hud.monsterHp"];
     let monsterHp = false;
-    if (mode !== "off") {
+    {
       const found =
         typeof sites === "string"
           ? sites
@@ -1012,11 +1016,33 @@ export function randomize(
               ovl,
               mode,
             );
-      if (typeof found === "string") reports.push(notApplied("Monster health", found));
-      else {
+      if (typeof found === "string") {
+        if (mode !== "off") reports.push(notApplied("Monster health", found));
+      } else {
         objects.push(...monsterHpObjects());
         Object.assign(externs, found);
         monsterHp = true;
+      }
+    }
+    let hitboxes = false;
+    {
+      const found =
+        typeof sites === "string"
+          ? sites
+          : findHitboxExterns(
+              game.eboot!,
+              sites.segment,
+              ovl.reader.buf,
+              ovl,
+              game.gameSub.ovl.reader.buf,
+              settings["hud.attackHitboxes"],
+            );
+      if (typeof found === "string") {
+        if (settings["hud.attackHitboxes"]) reports.push(notApplied("Attack hitboxes", found));
+      } else {
+        objects.push(...hitboxObjects());
+        Object.assign(externs, found);
+        hitboxes = true;
       }
     }
     const prepared = !settings["quests.unknown"]
@@ -1139,7 +1165,47 @@ export function randomize(
       objects.push(...keyQuestsObjects());
       Object.assign(externs, keys.externs);
     }
-    if (typeof hookSites !== "string" && (monsterHp || unknown || elites || pact || luck || keys)) {
+    // Damage numbers are on the hit hook in game_sub.
+    let hit: HitSite | null = null;
+    const numbers = settings["hud.damageNumbers"];
+    {
+      const sub = game.gameSub.ovl;
+      const site = typeof sites === "string" ? sites : findHitSite(sub.reader.buf, sub.loadBase);
+      const found =
+        typeof sites === "string"
+          ? sites
+          : typeof site === "string"
+            ? site
+            : findDamageExterns(game.eboot!, sites, ovl.reader.buf, ovl, numbers);
+      if (typeof found === "string") {
+        if (numbers !== "off") reports.push(notApplied("Damage numbers", found));
+      } else {
+        objects.push(...damageObjects());
+        Object.assign(externs, found);
+        hit = site as HitSite;
+      }
+    }
+    // randomfu's START menu entry, where the features with settings can be changed in game.
+    let menus: MenuSites[] | null = null;
+    if ((hit || monsterHp || hitboxes) && typeof sites !== "string") {
+      const found = prepareMenu(game.eboot!, sites);
+      if (typeof found === "string") {
+        reports.push(
+          notApplied(
+            "randomfu's START menu entry",
+            `${found}; monster health, attack hitboxes and damage numbers keep this disc's settings`,
+          ),
+        );
+      } else {
+        objects.push(...menuObjects());
+        Object.assign(externs, found.externs);
+        menus = found.sites;
+      }
+    }
+    if (
+      typeof hookSites !== "string" &&
+      (monsterHp || hitboxes || unknown || elites || pact || luck || keys || hit)
+    ) {
       const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         // Elites and the pact both bring the shared monster boosts: link them once.
         objects: objects.filter((o, k) => objects.findIndex((x) => x.name === o.name) === k),
@@ -1152,6 +1218,8 @@ export function randomize(
           ...(keys && {
             questCard: { call: keys.call, card: keys.card, lobbyTask: game.lobbyTask },
           }),
+          ...(hit && { hit }),
+          ...(menus && { menus }),
         },
         externs,
         data,

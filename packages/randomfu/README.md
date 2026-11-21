@@ -181,6 +181,8 @@ web app shows as a tag):
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
+| `hud.damageNumbers`               | off         | Numbers at the part each of your hits strikes: `total` or `split` element (caps Guild Cards)           |
+| `hud.attackHitboxes`              | off         | Shade every monster attack that can hit right now, over the scene (caps Guild Cards)                   |
 | `poogie.enabled`                  | on          | A happy pet before a hunt makes its rewards rarer, more so as affection grows (caps Guild Cards)       |
 | `pact.enabled`                    | off         | Hunter's Pact: penalties at each quest's start, each paying a reward (caps Guild Cards)                |
 | `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)                  |
@@ -198,8 +200,11 @@ Elder's trades. Turn those on yourself once you've tried them on your disc.
 Armor stats are the exception: the presets turn on all four, though only
 defense has been played. Resistances, slots and rarity have only been run
 over the EU disc's tables, and what the game reads armor rarity for hasn't
-been checked. Monster health, elite monsters, the Unknown Monster quests and the key quest
-label are off in every preset, since they cap Guild Cards.
+been checked. Elite monsters, the Unknown Monster quests and the key quest
+label are off in every preset, since they cap Guild Cards. Monster health,
+attack hitboxes and damage numbers are off too, but their code goes on every disc so they
+can be turned on in game (below), which caps Guild Cards on every disc the
+code loader fits.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                                                   |
 | ------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1225,7 +1230,9 @@ looks like the stamina gauge: the same frame, its end cap on both ends (the
 left one mirrored), a 2-pixel fill in the hunter's health red, and
 a yellow trail that drains a pixel a frame after a hit, as the hunter's
 red recoverable health does. It runs as blob code on the code loader
-(below), so it caps Guild Cards at 3.
+(below), so it caps Guild Cards at 3. Its code goes on every disc, off or
+not: the option picks the mode a disc starts in, and the START menu's
+randomfu entry (Damage numbers, below) changes it in game.
 
 - **`painted`** shows a monster's gauge while the map shows its icon: the
   game's own test, so from a Paintball hit until the mark wears off (18000
@@ -1252,6 +1259,103 @@ What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
 Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
 dies or leaves the area, and `painted` shows it once a Paintball hits. Not
 yet tried: JP in game, captures, and two large monsters in one area.
+
+## Damage numbers
+
+`hud.damageNumbers` (`total` or `split`), after World's damage numbers:
+each of your hits on a monster, large or small, pops a number at the part
+it struck, in the game's own font, made bold (printed twice, a pixel
+apart, with its glyphs stretched an eighth wider) over a black drop
+shadow. It lands big in a flash (bright yellow, or white for a coloured
+number) for three frames, settles to its size in a few, then rises and
+shrinks away in a little over a second; a weak point's number shakes as
+it lands. Bigger hits get bigger text. The number is the health the hit
+takes: raw and element after the monster's defense multiplier. It's
+white, or orange on a weak point: a melee hit whose hitzone × sharpness
+is 0.45 or more (the test the game itself uses to pick its bigger hit
+sparks), or a shot at a part whose shot hitzone is 45 or more. `split`
+shows the element's share as a second, smaller number beside it, in its
+colour: red fire, blue water, yellow thunder, cyan ice, magenta dragon.
+Other hunters' and Felynes' hits show nothing. The numbers are drawn with the HUD, so they
+hide with it, under the map and the item bar. It runs as blob code on the
+code loader (below), so it caps Guild Cards at 3, and only reads game
+state. Like monster health, its code goes on every disc.
+
+The option picks the mode a disc starts in. START opens the game's menu,
+in a quest or in the village, and its last entry (on its second page, where
+the game keeps a greyed `--------` placeholder) is now **randomfu**: a window of settings
+that can be changed in game, drawn like the game's Options with the
+setting's help to its left: monster health (Off, On map, Always), damage
+numbers (Off, Total, Split) and attack hitboxes (Off, On).
+Up and down pick a setting; left, right and × change it; ○ goes back to the
+menu and START closes it. The choice is kept in randomfu's save data, so it
+lasts across saves and holds over the disc's mode, on discs from other
+seeds too (`monster_hp`, `damage_numbers` and `hitboxes` in `struct
+rf_save_data`). Other Modifications can add their settings to the same window
+(`rf_add_setting`, `blob/menu.c`).
+
+What it found (EU, and the same code on JP; `src/patches/damage.ts` and
+`docs/code-loader.md` have the details):
+
+- `game_sub` works out a hit in one function: raw (the attack's power ×
+  motion value × hitzone × sharpness × the hunter's attack multiplier)
+  plus the element's share, added to the monster's damage for the frame at
+  its part (`+0x3B8`, an s16 per part). The monster's update takes that
+  times its defense multiplier (`+0x384`) off its HP. A game hook on the
+  call right after (the status buildup) hands the blob the hit.
+- A melee hit's quality (hitzone × sharpness: 3 at 1.0, 2 at 0.45, then 1
+  and 0) is written to the attack (`+0x74`); the attack's `+0x28` flags
+  say which element it carries.
+- The number goes at the hitbox's joint (a game function gives its world
+  position), put on screen by the game's projection with the camera its
+  name tags use, and printed with the code-aware print at the size set in
+  the printer (`+0x12C`, `+0x12D`).
+
+- The quest and village START menus are EBOOT code on the HUD object (12
+  entries in pages of six, and 14 in pages of seven), the last a placeholder
+  that's always greyed and refused. Game hook 8 takes their label, choose,
+  run and draw calls for randomfu's entry (`docs/code-loader.md`).
+
+Not yet tried in game: any of it. Then, in particular, the text's size and
+spacing at sizes other than the game's 14 pixels, how the bold and the
+black shadow (`~C01`, unused on the HUD by the game) look, the clock's rate
+(numbers age by the quest clock, taken as about 30 ticks a second), and
+the empty help bar the game shows for the placeholder in the list.
+randomfu's menu entry has been played in PPSSPP on EU, in the village.
+
+## Attack hitboxes
+
+`hud.attackHitboxes` shades, in translucent red, every monster attack that
+can hit the hunter right now: each sphere and capsule filled in where it
+falls on screen, with the HUD's translucent fill in strips 2 pixels tall.
+It shows exactly what the game tests against the hunter, frame by frame,
+so an attack's shading appears when it becomes able to hit and goes when
+it stops. (A first version drew opaque red outlines with the HUD's line
+routine; they were too loud.) It runs as blob code on the code
+loader's HUD hook (below), so it caps Guild Cards at 3, and hides with the
+hunter's gauges. Like monster health, its code goes on every disc: the
+option picks whether a disc starts with it on, and randomfu's START menu
+entry (Damage numbers, above) turns it on or off in game.
+
+What it found (EU and JP; `src/patches/hitboxes.ts` has the details):
+
+- Attacks are attack objects in a list behind a `game_task` global. Each
+  frame `game_sub` tests those whose `+0x14` is 2 against the hunters, one
+  shape at a time: the hurtboxes' 0x28-byte records, placed on the owning
+  monster's joint matrices (`*(m + 0x190) + joint × 0x250 + 0xD0`) and
+  scaled by its model scale. Projectiles carry their own two points
+  instead.
+- The camera's view matrix and the 3D projection sit in the renderer, at
+  `+0xB80` and `+0xC00`. The GE itself never sees the view: the game
+  multiplies it into every model's matrix.
+- The HUD has a translucent fill (the Hunter's Pact shades the screen
+  with it), and an opaque line routine next to the gauges' fill.
+
+Projected from savestates of a Yian Kut-Ku fight, the fireball's shape
+sits on the fireball and the monsters' hurtboxes on their bodies. Not
+drawn: shapes the monster's own code places (joint 0x7D), and hunters'
+attacks. The outline version was played on the EU disc in PPSSPP and worked; the
+shading hasn't been played yet, nor JP.
 
 ## Poogie's luck
 
@@ -1606,7 +1710,8 @@ struct) into room for randomfu's own code and data. Its demo blob adds 1000
 zenny on every save load, so it's seen to run; it does in PPSSPP on EU and
 JP (FUC). It's not for play. `docs/code-loader.md` has the design: the
 address, when it loads, the blob format, game hooks, the C toolchain and
-the PRX alternative. Poogie's luck, monster health, the Hunter's Pact and the key quest label are built on it.
+the PRX alternative. Poogie's luck, monster health, damage numbers, the Hunter's Pact and the
+key quest label are built on it.
 
 - **Room.** The save struct is static (an arena in the EBOOT's BSS), so the
   freed slots are at a fixed address per region: EU `0x099A1820`, JP
@@ -1623,8 +1728,9 @@ the PRX alternative. Poogie's luck, monster health, the Hunter's Pact and the ke
   call, then run the blob's `rf_hookN` if a blob is loaded: once a frame in
   a quest, after the HUD draws the hunter's gauges, after the pad read gets
   the controller, around the quest loader's calls, and after a completed
-  quest's reward roll (`src/patches/game-hooks.ts`). Blob features register for them with
-  `rf_on` (`blob/runtime.c`). One more replaces the game's weighted
+  quest's reward roll, when a hit lands on a monster, and in the quest
+  START menu's last entry (`src/patches/game-hooks.ts`). Blob features
+  register for them with `rf_on` (`blob/runtime.c`). One more replaces the game's weighted
   picker with the blob's `rf_hook5` (Poogie's luck).
 - **Save data.** The last freed slot is randomfu's own save data, kept out
   of the blob's room in every build so features can remember things across

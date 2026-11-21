@@ -44,8 +44,8 @@ import { findUnique, hiLo, jumpTarget, maskWord, type Segment } from "./mips.js"
 
 export const MONSTER_HP_MODES = ["off", "painted", "always"] as const;
 export type MonsterHpMode = (typeof MONSTER_HP_MODES)[number];
-/** The blob's `rf_monster_hp_mode`; never 0 (see `blob/monster-hp.c`). */
-const MODE = { painted: 1, always: 2 } as const;
+/** The blob's `rf_monster_hp_mode` (`blob/monster-hp.c`): its mode + 1, as an extern's address is never 0. */
+export const MODE = { off: 1, painted: 2, always: 3 } as const;
 
 /**
  * `game_task`'s lookup of a manager slot: `andi v0,a0,0xf; sll v1,v0,2;
@@ -155,7 +155,7 @@ export function findMonsterHpExterns(
   gauges: number,
   gameTask: Buffer,
   ovl: OvlFile,
-  mode: Exclude<MonsterHpMode, "off">,
+  mode: MonsterHpMode,
 ): Record<string, number> | string {
   const calls = findGaugeRoutines(vanillaEboot, segment, gauges);
   if (typeof calls === "string") return calls;

@@ -16,10 +16,20 @@ extern const u8 rf_hud_fill[];       /* fill(hud, x, y, w, h, r, g, b) */
 extern const u8 rf_map_shows[];      /* the map's test: does it show this monster? (hud, m) */
 extern const u8 rf_hud_sprite[];     /* sprite(hud, x, y, w, h, sprite): a sprite stretched to w×h */
 extern const u8 rf_hud_sprites[];    /* the HUD's sprite table that `sprite` indexes */
-extern const u8 rf_monster_hp_mode[]; /* a constant, not an address: MODE_* */
+/* A constant, not an address: the disc's default MODE_* + 1 (an extern's address is never 0). */
+extern const u8 rf_monster_hp_mode[];
 
+#define MODE_OFF 0
 #define MODE_PAINTED 1
 #define MODE_ALWAYS 2
+#define MODES 3
+
+/* The mode: the one chosen in game (kept in randomfu's save data), else the disc's. */
+static u32 mode(void) {
+  const struct rf_save_data *d = rf_save_data();
+  u32 chosen = d ? d->monster_hp : 0;
+  return chosen && chosen <= MODES ? chosen - 1 : (u32)rf_monster_hp_mode - 1;
+}
 
 /* The monster manager: up to 20 monsters in the hunter's area, large and small. */
 #define MANAGER_SLOTS 0x1220
@@ -103,13 +113,15 @@ static void fill(u8 *hud, u32 x, u32 y, u32 w, u32 r, u32 g, u32 b) {
 }
 
 static void draw(u8 *hud) {
+  const u32 now = mode();
+  if (now == MODE_OFF || now >= MODES) return;
   if (*(u32 *)(hud + HUD_FLAGS) & HUD_GAUGES_HIDDEN) return;
   if (!game_task_loaded()) return;
   u8 *manager = *rf_monsters;
   u8 *hunter = *(u8 **)(hud + HUD_HUNTER);
   if (!manager || !hunter) return;
   u16 area = *(u16 *)(hunter + AREA);
-  u32 always = (u32)rf_monster_hp_mode == MODE_ALWAYS;
+  u32 always = now == MODE_ALWAYS;
   u32 row = 0;
   for (u32 slot = 0; slot < SLOTS; slot++) {
     u8 *m = *(u8 **)(manager + MANAGER_SLOTS + slot * 4);
@@ -135,8 +147,28 @@ static void draw(u8 *hud) {
   }
 }
 
+/* --- The setting, in randomfu's START menu entry (menu.c), when the disc has it. --- */
+
+__attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
+
+static const char *const mode_names[MODES] = {"Off", "On map", "Always"};
+static u32 get_mode(void) { return mode(); }
+static void set_mode(u32 choice) {
+  struct rf_save_data *d = rf_save_data();
+  if (d && choice < MODES) d->monster_hp = (u8)(choice + 1);
+}
+static const struct rf_setting setting = {
+    "Monster health",
+    "A health gauge for each\nlarge monster in your area,\nunder your name. On the map:\nwhile the map shows it, from\na Paintball hit until the\nmark wears off.",
+    mode_names,
+    MODES,
+    get_mode,
+    set_mode,
+};
+
 void rf_monster_hp_init(u32 reason, u8 *save) {
   (void)reason;
   (void)save;
   rf_on(RF_HOOK_HUD, draw);
+  if (rf_add_setting) rf_add_setting(&setting);
 }

@@ -39,9 +39,13 @@ import {
   assembleHooks,
   assemblePickHook,
   hookCode,
+  writeHitCall,
+  writeMenuCalls,
   writeHookCalls,
   writePickHook,
   writeQuestLoadCalls,
+  type HitSite,
+  type MenuSites,
   type HookSites,
   type PadSites,
   type PickSite,
@@ -314,7 +318,8 @@ export interface CodeLoaderOptions {
   /**
    * The game hooks (`game-hooks.ts`) the blob's `rf_hookN` run on, found in
    * `game_task` by the caller; `questLoad` also hooks the quest loader's calls
-   * (hook 3) in `lobby_task` and `game_task`.
+   * (hook 3) in `lobby_task` and `game_task`, and `hit` the monster hit
+   * function's call (hook 5) in `game_sub`.
    */
   hooks?: {
     /** Every hook's sites, or the pad hook's alone (`findPadSites`). */
@@ -326,6 +331,9 @@ export interface CodeLoaderOptions {
     pick?: PickSite;
     /** `lobby_task`'s call to the quest card (hook 6): its file offset and the card. */
     questCard?: { call: number; card: number; lobbyTask: LoadedOverlay };
+    hit?: HitSite;
+    /** The START menus' calls (hook 8), for randomfu's own entry. */
+    menus?: readonly MenuSites[];
   };
   /** The blob's externs that are found per disc. */
   externs?: Readonly<Record<string, number>>;
@@ -419,7 +427,10 @@ export function addCodeLoader(
     ...(hooks?.questCard ? [{ hook: HOOK.questCard, target: hooks.questCard.card }] : []),
   ];
   const questLoader = hooks?.questLoad?.sites.loader;
-  const hookWords = hooks ? assembleHooks(0, blobAddress, calls, questLoader).code.length : 0;
+  const hit = hooks?.hit?.target;
+  const hookWords = hooks
+    ? assembleHooks(0, blobAddress, calls, questLoader, hit, hooks.menus).code.length
+    : 0;
   const pickWords = hooks?.pick ? assemblePickHook(0, blobAddress, hooks.pick).length : 0;
   const caveWords = words + hookWords + pickWords;
   if (caveWords > space.freeCaveWords) {
@@ -441,7 +452,7 @@ export function addCodeLoader(
   let hooksAt = "";
   if (hooks) {
     const hookAt = space.allocateCave(hookWords);
-    const hookStubs = assembleHooks(hookAt, blobAddress, calls, questLoader);
+    const hookStubs = assembleHooks(hookAt, blobAddress, calls, questLoader, hit, hooks.menus);
     space.writeCave(hookAt, hookStubs.code);
     const gameTask = hooks.gameTask ? edits.overlay(hooks.gameTask) : null;
     writeHookCalls(out, gameTask, hooks.sites, hookStubs.stubs);
@@ -453,6 +464,12 @@ export function addCodeLoader(
       if (!gameTask) throw new Error("The quest load hook needs game_task");
       const lobbyTask = edits.overlay(hooks.questLoad.lobbyTask);
       writeQuestLoadCalls(lobbyTask, gameTask, hooks.questLoad.sites, hookStubs.questLoad);
+    }
+    if (hooks.hit && hookStubs.hit !== undefined) {
+      writeHitCall(edits.overlay(gameSub), hooks.hit, hookStubs.hit);
+    }
+    for (const [k, menu] of (hooks.menus ?? []).entries()) {
+      writeMenuCalls(out, segment, menu, hookStubs.menus[k]!);
     }
     hooksAt = `, hooks ${hex(hookAt)}`;
     if (hooks.pick) {

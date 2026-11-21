@@ -121,6 +121,8 @@ export interface Settings {
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
   "hud.monsterHp": "off" | "painted" | "always";
+  "hud.damageNumbers": "off" | "total" | "split";
+  "hud.attackHitboxes": boolean;
   "pact.enabled": boolean;
   "poogie.enabled": boolean;
   "elites.enabled": boolean;
@@ -1765,7 +1767,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "hud.monsterHp",
     section: "HUD",
     label: "Monster health",
-    help: "A short health gauge for each large monster in your area, on the left under your name plate, in the HUD's own frame and red. It follows the HUD: hidden in cutscenes and wherever the game hides your gauges. Caps received Guild Cards at 3 to make room for the code that draws it.",
+    help: "A short health gauge for each large monster in your area, on the left under your name plate, in the HUD's own frame and red. It follows the HUD: hidden in cutscenes and wherever the game hides your gauges. This picks the mode the disc starts in: the START menu's last entry, randomfu, changes it in game (in a quest or in the village), and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
     type: {
       kind: "choice",
       choices: [
@@ -1783,6 +1785,33 @@ export const OPTIONS: readonly OptionDef[] = [
       ],
     },
     default: "off",
+  },
+  {
+    key: "hud.damageNumbers",
+    section: "HUD",
+    label: "Damage numbers",
+    help: "Each of your hits on a monster pops a number at the part it struck, in the game's own font, bold over a drop shadow: it lands big in a flash, settles, then rises and shrinks away; a weak point's shakes as it lands. It's the health the hit takes. White, orange on a weak point. Only your own hits; it follows the HUD. This picks the mode the disc starts in: the START menu's last entry, randomfu, changes it in game (in a quest or in the village), and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Off", help: "No damage numbers." },
+        { value: "total", label: "Total", help: "One number a hit: raw and element together." },
+        {
+          value: "split",
+          label: "Split element",
+          help: "The element's share is a second, smaller number in its element's colour: red fire, blue water, yellow thunder, cyan ice, magenta dragon.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "hud.attackHitboxes",
+    section: "HUD",
+    label: "Attack hitboxes",
+    help: "A faint red shading over every monster attack that can hit you right now: the parts of its body that hurt during the attack, and projectiles like fireballs, filled in over the scene as the game places them. It follows the HUD: hidden in cutscenes and wherever the game hides your gauges. A few attacks whose shape the monster's own code places aren't drawn. This picks whether the disc starts with it on: the START menu's last entry, randomfu, turns it on or off in game (in a quest or in the village), and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    type: { kind: "boolean" },
+    default: false,
   },
   {
     key: "pact.enabled",

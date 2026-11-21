@@ -115,7 +115,7 @@ const OPTION_STEPS: Step[] = [
       "HUD",
     ],
     intro:
-      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code. Each caps received Guild Cards at 3 to make room for it. Only Poogie's luck is on unless you turn the others on, and elite monsters haven't been tried in game yet.",
+      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code. Each caps received Guild Cards at 3 to make room for it. Only Poogie's luck is on unless you turn the others on, and elite monsters and damage numbers haven't been tried in game yet.",
   },
   {
     id: "extras",

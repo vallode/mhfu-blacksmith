@@ -137,19 +137,21 @@ address matches and the header's entry isn't 0; the call's `$v0` is passed
 back. A stub's 32-byte frame leaves `sp+0..15` free for the O32 code it
 reaches. Twelve words per stub and 15 for `dispatch`.
 
-| Hook | `rf_hookN`  | The call                                                       | EU site(s)                                | JP site(s)                                |
-| ---- | ----------- | -------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| 0    | quest frame | `game_task`'s HUD update (EU 0x0883F270), playing and paused   | 0x09A627B0, 0x09A627D4                    | 0x09A5DB20, 0x09A5DB44                    |
-| 1    | HUD         | the hunter's gauges (EU 0x088405E4), in the update's layer 9   | 0x0883FA68                                | 0x0883FA84                                |
-| 2    | pad         | the controller read in `padRead` (EU 0x08868F50), once a frame | 0x08868F64                                | 0x08868F5C                                |
-| 3    | quest load  | the quest loader (EU 0x08870AEC), accepting and departing      | `lobby_task` +0x2F424, `game_task` +0x6B8 | `lobby_task` +0x2F0B4, `game_task` +0x6A8 |
-| 4    | rewards     | the quest reward roll (EU 0x0886F894), once a completed quest  | 0x08875284                                | found by signature                        |
-| 5    | pick        | replaces the weighted picker (`poogie-luck.ts`)                | 0x0887265C (the picker's first two words) | 0x08872654                                |
-| 6    | quest card  | the quest counter's card (EU 0x09A8CA40), in town              | `lobby_task` 0x09A8BF08                   | `lobby_task` 0x09A87078                   |
+| Hook | `rf_hookN`  | The call                                                       | EU site(s)                                                                                                   | JP site(s)                                |
+| ---- | ----------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
+| 0    | quest frame | `game_task`'s HUD update (EU 0x0883F270), playing and paused   | 0x09A627B0, 0x09A627D4                                                                                       | 0x09A5DB20, 0x09A5DB44                    |
+| 1    | HUD         | the hunter's gauges (EU 0x088405E4), in the update's layer 9   | 0x0883FA68                                                                                                   | 0x0883FA84                                |
+| 2    | pad         | the controller read in `padRead` (EU 0x08868F50), once a frame | 0x08868F64                                                                                                   | 0x08868F5C                                |
+| 3    | quest load  | the quest loader (EU 0x08870AEC), accepting and departing      | `lobby_task` +0x2F424, `game_task` +0x6B8                                                                    | `lobby_task` +0x2F0B4, `game_task` +0x6A8 |
+| 4    | rewards     | the quest reward roll (EU 0x0886F894), once a completed quest  | 0x08875284                                                                                                   | found by signature                        |
+| 5    | pick        | replaces the weighted picker (`poogie-luck.ts`)                | 0x0887265C (the picker's first two words)                                                                    | 0x08872654                                |
+| 6    | quest card  | the quest counter's card (EU 0x09A8CA40), in town              | `lobby_task` 0x09A8BF08                                                                                      | `lobby_task` 0x09A87078                   |
+| 7    | hit         | the status buildup in the monster hit function (`game_sub`)    | 0x09C44C34                                                                                                   | 0x09C3FC24                                |
+| 8    | menu        | each START menu's label, choose, run and layer draw calls      | quest 0x08818F14, 0x08848F58, 0x08849024, 0x0883F854; village 0x08834A9C, 0x08834B84, 0x08834C4C, 0x088346C0 | found by signature                        |
 
 Hooks 0 and 1 pass the HUD object (EU 0x09A04BA0, right after the save
 struct), hook 3 a `struct rf_load` (below), hook 4 the results step's
-object, hook 6 the quest counter's object. Hook 2 passes the system's `SceCtrlData` that `padRead` (called
+object, hook 6 the quest counter's object, hook 7 a `struct rf_hit` (Damage numbers, below), hook 8 a `struct rf_menu` (START menu, below). Hook 2 passes the system's `SceCtrlData` that `padRead` (called
 once a frame by the main loop, EU 0x0888FD5C) reads into: buttons a u32 at
 `+4`, the stick bytes at `+8`, `+9`. It runs before `padRead` checks the
 game's input lock (the pad object's `+0x17`, which shops and dialogues
@@ -225,6 +227,34 @@ puts arguments 5–8 in `$t0`–`$t3` as EABI does. The gauges only read game
 memory; the tests in `test/monster-hp.test.ts` run the blob in the
 interpreter against a fake HUD and check it leaves the monsters, manager
 and HUD as they were.
+
+## Attack hitboxes
+
+`blob/hitboxes.c` on hook 1, with a setting in the START menu's randomfu
+entry (below). Per frame it walks `game_task`'s attack
+list (the attack-object pool's `+0x502C`, then `+4`) and, for each object
+that can hit (`+0x14` 2) owned by a monster (`+0xF`, slot `+0x15`) in the
+hunter's area (`+0x18`), places its shapes as `game_sub` does (EU
+0x09C37798), projects them with the renderer's view (`+0xB80`) and
+projection (`+0xC00`), and fills each one's outline on screen as strips 2
+pixels tall (taller for a shape over 128 pixels tall), up to 256 a frame,
+clipped to the screen. Only then does it draw them, in translucent red,
+with the HUD's `fill(hud, x, y, w, h, r, g, b, alpha)` (the pact's shade)
+through `rf_call9`. The HUD's opaque `line(hud, x0, y0, x1, y1, r, g, b)`
+(EU 0x0882DAC0, JP 0x0882DD04) drew a first version's outlines, which
+were too loud.
+
+| Extern       | What                                    | EU         | JP         |
+| ------------ | --------------------------------------- | ---------- | ---------- |
+| `rf_attacks` | global holding the attack-object pool   | 0x09C18FD0 | 0x09C14250 |
+| `rf_camera`  | global holding the renderer             | 0x089CBBE4 | 0x089C6CB4 |
+| `rf_fill`    | the HUD's translucent fill (the pact's) | 0x0882D8DC | 0x0882DB20 |
+
+It's the one blob built with the FPU (`-mhard-float -msingle-float`):
+Allegrex has single precision only, so it uses no doubles, and clang then
+saves callee-saved FPU registers with `swc1`. No float is live across a
+game call: the strips are worked out before any is drawn. The test CPU
+runs single-precision FPU code for `test/hitboxes.test.ts`.
 
 ## Monster boosts
 
@@ -514,6 +544,149 @@ from an open file) and `sceKernelStartModule`, plus
 - **Signing.** An unsigned PRX needs CFW or PPSSPP. So does randomfu's
   decrypted EBOOT already.
 
+## Damage numbers
+
+`blob/damage.c` on hooks 7, 0 and 1 (`README.md` has what it does for the
+player; `src/patches/damage.ts` finds the addresses).
+
+**The hit.** `game_sub` works a hit on a monster out in one function (EU
+0x09C43458 / JP 0x09C3E448), EABI `(attack, hunter, monster, ?, hitbox,
+pos)`, keeping the attack in `$s5`, the hunter in `$s4`, the monster in
+`$s3`, the hitbox in `$s2` and its hitzone row in `$s0`. The raw damage is
+`attack+0x1E` × `attack+0x77` / 100 × hitzone × sharpness × the hunter's
+`+0x380`; the element's share, a float in `$f26`, is added to it (EU
+0x09C44A4C: `trunc.w.s $f0, $f26 … addu $a0, $s1, $a0`), and the sum, in
+`$s1`, goes into the monster's part damage for the frame: `+0x3B8`, an s16
+per hitbox part (`hitbox+6` & 7). The next call, with that store in its
+delay slot, is the status buildup `(monster, attack)` (EU 0x09C44F08), and
+hook 7 takes it (`HIT_SITE_SIGNATURE`, with `ELEMENT_ADD_SIGNATURE` at most
+0x400 bytes before). The stub, a 64-byte frame and 21 words, stores `{$s3,
+$s5, $s4, $s2, $s0, $s1, mfc1 $f26}` at `sp+16` as a `struct rf_hit`,
+dispatches, then makes the call with `$a0`/`$a1` reloaded and passes its
+`$v0` back. The monster's update (`game_task` EU 0x09AC8350) takes the sum
+of the part damage times the defense multiplier `+0x384` (at least 1) off
+its HP, so damage a callback adds there would be taken like the game's
+own (damage numbers only read it).
+
+For melee hits the function writes the hit's quality, hitzone × sharpness,
+to `attack+0x74` (and the hunter's `+0x397`): 3 at 1.0 and up, 2 at 0.45,
+then 1 and 0; it's 0 for shots, so the blob takes a weak point as quality
+2 or more, or quality 0 and a shot hitzone (row byte 3) of 45 or more. The
+element flags are `attack+0x28`: 0x10 fire, 0x20 water, 0x40 thunder, 0x80
+ice, 0x100 dragon (1, 2, 4, 8 are statuses).
+
+**Where to draw.** `jointPos(entity, out, joint)` (EU 0x08865F24 / JP
+0x08865F1C) gives a joint's world position from its matrix; a hitbox's
+first halfword is its joint. `project(camera, out, in)` (EU 0x08814674 /
+JP 0x08815434) gives screen x and y in pixels, depth and w, with VFPU
+`lv.q`/`sv.q`, so both vectors are 16-aligned in the blob. The camera is
+behind the global every `jal project` loads into `$a0` (EU 0x089CBBE4 /
+JP 0x089C6CB4); the game's own name tags project with it and print at the
+result. The blob projects on hook 1 and prints with the code-aware print
+(`pact.ts`) at the printer's bottom layer, setting the printer's glyph
+size (`+0x12C` width, `+0x12D` height, `+0x15F` line height, as the setter
+at EU 0x08890DE8 writes them) per number and putting it back.
+
+**Time.** Numbers age by the quest clock (HUD `+0x1230`, ticks
+left) on hook 0, so they stop while the game is paused; the clock going up
+or `game_task` going away is a new quest, which clears them.
+
+## START menu
+
+`blob/menu.c` on hook 8, linked in with damage numbers
+(`src/patches/menu.ts`; `game-hooks.ts` finds the sites).
+
+**The menu** (EU) is EBOOT code on the HUD object (`hud`, EU 0x09A04BA0):
+`+0x52D` is 1 while it's open, `+0x57C` 0 for the list and 1 while an
+entry runs, `+0x57D` the cursor (0 to 11, kept between opens), `+0x5E8`
+bit 2 the help bar. The HUD update (EU 0x0883F270) opens it on START and,
+while it's open, calls its input (EU 0x08848E04) with the buttons pressed
+this frame or auto-repeated (EU 0x0884FB6C, raw PSP bits). In the list ×
+(0x4000) calls `select(hud, cursor)` (EU 0x08849120, a jump table of 12):
+0 opens the entry (`+0x57C` = 1), anything else buzzes. ○ or START closes
+the menu. While an entry runs, `run(hud, cursor, buttons)` (EU 0x08849214,
+a table of 11) every frame: its result's 8 closes the menu, 0x2000 goes back
+to the list; Options returns `buttons & 0x2008`. The list's draw (EU
+0x08818C94, in the HUD's layer 10) labels each row with `msg1(obj, id)`
+(game_task's getter for message table 1, EU 0x09A63198) from a u16 ID
+table (EU 0x089B54E0: 0x6D Items … 0x77 Abandon Quest, then 0x78
+`--------`), each row in the colour byte at `$s0` (0xA greys it). The last
+entry, the placeholder, is greyed on both of the draw's paths, refused by
+`select` and not in `run`'s table.
+
+The HUD draws the menu in its layer 10 from one call (EU `jal 0x0883FAD4`
+at 0x0883F854, `hud` in `$a0`).
+
+**The village's menu** is other code on the same HUD object, with the same
+shape: `+0x111D` open, `+0x1118` state, `+0x111C` cursor, 14 entries in two
+pages of 7, the last (13) a greyed placeholder. Its list draw (EU
+0x0883488C) gets each label from `lobby_task`'s getter (EU 0x09A7B790)
+with `$s2` pointing at the row's u16 ID in a table in `lobby_task` (EU
+0x09B051A0, found from the draw's `lui`/`addiu`), the colour byte at `$s0`.
+Select is EU 0x08834D3C (called at 0x08834B84), run 0x08835098 (at
+0x08834C4C, a table of 13), and the layer-10 draw call is at 0x088346C0
+(`jal 0x08834730`, `hud` in `$a0`). The game draws nothing for the
+placeholder while it runs, in either menu.
+
+**The hook** takes each menu's four calls, each its function's only call
+(`MENU_*_SIGNATURE` and `VILLAGE_*_SIGNATURE`, immediates masked). Each
+call goes to two words that set `$t4` to its site (menu × 4 + `RF_MENU_*`)
+and branch to one shared stub, so the eight calls cost 16 words, the stub
+about 30 and a table of the game's functions by site 8 (the cave is
+tight: a stub per call didn't fit). The stub has a 64-byte frame with a
+`struct rf_menu` at `sp+16`: the call's `$a0`–`$a3`, `$s0` and `$s2` (the
+label loops' row), the site, the game's function, `handled` (0) and
+`result`. It dispatches; if the blob set `handled` it returns `result`,
+otherwise it jumps to the game's function with the call's registers and
+return address, as if called. Without the blob, or with no setting to show,
+both menus are the game's.
+
+The blob decides the rest:
+
+- Label: the placeholder's row is the quest's ID in `$a1` (read from the
+  ID table, extern `rf_quest_menu_id`) or the village's ID address in
+  `$s2` (`rf_village_menu_id`). For it, `menu.c` returns its label and
+  clears the row's colour byte at `$s0`, without the game's call.
+- Choose and run: for the placeholder's cursor, `RF_MENU_SELECT` returns 0
+  (opening it) and `RF_MENU_RUN` gets the buttons in `$a2`.
+- Draw: `menu.c` makes the game's call, then draws its window.
+
+`menu.c` gives the label "randomfu" only when a feature has added a
+setting, takes the entry (clearing the help bar, whose text for the
+placeholder is empty), moves its cursor and changes settings from the
+buttons, and returns `buttons & 0x2008` like Options. The game draws
+nothing for an entry it has no draw for, so the window is drawn on the
+menu's draw while that menu has the entry open, in the HUD's top layer (14)
+above the rest, the way the village's Options draws (EU 0x08839824):
+
+- `box(hud, list, title, cursor, alpha, names)` (EU 0x0882F580,
+  `BOX_SIGNATURE` in `src/patches/menu.ts`) draws the frame (style 3), the
+  title on its light bar, the lines between rows and the rows' names. Its
+  list is window()'s rect followed by the rows, their names, the list's
+  flags, and the cursor bar's and title's places; `menu.c` fills it as the
+  game's template routine (EU 0x0882FA24) does for the village Options' (x
+  232, y 40, 32 columns wide, a title). `names` 3 takes the names as string
+  pointers (the others are message IDs for the game's getters); box() ends
+  the list early at a u16 0xFFFF, so `menu.c` keeps the names 4-aligned.
+  Cursor -1 draws no cursor bar, as Options.
+- Each value is printed in colour 5, centred on the list's x + 0xC4 at 7
+  pixels a column.
+- `arrows(hud, x, y, w, alpha)` (EU 0x0882E6F0, `ARROWS_SIGNATURE`) draws
+  the pulsing green arrows either side of the cursor's value, at the text's
+  x + 0x92, 0x46 wide, alpha 0xF0.
+- The setting's help is in window(), in the help bar's frame (0) but left
+  of the list (8, 40, 216 by 112: 28 columns, 6 lines), so the list can run
+  down the screen; the village's Options puts it under its list (EU
+  0x0893B180: 216, 152, 256 by 112).
+
+Settings keep their choice through their own
+`get` and `set`, in randomfu's save data: monster health's is
+`monster_hp`, damage numbers' `damage_numbers` and attack hitboxes'
+`hitboxes`, the mode + 1 (0 for the disc's, which the blob gets as an
+extern of its mode + 1, since an extern's address can't be 0). The three
+features go in the blob on every disc, off or not, so the menu can turn
+them on; rows are in the order the features' inits add them.
+
 ## Not yet tried
 
 - On hardware, at all. In PPSSPP, the demo works on EU and JP: loading a
@@ -523,5 +696,12 @@ from an open file) and `sceKernelStartModule`, plus
 - A save from a patched game loaded on an unpatched one. Its slots 4–96
   hold the blob, which the game may read as cards (a slot is "used" when
   its first halfword isn't 0, and the magic starts with `RF`).
+- Damage numbers, in game at all: the text's size and advance at glyph
+  sizes other than 14 (the blob assumes digits are half as wide as high),
+  and the clock's rate (taken as 30 ticks a second).
+- The START menu entry's window, in game at all (the village's label was
+  seen as the game's placeholder before the village was hooked). That ×
+  chooses and ○ goes back on EU is from the code (raw bits, no swap seen
+  in the pad read).
 - How long a large blob takes to read from a real UMD (the demo is 108
   bytes, and the loader always reads only the file's size).
