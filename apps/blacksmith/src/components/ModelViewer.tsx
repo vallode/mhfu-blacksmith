@@ -6,6 +6,8 @@ import { capsuleBone } from "@/lib/capsule-bone";
 import { cn } from "@/lib/cn";
 import {
   fetchHunterClips,
+  fetchHunterIdle,
+  HUNTER_FEMALE_MODEL,
   HUNTER_MODEL,
   SHEATHED_TARGET,
   WEAPON_MOUNTS,
@@ -14,6 +16,13 @@ import {
   type WeaponMount,
 } from "@/lib/hunter";
 import type { GamePose } from "@/lib/bone-scaling";
+import {
+  dressHunter,
+  type HunterOutfit,
+  type HunterSlot,
+  type WornPiece,
+} from "@/lib/hunter-armor";
+import { armorModelSlot } from "@/lib/models";
 import { fetchMotions, inPlace, MOTION_FPS, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
@@ -64,6 +73,12 @@ interface Props {
    * type's motions. If the hunter's model can't load, the weapon shows alone.
    */
   hunter?: string;
+  /**
+   * Show `src` (an armor piece, with `parts`: its set) worn by the hunter of
+   * its sex, standing idle, in place of the default set's pieces of their
+   * slots. If the hunter's model can't load, the pieces show alone.
+   */
+  wear?: HunterOutfit;
   /**
    * More .glb files shown with `src`, in the same space: the rest of an
    * armor set, whose pieces all sit on the player's skeleton. One that can't
@@ -217,6 +232,8 @@ function motionLabel(t: Messages, motion: HunterMotion): string {
       return m.sheathedIdle;
     case "drawn-idle":
       return m.drawnIdle;
+    case "idle":
+      return m.idle;
     case "move":
       return m.moveN(motion.n);
     case "attack":
@@ -237,6 +254,7 @@ export default function ModelViewer({
   unusedMotions,
   hunter,
   parts,
+  wear,
 }: Props) {
   const t = useT();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -363,20 +381,45 @@ export default function ModelViewer({
 
       try {
         const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-        // Without the hunter (an export that couldn't make one), the weapon shows alone.
+        // Without the hunter (an export that couldn't make one), the weapon
+        // or armor shows alone.
+        const bodyModel = wear?.sex === "female" ? HUNTER_FEMALE_MODEL : HUNTER_MODEL;
         const [body, own, ...extra] = await Promise.all([
-          hunter ? loader.loadAsync(HUNTER_MODEL).catch(() => null) : null,
+          hunter || wear ? loader.loadAsync(bodyModel).catch(() => null) : null,
           loader.loadAsync(src),
           ...(partsKey ? partsKey.split("\n") : []).map((url) =>
             loader.loadAsync(url).catch(() => null),
           ),
         ]);
         if (disposed) return;
-        const gltf = body ?? own;
-        const weapon = body && own.scene;
-        const holding = body ? hunter : undefined;
+        const wearing = (() => {
+          if (!body || !wear) return false;
+          // Each piece goes in the slot its file is for (a set's first file
+          // needn't be the page's piece), one a slot.
+          const partUrls = partsKey ? partsKey.split("\n") : [];
+          const worn: WornPiece[] = [
+            {
+              slot: (armorModelSlot(src) as HunterSlot | undefined) ?? wear.slot,
+              model: own.scene,
+            },
+          ];
+          extra.forEach((part, i) => {
+            const slot = armorModelSlot(partUrls[i] ?? "") as HunterSlot | undefined;
+            if (part && slot && !worn.some((piece) => piece.slot === slot))
+              worn.push({ slot, model: part.scene });
+          });
+          try {
+            dressHunter(THREE, body.scene, worn);
+            return true;
+          } catch {
+            return false;
+          }
+        })();
+        const weapon = body && hunter ? own.scene : null;
+        const gltf = weapon || wearing ? body! : own;
+        const holding = weapon ? hunter : undefined;
         model = gltf.scene;
-        for (const part of extra) if (part) model.add(part.scene);
+        if (!wearing) for (const part of extra) if (part) model.add(part.scene);
         const copies = [model];
         if (weapon && holding) {
           scene.add(model);
@@ -667,11 +710,13 @@ export default function ModelViewer({
         const motionsFile = (gltf.asset.extras as { motions?: unknown } | undefined)?.motions;
         const motions: Promise<MotionClip[]> = holding
           ? fetchHunterClips(holding, abort.signal).catch(() => [])
-          : typeof motionsFile === "string" && !pair
-            ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
-                // The model still shows, just still.
-                .catch(() => [])
-            : Promise.resolve([]);
+          : wearing
+            ? fetchHunterIdle("idle", abort.signal).catch(() => [])
+            : typeof motionsFile === "string" && !pair
+              ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
+                  // The model still shows, just still.
+                  .catch(() => [])
+              : Promise.resolve([]);
         const early = await Promise.race([
           motions,
           new Promise<null>((resolve) => setTimeout(() => resolve(null), MOTIONS_WAIT_MS)),
@@ -835,7 +880,9 @@ export default function ModelViewer({
       disposed = true;
       cleanup();
     };
-  }, [src, pair, hunter, partsKey]);
+    // `wear` is compared by its fields: callers pass a fresh object each render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [src, pair, hunter, partsKey, wear?.slot, wear?.sex]);
 
   // Capsules live in their own group, rebuilt when they change; there are
   // few (Rathian has 32), so rebuilding is cheaper than diffing.

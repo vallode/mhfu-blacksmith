@@ -51,6 +51,12 @@ const ARMOR_FOLDER: Record<string, string> = {
   leggings: "reg",
 };
 
+/** The armor slot an armor model's URL is for (`.../m_hair065.glb`: "helmet"), if it is one. */
+export function armorModelSlot(url: string): string | undefined {
+  const folder = /\/[mf]_([a-z]+)\d+\.glb$/.exec(url)?.[1];
+  return Object.keys(ARMOR_FOLDER).find((slot) => ARMOR_FOLDER[slot] === folder);
+}
+
 /** Resolve a value from one manifest once it's loaded; null while loading, when absent, or offline without it. */
 function useManifestValue<T>(
   manifest: string | null,

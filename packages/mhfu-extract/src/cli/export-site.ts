@@ -38,8 +38,10 @@
  * Likewise `monsters/emNN.unused-motions.json` (`monsters/motion-use.ts`):
  * the motions in its bank that none of its code plays.
  *
- * `public/models/hunter/` holds the hunter shown holding a weapon: `hunter.glb`
- * (the default armor set on the player's skeleton, `models/hunter.ts`), one
+ * `public/models/hunter/` holds the hunter shown holding a weapon or wearing
+ * armor: `hunter.glb` (the default armor set on the player's skeleton,
+ * `models/hunter.ts`), `hunter-female.glb` (the female set on the female
+ * skeleton, for female armor), one
  * `wNN.motions.bin` per weapon class and `common.motions.bin`, the common
  * motions the site uses (motion-pack.ts). Weapons are written in `part_<n>`
  * pieces (a shield, a second blade) so the site can carry them apart.
@@ -54,7 +56,16 @@ import { buildPlayerClips, PLAYER_GROUP_SLOTS, type ClipOptions } from "../model
 import { isAhi, readAhi, type Bone } from "../models/ahi.js";
 import { skeletonFor } from "../models/attach.js";
 import { buildGlb, type GlbOptions, type GlbPartOf } from "../models/gltf.js";
-import { boneRoots, composeHunter, readHunterPiece, type HunterSlot } from "../models/hunter.js";
+import {
+  boneRoots,
+  composeHunter,
+  HUNTER_ARMOR,
+  MISSING_TEXTURE,
+  PLAYER_BONE_COUNT,
+  readHunterPiece,
+  type HunterModel,
+  type HunterSlot,
+} from "../models/hunter.js";
 import { packMotions } from "../models/motion-pack.js";
 import { readMotionBank } from "../models/motion.js";
 import { packageModel } from "../models/rig.js";
@@ -62,7 +73,8 @@ import { spawnHidden, withoutHidden } from "../models/spawn-parts.js";
 import { wearProps } from "../models/worn-props.js";
 import { isPac, readPac, type PacEntry } from "../models/pac.js";
 import { isPmo, type Pmo } from "../models/pmo.js";
-import { isTmh, readTmh } from "../models/tmh.js";
+import { missingTextures, skinTexturePath, withSkin } from "../models/skin.js";
+import { isTmh, readTmh, type TmhImage } from "../models/tmh.js";
 import {
   poseWeapon,
   SHEATHED_TARGET,
@@ -142,7 +154,9 @@ type EquipmentIds = Record<string, ({ name: string; type?: string; sex?: string 
  * page can show the model before fetching them; `motionsFile` names the file
  * the GLB should point at for them (monsters with the same motions share one).
  * A weapon's bones are posed as the game has them drawn, with the sheathed
- * pose as a morph target (`pose`, weapon-pose.ts).
+ * pose as a morph target (`pose`, weapon-pose.ts). An armor piece's `skin`
+ * textures go after its own (skin.ts). `missing` lists the texture indices
+ * its materials use that have no image.
  */
 async function packageToGlb(
   buf: Buffer,
@@ -151,7 +165,8 @@ async function packageToGlb(
   clipOptions: ClipOptions,
   motionsFile: (motions: Buffer) => string,
   pose?: WeaponPoses,
-): Promise<{ glb: Buffer; motions?: Buffer; slots?: number[] } | null> {
+  skin: readonly TmhImage[] = [],
+): Promise<{ glb: Buffer; motions?: Buffer; slots?: number[]; missing: number[] } | null> {
   if (!isPac(buf)) return null;
   const entries = readPac(buf);
   const pmoEntry = entries.find((entry) => isPmo(entry.data));
@@ -159,7 +174,7 @@ async function packageToGlb(
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
   const model = packageModel(entries, pmoEntry.index, clipOptions);
   const { rig } = model;
-  let textures = tmhEntry ? readTmh(tmhEntry.data) : [];
+  let textures = withSkin(tmhEntry ? readTmh(tmhEntry.data) : [], skin);
   if (name.startsWith("emmodel/")) {
     const pac = path.basename(name, ".pac");
     // A monster is shown as it spawns: no broken parts, stump caps or rage
@@ -204,31 +219,46 @@ async function packageToGlb(
         },
     rig && { bones: rig.bones, motionsFile: motions && motionsFile(motions) },
   );
-  return { glb, motions, slots: rig?.clips?.map((clip) => clip.slot) };
+  return {
+    glb,
+    motions,
+    slots: rig?.clips?.map((clip) => clip.slot),
+    missing: missingTextures(pmo, textures),
+  };
 }
 
-/** What an armor piece needs to go on the player: its slot and the player's skeleton for its sex. */
+/**
+ * What an armor piece needs to go on the player: its slot, the player's
+ * skeleton for its sex (none if it couldn't be read) and the skin textures
+ * its bare parts take (skin.ts).
+ */
 interface ArmorFit {
   slot: HunterSlot;
-  skeleton: Bone[];
+  skeleton?: Bone[];
+  skin: readonly TmhImage[];
 }
 
 /**
  * An armor piece as a GLB placed on the player's skeleton (`composeHunter`
  * on the piece alone), so any pieces of one sex shown together line up as
- * the hunter wears them. It's left unskinned, in the bind pose: the site
- * doesn't move armor, and the skin would add a quarter to the files.
+ * the hunter wears them. It stays unskinned, in the bind pose, but each
+ * vertex keeps its player joints and weights (`_JOINTS_0`, `_WEIGHTS_0`) for
+ * the site to put it on the moving hunter. `missing` is as `packageToGlb`'s.
  */
 async function armorToGlb(
   buf: Buffer,
   name: string,
-  { slot, skeleton }: ArmorFit,
+  { slot, skeleton, skin }: ArmorFit & { skeleton: Bone[] },
   options: GlbOptions,
-): Promise<Buffer> {
-  const piece = readHunterPiece(slot, readPac(buf));
+): Promise<{ glb: Buffer; missing: number[] }> {
+  const piece = readHunterPiece(slot, readPac(buf), skin);
   const { pmo, textures } = composeHunter([piece], skeleton);
-  const { glb } = await buildGlb(pmo, textures, name, options);
-  return glb;
+  const { glb } = await buildGlb(pmo, textures, name, { ...options, jointWeights: true });
+  // Reported as the piece's own indices, not composeHunter's stand-ins.
+  const missing = missingTextures(pmo, textures).map((index) =>
+    index >= MISSING_TEXTURE ? index - MISSING_TEXTURE : index,
+  );
+  return { glb, missing };
 }
 
 /** A weapon's skeleton: the first `.ahi` after its mesh, if it parses. */
@@ -273,14 +303,19 @@ async function exists(file: string): Promise<boolean> {
   }
 }
 
-/** The armor the hunter wears: the model of each slot's piece of this name, by data name. */
-const HUNTER_ARMOR: Record<HunterSlot, string> = {
-  helmet: "Battle Helm",
-  plate: "Battle Mail",
-  gauntlets: "Battle Vambraces",
-  waist: "Battle Tasset",
-  leggings: "Battle Greaves",
-};
+/** The first skin tone's textures for `sex` (skin.ts); none, logged, when the file isn't there. */
+async function readSkin(dataBin: string, sex: "m" | "f"): Promise<TmhImage[]> {
+  const file = path.join(dataBin, skinTexturePath(sex));
+  try {
+    const buf = await readFile(file);
+    if (isTmh(buf)) return readTmh(buf);
+    console.log(`${skinTexturePath(sex)} isn't a .TMH: armor skin stays untextured`);
+  } catch {
+    console.log(`no ${skinTexturePath(sex)}: armor skin stays untextured`);
+  }
+  return [];
+}
+
 /** Weapon classes (`motion/wNN_tbl.bin`, by `WEAPON_TYPE_NAMES` index). */
 const WEAPON_CLASS_COUNT = 11;
 /** Slots of `motion/plcom_tbl.bin` the site plays: group 0's standing idle (weapon away). */
@@ -294,28 +329,53 @@ async function exportHunter(
 ): Promise<void> {
   const dataBin = path.join(options.unpacked, "data-bin");
   const models = readArmorModelIds(reader, MHP2G_PROFILE.resolverForRegion(region) ?? undefined);
-  const pieces = await Promise.all(
-    (Object.entries(HUNTER_ARMOR) as [HunterSlot, string][]).map(async ([slot, name]) => {
-      const entry = models[slot].find((e) => ids[slot]?.[e.index]?.name === name);
-      if (!entry) throw new Error(`Default armor piece not found: ${name}`);
-      const source = path.join(dataBin, armorModelPath(slot, "m", entry.maleId));
-      return readHunterPiece(slot, readPac(await readFile(source)));
-    }),
-  );
-  const { pmo, textures, bones } = composeHunter(pieces);
+  /** The default set of one sex, composed on that sex's skeleton. */
+  const compose = async (sex: "m" | "f") => {
+    const skin = await readSkin(dataBin, sex);
+    return composeHunter(
+      await Promise.all(
+        (Object.entries(HUNTER_ARMOR) as [HunterSlot, string][]).map(async ([slot, name]) => {
+          const entry = models[slot].find((e) => ids[slot]?.[e.index]?.name === name);
+          if (!entry) throw new Error(`Default armor piece not found: ${name}`);
+          const id = sex === "m" ? entry.maleId : entry.femaleId;
+          const source = path.join(dataBin, armorModelPath(slot, sex, id));
+          return readHunterPiece(slot, readPac(await readFile(source)), skin);
+        }),
+      ),
+    );
+  };
   const clipOptions = options.lossless ? {} : SITE_CLIP_OPTIONS;
   const dir = path.join(options.out, "hunter");
   await mkdir(dir, { recursive: true });
-  const { glb } = await buildGlb(
-    pmo,
-    textures,
-    "hunter",
-    options.lossless ? {} : SITE_GLB_OPTIONS,
-    { bones },
-  );
-  await writeFile(path.join(dir, "hunter.glb"), glb);
+  let size = 0;
+  /** Writes a composed hunter, each primitive tagged with its slot (`HUNTER_ARMOR` order). */
+  const writeHunter = async (name: string, hunter: HunterModel) => {
+    const slots = Object.keys(HUNTER_ARMOR);
+    const { glb } = await buildGlb(
+      hunter.pmo,
+      hunter.textures,
+      name,
+      {
+        ...(options.lossless ? {} : SITE_GLB_OPTIONS),
+        partOf: (mesh) => slots.indexOf(hunter.meshSlots[mesh]!),
+      },
+      { bones: hunter.bones },
+    );
+    await writeFile(path.join(dir, `${name}.glb`), glb);
+    size += glb.length;
+  };
+  const male = await compose("m");
+  const { bones } = male;
+  await writeHunter("hunter", male);
 
-  let size = glb.length;
+  // The female hunter wears the female pieces on her own skeleton, so the
+  // site can show female armor in place; she plays the same motions.
+  try {
+    await writeHunter("hunter-female", await compose("f"));
+  } catch (err) {
+    console.log(`no female hunter: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   const writeClips = async (file: string, clips: ReturnType<typeof buildPlayerClips>) => {
     const pack = packMotions(clips);
     size += pack.length;
@@ -345,6 +405,8 @@ class Converter {
   readonly motionSlots = new Map<string, number[]>();
   /** Packages referenced by the game data but absent from the unpacked directory (e.g. a partial dump). */
   missing = 0;
+  /** Converted packages with materials no texture was found for, and those texture indices. */
+  readonly untextured = new Map<string, number[]>();
   constructor(
     private readonly dataBin: string,
     private readonly out: string,
@@ -374,15 +436,17 @@ class Converter {
       const file = path.join(this.out, relativeOut);
       /** Why the armor piece couldn't go on the player, logged once it's converted as it is. */
       let unfit: string | undefined;
-      if (armor) {
+      if (armor?.skeleton) {
         const buf = await readFile(path.join(this.dataBin, source));
-        const glb = await armorToGlb(buf, source, armor, this.options).catch((err: unknown) => {
+        const fit = { ...armor, skeleton: armor.skeleton };
+        const placed = await armorToGlb(buf, source, fit, this.options).catch((err: unknown) => {
           unfit = err instanceof Error ? err.message : String(err);
           return null;
         });
-        if (glb) {
+        if (placed) {
           await mkdir(path.dirname(file), { recursive: true });
-          await writeFile(file, glb);
+          await writeFile(file, placed.glb);
+          if (placed.missing.length) this.untextured.set(source, placed.missing);
           this.done.set(source, relativeOut);
           return relativeOut;
         }
@@ -403,10 +467,12 @@ class Converter {
           return existing ?? ownMotions;
         },
         pose,
+        armor?.skin,
       );
       if (converted) {
         await mkdir(path.dirname(file), { recursive: true });
         await writeFile(file, converted.glb);
+        if (converted.missing.length) this.untextured.set(source, converted.missing);
         // A model that shares another's motions, or has none, loses a stale file.
         const motionsPath = path.join(path.dirname(file), ownMotions);
         if (converted.motions && !shared) {
@@ -761,6 +827,7 @@ async function exportArmor(
   const armor: SiteModelManifest["armor"] = {};
   const models = readArmorModelIds(reader, resolver);
   const skeletons = await playerSkeletons(dataBin, models, ids);
+  const skins = { m: await readSkin(dataBin, "m"), f: await readSkin(dataBin, "f") };
   let count = 0;
   for (const [slot, entries] of Object.entries(models) as [
     SiteArmorSlot,
@@ -777,14 +844,12 @@ async function exportArmor(
       ] as const) {
         if (id === 0) continue;
         const source = armorModelPath(slot, sex, id);
-        const skeleton = skeletons[sex];
         if (
-          await converter.convert(
-            source,
-            `armor/${path.basename(source, ".pac")}.glb`,
-            undefined,
-            skeleton && { slot, skeleton },
-          )
+          await converter.convert(source, `armor/${path.basename(source, ".pac")}.glb`, undefined, {
+            slot,
+            skeleton: skeletons[sex],
+            skin: skins[sex],
+          })
         )
           found[i] = id;
       }
@@ -795,6 +860,14 @@ async function exportArmor(
     }
   }
   console.log(`armor: ${count}`);
+  // What the skin didn't cover: a material indexing past the piece's
+  // textures and the skin's, which shows untextured.
+  const untextured = [...converter.untextured].filter(([source]) => source.startsWith("player/"));
+  if (untextured.length) {
+    console.log(`armor: ${untextured.length} models with untextured materials, e.g.`);
+    for (const [source, indices] of untextured.slice(0, 10))
+      console.log(`  ${source}: texture ${indices.join(", ")}`);
+  }
   return armor;
 }
 

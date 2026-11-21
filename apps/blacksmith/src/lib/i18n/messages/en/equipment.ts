@@ -299,6 +299,10 @@ export const equipment = {
     fullSet: "Full set",
     /** The full set's accessible name, before the sex: "Rathalos Helm and the rest of its set". */
     setModel: (name: string) => `${name} and the rest of its set`,
+    /** The armor model's switch that puts the piece on the hunter. */
+    onHunter: "On hunter",
+    /** The accessible name of a piece worn by the hunter: "Rathalos Helm (male), on a hunter". */
+    wornModel: (model: string) => `${model}, on a hunter`,
     /** The motion controls over an animated model. */
     motions: "Motions",
     motion: "Motion",
@@ -315,6 +319,8 @@ export const equipment = {
     /** The hunter's motions (lib/hunter names them in English). */
     sheathedIdle: "Sheathed idle",
     drawnIdle: "Drawn idle",
+    /** Standing in armor, no weapon. */
+    idle: "Idle",
     moveN: (n: number) => `Move ${n}`,
     attackN: (n: number) => `Attack ${n}`,
   },

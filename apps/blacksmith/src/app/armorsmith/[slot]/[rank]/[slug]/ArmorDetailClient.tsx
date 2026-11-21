@@ -189,7 +189,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
       </DetailCard>
       {modelOpen && models && (
         <ModelPopover title={name} onClose={() => setOpenModel(null)}>
-          <ArmorModelViewer models={models} setModels={setModels} label={name} />
+          <ArmorModelViewer models={models} setModels={setModels} slot={slot} label={name} />
         </ModelPopover>
       )}
     </>
