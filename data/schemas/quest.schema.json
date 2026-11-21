@@ -183,6 +183,7 @@
         "fee":                 { "type": "integer", "minimum": 0 },
         "reward":              { "type": "integer", "minimum": 0 },
         "penalty":             { "type": "integer", "minimum": 0 },
+        "clear_points":        { "type": "integer", "minimum": 0, "$comment": "The header's points for a clear (HRPSuccess, u32 @ 0x3c), raw. Guild Points on the Guild and Event boards; other boards show other points (mhfu-extract's README, 'Clear points'). Gathering quests have 0." },
         "time_limit_minutes":  { "type": "integer", "minimum": 0 },
         "target": {
           "oneOf": [{ "$ref": "#/definitions/target" }, { "type": "null" }]

@@ -106,6 +106,16 @@ export interface WeaponTreeNode {
    * nested under it any more (its parent was pruned out of the tree).
    */
   parentHref?: string;
+  /**
+   * Armor only: the piece's version family, shared with its versions at the
+   * other ranks (Rathalos Helm, Rathalos Helm S, Rathalos Helm X).
+   */
+  family?: number;
+  /**
+   * Shown faded: outside the tree's filter, but kept for context (an armor
+   * piece's versions at other ranks under a rank filter).
+   */
+  dimmed?: boolean;
   children?: WeaponTreeNode[];
 }
 
