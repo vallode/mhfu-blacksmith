@@ -113,6 +113,8 @@ export interface SaveData extends AwardRecords {
   hunterRank?: number;
   /** 0-based character slot in the save file. Missing on saves stored before it was kept. */
   slot?: number;
+  /** "ppsspp" when read live from the game's memory (src/lib/ppsspp-link.ts): there is no slot. */
+  source?: "ppsspp";
   /** IDs of the quests the hunter has cleared. Missing on saves stored before they were read. */
   clearedQuests?: number[];
   /** Monsters with a record (kills, captures or sizes). Missing on saves stored before they were read. */

@@ -19,6 +19,7 @@ import {
 } from "@/lib/file-handle-store";
 import { parseSaveBuffer, type Region, type WorkerResult } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
+import { usePpssppLink } from "@/context/PpssppLinkContext";
 import { useT } from "@/context/LanguageContext";
 import { saveFromCharacter } from "@/lib/save-store";
 
@@ -92,6 +93,11 @@ const FileSyncContext = createContext<FileSyncContextValue>({
 export function FileSyncProvider({ children }: { children: React.ReactNode }) {
   const pickerDescription = useT().site.saveSync.filePickerDescription;
   const { load } = useSave();
+  // While the hunter comes live from PPSSPP, the file (only as new as the
+  // game's last save) mustn't replace it.
+  const linked = usePpssppLink().status === "linked";
+  const linkedRef = useRef(linked);
+  linkedRef.current = linked;
   const [state, setState] = useState<FileSyncState>(DEFAULT_STATE);
   const inFlightRef = useRef<Promise<void> | null>(null);
   const rerunRef = useRef(false);
@@ -109,7 +115,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
 
   const applyResult = useCallback(
     (record: FileHandleRecord, result: WorkerResult) => {
-      if (record.characterIndex == null) return;
+      if (record.characterIndex == null || linkedRef.current) return;
       const character = result.characters[record.characterIndex];
       if (!character) {
         setState((s) => ({

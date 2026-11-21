@@ -92,6 +92,7 @@ export const site = {
     reset: "Reset to defaults",
   },
   saveSync: {
+    fileTitle: "Save File",
     title: "Save Sync",
     unsupported:
       "Automatic save syncing isn't supported in this browser. You can still upload your save file manually from the Hunter page.",
@@ -127,6 +128,30 @@ export const site = {
           : "Allow access to your save file again to keep your hunter profile in sync.",
       notNow: "Not now",
     },
+  },
+  ppssppLink: {
+    title: "PPSSPP Link",
+    intro:
+      "Playing on PPSSPP? Link the site to it and your hunter comes straight from the game whenever you switch back to this tab, saved or not.",
+    setup:
+      "In PPSSPP, turn on Settings → Tools → Developer tools → Allow remote debugger. The first time, the site asks PPSSPP's own server (report.ppsspp.org) which port PPSSPP is on.",
+    link: "Link to PPSSPP",
+    unlink: "Unlink",
+    syncNow: "Sync now",
+    syncing: "Reading the game…",
+    searching: "Looking for PPSSPP…",
+    linked: (game: string, ago: string) => `Linked to ${game}, synced ${ago}`,
+    notFound: "PPSSPP didn't answer. Is it running, with the remote debugger allowed?",
+    noGame: "PPSSPP is open, but no game is running.",
+    otherGame: (game: string) => `PPSSPP is running another game (${game}).`,
+    noHunter: "Load a hunter in the game, then come back to this tab.",
+    fileSkipped:
+      "While the site is linked to PPSSPP, it takes the hunter from the game, not the save file.",
+    port: "Port",
+    portHint:
+      "If the site can't find PPSSPP by itself (Safari sends the lookup through iCloud Private Relay, which hides that you're on PPSSPP's network), enter PPSSPP's port: RemoteISOPort in PSP/SYSTEM/ppsspp.ini in PPSSPP's folder.",
+    connect: "Connect",
+    liveHunter: "In the game",
   },
   offline: {
     title: "Offline Data",

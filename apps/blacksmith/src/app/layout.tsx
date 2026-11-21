@@ -15,6 +15,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { ToastProvider } from "@/context/ToastContext";
 import { OfflineProvider } from "@/context/OfflineContext";
 import { FileSyncProvider } from "@/context/FileSyncContext";
+import { PpssppLinkProvider } from "@/context/PpssppLinkContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -56,15 +57,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <HunterProgressProvider>
                 <ToastProvider>
                   <OfflineProvider>
-                    <FileSyncProvider>
-                      <AppShell>
-                        <OfflineNavGuard>{children}</OfflineNavGuard>
-                      </AppShell>
-                      <GlobalSearch />
-                      {/* Offline download banner hidden for now.
+                    <PpssppLinkProvider>
+                      <FileSyncProvider>
+                        <AppShell>
+                          <OfflineNavGuard>{children}</OfflineNavGuard>
+                        </AppShell>
+                        <GlobalSearch />
+                        {/* Offline download banner hidden for now.
                     <OfflineDownload /> */}
-                      <SaveSyncReconnect />
-                    </FileSyncProvider>
+                        <SaveSyncReconnect />
+                      </FileSyncProvider>
+                    </PpssppLinkProvider>
                   </OfflineProvider>
                 </ToastProvider>
               </HunterProgressProvider>
