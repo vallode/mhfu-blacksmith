@@ -111,6 +111,13 @@ import {
   patchFov,
   prepareCamera,
 } from "./patches/camera.js";
+import {
+  findQuestEnd,
+  patchQuestEnd,
+  questEndExterns,
+  questEndObjects,
+  questEndReport,
+} from "./patches/quest-end.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findHitboxExterns, hitboxObjects } from "./patches/hitboxes.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
@@ -971,6 +978,11 @@ export function randomize(
   }
 
   const testing: string[] = [];
+  // The wait after a quest: an EBOOT patch whose data word is the disc's
+  // choice, so it works with no blob; the blob changes the word in game.
+  const questEndOn = settings["quest.endWait"] !== "normal";
+  const questEndFound = !game.eboot ? "the EBOOT wasn't loaded" : findQuestEnd(game.eboot);
+  let questEndLinked = false;
   if (options.loaderDemo) {
     const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
       objects: decodeObjects(DEMO_OBJECTS),
@@ -1082,6 +1094,12 @@ export function randomize(
       (cameraOn ? objects : optional).push(...cameraObjects());
       Object.assign(externs, cameraFound);
       camera = true;
+    }
+    let questEnd = false;
+    if (typeof questEndFound !== "string" && typeof sites !== "string") {
+      optional.push(...questEndObjects());
+      Object.assign(externs, questEndExterns(questEndFound, settings));
+      questEnd = true;
     }
     const prepared = !settings["quests.unknown"]
       ? null
@@ -1225,13 +1243,13 @@ export function randomize(
     }
     // randomfu's START menu entry, where the features with settings can be changed in game.
     let menus: MenuSites[] | null = null;
-    if ((hit || monsterHp || hitboxes || camera) && typeof sites !== "string") {
+    if ((hit || monsterHp || hitboxes || camera || questEnd) && typeof sites !== "string") {
       const found = prepareMenu(game.eboot!, sites);
       if (typeof found === "string") {
         reports.push(
           notApplied(
             "randomfu's START menu entry",
-            `${found}; monster health, attack hitboxes, damage numbers and the camera keep this disc's settings`,
+            `${found}; monster health, attack hitboxes, damage numbers, the camera and the wait after a quest keep this disc's settings`,
           ),
         );
       } else {
@@ -1242,7 +1260,16 @@ export function randomize(
     }
     if (
       typeof hookSites !== "string" &&
-      (monsterHp || hitboxes || unknown || elites || pact || luck || keys || hit || camera)
+      (monsterHp ||
+        hitboxes ||
+        unknown ||
+        elites ||
+        pact ||
+        luck ||
+        keys ||
+        hit ||
+        camera ||
+        questEnd)
     ) {
       const install = (lean: boolean) => {
         const all = lean ? objects : [...objects, ...optional];
@@ -1286,6 +1313,8 @@ export function randomize(
       reports.push(loader);
       // A lean loader leaves out the camera's code when its options are off.
       cameraLinked = loader.applied && camera && (cameraOn || !wentLean);
+      // Its code is always optional: the EBOOT patch alone carries the disc's choice.
+      questEndLinked = loader.applied && questEnd && !wentLean;
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {
@@ -1304,6 +1333,31 @@ export function randomize(
       } else if (cameraOn) {
         reports.push(cameraReport(settings, cameraLinked));
       }
+    }
+  }
+
+  if (typeof questEndFound === "string") {
+    if (questEndOn) {
+      reports.push({
+        title: "Quest end",
+        notes: [`The wait after a quest isn't in this image: ${questEndFound}.`],
+        lines: [],
+        summary: `Quest end: not applied (${questEndFound})`,
+      });
+    }
+  } else if (questEndOn || questEndLinked) {
+    const patched = patchQuestEnd(edits.eboot(), settings["quest.endWait"]);
+    if (typeof patched === "string") {
+      if (questEndOn) {
+        reports.push({
+          title: "Quest end",
+          notes: [`The wait after a quest isn't in this image: ${patched}.`],
+          lines: [],
+          summary: `Quest end: not applied (${patched})`,
+        });
+      }
+    } else if (questEndOn) {
+      reports.push(questEndReport(settings, questEndLinked));
     }
   }
 

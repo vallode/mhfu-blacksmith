@@ -449,3 +449,15 @@ test("the camera is reported when on and it can't go in, and not when it's off",
   assert.ok(!off.reports.some((r) => r.title === "Camera"));
   close();
 });
+
+test("the wait after a quest is reported when on and it can't go in, and not when it's off", async () => {
+  const { game, close } = await load(fixtureFile());
+  // The fixture's EBOOT isn't the game's: no quest end steps to patch.
+  const on = randomize(game, applySettings(defaultSettings("q"), { "quest.endWait": "instant" }));
+  const reports = on.reports.filter((r) => r.title === "Quest end");
+  assert.equal(reports.length, 1);
+  assert.match(reports[0]!.summary ?? "", /Quest end: not applied/);
+  const off = randomize(game, defaultSettings("q"));
+  assert.ok(!off.reports.some((r) => r.title === "Quest end"));
+  close();
+});

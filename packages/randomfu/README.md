@@ -182,6 +182,7 @@ web app shows as a tag):
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
 | `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
 | `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
+| `quest.endWait`                   | `normal`    | The wait after a quest: `short` (20 s for every quest) or `instant` (straight to the rewards)          |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
 | `hud.damageNumbers`               | off         | Numbers at the part each of your hits strikes: `total` or `split` element (caps Guild Cards)           |
 | `hud.attackHitboxes`              | off         | Shade every monster attack that can hit right now, over the scene (caps Guild Cards)                   |
@@ -1319,6 +1320,64 @@ How randomfu does it (`src/patches/camera.ts`, `blob/camera.c`):
   block's shape: an angle between 0.3 and 1.6 radians, the zeros, and
   distances between 0 and 5000.
 
+## Quest end
+
+`quest.endWait` (Modifications → Quest end in the web app), and the After a
+quest setting in randomfu's START menu entry (Damage numbers, below): how
+long the game waits once a quest is over, completed or failed, before the
+reward screen. `normal` is the game's own; `short` waits 20 s after every
+quest, with the game's "Returning to village in 20 secs." message, which is
+time to carve one monster; `instant` goes straight to the rewards, with no
+time to carve. The option picks what a disc starts with; the menu changes it
+in game, and the save keeps it. It is a change to the EBOOT's code that
+works without the blob; with the blob (as for the camera, every disc) it is
+also a setting. Played on EU at `short` and, from the menu, `instant`
+(PPSSPP, 2026-11-21): a hunt completed with carving in the 20 s, a failed
+quest, and the reward screen and the trip back to town after each. JP builds
+(the code is found by its signature) but hasn't been played.
+
+What the game does (EU addresses; JP's code is the same, 8 bytes earlier,
+JP 0x0886B31C):
+
+- The quest object (`*0x08A62C7C`; EU 0x09A05DC0 in a quest) runs a state
+  machine once a frame (EU 0x0886B0E0, from `game_task`): byte +0 is the
+  state, +1 the step within it, and +0x710 a countdown in frames (30 a
+  second). +0x10 is the time left (90000 frames for 50 minutes).
+- State 0 is the hunt. A quest that ends goes to state 1 (seen for a
+  completed gathering quest and for one that ran out of time):
+  - step 0 (EU 0x0886B324) shows the end message and sets the countdown to
+    150: the 5 s "Quest Complete" banner;
+  - step 1 counts it down, then picks the wait from the quest's flags
+    (+0x28): without bit 0x80000, 1800 frames (a minute) and "Returning to
+    village in 1 min."; with it and without bit 0x200000, 600 (20 s) and
+    "Returning to village in 20 secs." (gathering quests); with both, 600
+    or 1800 as EU 0x08872B40 says. The messages are IDs 0x14 and 0x15 from
+    the end messages' ID table (EU 0x089AC5A0);
+  - step 2 counts that down, then state 2 waits for every hunter of the
+    party (+0x110, at most 3 minutes; in single player at once) and the
+    reward screen follows.
+- The hunter keeps control through both countdowns: that is the time to
+  carve and gather. Cutting both to a frame live (writing +0x710) went
+  straight to a working reward screen.
+- The start of a quest has nothing like it: from departing to having
+  control in base camp is about 4 s of loading and a fade, with no timer or
+  intro behind it, and the trip back after the reward screen is loading
+  too. randomfu doesn't change them.
+
+How randomfu does it (`src/patches/quest-end.ts`, `blob/quest-end.c`):
+
+- Steps 0 and 1 are rewritten in place. Step 0 loads the message's ID in
+  one word less, which leaves room to load the banner's frames from the low
+  half of a data word. Step 1 takes the wait from the word's high half when
+  it isn't 0 (600 or less with the 20-second message, 1 with no message)
+  and otherwise picks as the game does, in four words less, so the data
+  word takes the place of a `li` only the old choice reached (EU
+  0x0886B3FC, JP 0x0886B3F4). Normal is 150 and 0, Short 150 and 600,
+  Instant 1 and 1.
+- The disc sets the word to its option's choice; the blob sets it to the
+  save's at every load and when the setting changes. The code never
+  changes at run time.
+
 ## Damage numbers
 
 `hud.damageNumbers` (`total` or `split`), after World's damage numbers:
@@ -1346,13 +1405,13 @@ the game keeps a greyed `--------` placeholder) is now **randomfu**: a window of
 that can be changed in game, drawn like the game's Options with the
 setting's help to its left: monster health (Off, On map, Always), damage
 numbers (Off, Total, Split), attack hitboxes (Off, On), field of view
-(Normal, Wide, Wider, Widest) and camera distance (Normal, Far, Farther,
-Farthest).
+(Normal, Wide, Wider, Widest), camera distance (Normal, Far, Farther,
+Farthest) and the wait after a quest (Normal, Short, Instant).
 Up and down pick a setting; left, right and × change it; ○ goes back to the
 menu and START closes it. The choice is kept in randomfu's save data, so it
 lasts across saves and holds over the disc's mode, on discs from other
-seeds too (`monster_hp`, `damage_numbers`, `hitboxes`, `camera_fov` and
-`camera_distance` in `struct
+seeds too (`monster_hp`, `damage_numbers`, `hitboxes`, `camera_fov`,
+`camera_distance` and `quest_end` in `struct
 rf_save_data`). Other Modifications can add their settings to the same window
 (`rf_add_setting`, `blob/menu.c`).
 
