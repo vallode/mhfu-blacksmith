@@ -112,7 +112,6 @@ import {
   prepareCamera,
 } from "./patches/camera.js";
 import {
-  findQuestEnd,
   patchQuestEnd,
   questEndExterns,
   questEndObjects,
@@ -980,9 +979,15 @@ export function randomize(
   const testing: string[] = [];
   // The wait after a quest: an EBOOT patch whose data word is the disc's
   // choice, so it works with no blob; the blob changes the word in game.
+  // The EBOOT is patched before the blob is linked, so the blob only goes in
+  // to write a word that's there.
   const questEndOn = settings["quest.endWait"] !== "normal";
-  const questEndFound = !game.eboot ? "the EBOOT wasn't loaded" : findQuestEnd(game.eboot);
-  let questEndLinked = false;
+  let questEndAt: number | string | null = null;
+  const patchQuestEndNow = (): number | string =>
+    (questEndAt = !game.eboot
+      ? "the EBOOT wasn't loaded"
+      : patchQuestEnd(edits.eboot(), settings["quest.endWait"]));
+  let questEndInGame = false;
   if (options.loaderDemo) {
     const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
       objects: decodeObjects(DEMO_OBJECTS),
@@ -1011,6 +1016,7 @@ export function randomize(
         summary: `Camera: not applied (${why})`,
       });
     }
+    if (questEndOn) patchQuestEndNow();
   } else {
     // Each feature is resolved on its own first: one that doesn't match this
     // disc is left out, and the loader (which caps Guild Cards) only goes in
@@ -1096,10 +1102,13 @@ export function randomize(
       camera = true;
     }
     let questEnd = false;
-    if (typeof questEndFound !== "string" && typeof sites !== "string") {
-      optional.push(...questEndObjects());
-      Object.assign(externs, questEndExterns(questEndFound, settings));
-      questEnd = true;
+    if (questEndOn || typeof sites !== "string") {
+      const word = patchQuestEndNow();
+      if (typeof word !== "string" && typeof sites !== "string") {
+        optional.push(...questEndObjects());
+        Object.assign(externs, questEndExterns(word, settings));
+        questEnd = true;
+      }
     }
     const prepared = !settings["quests.unknown"]
       ? null
@@ -1313,8 +1322,9 @@ export function randomize(
       reports.push(loader);
       // A lean loader leaves out the camera's code when its options are off.
       cameraLinked = loader.applied && camera && (cameraOn || !wentLean);
-      // Its code is always optional: the EBOOT patch alone carries the disc's choice.
-      questEndLinked = loader.applied && questEnd && !wentLean;
+      // Its code is always optional: the EBOOT patch alone carries the disc's
+      // choice. It's a setting only when the START menu entry went in too.
+      questEndInGame = loader.applied && questEnd && !wentLean && menus !== null;
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {
@@ -1336,29 +1346,18 @@ export function randomize(
     }
   }
 
-  if (typeof questEndFound === "string") {
-    if (questEndOn) {
-      reports.push({
-        title: "Quest end",
-        notes: [`The wait after a quest isn't in this image: ${questEndFound}.`],
-        lines: [],
-        summary: `Quest end: not applied (${questEndFound})`,
-      });
-    }
-  } else if (questEndOn || questEndLinked) {
-    const patched = patchQuestEnd(edits.eboot(), settings["quest.endWait"]);
-    if (typeof patched === "string") {
-      if (questEndOn) {
-        reports.push({
-          title: "Quest end",
-          notes: [`The wait after a quest isn't in this image: ${patched}.`],
-          lines: [],
-          summary: `Quest end: not applied (${patched})`,
-        });
-      }
-    } else if (questEndOn) {
-      reports.push(questEndReport(settings, questEndLinked));
-    }
+  if (questEndOn) {
+    const why = typeof questEndAt === "string" ? questEndAt : null;
+    reports.push(
+      why === null
+        ? questEndReport(settings, questEndInGame)
+        : {
+            title: "Quest end",
+            notes: [`The wait after a quest isn't in this image: ${why}.`],
+            lines: [],
+            summary: `Quest end: not applied (${why})`,
+          },
+    );
   }
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.

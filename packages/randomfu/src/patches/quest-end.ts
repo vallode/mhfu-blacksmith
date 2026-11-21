@@ -1,16 +1,17 @@
 /**
  * The wait at the end of a quest (`quest.endWait`), and its setting in
  * randomfu's START menu entry: an EBOOT patch holding a data word, which
- * the blob (`blob/quest-end.c`) changes. This patches the EBOOT and finds
- * the word's address, per disc.
+ * the blob (`blob/quest-end.c`) changes. This patches the EBOOT, which
+ * gives the word's address for the blob, per disc.
  *
  * What the game does (EU addresses; JP's code is the same, 8 bytes earlier):
  *
  * - The quest object (`*0x08A62C7C`, EU 0x09A05DC0 in a quest) runs a state
  *   machine once a frame (EU 0x0886B0E0, called from `game_task`): its byte
  *   `+0` is the state, `+1` the step in it, and `+0x710` a countdown in
- *   frames (30 a second). State 0 is the hunt. A quest that ends, completed
- *   or failed (time-out was tried), goes to state 1:
+ *   frames (30 a second). State 0 is the hunt. A quest that is completed or
+ *   runs out of time goes to state 1 (one failed by fainting doesn't: state
+ *   0 returns -1 when byte `+6` is 6, and the game goes back on its own):
  *   - step 0 shows the end message and sets the countdown to 150 (5 s,
  *     the "Quest Complete" banner);
  *   - step 1 counts it down, then picks the wait from the quest's flags
@@ -25,11 +26,14 @@
  * How randomfu changes it:
  *
  * - Step 0's banner countdown is loaded from the low half of a data word,
- *   and step 1 takes the high half as the wait when it isn't 0 (a wait of
- *   600 or less gets the 20-second message; 1, none), else picks as the
- *   game does. Both are rewritten in place: step 0 loads the message
- *   table's ID in one word less, and step 1's choice in four, so the data
- *   word takes the place of an unreached `li`.
+ *   and step 1 takes the high half as the wait when it isn't 0 (with the
+ *   20-second message; a wait of 1 with none), else picks as the game does.
+ *   Treasure Hunting quests (flag 0x10, whose end message is "Treasure
+ *   Hunters Quest Time Up!") always get the game's wait: it's their time to
+ *   deliver what the hunter carries ("Deliveries possible for 20 secs!").
+ *   Both steps are rewritten in place: step 0 loads the message table's ID
+ *   in one word less, and step 1's choice in a few, so the data word takes
+ *   the place of an unreached `li`.
  * - Without the blob the word is the disc's choice; the blob sets it to the
  *   save's choice (`blob/quest-end.c`). Normal is the game's own wait.
  */
@@ -81,7 +85,7 @@ const TABLE_ADDIU = 0x18; // addiu $v0, $v0, lo(table)
 const STEP0_CALLS = 0x24; // seven words: get the message, show it
 const STEP0_NEW = 0x10; // step 0's words from here are rewritten...
 const STEP0_END = 0x50; // ...up to its `b` out, which stays
-const CHOOSE_CALL = 0x94; // jal 0x08872B40 (EU)
+const CHOOSE_CALL = 0x94; // the original's jal 0x08872B40 (EU)
 const STEP1_NEW = 0x74; // step 1's choice, rewritten up to
 /** The data word's offset: the 600 `li` that only the old choice reached. */
 export const WORD = 0xd8;
@@ -112,28 +116,28 @@ export function stepWords(at: number, original: (offset: number) => number): num
     (0x3c010000 | hi16(word + 2)) >>> 0, // +0x74 lui $at, hi(word + 2)
     (0x94280000 | lo(word + 2)) >>> 0, // +0x78 lhu $t0, lo(word + 2)($at): the wait
     0x8e230028, // +0x7C lw $v1, 0x28($s1): the quest's flags
-    0x1500000d, // +0x80 bnez $t0, +0xB8
-    0x00621024, // +0x84 and $v0, $v1, $v0 ($v0 is 0x80000)
-    0x5040002d, // +0x88 beql $v0, $zero, +0x140
-    0x24020708, // +0x8C li $v0, 1800
-    0x3c020020, // +0x90 lui $v0, 0x20
-    0x00621024, // +0x94 and $v0, $v1, $v0
-    0x50400010, // +0x98 beql $v0, $zero, +0xDC
-    0x24020258, // +0x9C li $v0, 600
-    original(CHOOSE_CALL), // +0xA0 jal choose
-    0x02202021, // +0xA4 move $a0, $s1
-    0x5440000c, // +0xA8 bnel $v0, $zero, +0xDC
-    0x24020258, // +0xAC li $v0, 600
-    0x10000023, // +0xB0 b +0x140
-    0x24020708, // +0xB4 li $v0, 1800
-    0x29010002, // +0xB8 slti $at, $t0, 2: a wait of 1...
-    0x542000f1, // +0xBC bnel $at, $zero, +0x484: ...leaves with no message
-    0xae280710, // +0xC0 sw $t0, 0x710($s1)
-    0x29010259, // +0xC4 slti $at, $t0, 601
-    0x14200004, // +0xC8 bnez $at, +0xDC: the 20-second message
-    0x01001021, // +0xCC move $v0, $t0
-    0x1000001b, // +0xD0 b +0x140: the one-minute message
-    0x01001021, // +0xD4 move $v0, $t0
+    0x30610010, // +0x80 andi $at, $v1, 0x10: a Treasure Hunting quest...
+    0x0001400b, // +0x84 movn $t0, $zero, $at: ...keeps the game's wait, its time to deliver
+    0x1500000d, // +0x88 bnez $t0, +0xC0
+    0x00621024, // +0x8C and $v0, $v1, $v0 ($v0 is 0x80000)
+    0x5040002b, // +0x90 beql $v0, $zero, +0x140
+    0x24020708, // +0x94 li $v0, 1800
+    0x3c020020, // +0x98 lui $v0, 0x20
+    0x00621024, // +0x9C and $v0, $v1, $v0
+    0x5040000e, // +0xA0 beql $v0, $zero, +0xDC
+    0x24020258, // +0xA4 li $v0, 600
+    original(CHOOSE_CALL), // +0xA8 jal choose
+    0x02202021, // +0xAC move $a0, $s1
+    0x5440000a, // +0xB0 bnel $v0, $zero, +0xDC
+    0x24020258, // +0xB4 li $v0, 600
+    0x10000021, // +0xB8 b +0x140
+    0x24020708, // +0xBC li $v0, 1800
+    0x29010002, // +0xC0 slti $at, $t0, 2: a wait of 1...
+    0x542000ef, // +0xC4 bnel $at, $zero, +0x484: ...leaves with no message
+    0xae280710, // +0xC8 sw $t0, 0x710($s1)
+    0x10000003, // +0xCC b +0xDC: any other gets the 20-second message
+    0x01001021, // +0xD0 move $v0, $t0
+    0x00000000, // +0xD4 (unreached)
   ];
   const words: number[] = [];
   for (let offset = STEP0_NEW; offset <= WORD; offset += 4) {
@@ -152,12 +156,6 @@ function findSteps(eboot: Buffer): { at: number; offset: number } | string {
   const at = findUnique(eboot, segment, [SIGNATURE], stepMask)[0];
   if (at == null) return "this EBOOT's quest end doesn't match";
   return { at, offset: segment.offset + (at - segment.vaddr) };
-}
-
-/** The data word's address in `vanillaEboot`, for the blob, or why not. */
-export function findQuestEnd(vanillaEboot: Buffer): number | string {
-  const found = findSteps(vanillaEboot);
-  return typeof found === "string" ? found : found.at + WORD;
 }
 
 /**
@@ -185,8 +183,8 @@ export function questEndExterns(word: number, settings: Settings): Record<string
 
 export const questEndObjects = () => decodeObjects(QUEST_END_OBJECTS);
 
-/** What the disc starts with; `linked` when the blob is in, to change it in game. */
-export function questEndReport(settings: Settings, linked: boolean): ShuffleReport {
+/** What the disc starts with; `inGame` when the blob and the START menu entry are in. */
+export function questEndReport(settings: Settings, inGame: boolean): ShuffleReport {
   const choice = settings["quest.endWait"];
   const notes = [
     choice === "short"
@@ -194,7 +192,7 @@ export function questEndReport(settings: Settings, linked: boolean): ShuffleRepo
       : choice === "instant"
         ? "After a quest, straight to the rewards: no banner wait and no time to carve."
         : "After a quest, the game's own wait.",
-    linked
+    inGame
       ? "It can be changed in game, from the START menu's randomfu entry."
       : "It can't be changed in game on this disc.",
   ];

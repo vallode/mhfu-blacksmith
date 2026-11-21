@@ -1324,16 +1324,16 @@ How randomfu does it (`src/patches/camera.ts`, `blob/camera.c`):
 
 `quest.endWait` (Modifications → Quest end in the web app), and the After a
 quest setting in randomfu's START menu entry (Damage numbers, below): how
-long the game waits once a quest is over, completed or failed, before the
-reward screen. `normal` is the game's own; `short` waits 20 s after every
-quest, with the game's "Returning to village in 20 secs." message, which is
+long the game waits once a quest is completed or runs out of time, before
+the reward screen. `normal` is the game's own; `short` waits 20 s after
+every quest, with the game's "Returning to village in 20 secs." message, which is
 time to carve one monster; `instant` goes straight to the rewards, with no
 time to carve. The option picks what a disc starts with; the menu changes it
 in game, and the save keeps it. It is a change to the EBOOT's code that
 works without the blob; with the blob (as for the camera, every disc) it is
 also a setting. Played on EU at `short` and, from the menu, `instant`
-(PPSSPP, 2026-11-21): a hunt completed with carving in the 20 s, a failed
-quest, and the reward screen and the trip back to town after each. JP builds
+(PPSSPP, 2026-11-21): a hunt completed with carving in the 20 s, a quest
+failed by running out of time, and the reward screen and the trip back to town after each. JP builds
 (the code is found by its signature) but hasn't been played.
 
 What the game does (EU addresses; JP's code is the same, 8 bytes earlier,
@@ -1343,8 +1343,10 @@ JP 0x0886B31C):
   machine once a frame (EU 0x0886B0E0, from `game_task`): byte +0 is the
   state, +1 the step within it, and +0x710 a countdown in frames (30 a
   second). +0x10 is the time left (90000 frames for 50 minutes).
-- State 0 is the hunt. A quest that ends goes to state 1 (seen for a
-  completed gathering quest and for one that ran out of time):
+- State 0 is the hunt. A quest that is completed or runs out of time goes
+  to state 1 (seen for both). One failed by fainting (byte +6 set to 6, by
+  the code at EU 0x0886F0F0) doesn't: state 0 returns -1 and the game goes
+  back to town its own way, so randomfu doesn't change it. State 1:
   - step 0 (EU 0x0886B324) shows the end message and sets the countdown to
     150: the 5 s "Quest Complete" banner;
   - step 1 counts it down, then picks the wait from the quest's flags
@@ -1352,7 +1354,10 @@ JP 0x0886B31C):
     village in 1 min."; with it and without bit 0x200000, 600 (20 s) and
     "Returning to village in 20 secs." (gathering quests); with both, 600
     or 1800 as EU 0x08872B40 says. The messages are IDs 0x14 and 0x15 from
-    the end messages' ID table (EU 0x089AC5A0);
+    the end messages' ID table (EU 0x089AC5A0). A Treasure Hunting quest
+    (flag 0x10) ends with "Treasure Hunters Quest Time Up!" (ID 0x2E) and
+    has its own message, "Deliveries possible for 20 secs!" (ID 0x1E): its
+    wait is the time to deliver what the hunter carries;
   - step 2 counts that down, then state 2 waits for every hunter of the
     party (+0x110, at most 3 minutes; in single player at once) and the
     reward screen follows.
@@ -1369,10 +1374,11 @@ How randomfu does it (`src/patches/quest-end.ts`, `blob/quest-end.c`):
 - Steps 0 and 1 are rewritten in place. Step 0 loads the message's ID in
   one word less, which leaves room to load the banner's frames from the low
   half of a data word. Step 1 takes the wait from the word's high half when
-  it isn't 0 (600 or less with the 20-second message, 1 with no message)
-  and otherwise picks as the game does, in four words less, so the data
-  word takes the place of a `li` only the old choice reached (EU
-  0x0886B3FC, JP 0x0886B3F4). Normal is 150 and 0, Short 150 and 600,
+  it isn't 0 (with the 20-second message; a wait of 1 with none) and
+  otherwise picks as the game does. Treasure Hunting quests always get the
+  game's choice, so their deliveries keep their time. The choice is
+  rewritten in fewer words, so the data word takes the place of a `li`
+  only the old choice reached (EU 0x0886B3FC, JP 0x0886B3F4). Normal is 150 and 0, Short 150 and 600,
   Instant 1 and 1.
 - The disc sets the word to its option's choice; the blob sets it to the
   save's at every load and when the setting changes. The code never

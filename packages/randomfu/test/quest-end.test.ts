@@ -147,6 +147,19 @@ test("Instant cuts the banner and the wait to a frame, with no message", () => {
   }
 });
 
+test("Treasure Hunting quests keep the game's wait: their time to deliver", () => {
+  // Flag 0x10: the end message is "Treasure Hunters Quest Time Up!".
+  for (const choice of ["short", "instant"] as const) {
+    for (const choose of [0, 1]) {
+      const game = quest(STEPS, choose);
+      const ours = quest(patched(choice).words, choose);
+      for (const flags of [HUNT, GATHERING, CHOSEN].map((f) => f | 0x10)) {
+        assert.deepEqual(ours.wait(flags), game.wait(flags), `${choice} ${flags.toString(16)}`);
+      }
+    }
+  }
+});
+
 test("the blob changes the word, not the code", () => {
   const { words } = patched("normal");
   const q = quest(words);
@@ -155,8 +168,9 @@ test("the blob changes the word, not the code", () => {
   q.cpu.setU32(STEPS_AT + WORD, (300 << 16) | 90);
   assert.equal(q.banner().frames, 90);
   assert.deepEqual(q.wait(HUNT), { frames: 300, message: RETURN_20, step: 2 });
+  // A wait it sets always gets the 20-second message, the one Short matches.
   q.cpu.setU32(STEPS_AT + WORD, (900 << 16) | 150);
-  assert.deepEqual(q.wait(GATHERING), { frames: 900, message: RETURN_60, step: 2 });
+  assert.deepEqual(q.wait(GATHERING), { frames: 900, message: RETURN_20, step: 2 });
 });
 
 test("the steps are found by their code, not their address", () => {
@@ -174,7 +188,7 @@ test("the steps are found by their code, not their address", () => {
   const { word, words } = patched("short", jpAt, jp);
   assert.equal(word, jpAt + WORD);
   assert.equal(words[7], 0x944595a0, "lhu $a1, JP's lo(table)($v0)");
-  assert.equal(words[0x94 / 4 + 3], 0x0e21cace, "JP's choice call");
+  assert.equal(words[0xa8 / 4], 0x0e21cace, "JP's choice call");
   assert.equal(words[WORD / 4], questEndWord("short"));
   const changed = [...STEPS];
   changed[17] = 0x24020097; // another banner length: not the code we know
