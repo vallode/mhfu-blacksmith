@@ -55,6 +55,8 @@ struct rf_save_data {
   /* The camera (camera.c): the same, each its choice + 1 */
   u8 camera_fov;
   u8 camera_distance;
+  /* The wait after a quest (quest-end.c): the same, its choice + 1 */
+  u8 quest_end;
 };
 
 /* The save's randomfu data, set up by rf_init before any feature's init. */

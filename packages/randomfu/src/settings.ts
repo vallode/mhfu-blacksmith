@@ -124,6 +124,7 @@ export interface Settings {
   "mods.nodeMap": boolean;
   "camera.fov": "normal" | "wide" | "wider" | "widest";
   "camera.distance": "normal" | "far" | "farther" | "farthest";
+  "quest.endWait": "normal" | "short" | "instant";
   "hud.monsterHp": "off" | "painted" | "always";
   "hud.damageNumbers": "off" | "total" | "split";
   "hud.attackHitboxes": boolean;
@@ -1806,6 +1807,33 @@ export const OPTIONS: readonly OptionDef[] = [
         { value: "far", label: "Far", help: "×1.15 as far back." },
         { value: "farther", label: "Farther", help: "×1.3 as far back." },
         { value: "farthest", label: "Farthest", help: "×1.5 as far back." },
+      ],
+    },
+    default: "normal",
+  },
+  {
+    key: "quest.endWait",
+    section: "Quest end",
+    label: "Wait after a quest",
+    help: "How long the game waits once a quest is completed or runs out of time, before the reward screen (a quest failed by fainting goes back as it always does). The game shows the Quest Complete banner for 5 s, then gives you a minute (20 s on gathering quests) to carve and gather before it takes you back. Treasure Hunting quests keep the game's wait, their time to deliver. This picks what the disc starts with: the START menu's last entry, randomfu, changes it in game, and your save keeps that choice. It's a change to the game's own code, so it works without randomfu's other code; with it, every disc caps received Guild Cards at 3, as for the camera.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "normal",
+          label: "Normal",
+          help: "The game's own: the banner, then a minute (20 s on gathering quests).",
+        },
+        {
+          value: "short",
+          label: "Short",
+          help: "The banner, then 20 s for every quest: time to carve one monster.",
+        },
+        {
+          value: "instant",
+          label: "Instant",
+          help: "Straight to the rewards: no banner wait and no time to carve.",
+        },
       ],
     },
     default: "normal",

@@ -21,6 +21,7 @@ import { collectRecipeSlots } from "../src/shuffles/recipes.js";
 import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
 import { writeEdits } from "../src/write.js";
 import { runRandomizer } from "../src/run.js";
+import { questEndWord, STEPS, WORD } from "../src/patches/quest-end.js";
 import {
   assemble,
   buildFixtureDisc,
@@ -447,5 +448,50 @@ test("the camera is reported when on and it can't go in, and not when it's off",
   );
   const off = randomize(game, defaultSettings("c"));
   assert.ok(!off.reports.some((r) => r.title === "Camera"));
+  close();
+});
+
+test("the wait after a quest is reported when on and it can't go in, and not when it's off", async () => {
+  const { game, close } = await load(fixtureFile());
+  // The fixture's EBOOT isn't the game's: no quest end steps to patch.
+  const on = randomize(game, applySettings(defaultSettings("q"), { "quest.endWait": "instant" }));
+  const reports = on.reports.filter((r) => r.title === "Quest end");
+  assert.equal(reports.length, 1);
+  assert.match(reports[0]!.summary ?? "", /Quest end: not applied/);
+  const off = randomize(game, defaultSettings("q"));
+  assert.ok(!off.reports.some((r) => r.title === "Quest end"));
+  close();
+});
+
+test("the wait after a quest is patched into an EBOOT with the game's steps", async () => {
+  const { game, close } = await load(fixtureFile());
+  // The fixture's EBOOT with a code segment (its first 1.2 MB are free) holding EU's steps.
+  const CODE = 0x100;
+  const VADDR = 0x08804000;
+  const STEPS_AT = 0x0886b324;
+  const eboot = Buffer.from(game.eboot);
+  eboot.writeUInt32LE(0x34, 0x1c);
+  eboot.writeUInt16LE(1, 0x2c);
+  eboot.writeUInt32LE(1, 0x34);
+  eboot.writeUInt32LE(CODE, 0x38);
+  eboot.writeUInt32LE(VADDR, 0x3c);
+  eboot.writeUInt32LE(0x100000, 0x44);
+  const steps = CODE + STEPS_AT - VADDR;
+  STEPS.forEach((w, k) => eboot.writeUInt32LE(w, steps + k * 4));
+  const withSteps = { ...game, eboot };
+
+  const short = randomize(
+    withSteps,
+    applySettings(defaultSettings("q"), { "quest.endWait": "short" }),
+  );
+  const patched = short.edits.eboot();
+  assert.equal(patched.readUInt32LE(steps + WORD), questEndWord("short"), "the data word");
+  assert.notEqual(patched.readUInt32LE(steps + 0x74), STEPS[0x74 / 4], "step 1 rewritten");
+  const report = short.reports.find((r) => r.title === "Quest end");
+  assert.ok(report && !/not applied/.test(report.summary ?? ""), report?.summary);
+  assert.match(report.summary ?? "", /20 s to carve/);
+
+  const normal = randomize(withSteps, defaultSettings("q"));
+  assert.ok(!normal.reports.some((r) => r.title === "Quest end"));
   close();
 });
