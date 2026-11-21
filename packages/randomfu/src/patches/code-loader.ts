@@ -319,7 +319,7 @@ export interface CodeLoaderOptions {
    * The game hooks (`game-hooks.ts`) the blob's `rf_hookN` run on, found in
    * `game_task` by the caller; `questLoad` also hooks the quest loader's calls
    * (hook 3) in `lobby_task` and `game_task`, and `hit` the monster hit
-   * function's call (hook 5) in `game_sub`.
+   * function's call (hook 7) in `game_sub`.
    */
   hooks?: {
     /** Every hook's sites, or the pad hook's alone (`findPadSites`). */

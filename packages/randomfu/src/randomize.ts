@@ -996,6 +996,9 @@ export function randomize(
       summary: `${title}: not applied (${why})`,
     });
     const objects = decodeObjects(RUNTIME_OBJECTS);
+    // The features that are off but go in so the START menu can turn them on,
+    // and the menu itself: left out if the loader doesn't fit with them.
+    const optional: typeof objects = [];
     const externs: Record<string, number> = {};
     const { ovl } = game.gameTask;
     // The features run on the game hooks, found once here.
@@ -1019,7 +1022,7 @@ export function randomize(
       if (typeof found === "string") {
         if (mode !== "off") reports.push(notApplied("Monster health", found));
       } else {
-        objects.push(...monsterHpObjects());
+        (mode === "off" ? optional : objects).push(...monsterHpObjects());
         Object.assign(externs, found);
         monsterHp = true;
       }
@@ -1040,7 +1043,7 @@ export function randomize(
       if (typeof found === "string") {
         if (settings["hud.attackHitboxes"]) reports.push(notApplied("Attack hitboxes", found));
       } else {
-        objects.push(...hitboxObjects());
+        (settings["hud.attackHitboxes"] ? objects : optional).push(...hitboxObjects());
         Object.assign(externs, found);
         hitboxes = true;
       }
@@ -1180,7 +1183,7 @@ export function randomize(
       if (typeof found === "string") {
         if (numbers !== "off") reports.push(notApplied("Damage numbers", found));
       } else {
-        objects.push(...damageObjects());
+        (numbers === "off" ? optional : objects).push(...damageObjects());
         Object.assign(externs, found);
         hit = site as HitSite;
       }
@@ -1197,7 +1200,7 @@ export function randomize(
           ),
         );
       } else {
-        objects.push(...menuObjects());
+        optional.push(...menuObjects());
         Object.assign(externs, found.externs);
         menus = found.sites;
       }
@@ -1206,24 +1209,43 @@ export function randomize(
       typeof hookSites !== "string" &&
       (monsterHp || hitboxes || unknown || elites || pact || luck || keys || hit)
     ) {
-      const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
-        // Elites and the pact both bring the shared monster boosts: link them once.
-        objects: objects.filter((o, k) => objects.findIndex((x) => x.name === o.name) === k),
-        hooks: {
-          sites: hookSites,
-          // Pad-only sites (Poogie alone) leave game_task as it is.
-          ...(typeof sites !== "string" && { gameTask: game.gameTask }),
-          ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
-          ...(luck && { pick: luck.pick }),
-          ...(keys && {
-            questCard: { call: keys.call, card: keys.card, lobbyTask: game.lobbyTask },
-          }),
-          ...(hit && { hit }),
-          ...(menus && { menus }),
-        },
-        externs,
-        data,
-      });
+      const install = (lean: boolean) => {
+        const all = lean ? objects : [...objects, ...optional];
+        return addCodeLoader(game.eboot, game.gameSub, edits, {
+          // Elites and the pact both bring the shared monster boosts: link them once.
+          objects: all.filter((o, k) => all.findIndex((x) => x.name === o.name) === k),
+          hooks: {
+            sites: hookSites,
+            // Pad-only sites (Poogie alone) leave game_task as it is.
+            ...(typeof sites !== "string" && { gameTask: game.gameTask }),
+            ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
+            ...(luck && { pick: luck.pick }),
+            ...(keys && {
+              questCard: { call: keys.call, card: keys.card, lobbyTask: game.lobbyTask },
+            }),
+            // The hit hook is damage numbers' alone.
+            ...(hit && !(lean && numbers === "off") && { hit }),
+            ...(menus && !lean && { menus }),
+          },
+          externs,
+          data,
+        });
+      };
+      let loader = install(false);
+      // A loader that doesn't fit with the in-game settings goes in without
+      // them (it checks before it takes any room), keeping the options that are on.
+      if (!loader.applied && optional.length) {
+        const lean = install(true);
+        if (lean.applied) {
+          reports.push(
+            notApplied(
+              "randomfu's START menu entry",
+              `${(loader.summary ?? "").replace(/^[^(]*\(|\)$/g, "")}; the options that are on keep this disc's settings`,
+            ),
+          );
+          loader = lean;
+        }
+      }
       reports.push(loader);
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (keys) reports.push(keyQuestsReport(loader.applied));
