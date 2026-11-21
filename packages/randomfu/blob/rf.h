@@ -175,8 +175,9 @@ struct rf_load {
  *   stays, 0x2000 goes back to the list, 8 closes the menu) or RF_MENU_DRAW
  *   (the menu's layer draw, `draw(hud)`). A callback that sets `handled`
  *   gives back `result` instead of the game's call, which it can make itself
- *   (`game`, with `args`); otherwise the game's call runs as it was. Only
- *   menu.c uses it; features add settings to its window (rf_add_setting).
+ *   (`game`, with `args`); otherwise the game's call runs as it was. menu.c
+ *   uses it (features add settings to its window, rf_add_setting), and
+ *   send-all.c, with its own call (RF_CALL_REWARD_LABEL).
  */
 #define RF_HOOK_MENU 8
 #define RF_HOOKS 9
@@ -187,11 +188,18 @@ struct rf_load {
 #define RF_MENU_DRAW 3
 #define RF_MENU_QUEST 0
 #define RF_MENU_VILLAGE 1
+/*
+ * Other game calls go through the same stub, from site 8 on (menu.c leaves
+ * them alone). RF_CALL_REWARD_LABEL: box() getting a row's label from
+ * game_task's messages (its names 4), `msg(object, id)`, with the row in
+ * `s2` and box()'s list of IDs in args[2] (send-all.c).
+ */
+#define RF_CALL_REWARD_LABEL 8
 struct rf_menu {
   u32 args[4];      /* the call's $a0-$a3 */
   u8 *s0;           /* RF_MENU_LABEL: the row's colour byte (0xA greys it) */
   u32 s2;           /* RF_MENU_LABEL in the village: where the row's ID is */
-  u32 site;         /* menu * 4 + RF_MENU_* */
+  u32 site;         /* menu * 4 + RF_MENU_*, or an RF_CALL_* */
   const void *game; /* the function the game called */
   u32 handled;
   s32 result;

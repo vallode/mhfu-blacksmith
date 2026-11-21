@@ -67,6 +67,8 @@ export interface Settings {
   "weapons.statRange": "near" | "wide" | "any";
   "weapons.sharpness": boolean;
   "weapons.sharpnessMode": "shuffle" | "new";
+  "weapons.elementMotion": boolean;
+  "weapons.elementMotionFrom": number;
   "armor.enabled": boolean;
   "armor.scope": "rarity" | "rank" | "any";
   "armor.start": "smithy" | "rank" | "any";
@@ -132,6 +134,7 @@ export interface Settings {
   "elites.chance": number;
   "quests.unknown": boolean;
   "quests.keyLabel": boolean;
+  "rewards.sendAll": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -1018,6 +1021,23 @@ export const OPTIONS: readonly OptionDef[] = [
     },
     default: "shuffle",
     enabledBy: "weapons.sharpness",
+  },
+  {
+    key: "weapons.elementMotion",
+    section: "Weapons",
+    label: "Heavy hits carry more element",
+    help: "A Blademaster hit's element grows on a curve with how hard the move hits, so a slow weapon with the element its target is weak to pulls ahead of a raw one on every swing, and further the more it commits: at the default strength, a Great Sword's side slash carries 1.6 times its element, its draw slash 2.5 times, its level 3 charge 8.7 times, while quick hits (Dual Blades, Sword and Shield, light pokes) stay as they are. Status grows in step with the hit. Critical hits don't change either, as in the game. Weapon screens show the usual values.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "weapons.elementMotionFrom",
+    section: "Weapons",
+    label: "Element boost starts at",
+    help: "The motion value above which a hit's element and status grow. Lower is stronger: at 26, a hit with motion value 52 carries 2.8 times its element (twice the motion value, to the power 1.5) and twice its status. Hits at or below it stay as they are: Dual Blades hits are 6 to 25, Great Sword hits 36 to 110.",
+    type: { kind: "number", min: 10, max: 40, step: 1 },
+    default: 26,
+    enabledBy: "weapons.elementMotion",
   },
   {
     key: "armor.enabled",
@@ -1928,6 +1948,14 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The Village Chief's quest card (and likely the Guild's, not yet tried) shows a yellow ★ in its top right corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "rewards.sendAll",
+    section: "Reward screen",
+    label: "Send All to Item Box",
+    help: "The reward screen's menu after a quest gets a row between Send to Item Box and End: Send All to Item Box sends every reward the Item Box can take in one go, the comrade's items too, and ends the screen. What doesn't fit stays, with the menu, to take or sell as before. It goes in with the START menu's randomfu entry, so a disc with too many other new features to fit that leaves it out too.",
+    type: { kind: "boolean" },
+    default: true,
   },
 ];
 

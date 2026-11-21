@@ -127,6 +127,8 @@ web app shows as a tag):
 | `weapons.statRange`               | `near`      | Rarities either side stats stay within (`near` 1, `wide` 3, `any`)                                     |
 | `weapons.sharpness`               | off         | Blademaster weapons of a type and rarity trade sharpness                                               |
 | `weapons.sharpnessMode`           | `shuffle`   | `new`: every bar the weapons use also gets new colors                                                  |
+| `weapons.elementMotion`           | off         | A Blademaster hit's element grows on a curve with its motion value, status in step, past a threshold   |
+| `weapons.elementMotionFrom`       | 26          | The motion value they start growing from (10 to 40; lower is stronger)                                 |
 | `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                                   |
 | `armor.scope`                     | `rarity`    | Which pieces a place can get: the same `rarity`, the same `rank` (Low, High or G), or `any`            |
 | `armor.start`                     | `smithy`    | A new hunter's armor: what the smithy's spots make (`smithy`), any Low Rank piece (`rank`), or `any`   |
@@ -192,6 +194,7 @@ web app shows as a tag):
 | `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                              |
 | `quests.unknown`                  | off         | "Unknown Monster?!" quests on Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards) |
 | `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards) |
+| `rewards.sendAll`                 | on          | A Send All to Item Box row in the reward screen's menu (caps Guild Cards)                              |
 
 ### Presets
 
@@ -475,6 +478,64 @@ bar stays as long as before. The spoiler lists each changed bar as color
 widths (`R8 O3 Y11 ...`), as the Blacksmith site shows them. It runs before
 the weapon stats, which read the new amounts for the site's affinity
 bonus. Neither mode has been seen in game yet.
+
+`weapons.elementMotion` (`src/patches/element-motion.ts`) patches
+`game_task` and `game_sub` so a Blademaster hit carries its weapon's
+element times `(mv / t)^1.5`, `t` being `weapons.elementMotionFrom`, and
+its status times `mv / t`, when that's more than 1. In the game, element
+and status never depend on the move: a Dual Blades slash (motion value 7)
+carries as much as a charged Great Sword slash (110), so slow weapons'
+elements barely count. Raw damage already grows in step with the motion
+value, so a straight `mv / t` would put an elemental weapon the same share
+ahead on every hit; the curve puts it ahead on every swing and further on
+the heavy ones. At the default 26, a Great Sword's side slash (36) carries
+1.6 times its element, its draw slash (48) 2.5 times, its level 1 to 3
+charges (65, 80, 110) 4, 5.4 and 8.7 times; the Hammer's golf swing (100)
+7.5 times, a Long Sword or Lance hit up to 1.9 times, and Dual Blades and
+Sword and Shield hits (6 to 25) stay as they were. Against a monster's
+weak element (median over large monsters' best cut part, 410 element
+against a raw weapon with a quarter more attack at rarity 8), that's a
+Great Sword about 15% ahead on a side slash, 21% on a draw and 42% on a
+level 3 charge, where the game has it 13% behind. An element has no cap;
+status is capped at 2550 shown a hit, and still applies only on every third
+swing, as in the game, now with more on a heavy one.
+
+What it found (EU and JP; the patch has the details): each melee swing
+builds an attack in `game_task` that copies the move's row from the motion
+value table (EU 0x09BFBEF8; the motion value at `+0x1E`), then asks an
+EBOOT getter (EU 0x088DA398) for the equipped weapon's fire, water,
+thunder, dragon and ice, and every third swing for poison, paralysis and
+sleep, putting the value in `+0x2A` (u8, a tenth of what's shown) and a
+flag in `+0x28`. Then it rolls affinity, a critical multiplying the motion
+value by 1.25. When the attack hits a monster, game_sub's hit function (EU
+0x09C43458) turns `+0x2A` into a float for the attack's element and
+multiplies it by the hit part's elemental hitzone over 100 (and a factor
+not yet traced), summed into the hit's element damage; no motion value
+enters into it. Status goes to the monster's buildup counters (EU
+0x09C44F08) as it is.
+
+The patch scales an element in game_sub, as the float (`value × f × √f`,
+`f = mv / threshold`, by the motion value before any critical, worked back
+from the critical flags in `+0x2B`, so affinity leaves the element alone as
+in the game, and before the 1.35 the swing builder then applies in one hunter
+state, probably the Long Sword's spirit, which marks the attack `+0x31` 0 and
+`+0x32` 0x12), for a weapon's motion row only (types 0 to 3 at `+0x1F`: the
+hit function deals type 0xB as fixed damage, its `+0x1E` the damage), when the attack's
+owner is a hunter with a Blademaster weapon (`+0x4E9` is 5, the getter's
+own test). It scales status in game_task: it rewrites the affinity code with
+integer maths (the same results for every input) and uses the room it
+frees to scale `+0x2A` first, `min(255, round(value × mv / threshold))` by
+the motion value before any critical, when the attack has no element. Both
+are checked against the game's code in `test/element-motion.test.ts`.
+Element skills multiply first, as before. Kicks, Felyne comrades and Gunner
+shots don't change. Seen in game (EU, the patch written into RAM, a thunder
+220 Great Sword): each hit's element damage was `22 × (mv / 26)^1.5 ×
+hitzone`, as the tests have it (a level 2 charge on a 25% part 29 against
+the game's 5), and the monster lost raw plus element (`+0x2E4`, 145 HP for
+three hits). With every swing made a critical (a test-only change), a
+critical's element was a plain hit's (a level 2 charge on the same 25% part
+29.69 either way) while its raw still grew by 1.25. Negative affinity and
+fixed-damage (type 0xB) attacks are checked only in the tests.
 
 `gathering` changes the pairs (value, item) in the gathering item tables of
 Village and Guild quests. Tables keep their length and the quest file its
@@ -1828,6 +1889,52 @@ has the details):
 Tried in PPSSPP on EU at the Village Chief with "Key Quest!" in the same
 corner; the star itself hasn't been seen in game yet. Not yet tried: the
 Guild's counters, and JP.
+
+## Send All to Item Box
+
+`rewards.sendAll` adds a row to the reward screen's menu after a quest,
+between "Send to Item Box" and "End": Send All to Item Box sends every
+reward the Item Box can take at once (the comrade's items too), as Send to
+Item Box does one by one, and plays its sound. With nothing left in
+any of the rewards' slots the screen ends, as End does. What doesn't fit, or can't go in the box, stays, with the
+menu, to take or sell as before. Its help bar says so. It's
+blob code (`blob/send-all.c`) on the pad hook and the START menu's hook,
+so it goes in with the START menu entry and caps Guild Cards; a disc whose
+loader only fits without the menu leaves it out.
+
+What it found (EU and JP (FUC), the same EBOOT code but for addresses and
+the confirm button, × on EU and ○ on JP; `src/patches/send-all.ts` has the
+details):
+
+- The reward screen is EBOOT code on the HUD object, an update and a draw
+  each frame of the results step. Its state is a byte (0 the menu), with
+  the menu's row beside it. The rewards are 32 slots of item and amount in
+  the save (16 for the Felyne comrade's items).
+- Town runs the same screen (in `lobby_task`, likely for items it hands
+  over, such as Trenya's or the farm's), telling the update and draw apart
+  by their second argument, with a third list of its own. Town's is left as
+  it is, three rows.
+- The menu is a list window from a template only this screen uses, its
+  labels game message IDs: three and a 0xFFFF a list. Making the quest's
+  four rows (each list writes its rows with its row height, and the
+  update's row count and the row the back button jumps to follow its second
+  argument) and writing End's ID over the 0xFFFF gives a fourth row that
+  reads and works as End; the blob renames the third and takes the confirm
+  button on it. Without the blob, the disc has two End rows, and the last
+  one's help bar shows the game's message for row 3 (row + 4), not End's.
+- Sending an item is three EBOOT calls (can the box take it, add it, which
+  returns what didn't fit, and mark it seen); the blob makes the same ones.
+- The help bar takes the row + 4 as its message, which would give End the
+  wrong text: the blob sets End's on that row and draws its own window for
+  the new one.
+
+The four rows would run into the time left below the window, so the rows
+are 20 pixels high (from 22, and 24 for the comrade's) and the window 14
+higher (town's window moves up with it). randomfu checks on each disc that
+the screen is only called with 0 or 1 for its second argument, from the
+EBOOT and the overlays. Tried in PPSSPP on EU: the row, the layout, sending
+and ending, and a town screen keeping its three rows. Not yet seen in game: the help bar's text on the new row and End,
+and JP, which builds (its code matches) but hasn't been played.
 
 ## Code loader (prototype)
 

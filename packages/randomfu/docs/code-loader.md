@@ -137,17 +137,17 @@ address matches and the header's entry isn't 0; the call's `$v0` is passed
 back. A stub's 32-byte frame leaves `sp+0..15` free for the O32 code it
 reaches. Twelve words per stub and 15 for `dispatch`.
 
-| Hook | `rf_hookN`  | The call                                                       | EU site(s)                                                                                                   | JP site(s)                                |
-| ---- | ----------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
-| 0    | quest frame | `game_task`'s HUD update (EU 0x0883F270), playing and paused   | 0x09A627B0, 0x09A627D4                                                                                       | 0x09A5DB20, 0x09A5DB44                    |
-| 1    | HUD         | the hunter's gauges (EU 0x088405E4), in the update's layer 9   | 0x0883FA68                                                                                                   | 0x0883FA84                                |
-| 2    | pad         | the controller read in `padRead` (EU 0x08868F50), once a frame | 0x08868F64                                                                                                   | 0x08868F5C                                |
-| 3    | quest load  | the quest loader (EU 0x08870AEC), accepting and departing      | `lobby_task` +0x2F424, `game_task` +0x6B8                                                                    | `lobby_task` +0x2F0B4, `game_task` +0x6A8 |
-| 4    | rewards     | the quest reward roll (EU 0x0886F894), once a completed quest  | 0x08875284                                                                                                   | found by signature                        |
-| 5    | pick        | replaces the weighted picker (`poogie-luck.ts`)                | 0x0887265C (the picker's first two words)                                                                    | 0x08872654                                |
-| 6    | quest card  | the quest counter's card (EU 0x09A8CA40), in town              | `lobby_task` 0x09A8BF08                                                                                      | `lobby_task` 0x09A87078                   |
-| 7    | hit         | the status buildup in the monster hit function (`game_sub`)    | 0x09C44C34                                                                                                   | 0x09C3FC24                                |
-| 8    | menu        | each START menu's label, choose, run and layer draw calls      | quest 0x08818F14, 0x08848F58, 0x08849024, 0x0883F854; village 0x08834A9C, 0x08834B84, 0x08834C4C, 0x088346C0 | found by signature                        |
+| Hook | `rf_hookN`  | The call                                                                                     | EU site(s)                                                                                                                   | JP site(s)                                |
+| ---- | ----------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| 0    | quest frame | `game_task`'s HUD update (EU 0x0883F270), playing and paused                                 | 0x09A627B0, 0x09A627D4                                                                                                       | 0x09A5DB20, 0x09A5DB44                    |
+| 1    | HUD         | the hunter's gauges (EU 0x088405E4), in the update's layer 9                                 | 0x0883FA68                                                                                                                   | 0x0883FA84                                |
+| 2    | pad         | the controller read in `padRead` (EU 0x08868F50), once a frame                               | 0x08868F64                                                                                                                   | 0x08868F5C                                |
+| 3    | quest load  | the quest loader (EU 0x08870AEC), accepting and departing                                    | `lobby_task` +0x2F424, `game_task` +0x6B8                                                                                    | `lobby_task` +0x2F0B4, `game_task` +0x6A8 |
+| 4    | rewards     | the quest reward roll (EU 0x0886F894), once a completed quest                                | 0x08875284                                                                                                                   | found by signature                        |
+| 5    | pick        | replaces the weighted picker (`poogie-luck.ts`)                                              | 0x0887265C (the picker's first two words)                                                                                    | 0x08872654                                |
+| 6    | quest card  | the quest counter's card (EU 0x09A8CA40), in town                                            | `lobby_task` 0x09A8BF08                                                                                                      | `lobby_task` 0x09A87078                   |
+| 7    | hit         | the status buildup in the monster hit function (`game_sub`)                                  | 0x09C44C34                                                                                                                   | 0x09C3FC24                                |
+| 8    | menu        | each START menu's label, choose, run and layer draw calls, and box()'s label call (Send All) | quest 0x08818F14, 0x08848F58, 0x08849024, 0x0883F854; village 0x08834A9C, 0x08834B84, 0x08834C4C, 0x088346C0; box 0x0882F8A8 | found by signature                        |
 
 Hooks 0 and 1 pass the HUD object (EU 0x09A04BA0, right after the save
 struct), hook 3 a `struct rf_load` (below), hook 4 the results step's
@@ -650,6 +650,13 @@ The blob decides the rest:
 - Choose and run: for the placeholder's cursor, `RF_MENU_SELECT` returns 0
   (opening it) and `RF_MENU_RUN` gets the buttons in `$a2`.
 - Draw: `menu.c` makes the game's call, then draws its window.
+
+Other calls can share the stub (`calls` in `assembleHooks`, sites 8 on:
+`RF_CALL_*` in `blob/rf.h`), at 3 words each (2 and a table word). Send
+All to Item Box (`blob/send-all.c`) takes `box()`'s call to the label
+getter (EU 0x0882F8A8, `CALL_SITE.rewardLabel`), and its quest draw callback
+runs before `menu.c`'s, making the game's call itself (`menu.c` then
+doesn't).
 
 `menu.c` gives the label "randomfu" only when a feature has added a
 setting, takes the entry (clearing the help bar, whose text for the
