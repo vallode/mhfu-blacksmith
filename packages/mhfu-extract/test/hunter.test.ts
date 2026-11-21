@@ -127,6 +127,19 @@ test("composeHunter carries a bone past the joint map with its mapped ancestor",
   assert.ok(Math.abs(vertex.position[1]! * pmo.scale[1] - 15.4) < 1e-6);
 });
 
+test("composeHunter puts a face on the head joint", () => {
+  const legs = piece("leggings", playerSkeleton(), [JOINT.HIPS]);
+  // A face's skeleton: a root and the head, both at the origin.
+  const face = piece("face", [bone(0, -1, [0, 0, 0]), bone(1, 0, [0, 0, 0])], [1]);
+  const { pmo, meshSlots, meshMaterialBases } = composeHunter([legs, face], playerSkeleton());
+  assert.deepEqual(meshSlots, ["leggings", "face"]);
+  assert.deepEqual(meshMaterialBases, [0, 1]);
+  assert.deepEqual(pmo.meshes[1]!.primitives[0]!.bones, [JOINT.HEAD]);
+  // The head sits at the chest's height in the test skeleton.
+  const vertex = pmo.meshes[1]!.primitives[0]!.geometry.vertices[0]!;
+  assert.ok(Math.abs(vertex.position[1]! * pmo.scale[1] - 15.4) < 1e-6);
+});
+
 test("composeHunter needs leggings, and bones with a joint", () => {
   const arms = piece("gauntlets", [bone(0, -1, [0, 0, 0])], [0]);
   assert.throws(() => composeHunter([arms]), /leggings/);

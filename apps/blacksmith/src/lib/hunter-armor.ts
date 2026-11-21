@@ -1,13 +1,14 @@
 /**
  * Dressing the viewer's hunter in an armor piece: the piece's model takes the
- * place of the default set's in its slot, skinned to the hunter's skeleton so
- * it moves with the hunter's motions.
+ * place of what the hunter wears in its slot, skinned to the hunter's
+ * skeleton so it moves with the hunter's motions.
  *
- * The hunter (`HUNTER_MODEL`, `HUNTER_FEMALE_MODEL` in `hunter.ts`) is the
- * default armor set of one sex composed on that sex's skeleton (mhfu-extract's
- * `models/hunter.ts`), each primitive naming its slot by index in
- * `HUNTER_SLOTS` (`extras.part`). A piece goes on the hunter of its own sex:
- * the two skeletons differ.
+ * The hunter (`HUNTER_BARE_MODEL`, `HUNTER_BARE_FEMALE_MODEL` in
+ * `hunter.ts`) is one sex in the clothes worn under armor, composed on that
+ * sex's skeleton (mhfu-extract's `models/hunter.ts`), each primitive naming
+ * its slot by index in `HUNTER_SLOTS` (`extras.part`); the hairstyle is its
+ * helmet. A piece goes on the hunter of its own sex: the two skeletons
+ * differ.
  *
  * Armor models from `export-site` (`armorToGlb`) already sit on the player
  * skeleton of their sex, with each vertex's player joints and weights in
@@ -19,23 +20,80 @@
  * It's a guess: pieces whose skeleton differs from the default's (the
  * Giaprey Helm) land too high or low.
  *
+ * The hunter has a face too (mhfu-extract's `models/look.ts`), its two
+ * materials tagged `FACE_PARTS`, and its hairstyle's hair is tagged
+ * `HAIR_PART` (the rest of the hairstyle is the helmet's). The look the
+ * viewer picks (`hunter-look.ts`) goes on the same way as armor: a face in
+ * the "face" slot, a hairstyle in the helmet's, clothes in the others; then
+ * `dyeHair` colours the hair and `skinHunter` gives the bare skin the face's
+ * tone. A helmet can hide all of the face or its material 0, where it would
+ * show through: `faceMask` reads which from `look.json`'s `faceMasks`, and
+ * `hideFace` hides it. (The hunters' own helmets' masks are applied when
+ * they're exported.)
+ *
  * three.js comes in as an argument, as the viewer imports it on demand.
  */
 import { ARMOR_SLOTS, type ArmorSlot } from "@/lib/constants";
+import type { HunterLook } from "@/lib/hunter-look";
 
 type Three = typeof import("three");
 
 export type HunterSlot = ArmorSlot;
 
+/** What a piece can go on the hunter as: an armor slot, or the face. */
+export type DressSlot = HunterSlot | "face";
+
 /** The slots, in the order the hunter's primitives number them (mhfu-extract's `HUNTER_ARMOR`). */
 export const HUNTER_SLOTS: readonly HunterSlot[] = ARMOR_SLOTS;
+
+/** Tags of the face's primitives (mhfu-extract's `FACE_PART`): its material 0, then 1. */
+export const FACE_PARTS = [5, 6] as const;
+
+/** Tag of a hairstyle's hair (mhfu-extract's `HAIR_PART`), part of the helmet slot. */
+export const HAIR_PART = 7;
+
+/** The slot a primitive tagged `part` belongs to. */
+export function partSlot(part: number): DressSlot | undefined {
+  if (part === HAIR_PART) return "helmet";
+  if ((FACE_PARTS as readonly number[]).includes(part)) return "face";
+  return HUNTER_SLOTS[part];
+}
+
+/** The game's `MaterialMask` bits: which of the face's materials a helmet hides. */
+export const FACE_MASK = { MATERIAL_0: 1 << 1, MATERIAL_1: 1 << 2, ALL: 1 << 3 } as const;
+
+/**
+ * The face mask of helmet model `id` (`m_hair003.glb`: 3), from the
+ * hunter's `faceMasks` (by helmet model ID): 0 when it hides nothing.
+ */
+export function faceMask(faceMasks: unknown, id: number): number {
+  if (typeof faceMasks !== "object" || faceMasks === null) return 0;
+  const mask = (faceMasks as Record<string, unknown>)[String(id)];
+  return typeof mask === "number" ? mask : 0;
+}
+
+/** Hides the face's materials `mask` names on the hunter (the hunter model's scene). */
+export function hideFace(hunter: import("three").Object3D, mask: number) {
+  hunter.traverse((object) => {
+    const mesh = object as import("three").Mesh;
+    if (!mesh.isMesh) return;
+    const material = FACE_PARTS.indexOf(mesh.geometry.userData.part as 5 | 6);
+    if (material < 0) return;
+    if (
+      mask & FACE_MASK.ALL ||
+      mask & (material === 0 ? FACE_MASK.MATERIAL_0 : FACE_MASK.MATERIAL_1)
+    )
+      mesh.visible = false;
+  });
+}
 
 /**
  * The player joint each slot's piece is modelled around: the one its
  * skeleton's first bone maps to (mhfu-extract's `ARMOR_JOINT_MAPS[slot][1]`).
  * Chest for helmets and gauntlets, the hips for the rest (at the origin).
  */
-export const SLOT_ROOT: Record<HunterSlot, number> = {
+export const SLOT_ROOT: Record<DressSlot, number> = {
+  face: 20,
   helmet: 10,
   plate: 2,
   gauntlets: 10,
@@ -43,10 +101,14 @@ export const SLOT_ROOT: Record<HunterSlot, number> = {
   leggings: 1,
 };
 
-/** Which piece the hunter wears: its slot, and its sex, which picks the hunter's model. */
+/**
+ * Which piece the hunter wears: its slot, and its sex, which picks the
+ * hunter's model; and the hunter's look (the bare hunter's when absent).
+ */
 export interface HunterOutfit {
   slot: HunterSlot;
   sex: "male" | "female";
+  look?: HunterLook;
 }
 
 /** Vertices with skin weights: 3 numbers a position, 4 joints and 4 weights a vertex. */
@@ -121,18 +183,20 @@ export function transferSkin(
   return { joints, weights };
 }
 
-/** An armor piece to put on the hunter: its slot and its loaded glTF scene. */
+/** A piece to put on the hunter: its slot and its loaded glTF scene. */
 export interface WornPiece {
-  slot: HunterSlot;
+  slot: DressSlot;
   model: import("three").Object3D;
 }
 
 /**
  * Puts `pieces` on the hunter (the hunter model's scene), each in place of
- * the default set's piece of its slot: one piece, or a whole set. Their
- * meshes move into the hunter's model, keeping their materials; the
- * replaced default meshes are dropped. Throws, leaving the hunter as it
- * was, when its model isn't laid out as expected or a piece has no mesh.
+ * what it wears in the piece's slot: one piece, or a whole set. Their
+ * meshes move into the hunter's model, keeping their materials and tagged
+ * with their part like the hunter's own (a piece's own tag, else its
+ * slot's), so the hunter can be dressed again; the replaced meshes are
+ * dropped. Throws, leaving the hunter as it was, when its model isn't laid
+ * out as expected or a piece has no mesh.
  */
 export function dressHunter(
   THREE: Three,
@@ -150,7 +214,7 @@ export function dressHunter(
   if (!tagged && defaults.length !== HUNTER_SLOTS.length)
     throw new Error(`hunter has ${defaults.length} untagged meshes, not one a slot`);
   const slotOf = (mesh: import("three").SkinnedMesh, i: number) =>
-    HUNTER_SLOTS[tagged ? (mesh.geometry.userData.part as number) : i];
+    tagged ? partSlot(mesh.geometry.userData.part as number) : HUNTER_SLOTS[i];
   hunter.updateMatrixWorld(true);
   const { skeleton, bindMatrix } = defaults[0]!;
   // Skinned, the model's scale is in the inverse bind matrices: in the bind
@@ -252,6 +316,13 @@ export function dressHunter(
       geometry.setAttribute("skinIndex", new THREE.BufferAttribute(joints, 4));
       geometry.setAttribute("skinWeight", new THREE.BufferAttribute(weights, 4));
       if (mesh.geometry.index) geometry.setIndex(mesh.geometry.index);
+      const ownPart = mesh.geometry.userData.part;
+      geometry.userData.part =
+        typeof ownPart === "number"
+          ? ownPart
+          : slot === "face"
+            ? FACE_PARTS[0]
+            : HUNTER_SLOTS.indexOf(slot);
       const skinned = new THREE.SkinnedMesh(geometry, mesh.material);
       skinned.name = `${slot}_${meshes.length}`;
       meshes.push(skinned);
@@ -270,8 +341,87 @@ export function dressHunter(
       place.parent!.add(mesh);
       mesh.bind(skeleton, bindMatrix);
     }
-    // Never drawn, so nothing to free; their vertices are shared with the
-    // other slots' meshes, so their geometry mustn't be disposed either.
-    for (const mesh of replaced) mesh.removeFromParent();
+    // Their vertices may be shared with other meshes (the other slots', a
+    // piece worn again), so their geometry mustn't be disposed; only what
+    // the hunter made for itself goes (`ownMaterial`, `skinHunter`).
+    for (const mesh of replaced) {
+      mesh.removeFromParent();
+      const material = mesh.material as TexturedMaterial;
+      if (!material.userData.hunterCopy) continue;
+      if (material.map?.userData.hunterCopy) material.map.dispose();
+      material.dispose();
+    }
+  }
+}
+
+/** The hunter's meshes, as `dyeHair` and `skinHunter` walk them. */
+function meshesOf(hunter: import("three").Object3D): import("three").Mesh[] {
+  const meshes: import("three").Mesh[] = [];
+  hunter.traverse((object) => {
+    if ((object as import("three").Mesh).isMesh) meshes.push(object as import("three").Mesh);
+  });
+  return meshes;
+}
+
+type TexturedMaterial = import("three").MeshStandardMaterial;
+
+/**
+ * A material of `mesh` the hunter may change: its own copy, made once, so the
+ * piece it came from (loaded once, worn again later) keeps its own.
+ */
+function ownMaterial(mesh: import("three").Mesh): TexturedMaterial {
+  const material = mesh.material as TexturedMaterial;
+  if (material.userData.hunterCopy) return material;
+  const copy = material.clone();
+  copy.userData = { ...material.userData, hunterCopy: true };
+  mesh.material = copy;
+  return copy;
+}
+
+/** Colours the hunter's hair (`HAIR_PART`) `rgb` (0xRRGGBB), over its undyed texture. */
+export function dyeHair(hunter: import("three").Object3D, rgb: number) {
+  for (const mesh of meshesOf(hunter))
+    if (mesh.geometry.userData.part === HAIR_PART) ownMaterial(mesh).color.setHex(rgb);
+}
+
+/**
+ * Draws the hunter's bare skin with `skin(k)`, the image `k` of a skin tone:
+ * each material drawn with one of a skin tone's images says which
+ * (`extras.skin`). The image takes the place of the material's texture with
+ * its sampling (wrapping, filtering, flip). A material whose image `skin`
+ * doesn't give stays as it is.
+ */
+export function skinHunter(
+  hunter: import("three").Object3D,
+  skin: (k: number) => import("three").Texture | undefined,
+) {
+  for (const mesh of meshesOf(hunter)) {
+    const k = (mesh.material as TexturedMaterial).userData?.skin;
+    if (typeof k !== "number") continue;
+    const image = skin(k);
+    const old = (mesh.material as TexturedMaterial).map;
+    if (!image || !old || old.source === image.source) continue;
+    const material = ownMaterial(mesh);
+    const map = image.clone();
+    for (const key of [
+      "wrapS",
+      "wrapT",
+      "magFilter",
+      "minFilter",
+      "flipY",
+      "colorSpace",
+      "channel",
+      "generateMipmaps",
+    ] as const)
+      (map as unknown as Record<string, unknown>)[key] = old[key];
+    map.offset.copy(old.offset);
+    map.repeat.copy(old.repeat);
+    map.center.copy(old.center);
+    map.rotation = old.rotation;
+    map.needsUpdate = true;
+    // Only this hunter's own copies go: the piece's texture may be worn again.
+    if (old.userData.hunterCopy) old.dispose();
+    map.userData = { hunterCopy: true };
+    material.map = map;
   }
 }

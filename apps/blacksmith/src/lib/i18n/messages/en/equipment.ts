@@ -303,6 +303,20 @@ export const equipment = {
     onHunter: "On hunter",
     /** The accessible name of a piece worn by the hunter: "Rathalos Helm (male), on a hunter". */
     wornModel: (model: string) => `${model}, on a hunter`,
+    /** The button that opens the hunter's look pickers, and their group's name. */
+    look: "Look",
+    face: "Face",
+    hairstyle: "Hair",
+    hairColor: "Hair colour",
+    clothing: "Clothes",
+    /** A picker's value: "3/32". */
+    lookValue: (value: number, count: number) => `${value}/${count}`,
+    previousOption: (name: string) => `Previous ${name.toLowerCase()}`,
+    nextOption: (name: string) => `Next ${name.toLowerCase()}`,
+    /** Puts the loaded save's hunter's look on the hunter. */
+    myHunter: (name: string) => `${name}'s look`,
+    /** Puts the default look back. */
+    defaultLook: "Default",
     /** The motion controls over an animated model. */
     motions: "Motions",
     motion: "Motion",

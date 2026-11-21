@@ -1,3 +1,4 @@
+import type { SaveLook } from "@/lib/hunter-look";
 import { hunterRankFrom } from "./hunter-rank";
 
 const KEY = "mhfu_save";
@@ -100,6 +101,8 @@ export interface SaveData extends AwardRecords {
   equipment?: EquipSlot[];
   /** Missing on saves stored before these were kept. */
   sex?: string;
+  /** The look picked at character creation. Missing on saves stored before it was read. */
+  look?: SaveLook;
   /** Total play time in seconds. */
   playTime?: number;
   /**
@@ -128,6 +131,7 @@ export function saveFromCharacter(
   character: AwardRecords & {
     name: string;
     sex?: string;
+    look?: SaveLook;
     zenny: number;
     playTime?: number;
     itemChest: ItemSlot[];
@@ -151,6 +155,7 @@ export function saveFromCharacter(
     zenny: character.zenny,
     equipment: character.equipBox,
     sex: character.sex,
+    look: character.look,
     playTime: character.playTime,
     slot,
     clearedQuests: character.clearedQuests,

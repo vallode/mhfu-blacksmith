@@ -9,8 +9,13 @@ import { fetchMotions, type MotionClip } from "@/lib/motions";
 
 const HUNTER_DIR = "/models/hunter";
 export const HUNTER_MODEL = `${HUNTER_DIR}/hunter.glb`;
-/** The female hunter, for female armor; only in exports made since it was added. */
-export const HUNTER_FEMALE_MODEL = `${HUNTER_DIR}/hunter-female.glb`;
+/**
+ * Each sex's hunter in the clothes worn under armor, with a face and
+ * hairstyle: the one armor goes on. Only in exports made since they were
+ * added.
+ */
+export const HUNTER_BARE_MODEL = `${HUNTER_DIR}/hunter-bare.glb`;
+export const HUNTER_BARE_FEMALE_MODEL = `${HUNTER_DIR}/hunter-bare-female.glb`;
 
 /** The player's joints (mhfu-extract's `src/models/hunter.ts`). */
 export const JOINT = { CHEST: 10, LEFT_HAND: 14, RIGHT_HAND: 18 } as const;
