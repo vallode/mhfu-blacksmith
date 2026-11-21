@@ -1,28 +1,28 @@
 /*
- * Attack hitboxes (the hud.attackHitboxes option): an outline of every
- * monster attack that can hit right now, drawn over the scene with the HUD's
- * line routine. See ../docs/code-loader.md and src/patches/hitboxes.ts,
- * which finds the game's addresses below on each disc. It only reads game
- * state.
+ * Attack hitboxes (the hud.attackHitboxes option): every monster attack
+ * that can hit right now, its shapes filled in translucent red over the
+ * scene with the HUD's translucent fill, in strips. See
+ * ../docs/code-loader.md and src/patches/hitboxes.ts, which finds the
+ * game's addresses below on each disc. It only reads game state.
  *
  * Built with the FPU (single precision only: Allegrex has no doubles), so
  * nothing here may use a double. Floats are never live across a game call:
- * the shapes are projected into `lines` first, then drawn.
+ * the shapes are worked out into `strips` first, then drawn.
  */
 #include "rf.h"
 
 /* Found per disc (src/patches/hitboxes.ts). */
-extern const u8 rf_game_task[];    /* game_task.ovl's load address */
-extern u8 *const rf_monsters[];    /* the global holding the monster manager */
-extern u8 *const rf_attacks[];     /* the global holding the attack objects' pool */
-extern u8 *const rf_camera[];      /* the global holding the renderer: its view and projection */
-extern const u8 rf_hud_line[];     /* line(hud, x0, y0, x1, y1, r, g, b) */
+extern const u8 rf_game_task[]; /* game_task.ovl's load address */
+extern u8 *const rf_monsters[]; /* the global holding the monster manager */
+extern u8 *const rf_attacks[];  /* the global holding the attack objects' pool */
+extern u8 *const rf_camera[];   /* the global holding the renderer: its view and projection */
+extern const u8 rf_fill[];      /* fill(hud, x, y, w, h, r, g, b, alpha): translucent */
 
 /* The pool: a list of live attack objects. */
 #define ATTACK_LIST 0x502c
 /* An attack object. */
 #define NEXT 0x4
-#define OWNER_NONE 0xe /* 0xFF: no owner */
+#define OWNER_NONE 0xe    /* 0xFF: no owner */
 #define OWNER_MONSTER 0xf /* 0: a hunter's, else a monster's */
 #define STATE 0x14        /* 2: can hit (the only state the game tests) */
 #define STATE_LIVE 2
@@ -65,28 +65,24 @@ extern const u8 rf_hud_line[];     /* line(hud, x0, y0, x1, y1, r, g, b) */
 #define NEAR 20.0f
 
 /* What it draws, at most, a frame: the HUD's display list is shared. */
-#define MAX_LINES 192
-#define SEGMENTS 12
+#define MAX_STRIPS 256
+/* A shape is filled in strips this tall, or taller when it's tall on screen. */
+#define STRIP 2
+#define MAX_STRIPS_A_SHAPE 64
 
-#define LINE_R 0xff
-#define LINE_G 0x30
-#define LINE_B 0x30
+#define FILL_R 0xff
+#define FILL_G 0x40
+#define FILL_B 0x30
+#define FILL_ALPHA 0x50
 
 typedef struct {
   float x, y, z;
 } vec3;
 
 static struct {
-  s16 x0, y0, x1, y1;
-} lines[MAX_LINES];
-static u32 line_count;
-
-/* cos and sin of k × 30°. */
-static const float unit[SEGMENTS][2] = {
-    {1.0f, 0.0f},         {0.8660254f, 0.5f},   {0.5f, 0.8660254f},   {0.0f, 1.0f},
-    {-0.5f, 0.8660254f},  {-0.8660254f, 0.5f},  {-1.0f, 0.0f},        {-0.8660254f, -0.5f},
-    {-0.5f, -0.8660254f}, {0.0f, -1.0f},        {0.5f, -0.8660254f},  {0.8660254f, -0.5f},
-};
+  s16 x, y, w, h;
+} strips[MAX_STRIPS];
+static u32 strip_count;
 
 static float sqrt_f(float x) {
   float r;
@@ -119,34 +115,6 @@ static vec3 add(vec3 a, vec3 b) {
   return r;
 }
 
-/* Clips a segment to the screen (Liang-Barsky) and keeps it, if there's room. */
-static void line(float x0, float y0, float x1, float y1) {
-  if (line_count == MAX_LINES) return;
-  float dx = x1 - x0, dy = y1 - y0;
-  float t0 = 0.0f, t1 = 1.0f;
-  float p[4] = {-dx, dx, -dy, dy};
-  float q[4] = {x0, WIDTH - 1.0f - x0, y0, HEIGHT - 1.0f - y0};
-  for (int k = 0; k < 4; k++) {
-    if (p[k] == 0.0f) {
-      if (q[k] < 0.0f) return;
-      continue;
-    }
-    float t = q[k] / p[k];
-    if (p[k] < 0.0f) {
-      if (t > t1) return;
-      if (t > t0) t0 = t;
-    } else {
-      if (t < t0) return;
-      if (t < t1) t1 = t;
-    }
-  }
-  lines[line_count].x0 = (s16)(x0 + t0 * dx);
-  lines[line_count].y0 = (s16)(y0 + t0 * dy);
-  lines[line_count].x1 = (s16)(x0 + t1 * dx);
-  lines[line_count].y1 = (s16)(y0 + t1 * dy);
-  line_count++;
-}
-
 /* A point on screen and its depth (the projection's w); 0 when behind the near plane. */
 typedef struct {
   float x, y, w;
@@ -165,16 +133,29 @@ static int project(const u8 *renderer, vec3 world, screen *out) {
   return 1;
 }
 
-static void circle(screen c, float r) {
-  for (int k = 0; k < SEGMENTS; k++) {
-    const float *a = unit[k], *b = unit[(k + 1) % SEGMENTS];
-    line(c.x + r * a[0], c.y + r * a[1], c.x + r * b[0], c.y + r * b[1]);
-  }
+/* Where a row `y` crosses a circle: widens [*lo, *hi]. */
+static void span_circle(float y, float cx, float cy, float r, float *lo, float *hi) {
+  float dy = y - cy;
+  float d = r * r - dy * dy;
+  if (d < 0.0f) return;
+  float half = sqrt_f(d);
+  if (cx - half < *lo) *lo = cx - half;
+  if (cx + half > *hi) *hi = cx + half;
+}
+
+/* Where a row `y` crosses a segment: widens [*lo, *hi]. */
+static void span_edge(float y, float x0, float y0, float x1, float y1, float *lo, float *hi) {
+  if ((y < y0 && y < y1) || (y > y0 && y > y1) || y0 == y1) return;
+  float x = x0 + (x1 - x0) * (y - y0) / (y1 - y0);
+  if (x < *lo) *lo = x;
+  if (x > *hi) *hi = x;
 }
 
 /*
- * A sphere swept from `a` to `b` (a == b for a sphere), as seen: a circle at
- * each end and the two lines that join them.
+ * A sphere swept from `a` to `b` (a == b for a sphere), as seen: the two end
+ * circles and the band between them, a convex shape, filled row by row.
+ * Each row's span is the widest any of its parts reaches, clipped to the
+ * screen.
  */
 static void capsule(const u8 *renderer, vec3 a, vec3 b, float radius) {
   screen sa, sb;
@@ -184,14 +165,44 @@ static void capsule(const u8 *renderer, vec3 a, vec3 b, float radius) {
   float ra = radius * scale / sa.w, rb = radius * scale / sb.w;
   if (ra < 1.0f) ra = 1.0f;
   if (rb < 1.0f) rb = 1.0f;
-  circle(sa, ra);
   float dx = sb.x - sa.x, dy = sb.y - sa.y;
   float length = sqrt_f(dx * dx + dy * dy);
-  if (length < 1.0f) return;
-  circle(sb, rb);
-  float nx = -dy / length, ny = dx / length;
-  line(sa.x + nx * ra, sa.y + ny * ra, sb.x + nx * rb, sb.y + ny * rb);
-  line(sa.x - nx * ra, sa.y - ny * ra, sb.x - nx * rb, sb.y - ny * rb);
+  float nx = 0.0f, ny = 0.0f;
+  if (length >= 1.0f) {
+    nx = -dy / length;
+    ny = dx / length;
+  }
+  float top = sa.y - ra < sb.y - rb ? sa.y - ra : sb.y - rb;
+  float bottom = sa.y + ra > sb.y + rb ? sa.y + ra : sb.y + rb;
+  if (top < 0.0f) top = 0.0f;
+  if (bottom > HEIGHT) bottom = HEIGHT;
+  if (!(bottom > top)) return;
+  s32 y0 = (s32)top, y1 = (s32)(bottom + 0.5f);
+  s32 step = STRIP;
+  while ((y1 - y0) / step > MAX_STRIPS_A_SHAPE) step++;
+  /* The band's corners: each end's centre, out along the normal by its radius. */
+  float p0x = sa.x + nx * ra, p0y = sa.y + ny * ra, p1x = sb.x + nx * rb, p1y = sb.y + ny * rb;
+  float q0x = sa.x - nx * ra, q0y = sa.y - ny * ra, q1x = sb.x - nx * rb, q1y = sb.y - ny * rb;
+  for (s32 y = y0; y < y1 && strip_count < MAX_STRIPS; y += step) {
+    s32 h = y + step > y1 ? y1 - y : step;
+    float row = (float)y + (float)h * 0.5f;
+    float lo = WIDTH, hi = -1.0f;
+    span_circle(row, sa.x, sa.y, ra, &lo, &hi);
+    span_circle(row, sb.x, sb.y, rb, &lo, &hi);
+    if (length >= 1.0f) {
+      span_edge(row, p0x, p0y, p1x, p1y, &lo, &hi);
+      span_edge(row, q0x, q0y, q1x, q1y, &lo, &hi);
+    }
+    if (lo < 0.0f) lo = 0.0f;
+    if (hi > WIDTH) hi = WIDTH;
+    s32 x = (s32)(lo + 0.5f), w = (s32)(hi + 0.5f) - x;
+    if (w <= 0) continue;
+    strips[strip_count].x = (s16)x;
+    strips[strip_count].y = (s16)y;
+    strips[strip_count].w = (s16)w;
+    strips[strip_count].h = (s16)h;
+    strip_count++;
+  }
 }
 
 /* One shape record of an attack its monster owns, placed as the game places it. */
@@ -222,7 +233,7 @@ static void draw(u8 *hud) {
   u8 *hunter = *(u8 **)(hud + HUD_HUNTER);
   if (!manager || !pool || !renderer || !hunter) return;
   u16 area = *(u16 *)(hunter + ENTITY_AREA);
-  line_count = 0;
+  strip_count = 0;
   u32 guard = 0;
   for (u8 *attack = *(u8 **)(pool + ATTACK_LIST); attack && guard < 64;
        attack = *(u8 **)(attack + NEXT), guard++) {
@@ -235,9 +246,9 @@ static void draw(u8 *hud) {
       shape(renderer, attack, m, s);
     }
   }
-  for (u32 k = 0; k < line_count; k++) {
-    rf_call8(rf_hud_line, (u32)hud, (u16)lines[k].x0, (u16)lines[k].y0, (u16)lines[k].x1,
-             (u16)lines[k].y1, LINE_R, LINE_G, LINE_B);
+  for (u32 k = 0; k < strip_count; k++) {
+    rf_call9(rf_fill, (u32)hud, (u32)strips[k].x, (u32)strips[k].y, (u32)strips[k].w,
+             (u32)strips[k].h, FILL_R, FILL_G, FILL_B, FILL_ALPHA);
   }
 }
 

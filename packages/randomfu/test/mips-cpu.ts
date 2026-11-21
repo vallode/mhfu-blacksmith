@@ -1,6 +1,6 @@
 /**
  * Just enough of a MIPS CPU to run patch and blob code in tests: the integer
- * ops they use (multiply, unsigned divide, variable shifts and nor too), with delay slots
+ * ops they use (multiply, divide, variable shifts and nor too), with delay slots
  * and branch-likely, and the single-precision FPU (`blob/hitboxes.c`), over
  * sparse 64 KB pages. Game functions
  * the code calls are JavaScript (`native`): they get the CPU and return
@@ -118,6 +118,11 @@ export class Cpu {
           const p = BigInt(u(rs)) * BigInt(u(rt));
           this.lo = Number(p & 0xffffffffn) | 0;
           this.hi = Number(p >> 32n) | 0;
+        } else if (funct === 0x1a) {
+          if (r[rt] !== 0) {
+            this.lo = Math.trunc(r[rs]! / r[rt]!) | 0;
+            this.hi = (r[rs]! % r[rt]!) | 0;
+          }
         } else if (funct === 0x1b) {
           if (u(rt) !== 0) {
             this.lo = Math.floor(u(rs) / u(rt)) | 0;

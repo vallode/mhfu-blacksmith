@@ -1789,7 +1789,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "hud.attackHitboxes",
     section: "HUD",
     label: "Attack hitboxes",
-    help: "A red outline around every monster attack that can hit you right now: the parts of its body that hurt during the attack, and projectiles like fireballs, drawn over the scene as the game places them. It follows the HUD: hidden in cutscenes and wherever the game hides your gauges. A few attacks whose shape the monster's own code places aren't drawn. Caps received Guild Cards at 3 to make room for the code that draws it.",
+    help: "A faint red shading over every monster attack that can hit you right now: the parts of its body that hurt during the attack, and projectiles like fireballs, filled in over the scene as the game places them. It follows the HUD: hidden in cutscenes and wherever the game hides your gauges. A few attacks whose shape the monster's own code places aren't drawn. Caps received Guild Cards at 3 to make room for the code that draws it.",
     type: { kind: "boolean" },
     default: false,
   },

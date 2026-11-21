@@ -1,6 +1,6 @@
 /**
- * Attack hitboxes (`hud.attackHitboxes`): an outline of every monster attack
- * that can hit right now, drawn over the scene by blob code
+ * Attack hitboxes (`hud.attackHitboxes`): every monster attack that can hit
+ * right now, its shapes filled in translucent red over the scene by blob code
  * (`blob/hitboxes.c`) on the code loader's HUD hook (`game-hooks.ts`). This
  * finds the game's addresses the blob reads and calls, per disc.
  *
@@ -26,9 +26,12 @@
  *   and the 3D projection at `+0xC00` (which the draw loop, EU 0x0884BB58,
  *   sends to the GE). The GE's own view matrix is the identity: the game
  *   folds the view into every model's world matrix.
- * - The HUD draws lines with `line(hud, x0, y0, x1, y1, r, g, b)` (EU
- *   0x0882DAC0), in its current layer like the gauges' fill. Coordinates
- *   are u16: the blob clips to the screen first.
+ * - The HUD's translucent fill, `fill(hud, x, y, w, h, r, g, b, alpha)` (EU
+ *   0x0882D8DC; the Hunter's Pact shades the screen with it), draws an RGBA
+ *   rectangle in its current layer. The blob fills each shape's outline on
+ *   screen with it, in strips 2 pixels tall, clipped to the screen first
+ *   (coordinates are u16). The HUD also has an opaque line routine (EU
+ *   0x0882DAC0, 5551 colour), tried first: outlines read as too loud.
  *
  * Every address is found by code signature, which match the EU and JP
  * (FUC) discs. The blob only reads game state.
@@ -37,6 +40,7 @@ import { OVL_HEADER_SIZE, type OvlFile } from "mhfu-extract/src/container/ovl.js
 import { decodeObjects } from "../blob/link.js";
 import { HITBOXES_OBJECTS } from "../blob/hitboxes-object.js";
 import { findMonsterExterns } from "./monster-hp.js";
+import { FILL_SIGNATURE } from "./pact.js";
 import { findUnique, hiLo, maskWord, type Segment } from "./mips.js";
 
 /** The attack list's offset in the pool. */
@@ -57,14 +61,6 @@ const PROJECTION_WORDS: readonly [number, number][] = [
 ];
 /** The camera's look-at into the renderer: `jal lookAt; addiu a0,s3,0xBC0; addiu v1,s3,0xB80; addiu a0,s3,0xC80`. */
 export const VIEW_SIGNATURE = [0x0c000000, 0x26640bc0, 0x26630b80, 0x26640c80];
-/** The HUD's line routine: the colour to 5551, the two vertices, a GE line primitive. */
-export const LINE_SIGNATURE = [
-  0x27bdffb0, 0x312300ff, 0x00031940, 0x00034a02, 0x314300ff, 0x00031940, 0x00031a02, 0x00031940,
-  0x01234825, 0x316300ff, 0x00031940, 0x00031a02, 0x00031a80, 0x00691825, 0x34698000, 0x30a3ffff,
-  0x00031c00, 0x00691825, 0xafa30000, 0x30c3ffff, 0xafa30000, 0x3103ffff, 0xafa30000, 0x24030000,
-  0xafa30000, 0x3c030000, 0xafa30000, 0x3c030000, 0x34630001, 0xafa30000, 0x3c030000, 0x34630114,
-  0xafa30000, 0x3c030000, 0x34630002, 0xafa30000, 0x3c030000, 0xafa30000, 0x3c030000, 0xafa30000,
-];
 /**
  * `game_sub` placing a shape on its owner's joint (EU 0x09C37798), masked:
  * joint × 0x250 by shifts, `+0xD0`, the scale at `+0x220`. The blob places
@@ -122,17 +118,17 @@ export function findHitboxExterns(
   ovl: OvlFile,
   gameSub: Buffer,
 ): Record<string, number> | string {
-  const [projection, view, line] = findUnique(vanillaEboot, segment, [
+  const [projection, view, fill] = findUnique(vanillaEboot, segment, [
     PROJECTION_SIGNATURE,
     VIEW_SIGNATURE,
-    LINE_SIGNATURE,
+    FILL_SIGNATURE.map(maskWord),
   ]);
   const at32 = (vaddr: number) => word(vanillaEboot, segment.offset + (vaddr - segment.vaddr));
   if (projection == null || PROJECTION_WORDS.some(([k, w]) => at32(projection + k) !== w)) {
     return "this EBOOT's projection code doesn't match";
   }
   if (view == null) return "this EBOOT's camera code doesn't match";
-  if (line == null) return "this EBOOT's line drawing code doesn't match";
+  if (fill == null) return "this EBOOT's HUD fill code doesn't match";
 
   const places = findInOverlay(gameSub, PLACE_SIGNATURE);
   if (places.length !== 1 || PLACE_WORDS.some(([k, w]) => word(gameSub, places[0]! + k) !== w)) {
@@ -148,7 +144,7 @@ export function findHitboxExterns(
     rf_monsters: monsters.rf_monsters!,
     rf_attacks: [...pools][0]!,
     rf_camera: hiLo(at32(projection + 0x0c), at32(projection + 0x10)),
-    rf_hud_line: line,
+    rf_fill: fill,
   };
 }
 

@@ -24,7 +24,7 @@ const EXTERNS = {
   rf_monsters: 0x09c121b0,
   rf_attacks: 0x09c18fd0,
   rf_camera: 0x089cbbe4,
-  rf_hud_line: 0x0882dac0,
+  rf_fill: 0x0882d8dc,
 };
 const AREA = 3;
 const SLOT = 2;
@@ -32,13 +32,14 @@ const SLOT = 2;
 const runtime = () =>
   RUNTIME_OBJECTS.map((o) => ({ name: o.name, data: Buffer.from(o.base64, "base64") }));
 
-type Line = [number, number, number, number];
+/** A strip of the translucent fill: x, y, w, h. */
+type Strip = [number, number, number, number];
 
 /**
  * The blob in a CPU with a quest: a camera looking down -z from the origin
  * (view the identity; a projection of scale 1, w = -z), one monster in the
- * hunter's area and one live attack object it owns. The HUD's line routine
- * records what it draws.
+ * hunter's area and one live attack object it owns. The HUD's translucent
+ * fill records what it draws.
  */
 function quest() {
   const blob = linkBlob([...runtime(), ...hitboxObjects()], BLOB, EXTERNS);
@@ -51,12 +52,13 @@ function quest() {
   cpu.load(HOOKS, hooks.code);
   cpu.native.set(HUD_UPDATE, () => 0);
   cpu.native.set(GAUGES, () => 0x5678);
-  const lines: Line[] = [];
+  const strips: Strip[] = [];
   const reg = (k: number) => cpu.reg[k]! >>> 0;
-  cpu.native.set(EXTERNS.rf_hud_line, () => {
+  cpu.native.set(EXTERNS.rf_fill, () => {
     assert.equal(reg(4), HUD);
-    assert.deepEqual([reg(9), reg(10), reg(11)], [0xff, 0x30, 0x30]);
-    lines.push([reg(5), reg(6), reg(7), reg(8)]);
+    // Colour in $t1-$t3, alpha the ninth argument, on the stack.
+    assert.deepEqual([reg(9), reg(10), reg(11), cpu.u32(reg(29))], [0xff, 0x40, 0x30, 0x50]);
+    strips.push([reg(5), reg(6), reg(7), reg(8)]);
     return 0;
   });
 
@@ -102,51 +104,57 @@ function quest() {
   };
 
   const frame = () => {
-    lines.length = 0;
+    strips.length = 0;
     assert.equal(cpu.call(hooks.stubs[1]!, [HUD]), 0x5678, "the gauges' result is passed back");
-    return lines.map((l) => [...l] as Line);
+    return strips.map((l) => [...l] as Strip);
   };
   cpu.call(blob.symbols.get("rf_init")!, [0, 0x09999c60, BLOB]);
   return { cpu, frame, shapes, floats };
 }
 
-/** Every end of every line lies `r` (give or take the rounding) from (x, y). */
-function onCircle(lines: Line[], x: number, y: number, r: number) {
-  for (const [x0, y0, x1, y1] of lines) {
-    for (const [px, py] of [
-      [x0, y0],
-      [x1, y1],
-    ]) {
-      assert.ok(
-        Math.abs(Math.hypot(px! - x, py! - y) - r) < 1.5,
-        `(${px}, ${py}) not on the circle`,
-      );
-    }
+/**
+ * The strips stack without gaps or overlaps, and together cover the box
+ * (left, top) to (right, bottom), give or take the rounding.
+ */
+function covers(strips: Strip[], left: number, top: number, right: number, bottom: number) {
+  assert.ok(strips.length > 0, "no strips");
+  for (let k = 1; k < strips.length; k++) {
+    assert.equal(strips[k]![1], strips[k - 1]![1] + strips[k - 1]![3], `strip ${k} follows on`);
   }
+  const near = (a: number, b: number, what: string) =>
+    assert.ok(Math.abs(a - b) <= 1.5, `${what}: ${a}, not ${b.toFixed(1)}`);
+  near(Math.min(...strips.map(([x]) => x)), left, "left");
+  near(Math.max(...strips.map(([x, , w]) => x + w)), right, "right");
+  near(strips[0]![1], top, "top");
+  near(strips.at(-1)![1] + strips.at(-1)![3], bottom, "bottom");
 }
 
-test("a sphere on a joint is a circle where the joint is, its radius times the model's scale", () => {
+/** The strips' widths, row by row. */
+const widths = (strips: Strip[]) => strips.map(([, , w]) => w);
+
+test("a sphere on a joint is filled where the joint is, its radius times the model's scale", () => {
   const q = quest();
   q.shapes([{ joint: 3, type: 0, radius: 100, start: [0, 0, 0] }]);
-  const lines = q.frame();
-  assert.equal(lines.length, 12);
+  const strips = q.frame();
   // (100, 0, -1000) is at 240 + 240 × 0.1, 136; 150 units at 1000 is 136 × 0.15 pixels.
-  onCircle(lines, 264, 136, 20.4);
-  assert.deepEqual(lines[0], [284, 136, 281, 146]);
+  covers(strips, 264 - 20.4, 136 - 20.4, 264 + 20.4, 136 + 20.4);
+  assert.ok(
+    strips.slice(0, -1).every(([, , , h]) => h === 2),
+    "2 pixels tall, the last maybe less",
+  );
+  // Round: narrow at the top and bottom, widest in the middle.
+  const w = widths(strips);
+  assert.ok(w[0]! < 20 && w.at(-1)! < 20 && Math.max(...w) >= 40);
 });
 
-test("a capsule is a circle at each end and the two lines joining them", () => {
+test("a capsule fills both end circles and the band between them", () => {
   const q = quest();
   // Offsets in the joint's frame: 200 left and 200 right of it.
   q.shapes([{ joint: 3, type: 1, radius: 100, start: [-200, 0, 0], end: [200, 0, 0] }]);
-  const lines = q.frame();
-  assert.equal(lines.length, 26);
-  onCircle(lines.slice(0, 12), 216, 136, 20.4);
-  onCircle(lines.slice(12, 24), 312, 136, 20.4);
-  assert.deepEqual(lines.slice(24), [
-    [216, 156, 312, 156],
-    [216, 115, 312, 115],
-  ]);
+  const strips = q.frame();
+  covers(strips, 216 - 20.4, 136 - 20.4, 312 + 20.4, 136 + 20.4);
+  // The band is as wide as the gap between the centres, even at its edge rows.
+  assert.ok(widths(strips).every((w) => w >= 96));
 });
 
 test("a projectile's capsule runs between the object's own two points, unscaled", () => {
@@ -154,10 +162,7 @@ test("a projectile's capsule runs between the object's own two points, unscaled"
   q.floats(ATTACK + 0x40, [0, 0, -1000]);
   q.floats(ATTACK + 0x50, [0, 100, -1000]);
   q.shapes([{ joint: 0x7e, type: 1, radius: 100, start: [0, 0, 0], end: [0, 0, 0] }]);
-  const lines = q.frame();
-  assert.equal(lines.length, 26);
-  onCircle(lines.slice(0, 12), 240, 136, 13.6);
-  onCircle(lines.slice(12, 24), 240, 122.4, 13.6);
+  covers(q.frame(), 240 - 13.6, 122.4 - 13.6, 240 + 13.6, 136 + 13.6);
 });
 
 test("a shape placed by the object adds its offsets to the object's point", () => {
@@ -165,13 +170,13 @@ test("a shape placed by the object adds its offsets to the object's point", () =
   q.floats(ATTACK + 0x40, [-100, 0, -1000]);
   q.shapes([{ joint: 0x7f, type: 0, radius: 50, start: [0, 0, 500] }]);
   // (-100, 0, -500): 48 left of the middle, 50 units at 500 is 13.6 pixels.
-  onCircle(q.frame(), 192, 136, 13.6);
+  covers(q.frame(), 192 - 13.6, 136 - 13.6, 192 + 13.6, 136 + 13.6);
 });
 
 test("nothing for attacks that can't hit, a hunter's, another area's, or behind the camera", () => {
   const q = quest();
   q.shapes([{ joint: 3, type: 0, radius: 100, start: [0, 0, 0] }]);
-  assert.equal(q.frame().length, 12);
+  assert.ok(q.frame().length > 0);
   for (const [at, value, restore] of [
     [ATTACK + 0x14, 1, 2],
     [ATTACK + 0xf, 0, 1],
@@ -191,16 +196,26 @@ test("nothing for attacks that can't hit, a hunter's, another area's, or behind 
   assert.deepEqual(q.frame(), []);
 });
 
-test("lines are clipped to the screen", () => {
+test("strips are clipped to the screen", () => {
   const q = quest();
-  // Centred at (470, 260), near the bottom right corner: the circle runs off both edges.
+  // Centred at (470, 260), near the bottom right corner: the fill runs off both edges.
   q.shapes([{ joint: 3, type: 0, radius: 400, start: [858, -912, 0] }]);
-  const lines = q.frame();
-  assert.ok(lines.length > 0 && lines.length < 12);
-  for (const [x0, y0, x1, y1] of lines) {
-    for (const x of [x0, x1]) assert.ok(x >= 0 && x <= 479, `x ${x}`);
-    for (const y of [y0, y1]) assert.ok(y >= 0 && y <= 271, `y ${y}`);
+  const strips = q.frame();
+  assert.ok(strips.length > 0);
+  for (const [x, y, w, h] of strips) {
+    assert.ok(x >= 0 && w > 0 && x + w <= 480, `x ${x} w ${w}`);
+    assert.ok(y >= 0 && h > 0 && y + h <= 272, `y ${y} h ${h}`);
   }
+  assert.equal(strips.at(-1)![1] + strips.at(-1)![3], 272);
+});
+
+test("a shape tall on screen takes taller strips, not more of them", () => {
+  const q = quest();
+  // Right in front of the camera: far taller than the screen.
+  q.shapes([{ joint: 3, type: 0, radius: 1000, start: [-100, 0, 700] }]);
+  const strips = q.frame();
+  assert.ok(strips.length <= 65, `${strips.length} strips`);
+  covers(strips, 0, 0, 480, 272);
 });
 
 test("nothing outside a quest", () => {

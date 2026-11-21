@@ -233,20 +233,24 @@ list (the attack-object pool's `+0x502C`, then `+4`) and, for each object
 that can hit (`+0x14` 2) owned by a monster (`+0xF`, slot `+0x15`) in the
 hunter's area (`+0x18`), places its shapes as `game_sub` does (EU
 0x09C37798), projects them with the renderer's view (`+0xB80`) and
-projection (`+0xC00`), and keeps up to 192 lines, clipped to the screen.
-Only then does it draw them, with the HUD's `line(hud, x0, y0, x1, y1, r,
-g, b)` (EU 0x0882DAC0, JP 0x0882DD04).
+projection (`+0xC00`), and fills each one's outline on screen as strips 2
+pixels tall (taller for a shape over 128 pixels tall), up to 256 a frame,
+clipped to the screen. Only then does it draw them, in translucent red,
+with the HUD's `fill(hud, x, y, w, h, r, g, b, alpha)` (the pact's shade)
+through `rf_call9`. The HUD's opaque `line(hud, x0, y0, x1, y1, r, g, b)`
+(EU 0x0882DAC0, JP 0x0882DD04) drew a first version's outlines, which
+were too loud.
 
-| Extern        | What                                  | EU         | JP         |
-| ------------- | ------------------------------------- | ---------- | ---------- |
-| `rf_attacks`  | global holding the attack-object pool | 0x09C18FD0 | 0x09C14250 |
-| `rf_camera`   | global holding the renderer           | 0x089CBBE4 | 0x089C6CB4 |
-| `rf_hud_line` | the HUD's line routine                | 0x0882DAC0 | 0x0882DD04 |
+| Extern       | What                                    | EU         | JP         |
+| ------------ | --------------------------------------- | ---------- | ---------- |
+| `rf_attacks` | global holding the attack-object pool   | 0x09C18FD0 | 0x09C14250 |
+| `rf_camera`  | global holding the renderer             | 0x089CBBE4 | 0x089C6CB4 |
+| `rf_fill`    | the HUD's translucent fill (the pact's) | 0x0882D8DC | 0x0882DB20 |
 
 It's the one blob built with the FPU (`-mhard-float -msingle-float`):
 Allegrex has single precision only, so it uses no doubles, and clang then
 saves callee-saved FPU registers with `swc1`. No float is live across a
-game call: the lines are worked out before any is drawn. The test CPU
+game call: the strips are worked out before any is drawn. The test CPU
 runs single-precision FPU code for `test/hitboxes.test.ts`.
 
 ## Monster boosts
