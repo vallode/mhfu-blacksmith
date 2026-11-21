@@ -5,9 +5,22 @@ import ModelViewer from "@/components/ModelViewer";
 import { cn } from "@/lib/cn";
 import { HUNTER_BARE_FEMALE_MODEL, HUNTER_BARE_MODEL } from "@/lib/hunter";
 import type { HunterSlot } from "@/lib/hunter-armor";
+import {
+  CLOTHING_COUNT,
+  DEFAULT_LOOK,
+  fetchLookData,
+  hexColor,
+  lookFromSave,
+  readPickedLooks,
+  writePickedLooks,
+  type HunterLook,
+  type LookData,
+  type PickedLooks,
+} from "@/lib/hunter-look";
 import type { ArmorModelUrls, ArmorSetModelUrls } from "@/lib/models";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
+import { useSave } from "@/context/SaveContext";
 
 interface Props {
   models: ArmorModelUrls;
@@ -58,6 +71,70 @@ function useHunterExists(sex: Sex): boolean | undefined {
   return hunterFiles.get(url);
 }
 
+/** Whether the look pickers were open: the next piece opens the same way. */
+let lastLookOpen = false;
+
+/** `look.json`, once fetched (null if this export has none). */
+function useLookData(): LookData | null | undefined {
+  const [data, setData] = useState<LookData | null | undefined>(undefined);
+  useEffect(() => {
+    let cancelled = false;
+    fetchLookData().then((loaded) => {
+      if (!cancelled) setData(loaded);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return data;
+}
+
+const sameLook = (a: HunterLook, b: HunterLook) =>
+  a.face === b.face &&
+  a.hair === b.hair &&
+  a.hairColor === b.hairColor &&
+  a.clothing === b.clothing;
+
+/** Steps through `count` options (shown from 1), wrapping around. */
+function Stepper({
+  label,
+  value,
+  count,
+  onChange,
+}: {
+  label: string;
+  value: number;
+  count: number;
+  onChange: (value: number) => void;
+}) {
+  const tm = useT().equipment.model;
+  const step = (by: number) => onChange((value + by + count) % count);
+  return (
+    <div className="flex items-center gap-[0.8rem]" role="group" aria-label={label}>
+      <span className="w-cells-12">{label}</span>
+      <button
+        type="button"
+        onClick={() => step(-1)}
+        aria-label={tm.previousOption(label)}
+        className={cn(modelPanelButton, "px-[0.4rem]")}
+      >
+        ‹
+      </button>
+      <span className="w-cells-5 text-center" aria-live="polite">
+        {tm.lookValue(value + 1, count)}
+      </span>
+      <button
+        type="button"
+        onClick={() => step(1)}
+        aria-label={tm.nextOption(label)}
+        className={cn(modelPanelButton, "px-[0.4rem]")}
+      >
+        ›
+      </button>
+    </div>
+  );
+}
+
 /** A row of buttons of which one is pressed, as the game's tab-like switches. */
 function Switch<T extends string>({
   label,
@@ -97,6 +174,12 @@ export default function ArmorModelViewer({ models, setModels, slot, label }: Pro
   const [wholeSet, setWholeSet] = useState(false);
   const [sex, setSex] = useState<Sex>(models.male ? "male" : "female");
   const [onHunter, setOnHunter] = useState(lastOnHunter);
+  const [lookOpen, setLookOpen] = useState(lastLookOpen);
+  /** Looks picked here, by sex; read after mount, as storage isn't there to render with. */
+  const [picked, setPicked] = useState<PickedLooks>({});
+  useEffect(() => setPicked(readPickedLooks()), []);
+  const lookData = useLookData();
+  const { save } = useSave();
 
   // A sex's set shows only where the piece itself has that sex's model, so
   // the set on show always wears it.
@@ -108,6 +191,24 @@ export default function ArmorModelViewer({ models, setModels, slot, label }: Pro
   const shownSex: Sex = has(sex) ? sex : sex === "male" ? "female" : "male";
   const canWear = useHunterExists(shownSex);
   const worn = onHunter && canWear === true;
+
+  // The look: what was picked for this sex, else the save's hunter's if it's
+  // of this sex, else the bare hunter's.
+  const saveSex: Sex | undefined =
+    save?.sex === "Male" ? "male" : save?.sex === "Female" ? "female" : undefined;
+  const saveLook = save?.look && saveSex ? lookFromSave(save.look) : undefined;
+  const lookOptions = lookData?.[shownSex === "male" ? "m" : "f"];
+  const look = picked[shownSex] ?? (saveSex === shownSex ? saveLook : undefined) ?? DEFAULT_LOOK;
+  const pick = (sex: Sex, next: HunterLook | undefined) => {
+    const all = { ...picked, [sex]: next };
+    if (!next) delete all[sex];
+    setPicked(all);
+    writePickedLooks(all);
+  };
+  const change = (field: keyof HunterLook, value: number) =>
+    pick(shownSex, { ...look, [field]: value });
+  // The save's hunter, on its own sex's model where the piece has one.
+  const canShowSaveLook = saveLook && saveSex && has(saveSex);
 
   const urls = showSet ? setModels![shownSex] : [models[shownSex] ?? models.male ?? models.female!];
   const [src, ...parts] = urls as [string, ...string[]];
@@ -123,7 +224,7 @@ export default function ArmorModelViewer({ models, setModels, slot, label }: Pro
           src={src}
           parts={parts.length > 0 ? parts : undefined}
           label={worn ? tm.wornModel(model) : model}
-          wear={worn ? { slot, sex: shownSex } : undefined}
+          wear={worn ? { slot, sex: shownSex, look } : undefined}
         />
       )}
       {(canShowSet || (has("male") && has("female"))) && (
@@ -158,22 +259,111 @@ export default function ArmorModelViewer({ models, setModels, slot, label }: Pro
         </div>
       )}
       {canWear && (
-        <button
-          type="button"
-          onClick={() => {
-            lastOnHunter = !onHunter;
-            setOnHunter(!onHunter);
-          }}
-          aria-pressed={onHunter}
-          className={cn(
-            modelPanel,
-            modelPanelButton,
-            "absolute bottom-2 left-2 z-10",
-            onHunter ? "text-stat" : "text-parchment",
+        <div className="absolute bottom-2 left-2 z-10 flex flex-col items-start gap-2">
+          {worn && lookOpen && lookOptions && (
+            <div
+              className={cn(modelPanel, "flex flex-col gap-[0.4rem]")}
+              role="group"
+              aria-label={tm.look}
+            >
+              <Stepper
+                label={tm.face}
+                value={Math.min(look.face, lookOptions.faces - 1)}
+                count={lookOptions.faces}
+                onChange={(value) => change("face", value)}
+              />
+              <Stepper
+                label={tm.hairstyle}
+                value={Math.min(look.hair, lookOptions.hairstyles - 1)}
+                count={lookOptions.hairstyles}
+                onChange={(value) => change("hair", value)}
+              />
+              <label className="flex items-center gap-[0.8rem]">
+                <span className="w-cells-12">{tm.hairColor}</span>
+                <input
+                  type="color"
+                  value={hexColor(look.hairColor)}
+                  onChange={(event) =>
+                    change("hairColor", parseInt(event.target.value.slice(1), 16))
+                  }
+                  className="h-[2rem] w-[4.8rem] cursor-pointer border-0 bg-transparent p-0"
+                />
+              </label>
+              <Stepper
+                label={tm.clothing}
+                value={Math.min(look.clothing, CLOTHING_COUNT - 1)}
+                count={CLOTHING_COUNT}
+                onChange={(value) => change("clothing", value)}
+              />
+              <div className="flex flex-wrap gap-x-[1.6rem]">
+                {canShowSaveLook && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSex(saveSex);
+                      pick(saveSex, undefined);
+                    }}
+                    aria-pressed={shownSex === saveSex && sameLook(look, saveLook)}
+                    className={cn(
+                      modelPanelButton,
+                      shownSex === saveSex && sameLook(look, saveLook)
+                        ? "text-stat"
+                        : "text-parchment",
+                    )}
+                  >
+                    {tm.myHunter(save!.name)}
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={() => pick(shownSex, DEFAULT_LOOK)}
+                  aria-pressed={sameLook(look, DEFAULT_LOOK)}
+                  className={cn(
+                    modelPanelButton,
+                    sameLook(look, DEFAULT_LOOK) ? "text-stat" : "text-parchment",
+                  )}
+                >
+                  {tm.defaultLook}
+                </button>
+              </div>
+            </div>
           )}
-        >
-          {tm.onHunter}
-        </button>
+          {/* On phones the motion controls share the bottom row: Look goes above. */}
+          <div className="flex gap-2 mobile:flex-col-reverse mobile:items-start">
+            <button
+              type="button"
+              onClick={() => {
+                lastOnHunter = !onHunter;
+                setOnHunter(!onHunter);
+              }}
+              aria-pressed={onHunter}
+              className={cn(
+                modelPanel,
+                modelPanelButton,
+                onHunter ? "text-stat" : "text-parchment",
+              )}
+            >
+              {tm.onHunter}
+            </button>
+            {worn && lookOptions && (
+              <button
+                type="button"
+                onClick={() => {
+                  lastLookOpen = !lookOpen;
+                  setLookOpen(!lookOpen);
+                }}
+                aria-expanded={lookOpen}
+                className={cn(
+                  modelPanel,
+                  modelPanelButton,
+                  lookOpen ? "text-stat" : "text-parchment",
+                )}
+              >
+                {tm.look}
+              </button>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

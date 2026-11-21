@@ -40,12 +40,14 @@
  *
  * `public/models/hunter/` holds the hunter shown holding a weapon or wearing
  * armor: `hunter.glb` (the default armor set and face on the player's
- * skeleton, `models/hunter.ts` and `models/face.ts`), which holds weapons;
+ * skeleton, `models/hunter.ts` and `models/look.ts`), which holds weapons;
  * `hunter-bare.glb` and `hunter-bare-female.glb` (each sex in the clothes
  * worn under armor, with the default face and hairstyle, on that sex's
  * skeleton), which the site dresses in armor; one
  * `wNN.motions.bin` per weapon class and `common.motions.bin`, the common
- * motions the site uses (motion-pack.ts). Weapons are written in `part_<n>`
+ * motions the site uses (motion-pack.ts); and the pieces of a hunter's look
+ * the site's look picker dresses the bare hunters in (`exportLook`).
+ * Weapons are written in `part_<n>`
  * pieces (a shield, a second blade) so the site can carry them apart.
  */
 import { createHash } from "node:crypto";
@@ -76,18 +78,24 @@ import { spawnHidden, withoutHidden } from "../models/spawn-parts.js";
 import { wearProps } from "../models/worn-props.js";
 import { isPac, readPac, type PacEntry } from "../models/pac.js";
 import { isPmo, type Pmo } from "../models/pmo.js";
-import { missingTextures, skinTexturePath, withSkin } from "../models/skin.js";
+import { missingTextures, SKIN_TONES, skinTexturePath, withSkin } from "../models/skin.js";
 import {
+  CLOTHING_MODELS,
+  type ClothingSlot,
   dyeHair,
   FACE_MASKS,
   FACE_PART,
+  FACE_SKIN_TONES,
   facePath,
+  HAIR_MATERIAL,
+  HAIR_PART,
   hairstylePath,
   HUNTER_FACE,
   HUNTER_HAIR_COLOR,
   HUNTER_HAIRSTYLE,
   maskFace,
-} from "../models/face.js";
+} from "../models/look.js";
+import { encodePng } from "../models/png.js";
 import { isTmh, readTmh, type TmhImage } from "../models/tmh.js";
 import {
   poseWeapon,
@@ -250,6 +258,11 @@ interface ArmorFit {
   slot: HunterSlot;
   skeleton?: Bone[];
   skin: readonly TmhImage[];
+  /**
+   * Tags each primitive with a part by its material in the piece
+   * (`tagParts`): a face's two materials, a hairstyle's hair.
+   */
+  partOf?: (material: number) => number;
 }
 
 /**
@@ -262,17 +275,46 @@ interface ArmorFit {
 async function armorToGlb(
   buf: Buffer,
   name: string,
-  { slot, skeleton, skin }: ArmorFit & { skeleton: Bone[] },
+  { slot, skeleton, skin, partOf }: ArmorFit & { skeleton: Bone[] },
   options: GlbOptions,
 ): Promise<{ glb: Buffer; missing: number[] }> {
   const piece = readHunterPiece(slot, readPac(buf), skin);
-  const { pmo, textures } = composeHunter([piece], skeleton);
-  const { glb } = await buildGlb(pmo, textures, name, { ...options, jointWeights: true });
+  const { pmo, textures, meshMaterialBases } = composeHunter([piece], skeleton);
+  const { glb } = await buildGlb(pmo, textures, name, {
+    ...options,
+    jointWeights: true,
+    materialExtras: skinExtras(textures, skin),
+    ...(partOf
+      ? {
+          tagParts: true,
+          partOf: (mesh, primitive) =>
+            partOf(
+              pmo.meshes[mesh]!.primitives[primitive]!.materialIndex - meshMaterialBases[mesh]!,
+            ),
+        }
+      : {}),
+  });
   // Reported as the piece's own indices, not composeHunter's stand-ins.
   const missing = missingTextures(pmo, textures).map((index) =>
     index >= MISSING_TEXTURE ? index - MISSING_TEXTURE : index,
   );
   return { glb, missing };
+}
+
+/**
+ * Marks the materials drawn with a skin texture (skin.ts) with its index in
+ * the skin tone's images (`extras.skin`), for the site to swap in the skin
+ * tone the hunter's face has.
+ */
+function skinExtras(
+  textures: readonly TmhImage[],
+  skin: readonly TmhImage[],
+): GlbOptions["materialExtras"] {
+  return (index) => {
+    const image = textures[index];
+    const k = image ? skin.indexOf(image) : -1;
+    return k >= 0 ? { skin: k } : undefined;
+  };
 }
 
 /** A weapon's skeleton: the first `.ahi` after its mesh, if it parses. */
@@ -345,7 +387,7 @@ async function exportHunter(
     readHunterPiece(slot, readPac(await readFile(path.join(dataBin, file))), skins[sex]);
   /**
    * One sex's hunter, on the skeleton that sex's armor models are placed on
-   * (`playerSkeletons`), with the default face (face.ts) less what its
+   * (`playerSkeletons`), with the default face (look.ts) less what its
    * helmet hides: in the default set, or `bare`, in the clothes under armor
    * (each slot's model 0) and the default hairstyle, dyed.
    */
@@ -378,8 +420,7 @@ async function exportHunter(
   /**
    * Writes a composed hunter. Each primitive is tagged with its part
    * (`extras.part`): its slot's index in `HUNTER_ARMOR` order, or for the
-   * face, `FACE_PART` plus its material (0 or 1). `asset.extras.faceMasks`
-   * is the sex's `FACE_MASKS`, for the site to hide the face under a helmet.
+   * face, `FACE_PART` plus its material (0 or 1).
    */
   const writeHunter = async (name: string, sex: "m" | "f", hunter: HunterModel) => {
     const slots: string[] = Object.keys(HUNTER_ARMOR);
@@ -395,7 +436,7 @@ async function exportHunter(
           const { materialIndex } = hunter.pmo.meshes[mesh]!.primitives[primitive]!;
           return FACE_PART + materialIndex - hunter.meshMaterialBases[mesh]!;
         },
-        extras: { faceMasks: FACE_MASKS[sex] },
+        materialExtras: skinExtras(hunter.textures, skins[sex]),
       },
       { bones: hunter.bones },
     );
@@ -433,6 +474,110 @@ async function exportHunter(
     await writeClips(`${name}.motions.bin`, buildPlayerClips(bones, await bank(name), clipOptions));
   }
   console.log(`hunter: ${(size / 1024).toFixed(0)} KB`);
+}
+
+/** What `hunter/look.json` holds for one sex: what the site's look pickers offer. */
+interface SiteLook {
+  /** Faces (`hunter/look/<s>_faceNNN.glb`) and hairstyles (`<s>_headNNN.glb`), from 0. */
+  faces: number;
+  hairstyles: number;
+  /** Each face's skin tone, the `hunter/skin/<s>_<tone>_<k>.png` its skin takes. */
+  faceSkinTones: readonly number[];
+  /** Images in each skin tone (`<k>` above). */
+  skinImages: number;
+  /** `CLOTHING_MODELS`: the `armor/` model of each slot, by clothing and skin tone. */
+  clothing: Record<ClothingSlot, readonly (readonly number[])[]>;
+  /** `FACE_MASKS`: what each helmet model hides of the face. */
+  faceMasks: Readonly<Record<number, number>>;
+}
+
+/**
+ * The pieces of a hunter's look (look.ts), for the site to dress its bare
+ * hunter in what a player picks, each placed on the player's skeleton like
+ * armor (`armorToGlb`):
+ *
+ *   hunter/look/<s>_faceNNN.glb    each face, tagged `FACE_PART` + material
+ *   hunter/look/<s>_headNNN.glb    each hairstyle, undyed, its hair tagged `HAIR_PART`
+ *   armor/<s>_<folder>NNN.glb      each clothing model (`CLOTHING_MODELS`)
+ *   hunter/skin/<s>_<tone>_<k>.png each skin tone's images
+ *   hunter/look.json               `SiteLook` by sex
+ *
+ * Materials drawn with a skin image carry its index (`extras.skin`), to swap
+ * for the face's skin tone.
+ */
+async function exportLook(
+  converter: Converter,
+  { skeletons, skins }: PlayerBase,
+  options: ExportSiteOptions,
+): Promise<void> {
+  const dataBin = path.join(options.unpacked, "data-bin");
+  const dir = path.join(options.out, "hunter");
+  await rm(path.join(dir, "look"), { recursive: true, force: true });
+  await rm(path.join(dir, "skin"), { recursive: true, force: true });
+  await mkdir(path.join(dir, "skin"), { recursive: true });
+  const looks: Partial<Record<"m" | "f", SiteLook>> = {};
+  for (const sex of ["m", "f"] as const) {
+    const skeleton = skeletons[sex];
+    if (!skeleton) {
+      console.log(`no ${sex} look: no player skeleton`);
+      continue;
+    }
+    const fit = { skeleton, skin: skins[sex] };
+    /** Converts the pieces numbered from 0 up to the first not on the disc; returns how many. */
+    const convertAll = async (
+      pathOf: (id: number) => string,
+      slot: HunterSlot,
+      partOf: (material: number) => number,
+    ) => {
+      let id = 0;
+      for (; await exists(path.join(dataBin, pathOf(id))); id++) {
+        const source = pathOf(id);
+        const out = `hunter/look/${path.basename(source, ".pac")}.glb`;
+        if (!(await converter.convert(source, out, undefined, { ...fit, slot, partOf })))
+          throw new Error(`${source} didn't convert`);
+      }
+      return id;
+    };
+    const faces = await convertAll(
+      (id) => facePath(sex, id),
+      "face",
+      (material) => FACE_PART + material,
+    );
+    const hairstyles = await convertAll(
+      (id) => hairstylePath(sex, id),
+      "helmet",
+      (material) => (material === HAIR_MATERIAL ? HAIR_PART : 0),
+    );
+    const clothing = CLOTHING_MODELS[sex];
+    for (const [slot, rows] of Object.entries(clothing) as [ClothingSlot, number[][]][])
+      for (const id of new Set(rows.flat())) {
+        const source = armorModelPath(slot, sex, id);
+        await converter.convert(source, `armor/${path.basename(source, ".pac")}.glb`, undefined, {
+          ...fit,
+          slot,
+        });
+      }
+    let skinImages = 0;
+    for (let tone = 0; tone < SKIN_TONES; tone++) {
+      const images = readTmh(await readFile(path.join(dataBin, skinTexturePath(sex, tone))));
+      skinImages = images.length;
+      for (const [k, image] of images.entries())
+        await writeFile(
+          path.join(dir, "skin", `${sex}_${tone}_${k}.png`),
+          encodePng(image.width, image.height, image.rgba),
+        );
+    }
+    looks[sex] = {
+      faces,
+      hairstyles,
+      faceSkinTones: FACE_SKIN_TONES[sex].slice(0, faces),
+      skinImages,
+      clothing,
+      faceMasks: FACE_MASKS[sex],
+    };
+    console.log(`look ${sex}: ${faces} faces, ${hairstyles} hairstyles`);
+  }
+  await writeFile(path.join(dir, "look.json"), `${JSON.stringify(looks)}\n`);
 }
 
 /** Converts each DATA.BIN package at most once, caching the result path (or null). */
@@ -1008,6 +1153,9 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
         path.join(options.unpacked, "data-bin"),
       );
       manifest.armor = await exportArmor(ids, converter, base);
+      await exportLook(converter, base, options).catch((err: unknown) => {
+        console.log(`no look: ${err instanceof Error ? err.message : String(err)}`);
+      });
       await exportHunter(ids, base, options).catch((err: unknown) => {
         console.log(`no hunter: ${err instanceof Error ? err.message : String(err)}`);
       });

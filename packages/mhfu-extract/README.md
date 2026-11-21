@@ -836,13 +836,16 @@ previous manifest, so a run without `eboot.bin` keeps weapons and armor.
 63 KB). Needs only `player/` and `motion/` from the
 unpacked directory; the log says `no hunter: ...` if it can't.
 
-| File                     | Size      | Holds                                                           |
-| ------------------------ | --------- | --------------------------------------------------------------- |
-| `hunter.glb`             | 57 KB     | Male Battle armor set and face, skinned to the player skeleton  |
-| `hunter-bare.glb`        | 48 KB     | Male hunter in the clothes under armor, with face and hairstyle |
-| `hunter-bare-female.glb` | 45 KB     | The same for the female hunter, on the female skeleton          |
-| `common.motions.bin`     | 0.9 KB    | The sheathed standing motion, from `plcom_tbl.bin`              |
-| `wNN.motions.bin`        | 92-196 KB | Every motion of weapon class NN                                 |
+| File                      | Size      | Holds                                                            |
+| ------------------------- | --------- | ---------------------------------------------------------------- |
+| `hunter.glb`              | 57 KB     | Male Battle armor set and face, skinned to the player skeleton   |
+| `hunter-bare.glb`         | 48 KB     | Male hunter in the clothes under armor, with face and hairstyle  |
+| `hunter-bare-female.glb`  | 45 KB     | The same for the female hunter, on the female skeleton           |
+| `common.motions.bin`      | 0.9 KB    | The sheathed standing motion, from `plcom_tbl.bin`               |
+| `wNN.motions.bin`         | 92-196 KB | Every motion of weapon class NN                                  |
+| `look/<s>_faceNNN.glb`    | 1 MB all  | Each face and hairstyle (`<s>_headNNN.glb`), for the look picker |
+| `skin/<s>_<tone>_<k>.png` | 64 KB all | Each skin tone's images                                          |
+| `look.json`               | 2 KB      | What the look picker offers, by sex (`SiteLook`)                 |
 
 - **Skeleton.** 21 bones (`src/models/hunter.ts` lists them), T-pose, origin
   at the hips, left +X, facing +Z. Bones 0-8 are part 0 and 9-20 part 1.
@@ -876,12 +879,13 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   disc keeps four skin tones per sex outside every armor package,
   `player/<m|f>/skin/<m|f>_skin000-003.tmh`, so `export-site` puts the first
   tone's images after each piece's own (`src/models/skin.ts`), for armor and
-  the hunters alike. That index mapping is inferred from the file layout,
+  the hunters alike, and marks each material drawn with one with its index
+  (material `extras.skin`), for the site to swap in another tone. That index mapping is inferred from the file layout,
   not read from game code: the export lists any armor model whose materials
   it still can't texture. (`composeHunter` also used to let such an index
   fall onto the next piece's textures; each piece's textures are now mapped
   one by one.) The `models` subcommand doesn't add skin.
-- **Face and hair** (`src/models/face.ts`). Faces are
+- **Face and hair** (`src/models/look.ts`). Faces are
   `player/<m|f>/face/`, a two-bone skeleton (root, head) drawn on the head
   joint; hairstyles are `player/<m|f>/head/`, built like helmets (helmet
   model 0 is hairstyle 0), and the game draws one when no helmet is worn.
@@ -893,8 +897,20 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   through: a table by helmet model in the EBOOT, copied from
   `BODY_MODEL_MATERIAL_MASKS` in tclamb/mhp2g-decomp
   (`player_manager.material_masks.cpp`) as `FACE_MASKS`. Each hunter's own
-  helmet's mask is applied at export, and the table is written into each
-  hunter as `asset.extras.faceMasks` for the helmets the site puts on.
+  helmet's mask is applied at export, and the table is written into
+  `look.json` for the helmets the site puts on.
+- **Look** (`exportLook`). A save's hunter has a face, hairstyle, hair
+  colour and clothes (`UserData` in tclamb/mhp2g-decomp's `game_sys.hpp`;
+  the site's save worker reads them). Each face has a skin tone
+  (`FACE_SKIN_TONES`), and the clothes are armor models picked by clothing
+  and tone (`CLOTHING_MODELS`, from `player_manager.skin.cpp`): the same
+  clothes in four models, the skin drawn into each one's own texture.
+  Clothing 2 at tone 0 is model 0, the bare hunter's. `export-site` writes
+  every face and hairstyle placed on the player skeleton like armor, tagged
+  by part (a face's `FACE_PART` + material, a hairstyle's hair
+  `HAIR_PART`, 7, undyed), every clothing model with the armor, the skin
+  tones as PNGs and `look.json`, so the armor viewer can dress its hunter
+  as a player picks or as a loaded save's hunter looks.
 - **Bare hunter.** Each armor slot's model 0 (`m_body000.pac` and so on) is
   what the hunter wears under armor; female-only pieces use it as their male
   model. `hunter-bare*.glb` are those, with the face and the hairstyle in
@@ -904,7 +920,8 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   site's `src/lib/hunter-armor.ts`), and hides the face as the helmet's mask
   says. Each primitive of the hunters names its slot (`extras.part`, the
   index in `HUNTER_ARMOR`), or for the face, `FACE_PART` (5) plus its
-  material; a piece with several textures has a primitive for each.
+  material, or for the hair `HAIR_PART`; a piece with several textures has
+  a primitive for each.
   Every armor piece has its own partial skeleton, and pieces of a slot don't
   all sit alike in theirs (the Giaprey Helm is modelled 12 units higher than
   the Battle Helm). So `export-site` places each armor model on its sex's

@@ -98,7 +98,7 @@ export const ARMOR_JOINT_MAPS = {
 export type ArmorSlot = keyof typeof ARMOR_JOINT_MAPS;
 
 /**
- * Each piece's joint map: the armor's, and the face's (face.ts), whose
+ * Each piece's joint map: the armor's, and the face's (look.ts), whose
  * skeleton is a root and the head. A hairstyle goes on as a helmet.
  */
 export const PIECE_JOINT_MAPS = {
@@ -113,7 +113,7 @@ export type HunterSlot = keyof typeof PIECE_JOINT_MAPS;
  * sex's model of each slot's piece of this name, by data name.
  * `composeHunter` puts the pieces together in this order. In the hunter
  * GLBs each primitive names its slot by index in this order (`extras.part`;
- * the face comes after, face.ts's `FACE_PART`): the site swaps a slot's
+ * the face comes after, look.ts's `FACE_PART`): the site swaps a slot's
  * piece for another by it (blacksmith's `src/lib/hunter-armor.ts`). A piece
  * with several textures has a primitive for each.
  */

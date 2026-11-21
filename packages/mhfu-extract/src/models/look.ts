@@ -1,19 +1,28 @@
 /**
- * The hunter's own head: the face and hairstyle picked at character
- * creation, which armor goes on around.
+ * The hunter's own look, picked at character creation, which armor goes on
+ * around: face, hairstyle, hair colour and clothing (`UserData` in
+ * tclamb/mhp2g-decomp's `game_sys.hpp`: `clothingId`, `faceId`, `hairId`,
+ * `hairColor`).
  *
  * - Faces are `player/<m|f>/face/<m|f>_faceNNN.pac`: a two-bone skeleton
  *   (a root, and the head at the origin) and a mesh of two materials,
- *   drawn on the player's head joint.
+ *   drawn on the player's head joint. Each face has a skin tone
+ *   (`FACE_SKIN_TONES`), which the clothing and armor's bare skin take.
  * - Hairstyles are `player/<m|f>/head/<m|f>_headNNN.pac`, built like a
  *   helmet (`player/<m|f>/hair/`, whose model 0 is hairstyle 0): the game
  *   draws one in the helmet's place when no helmet is worn. Their texture is
  *   grey, which the game tints with the hair colour the player picked
  *   (`dyeHair`).
+ * - Clothing is what the hunter wears under armor in the chest, arm and leg
+ *   slots: an armor model by clothing and skin tone (`CLOTHING_MODELS`), the
+ *   skin baked into its texture. The waist has none (its model 0 is empty).
  * - Some helmets hide all of the face, or its material 0, where the face
  *   would show through the helmet. Which ones is a table in the EBOOT, by
  *   helmet model (`BODY_MODEL_MATERIAL_MASKS`, tclamb/mhp2g-decomp's
  *   `player_manager.material_masks.cpp`), copied here as `FACE_MASKS`.
+ *
+ * The tables below are copied from the decomp's
+ * `player_manager.skin.cpp` and `player_manager.material_masks.cpp`.
  */
 import type { Pmo } from "./pmo.js";
 import type { TmhImage } from "./tmh.js";
@@ -58,6 +67,101 @@ export const FACE_MASKS: Record<Sex, Record<number, number>> = {
  * this plus their material in the face (0 or 1), after the armor slots'.
  */
 export const FACE_PART = 5;
+
+/**
+ * In the site's hairstyle GLBs, the hair's primitives (`HAIR_MATERIAL`) are
+ * tagged (`extras.part`) this, for the site to dye them; a hairstyle's other
+ * primitives are tagged 0, the helmet slot's.
+ */
+export const HAIR_PART = 7;
+
+/** The skin tone (`player/<m|f>/skin/<m|f>_skinNNN.tmh`) of each face, per sex (`FACE_SKIN_IDS`). */
+export const FACE_SKIN_TONES: Record<Sex, readonly number[]> = {
+  m: [
+    0, 1, 3, 2, 0, 1, 3, 2, 0, 1, 3, 2, 0, 1, 3, 2, 0, 1, 3, 2, 0, 1, 3, 2, 0, 1, 3, 0, 0, 1, 0, 1,
+  ],
+  f: [
+    0, 1, 3, 2, 0, 1, 2, 2, 0, 1, 3, 2, 0, 1, 3, 2, 0, 1, 3, 2, 0, 1, 3, 2, 0, 1, 3, 0, 0, 1, 1, 0,
+  ],
+};
+
+/** Slots the clothing has a model in. */
+export type ClothingSlot = "plate" | "gauntlets" | "leggings";
+
+/**
+ * The armor model (in the slot's `player/<m|f>/` folder) of each clothing
+ * (0-7), by skin tone (0-3), per sex and slot (`CHEST_`, `ARM_` and
+ * `LEG_CLOTHING_MODEL_IDS`). Clothing 2 in tone 0 is each slot's model 0.
+ */
+export const CLOTHING_MODELS: Record<Sex, Record<ClothingSlot, readonly (readonly number[])[]>> = {
+  m: {
+    plate: [
+      [189, 190, 191, 192],
+      [193, 194, 195, 196],
+      [0, 16, 222, 223],
+      [220, 221, 17, 18],
+      [254, 253, 252, 251],
+      [258, 257, 256, 255],
+      [262, 261, 260, 259],
+      [266, 265, 264, 263],
+    ],
+    gauntlets: [
+      [185, 186, 187, 188],
+      [189, 190, 191, 192],
+      [0, 16, 217, 218],
+      [215, 216, 17, 18],
+      [246, 245, 244, 243],
+      [250, 249, 248, 247],
+      [254, 253, 252, 251],
+      [258, 257, 256, 255],
+    ],
+    leggings: [
+      [162, 163, 164, 165],
+      [166, 167, 168, 169],
+      [0, 13, 195, 196],
+      [193, 194, 14, 15],
+      [224, 223, 222, 221],
+      [228, 227, 226, 225],
+      [232, 231, 230, 229],
+      [236, 235, 234, 233],
+    ],
+  },
+  f: {
+    plate: [
+      [188, 189, 190, 191],
+      [192, 193, 194, 195],
+      [0, 12, 221, 222],
+      [219, 220, 13, 14],
+      [252, 251, 250, 249],
+      [256, 255, 254, 253],
+      [260, 259, 258, 257],
+      [264, 263, 262, 261],
+    ],
+    gauntlets: [
+      [185, 186, 187, 188],
+      [189, 190, 191, 192],
+      [0, 12, 217, 218],
+      [215, 216, 13, 14],
+      [245, 244, 243, 242],
+      [249, 248, 247, 246],
+      [253, 252, 251, 250],
+      [257, 256, 255, 254],
+    ],
+    leggings: [
+      [163, 164, 165, 166],
+      [167, 168, 169, 170],
+      [0, 11, 196, 197],
+      [194, 195, 12, 13],
+      [224, 223, 222, 221],
+      [228, 227, 226, 225],
+      [232, 231, 230, 229],
+      [236, 235, 234, 233],
+    ],
+  },
+};
+
+/** The clothing the site's bare hunters wear: the one whose tone-0 models are model 0. */
+export const HUNTER_CLOTHING = 2;
 
 /** The face and hairstyle the site's hunters have: each sex's first. */
 export const HUNTER_FACE = 0;

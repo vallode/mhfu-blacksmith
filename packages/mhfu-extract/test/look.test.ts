@@ -9,7 +9,7 @@ import {
   hidesFaceMaterial,
   maskFace,
   tint,
-} from "../src/models/face.js";
+} from "../src/models/look.js";
 import type { Pmo } from "../src/models/pmo.js";
 
 /** A model with one primitive on each material. */

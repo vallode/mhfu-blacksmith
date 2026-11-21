@@ -129,6 +129,11 @@ function armorModelUrl(folder: string, sex: "m" | "f", id: number | undefined): 
   return id ? `/models/armor/${sex}_${folder}${pad(id, 3)}.glb` : undefined;
 }
 
+/** The URL of a slot's armor model `id` for one sex, 0 included (the clothes under armor). */
+export function armorSlotModelUrl(slot: string, sex: "m" | "f", id: number): string {
+  return `/models/armor/${sex}_${ARMOR_FOLDER[slot]}${pad(id, 3)}.glb`;
+}
+
 export interface ArmorModelUrls {
   male?: string;
   female?: string;

@@ -73,8 +73,18 @@ export interface GlbOptions {
    * `extras.part` (three.js: the geometry's `userData.part`).
    */
   partOf?: GlbPartOf;
-  /** Values for the viewer, written into `asset.extras` (three.js: `gltf.asset.extras`). */
-  extras?: Record<string, unknown>;
+  /**
+   * Keep the model one mesh whatever `partOf` says, each primitive naming its
+   * piece in `extras.part`, as a skinned model does: for a piece the viewer
+   * skins to another model and needs to tell its primitives apart (a face's
+   * two materials, a hairstyle's hair).
+   */
+  tagParts?: boolean;
+  /**
+   * Values for the viewer on the material of each texture index, in its
+   * `extras` (three.js: the material's `userData`); undefined for none.
+   */
+  materialExtras?: (textureIndex: number) => Record<string, unknown> | undefined;
   /**
    * Morph targets: the same model in other shapes, vertex for vertex and at
    * the same `scale` (weapon-pose.ts's sheathed pose). Each is written as
@@ -804,6 +814,10 @@ export async function buildGlb(
     }
     const alpha = texture !== undefined && textures[source.textureIndex]!.hasAlpha;
     if (effect) usesUnlit = true;
+    const extras = {
+      ...(effect ? { blend: effect } : {}),
+      ...options.materialExtras?.(source.textureIndex),
+    };
     materials.push({
       pbrMetallicRoughness: {
         ...(textureInfo ? { baseColorTexture: textureInfo } : {}),
@@ -814,10 +828,11 @@ export async function buildGlb(
       // subtractive mode, so `extras.blend` names it for the viewer, which
       // otherwise draws it alpha-blended.
       ...(effect
-        ? { alphaMode: "BLEND", extensions: { KHR_materials_unlit: {} }, extras: { blend: effect } }
+        ? { alphaMode: "BLEND", extensions: { KHR_materials_unlit: {} } }
         : alpha
           ? { alphaMode: "MASK", alphaCutoff: 0.5 }
           : {}),
+      ...(Object.keys(extras).length ? { extras } : {}),
       doubleSided: true,
     });
     index = materials.length - 1;
@@ -891,8 +906,8 @@ export async function buildGlb(
   );
   const meshPrimitives = (part: number) =>
     gltfPrimitives.filter((p) => p.part === part).map(({ part: _, ...primitive }) => primitive);
-  const whole = parts.length <= 1 || skinned;
-  const tagged = parts.length > 1 && skinned;
+  const whole = parts.length <= 1 || skinned || !!options.tagParts;
+  const tagged = (parts.length > 1 && skinned) || !!options.tagParts;
   // A mesh's morph targets, named (three.js reads `extras.targetNames`) and off.
   const morph = targets.length
     ? { weights: targets.map(() => 0), extras: { targetNames: targets.map((t) => t.name) } }
@@ -916,14 +931,7 @@ export async function buildGlb(
   const json = {
     asset: {
       version: "2.0",
-      ...(rig?.motionsFile || options.extras
-        ? {
-            extras: {
-              ...options.extras,
-              ...(rig?.motionsFile ? { motions: rig.motionsFile } : {}),
-            },
-          }
-        : {}),
+      ...(rig?.motionsFile ? { extras: { motions: rig.motionsFile } } : {}),
     },
     ...(extensions.length || optional.length
       ? { extensionsUsed: [...extensions, ...optional] }
