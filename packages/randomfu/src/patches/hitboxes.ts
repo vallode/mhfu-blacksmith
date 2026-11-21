@@ -110,6 +110,16 @@ export function globalsReadAt(buf: Buffer, field: number): Set<number> {
   return found;
 }
 
+/** The global holding the renderer (EU 0x089CBBE4), from the draw loop sending its projection; or why not. */
+export function findRendererGlobal(vanillaEboot: Buffer, segment: Segment): number | string {
+  const [projection] = findUnique(vanillaEboot, segment, [PROJECTION_SIGNATURE]);
+  const at32 = (vaddr: number) => word(vanillaEboot, segment.offset + (vaddr - segment.vaddr));
+  if (projection == null || PROJECTION_WORDS.some(([k, w]) => at32(projection + k) !== w)) {
+    return "this EBOOT's projection code doesn't match";
+  }
+  return hiLo(at32(projection + 0x0c), at32(projection + 0x10));
+}
+
 /** The blob's externs for attack hitboxes, or why they can't be found. */
 export function findHitboxExterns(
   vanillaEboot: Buffer,

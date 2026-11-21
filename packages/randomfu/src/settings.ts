@@ -120,6 +120,8 @@ export interface Settings {
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
+  "camera.fov": "normal" | "wide" | "wider" | "widest";
+  "camera.distance": "normal" | "far" | "farther" | "farthest";
   "hud.monsterHp": "off" | "painted" | "always";
   "hud.damageNumbers": "off" | "total" | "split";
   "hud.attackHitboxes": boolean;
@@ -1752,6 +1754,42 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only.",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "camera.fov",
+    section: "Camera",
+    label: "Field of view",
+    help: "How wide the camera sees. It widens every view the game builds the same way: tried in the village and in quests. The game's is 50° high (79° across the screen). Things at the edges look a little stretched the wider it gets. This picks what the disc starts with: the START menu's last entry, randomfu, changes it in game (in a quest or in the village), and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "normal", label: "Normal", help: "The game's own: 50° high, 79° across." },
+        { value: "wide", label: "Wide", help: "×1.15: 57.5° high, 88° across." },
+        {
+          value: "wider",
+          label: "Wider",
+          help: "×1.25: 62.5° high, 94° across.",
+        },
+        { value: "widest", label: "Widest", help: "×1.4: 70° high, 102° across." },
+      ],
+    },
+    default: "normal",
+  },
+  {
+    key: "camera.distance",
+    section: "Camera",
+    label: "Camera distance",
+    help: "How far behind your hunter the camera sits, at the same angle: every camera preset of the stage you're on moves back along the line it looks down (the usual camera is 490 back and 100 above what it looks at). Further back shows more around you, but in tight spots, like caves, it may pass through walls more often. This picks what the disc starts with: the START menu's last entry, randomfu, changes it in game (in a quest or in the village), and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "normal", label: "Normal", help: "The game's own distance." },
+        { value: "far", label: "Far", help: "×1.15 as far back." },
+        { value: "farther", label: "Farther", help: "×1.3 as far back." },
+        { value: "farthest", label: "Farthest", help: "×1.5 as far back." },
+      ],
+    },
+    default: "normal",
   },
   {
     key: "questMonsters.text",

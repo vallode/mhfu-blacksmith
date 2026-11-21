@@ -180,6 +180,8 @@ web app shows as a tag):
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
+| `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
+| `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
 | `hud.damageNumbers`               | off         | Numbers at the part each of your hits strikes: `total` or `split` element (caps Guild Cards)           |
 | `hud.attackHitboxes`              | off         | Shade every monster attack that can hit right now, over the scene (caps Guild Cards)                   |
@@ -1260,6 +1262,63 @@ Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
 dies or leaves the area, and `painted` shows it once a Paintball hits. Not
 yet tried: JP in game, captures, and two large monsters in one area.
 
+## Camera
+
+`camera.fov` and `camera.distance` (Modifications → Camera in the web app), and
+the Field of view and Camera distance settings in randomfu's START menu
+entry (Damage numbers, below). The option picks what a disc starts with;
+the menu changes it in game, and the save keeps it. Like the HUD options,
+the code goes on every disc, so every disc caps received Guild Cards at 3.
+Played on EU at `wider` and `farther` (PPSSPP, 2026-11-21): wider and
+further back in the village and in quests, through area changes and a save
+reload, with no popping at the screen's edges, and both settings changed
+from the START menu. JP builds but hasn't been played.
+
+What the game does:
+
+- Its renderer (EU `*0x089CBBE4`) holds the near and far planes
+  (30, 65000), the aspect ratio and the vertical field of view in radians
+  (+0xC, 50°: 79° across). The camera eases +0xC towards a target, and
+  the projection update (EU 0x08815348, JP 0x08816108) rebuilds the
+  projection (+0xC00) and its inverse (+0xD00, which the frustum comes
+  from) only when +0xC differs from +0x10, the angle it was last built
+  with.
+- The camera follows the hunter with presets from a block the renderer
+  points to (+0x1BC). Each stage file (`stage/*.pac`, 239 on both discs)
+  brings one, in pac entry 4 at +0x50; stages whose data says so use the
+  EBOOT's own (EU 0x08933AE0). A block is the field of view, seven zeros,
+  then five presets of `{?, eye height, distance, 0, look height, 0, ?, 0}`.
+  On EU and JP, 219 stage files' blocks are 50° and 20 are 50° or 51° to a
+  few bits (st012's is 0x3F63DEC4); 23 have no entry 4.
+  The usual quest camera is eye 270, distance 490, looking at 170 (above
+  the ground under the hunter). The camera reads the block's field of view
+  once, when it's set up, and the presets as it follows, so writing them
+  moves the camera at once; an area change loads the block again. Which
+  preset is which (weapon drawn, carts, the high one) isn't known.
+
+How randomfu does it (`src/patches/camera.ts`, `blob/camera.c`):
+
+- **Field of view:** the projection update's first nine words record the
+  angle in +0x10 as the game has it (so it still rebuilds only on a
+  change), multiply it by a float kept in the function's last word, and
+  tail-call the perspective builder. Every view the game builds that way
+  widens the same. The disc sets the float to its option's scale, so it
+  works without the blob too; the blob sets it to the save's choice and
+  zeroes +0x10 to have the projection rebuilt. The code never changes at
+  run time.
+- **Distance:** once a frame, on the pad hook (the village too), the blob
+  checks the block the camera uses. A block it hasn't scaled, or one the
+  game loaded again, is copied, then written back with each preset's
+  distance, and its eye's height above the look height, scaled, so the
+  camera moves back down the same line. A changed setting scales again from
+  the copy, and words the game writes over the block replace the copy's.
+  The blob marks a block it scaled, in the last of the zeros after its
+  field of view, with the choice: it loads again after every save load,
+  knowing nothing, and works the game's values back out from the mark
+  rather than scaling twice. It writes nothing unless the block has a
+  block's shape: an angle between 0.3 and 1.6 radians, the zeros, and
+  distances between 0 and 5000.
+
 ## Damage numbers
 
 `hud.damageNumbers` (`total` or `split`), after World's damage numbers:
@@ -1286,11 +1345,14 @@ in a quest or in the village, and its last entry (on its second page, where
 the game keeps a greyed `--------` placeholder) is now **randomfu**: a window of settings
 that can be changed in game, drawn like the game's Options with the
 setting's help to its left: monster health (Off, On map, Always), damage
-numbers (Off, Total, Split) and attack hitboxes (Off, On).
+numbers (Off, Total, Split), attack hitboxes (Off, On), field of view
+(Normal, Wide, Wider, Widest) and camera distance (Normal, Far, Farther,
+Farthest).
 Up and down pick a setting; left, right and × change it; ○ goes back to the
 menu and START closes it. The choice is kept in randomfu's save data, so it
 lasts across saves and holds over the disc's mode, on discs from other
-seeds too (`monster_hp`, `damage_numbers` and `hitboxes` in `struct
+seeds too (`monster_hp`, `damage_numbers`, `hitboxes`, `camera_fov` and
+`camera_distance` in `struct
 rf_save_data`). Other Modifications can add their settings to the same window
 (`rf_add_setting`, `blob/menu.c`).
 

@@ -104,6 +104,13 @@ import { DEMO_OBJECTS } from "./blob/demo-object.js";
 import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
 import { findKeyQuestSites, keyQuestsObjects, keyQuestsReport } from "./patches/key-quests.js";
+import {
+  FOV_SCALES,
+  cameraObjects,
+  cameraReport,
+  patchFov,
+  prepareCamera,
+} from "./patches/camera.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findHitboxExterns, hitboxObjects } from "./patches/hitboxes.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
@@ -983,6 +990,15 @@ export function randomize(
         summary: `Poogie: not applied (${why})`,
       });
     }
+    if (settings["camera.fov"] !== "normal" || settings["camera.distance"] !== "normal") {
+      const why = "the loader demo's blob replaces its code";
+      reports.push({
+        title: "Camera",
+        notes: [`The camera isn't in this image: ${why}.`],
+        lines: [],
+        summary: `Camera: not applied (${why})`,
+      });
+    }
   } else {
     // Each feature is resolved on its own first: one that doesn't match this
     // disc is left out, and the loader (which caps Guild Cards) only goes in
@@ -1047,6 +1063,25 @@ export function randomize(
         Object.assign(externs, found);
         hitboxes = true;
       }
+    }
+    // The camera: its EBOOT patch carries the disc's field of view, with the
+    // blob or without; the blob moves the camera back, and changes both in
+    // game. The EBOOT is patched once it's known the blob or the option needs it.
+    const cameraOn =
+      settings["camera.fov"] !== "normal" || settings["camera.distance"] !== "normal";
+    let camera = false;
+    let cameraLinked = false;
+    const cameraFound = !game.eboot
+      ? "the EBOOT wasn't loaded"
+      : cameraOn || typeof sites !== "string"
+        ? prepareCamera(game.eboot, settings)
+        : null;
+    if (typeof cameraFound === "string") {
+      if (cameraOn) reports.push(notApplied("Camera", cameraFound));
+    } else if (cameraFound && typeof sites !== "string") {
+      (cameraOn ? objects : optional).push(...cameraObjects());
+      Object.assign(externs, cameraFound);
+      camera = true;
     }
     const prepared = !settings["quests.unknown"]
       ? null
@@ -1190,13 +1225,13 @@ export function randomize(
     }
     // randomfu's START menu entry, where the features with settings can be changed in game.
     let menus: MenuSites[] | null = null;
-    if ((hit || monsterHp || hitboxes) && typeof sites !== "string") {
+    if ((hit || monsterHp || hitboxes || camera) && typeof sites !== "string") {
       const found = prepareMenu(game.eboot!, sites);
       if (typeof found === "string") {
         reports.push(
           notApplied(
             "randomfu's START menu entry",
-            `${found}; monster health, attack hitboxes and damage numbers keep this disc's settings`,
+            `${found}; monster health, attack hitboxes, damage numbers and the camera keep this disc's settings`,
           ),
         );
       } else {
@@ -1207,7 +1242,7 @@ export function randomize(
     }
     if (
       typeof hookSites !== "string" &&
-      (monsterHp || hitboxes || unknown || elites || pact || luck || keys || hit)
+      (monsterHp || hitboxes || unknown || elites || pact || luck || keys || hit || camera)
     ) {
       const install = (lean: boolean) => {
         const all = lean ? objects : [...objects, ...optional];
@@ -1232,21 +1267,25 @@ export function randomize(
         });
       };
       let loader = install(false);
+      let wentLean = false;
       // A loader that doesn't fit with the in-game settings goes in without
       // them (it checks before it takes any room), keeping the options that are on.
       if (!loader.applied && optional.length) {
-        const lean = install(true);
-        if (lean.applied) {
+        const leanLoader = install(true);
+        if (leanLoader.applied) {
           reports.push(
             notApplied(
               "randomfu's START menu entry",
               `${(loader.summary ?? "").replace(/^[^(]*\(|\)$/g, "")}; the options that are on keep this disc's settings`,
             ),
           );
-          loader = lean;
+          loader = leanLoader;
+          wentLean = true;
         }
       }
       reports.push(loader);
+      // A lean loader leaves out the camera's code when its options are off.
+      cameraLinked = loader.applied && camera && (cameraOn || !wentLean);
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {
@@ -1256,6 +1295,14 @@ export function randomize(
             "Poogie test: a happy Poogie always gives the rarest reward. This disc is not for play.",
           );
         }
+      }
+    }
+    if (cameraFound && typeof cameraFound !== "string" && (cameraOn || cameraLinked)) {
+      const patched = patchFov(edits.eboot(), FOV_SCALES[settings["camera.fov"]]);
+      if (typeof patched === "string") {
+        if (cameraOn) reports.push(notApplied("Camera", patched));
+      } else if (cameraOn) {
+        reports.push(cameraReport(settings, cameraLinked));
       }
     }
   }
