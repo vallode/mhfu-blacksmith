@@ -501,7 +501,7 @@ test("addCodeLoader takes nothing when other features left too little room", () 
   }
 });
 
-test("the cave holds the loader with every hook, or with the START menus and the default hooks", () => {
+test("the cave holds the loader with every hook, or with the START menus and the default hooks and call", () => {
   const g = syntheticGame();
   const space = guildCardSpace(g.elf, g.sub, g.edits);
   assert.ok(typeof space !== "string");
@@ -533,10 +533,15 @@ test("the cave holds the loader with every hook, or with the START menus and the
       o.load ? 0x08870aec : undefined,
       o.hit ? 0x09c44f08 : undefined,
       o.menus ? menus : [],
+      // Send All to Item Box's label call, on by default with the menus.
+      o.menus ? [call(0x08810100)] : [],
     ).code.length;
   // randomize leaves the menus (and the features only they turn on) out when they don't fit.
   const all = words({ card: true, load: true, hit: true });
   assert.ok(all <= free, `every option on but the menus: ${all} of ${free} words`);
   const defaults = words({ hit: true, menus: true });
-  assert.ok(defaults <= free, `Poogie's luck and the START menus: ${defaults} of ${free} words`);
+  assert.ok(
+    defaults <= free,
+    `Poogie's luck, the START menus and Send All: ${defaults} of ${free} words`,
+  );
 });

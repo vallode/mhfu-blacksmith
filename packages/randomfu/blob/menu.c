@@ -79,7 +79,11 @@ static void menu(u8 *arg) {
     *m->s0 = 0; /* not greyed */
     m->result = (s32)label;
   } else if (call == RF_MENU_DRAW) {
-    m->result = (s32)rf_call8(m->game, m->args[0], m->args[1], m->args[2], m->args[3], 0, 0, 0, 0);
+    /* Unless a callback before this one made the game's call (send-all.c). */
+    if (!m->handled) {
+      m->result =
+          (s32)rf_call8(m->game, m->args[0], m->args[1], m->args[2], m->args[3], 0, 0, 0, 0);
+    }
     if (menu == which) draw((u8 *)m->args[0]);
   } else {
     if ((m->args[1] & 0xff) != menus[menu].entry) return;

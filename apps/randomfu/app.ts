@@ -114,9 +114,10 @@ const OPTION_STEPS: Step[] = [
       "Key quests",
       "HUD",
       "Camera",
+      "Reward screen",
     ],
     intro:
-      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code, which caps received Guild Cards at 3 to make room for it. Monster health, damage numbers, attack hitboxes and the camera are on every disc, switched in game from the START menu's randomfu entry, so every disc caps Guild Cards; their options only pick how a disc starts. Of the rest only Poogie's luck is on unless you turn the others on. Elite monsters and damage numbers haven't been tried in game yet.",
+      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code, which caps received Guild Cards at 3 to make room for it. Monster health, damage numbers, attack hitboxes and the camera are on every disc, switched in game from the START menu's randomfu entry, so every disc caps Guild Cards; their options only pick how a disc starts. Of the rest only Poogie's luck and Send All to Item Box are on unless you turn the others on. Elite monsters and damage numbers haven't been tried in game yet.",
   },
   {
     id: "extras",

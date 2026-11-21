@@ -5,7 +5,8 @@
  */
 #include "rf.h"
 
-#define PER_HOOK 6
+/* Callbacks a hook can take: test/blob-link.test.ts checks the features' rf_on calls fit. */
+#define PER_HOOK 8
 
 /* Zeroed data comes zeroed from the file, so every load starts empty. */
 static rf_hook_fn hooks[RF_HOOKS][PER_HOOK];
@@ -44,6 +45,7 @@ __attribute__((weak)) void rf_damage_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_menu_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_hitboxes_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_camera_init(u32 reason, u8 *save);
+__attribute__((weak)) void rf_send_all_init(u32 reason, u8 *save);
 
 static struct rf_save_data *save_data;
 
@@ -57,6 +59,8 @@ void rf_init(u32 reason, u8 *save, u8 *blob) {
     for (u32 k = 0; k < RF_SAVE_DATA_BYTES / 4; k++) word[k] = 0;
     save_data->magic = RF_SAVE_DATA_MAGIC;
   }
+  /* Before the menu, whose draw it makes the game's call ahead of. */
+  if (rf_send_all_init) rf_send_all_init(reason, save);
   /* Before the features, which add their settings to it. */
   if (rf_menu_init) rf_menu_init(reason, save);
   if (rf_monster_hp_init) rf_monster_hp_init(reason, save);
