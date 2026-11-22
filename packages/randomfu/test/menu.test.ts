@@ -257,7 +257,7 @@ both("the entry opens a window of settings; ○ goes back and START closes", (me
   assert.ok(g.prints.some((p) => p.includes("randomfu")));
   assert.ok(g.prints.some((p) => p.includes("Damage numbers")));
   assert.ok(
-    g.prints.some((p) => p.includes("Total")),
+    g.prints.some((p) => p.includes("TOTAL")),
     "the disc's mode until it's changed",
   );
   assert.equal(g.run(g.entry, B.circle), 0x2000);
@@ -322,11 +322,11 @@ both("each feature's setting is a row; up and down move the arrows and the help"
     g.prints.some((p) => p.startsWith("A health gauge")),
     "with its help",
   );
-  assert.ok(g.prints.includes("Off"), "the disc's monster health");
+  assert.ok(g.prints.includes("OFF"), "the disc's monster health");
   g.run(g.entry, B.right);
   assert.equal(g.cpu.u8(SAVE + 0x666e0 + 14), 2, "on the map, kept as its choice + 1");
   assert.equal(g.cpu.u8(SAVED_MODE), 0, "damage numbers untouched");
-  assert.ok(g.prints.includes("On map"));
+  assert.ok(g.prints.includes("ON MAP"));
   g.run(g.entry, B.down);
   assert.deepEqual(g.arrows, [g.rows[1]], "on damage numbers");
   assert.ok(

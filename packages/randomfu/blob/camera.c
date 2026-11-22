@@ -352,9 +352,9 @@ static void follow(u8 *ctrl) {
 
 __attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
 
-static const char *const fov_names[CHOICES] = {"Normal", "Wide", "Wider", "Widest"};
-static const char *const distance_names[CHOICES] = {"Normal", "Far", "Farther", "Farthest"};
-static const char *const tilt_names[CHOICES] = {"Steps", "Slow", "Smooth", "Fast"};
+static const char *const fov_names[CHOICES] = {"NORMAL", "WIDE", "WIDER", "WIDEST"};
+static const char *const distance_names[CHOICES] = {"NORMAL", "FAR", "FARTHER", "FARTHEST"};
+static const char *const tilt_names[CHOICES] = {"STEPS", "SLOW", "SMOOTH", "FAST"};
 
 static void set_fov(u32 c) {
   struct rf_save_data *d = rf_save_data();

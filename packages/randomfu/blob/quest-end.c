@@ -31,7 +31,7 @@ static void apply(void) { *(volatile u32 *)rf_quest_end = words[choice()]; }
 
 __attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
 
-static const char *const names[CHOICES] = {"Normal", "Short", "Instant"};
+static const char *const names[CHOICES] = {"NORMAL", "SHORT", "INSTANT"};
 
 static void set(u32 c) {
   struct rf_save_data *d = rf_save_data();

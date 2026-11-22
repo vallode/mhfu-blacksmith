@@ -219,7 +219,7 @@ static void draw(u8 *hud) {
 
 __attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
 
-static const char *const mode_names[MODES] = {"Off", "On map", "Always"};
+static const char *const mode_names[MODES] = {"OFF", "ON MAP", "ALWAYS"};
 static u32 get_mode(void) { return mode(); }
 static void set_mode(u32 choice) {
   struct rf_save_data *d = rf_save_data();
