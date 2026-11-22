@@ -1371,7 +1371,7 @@ input[type="range"] {
   }
 }
 
-/* The about page's three feature sections: the grey selector bar of the
+/* The about page's feature sections: the grey selector bar of the
    game's menus for a title, and the features as rows like the item box's (no hover glow:
    they're not choices), every row the same height and every section's columns in line. */
 .feature {
