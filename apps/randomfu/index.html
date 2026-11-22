@@ -1,253 +1,277 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--HEAD-->
     <title>RandomFU — Monster Hunter Freedom Unite randomizer</title>
     <meta
       name="description"
-      content="A seeded randomizer for Monster Hunter Freedom Unite that runs in your browser on your own disc image."
+      content="A seeded randomizer and overhaul for Monster Hunter Freedom Unite that runs in your browser on your own disc image."
     />
-    <!-- Discord colours the edge of a link's embed with this. -->
-    <meta name="theme-color" content="#6e905f" />
-    <!-- Link previews. Their URLs must be absolute: build.mjs fills in %SITE_URL%. -->
     <link rel="canonical" href="%SITE_URL%/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="RandomFU" />
     <meta property="og:url" content="%SITE_URL%/" />
     <meta property="og:title" content="RandomFU — Monster Hunter Freedom Unite randomizer" />
     <meta
       property="og:description"
       content="Shuffle rewards, monsters, quests and shops in Monster Hunter Freedom Unite. Seeded, with optional logic that keeps every recipe craftable, and it runs in your browser on your own disc image."
     />
-    <meta property="og:image" content="%SITE_URL%/images/social-card.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="RandomFU, Monster Hunter Freedom Unite randomizer: shuffle rewards, monsters, quests and shops."
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <!-- Everything runs here: the page can't send the disc, or anything else, anywhere. -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'none'; script-src 'self'; worker-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'"
-    />
-    <link rel="icon" href="images/favicons/felyne-favicon.png" />
-    <link rel="apple-touch-icon" href="images/favicons/felyne-apple-touch-icon.png" />
-    <style>
-      /*STYLE*/
-    </style>
   </head>
   <body>
-    <header class="masthead">
-      <h1 class="masthead-title">
-        <img class="wordmark" src="images/randomfu.png" alt="RandomFU" width="197" height="24" />
-      </h1>
-      <p class="masthead-sub">Monster Hunter Freedom Unite randomizer</p>
-    </header>
-    <hr class="divider" />
+    <!--MASTHEAD-->
 
-    <main class="frame" aria-labelledby="step-title">
-      <!-- Stays at the top of the window while the step scrolls under it. -->
-      <div class="card-head">
-        <nav class="menu-header" aria-label="Steps">
-          <h2 class="menu-title">
-            <button
-              type="button"
-              class="step-menu"
-              id="step-menu"
-              aria-expanded="false"
-              aria-controls="steps"
-            >
-              <span class="step-count" id="step-count"></span>
-              <span class="icon" id="step-icon" aria-hidden="true"></span>
-              <span id="step-title"></span>
-              <span class="caret" aria-hidden="true"></span>
-            </button>
-          </h2>
-          <ol class="step-list" id="steps" hidden></ol>
-        </nav>
-        <div class="progress" id="progress" aria-hidden="true"></div>
+    <main class="frame page" aria-labelledby="page-title">
+      <div class="page-head">
+        <h2 class="page-title" id="page-title">What is RandomFU?</h2>
       </div>
 
-      <!-- 1. The disc -->
-      <section class="panel" data-step="game" hidden>
-        <p class="intro">
-          Choose a disc image of <b>Monster Hunter Freedom Unite</b> (EU) or
-          <b>Monster Hunter Portable 2nd G</b> (JP), dumped from your own disc. It stays on your
-          computer: RandomFU runs in this page and nothing is uploaded.
-        </p>
-        <label class="drop" id="iso-drop">
-          <span class="drop-icon icon" style="--icon: url(images/binoculars.png)"></span>
-          <span class="drop-text">
-            <span class="drop-title" id="iso-name">Choose your disc image (.iso)</span>
-            <span class="drop-hint">or drop it here</span>
-          </span>
-          <span class="drop-mark" id="iso-mark" aria-hidden="true"></span>
-          <input type="file" id="iso" accept=".iso" class="visually-hidden" />
-        </label>
-        <p class="status" id="check-status" role="status"></p>
+      <p class="lead">
+        RandomFU remixes <b>Monster Hunter Freedom Unite</b>. It shuffles what drops where, what the
+        smithy makes and which monsters wait in each quest, and adds quality-of-life fixes and new
+        challenges the game never had. Every option is yours to pick, and RandomFU writes a new disc
+        image from your own, ready to play in PPSSPP.
+      </p>
+
+      <section class="feature" aria-labelledby="f-shuffle">
+        <div class="feature-head">
+          <span
+            class="icon"
+            style="--icon: url(images/seed.png); --tint: var(--color-gem-green)"
+            aria-hidden="true"
+          ></span>
+          <h3 class="feature-title" id="f-shuffle">Shuffle and randomize</h3>
+        </div>
+        <ul class="feature-items">
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/deco.png); --tint: var(--color-gem-cyan)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Quest rewards</span>
+            <span class="feature-desc">What each quest pays, and how often</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/claw.png); --tint: var(--color-gem-gray)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Carves and breaks</span>
+            <span class="feature-desc">What every monster gives you</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/herb.png); --tint: var(--color-gem-green)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Gathering</span>
+            <span class="feature-desc">What each gathering point holds</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/bone.png); --tint: var(--color-gem-yellow)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Supply boxes</span>
+            <span class="feature-desc">What the box in camp holds</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/hammer.png); --tint: var(--color-gem-gray)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">The smithy</span>
+            <span class="feature-desc">Which weapons it makes, from what, with what stats</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/helmet.png); --tint: var(--color-gem-blue)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Armor</span>
+            <span class="feature-desc">Pieces, skills, defense and slots</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/monsters/flying-wyvern.png)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Monsters</span>
+            <span class="feature-desc">Who's in each quest, how big and how tough</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/heavenly.png); --tint: var(--color-gem-orange)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Weak spots</span>
+            <span class="feature-desc">Which elements and parts hurt them most</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/coin.png); --tint: var(--color-gem-yellow)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Shops</span>
+            <span class="feature-desc">What they sell, and for how much</span>
+          </li>
+        </ul>
       </section>
 
-      <!-- 2. Seed, presets and shared settings -->
-      <section class="panel" data-step="start" hidden>
-        <p class="intro">
-          The seed decides every random choice: the same disc, seed and settings always make the
-          same game. Then start from a preset, or load settings someone shared with you.
-        </p>
-        <h3 class="subheading">Seed</h3>
-        <div class="row">
-          <input
-            type="text"
-            id="seed"
-            class="text-input grow"
-            aria-label="Seed"
-            autocomplete="off"
-            spellcheck="false"
-          />
-          <button type="button" class="button" id="new-seed">New seed</button>
+      <section class="feature" aria-labelledby="f-comfort">
+        <div class="feature-head">
+          <span
+            class="icon"
+            style="--icon: url(images/monsters/felyne.png)"
+            aria-hidden="true"
+          ></span>
+          <h3 class="feature-title" id="f-comfort">Quality of life</h3>
         </div>
-
-        <h3 class="subheading">Preset</h3>
-        <p class="note">
-          Every option that changes the game's data does one of two things, and the presets mix them
-          (QoL only does neither: its seed only matters if you turn on Hunter's Pact):
-        </p>
-        <dl class="actions">
-          <div>
-            <dt>
-              <span class="tag shuffle"><span class="icon" aria-hidden="true"></span>Shuffle</span>
-            </dt>
-            <dd class="note">
-              Moves what's already in the game to new places: rewards, gathering points, the
-              smithy's weapons and armor, shop stock, the monsters in quests. Nothing new is made.
-            </dd>
-          </div>
-          <div>
-            <dt>
-              <span class="tag randomize"
-                ><span class="icon" aria-hidden="true"></span>Randomize</span
-              >
-            </dt>
-            <dd class="note">
-              Rolls new values: material amounts, costs, prices, quest money and time limits,
-              monster size and stats, armor skills, weapon stats.
-            </dd>
-          </div>
-        </dl>
-        <div class="choices" id="presets" role="radiogroup" aria-label="Preset"></div>
-
-        <div class="choice-load" id="load">
-          <span class="choice-text">
-            <label class="choice-label" for="paste">Shared settings</label>
-            <span class="note">
-              Paste a settings string or load a settings file. Replaces every option, and your seed
-              if it has one.
-            </span>
-            <span class="row">
-              <input
-                type="text"
-                id="paste"
-                class="text-input grow"
-                placeholder="RF…"
-                autocomplete="off"
-                spellcheck="false"
-              />
-              <button type="button" class="button" id="apply-paste">Load</button>
-              <button type="button" class="button" id="import">File…</button>
-              <input type="file" id="import-file" accept=".json,application/json" hidden />
-            </span>
-          </span>
-        </div>
-        <p class="note" id="preset-note"></p>
-        <p class="status" id="share-status" role="status"></p>
-        <div class="row skip">
-          <button type="button" class="button" id="download">Download ▶</button>
-          <button type="button" class="button" id="customize">Customize ▶</button>
-          <span class="note grow">Happy with these? Randomize now, or go through the options.</span>
-        </div>
+        <ul class="feature-items">
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/fluid.png); --tint: var(--color-gem-red)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Monster health</span>
+            <span class="feature-desc">A gauge for each large monster in your area</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/ko.png); --tint: var(--color-gem-yellow)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Damage numbers</span>
+            <span class="feature-desc">Every hit, as it lands</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/binoculars.png); --tint: var(--color-gem-white)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">A better camera</span>
+            <span class="feature-desc">Wider, further back, with smooth tilt</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/sac.png); --tint: var(--color-gem-orange)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Send All to Item Box</span>
+            <span class="feature-desc">Every reward in one press</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/note.png); --tint: var(--color-gem-slate)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Less waiting</span>
+            <span class="feature-desc">A shorter wait after quests, and a faster start</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/ticket.png); --tint: var(--color-gem-cyan)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Bestiary and almanac</span>
+            <span class="feature-desc">On the bookshelf, so you can find what moved (EU)</span>
+          </li>
+        </ul>
       </section>
 
-      <!-- The option steps are built from OPTIONS here. -->
-      <div id="option-panels"></div>
-
-      <!-- Review, share and run -->
-      <section class="panel" data-step="review" hidden>
-        <p class="intro">Check your choices, then randomize. Select a step to change it.</p>
-        <dl class="summary" id="summary"></dl>
-
-        <h3 class="subheading">Share</h3>
-        <label class="field">
-          <span class="label">Settings string</span>
-          <textarea id="share" class="text-input" rows="3" readonly></textarea>
-          <span class="note"
-            >Seed and settings in one line. Anyone with the same disc gets the same game.</span
-          >
-        </label>
-        <div class="row">
-          <button type="button" class="button" id="copy">Copy</button>
-          <button type="button" class="button" id="export">Save settings file</button>
+      <section class="feature" aria-labelledby="f-challenge">
+        <div class="feature-head">
+          <span
+            class="icon"
+            style="--icon: url(images/monsters/rathalos.png)"
+            aria-hidden="true"
+          ></span>
+          <h3 class="feature-title" id="f-challenge">New challenges</h3>
         </div>
-        <p class="status" id="copy-status" role="status"></p>
-
-        <div class="go">
-          <button type="button" class="button" id="dry-run">
-            <span class="icon" style="--icon: url(images/binoculars.png)" aria-hidden="true"></span>
-            Preview spoiler
-          </button>
-          <button type="button" class="button primary" id="run">
-            <span class="icon" style="--icon: url(images/max.png)" aria-hidden="true"></span>
-            Randomize!
-          </button>
-        </div>
+        <ul class="feature-items">
+          <li class="feature-item">
+            <span class="icon" style="--icon: url(images/crown-gold.png)" aria-hidden="true"></span>
+            <span class="feature-name">Elite monsters</span>
+            <span class="feature-desc">Bigger and tougher, for better rewards</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/scale.png); --tint: var(--color-gem-slate)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">The Hunter's Pact</span>
+            <span class="feature-desc">Take a penalty for a bigger payout</span>
+          </li>
+          <li class="feature-item">
+            <span
+              class="icon"
+              style="--icon: url(images/ukwn.png); --tint: var(--color-gem-pink)"
+              aria-hidden="true"
+            ></span>
+            <span class="feature-name">Unknown Monster?!</span>
+            <span class="feature-desc">Quests that roll a new hunt every time</span>
+          </li>
+        </ul>
       </section>
 
-      <!-- The run -->
-      <section class="panel" data-step="run" hidden>
-        <p class="status big" id="run-status" role="status"></p>
-        <p class="status err" id="stale" hidden>
-          Your settings or disc changed since this run. Go back to the review and randomize again to
-          use them.
-        </p>
-        <div class="downloads" id="downloads"></div>
-        <details class="log-wrap" id="log-wrap" open>
-          <summary class="subheading">Log</summary>
-          <pre class="log" id="log" aria-live="polite"></pre>
-        </details>
-        <div id="spoiler-wrap" hidden>
-          <div class="row spoiler-head">
-            <h3 class="subheading grow">Spoiler log</h3>
-            <input
-              type="text"
-              id="filter"
-              class="text-input"
-              placeholder="Filter, e.g. Buster Sword"
-              aria-label="Filter the spoiler log"
-            />
-          </div>
-          <pre class="log spoiler" id="spoiler"></pre>
+      <section class="feature" aria-labelledby="f-balance">
+        <div class="feature-head">
+          <span class="icon" style="--icon: url(images/great-sword.png)" aria-hidden="true"></span>
+          <h3 class="feature-title" id="f-balance">Balance changes</h3>
         </div>
+        <ul class="feature-items">
+          <li class="feature-item">
+            <span class="icon" style="--icon: url(images/dragon.png)" aria-hidden="true"></span>
+            <span class="feature-name">Aggression</span>
+            <span class="feature-desc">Monsters that waste less time between attacks</span>
+          </li>
+          <li class="feature-item">
+            <span class="icon" style="--icon: url(images/fire.png)" aria-hidden="true"></span>
+            <span class="feature-name">Balanced elemental weapons</span>
+            <span class="feature-desc">Element that grows with each hit's power</span>
+          </li>
+        </ul>
       </section>
 
-      <div class="nav">
-        <button type="button" class="nav-button" id="back">
-          <img src="images/arrow.png" alt="" aria-hidden="true" />
-          <span>Back</span>
-        </button>
-        <p class="status nav-status" id="nav-status" role="status"></p>
-        <button type="button" class="nav-button next" id="next">
-          <span>Next</span>
-          <img src="images/arrow.png" alt="" aria-hidden="true" />
-        </button>
+      <h3 class="subheading after-features">What you need</h3>
+      <ul class="points">
+        <li>
+          A disc image (.iso) of <b>Monster Hunter Freedom Unite</b> (EU) or
+          <b>Monster Hunter Portable 2nd G</b> (JP), dumped from your own disc
+        </li>
+        <li>This page, in a computer's browser</li>
+        <li>PPSSPP, to play the disc it makes</li>
+      </ul>
+      <p class="note">
+        Your disc never leaves your computer: RandomFU runs in this page and never uploads your
+        files. The same seed and settings always make the same game, so you can share a run with
+        friends.
+      </p>
+
+      <div class="page-actions">
+        <a class="button primary" href="build.html">
+          <span class="icon" style="--icon: url(images/max.png)" aria-hidden="true"></span>
+          Build your disc
+        </a>
+        <a class="text-link" href="faq.html">Questions? Read the FAQ</a>
       </div>
     </main>
 
     <footer class="footer">
       RandomFU runs entirely in your browser. Not affiliated with Capcom.
     </footer>
-
-    <script src="app.js"></script>
   </body>
 </html>

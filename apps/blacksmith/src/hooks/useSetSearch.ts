@@ -213,6 +213,7 @@ export function useSetSearch(): SetSearchState {
             setFound((f) => Math.max(f, next.found));
             return;
           }
+          if (msg.type !== "result") return; // only reach checks send others
           const step = withResult(run, shard, msg.result);
           if (step.kind === "wait") {
             pending.current = step.run;

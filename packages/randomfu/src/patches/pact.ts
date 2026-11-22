@@ -69,7 +69,7 @@ import { decodeObjects } from "../blob/link.js";
 import { MONSTERS_OBJECTS } from "../blob/monsters-object.js";
 import { PACT_OBJECTS } from "../blob/pact-object.js";
 import type { HookSites } from "./game-hooks.js";
-import { findUnique, hiLo, jumpTarget, maskWord } from "./mips.js";
+import { findUnique, hiLo, jumpTarget, maskImmediates, maskWord, type Segment } from "./mips.js";
 import { findMonsterExterns } from "./monster-hp.js";
 import { isNeverDrawn } from "../game/quest-fields.js";
 import type { Band, Tier } from "../game/tiers.js";
@@ -184,6 +184,44 @@ export function findTextExterns(
   };
 }
 
+/**
+ * The EBOOT's `level(hunter, sharpness)` (EU 0x088DAB94, FUC 0x088DD4DC),
+ * immediates masked: 0 unless the hunter's weapon is a melee one
+ * (`hunter+0x4E9` is 5), else how many of the weapon's cumulative sharpness
+ * thresholds lie below `sharpness`, the colour it's on (0 red to 6 purple).
+ * Its curve is the weapon type's pointer into the sharpness table, plus the
+ * weapon's SharpnessID (`hunter+0x4EA` its ID).
+ */
+export const SHARPNESS_LEVEL_SIGNATURE = [
+  0x27bd0000, 0xafbf0000, 0xafb10000, 0xafb00000, 0x90830000, 0x24020000, 0x00a08021, 0x10620000,
+  0x00808821, 0x10000000, 0x00001021, 0x3c020000, 0x8c440000, 0x0c000000, 0x26250000, 0x30420000,
+  0x00022880, 0x3c020000, 0x24420000, 0x00451021, 0x96230000, 0x8c460000, 0x7c102620, 0x00031040,
+  0x00431021, 0x000218c0, 0x3c020000, 0x24420000, 0x00431021, 0x90450000, 0x000518c0, 0x00651823,
+  0x00031840, 0x00001021, 0x00c32821, 0x84a30000, 0x0064082a, 0x10200000, 0x00000000, 0x24420000,
+  0x30420000, 0x28430000, 0x14600000, 0x24a50000, 0x8fbf0000, 0x8fb10000, 0x8fb00000, 0x03e00008,
+];
+/** The words the signature masks that the blade pacts rely on: the weapon's kind and ID fields. */
+const SHARPNESS_LEVEL_FIELDS: readonly [number, number][] = [
+  [0x10, 0x908304e9], // lbu v1, 0x4e9(a0)
+  [0x14, 0x24020005], // addiu v0, zero, 5
+  [0x50, 0x962304ea], // lhu v1, 0x4ea(s1)
+];
+
+/** `level`'s address, as `blob/pact.c` reads it (`rf_pact_level_fn`), or null where it isn't found. */
+export function findSharpnessLevel(vanillaEboot: Buffer, segment: Segment): number | null {
+  const [found] = findUnique(vanillaEboot, segment, [SHARPNESS_LEVEL_SIGNATURE], maskImmediates);
+  if (found == null) return null;
+  const at = (vaddr: number) => word(vanillaEboot, segment.offset + (vaddr - segment.vaddr));
+  return SHARPNESS_LEVEL_FIELDS.every(([k, w]) => at(found + k) === w) ? found : null;
+}
+
+/** `rf_pact_level_fn`: the level function's address, 0 for none (no blade pacts). */
+export function encodeLevelFn(address: number | null): Buffer {
+  const out = Buffer.alloc(4);
+  out.writeUInt32LE(address ?? 0);
+  return out;
+}
+
 /** The blob's externs for the pact (and the monster boosts it uses), or why they can't be found. */
 export function findPactExterns(
   vanillaEboot: Buffer,
@@ -211,9 +249,29 @@ const SPAN_BYTES = 4;
 const ENTRY_BYTES = 8;
 /** An item reward's entry type; equipment has the equipment box's. */
 const ITEM_TYPE = 0xff;
-/** Items per grade and equipment pieces per rank, at most. */
+/** Items per grade, and equipment pieces per rarity, at most. */
 const ITEMS_PER_GRADE = 16;
-const EQUIPMENT_PER_BAND = 32;
+/**
+ * Tied items per grade, at most (a sample where more fit): the pool's
+ * names and entries are addressed by u16 offsets, so it must stay under
+ * 64 KB however widely the rewards are randomized.
+ */
+export const TIED_PER_GRADE = 200;
+/** `extra`'s top bit on an item that's in the pool for being tied to some quest, not sampled. */
+const TIED_BIT = 0x8000;
+const EQUIPMENT_PER_RARITY = 12;
+/**
+ * At most this share of what every recipe needs of an item, in one reward
+ * (jackpots too, `blob/pact.c`): a niche material never comes in a pile
+ * that covers every craft it's for.
+ */
+export const DEMAND_SHARE = 3;
+/** Each rank's equipment rarities, as shown (`displayRarity`). */
+export const BAND_RARITIES: Record<Band, readonly [number, number]> = {
+  low: [1, 5],
+  high: [6, 8],
+  g: [9, 10],
+};
 /**
  * What an item reward is worth, in item-table price (the general store's
  * buy price; for materials the same scale, Rathalos Plate 48500), by rank
@@ -264,6 +322,23 @@ export interface PoolEquipment {
 export interface ItemValue {
   price: number;
   carry: number;
+  /** The most one reward gives (`demandCaps`); none when no recipe needs it. */
+  most?: number;
+}
+
+/**
+ * The most of each item one reward gives: a third of what every crafting
+ * and upgrade recipe needs of it in all, rounded up. Items no recipe needs
+ * (they only sell) have none.
+ */
+export function demandCaps(
+  slots: Iterable<{ itemId: number; quantity: number }>,
+): Map<number, number> {
+  const total = new Map<number, number>();
+  for (const { itemId, quantity } of slots) {
+    total.set(itemId, (total.get(itemId) ?? 0) + quantity);
+  }
+  return new Map([...total].map(([id, n]) => [id, Math.max(1, Math.ceil(n / DEMAND_SHARE))]));
 }
 
 /** Every item's price and carry limit, from the disc's item table. */
@@ -287,7 +362,7 @@ export function readItemValues(eboot: Buffer, table: ItemTable): Map<number, Ite
 export function rewardAmount(item: ItemValue, value: number, grade: number): number | null {
   const [least, most] = GRADE_AMOUNTS[grade]!;
   if (item.price <= 0 || item.carry < 2) return null;
-  const top = Math.min(most, item.carry);
+  const top = Math.min(most, item.carry, item.most ?? Infinity);
   if (top < least) return null;
   const amount = Math.max(least, Math.min(top, Math.round(value / item.price)));
   const worth = amount * item.price;
@@ -299,6 +374,12 @@ export interface PactPoolEntry {
   type: number;
   amount: number;
   name: string;
+  /** An item's: the most one reward gives (`demandCaps`), 0 for no limit. */
+  most?: number;
+  /** A piece's rarity, as shown (`displayRarity`). */
+  rarity?: number;
+  /** An item in for being tied to some quest (`tiedItems`), not in the sample of the rest. */
+  tied?: boolean;
 }
 
 /** The reward pool, by band and kind (items of grade 1 to 3, then equipment). */
@@ -322,33 +403,71 @@ const ascii = (name: string) =>
 /**
  * The pact's rewards for each rank: items first found at that rank (after the
  * shuffles), in three grades by what they're worth (`GRADE_VALUES`, in the
- * amounts `GRADE_AMOUNTS` allows), and equipment of that rank's rarities.
+ * amounts `GRADE_AMOUNTS` allows, and no more than `demand` lets one reward
+ * give), and equipment of that rank's rarities, some of each rarity, by
+ * rarity (the blob offers those that fit the quest's stars, `pactLevels`).
  * An item can be in more than one grade, in different amounts.
+ *
+ * `tied` is each rank's items some quest can be tied to (`tiedItems`): every
+ * one of them that fits a grade is in it, whatever rank it was first found
+ * at (up to `TIED_PER_GRADE`), so the blob can offer a quest's own
+ * (`blob/pact.c`, `tie_quest`); a sample of the rest is there for quests
+ * with none that fit, and only it (`tied` unset) is drawn from then. Where
+ * too few untied items fit, tied ones make up the sample, unflagged.
  */
 export function pactPool(
   itemTiers: ReadonlyMap<number, Tier>,
   itemValues: ReadonlyMap<number, ItemValue>,
   equipment: readonly PoolEquipment[],
   rng: Rng,
+  demand: ReadonlyMap<number, number> = new Map(),
+  tied: ReadonlyMap<Band, ReadonlySet<number>> = new Map(),
 ): PactPool {
   const { male, female } = HUNTER_TYPE_BITS;
+  const drawable = (id: number) =>
+    id > 0 && id < TIED_ITEMS && !isNeverDrawn(id) && itemName(id) !== `Item ${id}`;
   return POOL_BANDS.map((band) => {
-    const items = [...itemTiers]
-      .filter(
-        ([id, tier]) =>
-          id > 0 && tier.band === band && !isNeverDrawn(id) && itemName(id) !== `Item ${id}`,
-      )
-      .map(([id]) => id)
+    const ties = tied.get(band) ?? new Set<number>();
+    const items = [
+      ...new Set([
+        ...[...itemTiers].filter(([, tier]) => tier.band === band).map(([id]) => id),
+        ...ties,
+      ]),
+    ]
+      .filter(drawable)
       .sort((a, b) => a - b);
     const grades = GRADE_VALUES[band].map((value, g) => {
       const fits = items.flatMap((id) => {
         const item = itemValues.get(id);
-        const amount = item && rewardAmount(item, value, g);
-        return amount ? [{ id, amount }] : [];
+        const most = demand.get(id);
+        const amount = item && rewardAmount({ ...item, most }, value, g);
+        return amount ? [{ id, amount, most: most ?? 0 }] : [];
       });
-      return sample(fits, ITEMS_PER_GRADE, rng)
+      const rest = sample(
+        fits.filter((f) => !ties.has(f.id)),
+        ITEMS_PER_GRADE,
+        rng,
+      );
+      // Too few untied items for a sample: some tied ones go in it unflagged
+      // (the blob ties by its own bitmap, so they're still a quest's own).
+      const short = ITEMS_PER_GRADE - rest.length;
+      return [
+        ...sample(
+          fits.filter((f) => ties.has(f.id)),
+          TIED_PER_GRADE,
+          rng,
+        ).map((f, i) => ({ ...f, tied: i >= short })),
+        ...rest.map((f) => ({ ...f, tied: false })),
+      ]
         .sort((a, b) => a.id - b.id)
-        .map(({ id, amount }) => ({ id, type: ITEM_TYPE, amount, name: ascii(itemName(id)) }));
+        .map(({ id, amount, most, tied }) => ({
+          id,
+          type: ITEM_TYPE,
+          amount,
+          name: ascii(itemName(id)),
+          most,
+          tied,
+        }));
     });
     const gear = equipment.filter(
       (e) =>
@@ -356,11 +475,113 @@ export function pactPool(
         (e.bits === undefined || ((e.bits & male) !== 0 && (e.bits & female) !== 0)) &&
         ascii(e.name).length > 0,
     );
-    const pieces = sample(gear, EQUIPMENT_PER_BAND, rng)
-      .sort((a, b) => a.type - b.type || a.id - b.id)
-      .map((e) => ({ id: e.id, type: e.type, amount: 1, name: ascii(e.name) }));
+    const rarities = [...new Set(gear.map((e) => displayRarity(e.rarity)))].sort((a, b) => a - b);
+    const pieces = rarities.flatMap((r) =>
+      sample(
+        gear.filter((e) => displayRarity(e.rarity) === r),
+        EQUIPMENT_PER_RARITY,
+        rng,
+      )
+        .sort((a, b) => a.type - b.type || a.id - b.id)
+        .map((e) => ({ id: e.id, type: e.type, amount: 1, name: ascii(e.name), rarity: r })),
+    );
     return [...grades, pieces];
   });
+}
+
+/** Star levels `pactLevels` covers; a quest's stars past it count as the last. */
+export const LEVEL_STARS = 16;
+
+/**
+ * The rarities a piece of equipment may have, for each rank and star level,
+ * as `blob/pact.c` reads them (`rf_pact_levels`: a byte per rank and stars,
+ * the lowest rarity in its low half and the highest in its high half). A
+ * quest's place among its rank's star levels (from the fewest stars any of
+ * `tiers` has to the most) is its place among the rank's rarities: the
+ * rarity there and the next one up. So a piece is never weaker than what its
+ * star level gives, and no more than a step ahead: Low Rank's 1 star pays
+ * rarity 1 or 2, its 5 stars (of 6) rarity 4 or 5.
+ */
+export function pactLevels(tiers: Iterable<Tier>): Buffer {
+  const out = Buffer.alloc(POOL_BANDS.length * LEVEL_STARS);
+  const list = [...tiers];
+  POOL_BANDS.forEach((band, b) => {
+    const stars = list.filter((t) => t.band === band).map((t) => t.stars);
+    const [lo, hi] = BAND_RARITIES[band];
+    const fewest = stars.length ? Math.min(...stars) : 1;
+    const most = stars.length ? Math.max(...stars) : 1;
+    for (let s = 0; s < LEVEL_STARS; s++) {
+      const place =
+        most > fewest ? (Math.min(Math.max(s, fewest), most) - fewest) / (most - fewest) : 0;
+      const low = lo + Math.floor(place * (hi - lo));
+      out[b * LEVEL_STARS + s] = low | (Math.min(hi, low + 1) << 4);
+    }
+  });
+  return out;
+}
+
+/** Species the capture bitmask and the drops table cover (emIDs below it). */
+const CAPTURABLE_BITS = 96;
+/** Items a quest can be tied to (IDs below it): `blob/pact.c`'s `tied` bits. */
+export const TIED_ITEMS = 2048;
+
+/** An item a monster drops at a rank, or a quest of that rank gives (no `emId`). */
+export interface TiedItem {
+  band: Band;
+  itemId: number;
+  emId?: number;
+}
+
+/** Each rank's items some quest can be tied to: its monsters' drops and its own rewards. */
+export function tiedItems(items: Iterable<TiedItem>): Map<Band, Set<number>> {
+  const out = new Map<Band, Set<number>>();
+  for (const { band, itemId } of items) {
+    if (itemId <= 0 || itemId >= TIED_ITEMS) continue;
+    const set = out.get(band) ?? new Set<number>();
+    set.add(itemId);
+    out.set(band, set);
+  }
+  return out;
+}
+
+/**
+ * What each large monster drops at each rank (carves, captures, breaks), as
+ * `blob/pact.c` reads them (`rf_pact_drops`): a span (first, count) per rank
+ * and species, then the item IDs, u16 each. A quest's pact rewards lean to
+ * its large monsters' drops at its rank.
+ */
+export function encodeDrops(drops: Iterable<TiedItem>): Buffer {
+  const lists = POOL_BANDS.map(() =>
+    Array.from({ length: CAPTURABLE_BITS }, () => new Set<number>()),
+  );
+  for (const { band, emId, itemId } of drops) {
+    const b = POOL_BANDS.indexOf(band);
+    if (b < 0 || emId === undefined || emId <= 0 || emId >= CAPTURABLE_BITS) continue;
+    if (itemId > 0 && itemId < TIED_ITEMS) lists[b]![emId]!.add(itemId);
+  }
+  const head = POOL_BANDS.length * CAPTURABLE_BITS * SPAN_BYTES;
+  const items = lists.flat().map((set) => [...set].sort((a, b) => a - b));
+  const out = Buffer.alloc(head + items.flat().length * 2);
+  let index = 0;
+  items.forEach((list, k) => {
+    out.writeUInt16LE(index, k * SPAN_BYTES);
+    out.writeUInt16LE(list.length, k * SPAN_BYTES + 2);
+    for (const id of list) out.writeUInt16LE(id, head + index++ * 2);
+  });
+  return out;
+}
+
+/**
+ * The large monsters that can be captured, as `blob/pact.c` reads them
+ * (`rf_pact_capturable`): bit n for emID n. Capture or nothing is offered
+ * only where every large monster of the quest is one.
+ */
+export function encodeCapturable(monsters: Iterable<number>): Buffer {
+  const out = Buffer.alloc(CAPTURABLE_BITS / 8);
+  for (const em of monsters) {
+    if (em > 0 && em < CAPTURABLE_BITS) out[em >> 3]! |= 1 << (em & 7);
+  }
+  return out;
 }
 
 /** The pool as `blob/pact.c` reads it (`rf_pact_pool`). */
@@ -373,6 +594,9 @@ export function encodePactPool(pool: PactPool): Buffer {
     if (names.has(e.name)) continue;
     names.set(e.name, nameAt);
     nameAt += Buffer.byteLength(e.name) + 1;
+  }
+  if (nameAt > 0x10000) {
+    throw new RangeError(`Hunter's Pact pool is ${nameAt} bytes, past its 64 KB of u16 offsets`);
   }
   const out = Buffer.alloc(nameAt);
   let index = 0;
@@ -387,6 +611,10 @@ export function encodePactPool(pool: PactPool): Buffer {
         out.writeUInt8(e.type, at + 2);
         out.writeUInt8(e.amount, at + 3);
         out.writeUInt16LE(names.get(e.name)!, at + 4);
+        out.writeUInt16LE(
+          e.type === ITEM_TYPE ? (e.most ?? 0) | (e.tied ? TIED_BIT : 0) : (e.rarity ?? 0),
+          at + 6,
+        );
       }
     }),
   );

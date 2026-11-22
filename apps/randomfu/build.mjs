@@ -1,7 +1,8 @@
 /**
- * Builds the randomfu web app into dist/: index.html (with style.css
- * inlined), app.js, worker.js and the few images and the font it shares with
- * the MHFU Blacksmith site. Node-only modules the shared code imports are
+ * Builds the randomfu web app into dist/: its pages (index.html, the about
+ * page; faq.html; and build.html, the builder), each with style.css inlined,
+ * the builder's app.js and worker.js, every page's analytics (page.js), and the few images and the font it
+ * shares with the MHFU Blacksmith site. Node-only modules the shared code imports are
  * swapped for the browser versions in shims/.
  *
  * The look comes from the site (apps/blacksmith): its design tokens (the
@@ -13,7 +14,7 @@
  * data/gathering.json and the marker look from randomfu's patch
  * (node-map-preview.ts), and its map picture from the site's public/.
  *
- * index.html's link-preview tags get the site's absolute address, and the
+ * The pages' link-preview tags get the site's absolute address, and the
  * picture they show (social-card.png, drawn by social-card.mts) is copied in,
  * as is the masthead's wordmark (randomfu.png).
  *
@@ -24,6 +25,7 @@
  */
 import { build } from "esbuild";
 import postcss from "postcss";
+import { execFileSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -53,9 +55,19 @@ const nodeMapPreview = {
   points: nodeMapPoints(readData(dataDir, "gathering.json"), previewTexture),
 };
 
+/** The commit the build is made from, which every analytics event carries. */
+function buildId() {
+  if (process.env.GITHUB_SHA) return process.env.GITHUB_SHA.slice(0, 8);
+  try {
+    return execFileSync("git", ["rev-parse", "--short=8", "HEAD"], { cwd: web }).toString().trim();
+  } catch {
+    return "dev";
+  }
+}
+
 mkdirSync(dist, { recursive: true });
-await build({
-  entryPoints: { app: path.join(web, "app.ts"), worker: path.join(web, "worker.ts") },
+const buildIdJson = JSON.stringify(buildId());
+const browserBuild = {
   outdir: dist,
   bundle: true,
   format: "iife",
@@ -64,12 +76,25 @@ await build({
   minify: true,
   sourcemap: true,
   legalComments: "linked",
+  logLevel: "warning",
+};
+// page.js is every page's analytics (analytics/page.ts), which head.html loads before the page
+// renders: built on its own, without the shims, so it stays small.
+await build({
+  ...browserBuild,
+  entryPoints: { page: path.join(web, "analytics", "page.ts") },
+  define: { BUILD_ID: buildIdJson },
+});
+await build({
+  ...browserBuild,
+  entryPoints: { app: path.join(web, "app.ts"), worker: path.join(web, "worker.ts") },
   inject: [shim("buffer-global.ts")],
   // The shared code finds its vendored files relative to its own module; any path will do,
   // since the fs shim serves them by name.
   define: {
     "import.meta.url": JSON.stringify("file:///randomfu/bundle.js"),
     NODE_MAP_PREVIEW: JSON.stringify(nodeMapPreview),
+    BUILD_ID: buildIdJson,
   },
   alias: {
     "node:crypto": shim("crypto.ts"),
@@ -78,7 +103,6 @@ await build({
     "node:url": shim("url.ts"),
   },
   loader: { ".csv": "text", ".enum": "text" },
-  logLevel: "warning",
 });
 
 // ---------------------------------------------------------------- the site's look
@@ -130,17 +154,40 @@ const rootRule = [
 // ---------------------------------------------------------------- the page
 
 /**
- * Where the page is served, for the link-preview tags in index.html, which
+ * Where the pages are served, for their link-preview tags, which
  * need absolute URLs. SITE_URL overrides it for a build served elsewhere (a
  * preview), so its link previews show that build's card.
  */
 const siteUrl = (process.env.SITE_URL || "https://randomfu.vallode.com").replace(/\/$/, "");
 
 const style = readFileSync(path.join(web, "style.css"), "utf8");
-const html = readFileSync(path.join(web, "index.html"), "utf8")
-  .replace("/*STYLE*/", `${rootRule}\n${style.trim()}`)
-  .replaceAll("%SITE_URL%", siteUrl);
-writeFileSync(path.join(dist, "index.html"), html);
+const head = readFileSync(path.join(web, "head.html"), "utf8");
+const masthead = readFileSync(path.join(web, "masthead.html"), "utf8");
+/** A partial without the comment it opens with. */
+const withoutComment = (partial) => partial.replace(/^<!--[\s\S]*?-->\s*/, "");
+
+/**
+ * The pages: the about page, the FAQ and the builder, each with head.html
+ * and masthead.html in place of their <!--HEAD--> and <!--MASTHEAD-->, and
+ * its own link in the masthead marked as the current page. They sit side by
+ * side in dist/ so the builder's relative paths (images/, worker.js) hold.
+ */
+const pages = { "index.html": "./", "faq.html": "faq.html", "build.html": "build.html" };
+for (const [page, href] of Object.entries(pages)) {
+  const source = readFileSync(path.join(web, page), "utf8");
+  for (const mark of ["<!--HEAD-->", "<!--MASTHEAD-->"]) {
+    if (!source.includes(mark)) throw new Error(`${page} has no ${mark}`);
+  }
+  const link = `<a href="${href}">`;
+  if (!masthead.includes(link)) throw new Error(`masthead.html has no link to ${page}`);
+  const html = source
+    .replace("<!--HEAD-->", withoutComment(head))
+    .replace("<!--MASTHEAD-->", withoutComment(masthead))
+    .replace(link, `<a href="${href}" aria-current="page">`)
+    .replace("/*STYLE*/", `${rootRule}\n${style.trim()}`)
+    .replaceAll("%SITE_URL%", siteUrl);
+  writeFileSync(path.join(dist, page), html);
+}
 
 // Sprites, background and font from the site's public/ folder.
 const assets = [
@@ -169,6 +216,11 @@ const assets = [
   "images/egg.png",
   "images/monsters/flying-wyvern.png",
   "images/monsters/elder-dragon.png",
+  // The about page's feature sections.
+  "images/monsters/felyne.png",
+  "images/monsters/rathalos.png",
+  "images/note.png",
+  "images/crown-gold.png",
   "images/ko.png",
   "images/fire.png",
   "images/ukwn.png",
@@ -176,6 +228,8 @@ const assets = [
   "images/great-sword.png",
   "images/helmet.png",
   "images/sac.png",
+  "images/scroll.png",
+  "images/meat.png",
   // Inside the Shuffle and Randomize tags.
   "images/shuffle.png",
   "images/randomize.png",

@@ -39,10 +39,10 @@ export function SkillChips({
   const text = useT().setBuilder.skillPicker;
   const game = useGameText();
   return (
-    <ul className="m-0 flex list-none flex-wrap gap-[0.8rem] p-0">
+    <ul className="m-0 flex list-none flex-col gap-[0.8rem] p-0">
       {value.map((name) => (
-        <li key={name} className={cn(chip, chipOn, "cursor-default pr-0")}>
-          <span>{game.name("skill", name)}</span>
+        <li key={name} className={cn(chip, chipOn, "w-full cursor-default justify-between pr-0")}>
+          <span className="min-w-0">{game.name("skill", name)}</span>
           <button
             type="button"
             aria-label={text.remove(game.name("skill", name))}
@@ -54,7 +54,7 @@ export function SkillChips({
         </li>
       ))}
       <li>
-        <button type="button" className={cn(chip, chipOff, "border-dashed")} onClick={onAdd}>
+        <button type="button" className={cn(chip, chipOff, "w-full border-dashed")} onClick={onAdd}>
           {addLabel}
         </button>
       </li>
@@ -72,12 +72,15 @@ export function SkillBrowser({
   skills,
   value,
   onChange,
+  pending,
 }: {
   /** Every skill that can be chosen. */
   skills: SkillOption[];
   /** The chosen skills, by name. */
   value: string[];
   onChange: (value: string[]) => void;
+  /** Trees shown dimmed, as not checked yet (SkillReach). */
+  pending?: ReadonlySet<string>;
 }) {
   const text = useT().setBuilder.skillPicker;
   const game = useGameText();
@@ -124,7 +127,12 @@ export function SkillBrowser({
       {groups.map(([tree, list]) => {
         const chosen = list.some((s) => value.includes(s.name));
         return (
-          <section key={tree} className="flex flex-col" aria-label={skillName(tree)}>
+          <section
+            key={tree}
+            className={cn("flex flex-col", pending?.has(tree) && "opacity-50")}
+            aria-label={skillName(tree)}
+            aria-busy={pending?.has(tree) || undefined}
+          >
             <h3
               className={cn(
                 "m-0 border-b-[3px] bg-selector px-[1rem] py-[0.6rem] text-small font-normal text-shadow-[0.15rem_0.15rem_black]",

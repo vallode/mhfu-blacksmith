@@ -29,6 +29,7 @@ import {
   type Settings,
 } from "randomfu/src/settings.js";
 import { LOGIC_VERSION } from "randomfu/src/version.js";
+import { track, type Props } from "./analytics/client.js";
 import type { Request, Response, Segment } from "./protocol.js";
 
 const STORE = "randomfu.web.v1";
@@ -203,11 +204,40 @@ const urls: string[] = [];
 const visibleSteps = () => STEPS.filter((s) => !s.when || s.when());
 const discOk = () => disc?.supported === true;
 
+// ---------------------------------------------------------------- analytics
+
+/** The last preset picked, which a run's changed options are counted from; null for the defaults. */
+let basePreset: Preset | null = null;
+/** Steps already counted as shown this visit. */
+const shown = new Set<string>();
+
+/** The disc's size in MB, to one decimal. */
+const sizeMb = (file: File) => Math.round((file.size / 1024 / 1024) * 10) / 10;
+
+/** What a run's events say about the disc and the settings. */
+function runFacts(): Props {
+  const base = basePreset ? presetSettings(basePreset) : defaultSettings(settings.seed);
+  const changed = OPTIONS.filter((o) => isActive(settings, o) && settings[o.key] !== base[o.key]);
+  const groups = OPTION_STEPS.filter((s) => changed.some((o) => s.sections?.includes(o.section)));
+  return {
+    region: disc?.region ?? "",
+    discId: disc?.discId ?? "",
+    ...(iso ? { sizeMb: sizeMb(iso) } : {}),
+    preset: PRESETS.find(matchesPreset)?.name ?? "custom",
+    base: basePreset?.name ?? "defaults",
+    changedGroups: groups.map((s) => s.id).join(","),
+    changedKeys: changed.map((o) => o.key).join(","),
+    changedCount: changed.length,
+    settings: encodeSettings(settings),
+  };
+}
+
 // ---------------------------------------------------------------- the worker
 
 const worker = new Worker("worker.js");
 let pending: ((response: Response) => void) | null = null;
 let onLog: (line: string) => void = () => {};
+worker.onerror = (event) => track("js_error", { error: event.message, detail: "worker" });
 worker.onmessage = (event: MessageEvent<Response>) => {
   if (event.data.type === "log") return onLog(event.data.line);
   const resolve = pending;
@@ -293,10 +323,17 @@ function restore(): void {
   }
 }
 
-function download(name: string, blob: Blob, label: string): HTMLAnchorElement {
+function download(
+  name: string,
+  blob: Blob,
+  label: string,
+  kind: "iso" | "spoiler" | "settings",
+): HTMLAnchorElement {
   const url = URL.createObjectURL(blob);
   urls.push(url);
-  return el("a", { href: url, download: name, class: "button primary" }, label);
+  const link = el("a", { href: url, download: name, class: "button primary" }, label);
+  link.addEventListener("click", () => track("download", { detail: kind }));
+  return link;
 }
 
 function megabytes(file: File): string {
@@ -468,6 +505,8 @@ function buildPresets(): void {
     const input = el("input", { type: "radio", name: "preset", value: preset.name });
     input.addEventListener("change", () => {
       settings = presetSettings(preset);
+      basePreset = preset;
+      track("preset", { preset: preset.name });
       render();
       say($("share-status"), "");
     });
@@ -666,11 +705,18 @@ function blocker(step: string): string | null {
 function go(id: string): void {
   current = id;
   reached.add(id);
+  countShown(id);
   say($("nav-status"), "");
   render();
   $("step-menu").focus({ preventScroll: true });
   const top = document.querySelector(".frame")!.getBoundingClientRect().top;
   if (top < 0) window.scrollBy({ top: top - 8, behavior: "smooth" });
+}
+
+function countShown(id: string): void {
+  if (shown.has(id)) return;
+  shown.add(id);
+  track("step", { detail: id, stepIndex: visibleSteps().findIndex((s) => s.id === id) });
 }
 
 /** The step menu in the card's header: open, close, and close on Escape or a click elsewhere. */
@@ -720,7 +766,7 @@ function downloadNow(): void {
     if (blocker(s.id)) return go(s.id);
   }
   reached.add("review");
-  void run(false);
+  void run(false, "quick");
 }
 
 // ---------------------------------------------------------------- files
@@ -763,18 +809,27 @@ async function checkFiles(): Promise<void> {
   checking = true;
   checkError = null;
   checked("Checking your disc…", "busy");
+  const started = performance.now();
   const r = await ask({ type: "check", iso });
   if (token !== checkToken) return;
+  const timing = { ms: Math.round(performance.now() - started), sizeMb: sizeMb(iso) };
   checking = false;
   say($("nav-status"), "");
   if (r.type === "error") {
     disc = null;
     checkError = r.message;
+    track("disc_error", { error: r.message, ...timing });
     checked(r.message, "err");
     return render();
   }
   if (r.type !== "checked") return;
   disc = r;
+  track("disc", {
+    region: r.region ?? "",
+    discId: r.discId ?? "",
+    ok: r.supported,
+    ...timing,
+  });
   const region = r.region ? ` (${r.region.toUpperCase()})` : "";
   checked(
     r.supported
@@ -824,7 +879,10 @@ function outputName(file: File, seed: string): string {
   return `${file.name.replace(/\.iso$/i, "")} (RandomFU ${seed}).iso`;
 }
 
-async function run(dryRun: boolean): Promise<void> {
+/** How a run was started: the start step's Download now, the review's buttons, or after a preview. */
+type RunVia = "quick" | "review" | "preview";
+
+async function run(dryRun: boolean, via: RunVia): Promise<void> {
   if (busy) return;
   const reason = blocker("game");
   if (reason || !iso) return say($("nav-status"), reason ?? "Choose your disc image first.", "err");
@@ -846,6 +904,10 @@ async function run(dryRun: boolean): Promise<void> {
     log.textContent += `${line}\n`;
     log.scrollTop = log.scrollHeight;
   };
+  const facts = { ...runFacts(), dryRun };
+  track("run_start", { ...facts, detail: via });
+  const started = performance.now();
+  const ms = () => Math.round(performance.now() - started);
   try {
     const r = await ask({
       type: "run",
@@ -863,7 +925,7 @@ async function run(dryRun: boolean): Promise<void> {
         "data" in s ? s.data : file.slice(s.start, s.end),
       );
       const blob = new Blob(parts as BlobPart[], { type: "application/octet-stream" });
-      const link = download(outputName(file, seed), blob, "Download randomized ISO");
+      const link = download(outputName(file, seed), blob, "Download randomized ISO", "iso");
       link.prepend(icon({ icon: "max" }));
       links.push(link);
     } else {
@@ -873,13 +935,14 @@ async function run(dryRun: boolean): Promise<void> {
         icon({ icon: "max" }),
         "Randomize!",
       );
-      now.addEventListener("click", () => void run(false));
+      now.addEventListener("click", () => void run(false, "preview"));
       links.push(now);
     }
     const spoilerLink = download(
       spoilerName,
       new Blob([r.spoiler], { type: "text/plain" }),
       "Download spoiler log",
+      "spoiler",
     );
     spoilerLink.className = "button";
     spoilerLink.prepend(icon({ icon: "binoculars" }));
@@ -896,7 +959,16 @@ async function run(dryRun: boolean): Promise<void> {
         warn,
       warn ? "err" : "ok",
     );
+    track("run_done", { ...facts, detail: via, ms: ms(), problems: r.problems.length });
   } catch (error) {
+    track("run_error", {
+      error: (error as Error).message,
+      dryRun,
+      ms: ms(),
+      region: facts.region ?? "",
+      discId: facts.discId ?? "",
+      settings: facts.settings ?? "",
+    });
     $("log").textContent += `\nError: ${(error as Error).message}\n`;
     say($("run-status"), (error as Error).message, "err");
   } finally {
@@ -945,6 +1017,7 @@ function filterSpoiler(): void {
 // ---------------------------------------------------------------- loading shared settings
 
 function loaded(message: string, kind: "ok" | "err"): void {
+  basePreset = PRESETS.find(matchesPreset) ?? null;
   render();
   say($("share-status"), message, kind);
 }
@@ -953,11 +1026,13 @@ function loaded(message: string, kind: "ok" | "err"): void {
 
 function init(): void {
   restore();
+  basePreset = PRESETS.find(matchesPreset) ?? null;
   buildOptionPanels();
   buildPresets();
   droppable();
   stepMenu();
   render();
+  countShown(current);
 
   $("back").addEventListener("click", () => step(-1));
   $("next").addEventListener("click", () => step(1));
@@ -978,6 +1053,10 @@ function init(): void {
     try {
       const { settings: decoded, version } = decodeSettings($<HTMLInputElement>("paste").value);
       settings = decoded;
+      track("settings_load", {
+        detail: version === LOGIC_VERSION ? "string" : `string (logic v${version})`,
+        ok: true,
+      });
       loaded(
         version === LOGIC_VERSION
           ? "Loaded the settings string."
@@ -985,6 +1064,7 @@ function init(): void {
         version === LOGIC_VERSION ? "ok" : "err",
       );
     } catch (error) {
+      track("settings_load", { detail: "string", ok: false, error: (error as Error).message });
       say($("share-status"), (error as Error).message, "err");
     }
   });
@@ -995,9 +1075,21 @@ function init(): void {
     if (!file) return;
     try {
       settings = settingsFromJson(await file.text(), settings.seed);
+      track("settings_load", { detail: "file", ok: true });
       loaded(`Loaded ${file.name}.`, "ok");
     } catch (error) {
-      say($("share-status"), error instanceof SettingsError ? error.message : String(error), "err");
+      const message = error instanceof SettingsError ? error.message : String(error);
+      // Never JSON.parse's own message, which quotes the file's text.
+      const reason =
+        error instanceof SettingsError
+          ? message.startsWith("Settings file isn't valid JSON")
+            ? "invalid JSON"
+            : message
+          : error instanceof Error
+            ? error.name
+            : "unknown";
+      track("settings_load", { detail: "file", ok: false, error: reason });
+      say($("share-status"), message, "err");
     } finally {
       input.value = "";
     }
@@ -1007,7 +1099,10 @@ function init(): void {
 
   $("copy").addEventListener("click", () => {
     navigator.clipboard.writeText($<HTMLTextAreaElement>("share").value).then(
-      () => say($("copy-status"), "Copied.", "ok"),
+      () => {
+        track("share", { detail: "copy" });
+        say($("copy-status"), "Copied.", "ok");
+      },
       () => {
         $<HTMLTextAreaElement>("share").select();
         say($("copy-status"), "Select and copy the string above.");
@@ -1019,12 +1114,13 @@ function init(): void {
       `randomfu-${settings.seed}.json`,
       new Blob([settingsToJson(settings)], { type: "application/json" }),
       "",
+      "settings",
     ).click();
   });
 
   $("filter").addEventListener("input", filterSpoiler);
-  $("run").addEventListener("click", () => void run(false));
-  $("dry-run").addEventListener("click", () => void run(true));
+  $("run").addEventListener("click", () => void run(false, "review"));
+  $("dry-run").addEventListener("click", () => void run(true, "review"));
 }
 
 init();
