@@ -2237,6 +2237,18 @@ const STAT_RANDOMIZERS = {
 
 export const PRESETS: readonly Preset[] = [
   {
+    name: "QoL only",
+    points: [
+      "Shuffles and randomizes nothing: items, monsters, equipment and numbers stay as on the disc",
+      "Keeps the extras that are on by default: Send All to Item Box, Poogie's luck and the bookshelf guides",
+      "Turn on camera, HUD and quest extras in the later steps",
+    ],
+    changes: {
+      "questRewards.mode": "off",
+      "monsterRewards.mode": "off",
+    },
+  },
+  {
     name: "Rewards only",
     points: [
       "Quest rewards and carves are shuffled, at the same star level",
