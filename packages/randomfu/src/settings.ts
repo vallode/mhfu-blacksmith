@@ -1721,7 +1721,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "monsterAi.aggression",
     section: "Monster stats",
     label: "Aggression",
-    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, so it spends less time between them. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
+    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, and a large monster stands idle between moves for less time and recovers and turns faster, so it spends less time between attacks. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
     type: {
       kind: "choice",
       choices: [
@@ -1729,12 +1729,12 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "more",
           label: "More aggressive",
-          help: "Each attack is twice as likely as before against the other moves.",
+          help: "Each attack is twice as likely as before against the other moves, and a monster stands idle at most a second between moves and recovers from its moves and turns 50% faster.",
         },
         {
           value: "relentless",
           label: "Relentless",
-          help: "Each attack is four times as likely as before against the other moves.",
+          help: "Each attack is four times as likely as before against the other moves, and a monster stands idle at most a third of a second between moves and recovers from its moves and turns twice as fast.",
         },
       ],
     },
@@ -1990,7 +1990,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "elites.enabled",
     section: "Elite monsters",
     label: "Elite monsters",
-    help: "Now and then a large monster is an elite: half again its health, hits 30% harder, moves 10% faster, enrages sooner and for half again as long, and is 15% bigger. Its hide has a faint crimson pulse. Each elite adds a reward draw, half the quest's zenny and points again, and makes the main reward's rarer items half again as likely. Rolled as each monster shows up, so the quest board doesn't tell. Stacks on randomized monster stats. Caps received Guild Cards at 3 to make room for its code.",
+    help: "Now and then a large monster is an elite: half again its health, hits 30% harder, moves 10% faster, stands idle at most two thirds of a second between moves and recovers and turns 50% faster, enrages sooner and for half again as long, and is 15% bigger. Its hide has a faint crimson pulse. Each elite adds a reward draw, half the quest's zenny and points again, and makes the main reward's rarer items half again as likely. Rolled as each monster shows up, so the quest board doesn't tell. Stacks on randomized monster stats. Caps received Guild Cards at 3 to make room for its code.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",

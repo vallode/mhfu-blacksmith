@@ -261,6 +261,62 @@ aggressive on the EU disc in PPSSPP. Still to play: a trample-heavy species
 (Yian Kut-Ku, Yian Garuga, Diablos) to check the trample rule, and an elder
 dragon for the aura.
 
+## Pauses between moves
+
+Found statically on the EU disc (2026-11-22) from Tigrex, whose pause before
+turning to its next move prompted it; the same code is on FUC.
+
+- Each frame a monster's AI gate (0x09AD8278, called from 0x09B15CF0)
+  counts `+0x778` (s16) down and skips the AI while it's above 0; otherwise
+  it runs `think` (0x09AB4B68) when `+0x4B5` (u8, "think now") is set, and
+  clears it. Op `48 N` sets `+0x778`, but no monster's scripts use it.
+- Op `05` starts the move and stops the interpreter (it saves the resume pc
+  at `+0x4CC`); the move's code sets `+0x4B5` when it's done. Setting
+  `+0x4B5` from outside is the move ending there: the AI goes on after the
+  `05` the next frame.
+- Tigrex's class (vtable EBOOT 0x089BB69C; move runner em75 0x09D36A08)
+  runs action 0.1 (0x09D26470) as its idle: it plays motion record 1,
+  waits for the motion's end (`+0xBC` bit 0), then sets `+0x4B5`
+  (0x09D26158). Record 1 is a looping 180-frame stand, three seconds at the
+  game's 2 motion frames a frame. Its scripts use `05 00 01 00` often: 11
+  of the 32 in one combat choice (root 0x09D56448, `82 0 4`) and always in
+  that choice's other branch, and every attack script (`82 3 n`) starts with
+  the turn `05 01 02 00`: idle, turn, attack.
+- Action 0.0 (0x09D26398) is a timed idle instead, counting `+0x414` down;
+  0x09AD81B0 sets it from the s16 table 0x09BCF168 (240, 300, 450, 600)
+  indexed by `emChunk + 0x14C` (−1 gives 10). Likely the rest while
+  unaware.
+- Motion slot 1 is a looping idle for every monster the site has, so
+  "group 0 (`+0x298`) and motion 1001 (`+0x324`)" finds an idle without
+  species code. `blob/monsters.c` ends it after a cap (Monster aggression,
+  elites).
+- No "has seen a hunter" flag was found: `+0x506` takes several values in
+  Tigrex's scripts (3, 6, 10), and `+0x500` is the script state (op `07`
+  sets it, op `04` clears it).
+
+Played against Tigrex on the EU disc (2026-11-22, `relentless`): better,
+but its turns and the end of some attacks were still slow.
+
+### Turns and recoveries
+
+- Each frame the monster update (0x09AC667C, in the function that also
+  runs the AI gate) sets the four animation channels' speeds (`+0x94`,
+  `+0xD4`, `+0x114`, `+0x154`) to 2 × `+0x4B0` × (100 + `+0x769`) / 100.
+  `+0x769` (u8) is a percent bonus: Tigrex's charge actions 1.4 and 1.5 set
+  20 and 30, and a change of move clears it (0x09AC6C10, 0x09AC87F4). The
+  body's first channel's frame is `+0x90` (f32, 2 a game frame), its loop
+  end `+0x9C`, its flags `+0xBC` (bit 0 the motion ended).
+- Tigrex's turn (action 1.3) plays records 7 and 8 (62 frames) or 2 (56),
+  whose only hits are light contact (power 10, reaction 1, stun 2) all
+  through; its attacks end well after their last hit (record 43's last
+  hit ends at frame 186 of 332, 41 at 140 of 214, 46 at 130 of 344).
+- mhfu-extract's attack sweep (`monsters/attacks.ts`) gives each record's
+  hit windows; `src/shuffles/monster-motions.ts` keeps where the last one
+  ends, per species, and `blob/monsters.c` raises `+0x769` past it.
+
+Played against Tigrex on the EU disc at `relentless` (2026-11-22): its
+turns felt much better.
+
 ## Other things found on the way
 
 - `emChunk` `+0x60` and `+0x80` (DetectRange, DetectRadius) look like
