@@ -16,6 +16,8 @@ extern const u8 rf_hud_fill[];       /* fill(hud, x, y, w, h, r, g, b) */
 extern const u8 rf_map_shows[];      /* the map's test: does it show this monster? (hud, m) */
 extern const u8 rf_hud_sprite[];     /* sprite(hud, x, y, w, h, sprite): a sprite stretched to w×h */
 extern const u8 rf_hud_sprites[];    /* the HUD's sprite table that `sprite` indexes */
+extern const u8 rf_crowns[];         /* the Guild Card's crown table */
+extern const u8 *const rf_crown_groups[]; /* by emID: the emIDs that share its crowns, ending 0xFF */
 /* A constant, not an address: the disc's default MODE_* + 1 (an extern's address is never 0). */
 extern const u8 rf_monster_hp_mode[];
 
@@ -40,6 +42,7 @@ static u32 mode(void) {
 #define EM_ID 0x1e8
 #define HP 0x2e4
 #define HP_MAX 0x41e
+#define SIZE 0x274 /* u16: its size in percent, rolled from the quest (src/game/spawns.ts) */
 /* game_task's species table: 0x1D0 bytes each, by monster id; its stat set is 0 for small monsters. */
 #define CHUNK_BYTES 0x1d0
 #define CHUNK_SET 0x14f
@@ -52,7 +55,8 @@ static u32 mode(void) {
 /*
  * Layout: a short gauge in the stamina gauge's style (its frame and its
  * end cap, the cap mirrored on the left too) per monster, stacked on the
- * left edge under the hunter's name plate.
+ * left edge under the hunter's name plate, and a crown after it when the
+ * monster's size makes one.
  */
 #define FRAME_SPRITE 4
 #define CAP_SPRITE 6
@@ -87,6 +91,57 @@ static struct {
 #define TRAIL_R 0xf0
 #define TRAIL_G 0xf0
 #define TRAIL_B 0x00
+
+/*
+ * The crown mark: the HUD texture's own crowns (sprites 31 and 32, 16×12),
+ * right of the gauge's end cap. It has no mini crown: that's the gold one,
+ * smaller, sitting on the same line.
+ */
+#define CROWN_X (X + WIDTH + CAP_W + 1)
+#define CROWN_W 16
+#define CROWN_H 12
+#define MINI_W 12
+#define MINI_H 9
+#define SILVER_SPRITE 31
+#define GOLD_SPRITE 32
+
+/*
+ * The crown table: 14-byte entries, u8 at +3 the emID whose group the entry
+ * covers, then s16 silver, gold and mini thresholds (all 0 without crowns).
+ */
+#define CROWN_ENTRIES 62
+#define CROWN_BYTES 14
+#define CROWN_GROUP 3
+#define CROWN_SILVER 4
+#define CROWN_GOLD 6
+#define CROWN_MINI 8
+#define GROUP_END 0xff
+
+#define NO_CROWN 0
+#define MINI 1
+#define SILVER 2
+#define GOLD 3
+
+/* The crown the Guild Card would give a monster of this size, as it decides (EBOOT 0x08853F84). */
+static u32 crown(u32 em, u32 size) {
+  for (u32 i = 0; i < CROWN_ENTRIES; i++) {
+    const u8 *entry = rf_crowns + i * CROWN_BYTES;
+    s32 silver = *(const s16 *)(entry + CROWN_SILVER);
+    s32 gold = *(const s16 *)(entry + CROWN_GOLD);
+    s32 mini = *(const s16 *)(entry + CROWN_MINI);
+    if (!silver && !gold && !mini) continue;
+    const u8 *group = rf_crown_groups[entry[CROWN_GROUP]];
+    if (!group) continue;
+    for (u32 k = 0; k < SPECIES && group[k] != GROUP_END; k++) {
+      if (group[k] != em) continue;
+      if ((s32)size <= mini) return MINI;
+      if ((s32)size >= gold) return GOLD;
+      if ((s32)size >= silver) return SILVER;
+      return NO_CROWN;
+    }
+  }
+  return NO_CROWN;
+}
 
 /* Per manager slot: who was there and how much of the bar the trail still shows. */
 static u8 *seen[SLOTS];
@@ -142,6 +197,12 @@ static void draw(u8 *hud) {
     rf_call8(rf_hud_cap, (u32)hud, X + WIDTH, y, CAP_SPRITE, 0, 0, 0, 0);
     fill(hud, X + w, y + FILL_Y, trail[slot] - w, TRAIL_R, TRAIL_G, TRAIL_B);
     fill(hud, X, y + FILL_Y, w, HP_R, HP_G, HP_B);
+    const u32 c = crown(m[EM_ID], *(u16 *)(m + SIZE));
+    if (c == MINI) {
+      rf_call8(rf_hud_sprite, (u32)hud, CROWN_X, y + CROWN_H - MINI_H, MINI_W, MINI_H, GOLD_SPRITE, 0, 0);
+    } else if (c != NO_CROWN) {
+      rf_call8(rf_hud_sprite, (u32)hud, CROWN_X, y, CROWN_W, CROWN_H, c == GOLD ? GOLD_SPRITE : SILVER_SPRITE, 0, 0);
+    }
     if (trail[slot] > w) trail[slot]--;
     row++;
   }
