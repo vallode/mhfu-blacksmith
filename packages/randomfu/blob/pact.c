@@ -31,8 +31,30 @@ extern u8 *const rf_printer[];  /* the global holding the text printer */
 extern const u8 rf_print[];     /* print(printer, x, y, format, ...): reads ~C and ~B codes */
 /* Made per seed (src/patches/pact.ts, pactPool). */
 extern const u8 rf_pact_pool[];
+/* Made per disc (src/patches/pact.ts, encodeCapturable): bit n, emID n can be captured. */
+extern const u8 rf_pact_capturable[];
+/*
+ * Made per seed (src/patches/pact.ts, encodeDrops): what each large monster
+ * drops at each rank, a span per rank and species, then u16 item IDs.
+ */
+extern const u8 rf_pact_drops[];
+#define SPECIES 96
+/*
+ * Made per disc (src/patches/pact.ts, findSharpnessLevel): the EBOOT's
+ * level(hunter, sharpness), the colour a sharpness is on the equipped
+ * weapon's bar (0 red to 6 purple; 0 for a gunner), or 0 where it wasn't
+ * found (then no blade pacts).
+ */
+extern const u32 rf_pact_level_fn[];
+/*
+ * Made per disc (src/patches/pact.ts, pactLevels): by rank and stars, the
+ * rarities a piece of equipment may have, the lowest in the low nibble.
+ */
+extern const u8 rf_pact_levels[];
+#define LEVEL_STARS 16
 
 /* The quest state: the HUD object (the hooks' argument). */
+#define Q_STATE 0x1220  /* u8: 0 under way, 1 completed or timed out (banner and wait), 2 rewards */
 #define Q_TIME 0x1230   /* s32 ticks left, counting down */
 #define Q_REWARD 0x1234 /* s32 reward zenny; a faint takes Q_PENALTY off it */
 #define Q_PENALTY 0x1238
@@ -49,9 +71,11 @@ extern const u8 rf_pact_pool[];
 #define TOP_LAYER 14
 /* The quest file's header (packages/randomfu/src/game/quest-fields.ts, spawns.ts). */
 #define H_SUPPLIES 0x08
+#define H_REWARDS 0x0c /* the reward tables: u16, u16, u32 items; until a u16 0xFFFF */
 #define H_LARGE 0x14 /* the large monster tables */
 #define H_OBJECTIVES 0x28 /* two of { u32 kind, u16 id, u8 count, u8 slot } */
 #define H_RANK 0x44 /* 2 High Rank, 5 G Rank, else Low */
+#define H_STARS 0x66
 #define H_TYPE 0x4c /* 2: a delivery */
 #define H_STRINGS 0x60 /* LangPTRs: 7 offsets of StringPTRs blocks (src/game/quest-text.ts) */
 #define H_TARGET_ID 0x70
@@ -79,6 +103,12 @@ extern const u8 rf_pact_pool[];
 #define SAVE_EQUIPMENT 0x548
 #define EQUIPMENT_SLOTS 400
 #define EQUIPMENT_SLOT 12
+/* The item box and the pouch: { u16 item, u16 amount } a slot (the save file's offsets + 0x4A0). */
+#define SAVE_BOX 0x3428
+#define BOX_SLOTS 1000
+#define SAVE_POUCH 0x43c8
+#define POUCH_SLOTS 24
+#define STACK 99
 
 /* Entities (monsters and the hunter). */
 #define HP 0x2e4
@@ -86,6 +116,10 @@ extern const u8 rf_pact_pool[];
 #define HP_MAX 0x41e
 #define STAMINA 0x55a
 #define STAMINA_MAX 0x62e
+#define WEAPON_KIND 0x4e9 /* u8: the equipped weapon's box type, 5 melee */
+#define MELEE 5
+#define SHARPNESS 0x10f2     /* s16: what's left; a hit's wear takes some off (game_task's sharpen) */
+#define SHARPNESS_MAX 0x60c  /* s16: the bar's length; set at the quest's start and after a cart */
 
 /*
  * Input: the pad hook gets the system's SceCtrlData (buttons a u32 at +4,
@@ -113,19 +147,34 @@ enum {
   NO_SUPPLIES,
   FRAIL,
   WEARY,
+  DULL,
+  BRITTLE,
   DELIVER_MORE,
   DELIVER_DOUBLE,
-  GLASS, /* the jackpot's: never drawn with the rest (new_quest) */
+  /* The jackpots: never drawn with the rest (new_quest). */
+  GLASS,
+  EXHAUSTED,
+  BLEEDING,
+  CAPTURE_ONLY,
+  LOST_POUCH,
+  BROKEN,
   PENALTIES
 };
+#define FIRST_JACKPOT GLASS
+#define JACKPOTS (PENALTIES - FIRST_JACKPOT)
 /* What a penalty needs of the quest to mean anything. */
 #define NEEDS_LARGE 1    /* a large monster */
 #define NEEDS_DELIVERY 2 /* an item to deliver, other than a Paw Pass Ticket from the box */
 #define NEEDS_TIME 4     /* not a quest won by surviving until time over */
+#define NEEDS_CAPTURE 8  /* large monsters, every one of which can be captured */
+#define NEEDS_BLADE 16   /* a Blademaster: the hunter's weapon has sharpness above red */
+#define NEEDS_TOP 32     /* its best colour is at least 1/DULL_SHARE of the bar */
+#define DULL_SHARE 8
 /*
  * The jackpot: about one window in JACKPOT_ODDS, on a quest with a large
- * monster, its last pact is Glass (health held at 1, and one cart), which
- * pays far more than any other. Weight 4 is its own.
+ * monster, its last pact is one of the jackpots, which pay far more than
+ * any other. A faint while the quest is under way loses it; finishing
+ * with time left pays more of its zenny (keep()). Weight 4 is theirs.
  */
 #define JACKPOT_ODDS 10
 #define JACKPOT_WEIGHT 4
@@ -146,24 +195,52 @@ static const struct {
     {"No supply box", 1, 4, 0},
     {"Frail: health capped at 50", 2, 5, 0},
     {"Weary: stamina capped at half", 1, 6, 0},
+    {"Dull blade: a colour lower", 2, 9, NEEDS_BLADE | NEEDS_TOP},
+    {"Brittle blade: twice the wear", 1, 9, NEEDS_BLADE},
     {"Deliver 50% more", 2, 7, NEEDS_DELIVERY},
     {"Deliver twice as many", 3, 7, NEEDS_DELIVERY},
     {"Glass: 1 health, a faint fails", JACKPOT_WEIGHT, 8, NEEDS_LARGE},
+    {"Exhausted: a quarter stamina", JACKPOT_WEIGHT, 8, NEEDS_LARGE},
+    {"Bleeding: health drains to 1", JACKPOT_WEIGHT, 8, NEEDS_LARGE},
+    {"Capture or nothing: no kills", JACKPOT_WEIGHT, 8, NEEDS_CAPTURE},
+    {"Lost pouch: items to the box", JACKPOT_WEIGHT, 8, NEEDS_LARGE},
+    {"Broken blade: red sharpness", JACKPOT_WEIGHT, 8, NEEDS_LARGE | NEEDS_BLADE},
 };
+#define BIT(p) (1u << (p))
+/*
+ * Each jackpot's zenny (a percent of what the quest pays, and of the rank's
+ * jackpot floor, out of 1000), how many times a hard pact's amount of its
+ * rare item it gives, and the penalties a window with it leaves out.
+ */
+static const struct {
+  u16 percent;
+  u8 amount;
+  u32 leaves_out;
+} jackpots[JACKPOTS] = {
+    {1000, 5, BIT(ONE_CART) | BIT(FRAIL)}, /* Glass holds one cart already, and its health below Frail's */
+    {500, 3, BIT(WEARY)},                  /* Exhausted is Weary, worse */
+    {700, 4, BIT(FRAIL)},                  /* Bleeding takes health down further than Frail */
+    {600, 3, 0},
+    {800, 4, 0},
+    {1000, 5, BIT(DULL) | BIT(BRITTLE)}, /* Broken blade is as low as sharpness goes */
+};
+/* Bleeding: a point of health every this many quest frames (30 a second). */
+#define BLEED_FRAMES 60
 
 /* The rewards. */
 enum { R_ZENNY, R_DRAWS, R_ITEM, R_EQUIPMENT, R_JACKPOT, REWARDS };
 /* The jackpot's item, when the rank has none to give. */
 #define NO_ITEM 0xffff
-/* The jackpot gives five times as many of its rare item as a hard pact would. */
-#define JACKPOT_AMOUNT 5
 /*
  * Zenny: a percent of what the quest pays, by weight, but at least a set
  * amount for its rank, so a quest that pays little is still worth it.
  */
-static const u16 bonus_percent[5] = {0, 50, 100, 200, 1000};
+static const u8 bonus_percent[4] = {0, 50, 100, 200};
+/* By weight; the last is the jackpots', at 1000 (Glass's), scaled by each one's percent. */
 static const u32 zenny_floor[3][4] = {
     {600, 1200, 2400, 30000}, {2000, 4000, 8000, 100000}, {4000, 8000, 15000, 200000}};
+/* The most a quest pays with its pacts: six digits, as much as any disc quest shows. */
+#define ZENNY_MAX 999999
 
 /*
  * The reward pool, per seed: a header of spans (first entry, count), per
@@ -181,9 +258,12 @@ typedef struct {
   u8 type;   /* 0xFF an item; else the equipment box's type (0-4 armor, 5 melee, 6 ranged) */
   u8 amount; /* items */
   u16 name;  /* offset from the pool's start */
-  u16 pad;
+  u16 extra; /* an item's most in one reward (0: no limit), TIED_BIT; a piece's rarity */
 } rf_entry;
 #define ITEM 0xff
+/* An item in the pool for being tied to some quest, not in the sample of the rest (pactPool). */
+#define TIED_BIT 0x8000
+#define most_of(e) ((e)->extra & ~TIED_BIT)
 static const rf_span *span(u32 band, u32 kind) {
   return (const rf_span *)rf_pact_pool + band * POOL_KINDS + kind;
 }
@@ -209,6 +289,7 @@ enum { IDLE, SETTLING, PENDING, OPEN, SEALED };
 static u8 state;
 static u8 settle;
 static u8 band;  /* the quest's rank: 0 Low, 1 High, 2 G */
+static u8 level; /* the rarities a piece may have for the quest's stars (rf_pact_levels) */
 static u8 kinds; /* what the quest has (NEEDS_*) */
 static u8 room;          /* draws the main reward table can still take */
 static u8 *rewards_main; /* that table, found when the offers were made */
@@ -229,10 +310,23 @@ static u8 *save;
 static u8 hp_up, atk_up, frail;
 static s16 weary;  /* the stamina cap, or 0 */
 static u8 sealing; /* asked for by the pad hook, done on the next quest frame */
-static u8 glass;   /* the jackpot's taken: health held at 1 */
-static u8 glass_lost;     /* a faint lost it */
-static u32 glass_zenny;   /* the zenny it adds */
+static u8 jackpot;        /* the jackpot taken (its penalty), or 0 */
+static u8 jackpot_lost;   /* a faint (or a kill) lost it */
+static u8 jackpot_timed;  /* the quest ended: the speed bonus was paid, or there was none */
+static u32 jackpot_zenny; /* the zenny it adds */
+static s32 jackpot_time;  /* the clock when it was sealed */
+static u8 bleed;          /* quest frames since Bleeding last took health */
+static u32 seen_alive;    /* Capture or nothing: bit n, the monster in slot n was seen alive */
+static u8 *quest_seen;    /* the quest state the quest frame hook was last handed */
+static u8 edge_capped;    /* Dull or Broken blade: sharpness held at edge_cap */
+static s16 edge_cap;
+static u8 brittle;        /* Brittle blade: every bit of wear taken twice */
+static s16 edge_seen;     /* the sharpness last frame */
+static u32 blade_due;     /* bit p: blade penalty p, sealed while the hunter couldn't be read */
 static u8 paying;  /* bit k: offer[k]'s item or equipment, until the rewards hook pays it */
+/* Bit n: item n is the quest's (tie_quest), so its item rewards lean to it. */
+#define TIED_ITEMS 2048
+static u32 tied[TIED_ITEMS / 32];
 
 static u32 random(u32 n) {
   seed ^= seed << 13;
@@ -253,6 +347,9 @@ static int game_task_loaded(void) {
 }
 
 /* The loaded quest file, if it's there. */
+/* An offset into the loaded quest file. */
+static int in_file(u32 off) { return off >= 0x80 && off < QUEST_BYTES; }
+
 static u8 *header_of(u8 *q) {
   u8 *header = *(u8 **)(q + Q_HEADER);
   return valid(header) ? header : 0;
@@ -299,9 +396,48 @@ static u8 *main_table(u8 *q) {
   return 0;
 }
 
+static int capturable(u32 em) { return em < 96 && (rf_pact_capturable[em >> 3] >> (em & 7)) & 1; }
+
+/* Whether every large monster the quest's tables list can be captured. */
+static int all_capturable(u8 *header) {
+  const u32 at = *(u32 *)(header + H_LARGE);
+  if (at < 0x80 || at >= 0x10000 || (at & 3)) return 0;
+  const u8 *table = header + at;
+  for (u32 t = 0; t < 8 && *(const u16 *)table; t++, table += 16) {
+    const u32 data = *(const u32 *)(table + 12);
+    if (data < 0x80 || data >= 0x10000 || (data & 1)) continue;
+    const u8 *m = header + data;
+    for (u32 k = 0; k < 8 && *(const u16 *)m != 0xffff; k++, m += 60) {
+      if (*(const u16 *)m && !capturable(*(const u16 *)m)) return 0;
+    }
+  }
+  return 1;
+}
+
+/* The colour `sharpness` is on the hunter's weapon's bar. */
+static u32 colour(u8 *hunter, s32 sharpness) {
+  return ((u32(*)(u8 *, s32))rf_pact_level_fn[0])(hunter, sharpness) & 0xff;
+}
+
+/* Whether the hunter's weapon has sharpness, and the level function was found. */
+static int blade(u8 *hunter) { return hunter && rf_pact_level_fn[0] && hunter[WEAPON_KIND] == MELEE; }
+
+/* The most sharpness may be and still be below colour `below`: the top of the colour under it. */
+static s16 top_below(u8 *hunter, u32 below) {
+  s32 lo = 0, hi = *(s16 *)(hunter + SHARPNESS_MAX);
+  if (hi < 0) hi = 0;
+  while (lo < hi) { /* colour rises with sharpness; colour(lo) < below */
+    const s32 mid = (lo + hi + 1) / 2;
+    if (colour(hunter, mid) < below) lo = mid;
+    else hi = mid - 1;
+  }
+  return (s16)lo;
+}
+
 static u32 kinds_of(u8 *header) {
   u32 k = NEEDS_TIME;
   if (has_large(header)) k |= NEEDS_LARGE;
+  if ((k & NEEDS_LARGE) && all_capturable(header)) k |= NEEDS_CAPTURE;
   if (header[H_TYPE] == DELIVERY && *(u16 *)(header + H_TARGET_NUM)) {
     /* The gathering quests' Paw Pass Ticket comes in the box; they're won by time over too. */
     if (in_supplies(header, *(u16 *)(header + H_TARGET_ID))) k &= ~NEEDS_TIME;
@@ -315,13 +451,60 @@ static u32 rank_band(u8 *header) {
   return rank == 2 ? 1 : rank == 5 ? 2 : 0;
 }
 
+static void tie(u32 item) {
+  if (item && item < TIED_ITEMS) tied[item >> 5] |= 1u << (item & 31);
+}
+static int is_tied(u32 item) { return item < TIED_ITEMS && (tied[item >> 5] >> (item & 31)) & 1; }
+
+/*
+ * What the quest is about: what its large monsters drop at its rank, and
+ * what its own reward tables give, as the shuffles left them. A Tigrex hunt
+ * pays Tigrex parts, where the pool has any that fit (pick()).
+ */
+static void tie_quest(u8 *header) {
+  for (u32 w = 0; w < TIED_ITEMS / 32; w++) tied[w] = 0;
+  const u32 at = *(u32 *)(header + H_LARGE);
+  if (in_file(at) && !(at & 3)) {
+    const u8 *table = header + at;
+    for (u32 t = 0; t < 8 && *(const u16 *)table; t++, table += 16) {
+      const u32 data = *(const u32 *)(table + 12);
+      if (!in_file(data) || (data & 1)) continue;
+      const u8 *m = header + data;
+      for (u32 k = 0; k < 8 && *(const u16 *)m != 0xffff; k++, m += 60) {
+        const u32 em = *(const u16 *)m;
+        if (!em || em >= SPECIES) continue;
+        const rf_span *s = (const rf_span *)rf_pact_drops + band * SPECIES + em;
+        const u16 *items = (const u16 *)(rf_pact_drops + BANDS * SPECIES * sizeof(rf_span));
+        for (u32 j = 0; j < s->count; j++) tie(items[s->first + j]);
+      }
+    }
+  }
+  const u32 rewards = *(u32 *)(header + H_REWARDS);
+  if (!in_file(rewards) || (rewards & 3)) return;
+  const u8 *t = header + rewards;
+  for (u32 k = 0; k < MAX_TABLES && *(const u16 *)t != 0xffff; k++, t += TABLE_BYTES) {
+    const u32 items = *(const u32 *)(t + 4);
+    if (!in_file(items) || (items & 1)) continue;
+    /* { u16 chance, u16 item, u16 amount }, until a chance of 0xFFFF */
+    const u16 *i = (const u16 *)(header + items);
+    for (u32 j = 0; j < 64 && in_file(items + j * 6 + 6) && i[0] != 0xffff; j++, i += 3) {
+      tie(i[1]);
+    }
+  }
+}
+
 /* The zenny an offer adds: a percent of the quest's, at least the rank's floor. */
 static u32 bonus(u8 *q, const rf_offer *o) {
   const u32 weight = penalty[o->penalty].weight;
   const u32 base = (u32) * (s32 *)(q + Q_REWARD);
-  const u32 floor = zenny_floor[band][weight - 1];
-  const u32 n = base > 1000000 ? 0 : base * bonus_percent[weight] / 100;
-  return n > floor ? n : floor;
+  const int big = o->reward == R_JACKPOT;
+  const u32 percent = big ? jackpots[o->penalty - FIRST_JACKPOT].percent : bonus_percent[weight];
+  const u32 floor = big ? zenny_floor[band][3] * percent / 1000 : zenny_floor[band][weight - 1];
+  const u32 n = base > 1000000 ? 0 : base * percent / 100;
+  const u32 b = n > floor ? n : floor;
+  /* A jackpot's would pass six digits on a quest that pays well: as much as fits. */
+  if (big && base + b > ZENNY_MAX) return base < ZENNY_MAX ? ZENNY_MAX - base : 0;
+  return b;
 }
 
 /* Whether an offer gives an item or piece from the pool (its icon, the rewards hook). */
@@ -348,30 +531,65 @@ static int offered(u32 k, u32 value) {
  * no other offer has (`used`), and no item or piece another offer gives;
  * a reward of REWARDS when nothing is left for it.
  */
+/* Whether a piece of equipment fits the quest's stars. */
+static int fits_level(const rf_entry *e) { return e->extra >= (level & 15) && e->extra <= (level >> 4); }
+
+/* Whether the rank has a piece that fits the quest's stars. */
+static int pieces_fit(void) {
+  const rf_span *s = span(band, EQUIPMENT_KIND);
+  for (u32 j = 0; j < s->count; j++) {
+    if (fits_level(entry(s->first + j))) return 1;
+  }
+  return 0;
+}
+
+#define NONE 0xffffffffu
+/*
+ * From `start` on (wrapping), the first entry of `s` no other offer gives:
+ * a piece that fits the quest's stars; an item tied to this quest if `want`
+ * says so, else one of the sample (not another quest's own). NONE if
+ * there's none.
+ */
+static u32 find(u32 k, const rf_span *s, u32 start, int want) {
+  for (u32 j = 0; j < s->count; j++) {
+    const u32 v = s->first + (start + j) % s->count;
+    const rf_entry *e = entry(v);
+    if (e->type == ITEM ? (want ? !is_tied(e->id) : (e->extra & TIED_BIT) != 0) : !fits_level(e)) {
+      continue;
+    }
+    if (!offered(k, v)) return v;
+  }
+  return NONE;
+}
+
+/* An entry of `s` from a random place: one tied to the quest, if any is left. */
+static u32 choose(u32 k, const rf_span *s) {
+  if (!s->count) return NONE;
+  const u32 start = random(s->count);
+  const u32 v = find(k, s, start, 1);
+  return v != NONE ? v : find(k, s, start, 0);
+}
+
 static rf_offer pick(u32 k, u32 p, u32 *used) {
   const u32 weight = penalty[p].weight, b = band;
   u32 options[REWARDS + 2], n = 0;
   if (!(*used & (1u << R_ZENNY))) options[n++] = R_ZENNY;
   /* Draws only where all of them fit, so the offer pays what it says. */
   if (weight <= room && !(*used & (1u << R_DRAWS))) options[n++] = R_DRAWS;
+  const int pieces = weight == 3 && pieces_fit();
   if (span(b, weight - 1)->count) options[n++] = R_ITEM;
-  if (weight == 3 && span(b, EQUIPMENT_KIND)->count) options[n++] = R_EQUIPMENT;
+  if (pieces) options[n++] = R_EQUIPMENT;
   /* Things to get come up twice as often as bonuses. */
   if (span(b, weight - 1)->count) options[n++] = R_ITEM;
-  if (weight == 3 && span(b, EQUIPMENT_KIND)->count) options[n++] = R_EQUIPMENT;
+  if (pieces) options[n++] = R_EQUIPMENT;
   rf_offer o = {(u8)p, REWARDS, 0};
   while (n) {
     o.reward = (u8)options[random(n)];
     if (o.reward == R_ITEM || o.reward == R_EQUIPMENT) {
-      /* From a random place in the list, the first thing no other offer gives. */
-      const rf_span *s = span(b, o.reward == R_ITEM ? weight - 1 : EQUIPMENT_KIND);
-      const u32 start = random(s->count);
-      u32 j = 0;
-      for (; j < s->count; j++) {
-        o.value = (u16)(s->first + (start + j) % s->count);
-        if (!offered(k, o.value)) break;
-      }
-      if (j == s->count) { /* all of them are offered: another kind, then */
+      /* Something no other offer gives, the quest's own if there is one. */
+      const u32 v = choose(k, span(b, o.reward == R_ITEM ? weight - 1 : EQUIPMENT_KIND));
+      o.value = (u16)v;
+      if (v == NONE) { /* all of them are offered: another kind, then */
         u32 m = 0;
         for (u32 i = 0; i < n; i++) {
           if (options[i] != o.reward) options[m++] = options[i];
@@ -397,26 +615,22 @@ static void forget(void) {
   cursor = 0;
   hp_up = atk_up = frail = 0;
   weary = 0;
-  glass = glass_lost = 0;
-  glass_zenny = 0;
+  jackpot = jackpot_lost = jackpot_timed = 0;
+  jackpot_zenny = 0;
+  bleed = 0;
+  seen_alive = 0;
+  edge_capped = brittle = 0;
+  blade_due = 0;
 }
 
 /*
- * The jackpot, offer `k` (the last): a rare item no other offer gives, from
- * the rank's hardest grade, and ten times the quest's zenny (bonus()).
+ * The jackpot `p`, offer `k` (the last): a rare item no other offer gives,
+ * from the rank's hardest grade, and many times the quest's zenny (bonus()).
  */
-static rf_offer jackpot(u32 k) {
-  rf_offer o = {GLASS, R_JACKPOT, NO_ITEM};
-  const rf_span *s = span(band, 2);
-  if (!s->count) return o;
-  const u32 start = random(s->count);
-  for (u32 j = 0; j < s->count; j++) {
-    const u16 value = (u16)(s->first + (start + j) % s->count);
-    if (!offered(k, value)) {
-      o.value = value;
-      break;
-    }
-  }
+static rf_offer draw_jackpot(u32 k, u32 p) {
+  rf_offer o = {(u8)p, R_JACKPOT, NO_ITEM};
+  const u32 v = choose(k, span(band, 2));
+  if (v != NONE) o.value = (u16)v;
   return o;
 }
 
@@ -425,20 +639,42 @@ static void new_quest(u8 *q, u8 *header) {
   state = PENDING;
   offer[OFFERS - 1].reward = REWARDS; /* no jackpot, until one's drawn */
   band = (u8)rank_band(header);
+  const u32 stars = header[H_STARS] < LEVEL_STARS ? header[H_STARS] : LEVEL_STARS - 1;
+  level = rf_pact_levels[band * LEVEL_STARS + stars];
+  tie_quest(header);
   kinds = (u8)kinds_of(header);
+  u8 *hunter = *(u8 **)(q + HUD_HUNTER);
+  if (valid(hunter) && blade(hunter)) {
+    const s32 max = *(s16 *)(hunter + SHARPNESS_MAX);
+    const u32 best = colour(hunter, max);
+    /* An all-red bar has nothing for a blade pact to take. */
+    if (best) kinds |= NEEDS_BLADE;
+    /* Dull blade only where the best colour is a fair share of the bar, so it costs something. */
+    if (best && (max - top_below(hunter, best)) * DULL_SHARE >= max) kinds |= NEEDS_TOP;
+  }
   rewards_main = main_table(q);
   const u32 draws = rewards_main ? rewards_main[TABLE_DRAWS] : MAX_DRAWS;
   room = draws < MAX_DRAWS ? (u8)(MAX_DRAWS - draws) : 0;
-  /* Rarely, the jackpot: then nothing it holds already (one cart) or overrides (frail). */
-  const u32 rare = (kinds & NEEDS_LARGE) && !random(JACKPOT_ODDS);
+  /* Rarely, a jackpot that fits the quest: then nothing it holds already or overrides. */
+  u32 rare = 0, leaves_out = 0;
+  if ((kinds & NEEDS_LARGE) && !random(JACKPOT_ODDS)) {
+    u8 fits[JACKPOTS];
+    u32 m = 0;
+    for (u32 p = FIRST_JACKPOT; p < PENALTIES; p++) {
+      if ((penalty[p].needs & kinds) == penalty[p].needs) fits[m++] = (u8)p;
+    }
+    const u32 p = fits[random(m)]; /* Glass, at least: it needs only a large monster */
+    leaves_out = jackpots[p - FIRST_JACKPOT].leaves_out;
+    offer[OFFERS - 1] = draw_jackpot(0, p);
+    rare = 1;
+  }
   /* Three penalties from different groups that fit the quest, each with its reward. */
   u8 can[PENALTIES];
   u32 n = 0, used = 0;
-  for (u32 p = 0; p < PENALTIES; p++) {
-    if (p == GLASS || (rare && (p == ONE_CART || p == FRAIL))) continue;
+  for (u32 p = 0; p < FIRST_JACKPOT; p++) {
+    if (leaves_out & BIT(p)) continue;
     if ((penalty[p].needs & kinds) == penalty[p].needs) can[n++] = (u8)p;
   }
-  if (rare) offer[OFFERS - 1] = jackpot(0);
   for (u32 k = 0; k < OFFERS - rare; k++) {
     /* A penalty with nothing left to pay gives way to another. */
     u32 p = WEARY;
@@ -496,10 +732,13 @@ static void put_number(u32 n) {
   line[at] = 0;
 }
 
-/* How many of its item the jackpot gives. */
-static u32 jackpot_amount(const rf_entry *e) {
-  const u32 n = e->amount * JACKPOT_AMOUNT;
-  return n > 99 ? 99 : n;
+/* How many of its item a jackpot gives. */
+static u32 jackpot_amount(const rf_offer *o, const rf_entry *e) {
+  u32 n = e->amount * jackpots[o->penalty - FIRST_JACKPOT].amount;
+  /* No more than its share of what the recipes need (pactPool's demand). */
+  const u32 most = most_of(e);
+  if (most && n > most) n = most > e->amount ? most : e->amount;
+  return n > STACK ? STACK : n;
 }
 
 static void put_reward(u8 *q, const rf_offer *o) {
@@ -518,7 +757,7 @@ static void put_reward(u8 *q, const rf_offer *o) {
       const rf_entry *e = entry(o->value);
       put((const char *)rf_pact_pool + e->name);
       put(" x");
-      put_number(jackpot_amount(e));
+      put_number(jackpot_amount(o, e));
       put(" +");
     } else {
       put("Zenny +");
@@ -536,6 +775,9 @@ static void put_reward(u8 *q, const rf_offer *o) {
   }
   }
 }
+
+/* What every jackpot asks besides its penalty, and pays for. */
+#define JACKPOT_RULE "No faints; faster pays more"
 
 /* A symbol the game's font has (src/hints/style.ts). */
 #define STAR "\xe2\x98\x85" /* ★ */
@@ -560,6 +802,10 @@ static void list_offer(u8 *q, const rf_offer *o) {
   put(STAR " ");
   put_reward(q, o);
   list_line();
+  if (o->reward == R_JACKPOT) {
+    put(JACKPOT_RULE);
+    list_line();
+  }
 }
 
 /*
@@ -571,8 +817,6 @@ static void list_offer(u8 *q, const rf_offer *o) {
  * 3) have one spare line, too few. The file is read again for the next
  * quest (seal() clears the loader's cache).
  */
-static int in_file(u32 off) { return off >= 0x80 && off < QUEST_BYTES; }
-
 static void list_in_text(u8 *header) {
   const u32 table = *(u32 *)(header + H_STRINGS);
   if (!in_file(table) || (table & 3) || !listed_at) return;
@@ -582,6 +826,52 @@ static void list_in_text(u8 *header) {
     if (in_file(block) && !(block & 3)) {
       *(u32 *)(header + block + S_DETAILS) = (u32)listed - (u32)header;
     }
+  }
+}
+
+/* One pouch slot into the item box: onto stacks of it first, then a free slot; what doesn't fit stays. */
+static void stash(u16 *slot) {
+  u16 *box = (u16 *)(save + SAVE_BOX);
+  for (u32 pass = 0; pass < 2; pass++) {
+    for (u32 s = 0; s < BOX_SLOTS && slot[1]; s++) {
+      u16 *b = box + s * 2;
+      if (pass == 0 ? b[0] != slot[0] || b[1] >= STACK : b[0] != 0) continue;
+      if (!b[0]) b[1] = 0;
+      b[0] = slot[0];
+      const u32 n = STACK - b[1] < slot[1] ? STACK - b[1] : slot[1];
+      b[1] = (u16)(b[1] + n);
+      slot[1] = (u16)(slot[1] - n);
+    }
+  }
+  if (!slot[1]) slot[0] = 0;
+}
+
+/* Lost pouch: everything in it goes to the item box, as if left at home. */
+static void lose_pouch(void) {
+  if (!save) return;
+  u16 *pouch = (u16 *)(save + SAVE_POUCH);
+  for (u32 k = 0; k < POUCH_SLOTS; k++, pouch += 2) {
+    if (!pouch[0]) continue;
+    if (!pouch[1]) pouch[0] = 0;
+    else stash(pouch);
+  }
+}
+
+/* Sharpness held at the top of the colour under `below` (Dull and Broken blade). */
+static void cap_edge(u8 *hunter, u32 below) {
+  if (!blade(hunter) || !below) return;
+  edge_cap = top_below(hunter, below);
+  edge_capped = 1;
+}
+
+/* A blade pact's penalty, on a hunter that can be read. */
+static void blade_penalty(u8 *hunter, u32 p) {
+  if (!blade(hunter)) return;
+  if (p == DULL) cap_edge(hunter, colour(hunter, *(s16 *)(hunter + SHARPNESS_MAX)));
+  if (p == BROKEN) cap_edge(hunter, 1); /* red */
+  if (p == BRITTLE) {
+    brittle = 1;
+    edge_seen = *(s16 *)(hunter + SHARPNESS);
   }
 }
 
@@ -595,6 +885,12 @@ static void seal(u8 *q) {
   at = listed_at = 0;
   for (u32 k = 0; k < OFFERS; k++) {
     if (!(taken & (1u << k))) continue;
+    /*
+     * A blade pact on a hunter without a blade: neither its penalty nor its
+     * reward. One the hunter can't be read for yet (it was a blade when
+     * offered) holds, and its penalty waits for the hunter (keep).
+     */
+    if ((penalty[offer[k].penalty].needs & NEEDS_BLADE) && hunter && !blade(hunter)) continue;
     list_offer(q, &offer[k]);
     switch (offer[k].penalty) {
     case HP_UP: hp_up = 30; break;
@@ -623,9 +919,19 @@ static void seal(u8 *q) {
       if (header) deliver_more(header, 100);
       break;
     case FRAIL: frail = 1; break;
-    case GLASS:
-      glass = 1;
-      one_cart = 1;
+    case GLASS: one_cart = 1; break;
+    case EXHAUSTED: {
+      if (!hunter) break;
+      s16 a = *(s16 *)(hunter + STAMINA), b = *(s16 *)(hunter + STAMINA_MAX);
+      weary = (s16)((a > b ? a : b) / 4);
+      break;
+    }
+    case LOST_POUCH: lose_pouch(); break;
+    case DULL:
+    case BROKEN:
+    case BRITTLE:
+      if (hunter) blade_penalty(hunter, offer[k].penalty);
+      else blade_due |= BIT(offer[k].penalty);
       break;
     case WEARY: {
       if (!hunter) break;
@@ -638,8 +944,9 @@ static void seal(u8 *q) {
     case R_ZENNY: zenny += bonus(q, &offer[k]); break;
     case R_DRAWS: draws += offer[k].value; break;
     case R_JACKPOT:
-      glass_zenny = bonus(q, &offer[k]);
-      zenny += glass_zenny;
+      jackpot = offer[k].penalty;
+      jackpot_zenny = bonus(q, &offer[k]);
+      zenny += jackpot_zenny;
       if (offer[k].value != NO_ITEM) paying |= (u8)(1u << k);
       break;
     default: paying |= (u8)(1u << k); break;
@@ -650,6 +957,10 @@ static void seal(u8 *q) {
    * faint costs the same share of the new reward as of the old.
    */
   const s32 reward = *(s32 *)(q + Q_REWARD);
+  /* Six digits at most, with the jackpot's and another zenny pact's together. */
+  if (reward >= 0 && (u32)reward + zenny > ZENNY_MAX) {
+    zenny = (u32)reward < ZENNY_MAX ? ZENNY_MAX - (u32)reward : 0;
+  }
   if (zenny && reward > 0) {
     *(s32 *)(q + Q_PENALTY) = (s32)((u32) * (s32 *)(q + Q_PENALTY) * (reward + zenny) / reward);
   }
@@ -661,6 +972,7 @@ static void seal(u8 *q) {
     const u32 n = main[TABLE_DRAWS] + draws;
     main[TABLE_DRAWS] = (u8)(n > MAX_DRAWS ? MAX_DRAWS : n);
   }
+  jackpot_time = *(s32 *)(q + Q_TIME); /* after Half the time */
   if (header) list_in_text(header);
   /* The quest file changed: have the loader read it again next time. */
   if (header || main) *(u16 *)(q + Q_LAST_FILE) = 0xffff;
@@ -678,7 +990,7 @@ static void rewards(u8 *arg) {
       for (u32 s = 0; s < REWARD_SLOTS; s++, box += 2) {
         if (box[0]) continue;
         box[0] = e->id;
-        box[1] = (u16)(offer[k].reward == R_JACKPOT ? jackpot_amount(e) : e->amount);
+        box[1] = (u16)(offer[k].reward == R_JACKPOT ? jackpot_amount(&offer[k], e) : e->amount);
         break;
       }
     } else {
@@ -695,6 +1007,21 @@ static void rewards(u8 *arg) {
     }
   }
   paying = 0;
+}
+
+/*
+ * The jackpot is lost: its item isn't paid and its zenny comes off the
+ * reward, and off the faint's penalty, so One cart's stays the whole reward.
+ */
+static void lose_jackpot(u8 *q) {
+  if (!jackpot || jackpot_lost) return;
+  jackpot_lost = 1;
+  for (u32 k = 0; k < OFFERS; k++) {
+    if (offer[k].reward == R_JACKPOT) paying &= (u8) ~(1u << k);
+  }
+  s32 *reward = (s32 *)(q + Q_REWARD), *penalty = (s32 *)(q + Q_PENALTY);
+  *reward = *reward > (s32)jackpot_zenny ? *reward - (s32)jackpot_zenny : 0;
+  *penalty = *penalty > (s32)jackpot_zenny ? *penalty - (s32)jackpot_zenny : 0;
 }
 
 static void clamp(u8 *e, u32 field, s16 cap) {
@@ -714,35 +1041,82 @@ static void keep(u8 *q) {
     clamp(hunter, STAMINA_MAX, weary);
     clamp(hunter, STAMINA, weary);
   }
-  if (glass) {
+  for (u32 p = 0; blade_due; p++) {
+    if (blade_due & BIT(p)) blade_penalty(hunter, p);
+    blade_due &= ~BIT(p);
+  }
+  /*
+   * Brittle blade: what the hits took since last frame, taken again (a
+   * whetstone's sharpening, and the cart's refill, aren't). Then the cap:
+   * the bar ends at it, so a whetstone sharpens up to it and no further.
+   */
+  s16 *edge = (s16 *)(hunter + SHARPNESS);
+  if (brittle && *edge < edge_seen) {
+    const s32 v = 2 * *edge - edge_seen;
+    *edge = (s16)(v > 0 ? v : 0);
+  }
+  if (edge_capped) {
+    clamp(hunter, SHARPNESS_MAX, edge_cap);
+    clamp(hunter, SHARPNESS, edge_cap);
+  }
+  edge_seen = *edge;
+  if (!jackpot) return;
+  const int under_way = !q[Q_STATE];
+  if (jackpot == GLASS) {
     clamp(hunter, HP_MAX, 1);
     clamp(hunter, HP, 1);
     clamp(hunter, HP_RED, 1);
-    /*
-     * A faint (health at 0) loses the jackpot, whether or not one cart
-     * fails the quest: its item isn't paid and its zenny comes off the reward.
-     */
-    if (*(s16 *)(hunter + HP) <= 0 && !glass_lost) {
-      glass_lost = 1;
-      for (u32 k = 0; k < OFFERS; k++) {
-        if (offer[k].reward == R_JACKPOT) paying &= (u8) ~(1u << k);
-      }
-      s32 *reward = (s32 *)(q + Q_REWARD);
-      *reward = *reward > (s32)glass_zenny ? *reward - (s32)glass_zenny : 0;
+  }
+  if (jackpot == BLEEDING && under_way) {
+    /* Down to 1, never to a faint: and wounds don't heal by themselves (no red health). */
+    s16 *hp = (s16 *)(hunter + HP);
+    if (++bleed >= BLEED_FRAMES) {
+      bleed = 0;
+      if (*hp > 1) --*hp;
     }
+    clamp(hunter, HP_RED, *hp);
+  }
+  /*
+   * A faint (health at 0) while the quest is under way loses the jackpot,
+   * whether or not one cart fails the quest. Once the quest is completed, a
+   * faint costs nothing.
+   */
+  if (under_way && *(s16 *)(hunter + HP) <= 0) lose_jackpot(q);
+  /*
+   * The quest ended (completed, or timed out with no time left): the speed
+   * bonus, its zenny again times the share of the time that's left.
+   */
+  if (!under_way && !jackpot_timed) {
+    jackpot_timed = 1;
+    const s32 t = *(s32 *)(q + Q_TIME);
+    if (jackpot_lost || t <= 0 || jackpot_time <= 0) return;
+    const u32 share = (u32)(t < jackpot_time ? t : jackpot_time) * 100u / (u32)jackpot_time;
+    u32 extra = jackpot_zenny / 100 * share;
+    s32 *reward = (s32 *)(q + Q_REWARD);
+    if (*reward < 0) return;
+    if ((u32)*reward + extra > ZENNY_MAX) extra = (u32)*reward < ZENNY_MAX ? ZENNY_MAX - (u32)*reward : 0;
+    *reward += (s32)extra;
   }
 }
 
 /* The pact's share of the monster boosts (monsters.c). */
 static void boost(u8 *m, u32 slot, rf_boost *b) {
-  (void)m;
-  (void)slot;
   rf_boost_by(&b->hp, hp_up);
   rf_boost_by(&b->attack, atk_up);
+  /*
+   * Capture or nothing: a large monster that was alive and is dead (a
+   * captured one keeps its health) loses the jackpot, while the quest is
+   * under way.
+   */
+  if (jackpot != CAPTURE_ONLY || state != SEALED || !quest_seen || slot >= 32) return;
+  if (rf_monster_is_new(slot)) seen_alive &= ~BIT(slot);
+  if (*(s16 *)(m + HP) > 0) seen_alive |= BIT(slot);
+  else if ((seen_alive & BIT(slot)) && !quest_seen[Q_STATE]) lose_jackpot(quest_seen);
 }
 
 static void quest_frame(u8 *q) {
   if (!game_task_loaded()) return;
+  quest_seen = q;
   s32 t = *(s32 *)(q + Q_TIME);
   /*
    * A new quest: none yet since the last one ended (the pad hook saw game_task
@@ -886,8 +1260,11 @@ static void draw(u8 *q) {
   }
   put(taken ? C_TITLE "Seal the pact" : C_WHITE "Hunt without a pact");
   text(BOX, SEAL_Y);
-  put(C_DIM "~B09 Choose   ~B00 ");
+  /* On a jackpot: what it asks besides its penalty, in Choose's room. */
+  const int rule = cursor < OFFERS && offer[cursor].reward == R_JACKPOT;
+  put(rule ? C_DIM "~B00 " : C_DIM "~B09 Choose   ~B00 ");
   put(cursor < OFFERS ? "Take" : taken ? "Seal" : "Hunt");
+  if (rule) put("   " JACKPOT_RULE);
   text(LEFT, HINT_Y);
 
   q[HUD_LAYER] = hud_layer;
