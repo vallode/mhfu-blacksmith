@@ -1148,13 +1148,51 @@ input[type="range"] {
 
 .go {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  gap: 1.6rem;
+  gap: 1.2rem;
   margin-top: 1rem;
-  padding-top: 1.6rem;
+  padding-top: 2rem;
   border-top: 3px solid var(--color-hr);
+
+  & .button.primary {
+    min-width: 24rem;
+  }
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.2rem 0.4rem;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--text-sub);
+  color: rgb(255 255 255 / 0.7);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  cursor: pointer;
+
+  & .icon {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+  }
+
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      color: white;
+    }
+  }
 }
 
 /* ─── Run ──────────────────────────────────────────────────────────────────── */
@@ -1634,10 +1672,14 @@ a.button {
   }
 
   .go {
-    justify-content: stretch;
+    align-items: stretch;
 
-    & .button {
-      flex: 1 1 auto;
+    & .button.primary {
+      min-width: 0;
+    }
+
+    & .link-button {
+      justify-content: center;
     }
   }
 }
