@@ -297,7 +297,7 @@ both("changing damage numbers keeps the choice in the save and is used at once",
   g.open();
   g.run(g.entry, B.right);
   assert.equal(g.cpu.u8(SAVED_MODE), 3, "split, kept as its choice + 1");
-  assert.ok(g.prints.some((p) => p.includes("Split")));
+  assert.ok(g.prints.includes("SPLIT"));
   g.run(g.entry, B.cross);
   assert.equal(g.cpu.u8(SAVED_MODE), 1, "off, after split");
   g.run(g.entry, B.left);
@@ -306,7 +306,7 @@ both("changing damage numbers keeps the choice in the save and is used at once",
   g.cpu.call(g.blob.symbols.get("rf_init")!, [0, SAVE, BLOB]);
   g.select(g.entry);
   g.run(g.entry, 0);
-  assert.ok(g.prints.some((p) => p.includes("Split")));
+  assert.ok(g.prints.includes("SPLIT"));
 });
 
 both("each feature's setting is a row; up and down move the arrows and the help", (menu) => {

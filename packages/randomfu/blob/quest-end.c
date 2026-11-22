@@ -41,7 +41,7 @@ static void set(u32 c) {
 
 static const struct rf_setting setting = {
     "After a quest",
-    "How long the game waits\nafter a quest is over.\nShort: 20 s, time to carve\none monster. Instant:\nstraight to the rewards,\nno time to carve.",
+    "How long the game waits\nafter a quest is over.\nSHORT: 20 s, time to carve\none monster. INSTANT:\nstraight to the rewards,\nno time to carve.",
     names,
     CHOICES,
     choice,

@@ -324,7 +324,7 @@ static void set_mode(u32 choice) {
 }
 static const struct rf_setting setting = {
     "Damage numbers",
-    "Show the damage of each of\nyour hits where it strikes.\nSplit shows the element's\nshare apart.",
+    "Show the damage of each of\nyour hits where it strikes.\nSPLIT shows the element's\nshare apart.",
     mode_names,
     MODES,
     get_mode,

@@ -227,7 +227,7 @@ static void set_mode(u32 choice) {
 }
 static const struct rf_setting setting = {
     "Monster health",
-    "A health gauge for each\nlarge monster in your area,\nunder your name. On the map:\nwhile the map shows it, from\na Paintball hit until the\nmark wears off.",
+    "A health gauge for each\nlarge monster in your area,\nunder your name. ON MAP:\nwhile the map shows it, from\na Paintball hit until the\nmark wears off.",
     mode_names,
     MODES,
     get_mode,
