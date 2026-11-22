@@ -6,8 +6,9 @@
 # app's wrangler.jsonc (apps/blacksmith, apps/randomfu). Static asset
 # requests are free and unmetered, and deploys cost nothing. The blacksmith
 # site also has a script for the set builder's pages and share links only
-# (shared sets' link embeds, src/cloudflare/worker.ts); those requests count
-# as Worker requests.
+# (shared sets' link embeds, src/cloudflare/worker.ts), and randomfu one for
+# its analytics events only (analytics/worker.ts); those requests count as
+# Worker requests.
 #
 # - main deploys to production: <worker>.<subdomain>.workers.dev, plus any
 #   custom domain added to the Worker in the Cloudflare dashboard.

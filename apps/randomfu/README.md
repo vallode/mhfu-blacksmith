@@ -46,15 +46,55 @@ served elsewhere, such as a preview), `https://randomfu.vallode.com`
 otherwise.
 
 `dist/` is a plain static site: host it anywhere (GitHub Pages, Netlify,
-any web server). It's deployed to [randomfu.vallode.com](https://randomfu.vallode.com)
+any web server); only analytics needs the Worker, and without it events are
+just dropped. It's deployed to [randomfu.vallode.com](https://randomfu.vallode.com)
 as a Cloudflare Worker, configured by `wrangler.jsonc` here (see the root
 README for how deploys run). Response headers are in `_headers`, which
 `build.mjs` copies into `dist/`.
 
 `head.html` sets every page's Content-Security-Policy: a page can only load its own
-scripts, styles and images and can't make any requests, so nothing it reads
-can leave the browser. A change that needs more (a font from elsewhere, a
-fetch) has to loosen it; `pnpm test:e2e` fails on any violation.
+scripts, styles and images and can only talk to its own site, for
+analytics. A change that needs more (a font from elsewhere, a fetch to
+another site) has to loosen it; `pnpm test:e2e` fails on any violation.
+
+## Analytics
+
+The pages count how they're used, anonymously and first-party: no cookies,
+no third party, and nothing from the user's files (the disc is only its ID,
+region and size). Every page loads `page.js` (`analytics/page.ts`), which
+sends a page view and any uncaught errors; the builder (`app.ts`) sends the
+rest: each step reached, the disc check, presets picked, settings loaded,
+runs started, finished or failed (with their settings, what changed from
+the last preset picked, and how long they took), downloads and copies.
+`analytics/events.ts` lists the events and their columns.
+
+They go to `/e` on the same site (`navigator.sendBeacon`), the only path
+that runs the Worker (`analytics/worker.ts`, `run_worker_first` in
+`wrangler.jsonc`). It drops bots and unknown events, adds the host, country
+and device, browser and OS read from the User-Agent (`analytics/collect.ts`;
+the IP and User-Agent aren't kept), and writes a data point to the
+`randomfu_events` [Workers Analytics Engine](https://developers.cloudflare.com/analytics/analytics-engine/)
+dataset, which keeps three months. A session is a random ID in
+`sessionStorage`, so it ends with the tab (a duplicated tab shares it).
+A coarse rate limit per address (`LIMITER`, 1500 events a minute, high
+enough for many visitors behind one address) stops a script flooding the
+dataset. It doesn't save the Worker's daily request allowance, since a
+refused request still runs the script; a WAF rate-limiting rule in front of
+`/e` would. `/e` is open like any analytics endpoint: someone could still
+send plausible fake events slowly.
+
+```bash
+# the funnel, discs, presets, changed options, failures and run times
+CLOUDFLARE_ACCOUNT_ID=… CLOUDFLARE_API_TOKEN=… pnpm analytics --days 30 --host randomfu.vallode.com
+```
+
+The token needs Account Analytics: Read. Previews write to the same
+dataset under their own host, and visits with the testing options below
+(`?debug`, …) are left out unless `--testing`. For other questions, query
+the dataset with SQL (`analytics/report.mts` shows how; `column()` in
+`events.ts` names the columns). `pnpm test:e2e` checks the walk through the
+builder sends the events it should, and `.claude/launch.json`'s
+`randomfu-worker` serves the build under `wrangler dev` with the Worker.
 
 How it works:
 
