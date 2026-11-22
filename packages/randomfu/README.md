@@ -195,6 +195,7 @@ web app shows as a tag):
 | `quests.unknown`                  | off         | "Unknown Monster?!" quests on Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards) |
 | `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards) |
 | `rewards.sendAll`                 | on          | A Send All to Item Box row in the reward screen's menu (caps Guild Cards)                              |
+| `boot.skip`                       | `normal`    | A faster start: `title` (no notice, logos or intro movie) or `village` (straight into the last hunter) |
 
 ### Presets
 
@@ -1958,6 +1959,93 @@ the screen is only called with 0 or 1 for its second argument, from the
 EBOOT and the overlays. Tried in PPSSPP on EU: the row, the layout, sending
 and ending, and a town screen keeping its three rows. Not yet seen in game: the help bar's text on the new row and End,
 and JP, which builds (its code matches) but hasn't been played.
+
+## Faster start
+
+`boot.skip` (Modifications → Boot in the web app): what the game shows from
+power-on. `normal` is the game's own: on EU a language choice, then a
+"Checking for Memory Stick Duo" read that autoloads the options and waits on
+"Auto-loaded Game data.", a health notice, two logos and the intro movie
+before Press START, then the title menu, Load Game's list of saves, "Load
+this character?" and its confirmation.
+
+- `title` goes from the autoload straight to Press START. The EU language
+  choice is taken out (the game keeps the PSP's language), and the autoload's
+  message is confirmed on its first frame.
+- `village` goes on into the village with the hunter in the slot the game
+  saved last (the game records it; else the first slot with a save), on a
+  black screen with no button to press. A cold boot skips the autoload, so
+  the save is read once, by Load Game: in PPSSPP about 1.7 s from the
+  language choice's end to the village loading, against 3.7 s when the boot
+  autoload ran too. Holding START, L or SELECT from power-on (while the save
+  is read) fades in and shows Load Game as normal, to choose another slot or
+  cancel to the title menu; once the list is up it's confirmed at once, so a
+  later press is too late. A
+  message (no save, a broken one) fades in too. Load Game from the title
+  menu always shows the list.
+
+Both are data patches of `demo_task.ovl` and `cont_task.ovl`, with no blob
+and no code loader, so they don't cap Guild Cards. The save loads exactly as
+from the title menu (the same memcpy, which the code loader hooks), so the
+blob and the START menu's settings load as ever. Played on EU in PPSSPP. JP
+(FUC) builds (every address is found by signature, and its code was checked
+against EU's) but hasn't been played.
+
+What the game does (EU addresses; JP's in brackets where they matter):
+
+- A task manager (`*0x08A8B1E8`) runs one task a slot. A task's handler is a
+  pointer to member, `{0, -1, function}`, copied into the task at +4; a
+  handler ends its task by setting byte +0x11 to 1 and +0x18 to the next
+  task's ID. Task 2 is boot and the title screen (`demo_task.ovl`, loaded at
+  EU 0x09A5F200, JP 0x09A5A580), task 3 the title menu, task 5 Load Game
+  (`cont_task.ovl`, at the same address), task 10 the village.
+- Task 2's handlers come from a table (EU 0x09A61B80, JP 0x09A5BD80): the
+  language choice (EU only), two resource loads, the load step (EU
+  0x09A5F670), then the notice (EU only), logos and movie, each followed by
+  Press START (EU 0x09A60258). The second resource load goes on to the load
+  step on a cold boot only (else to Press START), and sets the fade's state
+  (`*0x089CC01C` +0x1C) to 0, keeping the old one, black, at +0x30 for the
+  load step to put back. The load step autoloads with the select object
+  (EU 0x088BE550; "Auto-loaded Game data." is its state 5, a 90-frame
+  countdown or confirm), fades out, and applies the save's options to their
+  working copy (EU 0x088572E8, JP 0x08857210: `save+0x6ADD8` on to
+  `+0x6AF1C`). Task 2's EBOOT code sets the save's byte +0x494; the title
+  menu's EBOOT stub (EU 0x0887F690) puts its cursor on Load Game while it's
+  set, then clears it. Nothing else reads it.
+- Load Game polls the select object (EU `*0x09A44C60`, its function EU
+  0x088BC7F0, JP 0x088BF3F8) once a frame. Its state (+0xC): 0 and 1 read
+  the saves (EU about 0.4 s in PPSSPP), 8 waits for the read to be
+  processed (about 0.5 s) and puts the list's cursor on the slot saved
+  last, 2 opens the list, 3 is the list, 4 "Load this character?" with Yes
+  chosen, 5 its confirmation, 6 and 7 copy the slot into the save, 9 and up
+  messages. States 3 to 5 wait for confirm in the frame's pressed buttons
+  (EU 0x08A62C6C, held 4 bytes before; JP 0x08A5DD3C): × on EU, ○ on JP.
+  Its byte +0x964 is a copy of an option byte (`save+0x6ADDC`, which the
+  autoload reads): set, state 8 skips the list's opening animation and the
+  hunter previews, and state 6 doesn't wait 41 frames. Once loaded, Load
+  Game fades out, then (EU 0x09A5F5B4) runs its post-load step on the save.
+  Its windows draw over the fade.
+
+How randomfu changes it (`src/patches/boot.ts`), new code in the overlays'
+padding:
+
+- Both: the autoload's call goes through 9 words that add confirm to the
+  pressed buttons in its state 5. On EU the language choice's fade-in and
+  fade-out calls and its wait for confirm are taken out. The load step's
+  next handler becomes Press START.
+- `village`: the load step's own table entry gets an 11-word handler that
+  puts the fade's state back and ends task 2 with next = 5. In Load Game:
+  - its fade-in and its fade-out after a load go through 8 words that skip
+    them while +0x494 is set;
+  - its poll goes through 26 words: while +0x494 is set and a flag word of
+    theirs isn't, they set +0x964 and add confirm in states 3 to 5; START, L or SELECT held
+    in those states, or a message, goes to 18 words that set the flag,
+    clear +0x494 and fade in, so the menu is the player's;
+  - its post-load call goes through 5 words that apply the options first.
+- Load Game's padding is 58 words on EU and JP, which these 57 fit.
+- Tested on the CPU in `test/boot.test.ts`, with each state, the held buttons, the title
+  menu's case and JP's ○, and traced in PPSSPP from the task slots, the
+  select object, the fade and the options.
 
 ## Code loader (prototype)
 
