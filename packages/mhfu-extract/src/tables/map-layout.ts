@@ -111,9 +111,10 @@ export function readMapGeometry(
         }),
       });
     }
-  } catch {
-    // A table pointing outside its file: not this disc's layout.
-    throw moved;
+  } catch (error) {
+    // A table pointing outside its file: not this disc's layout. Anything else is a bug.
+    if (!(error instanceof RangeError)) throw error;
+    throw new Error(moved.message, { cause: error });
   }
   // Forest and Hills' size, zoom and Base Camp, and the Swamp's zoom.
   const forest = out.get(2);

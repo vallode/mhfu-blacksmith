@@ -7,7 +7,13 @@ import { locateIndexedImage, readTmh, swizzle, unswizzle } from "mhfu-extract/sr
 import { mapTextureName, type MapGeometry } from "mhfu-extract/src/tables/map-layout.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { questTier } from "../src/game/tiers.js";
-import { collectNodePoints, drawNodes, MARKER_COLORS } from "../src/patches/node-map.js";
+import {
+  addNodeMap,
+  collectNodePoints,
+  drawNodes,
+  MARKER_COLORS,
+} from "../src/patches/node-map.js";
+import { Edits } from "../src/edits.js";
 import { randomize } from "../src/randomize.js";
 import { buildFixtureDisc, tempDir } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
@@ -99,6 +105,19 @@ test("randomize leaves a disc's maps alone when its map tables don't check out",
     assert.ok(report);
     assert.match(report.notes[0]!, /Not written: the map tables aren't at their JP addresses/);
     assert.equal(result.edits.files.size, 0);
+  });
+});
+
+test("a disc with no known map tables is left alone and says why", async () => {
+  await withFixture((game) => {
+    const us: GameData = { ...game, region: "us" };
+    const edits = new Edits(us);
+    const report = addNodeMap(us, edits);
+    assert.match(
+      report.notes[0]!,
+      /Not written: the map tables are only known on the EU and JP discs/,
+    );
+    assert.equal(edits.files.size, 0);
   });
 });
 

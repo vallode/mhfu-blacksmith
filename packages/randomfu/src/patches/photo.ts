@@ -214,7 +214,7 @@ export function photoReport(linked: boolean, inMenu = true): ShuffleReport {
         "In a quest, hold L and R and press START: the game stops, the HUD goes and the camera is yours. The stick turns it round what it looks at, the D-pad moves it, △ and × raise and lower it, □ and ○ bring it nearer and further, L and R zoom, SELECT puts it back where it started; START again ends it.",
         inMenu
           ? "It can be turned off and on in game, from the START menu's randomfu entry."
-          : "It stays on: the START menu's randomfu entry, which turns it off and on, isn't on this disc.",
+          : "It starts as this disc's setting, unless the save holds a choice from another disc's START menu: this disc has no START menu entry to change it.",
       ]
     : ["Photo mode isn't in this image: it's blob code, and the code loader isn't on this disc."];
   return {
