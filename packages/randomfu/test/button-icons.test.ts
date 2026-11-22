@@ -7,6 +7,7 @@ import { locateIndexedImage, readTmh, swizzle } from "mhfu-extract/src/models/tm
 import { loadGame } from "../src/game/load.js";
 import {
   drawXbox,
+  iconsHash,
   redrawIcons,
   SHEETS,
   SheetImage,
@@ -135,6 +136,26 @@ test("the bumpers read LB and RB in L's ink, START and SELECT get Menu and View"
 test("a sheet that isn't the PSP art this knows is left alone", () => {
   assert.equal(redrawIcons(sheetFile()), null);
   assert.equal(redrawIcons(Buffer.alloc(64)), null);
+});
+
+test("a known sheet is redrawn in place: same size, only its icon cells change", () => {
+  const file = sheetFile();
+  const sheet = [...sheetImages(file)][0]!.image;
+  const result = redrawIcons(file, { HUD: [iconsHash(sheet, SHEETS[0]!)] });
+  assert.ok(result);
+  assert.deepEqual(result.sheets, ["HUD"]);
+  assert.equal(result.file.length, file.length);
+  const [smallBefore, before] = readTmh(file);
+  const [smallAfter, after] = readTmh(result.file);
+  assert.deepEqual(smallAfter, smallBefore, "the other image is untouched");
+  const rgba = (img: typeof after, x: number, y: number) => [
+    ...img!.rgba.subarray((y * 256 + x) * 4, (y * 256 + x) * 4 + 4),
+  ];
+  assert.deepEqual(rgba(after, 4, 4), PALETTE[RED], "○ is B, after the swizzle back");
+  for (let y = 0; y < 256; y++)
+    for (let x = 0; x < 256; x++)
+      if (y >= 32 || x >= 104)
+        assert.deepEqual(rgba(after, x, y), rgba(before, x, y), `${x}, ${y} is unchanged`);
 });
 
 test("randomize says so when the disc has no icon sheet", async () => {

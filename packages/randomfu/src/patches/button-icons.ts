@@ -23,6 +23,7 @@
  */
 import { createHash } from "node:crypto";
 import { isTmh, locateIndexedImage, swizzle, unswizzle } from "mhfu-extract/src/models/tmh.js";
+import type { Region } from "mhfu-extract/src/container/sfo.js";
 import type { Edits } from "../edits.js";
 import type { GameData } from "../game/load.js";
 import type { ShuffleReport } from "../shuffles/shuffle.js";
@@ -321,11 +322,14 @@ export function* sheetImages(file: Buffer) {
  * The file with its PSP icons redrawn as the Xbox's, and the names of the
  * sheets drawn on, or null if it has none this knows.
  */
-export function redrawIcons(file: Buffer): { file: Buffer; sheets: string[] } | null {
+export function redrawIcons(
+  file: Buffer,
+  known: Record<string, readonly string[]> = PSP_ART,
+): { file: Buffer; sheets: string[] } | null {
   const out = Buffer.from(file);
   const sheets: string[] = [];
   for (const { image, pixelsAt } of sheetImages(file)) {
-    const sheet = SHEETS.find((s) => PSP_ART[s.name]!.includes(iconsHash(image, s)));
+    const sheet = SHEETS.find((s) => known[s.name]?.includes(iconsHash(image, s)));
     if (!sheet) continue;
     drawXbox(image, sheet);
     swizzle(image.pixels, 256, 256).copy(out, pixelsAt);
@@ -334,7 +338,12 @@ export function redrawIcons(file: Buffer): { file: Buffer; sheets: string[] } | 
   return sheets.length > 0 ? { file: out, sheets } : null;
 }
 
-/** The icon sheets are among the first DATA.BIN files (JP 17 and 18, EU 25-34), so only those are searched. */
+/** The DATA.BIN files holding the icon sheets: `demo.tmh` and `resides.tmh`, and EU's copies. */
+export const SHEET_FILES: Partial<Record<Region, readonly number[]>> = {
+  jp: [17, 18],
+  eu: [25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
+};
+/** Elsewhere, the first files are searched: the system files are among them. */
 export const SCAN_FILES = 64;
 
 const TITLE = "Xbox button icons";
@@ -342,8 +351,9 @@ const TITLE = "Xbox button icons";
 /** Redraws the button icons on every sheet that has them. */
 export function addButtonIcons(game: GameData, edits: Edits): ShuffleReport {
   const drawn: string[] = [];
-  for (let index = 0; index < Math.min(SCAN_FILES, game.dataBin.fileCount); index++) {
-    const result = redrawIcons(game.dataBin.read(index));
+  const files = SHEET_FILES[game.region] ?? Array.from({ length: SCAN_FILES }, (_, index) => index);
+  for (const index of files.filter((index) => index < game.dataBin.fileCount)) {
+    const result = redrawIcons(edits.dataFileNow(index));
     if (!result) continue;
     result.file.copy(edits.dataFile(index));
     drawn.push(`${index} (${result.sheets.join(", ")})`);
