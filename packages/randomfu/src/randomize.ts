@@ -152,6 +152,12 @@ import {
 } from "./patches/game-hooks.js";
 import { menuObjects, prepareMenu } from "./patches/menu.js";
 import { prepareSendAll, type SendAll, sendAllObjects, sendAllReport } from "./patches/send-all.js";
+import {
+  prepareTargetCamera,
+  type TargetCamera,
+  targetCameraObjects,
+  targetCameraReport,
+} from "./patches/target-camera.js";
 import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
 import { damageObjects, findDamageExterns } from "./patches/damage.js";
 import { patchElementMotion } from "./patches/element-motion.js";
@@ -1346,6 +1352,32 @@ export function randomize(
         sendAll = found;
       }
     }
+    // The target camera: a call of the menu's hook, so it goes in (and out) with
+    // them, and the read the game makes without the blob, in the camera's patch.
+    let targetCamera: TargetCamera | null = null;
+    let targetPatch: TargetCamera | null = null;
+    const targetOn = settings["camera.target"] !== "off";
+    if (menus && camera && typeof sites !== "string") {
+      const found = prepareTargetCamera(game.eboot!, ovl.reader.buf, ovl, settings);
+      if (typeof found === "string") {
+        if (targetOn) reports.push(notApplied("Target camera", found));
+      } else {
+        (targetOn ? objects : optional).push(...targetCameraObjects());
+        Object.assign(externs, found.externs);
+        targetCamera = found;
+      }
+    } else if (targetOn) {
+      reports.push(
+        notApplied(
+          "Target camera",
+          typeof sites === "string"
+            ? sites
+            : !camera
+              ? "the camera's code isn't on this disc"
+              : "it goes in with the START menu entry, which wasn't found",
+        ),
+      );
+    }
     if (
       typeof hookSites !== "string" &&
       (monsterHp ||
@@ -1377,7 +1409,11 @@ export function randomize(
             }),
             // The hit hook is damage numbers' alone.
             ...(hit && !(lean && numbers === "off") && { hit }),
-            ...(menus && !lean && { menus, calls: sendAll?.calls ?? [] }),
+            ...(menus &&
+              !lean && {
+                menus,
+                calls: [...(sendAll?.calls ?? []), ...(targetCamera?.calls ?? [])],
+              }),
           },
           externs,
           data,
@@ -1425,6 +1461,21 @@ export function randomize(
       const photoLinked = loader.applied && photo !== null && (photoOn || !wentLean);
       if (photo && photoLinked) patchDim(edits.eboot(), photo);
       if (photoOn && photo) reports.push(photoReport(photoLinked, !wentLean && menus !== null));
+      if (targetCamera) {
+        // Written after the camera's patch below, whose unreached words it takes.
+        if (loader.applied && !wentLean) {
+          targetPatch = targetCamera;
+        } else if (targetOn) {
+          reports.push(
+            notApplied(
+              "Target camera",
+              loader.applied
+                ? "it goes in with the START menu entry, which didn't fit"
+                : "the code loader isn't on this disc",
+            ),
+          );
+        }
+      }
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {
@@ -1440,10 +1491,17 @@ export function randomize(
       const patched = patchFov(edits.eboot(), FOV_SCALES[settings["camera.fov"]]);
       if (typeof patched === "string") {
         if (cameraWanted) reports.push(notApplied("Camera", patched));
-      } else if (cameraWanted) {
-        reports.push(cameraReport(settings, cameraLinked, game.region));
+      } else {
+        if (cameraWanted) reports.push(cameraReport(settings, cameraLinked, game.region));
+        if (targetPatch) {
+          targetPatch.patch(edits.eboot());
+          if (targetOn) reports.push(targetCameraReport(settings));
+          targetPatch = null;
+        }
       }
     }
+    // The call went in, but not the camera's patch: the ease's jal must go back to the game's read.
+    if (targetPatch) throw new Error("The target camera's call went in without the camera's patch");
   }
 
   if (questEndOn) {

@@ -187,6 +187,7 @@ web app shows as a tag):
 | `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
 | `camera.tilt`                     | `steps`     | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast` (EU disc only)           |
 | `camera.photoMode`                | off         | L+R+START in a quest stops the game and hides the HUD; the camera flies free (caps Guild Cards)        |
+| `camera.target`                   | off         | L turns the camera to a large monster: `tap` (once) or `follow` (keeps it in view)                     |
 | `quest.endWait`                   | `normal`    | The wait after a quest: `short` (20 s for every quest) or `instant` (straight to the rewards)          |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
 | `hud.damageNumbers`               | off         | Numbers at the part each of your hits strikes: `total` or `split` element (caps Guild Cards)           |
@@ -1373,9 +1374,9 @@ yet tried: JP in game, captures, and two large monsters in one area.
 
 ## Camera
 
-`camera.fov`, `camera.distance` and `camera.tilt` (Modifications → Camera in
-the web app), and the Field of view, Camera distance and Camera tilt settings
-in randomfu's START menu entry (Damage numbers, below). The option picks what a disc starts with;
+`camera.fov`, `camera.distance`, `camera.tilt` and `camera.target`
+(Modifications → Camera in the web app), and the Field of view, Camera
+distance, Camera tilt and Target camera settings in randomfu's START menu entry (Damage numbers, below). The option picks what a disc starts with;
 the menu changes it in game, and the save keeps it. Like the HUD options,
 the code goes on every disc, so every disc caps received Guild Cards at 3.
 Played on EU at `wider` and `farther` (PPSSPP, 2026-11-21): wider and
@@ -1467,6 +1468,71 @@ How randomfu does it (`src/patches/camera.ts`, `blob/camera.c`):
   pitch comes from the save or, if it has none, from the block. Only EU's
   renderer is known to keep the level at +0x14 (`rf_camera_level`), so
   other discs keep the game's steps and have no Camera tilt setting.
+
+### Target camera
+
+`camera.target` turns the camera to face a large monster from behind the
+hunter, as the newer games' target camera does. In MH4U and Generations
+Ultimate, with Target Cam on, L turns to the monster and L twice resets
+the camera behind you; Rise locks on with a press of R3 and cycles with the
+next. randomfu keeps the game's own buttons:
+
+- **L** faces the target: the large monster in the hunter's area nearest
+  the middle of the screen (or the one already targeted). With no large
+  monster there (or none standing), L is the game's: behind the hunter.
+- **L twice** within 0.4 s is the game's L, behind the hunter.
+- **Hold L, D-pad left or right:** the next large monster to that side.
+- **D-pad left or right** alone turns the camera as ever and lets go.
+
+`tap` turns until the camera faces the target (within 1.4°, 3 s at most),
+following it as it moves, then leaves the camera; `follow` keeps facing it
+until L twice, a D-pad turn, or the target leaves the area or falls.
+
+While the camera has a target it's marked on screen with a small reticle,
+and for 0.6 s after, fading: four amber corner brackets, 20 pixels square
+at any distance, in the HUD's translucent fill on the HUD hook. It sits
+where the monster stands, raised to its body's height, the middle of its
+joints' heights, eased slowly (4% a frame), so it holds still while the
+monster swings its head and tail. The START menu's Target mark setting
+turns it off (`camera_mark` in randomfu's save data). A monster's joints
+are `+0x190` (0x250 bytes each, the world matrix at +0xD0) and their count
+is the u32 at `+0x1A4` (48 for a Rathalos, 16 for a Velocidrome, in
+savestates). An arrow over the monster and a ring at its middle were tried
+too, and a reticle round the box its joints cover, which wobbled with
+every move.
+
+The code goes on every disc with the START menu entry (`off` starts it off),
+EU and JP. Played on EU (PPSSPP, 2026-11-22): Tap, Follow and the reticle.
+JP builds but hasn't been played; nor has it with photo mode.
+
+What the game does (EU; JP's code is the same words):
+
+- The follow camera (EU 0x08886E50) keeps its yaw in the renderer's
+  +0x150 sub-object: +0x80 the yaw it turns to, +0x82 the yaw it has (s16,
+  the angle of the eye seen from the hunter, atan2(x, z) in 65536ths of a
+  turn: behind a hunter facing f, its u16 at +0x1F4, is f + 0x8000), and
+  +0x84 and +0x86 the buttons it sees, held and pressed (the renderer's
+  +0xA70 and +0xA72, cleared in menus).
+- Each frame whatever turns the camera sets +0x80: L's recentre (the
+  renderer's +0xA81, set from `game_task` by EU 0x08813188) behind the
+  hunter, D-pad left and right ±0x47E a frame, a forced view. Every path
+  then meets one ease (EU 0x08887614, JP 0x08887318) that moves +0x82 a
+  quarter of the way.
+- Monsters are in the manager's 20 slots (`*rf_monsters + 0x1220`); a
+  monster's +4 bit 0 is set while it's active in the hunter's area, +0x29A
+  is its area (the hunter's is at the same place), +0x1E8 its species and
+  +0x2E4 its HP. A species is large when its stat set in `game_task`'s
+  table (+0x14F of its 0x1D0-byte entry) isn't 0.
+
+How randomfu does it (`src/patches/target-camera.ts`,
+`blob/target-camera.c`): the ease's read of +0x80 becomes a call through
+game hook 8's shared stub, which the blob answers with the yaw to the
+target (or lets the game's read go on). The game then turns to the monster
+as smoothly as it turns behind the hunter, and nothing of the game's
+fights it: the recentre and the D-pad still write +0x80, and the blob
+reads the buttons the camera sees. The game's own read is two words in the
+projection update that the field of view patch leaves unreached, so this
+always goes in with the camera's EBOOT patch.
 
 ## Photo mode
 
@@ -1640,14 +1706,16 @@ that can be changed in game, drawn like the game's Options with the
 setting's help to its left: monster health (Off, On map, Always), damage
 numbers (Off, Total, Split), attack hitboxes (Off, On), field of view
 (Normal, Wide, Wider, Widest), camera distance (Normal, Far, Farther,
-Farthest), camera tilt (Steps, Slow, Smooth, Fast), the wait after a
-quest (Normal, Short, Instant) and photo mode (Off, On).
+Farthest), camera tilt (Steps, Slow, Smooth, Fast), the target camera (Off,
+Tap, Follow), its mark (Off, On), the wait after a quest (Normal, Short,
+Instant) and photo mode (Off, On).
 Up and down pick a setting; left, right and × change it; ○ goes back to the
 menu and START closes it. The choice is kept in randomfu's save data, so it
 lasts across saves and holds over the disc's mode, on discs from other
 seeds too (`monster_hp`, `damage_numbers`, `hitboxes`, `camera_fov`,
-`camera_distance`, `quest_end`, `camera_tilt` and `photo_mode` in `struct
-rf_save_data`). Other Modifications can add their settings to the same window
+`camera_distance`, `quest_end`, `camera_tilt`, `camera_target`,
+`camera_mark` and `photo_mode` in `struct rf_save_data`). Other
+Modifications can add their settings to the same window
 (`rf_add_setting`, `blob/menu.c`).
 
 What it found (EU, and the same code on JP; `src/patches/damage.ts` and
@@ -2213,8 +2281,9 @@ key quest label are built on it.
   reads `/PSP_GAME/USRDIR/RANDOMFU.BIN` over the slots with `sceIoOpen` and
   `sceIoRead`, checks its header, syncs the caches and calls the blob's
   `rf_init`.
-- **Game hooks.** Game calls go through stubs in the cave that make the
-  call, then run the blob's `rf_hookN` if a blob is loaded: once a frame in
+- **Game hooks.** Game calls go through a gate in the cave to stubs in the
+  blob that make the call, then run the blob's `rf_hookN` (without a blob,
+  the gate makes the game's call alone): once a frame in
   a quest, after the HUD draws the hunter's gauges, after the pad read gets
   the controller, around the quest loader's calls, and after a completed
   quest's reward roll, when a hit lands on a monster, and in the quest
