@@ -4,7 +4,12 @@ import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { locateIndexedImage, readTmh, swizzle, unswizzle } from "mhfu-extract/src/models/tmh.js";
-import { mapTextureName, type MapGeometry } from "mhfu-extract/src/tables/map-layout.js";
+import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
+import {
+  mapTextureName,
+  projectToMap,
+  type MapGeometry,
+} from "mhfu-extract/src/tables/map-layout.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { questTier } from "../src/game/tiers.js";
 import {
@@ -29,10 +34,15 @@ async function withFixture(run: (game: GameData) => void): Promise<void> {
   }
 }
 
-/** A 160x160 8-bit swizzled map texture with a palette, every pixel using entry 0 or 1. */
-function texture(alpha = 255): Buffer {
+/**
+ * A 160x160 8-bit swizzled map texture with a palette, every pixel using
+ * entry 0 or 1. With `art`, only those pixels (`x,y`) use entry 1 and entry
+ * 0 is transparent.
+ */
+function texture(alpha = 255, art?: ReadonlySet<string>): Buffer {
   const pixels = Buffer.alloc(160 * 160);
-  for (let i = 0; i < pixels.length; i++) pixels[i] = i % 2;
+  for (let i = 0; i < pixels.length; i++)
+    pixels[i] = art ? Number(art.has(`${i % 160},${Math.floor(i / 160)}`)) : i % 2;
   const header = Buffer.alloc(48);
   header.write(".TMH0.14", 0, "latin1");
   header.writeUInt32LE(1, 8);
@@ -47,7 +57,7 @@ function texture(alpha = 255): Buffer {
   palette.writeUInt32LE(16 + 1024, 0);
   palette.writeUInt32LE(3, 8);
   palette.writeUInt32LE(256, 12);
-  palette.set([10, 20, 30, alpha, 40, 50, 60, alpha], 16);
+  palette.set([10, 20, 30, art ? 0 : alpha, 40, 50, 60, alpha], 16);
   return Buffer.concat([header, swizzle(pixels, 160, 160), palette]);
 }
 
@@ -171,5 +181,36 @@ test("one set of nodes per texture, only on the art, from quests a player can ta
     ]);
     const off = collectNodePoints(game, away, (n) => (n === name ? texture() : undefined));
     assert.equal(off.get(name)?.length ?? 0, 0);
+  });
+});
+
+test("a node just off the art is moved onto it, one further off is left out", async () => {
+  await withFixture((game) => {
+    const quest = game.quests.find((q) => questTier(q.parsed))!;
+    const mapId = quest.parsed.header.map;
+    const name = mapTextureName(mapId)!;
+    const geometry = new Map<number, MapGeometry>([
+      [
+        mapId,
+        {
+          width: 150000,
+          depth: 150000,
+          zoom: 1,
+          origins: Array.from({ length: 16 }, () => [0, 0] as [number, number]),
+        },
+      ],
+    ]);
+    const { nodes } = readGatheringItems(quest.file.payload, quest.parsed);
+    const node = nodes.find((n) => n.type === 3) ?? nodes[0]!;
+    const [u, v] = projectToMap(geometry.get(mapId)!, node.area, node.x, node.z)!.map(Math.round);
+    const at = (art: string) =>
+      collectNodePoints(game, geometry, (n) =>
+        n === name ? texture(255, new Set([art])) : undefined,
+      ).get(name) ?? [];
+    // Art only on the pixel past the node (a mining spot in an area's wall).
+    assert.ok(at(`${u! + 1},${v}`).some((p) => p.x === u! + 1 && p.y === v));
+    assert.ok(at(`${u! + 1},${v! + 1}`).some((p) => p.x === u! + 1 && p.y === v! + 1));
+    // Two pixels away it is another area's art, or none.
+    assert.ok(!at(`${u! + 2},${v}`).some((p) => p.x === u! + 2 && p.y === v));
   });
 });
