@@ -1,6 +1,6 @@
 /**
  * End-to-end check of the web app in a real browser: builds dist/,
- * serves it, uploads the test fixture disc, randomizes with every
+ * serves it, follows the about page and the FAQ to the builder, uploads the test fixture disc, randomizes with every
  * shuffle on, downloads the ISO and compares it byte for byte with the same
  * run of the randomizer in Node, so the browser build (shims, worker, Blob
  * assembly) changes nothing. Needs Playwright's Chromium.
@@ -83,7 +83,12 @@ try {
   page.on("console", (m: { type(): string; text(): string }) => {
     if (m.type() === "error") errors.push(m.text());
   });
-  await page.goto(url);
+  // The about page and the FAQ lead to the builder.
+  for (const start of ["", "faq.html"]) {
+    await page.goto(url + start);
+    await page.click(".page-actions a.primary");
+    await page.waitForURL(`${url}build.html`);
+  }
   await page.waitForSelector("[data-key='shops.scope']", { state: "attached" });
   const title = () => page.textContent("#step-title");
 
