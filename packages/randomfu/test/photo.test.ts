@@ -5,6 +5,8 @@ import { linkBlob } from "../src/blob/link.js";
 import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
 import { jalTo } from "../src/patches/mips.js";
 import {
+  AMBIENT_SET_SIGNATURE,
+  AMBIENT_UPDATE_SIGNATURE,
   DIM_SIGNATURE,
   LOOK_SIGNATURE,
   NO_PAUSE_SIGNATURE,
@@ -25,9 +27,12 @@ const PAUSED = 0x088567b4;
 const DIM = 0x0885658c;
 const NO_PAUSE = 0x0884fa5c;
 const LOOK = 0x08815384;
+const AMBIENT_UPDATE = 0x088c33e8;
+const AMBIENT_SET = 0x088c3138;
+const AMBIENT = 0x09a4f060;
 
 function elfWith(parts: [number, number[]][]): Buffer {
-  const size = 0x80000;
+  const size = 0x100000;
   const elf = Buffer.alloc(CODE + size);
   elf.writeUInt32LE(0x464c457f, 0);
   elf.writeUInt32LE(0x34, 0x1c);
@@ -53,12 +58,22 @@ function eboot(dimCall = PAUSED) {
     [DIM - 8, dim],
     [NO_PAUSE, NO_PAUSE_SIGNATURE],
     [LOOK, LOOK_SIGNATURE],
+    [AMBIENT_UPDATE, AMBIENT_UPDATE_SIGNATURE],
+    // `lui v0, 0x09A5; sw a0, -0xFA0(v0)`: the global, 0x09A4F060.
+    [AMBIENT_SET, [0x3c0209a5, 0xac44f060, ...AMBIENT_SET_SIGNATURE.slice(2)]],
   ]);
 }
 
 test("photo mode finds the game's pause and camera code", () => {
   const sites = findPhotoSites(eboot());
-  assert.deepEqual(sites, { paused: PAUSED, dim: DIM, noPause: NO_PAUSE, look: LOOK });
+  assert.deepEqual(sites, {
+    paused: PAUSED,
+    dim: DIM,
+    noPause: NO_PAUSE,
+    look: LOOK,
+    ambient: AMBIENT,
+    ambientUpdate: AMBIENT_UPDATE,
+  });
   assert.equal(PAUSED + PAUSE_AT, 0x088567c8);
   assert.equal(PAUSED + UNPAUSE_AT, 0x0885683c);
   // The dimming has to call isPaused, as EU's does.
@@ -119,6 +134,7 @@ const PAUSE = SAVE + 0x6af1a;
 /** `struct rf_save_data`'s photo_mode (`blob/rf.h`): the menu's choice + 1. */
 const SAVED_PHOTO = SAVE + 0x666e0 + 188;
 const HUD = 0x09a04ba0;
+const MANAGER = 0x09a44c70;
 const RENDERER = 0x09998d30;
 const CTRL = 0x09fff000;
 const PAD_GLOBAL = 0x08a62c64;
@@ -153,6 +169,8 @@ function game({ on = true, online = false } = {}) {
     rf_unpause: 0x0885683c,
     rf_no_pause: NO_PAUSE,
     rf_look: LOOK,
+    rf_ambient: AMBIENT,
+    rf_ambient_update: AMBIENT_UPDATE,
     rf_photo_mode: on ? 2 : 1,
   };
   const runtime = RUNTIME_OBJECTS.map((o) => ({
@@ -170,6 +188,8 @@ function game({ on = true, online = false } = {}) {
   cpu.native.set(HUD_UPDATE, () => 0);
   cpu.native.set(PAD_READ, () => 0);
   const calls: string[] = [];
+  /** Frames the stage's ambient effects (rain) were updated. */
+  const ambient = { frames: 0 };
   const looks: { eye: number[]; target: number[]; fov: number }[] = [];
   const vec = (at: number) => [0, 1, 2].map((k) => float(cpu.u32(at + k * 4)));
   cpu.native.set(externs.rf_pause, (c) => {
@@ -185,6 +205,12 @@ function game({ on = true, online = false } = {}) {
     return 0;
   });
   cpu.native.set(NO_PAUSE, () => 0);
+  cpu.setU32(AMBIENT, MANAGER);
+  cpu.native.set(AMBIENT_UPDATE, (c) => {
+    assert.equal(c.reg[4]! >>> 0, MANAGER);
+    ambient.frames++;
+    return 0;
+  });
   cpu.native.set(LOOK, (c) => {
     assert.equal(c.reg[4]! >>> 0, RENDERER);
     // The view is built from the second pair, which agrees with the first.
@@ -214,7 +240,7 @@ function game({ on = true, online = false } = {}) {
     if (quest) cpu.call(hooks.stubs[0]!, [HUD]);
     return seen;
   };
-  return { cpu, frame, calls, looks, vec };
+  return { cpu, frame, calls, looks, vec, ambient };
 }
 
 const near = (got: number[], want: number[], message?: string) =>
@@ -233,6 +259,7 @@ test("L+R+START pauses the quest and hands over the camera; START puts it back",
   assert.deepEqual(first, { buttons: 0, x: 128, lock: 1 });
   near(g.looks.at(-1)!.eye, EYE, "it starts where the camera was");
   near(g.looks.at(-1)!.target, TARGET, "looking where it looked");
+  assert.equal(g.ambient.frames, 1, "the rain goes on round the camera");
 
   // Held from the start, L, R and START do nothing until let go.
   g.frame(L | R | START);
@@ -285,12 +312,14 @@ test("L+R+START pauses the quest and hands over the camera; START puts it back",
   // The buttons stay the blob's until every one is up, so START doesn't reach the game.
   assert.deepEqual(ended, { buttons: 0, x: 128, lock: 1 });
   assert.equal(g.frame(START).lock, 1);
+  const ambientFrames = g.ambient.frames;
   g.cpu.setU8(PAUSE, 0); // game_task clears the 4
   assert.equal(g.frame().lock, 0);
   assert.equal(g.frame(UP).buttons, UP, "the game has the buttons again");
   const looked = g.looks.length;
   g.frame(0, 255, 128);
   assert.equal(g.looks.length, looked, "and the camera");
+  assert.equal(g.ambient.frames, ambientFrames, "the game updates the rain itself again");
 });
 
 test("photo mode starts only in a quest frame, with the game free to pause", () => {
@@ -323,6 +352,7 @@ test("photo mode starts only in a quest frame, with the game free to pause", () 
   assert.equal(g.cpu.u8(PAUSE), 0);
   assert.equal(g.frame(L | R).lock, 0);
   assert.equal(g.looks.length, 0);
+  assert.equal(g.ambient.frames, 0, "nor the rain");
 
   // A START already held when L and R come down doesn't start it.
   g = game();
@@ -359,4 +389,14 @@ test("photo mode lets go if the game unpauses by itself", () => {
   assert.deepEqual(g.calls, ["pause"], "no unpause of its own");
   assert.deepEqual(g.vec(RENDERER + 0x20), EYE, "the camera back");
   assert.equal(g.frame().lock, 0);
+});
+
+test("with no ambient effects (no stage loaded), photo mode updates none", () => {
+  const g = game();
+  g.cpu.setU32(AMBIENT, 0);
+  g.frame();
+  g.frame(L | R | START);
+  g.frame();
+  assert.equal(g.cpu.u8(PAUSE), 2);
+  assert.equal(g.ambient.frames, 0);
 });

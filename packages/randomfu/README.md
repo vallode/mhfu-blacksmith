@@ -1478,7 +1478,8 @@ along the ground, △ and × raise and lower it, □ and ○ bring it nearer and
 further, L and R narrow and widen the field of view, and SELECT puts it
 back where it started. START again ends it: the camera, its field of view
 and the game go back exactly as they were, and the buttons stay locked
-until they're all let go, so the START doesn't open the menu. The camera
+until they're all let go, so the START doesn't open the menu. The rain goes on
+falling round the camera while everything else stays still. The camera
 goes through walls and the ground. The option picks what a disc starts
 with; the menu changes it in game, and the save keeps it (`photo_mode`).
 It's blob code, so it caps Guild Cards at 3. It doesn't start in the
@@ -1486,8 +1487,7 @@ village, online, with a menu open, while the game is paused or the pad is
 locked (shops, dialogues).
 
 Tried on EU in PPSSPP (2026-11-21), with input sent through the debugger:
-entering stops the rain and the quest's clock, hides the HUD and doesn't
-dim; the stick orbits round the hunter as the scene draws again; SELECT
+entering stops the quest's clock, hides the HUD and doesn't dim; the stick orbits round the hunter as the scene draws again; SELECT
 resets; START ends with the eye back to the bit and the HUD back, and the
 menu stays shut; the game's own pause still dims. Not yet played by hand,
 with a monster in view, mid-attack, or on JP (it builds; its code is found
@@ -1515,6 +1515,14 @@ What the game does (EU addresses):
   `+0xC` changed and the view (`+0xB80`) from `+0xB40`/`+0xB50`. While
   paused nothing writes them, and the frozen scene draws from whatever view
   they hold.
+- The stage's ambient effects (the rain) have a manager (EU `*0x09A4F060`,
+  set up at EU 0x088C3138) whose update (EU 0x088C33E8, in the play update)
+  places them round the camera and moves them. Paused, the rain stays where
+  the camera was, so turning away from there leaves none in view. Running
+  that update alone (tried by patching it into the paused frame) makes the
+  rain fall round the moved camera while the hunter stays still. In a rainy
+  swamp area the list held 3 effects, in the forest 4 others; the hunters',
+  monsters' and attacks' effects are other managers'.
 
 How randomfu does it (`src/patches/photo.ts`, `blob/photo.c`): on the pad
 hook, the blob calls `pause`, then sets the byte to 2. The dimming's first
@@ -1525,8 +1533,10 @@ nothing, as the HUD tests for 1. Each frame the blob clears the pad's
 buttons and centres the stick, sets the pad's input lock (`+0x17`), moves
 its own camera from the real buttons and writes the four vectors and the
 field of view before calling `look`. Ending writes back the 16 words and
-the field of view it kept, calls `look`, and `unpause`. If the game leaves
-the pause by itself (the byte isn't 2), photo mode ends too.
+the field of view it kept, calls `look`, and `unpause`. On its quest frames
+(hook 0, in the paused frame) it also runs the ambient effects' update, so
+the rain follows the camera. If the game leaves the pause by itself (the
+byte isn't 2), photo mode ends too.
 
 ## Quest end
 

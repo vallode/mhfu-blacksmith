@@ -24,6 +24,10 @@
  *   0x08815384) rebuilds the projection if the field of view (`+0xC`)
  *   changed and the view (`+0xB80`) from the second pair.
  *
+ * - The stage's ambient effects (rain) have a manager (EU `*0x09A4F060`)
+ *   whose update (EU 0x088C33E8), in the play update, places them round the
+ *   camera: paused, the rain stays where the camera was. Photo mode runs it.
+ *
  * The patch: the dimming's first eight words test the byte for 1 instead of
  * calling `isPaused`, returning through the `jr $ra` just before it, so
  * photo mode's 2 pauses the game without it. The words are rearranged to
@@ -67,6 +71,24 @@ export const LOOK_SIGNATURE = [
   0x27bdffb0, 0xafbf0000, 0xafb00000, 0xc4810010, 0xc480000c, 0x46000832, 0x00000000, 0x45010003,
   0x00808021, 0x0c000000, 0x00000000, 0xc60c0b34, 0x26040b60, 0x26050020, 0x0c000000, 0x26060030,
 ];
+/**
+ * The stage's ambient effects (rain): their manager's update (EU 0x088C33E8),
+ * each effect's update through its vtable (+0x1C) and the finished ones freed.
+ */
+export const AMBIENT_UPDATE_SIGNATURE = [
+  0x27bdfff0, 0xafbf0000, 0xafb20000, 0xafb10000, 0x3c030000, 0xafb00000, 0x00831821, 0x8c720000,
+  0x1240000f, 0x00808021, 0x8e590000, 0x8f390000, 0x0320f809, 0x02402021, 0x8e430000, 0x30630001,
+  0x0003182b, 0x14600004, 0x8e510000, 0x02402821, 0x0c000000, 0x02002021, 0x1620fff3, 0x02209021,
+];
+/**
+ * The manager's set-up (EU 0x088C3138), which stores it in its global first
+ * (`lui v0, hi; sw a0, lo(v0)`).
+ */
+export const AMBIENT_SET_SIGNATURE = [
+  0x3c020000, 0xac440000, 0x3c020000, 0x00821021, 0xac400000, 0x3c020000, 0x00821021, 0xac400000,
+  0x3c020000, 0x00821021, 0xac400000, 0x3c020000, 0x00821021, 0xac400000, 0x34020000, 0xa482028a,
+  0x03e00008, 0x00801021,
+];
 
 /**
  * The dimming's new first eight words, at `at` (the `jr $ra` is at `at - 8`):
@@ -93,6 +115,9 @@ export interface PhotoSites {
   dim: number;
   noPause: number;
   look: number;
+  /** The global holding the ambient effects' manager, and their update. */
+  ambient: number;
+  ambientUpdate: number;
 }
 
 const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
@@ -101,21 +126,27 @@ const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
 export function findPhotoSites(vanillaEboot: Buffer): PhotoSites | string {
   const segment = codeSegment(vanillaEboot);
   if (!segment) return "the EBOOT isn't an ELF";
-  const [paused, noPause, look] = findUnique(vanillaEboot, segment, [
+  const [paused, noPause, look, ambientUpdate, ambientSet] = findUnique(vanillaEboot, segment, [
     PAUSE_SIGNATURE,
     NO_PAUSE_SIGNATURE,
     LOOK_SIGNATURE,
+    AMBIENT_UPDATE_SIGNATURE,
+    AMBIENT_SET_SIGNATURE,
   ]);
   if (paused == null) return "this EBOOT's pause code doesn't match";
   if (noPause == null) return "this EBOOT's pause check doesn't match";
   if (look == null) return "this EBOOT's camera code doesn't match";
+  if (ambientUpdate == null || ambientSet == null) {
+    return "this EBOOT's ambient effects (rain) code doesn't match";
+  }
   const at = (vaddr: number) => word(vanillaEboot, segment.offset + (vaddr - segment.vaddr));
+  const ambient = hiLo(at(ambientSet), at(ambientSet + 4));
   const dim = paused - DIM_BEFORE_PAUSED;
   const matches = DIM_SIGNATURE.every((w, k) => maskWord(at(dim - 8 + k * 4)) === w);
   if (!matches || jumpTarget(at(dim + 8), dim + 8) !== paused) {
     return "this EBOOT's pause dimming doesn't match";
   }
-  return { paused, dim, noPause, look };
+  return { paused, dim, noPause, look, ambient, ambientUpdate };
 }
 
 /** The blob's externs for photo mode, from the vanilla EBOOT, or why not. */
@@ -138,6 +169,8 @@ export function findPhotoExterns(
     rf_unpause: photo.paused + UNPAUSE_AT,
     rf_no_pause: photo.noPause,
     rf_look: photo.look,
+    rf_ambient: photo.ambient,
+    rf_ambient_update: photo.ambientUpdate,
     // Off or on, + 1: an extern's address is never 0 (`blob/photo.c`).
     rf_photo_mode: on ? 2 : 1,
   };

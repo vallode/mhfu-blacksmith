@@ -22,6 +22,12 @@
  * and projection from them (look(renderer)). Leaving writes back what they
  * were.
  *
+ * The stage's ambient effects (rain; EU 0x09A4F060's manager) are placed round
+ * the camera by their update, which the pause skips too: frozen, the rain
+ * stays where the camera was. Photo mode runs that update on its quest frames
+ * (hook 0, in the paused frame), so the rain falls round the camera it flies;
+ * the hunters, monsters and their effects stay still.
+ *
  * Input: the pad hook gets the buttons before the game. While photo mode is
  * on (and until every button is up after) it holds the game's input lock and
  * clears the buttons and stick it passes on, so the paused HUD sees nothing
@@ -38,6 +44,8 @@ extern const u8 rf_pause[];    /* pause(save): the pause byte 1 and the sound st
 extern const u8 rf_unpause[];  /* unpause(save): the byte 4 (0 the next frame), the sound on */
 extern const u8 rf_no_pause[]; /* noPause(save, 0): 1 where the game can't pause (online) */
 extern const u8 rf_look[];     /* look(renderer): the view and projection from the eye and target */
+extern u8 *const rf_ambient[]; /* the global holding the stage's ambient effects (rain) */
+extern const u8 rf_ambient_update[]; /* their update(manager), a frame of them */
 /* A constant, not an address: the disc's choice + 1 (an extern's address is never 0). */
 extern const u8 rf_photo_mode[];
 
@@ -265,6 +273,10 @@ static u32 setting(void);
 static void quest_frame(u8 *arg) {
   hud = arg;
   quest_at = frames;
+  if (on && save[PAUSE] == PHOTO) {
+    u8 *ambient = *rf_ambient;
+    if (in_ram(ambient)) ((void (*)(u8 *))rf_ambient_update)(ambient);
+  }
 }
 
 static void pad_hook(u8 *ctrl) {
