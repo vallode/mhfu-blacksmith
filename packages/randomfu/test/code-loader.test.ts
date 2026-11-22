@@ -31,7 +31,7 @@ import {
   HOOK,
   MENU,
   PAD_READ_SIGNATURE,
-  assembleHooks,
+  assembleHookGate,
   assemblePickHook,
   findPadSites,
   type MenuSites,
@@ -449,7 +449,7 @@ test("addCodeLoader with only the pad hook and the picker: Poogie's luck needs n
   assert.equal(g.edits.files.size, 1, "only game_sub (the card loop) changes, not game_task");
 });
 
-test("addCodeLoader points lobby_task's quest card call at a stub that runs hook 6", () => {
+test("addCodeLoader points lobby_task's quest card call at the cave's gate to hook 6 in the blob", () => {
   const g = syntheticGame();
   const at = (offset: number) => g.OFFSET + offset;
   PAD_READ_SIGNATURE.forEach((w, k) => g.elf.writeUInt32LE(w, at(0xd80 + k * 4)));
@@ -469,14 +469,45 @@ test("addCodeLoader points lobby_task's quest card call at a stub that runs hook
   const eboot = g.edits.eboot();
   const call = g.edits.overlay(lobbyTask).readUInt32LE(0x20);
   assert.equal(call >>> 26, 0x03, "a jal");
-  const stub = (vaddr: number) => (k: number) => eboot.readUInt32LE(at(vaddr - g.VADDR + k * 4));
-  // A stub: addiu sp; sw ra; jal target; sw a0; sw v0; lw a0; jal dispatch; addiu a1, zero, hook.
-  const cardStub = stub(target(call));
-  assert.equal(target(cardStub(2)), card, "the card stub calls the card");
-  assert.equal(cardStub(7), 0x24050000 | HOOK.questCard, "and dispatches hook 6");
-  const padStub = stub(target(eboot.readUInt32LE(at(0xd80 + 0x14))));
-  assert.equal(target(padStub(2)), ctrlRead, "the pad call keeps its own stub");
-  assert.equal(padStub(7), 0x24050000 | HOOK.pad);
+  const blob = g.edits.discFiles.get(BLOB_ISO_PATH)!;
+  const blobAddress = Number(/ at (0x[0-9a-f]+), loader/.exec(report.summary ?? "")?.[1]);
+
+  // Run the game's calls through the gate, with the blob loaded and without.
+  const cpu = new Cpu();
+  cpu.write(g.VADDR, eboot.subarray(g.OFFSET));
+  cpu.write(blobAddress, blob);
+  const arg0 = () => cpu.reg[4]! >>> 0;
+  cpu.native.set(card, () => 7);
+  cpu.native.set(ctrlRead, () => 9);
+  const hooks: number[] = [];
+  for (const hook of [HOOK.pad, HOOK.questCard]) {
+    const fn = blob.readUInt32LE(HEADER.hooks + hook * 4);
+    assert.notEqual(fn, 0, `the runtime defines rf_hook${hook}`);
+    cpu.native.set(fn, () => (hooks.push(hook, arg0()), 0));
+  }
+  const padCall = target(eboot.readUInt32LE(at(0xd80 + 0x14)));
+  assert.notEqual(padCall, ctrlRead, "the pad call goes to the gate");
+  for (const loaded of [true, false]) {
+    if (!loaded) cpu.setU32(blobAddress + HEADER.magic, 0);
+    hooks.length = 0;
+    cpu.calls.length = 0;
+    assert.equal(cpu.call(target(call), [0x08a00000]), 7, "the card's result");
+    assert.equal(cpu.call(padCall, [0x08a00100]), 9, "the controller read's result");
+    const games = cpu.calls.filter((c) => c.address === card || c.address === ctrlRead);
+    assert.deepEqual(
+      games.map((c) => [c.address, c.args[0]]),
+      [
+        [card, 0x08a00000],
+        [ctrlRead, 0x08a00100],
+      ],
+      "the game's calls are made either way",
+    );
+    assert.deepEqual(
+      hooks,
+      loaded ? [HOOK.questCard, 0x08a00000, HOOK.pad, 0x08a00100] : [],
+      loaded ? "then hooks 6 and 2 run, with the call's $a0" : "and no hook without the blob",
+    );
+  }
 });
 
 test("addCodeLoader takes nothing when other features left too little room", () => {
@@ -501,7 +532,7 @@ test("addCodeLoader takes nothing when other features left too little room", () 
   }
 });
 
-test("the cave holds the loader with every hook, or with the START menus and the default hooks and call", () => {
+test("the cave holds the loader with every hook and the START menus", () => {
   const g = syntheticGame();
   const space = guildCardSpace(g.elf, g.sub, g.edits);
   assert.ok(typeof space !== "string");
@@ -523,25 +554,21 @@ test("the cave holds the loader with every hook, or with the START menus and the
     hook,
     target: 0x08840000 + hook * 0x100,
   }));
-  const words = (o: { card?: boolean; load?: boolean; hit?: boolean; menus?: boolean }) =>
-    loader +
-    pick +
-    assembleHooks(
+  // The hook code is in the blob; the cave has its gate, three words a call.
+  const gate = (o: { card?: boolean; load?: boolean; hit?: boolean; menus?: boolean }) =>
+    assembleHookGate(
       0,
       0x099a1820,
+      0x099a2000,
       o.card ? [...base, { hook: HOOK.questCard, target: 0x09a8ca40 }] : base,
       o.load ? 0x08870aec : undefined,
       o.hit ? 0x09c44f08 : undefined,
       o.menus ? menus : [],
-      // Send All to Item Box's label call, on by default with the menus.
-      o.menus ? [call(0x08810100)] : [],
+      // Send All to Item Box's label call and the target camera's.
+      o.menus ? [call(0x08810100), call(0x08810200)] : [],
     ).code.length;
-  // randomize leaves the menus (and the features only they turn on) out when they don't fit.
-  const all = words({ card: true, load: true, hit: true });
-  assert.ok(all <= free, `every option on but the menus: ${all} of ${free} words`);
-  const defaults = words({ hit: true, menus: true });
-  assert.ok(
-    defaults <= free,
-    `Poogie's luck, the START menus and Send All: ${defaults} of ${free} words`,
-  );
+  const all = loader + pick + gate({ card: true, load: true, hit: true, menus: true });
+  // Room to spare for more hooks: randomize leaves the menus out when they don't fit.
+  assert.ok(all + 40 <= free, `every option on: ${all} of ${free} words`);
+  assert.equal(gate({}), 18 + 3 * base.length, "the gate, and three words a call");
 });

@@ -1,8 +1,9 @@
 /**
  * Game hooks for blob code (see `docs/code-loader.md`): game calls pointed at
- * stubs in the Guild Card cave that make the call, then run the blob's
- * `rf_hookN` if a blob is loaded. Blob features register for them in C
- * (`blob/rf.h`, `blob/runtime.c`).
+ * a gate in the Guild Card cave (`assembleHookGate`), which goes to stubs in
+ * the blob (`assembleHooks`) that make the call, then run the blob's
+ * `rf_hookN`; without a blob it makes the game's call alone. Blob features
+ * register for them in C (`blob/rf.h`, `blob/runtime.c`).
  *
  * What the game does (found on the EU and JP discs):
  *
@@ -562,11 +563,77 @@ function emitBlobCheck(a: Assembler, blob: number, miss: string): void {
   a.branch(BNE, t1, t2, miss);
 }
 
+/** Where each call a hook takes enters: the hook code's labels or the gate's. */
+export interface HookEntries {
+  /** `originals`' stubs, in order. */
+  stubs: number[];
+  questLoad?: { accept: number; depart: number };
+  hit?: number;
+  menus: MenuStubs[];
+  /** Each of `calls`' entry. */
+  calls: number[];
+}
+
+/**
+ * The calls the hooks take, by label, in the order the gate numbers them
+ * (its sites), with the game's function each calls.
+ */
+function hookSiteList(
+  originals: readonly { hook: number; target: number }[],
+  questLoader: number | undefined,
+  hit: number | undefined,
+  menus: readonly MenuSites[],
+  calls: readonly HookCall[],
+): { label: string; target: number }[] {
+  const phases = Object.keys(MENU_PHASE) as (keyof typeof MENU_PHASE)[];
+  return [
+    ...originals.map(({ target }, k) => ({ label: `stub${k}`, target })),
+    ...(questLoader === undefined
+      ? []
+      : [
+          { label: "acceptLoad", target: questLoader },
+          { label: "departLoad", target: questLoader },
+        ]),
+    ...(hit === undefined ? [] : [{ label: "hit", target: hit }]),
+    ...menus.flatMap((menu, k) =>
+      phases.map((phase) => ({ label: `menu${k}${phase}`, target: menu[phase].target })),
+    ),
+    ...calls.map(({ target }, k) => ({ label: `call${k}`, target })),
+  ];
+}
+
+function hookEntries(
+  addressOf: (label: string) => number,
+  originals: readonly unknown[],
+  questLoader: number | undefined,
+  hit: number | undefined,
+  menus: readonly MenuSites[],
+  calls: readonly HookCall[],
+): HookEntries {
+  return {
+    stubs: originals.map((_, k) => addressOf(`stub${k}`)),
+    ...(questLoader !== undefined && {
+      questLoad: { accept: addressOf("acceptLoad"), depart: addressOf("departLoad") },
+    }),
+    ...(hit !== undefined && { hit: addressOf("hit") }),
+    menus: menus.map((_, k) => ({
+      label: addressOf(`menu${k}label`),
+      select: addressOf(`menu${k}select`),
+      run: addressOf(`menu${k}run`),
+      draw: addressOf(`menu${k}draw`),
+    })),
+    calls: calls.map((_, k) => addressOf(`call${k}`)),
+  };
+}
+
 /**
  * The hook code at `at`: `dispatch(arg, hook)` jumps to the blob's
  * `rf_hookN` when the blob's magic is there and it defines one; then a stub
  * per hook that makes the game's call and dispatches. `questLoader` and
- * `hit` (the status buildup the hit site calls) add hooks 3 and 5.
+ * `hit` (the status buildup the hit site calls) add hooks 3 and 7, `menus`
+ * and `calls` hook 8. The code loader links it into the blob, behind the
+ * cave's gate (`assembleHookGate`); `sites` are its entries in the gate's
+ * order.
  */
 export function assembleHooks(
   at: number,
@@ -576,15 +643,7 @@ export function assembleHooks(
   hit?: number,
   menus: readonly MenuSites[] = [],
   calls: readonly HookCall[] = [],
-): {
-  code: number[];
-  stubs: number[];
-  questLoad?: { accept: number; depart: number };
-  hit?: number;
-  menus: MenuStubs[];
-  /** Each of `calls`' entry. */
-  calls: number[];
-} {
+): HookEntries & { code: number[]; sites: number[] } {
   const a = new Assembler();
   const { zero, v0, a0, a1, a2, t0, t1, t2, t3, t4, t9 } = R;
   const nop = () => a.emit(0);
@@ -746,23 +805,63 @@ export function assembleHooks(
   nop();
 
   const code = a.link(at);
+  const addressOf = (label: string) => at + a.offsetOf(label) * 4;
   return {
     code,
-    stubs: originals.map((_, k) => at + a.offsetOf(`stub${k}`) * 4),
-    ...(questLoader !== undefined && {
-      questLoad: {
-        accept: at + a.offsetOf("acceptLoad") * 4,
-        depart: at + a.offsetOf("departLoad") * 4,
-      },
-    }),
-    ...(hit !== undefined && { hit: at + a.offsetOf("hit") * 4 }),
-    menus: menus.map((_, k) => ({
-      label: at + a.offsetOf(`menu${k}label`) * 4,
-      select: at + a.offsetOf(`menu${k}select`) * 4,
-      run: at + a.offsetOf(`menu${k}run`) * 4,
-      draw: at + a.offsetOf(`menu${k}draw`) * 4,
-    })),
-    calls: calls.map((_, k) => at + a.offsetOf(`call${k}`) * 4),
+    ...hookEntries(addressOf, originals, questLoader, hit, menus, calls),
+    sites: hookSiteList(originals, questLoader, hit, menus, calls).map(({ label }) =>
+      addressOf(label),
+    ),
+  };
+}
+
+/**
+ * The hooks' gate at `at`, the only hook code in the cave: an entry per call
+ * the hooks take (`b gate; li $t4, site`) and the game's functions by site.
+ * With the blob's magic there it jumps to the hook code's entry for the site,
+ * from the blob's `table` (`assembleHooks`' `sites`); otherwise to the game's
+ * function, as if the game had called it. Either way the call's arguments
+ * and `$ra` are as the game left them; it uses `$t0`-`$t2` and `$t4`-`$t6`.
+ */
+export function assembleHookGate(
+  at: number,
+  blob: number,
+  table: number,
+  originals: readonly { hook: number; target: number }[],
+  questLoader?: number,
+  hit?: number,
+  menus: readonly MenuSites[] = [],
+  calls: readonly HookCall[] = [],
+): HookEntries & { code: number[] } {
+  const a = new Assembler();
+  const { zero, t4, t5, t6 } = R;
+  const nop = () => a.emit(0);
+  const sites = hookSiteList(originals, questLoader, hit, menus, calls);
+  for (const [k, { label }] of sites.entries()) {
+    a.label(label);
+    a.branch(BEQ, zero, zero, "gate");
+    a.i(ADDIU, zero, t4, k);
+  }
+  a.label("gate");
+  emitBlobCheck(a, blob, "game");
+  a.r(zero, t4, t5, 2, SLL);
+  a.i(LUI, zero, t6, hi16(table));
+  a.r(t6, t5, t6, 0, 0x21);
+  a.i(LW, t6, t6, table & 0xffff);
+  a.r(t6, zero, zero, 0, JR);
+  nop();
+  a.label("game");
+  a.addressOf(t6, "targets");
+  a.r(t6, t5, t6, 0, 0x21);
+  a.i(LW, t6, t6, 0);
+  a.r(t6, zero, zero, 0, JR);
+  nop();
+  a.label("targets");
+  for (const { target } of sites) a.emit(target);
+  const addressOf = (label: string) => at + a.offsetOf(label) * 4;
+  return {
+    code: a.link(at),
+    ...hookEntries(addressOf, originals, questLoader, hit, menus, calls),
   };
 }
 

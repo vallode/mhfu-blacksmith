@@ -130,12 +130,23 @@ the end, where a save that has the magic already has zeros.
 
 ## Game hooks
 
-`src/patches/game-hooks.ts` points game calls at stubs in the cave. Each
-stub saves `$a0`, makes the game's call, then calls `dispatch(a0, k)`,
-which jumps to the blob's `rf_hookK` only when the magic word at the blob
-address matches and the header's entry isn't 0; the call's `$v0` is passed
-back. A stub's 32-byte frame leaves `sp+0..15` free for the O32 code it
-reaches. Twelve words per stub and 15 for `dispatch`.
+`src/patches/game-hooks.ts` points game calls at the hooks' gate in the
+cave (`assembleHookGate`), and the stubs it goes to are in the blob
+(`assembleHooks`, linked as the per-disc table `rf_hook_code`). Each call
+goes to two gate words that set `$t4` to its site and branch to the gate.
+With the blob's magic word there, the gate jumps to the site's stub through
+a table in the blob; without it, to the game's function from the gate's own
+table, as if the game had called it. So the cave holds 18 words of gate and
+3 a call (`test/code-loader.test.ts` keeps every hook with the START menus
+well inside it), and a stub can be any size. The gate keeps the call's
+arguments and `$ra`, using only temporaries (`$t0`-`$t2`, `$t4`-`$t6`).
+
+A stub saves `$a0`, makes the game's call, then calls `dispatch(a0, k)`,
+which jumps to the blob's `rf_hookK` when the header's entry isn't 0 (it
+checks the magic word too); the call's `$v0` is passed back. A stub's
+32-byte frame leaves `sp+0..15` free for the O32 code it reaches. The stubs
+used to be in the cave, which ran out once every hook and the START menus
+were on.
 
 | Hook | `rf_hookN`  | The call                                                                                     | EU site(s)                                                                                                                   | JP site(s)                                |
 | ---- | ----------- | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
@@ -477,7 +488,7 @@ text is. Every address and the label's place are link-time constants that
 `findKeyQuestSites` reads from `lobby_task`; the hook's call is patched in
 the overlay (`code-loader.ts`, `hooks.questCard`). `test/key-quests.test.ts`
 runs the stub and blob in the interpreter, and `test/code-loader.test.ts`
-checks the call goes to hook 6's stub.
+runs the call through the gate to hook 6, with the blob and without.
 
 ## Toolchain
 
@@ -631,9 +642,8 @@ placeholder while it runs, in either menu.
 **The hook** takes each menu's four calls, each its function's only call
 (`MENU_*_SIGNATURE` and `VILLAGE_*_SIGNATURE`, immediates masked). Each
 call goes to two words that set `$t4` to its site (menu × 4 + `RF_MENU_*`)
-and branch to one shared stub, so the eight calls cost 16 words, the stub
-about 30 and a table of the game's functions by site 8 (the cave is
-tight: a stub per call didn't fit). The stub has a 64-byte frame with a
+and branch to one shared stub, with a table of the game's functions by
+site (all in the blob, behind the gate). The stub has a 64-byte frame with a
 `struct rf_menu` at `sp+16`: the call's `$a0`–`$a3`, `$s0` and `$s2` (the
 label loops' row), the site, the game's function, `handled` (0) and
 `result`. It dispatches; if the blob set `handled` it returns `result`,
@@ -652,7 +662,7 @@ The blob decides the rest:
 - Draw: `menu.c` makes the game's call, then draws its window.
 
 Other calls can share the stub (`calls` in `assembleHooks`, sites 8 on:
-`RF_CALL_*` in `blob/rf.h`), at 3 words each (2 and a table word). Send
+`RF_CALL_*` in `blob/rf.h`), at 3 cave words each, the gate's. Send
 All to Item Box (`blob/send-all.c`) takes `box()`'s call to the label
 getter (EU 0x0882F8A8, `CALL_SITE.rewardLabel`), and its quest draw callback
 runs before `menu.c`'s, making the game's call itself (`menu.c` then
