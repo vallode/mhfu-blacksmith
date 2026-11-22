@@ -1892,8 +1892,20 @@ the amount:
 | G    | 4000 / 8000 / 15000           |
 
 Items and equipment come up twice as often as the rest. No two pacts in a
-window pay zenny or quest rewards alike, or give the same item or piece. Rewards
-are paid only for a completed quest:
+window pay zenny or quest rewards alike, or give the same item or piece.
+
+About one window in 10, on a quest with a large monster, the last pact is
+the jackpot, its penalty in the game's highlight colour: **Glass: 1 health,
+a faint fails**. Health (and its red part and maximum) is held at 1, so
+any hit, heat or poison faints, and it's one cart as well. It pays an item of
+the rank's hardest grade, five times as many as a hard pact gives (Rathalos
+Plate ×5 rather than ×1, at most 99), and ten times the quest's zenny, at
+least 30000 / 100000 / 200000 (Low / High / G); only zenny where the rank's pool has
+no such item. A window with the jackpot offers neither One cart nor Frail,
+and no other pact in it gives its item. A faint loses it whatever one cart
+does: the item isn't paid and its zenny comes off the reward.
+
+Rewards are paid only for a completed quest:
 
 - zenny added to the quest's own (a faint costs the same share of the new
   reward as of the old);
@@ -1970,7 +1982,9 @@ have the details):
   shared `blob/monsters.c` scales them each time, and health once.
 
 Tried in game (EU): the window, its shade, layers and text, its controls
-and the input lock. Not yet: the rewards, the delivery penalties, and JP.
+and the input lock. Not yet: the rewards, the delivery penalties, the
+jackpot (whether health held at 1 shows or plays oddly, whether a faint
+reads as health 0 for a frame), and JP.
 The pacts in the quest's info were tried in their first place, the fail
 conditions, where they ran out of the box; not yet in the details.
 Some quest starts crashed on the EU disc before the window showed (cause

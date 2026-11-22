@@ -115,12 +115,20 @@ enum {
   WEARY,
   DELIVER_MORE,
   DELIVER_DOUBLE,
+  GLASS, /* the jackpot's: never drawn with the rest (new_quest) */
   PENALTIES
 };
 /* What a penalty needs of the quest to mean anything. */
 #define NEEDS_LARGE 1    /* a large monster */
 #define NEEDS_DELIVERY 2 /* an item to deliver, other than a Paw Pass Ticket from the box */
 #define NEEDS_TIME 4     /* not a quest won by surviving until time over */
+/*
+ * The jackpot: about one window in JACKPOT_ODDS, on a quest with a large
+ * monster, its last pact is Glass (health held at 1, and one cart), which
+ * pays far more than any other. Weight 4 is its own.
+ */
+#define JACKPOT_ODDS 10
+#define JACKPOT_WEIGHT 4
 static const struct {
   const char *name;
   u8 weight;
@@ -140,16 +148,22 @@ static const struct {
     {"Weary: stamina capped at half", 1, 6, 0},
     {"Deliver 50% more", 2, 7, NEEDS_DELIVERY},
     {"Deliver twice as many", 3, 7, NEEDS_DELIVERY},
+    {"Glass: 1 health, a faint fails", JACKPOT_WEIGHT, 8, NEEDS_LARGE},
 };
 
 /* The rewards. */
-enum { R_ZENNY, R_DRAWS, R_ITEM, R_EQUIPMENT, REWARDS };
+enum { R_ZENNY, R_DRAWS, R_ITEM, R_EQUIPMENT, R_JACKPOT, REWARDS };
+/* The jackpot's item, when the rank has none to give. */
+#define NO_ITEM 0xffff
+/* The jackpot gives five times as many of its rare item as a hard pact would. */
+#define JACKPOT_AMOUNT 5
 /*
  * Zenny: a percent of what the quest pays, by weight, but at least a set
  * amount for its rank, so a quest that pays little is still worth it.
  */
-static const u8 bonus_percent[4] = {0, 50, 100, 200};
-static const u16 zenny_floor[3][3] = {{600, 1200, 2400}, {2000, 4000, 8000}, {4000, 8000, 15000}};
+static const u16 bonus_percent[5] = {0, 50, 100, 200, 1000};
+static const u32 zenny_floor[3][4] = {
+    {600, 1200, 2400, 30000}, {2000, 4000, 8000, 100000}, {4000, 8000, 15000, 200000}};
 
 /*
  * The reward pool, per seed: a header of spans (first entry, count), per
@@ -215,6 +229,9 @@ static u8 *save;
 static u8 hp_up, atk_up, frail;
 static s16 weary;  /* the stamina cap, or 0 */
 static u8 sealing; /* asked for by the pad hook, done on the next quest frame */
+static u8 glass;   /* the jackpot's taken: health held at 1 */
+static u8 glass_lost;     /* a faint lost it */
+static u32 glass_zenny;   /* the zenny it adds */
 static u8 paying;  /* bit k: offer[k]'s item or equipment, until the rewards hook pays it */
 
 static u32 random(u32 n) {
@@ -307,11 +324,19 @@ static u32 bonus(u8 *q, const rf_offer *o) {
   return n > floor ? n : floor;
 }
 
-/* Whether one of the first `k` offers already gives this pool entry's item or piece. */
+/* Whether an offer gives an item or piece from the pool (its icon, the rewards hook). */
+static int gives_entry(const rf_offer *o) {
+  return o->reward == R_ITEM || o->reward == R_EQUIPMENT ||
+         (o->reward == R_JACKPOT && o->value != NO_ITEM);
+}
+
+/* Whether one of the first `k` offers, or the jackpot, already gives this pool entry's item or piece. */
 static int offered(u32 k, u32 value) {
   const rf_entry *e = entry(value);
-  for (u32 j = 0; j < k; j++) {
-    if (offer[j].reward != R_ITEM && offer[j].reward != R_EQUIPMENT) continue;
+  for (u32 j = 0; j < OFFERS; j++) {
+    /* The first k, and the jackpot (the last), which is drawn first. */
+    if (j >= k && !(j == OFFERS - 1 && offer[j].reward == R_JACKPOT)) continue;
+    if (!gives_entry(&offer[j])) continue;
     const rf_entry *f = entry(offer[j].value);
     if (f->id == e->id && f->type == e->type) return 1;
   }
@@ -372,23 +397,49 @@ static void forget(void) {
   cursor = 0;
   hp_up = atk_up = frail = 0;
   weary = 0;
+  glass = glass_lost = 0;
+  glass_zenny = 0;
+}
+
+/*
+ * The jackpot, offer `k` (the last): a rare item no other offer gives, from
+ * the rank's hardest grade, and ten times the quest's zenny (bonus()).
+ */
+static rf_offer jackpot(u32 k) {
+  rf_offer o = {GLASS, R_JACKPOT, NO_ITEM};
+  const rf_span *s = span(band, 2);
+  if (!s->count) return o;
+  const u32 start = random(s->count);
+  for (u32 j = 0; j < s->count; j++) {
+    const u16 value = (u16)(s->first + (start + j) % s->count);
+    if (!offered(k, value)) {
+      o.value = value;
+      break;
+    }
+  }
+  return o;
 }
 
 static void new_quest(u8 *q, u8 *header) {
   seed ^= now;
   state = PENDING;
+  offer[OFFERS - 1].reward = REWARDS; /* no jackpot, until one's drawn */
   band = (u8)rank_band(header);
   kinds = (u8)kinds_of(header);
   rewards_main = main_table(q);
   const u32 draws = rewards_main ? rewards_main[TABLE_DRAWS] : MAX_DRAWS;
   room = draws < MAX_DRAWS ? (u8)(MAX_DRAWS - draws) : 0;
+  /* Rarely, the jackpot: then nothing it holds already (one cart) or overrides (frail). */
+  const u32 rare = (kinds & NEEDS_LARGE) && !random(JACKPOT_ODDS);
   /* Three penalties from different groups that fit the quest, each with its reward. */
   u8 can[PENALTIES];
   u32 n = 0, used = 0;
   for (u32 p = 0; p < PENALTIES; p++) {
+    if (p == GLASS || (rare && (p == ONE_CART || p == FRAIL))) continue;
     if ((penalty[p].needs & kinds) == penalty[p].needs) can[n++] = (u8)p;
   }
-  for (u32 k = 0; k < OFFERS; k++) {
+  if (rare) offer[OFFERS - 1] = jackpot(0);
+  for (u32 k = 0; k < OFFERS - rare; k++) {
     /* A penalty with nothing left to pay gives way to another. */
     u32 p = WEARY;
     rf_offer o = {WEARY, REWARDS, 0};
@@ -445,6 +496,12 @@ static void put_number(u32 n) {
   line[at] = 0;
 }
 
+/* How many of its item the jackpot gives. */
+static u32 jackpot_amount(const rf_entry *e) {
+  const u32 n = e->amount * JACKPOT_AMOUNT;
+  return n > 99 ? 99 : n;
+}
+
 static void put_reward(u8 *q, const rf_offer *o) {
   switch (o->reward) {
   case R_ZENNY:
@@ -455,6 +512,19 @@ static void put_reward(u8 *q, const rf_offer *o) {
   case R_DRAWS:
     put("Quest rewards +");
     put_number(o->value);
+    break;
+  case R_JACKPOT:
+    if (o->value != NO_ITEM) {
+      const rf_entry *e = entry(o->value);
+      put((const char *)rf_pact_pool + e->name);
+      put(" x");
+      put_number(jackpot_amount(e));
+      put(" +");
+    } else {
+      put("Zenny +");
+    }
+    put_number(bonus(q, o));
+    put("z");
     break;
   default: {
     const rf_entry *e = entry(o->value);
@@ -553,6 +623,10 @@ static void seal(u8 *q) {
       if (header) deliver_more(header, 100);
       break;
     case FRAIL: frail = 1; break;
+    case GLASS:
+      glass = 1;
+      one_cart = 1;
+      break;
     case WEARY: {
       if (!hunter) break;
       s16 a = *(s16 *)(hunter + STAMINA), b = *(s16 *)(hunter + STAMINA_MAX);
@@ -563,6 +637,11 @@ static void seal(u8 *q) {
     switch (offer[k].reward) {
     case R_ZENNY: zenny += bonus(q, &offer[k]); break;
     case R_DRAWS: draws += offer[k].value; break;
+    case R_JACKPOT:
+      glass_zenny = bonus(q, &offer[k]);
+      zenny += glass_zenny;
+      if (offer[k].value != NO_ITEM) paying |= (u8)(1u << k);
+      break;
     default: paying |= (u8)(1u << k); break;
     }
   }
@@ -599,7 +678,7 @@ static void rewards(u8 *arg) {
       for (u32 s = 0; s < REWARD_SLOTS; s++, box += 2) {
         if (box[0]) continue;
         box[0] = e->id;
-        box[1] = e->amount;
+        box[1] = (u16)(offer[k].reward == R_JACKPOT ? jackpot_amount(e) : e->amount);
         break;
       }
     } else {
@@ -634,6 +713,23 @@ static void keep(u8 *q) {
   if (weary) {
     clamp(hunter, STAMINA_MAX, weary);
     clamp(hunter, STAMINA, weary);
+  }
+  if (glass) {
+    clamp(hunter, HP_MAX, 1);
+    clamp(hunter, HP, 1);
+    clamp(hunter, HP_RED, 1);
+    /*
+     * A faint (health at 0) loses the jackpot, whether or not one cart
+     * fails the quest: its item isn't paid and its zenny comes off the reward.
+     */
+    if (*(s16 *)(hunter + HP) <= 0 && !glass_lost) {
+      glass_lost = 1;
+      for (u32 k = 0; k < OFFERS; k++) {
+        if (offer[k].reward == R_JACKPOT) paying &= (u8) ~(1u << k);
+      }
+      s32 *reward = (s32 *)(q + Q_REWARD);
+      *reward = *reward > (s32)glass_zenny ? *reward - (s32)glass_zenny : 0;
+    }
   }
 }
 
@@ -768,11 +864,12 @@ static void draw(u8 *q) {
     const u32 y = OFFERS_Y + k * OFFER_H;
     put(on ? C_TAKEN BOX_ON : C_WHITE BOX_OFF);
     text(LEFT, y);
-    put(on ? C_TAKEN : C_WHITE);
+    /* The jackpot stands out in the game's highlight until it's taken. */
+    put(on ? C_TAKEN : offer[k].reward == R_JACKPOT ? C_TITLE : C_WHITE);
     put(penalty[offer[k].penalty].name);
     text(BOX, y);
     /* Items and pieces show their own icons, centred on the line's 14-pixel glyphs; the rest a star. */
-    if (offer[k].reward == R_ITEM || offer[k].reward == R_EQUIPMENT) {
+    if (gives_entry(&offer[k])) {
       const rf_entry *e = entry(offer[k].value);
       if (e->type == ITEM) {
         rf_call8(rf_item_icon, (u32)q, e->id, BOX, y + ROW - 1, ICON, ICON, 0, 0xff);

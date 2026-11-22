@@ -301,7 +301,7 @@ test("a quest opens the window: three pacts, each a penalty and its reward, and 
   for (const { reward } of o) {
     assert.match(
       reward,
-      /^(Zenny \+\d+z|Quest rewards \+[123]|Iron Ore x10|Machalite Ore x5|Dragonite Ore x2|Bone Kris)$/,
+      /^(Zenny \+\d+z|Quest rewards \+[123]|Iron Ore x10|Machalite Ore x5|Dragonite Ore x(2|10 \+\d+z)|Bone Kris)$/,
     );
   }
   assert.ok(lines.includes("Hunt without a pact"));
@@ -402,7 +402,13 @@ test("taking a pact shows it, and the last row seals", () => {
 const amount = (o: { reward: string }) => Number(o.reward.match(/\d+/)![0]);
 /** The penalty's weight, from the names in pact.c. */
 const weightOf = (o: { penalty: string }) =>
-  /\+30%|No supply|Weary/.test(o.penalty) ? 1 : /\+100%|One cart|twice/.test(o.penalty) ? 3 : 2;
+  /^Glass/.test(o.penalty)
+    ? 4
+    : /\+30%|No supply|Weary/.test(o.penalty)
+      ? 1
+      : /\+100%|One cart|twice/.test(o.penalty)
+        ? 3
+        : 2;
 
 test("a zenny reward pays the amount it shows", () => {
   const { q } = questOffering(reward(/^Zenny/));
@@ -480,7 +486,7 @@ test("rewards match the penalty: light ones pay little, hard ones equipment", ()
   for (let n = 1; n < 400; n++) {
     for (const o of next(q, n)) {
       if (/^Bone Kris$|^Dragonite/.test(o.reward)) {
-        assert.match(o.penalty, /\+100%|One cart/);
+        assert.match(o.penalty, /\+100%|One cart|^Glass/);
       }
       if (/^Iron Ore/.test(o.reward)) assert.match(o.penalty, /\+30%|No supply|Weary/);
     }
@@ -604,6 +610,72 @@ test("frail and weary cap the hunter's health and stamina", () => {
   assert.equal(q.cpu.u16(HUNTER + 0x2e4), 50);
 });
 
+const glass = penalty(/^Glass: 1 health, a faint fails$/);
+
+test("the jackpot: rarely, on a hunt, the last pact is Glass, without one cart or frail", () => {
+  const q = quest();
+  let windows = 0;
+  for (let n = 1; n < 1000; n++) {
+    const list = next(q, n);
+    const k = list.findIndex(glass);
+    if (k < 0) continue;
+    windows++;
+    assert.equal(k, 2, "the last");
+    assert.ok(!list.some(penalty(/^One cart|^Frail/)), list.map((o) => o.penalty).join(", "));
+    // Low Rank: five times the hardest grade's item, and ten times 900z, at least 30000z.
+    assert.equal(list[2]!.reward, "Dragonite Ore x10 +30000z");
+    assert.ok(!list.slice(0, 2).some(reward(/^Dragonite/)), "its item no other pact gives");
+  }
+  // About one window in 10.
+  assert.ok(windows > 50 && windows < 160, `${windows} of 999`);
+  for (const kind of ["gathering", "delivery"] as const) {
+    for (let n = 1; n < 300; n++) {
+      assert.ok(!next(q, 2000 + n, 1, kind).some(glass), "only where there's a monster to hunt");
+    }
+  }
+});
+
+test("the jackpot shows its item's icon, and pays zenny alone where the rank has no rare item", () => {
+  const { q } = questOffering(glass);
+  offers(q.frame());
+  assert.ok(
+    q.icons().some(([id]) => id === 204),
+    "Dragonite Ore's icon",
+  );
+  // High Rank's pool has no items: 100000z, as 900z ten times is less.
+  const high = questOffering(glass, 2).q;
+  const list = offers(high.frame());
+  assert.equal(list.find(glass)!.reward, "Zenny +100000z");
+  assert.equal(list.find(glass)!.star, true);
+});
+
+test("Glass holds health at 1, one cart, and pays its jackpot for a completed quest", () => {
+  const { q } = questOffering(glass);
+  take(q, glass);
+  q.frame();
+  for (const at of [0x2e4, 0x41c, 0x41e]) assert.equal(q.cpu.u16(HUNTER + at), 1);
+  // A potion: still 1.
+  q.cpu.setU16(HUNTER + 0x2e4, 80);
+  q.frame();
+  assert.equal(q.cpu.u16(HUNTER + 0x2e4), 1);
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900 + 30000);
+  assert.equal(q.cpu.u32(QUEST + 0x18), q.cpu.u32(QUEST + 0x14), "a faint fails");
+  q.complete();
+  assert.deepEqual([q.cpu.u16(REWARD_BOX), q.cpu.u16(REWARD_BOX + 2)], [204, 10]);
+});
+
+test("a faint loses the jackpot: no item, and its zenny comes off the reward", () => {
+  const { q } = questOffering(glass);
+  take(q, glass);
+  q.cpu.setU16(HUNTER + 0x2e4, 0);
+  q.frame();
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900);
+  q.frame();
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900, "once");
+  q.complete();
+  assert.equal(q.cpu.u16(REWARD_BOX), 0);
+});
+
 test("more quest rewards: the main table draws as many more times", () => {
   const draws = reward(/^Quest rewards/);
   const { q } = questOffering(draws);
@@ -619,7 +691,8 @@ test("more quest rewards are offered only where all of them fit in 9 draws", () 
   for (const base of [7, 9]) {
     const seen = new Set<number>();
     for (let n = 1; n < 300; n++) {
-      q.setUpQuest(90000 + n);
+      // Each a new quest: its clock above the last one's.
+      q.setUpQuest(90000 + base * 1000 + n);
       q.cpu.setU8(TABLES + 3, base);
       q.settle();
       for (const o of offers(q.frame()).filter(reward(/^Quest rewards/))) seen.add(amount(o));
