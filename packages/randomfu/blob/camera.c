@@ -352,9 +352,9 @@ static void follow(u8 *ctrl) {
 
 __attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
 
-static const char *const fov_names[CHOICES] = {"Normal", "Wide", "Wider", "Widest"};
-static const char *const distance_names[CHOICES] = {"Normal", "Far", "Farther", "Farthest"};
-static const char *const tilt_names[CHOICES] = {"Steps", "Slow", "Smooth", "Fast"};
+static const char *const fov_names[CHOICES] = {"NORMAL", "WIDE", "WIDER", "WIDEST"};
+static const char *const distance_names[CHOICES] = {"NORMAL", "FAR", "FARTHER", "FARTHEST"};
+static const char *const tilt_names[CHOICES] = {"STEPS", "SLOW", "SMOOTH", "FAST"};
 
 static void set_fov(u32 c) {
   struct rf_save_data *d = rf_save_data();
@@ -372,7 +372,7 @@ static void set_tilt(u32 c) {
 
 static const struct rf_setting fov_setting = {
     "Field of view",
-    "How wide the camera sees.\nWide, Wider and Widest are\n1.15, 1.25 and 1.4 times\nthe game's own.",
+    "How wide the camera sees.\nWIDE, WIDER and WIDEST are\n1.15, 1.25 and 1.4 times\nthe game's own.",
     fov_names,
     CHOICES,
     fov,
@@ -380,7 +380,7 @@ static const struct rf_setting fov_setting = {
 };
 static const struct rf_setting distance_setting = {
     "Camera distance",
-    "How far back the camera\nsits, at the same angle.\nFar, Farther and Farthest\nare 1.15, 1.3 and 1.5\ntimes the game's own.",
+    "How far back the camera\nsits, at the same angle.\nFAR, FARTHER and FARTHEST\nare 1.15, 1.3 and 1.5\ntimes the game's own.",
     distance_names,
     CHOICES,
     distance,
@@ -389,7 +389,7 @@ static const struct rf_setting distance_setting = {
 
 static const struct rf_setting tilt_setting = {
     "Camera tilt",
-    "How D-pad up and down tilt\nthe camera. Steps is the\ngame's own five; Slow,\nSmooth and Fast tilt it\nwhile held, 30, 50 and 80\ndegrees a second.",
+    "How D-pad up and down tilt\nthe camera. STEPS is the\ngame's own five; SLOW,\nSMOOTH and FAST tilt it\nwhile held, 30, 50 and 80\ndegrees a second.",
     tilt_names,
     CHOICES,
     tilt,

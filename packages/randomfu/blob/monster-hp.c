@@ -219,7 +219,7 @@ static void draw(u8 *hud) {
 
 __attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
 
-static const char *const mode_names[MODES] = {"Off", "On map", "Always"};
+static const char *const mode_names[MODES] = {"OFF", "ON MAP", "ALWAYS"};
 static u32 get_mode(void) { return mode(); }
 static void set_mode(u32 choice) {
   struct rf_save_data *d = rf_save_data();
@@ -227,7 +227,7 @@ static void set_mode(u32 choice) {
 }
 static const struct rf_setting setting = {
     "Monster health",
-    "A health gauge for each\nlarge monster in your area,\nunder your name. On the map:\nwhile the map shows it, from\na Paintball hit until the\nmark wears off.",
+    "A health gauge for each\nlarge monster in your area,\nunder your name. ON MAP:\nwhile the map shows it, from\na Paintball hit until the\nmark wears off.",
     mode_names,
     MODES,
     get_mode,

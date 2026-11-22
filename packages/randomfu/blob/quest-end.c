@@ -31,7 +31,7 @@ static void apply(void) { *(volatile u32 *)rf_quest_end = words[choice()]; }
 
 __attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
 
-static const char *const names[CHOICES] = {"Normal", "Short", "Instant"};
+static const char *const names[CHOICES] = {"NORMAL", "SHORT", "INSTANT"};
 
 static void set(u32 c) {
   struct rf_save_data *d = rf_save_data();
@@ -41,7 +41,7 @@ static void set(u32 c) {
 
 static const struct rf_setting setting = {
     "After a quest",
-    "How long the game waits\nafter a quest is over.\nShort: 20 s, time to carve\none monster. Instant:\nstraight to the rewards,\nno time to carve.",
+    "How long the game waits\nafter a quest is over.\nSHORT: 20 s, time to carve\none monster. INSTANT:\nstraight to the rewards,\nno time to carve.",
     names,
     CHOICES,
     choice,
