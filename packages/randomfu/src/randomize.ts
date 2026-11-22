@@ -1424,7 +1424,7 @@ export function randomize(
       // A lean loader leaves photo mode's code out when it's off.
       const photoLinked = loader.applied && photo !== null && (photoOn || !wentLean);
       if (photo && photoLinked) patchDim(edits.eboot(), photo);
-      if (photoOn && photo) reports.push(photoReport(photoLinked));
+      if (photoOn && photo) reports.push(photoReport(photoLinked, !wentLean && menus !== null));
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {

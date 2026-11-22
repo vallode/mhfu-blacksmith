@@ -92,12 +92,12 @@ test("a texture that isn't the expected layout is left alone", () => {
   assert.equal(drawNodes(Buffer.alloc(100), []), null);
 });
 
-test("randomize leaves a non-EU disc's maps alone and says why", async () => {
+test("randomize leaves a disc's maps alone when its map tables don't check out", async () => {
   await withFixture((game) => {
     const result = randomize(game, settingsWith("MAP", [], { "mods.nodeMap": true }));
     const report = result.reports.find((r) => r.title === "Gathering nodes on the map");
     assert.ok(report);
-    assert.match(report.notes[0]!, /Not written: .*EU disc/);
+    assert.match(report.notes[0]!, /Not written: the map tables aren't at their JP addresses/);
     assert.equal(result.edits.files.size, 0);
   });
 });

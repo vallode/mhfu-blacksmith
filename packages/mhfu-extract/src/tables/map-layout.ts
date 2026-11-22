@@ -10,24 +10,36 @@
  *   pixel = (local + origin) * zoom / size * 150 + (1 - zoom) * 76
  *
  * 150 and 76 are constants in that code (`lui 0x4316`, and half of 152).
- * Addresses are virtual; only the EU disc's have been worked out.
+ * Addresses are virtual, worked out for the EU and JP discs.
  */
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import type { BinaryReader } from "../binary/reader.js";
 import type { OvlFile } from "../container/ovl.js";
+import type { Region } from "../container/sfo.js";
 import { readTmh, type TmhImage } from "../models/tmh.js";
 import { JP_BASE_ADDRESS } from "./offsets.js";
 
-/** `{ f32 width, f32 depth }` by quest map ID, in the EBOOT. */
-const MAP_SIZES = 0x0893887c;
-/** `f32` zoom by quest map ID, in the EBOOT. */
-const MAP_ZOOMS = 0x08938a7c;
-/** `{ u32 count, u32 pointer to u16 stage IDs }` by quest map ID, in game_sub. */
-const MAP_STAGES = 0x09ce4708;
-/** 32 bytes per stage ID, starting `f32 x, f32 z`, in game_sub. */
-const STAGE_ORIGINS = 0x09cdef40;
+interface MapTableAddresses {
+  /** `{ f32 width, f32 depth }` by quest map ID, in the EBOOT. */
+  sizes: number;
+  /** `f32` zoom by quest map ID, in the EBOOT. */
+  zooms: number;
+  /** `{ u32 count, u32 pointer to u16 stage IDs }` by quest map ID, in game_sub. */
+  stages: number;
+  /** 32 bytes per stage ID, starting `f32 x, f32 z`, in game_sub. */
+  origins: number;
+}
+
+/** The tables by region. JP's were found by searching its files for the EU tables' contents. */
+const MAP_TABLES: Partial<Record<Region, MapTableAddresses>> = {
+  eu: { sizes: 0x0893887c, zooms: 0x08938a7c, stages: 0x09ce4708, origins: 0x09cdef40 },
+  jp: { sizes: 0x08935dc4, zooms: 0x08935fc4, stages: 0x09cdf678, origins: 0x09cd9eb0 },
+};
 const STAGE_ORIGIN_SIZE = 32;
+
+/** Whether the map tables' addresses are known for a region's disc. */
+export const hasMapTables = (region: Region): boolean => region in MAP_TABLES;
 
 const MAP_COUNT = 32;
 /** Night maps with no texture of their own use the day map's. */
@@ -70,26 +82,38 @@ export function projectToMap(
 }
 
 /** Each map's size, zoom and stage origins, or throws if the tables aren't where they should be. */
-export function readMapGeometry(eboot: BinaryReader, gameSub: OvlFile): Map<number, MapGeometry> {
+export function readMapGeometry(
+  eboot: BinaryReader,
+  gameSub: OvlFile,
+  region: Region = "eu",
+): Map<number, MapGeometry> {
+  const tables = MAP_TABLES[region];
+  if (!tables) throw new Error(`the map tables aren't known on the ${region.toUpperCase()} disc`);
+  const moved = new Error(`the map tables aren't at their ${region.toUpperCase()} addresses`);
   const out = new Map<number, MapGeometry>();
-  const sizes = MAP_SIZES - JP_BASE_ADDRESS;
-  const zooms = MAP_ZOOMS - JP_BASE_ADDRESS;
+  const sizes = tables.sizes - JP_BASE_ADDRESS;
+  const zooms = tables.zooms - JP_BASE_ADDRESS;
   const sub = gameSub.reader;
-  const lists = gameSub.vaddrToOffset(MAP_STAGES);
-  const origins = gameSub.vaddrToOffset(STAGE_ORIGINS);
-  for (let map = 1; map < MAP_COUNT; map++) {
-    const count = sub.u32(lists + map * 8);
-    if (count === 0) continue;
-    const stages = gameSub.vaddrToOffset(sub.u32(lists + map * 8 + 4));
-    out.set(map, {
-      width: eboot.f32(sizes + map * 8),
-      depth: eboot.f32(sizes + map * 8 + 4),
-      zoom: eboot.f32(zooms + map * 4),
-      origins: Array.from({ length: count }, (_, i) => {
-        const at = origins + sub.u16(stages + i * 2) * STAGE_ORIGIN_SIZE;
-        return [sub.f32(at), sub.f32(at + 4)] as [number, number];
-      }),
-    });
+  const lists = gameSub.vaddrToOffset(tables.stages);
+  const origins = gameSub.vaddrToOffset(tables.origins);
+  try {
+    for (let map = 1; map < MAP_COUNT; map++) {
+      const count = sub.u32(lists + map * 8);
+      if (count === 0) continue;
+      const stages = gameSub.vaddrToOffset(sub.u32(lists + map * 8 + 4));
+      out.set(map, {
+        width: eboot.f32(sizes + map * 8),
+        depth: eboot.f32(sizes + map * 8 + 4),
+        zoom: eboot.f32(zooms + map * 4),
+        origins: Array.from({ length: count }, (_, i) => {
+          const at = origins + sub.u16(stages + i * 2) * STAGE_ORIGIN_SIZE;
+          return [sub.f32(at), sub.f32(at + 4)] as [number, number];
+        }),
+      });
+    }
+  } catch {
+    // A table pointing outside its file: not this disc's layout.
+    throw moved;
   }
   // Forest and Hills' size, zoom and Base Camp, and the Swamp's zoom.
   const forest = out.get(2);
@@ -103,7 +127,7 @@ export function readMapGeometry(eboot: BinaryReader, gameSub: OvlFile): Map<numb
     camp[1] !== 37000 ||
     out.get(4)?.zoom !== Math.fround(0.9)
   ) {
-    throw new Error("the map tables aren't at their EU addresses");
+    throw moved;
   }
   return out;
 }
