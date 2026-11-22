@@ -5,7 +5,7 @@
  *
  * Positions are worked out as the map screen works out the player's arrow
  * (`mhfu-extract/src/tables/map-layout.ts`), from the quests' own node
- * tables, so they are the EU disc's. A texture is shared by every quest on
+ * tables, on the EU and JP discs. A texture is shared by every quest on
  * its map (and by the night map), and the nodes of every quest on one map
  * sit in the same places, so each texture gets one set. Markers use palette
  * entries the art leaves unused, so nothing else changes colour, and the
@@ -16,6 +16,7 @@ import { loadFileList } from "mhfu-extract/src/container/filelist.js";
 import { locateIndexedImage, swizzle, unswizzle } from "mhfu-extract/src/models/tmh.js";
 import { NODE_KINDS, readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
 import {
+  hasMapTables,
   mapTextureName,
   projectToMap,
   readMapGeometry,
@@ -162,18 +163,19 @@ export function collectNodePoints(
   );
 }
 
-/** Draws the nodes onto the map textures. Needs the EU disc. */
+/** Draws the nodes onto the map textures. Needs the EU or JP disc. */
 export function addNodeMap(game: GameData, edits: Edits): ShuffleReport {
   const notWritten = (problem: string): ShuffleReport => ({
     title: TITLE,
     notes: [`Not written: ${problem}.`],
     lines: [],
   });
-  if (game.region !== "eu") return notWritten("the map tables are only known on the EU disc");
+  if (!hasMapTables(game.region))
+    return notWritten("the map tables are only known on the EU and JP discs");
 
   let geometry: Map<number, MapGeometry>;
   try {
-    geometry = readMapGeometry(new BinaryReader(game.eboot), game.gameSub.ovl);
+    geometry = readMapGeometry(new BinaryReader(game.eboot), game.gameSub.ovl, game.region);
   } catch (error) {
     return notWritten(error instanceof Error ? error.message : String(error));
   }

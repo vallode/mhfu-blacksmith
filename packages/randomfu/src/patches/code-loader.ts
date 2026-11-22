@@ -36,6 +36,7 @@ import type { LoadedOverlay } from "../game/load.js";
 import type { ShuffleReport } from "../shuffles/shuffle.js";
 import {
   HOOK,
+  assembleHookGate,
   assembleHooks,
   assemblePickHook,
   hookCode,
@@ -344,6 +345,9 @@ export interface CodeLoaderOptions {
   data?: Readonly<Record<string, Buffer>>;
 }
 
+/** The blob's table of the hook code (`assembleHooks`), behind the cave's gate. */
+const HOOK_CODE = "rf_hook_code";
+
 export interface CodeLoaderReport extends ShuffleReport {
   applied: boolean;
   /** Guild Cards kept, when applied. */
@@ -405,12 +409,30 @@ export function addCodeLoader(
   const room = free ? Math.min(free.end, SAVE_DATA) - free.start : 0;
   if (!free || room <= 0) return skipped("other features took every freed Guild Card slot");
   const blobAddress = space.saveStruct + free.start;
+  const calls: { hook: number; target: number }[] = [
+    ...(hooks ? hookCode(hooks.sites) : []),
+    ...(hooks?.questCard ? [{ hook: HOOK.questCard, target: hooks.questCard.card }] : []),
+  ];
+  const questLoader = hooks?.questLoad?.sites.loader;
+  const hit = hooks?.hit?.target;
+  const hookArgs = [calls, questLoader, hit, hooks?.menus, hooks?.calls] as const;
+  // The hook code goes in the blob, its entries by site after it; the cave
+  // keeps only the gate to it.
+  let hookTable = 0;
+  const hookCodeTable = (at: number) => {
+    const { code, sites } = assembleHooks(at, blobAddress, ...hookArgs);
+    hookTable = at + code.length * 4;
+    const words = [...code, ...sites];
+    const out = Buffer.alloc(words.length * 4);
+    words.forEach((w, k) => out.writeUInt32LE(w, k * 4));
+    return out;
+  };
   const blob = linkBlob(
     options.objects,
     blobAddress,
     { ...(imports as Imports), ...options.externs },
     Infinity,
-    options.data,
+    { ...options.data, ...(hooks && { [HOOK_CODE]: hookCodeTable }) },
   );
   if (blob.image.length > room) {
     return skipped(`the blob is ${blob.image.length} bytes, and ${room} are free`);
@@ -425,15 +447,7 @@ export function addCodeLoader(
     imports: imports as Imports,
   };
   const words = assembleLoader(0, addresses).code.length;
-  const calls: { hook: number; target: number }[] = [
-    ...(hooks ? hookCode(hooks.sites) : []),
-    ...(hooks?.questCard ? [{ hook: HOOK.questCard, target: hooks.questCard.card }] : []),
-  ];
-  const questLoader = hooks?.questLoad?.sites.loader;
-  const hit = hooks?.hit?.target;
-  const hookWords = hooks
-    ? assembleHooks(0, blobAddress, calls, questLoader, hit, hooks.menus, hooks.calls).code.length
-    : 0;
+  const hookWords = hooks ? assembleHookGate(0, blobAddress, 0, ...hookArgs).code.length : 0;
   const pickWords = hooks?.pick ? assemblePickHook(0, blobAddress, hooks.pick).length : 0;
   const caveWords = words + hookWords + pickWords;
   if (caveWords > space.freeCaveWords) {
@@ -455,15 +469,7 @@ export function addCodeLoader(
   let hooksAt = "";
   if (hooks) {
     const hookAt = space.allocateCave(hookWords);
-    const hookStubs = assembleHooks(
-      hookAt,
-      blobAddress,
-      calls,
-      questLoader,
-      hit,
-      hooks.menus,
-      hooks.calls,
-    );
+    const hookStubs = assembleHookGate(hookAt, blobAddress, hookTable, ...hookArgs);
     space.writeCave(hookAt, hookStubs.code);
     const gameTask = hooks.gameTask ? edits.overlay(hooks.gameTask) : null;
     writeHookCalls(out, gameTask, hooks.sites, hookStubs.stubs);

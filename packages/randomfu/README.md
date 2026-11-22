@@ -181,7 +181,7 @@ web app shows as a tag):
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                      |
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
-| `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
+| `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU and JP discs)                        |
 | `mods.buttonIcons`                | `psp`       | `xbox` draws the button icons as an Xbox controller's: A B X Y, LB, RB, Menu and View                  |
 | `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
 | `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
@@ -220,7 +220,7 @@ code loader fits.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                                                   |
 | ------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| QoL only     | Nothing             | The defaults with quest rewards and carves left alone: nothing is shuffled or randomized, so only the extras (Send All, improve pips, Poogie, bookshelf guides, and any you turn on) change the game                                                                                                                               |
+| QoL only     | Nothing             | Nothing is shuffled or randomized: only extras change the game (Send All, improve pips, photo mode, key quest marks and gathering nodes on the map; Poogie and the bookshelf guides off)                                                                                                                                           |
 | Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                                                                                                                                                                    |
 | Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills and stats (by rarity; rarity within its rank), shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                                              |
 | Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon and armor stats, new armor skills, Low Rank starting armor |
@@ -1108,7 +1108,8 @@ first, and the spoiler says how many.
 (yellow) node onto the map screen's textures (`cockpit/map<N>.tmh`, 160x160,
 8-bit swizzled, RGBA8888 palette). Positions come from the quests' node
 tables through the map screen's own formula (mhfu-extract README, "Area
-maps"), so they are EU-only and need the EBOOT. A texture is shared by every
+maps"), so they need the EBOOT and the EU or JP disc (JP's table addresses
+were found by searching for the EU tables' contents). A texture is shared by every
 quest on the map, and nodes sit in the same places in all of them, so a
 texture gets the union. The markers use palette entries the art leaves
 unused (every map has over 200), so nothing else recolours and file sizes
@@ -2313,8 +2314,9 @@ key quest label are built on it.
   reads `/PSP_GAME/USRDIR/RANDOMFU.BIN` over the slots with `sceIoOpen` and
   `sceIoRead`, checks its header, syncs the caches and calls the blob's
   `rf_init`.
-- **Game hooks.** Game calls go through stubs in the cave that make the
-  call, then run the blob's `rf_hookN` if a blob is loaded: once a frame in
+- **Game hooks.** Game calls go through a gate in the cave to stubs in the
+  blob that make the call, then run the blob's `rf_hookN` (without a blob,
+  the gate makes the game's call alone): once a frame in
   a quest, after the HUD draws the hunter's gauges, after the pad read gets
   the controller, around the quest loader's calls, and after a completed
   quest's reward roll, when a hit lands on a monster, and in the quest

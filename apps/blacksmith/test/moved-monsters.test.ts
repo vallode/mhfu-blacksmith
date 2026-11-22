@@ -19,4 +19,5 @@ test("moved monster slugs lead to a current page and are no page of their own", 
   }
   assert.equal(movedMonsterSlug("elder-dragon", "ashen-lao-shan-lung"), "ash-lao-shan-lung");
   assert.equal(movedMonsterSlug("elder-dragon", "ash-lao-shan-lung"), null);
+  assert.equal(movedMonsterSlug("carapaceon", "terra-sceanataur"), "terra-s-ceanataur");
 });
