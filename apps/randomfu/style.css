@@ -1297,6 +1297,283 @@ input[type="range"] {
   color: rgb(255 255 255 / 0.7);
 }
 
+/* ─── About and FAQ pages ──────────────────────────────────────────────────── */
+
+.wordmark-link {
+  display: inline-block;
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
+  }
+}
+
+/* The pages' links under the masthead; the page's own is gold. */
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 2.4rem;
+  margin-top: 1rem;
+  font-size: var(--text-small);
+  text-shadow: 0.15rem 0.15rem 0 black;
+
+  & a {
+    color: rgb(255 255 255 / 0.75);
+    text-decoration: none;
+
+    @media (hover: hover) {
+      &:hover {
+        color: white;
+        text-decoration: underline;
+      }
+    }
+
+    &[aria-current="page"] {
+      color: var(--color-gold);
+    }
+  }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+/* The yellow title on the grey selector bar, as the builder's step header. */
+.page-head {
+  margin: -0.4rem -1.2rem 0.4rem;
+  padding: 0.8rem 1.6rem;
+  border-bottom: 3px solid rgb(255 255 255 / 0.45);
+  background: var(--color-selector);
+}
+
+.page-title {
+  margin: 0;
+  font-size: var(--text-main);
+  font-weight: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-stat);
+  text-shadow: 0.15rem 0.15rem 0 black;
+}
+
+.lead {
+  margin: 0;
+  font-size: var(--text-sub);
+  line-height: 1.6;
+  color: rgb(255 255 255 / 0.9);
+
+  & b {
+    font-weight: normal;
+    color: var(--color-gold);
+  }
+}
+
+/* The about page's three feature sections: the grey selector bar of the
+   game's menus for a title, and the features as rows like the item box's (no hover glow:
+   they're not choices), every row the same height and every section's columns in line. */
+.feature {
+  display: flex;
+  flex-direction: column;
+
+  & + .feature {
+    margin-top: 1.6rem;
+  }
+}
+
+.feature-head {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-inline: -1.2rem;
+  margin-bottom: 0.4rem;
+  padding: 0.6rem 1.6rem;
+  border-bottom: 3px solid rgb(255 255 255 / 0.45);
+  background: var(--color-selector);
+
+  & .icon {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+}
+
+.feature-title {
+  margin: 0;
+  font-size: var(--text-main);
+  font-weight: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-stat);
+  text-shadow: 0.15rem 0.15rem 0 black;
+}
+
+.feature-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-item {
+  display: grid;
+  grid-template-columns: 3.2rem 28rem minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1.4rem;
+  height: 4.4rem;
+  padding: 0 0.8rem;
+
+  & .icon {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+}
+
+/* Room between the last list and what follows it. */
+.after-features {
+  margin-top: 2.4rem;
+}
+
+.feature-name {
+  font-size: var(--text-small);
+}
+
+.feature-desc {
+  overflow: hidden;
+  font-size: var(--text-fine);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: rgb(255 255 255 / 0.7);
+}
+
+/* The monster sprites are in colour already, so they're not tinted. */
+.feature .icon[style*="monsters/"]::before {
+  content: none;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0;
+  padding-left: 1.8rem;
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: rgb(255 255 255 / 0.85);
+
+  & b {
+    font-weight: normal;
+    color: var(--color-gold);
+  }
+}
+
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  margin-top: 1.6rem;
+  padding-bottom: 2.4rem;
+}
+
+/* A plain link under the main button. */
+.text-link {
+  font-size: var(--text-small);
+  color: rgb(255 255 255 / 0.7);
+  text-underline-offset: 0.3em;
+
+  @media (hover: hover) {
+    &:hover {
+      color: white;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+}
+
+/* .button's hovers are for buttons (:enabled); these are links. */
+a.button {
+  @media (hover: hover) {
+    &:hover {
+      color: white;
+      background: linear-gradient(
+        0.25turn,
+        transparent,
+        color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
+        transparent
+      );
+      animation: var(--animate-hover-glow);
+    }
+
+    &.primary:hover {
+      background: #0a920a;
+      animation: none;
+    }
+  }
+}
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  & + .faq {
+    margin-top: 1.4rem;
+  }
+
+  & > .subheading {
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--color-hr);
+  }
+}
+
+.question {
+  margin: 1rem 0 0;
+  font-size: var(--text-sub);
+  font-weight: normal;
+  color: var(--color-gold);
+  scroll-margin-top: 2rem;
+}
+
+.answer {
+  margin: 0;
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: rgb(255 255 255 / 0.85);
+
+  & b {
+    font-weight: normal;
+    color: white;
+  }
+
+  & a {
+    color: var(--color-stat);
+  }
+}
+
+/* Narrower than the site's two-pane layouts: name over description, the
+   sprite beside both, every row still one height. */
+@media screen and (max-width: 899px) {
+  .feature-item {
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-content: center;
+    height: 7.8rem;
+
+    & .icon {
+      grid-row: span 2;
+    }
+  }
+
+  .feature-desc {
+    white-space: normal;
+  }
+}
+
 /* ─── Phones ───────────────────────────────────────────────────────────────── */
 
 @media screen and (max-width: 600px) {
@@ -1331,6 +1608,16 @@ input[type="range"] {
   .drop {
     gap: 1.4rem;
     padding: 2rem;
+  }
+
+  .feature-head {
+    margin-inline: -0.8rem;
+  }
+
+  /* Room for a name that wraps (Balanced elemental weapons) over two lines
+     of description, so the rows stay one height. */
+  .feature-item {
+    height: 9.4rem;
   }
 
   .amount input[type="range"] {

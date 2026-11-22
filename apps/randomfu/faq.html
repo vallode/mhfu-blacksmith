@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--HEAD-->
+    <title>FAQ — RandomFU</title>
+    <meta
+      name="description"
+      content="Questions about RandomFU, the Monster Hunter Freedom Unite randomizer: which discs work, saves, seeds and playing with friends."
+    />
+    <link rel="canonical" href="%SITE_URL%/faq" />
+    <meta property="og:url" content="%SITE_URL%/faq" />
+    <meta property="og:title" content="FAQ — RandomFU" />
+    <meta
+      property="og:description"
+      content="Which discs work, what happens to your save, seeds and settings strings, and playing with friends."
+    />
+  </head>
+  <body>
+    <!--MASTHEAD-->
+
+    <main class="frame page" aria-labelledby="page-title">
+      <div class="page-head">
+        <h2 class="page-title" id="page-title">Questions</h2>
+      </div>
+
+      <section class="faq" aria-labelledby="faq-start">
+        <h3 class="subheading" id="faq-start">Getting started</h3>
+
+        <h4 class="question" id="discs">Which discs work?</h4>
+        <p class="answer">
+          <b>Monster Hunter Freedom Unite</b> (ULES01213), <b>Monster Hunter Portable 2nd G</b>
+          (ULJM05500) and FUC.
+        </p>
+
+        <h4 class="question" id="upload">Is my disc uploaded anywhere?</h4>
+        <p class="answer">No.</p>
+
+        <h4 class="question" id="where">What can I play it on?</h4>
+        <p class="answer">
+          It's played and tested in <b>PPSSPP</b>. A PSP with custom firmware may work, but hasn't
+          been tried yet.
+        </p>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-play">
+        <h3 class="subheading" id="faq-play">Playing</h3>
+
+        <h4 class="question" id="save">What happens to my save?</h4>
+        <p class="answer">
+          <b>Back up your save file.</b> That's good advice in general. A randomized run with an
+          existing character isn't the best idea, but it will generally work: your gear will just
+          change drastically. What RandomFU adds to the game is kept in your save file.
+        </p>
+
+        <h4 class="question" id="in-game">Can I change settings once I'm playing?</h4>
+        <p class="answer">
+          Some of them. Press START in a quest: the menu's last entry, <b>randomfu</b>, opens a
+          window for the camera, monster health, damage numbers, attack hitboxes and the wait after
+          a quest. Your save keeps what you choose. The shuffles are written into the disc, so
+          changing those means building a new one.
+        </p>
+
+        <h4 class="question" id="friends">Can I play with friends?</h4>
+        <p class="answer">
+          Ad-hoc play hasn't been tested much yet. If you try it, everyone should play a disc built
+          from the same disc, seed and settings, so the quests and rewards match: share the settings
+          string from the Review step. The Unknown Monster?! quests are solo only, since each player
+          would get a different roll.
+        </p>
+
+        <h4 class="question" id="stuck">Can a shuffle leave me stuck?</h4>
+        <p class="answer">
+          RandomFU guards against the ways a shuffle could make a quest impossible: a delivery whose
+          item can't be found or carved, a slaying goal with too few monsters, a monster starting
+          where it can't stand, health past what the game can hold. Checked over seeds on the EU
+          disc with everything on, none got through. It can't guard against your own choices (a
+          Hunter's Pact penalty, or letting shops and supply boxes drop their essentials) or bad
+          luck. If a quest still can't be finished, report it (below).
+        </p>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-settings">
+        <h3 class="subheading" id="faq-settings">Seeds and settings</h3>
+
+        <h4 class="question" id="seed">What's a seed?</h4>
+        <p class="answer">
+          The word that every random choice grows from. The same disc, seed and settings always make
+          the same game, so a run can be shared, raced or rebuilt.
+        </p>
+
+        <h4 class="question" id="share">How do I share my settings?</h4>
+        <p class="answer">
+          The Review step shows a settings string that holds the seed and every option: copy it, or
+          save it as a file. Paste it into the Seed &amp; preset step to load it. A string made by
+          an older version of RandomFU still loads, but warns that its game will come out
+          differently.
+        </p>
+
+        <h4 class="question" id="spoiler">What's the spoiler log?</h4>
+        <p class="answer">
+          A list of everything that moved: every reward, recipe, monster and shop. It downloads with
+          the disc, and <b>Preview spoiler</b> shows it without building one. Don't read it if you'd
+          rather find out by playing.
+        </p>
+
+        <h4 class="question" id="qol-only">Can I have only the quality-of-life changes?</h4>
+        <p class="answer">
+          Yes. Pick the <b>QoL only</b> preset: nothing is shuffled or randomized, and it adds a few
+          extras. Turn on the camera, HUD and quest extras you want in the later steps.
+        </p>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-more">
+        <h3 class="subheading" id="faq-more">More</h3>
+
+        <h4 class="question" id="bugs">Something went wrong. Where do I report it?</h4>
+        <p class="answer">
+          Open an issue on
+          <a href="https://github.com/vallode/mhfu-blacksmith/issues">GitHub</a>, with your settings
+          string and which disc you used. RandomFU is early, and reports from real play help most.
+        </p>
+
+        <h4 class="question" id="source">Is it open source?</h4>
+        <p class="answer">
+          Yes, under the GPL (<a href="LICENSE.txt">licence</a>). It lives alongside the
+          <a href="https://mhfu.vallode.com">MHFU Blacksmith</a> site, in
+          <a href="https://github.com/vallode/mhfu-blacksmith">one repository</a>.
+        </p>
+      </section>
+
+      <div class="page-actions">
+        <a class="button primary" href="build.html">
+          <span class="icon" style="--icon: url(images/max.png)" aria-hidden="true"></span>
+          Build your disc
+        </a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      RandomFU runs entirely in your browser. Not affiliated with Capcom.
+    </footer>
+  </body>
+</html>

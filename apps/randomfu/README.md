@@ -1,7 +1,9 @@
 # randomfu web app
 
 randomfu's front end: the randomizer (`packages/randomfu`) as a static
-web app that runs entirely in the browser. It's a step-by-step builder: pick your ISO, choose a seed and a
+web app that runs entirely in the browser. It has three pages: an about
+page (`index.html`) that says what RandomFU is, a FAQ (`faq.html`), and the
+builder (`build.html`, served as `/build`). The builder goes step by step: pick your ISO, choose a seed and a
 preset (or load a shared settings string), go through the options a group
 at a time (Rewards, Gathering, Quests, Monsters, Smithy, Shops) or
 skip them, review, and download the randomized ISO and spoiler log.
@@ -9,21 +11,32 @@ Nothing is uploaded.
 
 The steps for options come from `OPTIONS`' sections (`OPTION_STEPS` in
 `app.ts`); a section no step lists gets a step of its own, so new
-options always show up. The page is styled after the MHFU Blacksmith site:
+options always show up. The pages are styled after the MHFU Blacksmith site:
 `build.mjs` reads the site's design tokens and in-game frames from
 `apps/blacksmith/src/app/globals.css` and copies its font and sprites from
-`apps/blacksmith/public/`, and `style.css` uses them.
+`apps/blacksmith/public/`, and `style.css` uses them. Every page starts
+its `<head>` with `head.html` and its body with `masthead.html` (the
+wordmark and the links between the pages), which `build.mjs` puts in place
+of `<!--HEAD-->` and `<!--MASTHEAD-->`. The pages sit side by side at
+`dist/`'s root so the builder's relative paths hold, and link to each other
+by file name (`faq.html`), which Cloudflare redirects to `/faq`.
+
+The FAQ's answers are only as good as what's been tried: when an option
+lands, or something is played in game for the first time (a real PSP, ad-hoc
+play, a save taken back to the original disc), check the answer that
+mentions it.
 
 ```bash
 # from apps/randomfu, or `pnpm --filter randomfu-web <script>` from the root
-pnpm build          # builds dist/: index.html, app.js, worker.js
+pnpm build          # builds dist/: the three pages, app.js, worker.js
 pnpm test           # unit tests (the browser shims)
 pnpm test:e2e       # builds, then checks the app in Chromium against a Node run
 pnpm social-card    # builds, then redraws social-card.png (needs Chromium)
 ```
 
 Links to the app unfurl into a card (Discord, Bluesky, Slack, …) from the
-Open Graph tags in `index.html`: its title and description, the site
+Open Graph tags in each page: its title and description (`head.html`
+has the rest), the site
 green along Discord's edge, and `social-card.png`, a 1200×630 picture
 drawn by the built page itself in the site's style. Redraw it with
 `pnpm social-card` after changing the look or the card's wording, and
@@ -38,7 +51,7 @@ as a Cloudflare Worker, configured by `wrangler.jsonc` here (see the root
 README for how deploys run). Response headers are in `_headers`, which
 `build.mjs` copies into `dist/`.
 
-`index.html` sets a Content-Security-Policy: the page can only load its own
+`head.html` sets every page's Content-Security-Policy: a page can only load its own
 scripts, styles and images and can't make any requests, so nothing it reads
 can leave the browser. A change that needs more (a font from elsewhere, a
 fetch) has to loosen it; `pnpm test:e2e` fails on any violation.

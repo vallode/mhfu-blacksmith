@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--HEAD-->
+    <title>Build your disc — RandomFU</title>
+    <meta
+      name="description"
+      content="Build a randomized Monster Hunter Freedom Unite disc in your browser, from your own disc image."
+    />
+    <link rel="canonical" href="%SITE_URL%/build" />
+    <meta property="og:url" content="%SITE_URL%/build" />
+    <meta property="og:title" content="Build your disc — RandomFU" />
+    <meta
+      property="og:description"
+      content="Shuffle rewards, monsters, quests and shops in Monster Hunter Freedom Unite. Seeded, with optional logic that keeps every recipe craftable, and it runs in your browser on your own disc image."
+    />
+  </head>
+  <body>
+    <!--MASTHEAD-->
+
+    <main class="frame" aria-labelledby="step-title">
+      <!-- Stays at the top of the window while the step scrolls under it. -->
+      <div class="card-head">
+        <nav class="menu-header" aria-label="Steps">
+          <h2 class="menu-title">
+            <button
+              type="button"
+              class="step-menu"
+              id="step-menu"
+              aria-expanded="false"
+              aria-controls="steps"
+            >
+              <span class="step-count" id="step-count"></span>
+              <span class="icon" id="step-icon" aria-hidden="true"></span>
+              <span id="step-title"></span>
+              <span class="caret" aria-hidden="true"></span>
+            </button>
+          </h2>
+          <ol class="step-list" id="steps" hidden></ol>
+        </nav>
+        <div class="progress" id="progress" aria-hidden="true"></div>
+      </div>
+
+      <!-- 1. The disc -->
+      <section class="panel" data-step="game" hidden>
+        <p class="intro">
+          Choose a disc image of <b>Monster Hunter Freedom Unite</b> (EU) or
+          <b>Monster Hunter Portable 2nd G</b> (JP), dumped from your own disc. It stays on your
+          computer: RandomFU runs in this page and nothing is uploaded.
+        </p>
+        <label class="drop" id="iso-drop">
+          <span class="drop-icon icon" style="--icon: url(images/binoculars.png)"></span>
+          <span class="drop-text">
+            <span class="drop-title" id="iso-name">Choose your disc image (.iso)</span>
+            <span class="drop-hint">or drop it here</span>
+          </span>
+          <span class="drop-mark" id="iso-mark" aria-hidden="true"></span>
+          <input type="file" id="iso" accept=".iso" class="visually-hidden" />
+        </label>
+        <p class="status" id="check-status" role="status"></p>
+      </section>
+
+      <!-- 2. Seed, presets and shared settings -->
+      <section class="panel" data-step="start" hidden>
+        <p class="intro">
+          The seed decides every random choice: the same disc, seed and settings always make the
+          same game. Then start from a preset, or load settings someone shared with you.
+        </p>
+        <h3 class="subheading">Seed</h3>
+        <div class="row">
+          <input
+            type="text"
+            id="seed"
+            class="text-input grow"
+            aria-label="Seed"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="button" class="button" id="new-seed">New seed</button>
+        </div>
+
+        <h3 class="subheading">Preset</h3>
+        <p class="note">
+          Every option that changes the game's data does one of two things, and the presets mix them
+          (QoL only does neither: its seed only matters if you turn on Hunter's Pact):
+        </p>
+        <dl class="actions">
+          <div>
+            <dt>
+              <span class="tag shuffle"><span class="icon" aria-hidden="true"></span>Shuffle</span>
+            </dt>
+            <dd class="note">
+              Moves what's already in the game to new places: rewards, gathering points, the
+              smithy's weapons and armor, shop stock, the monsters in quests. Nothing new is made.
+            </dd>
+          </div>
+          <div>
+            <dt>
+              <span class="tag randomize"
+                ><span class="icon" aria-hidden="true"></span>Randomize</span
+              >
+            </dt>
+            <dd class="note">
+              Rolls new values: material amounts, costs, prices, quest money and time limits,
+              monster size and stats, armor skills, weapon stats.
+            </dd>
+          </div>
+        </dl>
+        <div class="choices" id="presets" role="radiogroup" aria-label="Preset"></div>
+
+        <div class="choice-load" id="load">
+          <span class="choice-text">
+            <label class="choice-label" for="paste">Shared settings</label>
+            <span class="note">
+              Paste a settings string or load a settings file. Replaces every option, and your seed
+              if it has one.
+            </span>
+            <span class="row">
+              <input
+                type="text"
+                id="paste"
+                class="text-input grow"
+                placeholder="RF…"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button type="button" class="button" id="apply-paste">Load</button>
+              <button type="button" class="button" id="import">File…</button>
+              <input type="file" id="import-file" accept=".json,application/json" hidden />
+            </span>
+          </span>
+        </div>
+        <p class="note" id="preset-note"></p>
+        <p class="status" id="share-status" role="status"></p>
+        <div class="row skip">
+          <button type="button" class="button" id="download">Download ▶</button>
+          <button type="button" class="button" id="customize">Customize ▶</button>
+          <span class="note grow">Happy with these? Randomize now, or go through the options.</span>
+        </div>
+      </section>
+
+      <!-- The option steps are built from OPTIONS here. -->
+      <div id="option-panels"></div>
+
+      <!-- Review, share and run -->
+      <section class="panel" data-step="review" hidden>
+        <p class="intro">Check your choices, then randomize. Select a step to change it.</p>
+        <dl class="summary" id="summary"></dl>
+
+        <h3 class="subheading">Share</h3>
+        <label class="field">
+          <span class="label">Settings string</span>
+          <textarea id="share" class="text-input" rows="3" readonly></textarea>
+          <span class="note"
+            >Seed and settings in one line. Anyone with the same disc gets the same game.</span
+          >
+        </label>
+        <div class="row">
+          <button type="button" class="button" id="copy">Copy</button>
+          <button type="button" class="button" id="export">Save settings file</button>
+        </div>
+        <p class="status" id="copy-status" role="status"></p>
+
+        <div class="go">
+          <button type="button" class="button" id="dry-run">
+            <span class="icon" style="--icon: url(images/binoculars.png)" aria-hidden="true"></span>
+            Preview spoiler
+          </button>
+          <button type="button" class="button primary" id="run">
+            <span class="icon" style="--icon: url(images/max.png)" aria-hidden="true"></span>
+            Randomize!
+          </button>
+        </div>
+      </section>
+
+      <!-- The run -->
+      <section class="panel" data-step="run" hidden>
+        <p class="status big" id="run-status" role="status"></p>
+        <p class="status err" id="stale" hidden>
+          Your settings or disc changed since this run. Go back to the review and randomize again to
+          use them.
+        </p>
+        <div class="downloads" id="downloads"></div>
+        <details class="log-wrap" id="log-wrap" open>
+          <summary class="subheading">Log</summary>
+          <pre class="log" id="log" aria-live="polite"></pre>
+        </details>
+        <div id="spoiler-wrap" hidden>
+          <div class="row spoiler-head">
+            <h3 class="subheading grow">Spoiler log</h3>
+            <input
+              type="text"
+              id="filter"
+              class="text-input"
+              placeholder="Filter, e.g. Buster Sword"
+              aria-label="Filter the spoiler log"
+            />
+          </div>
+          <pre class="log spoiler" id="spoiler"></pre>
+        </div>
+      </section>
+
+      <div class="nav">
+        <button type="button" class="nav-button" id="back">
+          <img src="images/arrow.png" alt="" aria-hidden="true" />
+          <span>Back</span>
+        </button>
+        <p class="status nav-status" id="nav-status" role="status"></p>
+        <button type="button" class="nav-button next" id="next">
+          <span>Next</span>
+          <img src="images/arrow.png" alt="" aria-hidden="true" />
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      RandomFU runs entirely in your browser. Not affiliated with Capcom.
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
