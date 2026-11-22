@@ -121,15 +121,14 @@ const OPTION_STEPS: Step[] = [
       "Boot",
     ],
     intro:
-      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code, which caps received Guild Cards at 3 to make room for it. Monster health, damage numbers, attack hitboxes, the camera and the wait after a quest are on every disc, switched in game from the START menu's randomfu entry, so every disc caps Guild Cards; their options only pick how a disc starts. Of the rest only Poogie's luck, Send All to Item Box and the smithy's improve pips are on unless you turn the others on. Elite monsters and damage numbers haven't been tried in game yet. The faster start only changes the title screens' own code.",
+      "New things for the game, from new code that caps received Guild Cards at 3 to make room. Those marked In game can be switched any time from the START menu's randomfu entry.",
   },
   {
     id: "extras",
     title: "Extras",
     icon: "deco",
     sections: ["Extras"],
-    intro:
-      "Neither a shuffle nor a randomizer: text, bookshelf guides and map changes that show you what the other steps did.",
+    intro: "Text, guides and maps that show you what the other steps did.",
   },
 ];
 
@@ -361,9 +360,40 @@ function tag(action: Action | undefined): HTMLElement | null {
 
 function optionText(option: OptionDef, labelFor: string | null): HTMLElement {
   const title = labelFor
-    ? el("label", { class: "option-title", for: labelFor }, option.label, tag(option.action))
-    : el("span", { class: "option-title" }, option.label, tag(option.action));
-  return el("div", { class: "option-text" }, title, el("p", { class: "note" }, option.help));
+    ? el(
+        "label",
+        { class: "option-title", for: labelFor },
+        option.label,
+        tag(option.action),
+        ...badges(option),
+      )
+    : el("span", { class: "option-title" }, option.label, tag(option.action), ...badges(option));
+  return el(
+    "div",
+    { class: "option-text" },
+    title,
+    el("p", { class: "note" }, option.help),
+    option.points ? helpPoints(option.points) : null,
+  );
+}
+
+/** Badges after an option's name: where it's switched and which discs it works on. */
+function badges(option: OptionDef): HTMLElement[] {
+  const list: HTMLElement[] = [];
+  const badge = (kind: string, text: string, title: string) =>
+    list.push(el("span", { class: `badge ${kind}`, title }, text));
+  if (option.inGame)
+    badge(
+      "in-game",
+      "In game",
+      "Switch it in game from the START menu's randomfu entry; your save keeps the choice. This picks how the disc starts.",
+    );
+  if (option.discs) badge("discs", `${option.discs} only`, `Works on ${option.discs} discs only.`);
+  return list;
+}
+
+function helpPoints(points: readonly string[]): HTMLElement {
+  return el("ul", { class: "help-points" }, ...points.map((point) => el("li", {}, point)));
 }
 
 function renderOption(option: OptionDef): HTMLElement {
@@ -408,7 +438,13 @@ function renderOption(option: OptionDef): HTMLElement {
       ),
     );
   } else {
-    const group = el("div", { class: "choices", role: "radiogroup", "aria-label": option.label });
+    // Choices with only a few words each sit side by side.
+    const compact = type.choices.every((c) => c.help.length <= 60);
+    const group = el("div", {
+      class: compact ? "choices compact" : "choices",
+      role: "radiogroup",
+      "aria-label": option.label,
+    });
     for (const choice of type.choices) {
       const input = el("input", { type: "radio", name: id, value: choice.value });
       input.addEventListener("change", () => update(option.key, choice.value));
