@@ -97,6 +97,8 @@ function useCompact(): boolean {
   );
 }
 
+const WEAPONS_NAV = NAV_GROUPS[0][0];
+
 /** Where each entry goes: its own href, or the last page viewed in its section. */
 function useNavHrefs(pathname: string): (item: NavItem) => string {
   const sections: Record<MenuSection, string> = {
@@ -191,8 +193,10 @@ function SidebarContents({
     onToggle && cn(collapsed && wide, !open && compact);
   return (
     <>
+      {/* `/` opens the last weapon type viewed; link there directly so a client
+          navigation doesn't draw the default type on the way. */}
       <AfterLoadLink
-        href="/"
+        href={hrefFor(WEAPONS_NAV)}
         aria-label={t.nav.home}
         className={cn("mx-6 mt-2 mb-4 block flex-none", rail("wide:hidden", "compact:hidden"))}
       >

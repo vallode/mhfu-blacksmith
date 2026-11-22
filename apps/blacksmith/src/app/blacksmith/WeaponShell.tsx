@@ -6,11 +6,16 @@ import WeaponNav from "@/components/WeaponNav";
 import WeaponTreePanel from "@/components/WeaponTreePanel";
 import { useWeaponTree } from "@/lib/client-data";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
+import { DEFAULT_WEAPON } from "@/lib/last-weapon";
 
-/** The weapon type and slug in /blacksmith/<type>/<slug>/, where present. */
+/**
+ * The weapon type and slug in /blacksmith/<type>/<slug>/, where present.
+ * /blacksmith/ itself shows the default type (see LastWeaponRedirect).
+ */
 function parseWeaponPath(pathname: string): { type?: WeaponType; slug?: string } {
   const [section, type, slug] = pathname.split("/").filter(Boolean);
   if (section !== "blacksmith") return {};
+  if (type === undefined) return { type: DEFAULT_WEAPON };
   if (!WEAPON_TYPES.includes(type as WeaponType)) return {};
   return { type: type as WeaponType, slug };
 }

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
+import { DEFAULT_WEAPON } from "@/lib/last-weapon";
 import LastWeaponRedirect from "./LastWeaponRedirect";
+import WeaponTreeListClient from "./[type]/WeaponTreeListClient";
 
 export const metadata: Metadata = pageMetadata({
   title: "Weapon Trees",
@@ -9,6 +11,12 @@ export const metadata: Metadata = pageMetadata({
   path: "/blacksmith/",
 });
 
+/** The default type's tree page (the layout's WeaponShell shows its tree), like `/`. */
 export default function BlacksmithPage() {
-  return <LastWeaponRedirect />;
+  return (
+    <>
+      <WeaponTreeListClient type={DEFAULT_WEAPON} />
+      <LastWeaponRedirect />
+    </>
+  );
 }
