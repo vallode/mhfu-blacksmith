@@ -39,10 +39,10 @@ export function SkillChips({
   const text = useT().setBuilder.skillPicker;
   const game = useGameText();
   return (
-    <ul className="m-0 flex list-none flex-wrap gap-[0.8rem] p-0">
+    <ul className="m-0 flex list-none flex-col gap-[0.8rem] p-0">
       {value.map((name) => (
-        <li key={name} className={cn(chip, chipOn, "cursor-default pr-0")}>
-          <span>{game.name("skill", name)}</span>
+        <li key={name} className={cn(chip, chipOn, "w-full cursor-default justify-between pr-0")}>
+          <span className="min-w-0">{game.name("skill", name)}</span>
           <button
             type="button"
             aria-label={text.remove(game.name("skill", name))}
@@ -54,7 +54,7 @@ export function SkillChips({
         </li>
       ))}
       <li>
-        <button type="button" className={cn(chip, chipOff, "border-dashed")} onClick={onAdd}>
+        <button type="button" className={cn(chip, chipOff, "w-full border-dashed")} onClick={onAdd}>
           {addLabel}
         </button>
       </li>

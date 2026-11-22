@@ -53,10 +53,11 @@ import {
   type Piece,
   type SearchQuery,
 } from "@/lib/set-search";
-import { pressable, primaryButton } from "@/styles/set-builder";
+import { pressable, primaryButton, textButton } from "@/styles/set-builder";
 import * as ui from "@/styles/settings";
 import { PanelTitle } from "./ArmorSetView";
 import MySets from "./MySets";
+import PieceChips from "./PieceChips";
 import ResultView, { type PieceActions } from "./ResultView";
 import SearchBar from "./SearchBar";
 import { DEFAULT_FORM, OptionsSummary, SearchOptions, type Form } from "./SearchOptions";
@@ -569,11 +570,7 @@ export default function SetBuilderClient() {
             <div className="flex items-baseline justify-between">
               <PanelTitle>{text.form.title}</PanelTitle>
               {form.skills.length > 0 && (
-                <button
-                  type="button"
-                  className="cursor-pointer border-none bg-transparent p-0 font-[inherit] text-fine text-white/50 hover:text-white focus-visible:text-white"
-                  onClick={() => update("skills", [])}
-                >
+                <button type="button" className={textButton} onClick={() => update("skills", [])}>
                   {text.form.clear}
                 </button>
               )}
@@ -588,6 +585,35 @@ export default function SetBuilderClient() {
               }
               onAdd={() => setSheet("skills")}
               addLabel={form.skills.length ? text.form.addMore : text.form.addFirst}
+            />
+            {/* Taking pieces off marks the results out of date, like the
+                skills: Search runs the whole form. */}
+            <PieceChips
+              text={text.form.locked}
+              on
+              hrefs={form.locked}
+              piecesOf={piecesOf}
+              isOff={(p) => !!cantWear(p, form)}
+              offNote={text.form.locked.cantWear}
+              onRemove={(href) =>
+                update(
+                  "locked",
+                  form.locked.filter((h) => h !== href),
+                )
+              }
+              onClear={() => update("locked", [])}
+            />
+            <PieceChips
+              text={text.form.excluded}
+              hrefs={form.excluded}
+              piecesOf={piecesOf}
+              onRemove={(href) =>
+                update(
+                  "excluded",
+                  form.excluded.filter((h) => h !== href),
+                )
+              }
+              onClear={() => update("excluded", [])}
             />
             <button
               type="button"
@@ -733,7 +759,6 @@ export default function SetBuilderClient() {
           update={update}
           questProgress={questProgress}
           canOwnedOnly={progress.active}
-          piecesOf={piecesOf}
         />
       </Sheet>
     </>
