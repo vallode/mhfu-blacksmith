@@ -1,14 +1,13 @@
 "use client";
 
 import { Fragment, useCallback, useEffect, useState, useSyncExternalStore } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import AfterLoadLink from "@/components/AfterLoadLink";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import { useSectionHref, type MenuSection } from "@/app/MenuLink";
 import { cn } from "@/lib/cn";
-import { useAfterLoadPrefetch } from "@/hooks/useAfterLoad";
 import { useT } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
 import type { Messages } from "@/lib/i18n/messages";
@@ -139,11 +138,9 @@ function HunterRow({
   const active = pathname.startsWith(HUNTER_MATCH);
   const label = save ? save.name : t.nav.loadHunter;
   const rank = save?.hunterRank !== undefined ? t.hunter.rankShort(save.hunterRank) : null;
-  const prefetch = useAfterLoadPrefetch();
   return (
-    <Link
+    <AfterLoadLink
       href={HUNTER_MATCH}
-      prefetch={prefetch}
       title={railLabel ? [label, rank].filter(Boolean).join(" · ") : undefined}
       aria-current={active ? "page" : undefined}
       className={cn(sidebarRow, "h-[5.2rem]", active && sidebarRowActive)}
@@ -159,7 +156,7 @@ function HunterRow({
         <span className={cn("truncate", !save && "text-white/70")}>{label}</span>
         {rank && <span className="text-fine text-muted">{rank}</span>}
       </span>
-    </Link>
+    </AfterLoadLink>
   );
 }
 
@@ -187,8 +184,6 @@ function SidebarContents({
   onSearch?: () => void;
 }) {
   const t = useT().site;
-  // The other sections' pages are prefetched once this one has loaded.
-  const prefetch = useAfterLoadPrefetch();
   // Rail classes, by width: wide screens follow the saved preference, compact
   // ones are a rail unless opened. (Phones show the drawer, never a rail.)
   // Both classes are spelled out at each use so Tailwind finds them.
@@ -196,14 +191,13 @@ function SidebarContents({
     onToggle && cn(collapsed && wide, !open && compact);
   return (
     <>
-      <Link
+      <AfterLoadLink
         href="/"
-        prefetch={prefetch}
         aria-label={t.nav.home}
         className={cn("mx-6 mt-2 mb-4 block flex-none", rail("wide:hidden", "compact:hidden"))}
       >
         <img className="h-auto w-full" src="/images/blacksmith.png" alt={t.logoAlt} />
-      </Link>
+      </AfterLoadLink>
 
       <nav className="flex flex-col" aria-label={t.nav.main}>
         {NAV_GROUPS.map((group, i) => (
@@ -212,10 +206,9 @@ function SidebarContents({
             {group.map((item) => {
               const active = pathname.startsWith(item.match);
               return (
-                <Link
+                <AfterLoadLink
                   key={item.match}
                   href={hrefFor(item)}
-                  prefetch={prefetch}
                   title={railLabel ? t.nav[item.label] : undefined}
                   aria-current={active ? "page" : undefined}
                   className={cn(sidebarRow, active && sidebarRowActive)}
@@ -230,7 +223,7 @@ function SidebarContents({
                   <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>
                     {t.nav[item.label]}
                   </span>
-                </Link>
+                </AfterLoadLink>
               );
             })}
           </Fragment>
@@ -255,9 +248,8 @@ function SidebarContents({
           <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.search}</span>
         </button>
 
-        <Link
+        <AfterLoadLink
           href={hrefFor(OPTIONS_NAV)}
-          prefetch={prefetch}
           title={railLabel ? t.nav.options : undefined}
           aria-current={pathname.startsWith(OPTIONS_NAV.match) ? "page" : undefined}
           className={cn(sidebarRow, pathname.startsWith(OPTIONS_NAV.match) && sidebarRowActive)}
@@ -269,7 +261,7 @@ function SidebarContents({
             className={rowIcon}
           />
           <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.options}</span>
-        </Link>
+        </AfterLoadLink>
 
         <HunterRow pathname={pathname} railLabel={railLabel} rail={rail} />
 
@@ -321,7 +313,6 @@ function TabBar({
   const label = "text-fine leading-none tracking-normal";
   const tabs = NAV.filter((item) => item.tab);
   const inTab = tabs.some((item) => pathname.startsWith(item.match));
-  const prefetch = useAfterLoadPrefetch();
 
   return (
     // Dips 1.8rem (the frame's band) under the bottom of the screen, like the
@@ -342,10 +333,9 @@ function TabBar({
         {tabs.map((item) => {
           const active = !menuOpen && pathname.startsWith(item.match);
           return (
-            <Link
+            <AfterLoadLink
               key={item.match}
               href={hrefFor(item)}
-              prefetch={prefetch}
               aria-current={active ? "page" : undefined}
               className={cn(tab, active && tabActive)}
             >
@@ -357,7 +347,7 @@ function TabBar({
                 className={rowIcon}
               />
               <span className={label}>{t.nav[item.label]}</span>
-            </Link>
+            </AfterLoadLink>
           );
         })}
         <button
