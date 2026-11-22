@@ -59,7 +59,7 @@ function ArmorSidebar({ slot, rank, slug }: { slot: ArmorSlot; rank: ArmorRank; 
     <ArmorTreePanel slot={slot} rank={rank} slug={slug} filter={filter}>
       <TreeScroll treeKey={treeKey} activeSlug={activeSlug}>
         {visibleTree?.map((node) => (
-          <TreeBranch key={node.slug} rows={shownRows(node, treeKey)}>
+          <TreeBranch key={node.slug} rows={shownRows(node, treeKey, activeSlug)}>
             <WeaponTreeRow node={node} sectionType={slot} basePath={basePath} treeKey={treeKey} />
           </TreeBranch>
         ))}

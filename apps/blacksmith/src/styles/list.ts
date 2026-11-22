@@ -6,3 +6,9 @@ export const filterFade = "transition-opacity duration-150 ease-out motion-reduc
 
 /** A row the filter rules out. */
 export const filteredOut = "opacity-30";
+
+/**
+ * A tree row's height in px (WeaponTreeRow), which TreeBranch also sizes the
+ * rows it skips by.
+ */
+export const TREE_ROW_HEIGHT = 38;

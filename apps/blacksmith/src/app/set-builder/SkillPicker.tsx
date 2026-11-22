@@ -28,8 +28,11 @@ function collator(tag: string): Intl.Collator {
 }
 
 /**
- * Room held by a tree's section while the browser skips it off screen: its
- * title bar and a 4.6rem row (and its 1px rule) per skill.
+ * Room held by a tree's section while the browser skips it off screen: an
+ * estimate (its title bar, and a 4.6rem row and its 1px rule per skill), as
+ * a name that wraps makes a row taller. Once a section has been on screen
+ * its real height is kept (`auto`), so the estimate only shapes the
+ * scrollbar of a sheet not yet scrolled through.
  */
 const sectionHeight = (skills: number) => `auto ${39 + skills * 47}px`;
 

@@ -1,9 +1,10 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import { ActiveRowProvider } from "@/context/ActiveRowContext";
+import { ActiveRowProvider, hasDescendant } from "@/context/ActiveRowContext";
 import { isNodeCollapsed } from "@/lib/tree-collapse-store";
 import { PHONE } from "@/lib/media";
+import { TREE_ROW_HEIGHT } from "@/styles/list";
 import type { WeaponTreeNode } from "@/lib/types";
 
 /**
@@ -154,13 +155,15 @@ export default function TreeScroll({
   );
 }
 
-/** A tree row's height (WeaponTreeRow's h-[38px]). */
-const ROW_HEIGHT = 38;
-
-/** The rows a node takes up: itself, and its branch unless it is collapsed. */
-export function shownRows(node: WeaponTreeNode, treeKey: string): number {
-  if (!node.children || isNodeCollapsed(treeKey, node.slug)) return 1;
-  return node.children.reduce((n, child) => n + shownRows(child, treeKey), 1);
+/**
+ * The rows a node takes up: itself, and its branch unless it is collapsed. A
+ * branch holding the open row is open (WeaponTreeRow opens it).
+ */
+export function shownRows(node: WeaponTreeNode, treeKey: string, activeSlug?: string): number {
+  if (!node.children) return 1;
+  const opened = !!activeSlug && hasDescendant(node, activeSlug);
+  if (!opened && isNodeCollapsed(treeKey, node.slug)) return 1;
+  return node.children.reduce((n, child) => n + shownRows(child, treeKey, activeSlug), 1);
 }
 
 /**
@@ -176,7 +179,7 @@ export function TreeBranch({ rows, children }: { rows: number; children: React.R
   return (
     <ul
       className="mobile:[content-visibility:auto]"
-      style={{ containIntrinsicHeight: `auto ${rows * ROW_HEIGHT}px` }}
+      style={{ containIntrinsicHeight: `auto ${rows * TREE_ROW_HEIGHT}px` }}
     >
       {children}
     </ul>

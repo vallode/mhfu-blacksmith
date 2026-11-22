@@ -173,7 +173,7 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
                 />
               ) : (
                 visibleTree?.map((node) => (
-                  <TreeBranch key={node.slug} rows={shownRows(node, treeKey)}>
+                  <TreeBranch key={node.slug} rows={shownRows(node, treeKey, activeSlug)}>
                     <WeaponTreeRow
                       node={node}
                       sectionType={type}

@@ -1,14 +1,14 @@
 "use client";
 
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useLayoutEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
 import Icon from "./Icon";
 import { cn } from "@/lib/cn";
-import { filterFade, filteredOut } from "@/styles/list";
+import { filterFade, filteredOut, TREE_ROW_HEIGHT } from "@/styles/list";
 import { prefetchBundle } from "@/lib/client-data";
 import { isNodeCollapsed, onNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
-import { useActiveRowSlug, useIsActiveRow } from "@/context/ActiveRowContext";
+import { useActiveRowBelow, useIsActiveRow } from "@/context/ActiveRowContext";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { useTreeFilterResult, useWeaponTree } from "@/context/TreeFilterContext";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -51,7 +51,7 @@ interface WeaponTreeRowProps {
 // Rows a tree filter (WeaponTreePanel) rules out fade in place, so the
 // connector lines and indentation never move.
 const rowBase = [
-  "relative flex h-[38px] w-full min-w-max flex-row items-center pr-[0.9rem] text-white",
+  "relative flex w-full min-w-max flex-row items-center pr-[0.9rem] text-white",
   filterFade,
   "before:absolute before:top-0 before:left-[calc(100%-50vw+2.3rem+0.65rem)] before:z-0 before:block before:h-full before:w-[calc(50vw-2.3rem-0.65rem)] before:bg-transparent",
   "mobile:before:left-0 mobile:before:w-full",
@@ -166,12 +166,6 @@ function RowButton({
   );
 }
 
-function hasDescendant(node: WeaponTreeNode, slug: string): boolean {
-  return (node.children ?? []).some(
-    (child) => (child.slug === slug && !child.alias) || hasDescendant(child, slug),
-  );
-}
-
 /**
  * One row of a tree, and its branch. Memoised, and told which row is open by
  * the enclosing TreeScroll (ActiveRowContext) rather than a prop, so opening
@@ -189,16 +183,18 @@ const WeaponTreeRow = memo(function WeaponTreeRow({
   listedAgain = false,
 }: WeaponTreeRowProps) {
   // A branch holding the active row opens, so arriving at a weapon (from the
-  // global search, say) shows it even if its branch was collapsed earlier.
-  const activeSlug = useActiveRowSlug();
-  const [collapsed, setCollapsed] = useState(() => {
-    if (!isNodeCollapsed(treeKey, node.slug)) return false;
-    if (activeSlug && hasDescendant(node, activeSlug)) {
-      setNodeCollapsed(treeKey, node.slug, false);
-      return false;
-    }
-    return true;
-  });
+  // global search, say) shows it even if its branch was collapsed earlier:
+  // open from the start when it mounts, and stored as open before paint,
+  // whether the row is new or was already on the page.
+  const activeBelow = useActiveRowBelow(node);
+  const [collapsed, setCollapsed] = useState(
+    () => !activeBelow && isNodeCollapsed(treeKey, node.slug),
+  );
+  useLayoutEffect(() => {
+    if (!activeBelow) return;
+    setCollapsed(false);
+    if (isNodeCollapsed(treeKey, node.slug)) setNodeCollapsed(treeKey, node.slug, false);
+  }, [activeBelow, treeKey, node.slug]);
   // Another row (an alias revealing its weapon) can open this branch.
   useEffect(() => onNodeCollapsed(treeKey, node.slug, setCollapsed), [treeKey, node.slug]);
   const tree = useWeaponTree();
@@ -313,6 +309,7 @@ const WeaponTreeRow = memo(function WeaponTreeRow({
           // id that TreeScroll and the alias marker look up.
           id={node.alias || listedAgain ? undefined : node.slug}
           className={rowClass}
+          style={{ height: TREE_ROW_HEIGHT }}
           href={href}
           scroll={scroll}
           title={
@@ -334,7 +331,11 @@ const WeaponTreeRow = memo(function WeaponTreeRow({
           {inner}
         </Link>
       ) : (
-        <span id={node.alias || listedAgain ? undefined : node.slug} className={rowClass}>
+        <span
+          id={node.alias || listedAgain ? undefined : node.slug}
+          className={rowClass}
+          style={{ height: TREE_ROW_HEIGHT }}
+        >
           {inner}
         </span>
       )}
