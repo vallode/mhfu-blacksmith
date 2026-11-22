@@ -40,7 +40,7 @@ static const struct {
 #define PRINTER_LAYER 0x12f /* 0 to 5: the HUD's layers 9 to 14 */
 #define TOP_TEXT_LAYER 5
 
-#define MAX_SETTINGS 8
+#define MAX_SETTINGS 12 /* the window fits 12 rows above the screen's bottom */
 static const struct rf_setting *settings[MAX_SETTINGS];
 static u32 count;
 static u8 *hud; /* while the window is open */

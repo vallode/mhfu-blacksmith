@@ -107,6 +107,7 @@ import { findKeyQuestSites, keyQuestsObjects, keyQuestsReport } from "./patches/
 import {
   FOV_SCALES,
   cameraObjects,
+  cameraOn,
   cameraReport,
   patchFov,
   prepareCamera,
@@ -1027,7 +1028,7 @@ export function randomize(
         summary: `Poogie: not applied (${why})`,
       });
     }
-    if (settings["camera.fov"] !== "normal" || settings["camera.distance"] !== "normal") {
+    if (cameraOn(settings)) {
       const why = "the loader demo's blob replaces its code";
       reports.push({
         title: "Camera",
@@ -1105,19 +1106,18 @@ export function randomize(
     // The camera: its EBOOT patch carries the disc's field of view, with the
     // blob or without; the blob moves the camera back, and changes both in
     // game. The EBOOT is patched once it's known the blob or the option needs it.
-    const cameraOn =
-      settings["camera.fov"] !== "normal" || settings["camera.distance"] !== "normal";
+    const cameraWanted = cameraOn(settings);
     let camera = false;
     let cameraLinked = false;
     const cameraFound = !game.eboot
       ? "the EBOOT wasn't loaded"
-      : cameraOn || typeof sites !== "string"
-        ? prepareCamera(game.eboot, settings)
+      : cameraWanted || typeof sites !== "string"
+        ? prepareCamera(game.eboot, settings, game.region, sites)
         : null;
     if (typeof cameraFound === "string") {
-      if (cameraOn) reports.push(notApplied("Camera", cameraFound));
+      if (cameraWanted) reports.push(notApplied("Camera", cameraFound));
     } else if (cameraFound && typeof sites !== "string") {
-      (cameraOn ? objects : optional).push(...cameraObjects());
+      (cameraWanted ? objects : optional).push(...cameraObjects());
       Object.assign(externs, cameraFound);
       camera = true;
     }
@@ -1366,7 +1366,7 @@ export function randomize(
       }
       reports.push(loader);
       // A lean loader leaves out the camera's code when its options are off.
-      cameraLinked = loader.applied && camera && (cameraOn || !wentLean);
+      cameraLinked = loader.applied && camera && (cameraWanted || !wentLean);
       // Its code is always optional: the EBOOT patch alone carries the disc's
       // choice. It's a setting only when the START menu entry went in too.
       questEndInGame = loader.applied && questEnd && !wentLean && menus !== null;
@@ -1396,12 +1396,12 @@ export function randomize(
         }
       }
     }
-    if (cameraFound && typeof cameraFound !== "string" && (cameraOn || cameraLinked)) {
+    if (cameraFound && typeof cameraFound !== "string" && (cameraWanted || cameraLinked)) {
       const patched = patchFov(edits.eboot(), FOV_SCALES[settings["camera.fov"]]);
       if (typeof patched === "string") {
-        if (cameraOn) reports.push(notApplied("Camera", patched));
-      } else if (cameraOn) {
-        reports.push(cameraReport(settings, cameraLinked));
+        if (cameraWanted) reports.push(notApplied("Camera", patched));
+      } else if (cameraWanted) {
+        reports.push(cameraReport(settings, cameraLinked, game.region));
       }
     }
   }

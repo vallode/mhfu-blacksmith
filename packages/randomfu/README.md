@@ -184,6 +184,7 @@ web app shows as a tag):
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
 | `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
 | `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
+| `camera.tilt`                     | `steps`     | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast` (EU disc only)           |
 | `quest.endWait`                   | `normal`    | The wait after a quest: `short` (20 s for every quest) or `instant` (straight to the rewards)          |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
 | `hud.damageNumbers`               | off         | Numbers at the part each of your hits strikes: `total` or `split` element (caps Guild Cards)           |
@@ -1350,15 +1351,17 @@ yet tried: JP in game, captures, and two large monsters in one area.
 
 ## Camera
 
-`camera.fov` and `camera.distance` (Modifications → Camera in the web app), and
-the Field of view and Camera distance settings in randomfu's START menu
-entry (Damage numbers, below). The option picks what a disc starts with;
+`camera.fov`, `camera.distance` and `camera.tilt` (Modifications → Camera in
+the web app), and the Field of view, Camera distance and Camera tilt settings
+in randomfu's START menu entry (Damage numbers, below). The option picks what a disc starts with;
 the menu changes it in game, and the save keeps it. Like the HUD options,
 the code goes on every disc, so every disc caps received Guild Cards at 3.
 Played on EU at `wider` and `farther` (PPSSPP, 2026-11-21): wider and
 further back in the village and in quests, through area changes and a save
 reload, with no popping at the screen's edges, and both settings changed
-from the START menu. JP builds but hasn't been played.
+from the START menu. Smooth tilt was played on EU (PPSSPP, 2026-11-21), with
+`wider` and `farther`: smooth while held, as the game's left and right
+turns are. JP builds but hasn't been played.
 
 What the game does:
 
@@ -1379,8 +1382,20 @@ What the game does:
   The usual quest camera is eye 270, distance 490, looking at 170 (above
   the ground under the hunter). The camera reads the block's field of view
   once, when it's set up, and the presets as it follows, so writing them
-  moves the camera at once; an area change loads the block again. Which
-  preset is which (weapon drawn, carts, the high one) isn't known.
+  moves the camera at once; an area change loads the block again.
+- The presets are the steps D-pad up and down tilt the camera through
+  (seen live on EU). The renderer keeps the step at +0x14 as a level: 0 is
+  the highest (preset 4: eye 400, distance 220, look 195, 45° down), then
+  presets 0 (36°, only 160 back), 1 (the usual, 11.5°), 2 (a little
+  upwards) and 3 (eye 60, look 210: 18° up). Down moves a level higher, up
+  a level lower, one a press, however long it's held; a level written to
+  +0x14 sticks, and the camera eases towards its preset. The game sometimes
+  uses a camera that isn't in the block (EU 0x08933BE0: eye 280, distance
+  500, look 170), seen for a few seconds walking towards a monster; what
+  picks it isn't known, and randomfu leaves it alone. 258 stage blocks were
+  read: 201 have the EBOOT's presets with preset 2's first word -501.3, 50
+  the EBOOT's with preset 4 200 back, and preset 1 is 270, 490, 170 in all
+  but st227.
 
 How randomfu does it (`src/patches/camera.ts`, `blob/camera.c`):
 
@@ -1404,6 +1419,32 @@ How randomfu does it (`src/patches/camera.ts`, `blob/camera.c`):
   rather than scaling twice. It writes nothing unless the block has a
   block's shape: an angle between 0.3 and 1.6 radians, the zeros, and
   distances between 0 and 5000.
+- **Tilt:** smooth tilt writes every preset as one camera: preset 1's
+  distance from what it looks at (times the distance's scale, so the two
+  are one transform of the same copy) and look height, at a pitch the save
+  keeps (`camera_pitch`, the sine × 32000). It puts the game's level back on
+  the middle one each frame, so every step looks the same and the game's
+  own step is the input. A step of one level, in the frame of a press of up
+  or down or the frame after (the game steps after the pad hook), tilts the
+  camera that way: for a frame if the button is already up, and on while
+  it's held and the pad object's input lock (+0x17, shops and dialogues)
+  stays off. A level the game moves by more, or while the button was held
+  all along (an area loading), only goes back to the middle. The game
+  doesn't step while a menu has the D-pad. It turns at 30, 50 or 80° a
+  second, timed by `sceKernelGetSystemTimeLow` (a gap over 0.1 s counts as
+  1/30 s), between 55° down and 20° up, with the eye kept 40 above the
+  ground under the hunter, and starts at the angle of the step the game was
+  on. A tilted block's mark has a second bit, and preset 1's eye height and
+  distance as the game had them go in two more of the zeros after the field
+  of view (words 5 and 6). The save keeps a copy of the block's presets as
+  the game had them, and the block's address (`camera_block`,
+  `camera_presets`): a blob loaded again takes that copy when it's the
+  block's and preset 1 agrees with what the block kept, else preset 1 from
+  the block and the others from the EBOOT's own presets (`game_presets` in
+  `blob/camera.c`), exact again once the game loads the block again; the
+  pitch comes from the save or, if it has none, from the block. Only EU's
+  renderer is known to keep the level at +0x14 (`rf_camera_level`), so
+  other discs keep the game's steps and have no Camera tilt setting.
 
 ## Quest end
 
@@ -1497,12 +1538,13 @@ that can be changed in game, drawn like the game's Options with the
 setting's help to its left: monster health (Off, On map, Always), damage
 numbers (Off, Total, Split), attack hitboxes (Off, On), field of view
 (Normal, Wide, Wider, Widest), camera distance (Normal, Far, Farther,
-Farthest) and the wait after a quest (Normal, Short, Instant).
+Farthest), camera tilt (Steps, Slow, Smooth, Fast) and the wait after a
+quest (Normal, Short, Instant).
 Up and down pick a setting; left, right and × change it; ○ goes back to the
 menu and START closes it. The choice is kept in randomfu's save data, so it
 lasts across saves and holds over the disc's mode, on discs from other
 seeds too (`monster_hp`, `damage_numbers`, `hitboxes`, `camera_fov`,
-`camera_distance` and `quest_end` in `struct
+`camera_distance`, `quest_end` and `camera_tilt` in `struct
 rf_save_data`). Other Modifications can add their settings to the same window
 (`rf_add_setting`, `blob/menu.c`).
 

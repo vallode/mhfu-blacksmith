@@ -108,7 +108,7 @@ const LIST_TABLE_ENTRIES = 33;
 /** The town copies at most 80 quests of a star's list. */
 const BOARD_MAX = 80;
 
-const SYSTEM_TIME_LOW_NID = 0x369ed59d;
+export const SYSTEM_TIME_LOW_NID = 0x369ed59d;
 
 /** questType bits (the decomp's MissionFlag). */
 const SLAYING = 1 << 0;
