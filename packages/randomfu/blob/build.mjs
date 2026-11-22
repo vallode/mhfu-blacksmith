@@ -50,6 +50,7 @@ const BLOBS = {
   hitboxes: [["hitboxes.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
   camera: [["camera.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
   questEnd: [["quest-end.c"], "src/blob"],
+  photo: [["photo.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
   linkTest: [["link-test.c"], "test"],
   commonTest: [["test/common-a.c", "test/common-b.c"], "test", ["-fcommon"]],
 };

@@ -186,6 +186,7 @@ web app shows as a tag):
 | `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
 | `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
 | `camera.tilt`                     | `steps`     | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast` (EU disc only)           |
+| `camera.photoMode`                | off         | L+R+START in a quest stops the game and hides the HUD; the camera flies free (caps Guild Cards)        |
 | `quest.endWait`                   | `normal`    | The wait after a quest: `short` (20 s for every quest) or `instant` (straight to the rewards)          |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
 | `hud.damageNumbers`               | off         | Numbers at the part each of your hits strikes: `total` or `split` element (caps Guild Cards)           |
@@ -1465,6 +1466,86 @@ How randomfu does it (`src/patches/camera.ts`, `blob/camera.c`):
   renderer is known to keep the level at +0x14 (`rf_camera_level`), so
   other discs keep the game's steps and have no Camera tilt setting.
 
+## Photo mode
+
+`camera.photoMode` (Modifications → Camera in the web app), and the Photo
+mode setting in randomfu's START menu entry (Damage numbers, below). In a
+quest, hold L and R and press START: the game stops as it does for its own
+pause, but with no dimming and no PAUSE box, the HUD and randomfu's HUD
+drawing go, and the camera is the player's. The stick turns it round what
+it looks at (left and right orbit, up and down pitch), the D-pad moves it
+along the ground, △ and × raise and lower it, □ and ○ bring it nearer and
+further, L and R narrow and widen the field of view, and SELECT puts it
+back where it started. START again ends it: the camera, its field of view
+and the game go back exactly as they were, and the buttons stay cleared
+until they're all let go, so the START doesn't open the menu. The rain stays
+still round the camera, as everything else does. The camera
+goes through walls and the ground. The option picks what a disc starts
+with; the menu changes it in game, and the save keeps it (`photo_mode`).
+It's blob code, so it caps Guild Cards at 3. It doesn't start in the
+village, online, with a menu open, while the game is paused or the pad is
+locked (shops, dialogues).
+
+Tried on EU in PPSSPP (2026-11-21), with input sent through the debugger:
+entering stops the quest's clock, hides the HUD and doesn't dim; the stick orbits round the hunter as the scene draws again; SELECT
+resets; START ends with the eye back to the bit and the HUD back, and the
+menu stays shut; the game's own pause still dims. Not yet played by hand,
+with a monster in view, mid-attack, or on JP (it builds; its code is found
+by the same signatures).
+
+What the game does (EU addresses):
+
+- The save's byte `+0x6AF1A` is the pause. `isPaused(save)` (EU
+  0x088567B4) is it not being 0; `pause` (EU 0x088567C8) sets it to 1 and
+  stops the sound (single player only: the system's flag at
+  `*0x08A631A0+0xF7A57C`); `unpause` (EU 0x0885683C) sets it to 4 and
+  starts the sound again, and `game_task` clears the 4 the next frame.
+  `noPause(save, mode)` (EU 0x0884FA5C) checks the game mode (`+0x2E`).
+- `game_task`'s frame (EU 0x09A62640) runs the play update (hunters,
+  monsters, and the camera's update, EU 0x08812BD0) only when not paused.
+  Paused, it runs the HUD's update (so hook 0 still runs) and the dimming
+  (EU 0x0885658C: the screen in black at alpha 0xA0), and skips the quest's
+  frame (its clock). The HUD's update skips its layers 9 (the gauges, and
+  hook 1) and 11 (the map, the item bar) when paused; layer 10 is the menu
+  and the PAUSE box. Paused, ×, ○ and START unpause, and START opens the
+  menu.
+- The camera's update copies its eye and target to the renderer's (EU
+  `*0x089CBBE4`) `+0x20`/`+0x30` and `+0xB40`/`+0xB50` and its field of view
+  to `+0xC`; `look(renderer)` (EU 0x08815384) rebuilds the projection if
+  `+0xC` changed and the view (`+0xB80`) from `+0xB40`/`+0xB50`. While
+  paused nothing writes them, and the frozen scene draws from whatever view
+  they hold.
+- The stage's ambient effects have a manager (EU `*0x09A4F060`, set up at
+  EU 0x088C3138) whose update (EU 0x088C33E8, in the play update) runs each
+  effect's (a list at +0xA2E0, next at +0x14, the update at vtable +0x1C).
+  The rain is one (type 0xD, at +0x18): a texture on a mesh at the camera.
+  Its update copies the camera's position to +0x50 and scrolls the
+  texture's layers (+0x7C and +0x88 on, at speeds from a table in its
+  definition), which is the rain falling. Paused, the rain stays where the
+  camera was, so turning away from there leaves none in view. Running its
+  update with the speeds at 0 (tried live) keeps it round the moved camera
+  and still. In a rainy swamp area the list held that and two animated
+  textures (type 0x13, frame counters); the hunters', monsters' and attacks'
+  effects are other managers'.
+
+How randomfu does it (`src/patches/photo.ts`, `blob/photo.c`): on the pad
+hook, the blob calls `pause`, then sets the byte to 2. The dimming's first
+eight words are patched to test the byte for 1 instead of calling
+`isPaused` (the frame set-up rearranged round the test), so 2 pauses
+without dimming; with the byte at 2 the game's own unpause buttons do
+nothing, as the HUD tests for 1. Each frame the blob clears the pad's
+buttons and centres the stick, sets the pad's input lock (`+0x17`), moves
+its own camera from the real buttons and writes the four vectors and the
+field of view before calling `look`, then runs the update of each ambient
+effect of the rain's type and puts its scroll (+0x64 to +0x94) back after,
+so the rain follows the camera without falling; the other ambient effects
+aren't updated. Ending writes back the 16 words and the field of view it
+kept, calls `look`, puts back the camera angles the rain's effects keep
+(+0x60, so the game's next update doesn't scroll them by the photo
+camera's turn), lets the input lock go, and calls `unpause`; the buttons
+stay cleared until every one is up. If the game leaves the pause by itself
+(the byte isn't 2), or the renderer or pad goes, photo mode ends too.
+
 ## Quest end
 
 `quest.endWait` (Modifications → Quest end in the web app), and the After a
@@ -1557,13 +1638,13 @@ that can be changed in game, drawn like the game's Options with the
 setting's help to its left: monster health (Off, On map, Always), damage
 numbers (Off, Total, Split), attack hitboxes (Off, On), field of view
 (Normal, Wide, Wider, Widest), camera distance (Normal, Far, Farther,
-Farthest), camera tilt (Steps, Slow, Smooth, Fast) and the wait after a
-quest (Normal, Short, Instant).
+Farthest), camera tilt (Steps, Slow, Smooth, Fast), the wait after a
+quest (Normal, Short, Instant) and photo mode (Off, On).
 Up and down pick a setting; left, right and × change it; ○ goes back to the
 menu and START closes it. The choice is kept in randomfu's save data, so it
 lasts across saves and holds over the disc's mode, on discs from other
 seeds too (`monster_hp`, `damage_numbers`, `hitboxes`, `camera_fov`,
-`camera_distance`, `quest_end` and `camera_tilt` in `struct
+`camera_distance`, `quest_end`, `camera_tilt` and `photo_mode` in `struct
 rf_save_data`). Other Modifications can add their settings to the same window
 (`rf_add_setting`, `blob/menu.c`).
 

@@ -121,6 +121,14 @@ import {
 import { addButtonIcons } from "./patches/button-icons.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findHitboxExterns, hitboxObjects } from "./patches/hitboxes.js";
+import {
+  findPhotoExterns,
+  findPhotoSites,
+  patchDim,
+  photoObjects,
+  photoReport,
+  type PhotoSites,
+} from "./patches/photo.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
 import {
   ARMOR_BOX_TYPE,
@@ -1038,6 +1046,15 @@ export function randomize(
         summary: `Camera: not applied (${why})`,
       });
     }
+    if (settings["camera.photoMode"]) {
+      const why = "the loader demo's blob replaces its code";
+      reports.push({
+        title: "Photo mode",
+        notes: [`Photo mode isn't in this image: ${why}.`],
+        lines: [],
+        summary: `Photo mode: not applied (${why})`,
+      });
+    }
     if (questEndOn) patchQuestEndNow();
   } else {
     // Each feature is resolved on its own first: one that doesn't match this
@@ -1121,6 +1138,23 @@ export function randomize(
       (cameraWanted ? objects : optional).push(...cameraObjects());
       Object.assign(externs, cameraFound);
       camera = true;
+    }
+    // Photo mode: blob code on the pad and quest frame hooks, and the pause's dimming patched.
+    const photoOn = settings["camera.photoMode"];
+    let photo: PhotoSites | null = null;
+    {
+      const found = typeof sites === "string" ? sites : findPhotoSites(game.eboot!);
+      const photoExterns =
+        typeof found === "string" || typeof sites === "string"
+          ? found
+          : findPhotoExterns(game.eboot!, sites, found, photoOn);
+      if (typeof photoExterns === "string") {
+        if (photoOn) reports.push(notApplied("Photo mode", photoExterns));
+      } else {
+        (photoOn ? objects : optional).push(...photoObjects());
+        Object.assign(externs, photoExterns);
+        photo = found as PhotoSites;
+      }
     }
     let questEnd = false;
     if (questEndOn || typeof sites !== "string") {
@@ -1277,7 +1311,7 @@ export function randomize(
     if (sendAllOn && typeof sites === "string")
       reports.push(notApplied("Send All to Item Box", sites));
     if (
-      (hit || monsterHp || hitboxes || camera || questEnd || sendAllOn) &&
+      (hit || monsterHp || hitboxes || camera || questEnd || photo || sendAllOn) &&
       typeof sites !== "string"
     ) {
       const found = prepareMenu(game.eboot!, sites);
@@ -1285,7 +1319,7 @@ export function randomize(
         reports.push(
           notApplied(
             "randomfu's START menu entry",
-            `${found}; monster health, attack hitboxes, damage numbers, the camera and the wait after a quest keep this disc's settings`,
+            `${found}; monster health, attack hitboxes, damage numbers, the camera, photo mode and the wait after a quest keep this disc's settings`,
           ),
         );
         if (sendAllOn) reports.push(notApplied("Send All to Item Box", found));
@@ -1324,6 +1358,7 @@ export function randomize(
         hit ||
         camera ||
         questEnd ||
+        photo ||
         sendAll)
     ) {
       const install = (lean: boolean) => {
@@ -1386,6 +1421,10 @@ export function randomize(
           reports.push(notApplied("Send All to Item Box", "the code loader isn't on this disc"));
         }
       }
+      // A lean loader leaves photo mode's code out when it's off.
+      const photoLinked = loader.applied && photo !== null && (photoOn || !wentLean);
+      if (photo && photoLinked) patchDim(edits.eboot(), photo);
+      if (photoOn && photo) reports.push(photoReport(photoLinked));
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {

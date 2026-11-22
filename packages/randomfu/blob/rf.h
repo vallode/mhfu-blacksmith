@@ -65,6 +65,8 @@ struct rf_save_data {
   /* The block smooth tilt last wrote, and its presets as the game had them */
   u32 camera_block;
   u32 camera_presets[40];
+  /* Photo mode (photo.c): off 0 or on 1, + 1 */
+  u8 photo_mode;
 };
 
 /* The save's randomfu data, set up by rf_init before any feature's init. */
