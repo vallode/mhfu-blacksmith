@@ -16,8 +16,9 @@ extern const u8 rf_hud_fill[];       /* fill(hud, x, y, w, h, r, g, b) */
 extern const u8 rf_map_shows[];      /* the map's test: does it show this monster? (hud, m) */
 extern const u8 rf_hud_sprite[];     /* sprite(hud, x, y, w, h, sprite): a sprite stretched to w×h */
 extern const u8 rf_hud_sprites[];    /* the HUD's sprite table that `sprite` indexes */
-extern const u8 rf_crowns[];         /* the Guild Card's crown table */
-extern const u8 *const rf_crown_groups[]; /* by emID: the emIDs that share its crowns, ending 0xFF */
+/* Weak: left out (0) on a disc whose crown code isn't found, and then no crowns show. */
+__attribute__((weak)) extern const u8 rf_crowns[];         /* the Guild Card's crown table */
+__attribute__((weak)) extern const u8 *const rf_crown_groups[]; /* by emID: its group's emIDs, ending 0xFF */
 /* A constant, not an address: the disc's default MODE_* + 1 (an extern's address is never 0). */
 extern const u8 rf_monster_hp_mode[];
 
@@ -55,8 +56,8 @@ static u32 mode(void) {
 /*
  * Layout: a short gauge in the stamina gauge's style (its frame and its
  * end cap, the cap mirrored on the left too) per monster, stacked on the
- * left edge under the hunter's name plate, and a crown after it when the
- * monster's size makes one.
+ * left edge under the hunter's name plate, and a crown over its right end
+ * cap when the monster's size makes one.
  */
 #define FRAME_SPRITE 4
 #define CAP_SPRITE 6
@@ -126,6 +127,8 @@ static struct {
 
 /* The crown the Guild Card would give a monster of this size, as it decides (EBOOT 0x08853F84). */
 static u32 crown(u32 em, u32 size) {
+  /* 0 is no size yet: game_task checks for it too (0x09ACBF60). */
+  if (!rf_crowns || !rf_crown_groups || size == 0) return NO_CROWN;
   for (u32 i = 0; i < CROWN_ENTRIES; i++) {
     const u8 *entry = rf_crowns + i * CROWN_BYTES;
     s32 silver = *(const s16 *)(entry + CROWN_SILVER);

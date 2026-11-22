@@ -51,9 +51,11 @@ interface Draw {
 }
 
 /** The blob, the hooks and a quest in a CPU: the HUD routines record what they draw. */
-function quest(mode: keyof typeof MODE) {
+function quest(mode: keyof typeof MODE, { crownCode = true } = {}) {
+  const { rf_crowns, rf_crown_groups, ...gauge } = EXTERNS;
   const blob = linkBlob([...runtime(), ...monsterHpObjects()], BLOB, {
-    ...EXTERNS,
+    ...gauge,
+    ...(crownCode ? { rf_crowns, rf_crown_groups } : {}),
     rf_monster_hp_mode: MODE[mode],
   });
   const cpu = new Cpu();
@@ -184,6 +186,16 @@ test("a crown-sized monster gets the HUD's crown over its gauge's right end, as 
   // No mini crown sprite: the gold one, smaller, with the same centre.
   assert.deepEqual(at(90), [{ what: "sprite", x: 108, y: 91, w: 12, h: 9, sprite: GOLD }]);
   assert.deepEqual(at(75), [{ what: "sprite", x: 108, y: 91, w: 12, h: 9, sprite: GOLD }]);
+  // 0 is no size yet, not a tiny monster.
+  assert.deepEqual(at(0), []);
+});
+
+test("without the disc's crown code the gauge still shows, with no crowns", () => {
+  const q = quest("always", { crownCode: false });
+  q.monster(0, LARGE, 300, 480, 125);
+  const draws = q.frame();
+  assert.equal(fills(draws)[0]!.w, 50);
+  assert.deepEqual(crowns(draws), []);
 });
 
 test("a subspecies takes its group's crown entry, and a monster without thresholds gets none", () => {

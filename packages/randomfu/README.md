@@ -1304,11 +1304,13 @@ randomfu entry (Damage numbers, below) changes it in game.
 - **`always`** shows every large monster in the area.
 
 A monster whose size makes a crown gets one over its gauge's right end
-(on the end cap, centred on the bar), whenever the gauge shows: the HUD's own gold or silver crown, and for a mini crown
-the gold one drawn smaller (the HUD has no mini crown). It's the crown the
-Guild Card would record if the monster were killed or captured now: its
-size against its species' entry in the crown table, so a subspecies uses
-its base monster's thresholds (mhfu-extract's README, "Monster size").
+(on the end cap, centred on the bar), whenever the gauge shows: the HUD's
+own gold or silver crown, and for a mini crown the gold one drawn smaller
+(the HUD has no mini crown). It's the crown the Guild Card would record if
+the monster were killed or captured now: its size against its species'
+entry in the crown table, so a subspecies uses its base monster's
+thresholds (mhfu-extract's README, "Monster size"). On a disc where the
+crown code isn't found, the gauges show without crowns.
 
 What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
 
@@ -1337,8 +1339,9 @@ What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
   blob finds the crown table through that check and the emID groups
   through their lookup (`0x0884FC74`); both match once on EU and JP.
 - The HUD texture (0x8001, in RAM while in a quest) has a silver and a gold
-  crown, 16×12: sprites 31 and 32 of its sprite table, the same records on
-  EU and JP.
+  crown, 16×12: sprites 31 and 32 of its sprite table. Seen in EU's
+  texture and in game; JP's sprite table has the same records, but its
+  texture wasn't looked at.
 
 Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
 dies or leaves the area, and `painted` shows it once a Paintball hits. Not

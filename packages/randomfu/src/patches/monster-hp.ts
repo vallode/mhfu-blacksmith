@@ -45,7 +45,8 @@
  *   lists (`u8*` by emID, EU 0x0899BF40, found through the lookup at
  *   0x0884FC74). The blob finds a monster's entry by its group and draws
  *   the HUD texture's crown sprites (31 silver, 32 gold, 16×12; there's no
- *   mini crown, so the gold one smaller) after the gauge.
+ *   mini crown, so the gold one smaller) over the gauge's right end cap.
+ *   Where the crown code isn't found, the gauge goes on without crowns.
  *
  * Everything is found by code signatures, which match the EU and JP (FUC)
  * discs. The blob only reads game state.
@@ -216,19 +217,20 @@ export function findMonsterHpExterns(
     return "this EBOOT's HUD sprite code doesn't match";
   }
 
+  // Crowns are extra: without their code the gauge links with no crowns (weak externs).
   const [groups, check] = findUnique(
     vanillaEboot,
     segment,
     [CROWN_GROUPS_SIGNATURE, CROWN_CHECK_SIGNATURE],
     maskImmediates,
   );
-  if (
-    groups == null ||
-    check == null ||
-    CROWN_CHECK_WORDS.some(([o, w]) => at32(check + o) !== w)
-  ) {
-    return "this EBOOT's crown code doesn't match";
-  }
+  const crowns: Record<string, number> =
+    groups == null || check == null || CROWN_CHECK_WORDS.some(([o, w]) => at32(check + o) !== w)
+      ? {}
+      : {
+          rf_crowns: hiLo(at32(check + 4), at32(check + 8)),
+          rf_crown_groups: hiLo(at32(groups + 8), at32(groups + 12)),
+        };
 
   const monsters = findMonsterExterns(gameTask, ovl);
   if (typeof monsters === "string") return monsters;
@@ -244,8 +246,7 @@ export function findMonsterHpExterns(
     rf_map_shows: mapShows,
     rf_hud_sprite: sprite,
     rf_hud_sprites: sprites,
-    rf_crowns: hiLo(at32(check + 4), at32(check + 8)),
-    rf_crown_groups: hiLo(at32(groups + 8), at32(groups + 12)),
+    ...crowns,
     rf_monster_hp_mode: MODE[mode],
   };
 }
