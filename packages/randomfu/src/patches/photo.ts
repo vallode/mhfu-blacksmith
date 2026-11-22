@@ -208,11 +208,13 @@ export function patchDim(eboot: Buffer, photo: PhotoSites): void {
 export const photoObjects = () => decodeObjects(PHOTO_OBJECTS);
 
 /** What the disc says about photo mode; `linked` when its code is on the disc. */
-export function photoReport(linked: boolean): ShuffleReport {
+export function photoReport(linked: boolean, inMenu = true): ShuffleReport {
   const notes = linked
     ? [
         "In a quest, hold L and R and press START: the game stops, the HUD goes and the camera is yours. The stick turns it round what it looks at, the D-pad moves it, △ and × raise and lower it, □ and ○ bring it nearer and further, L and R zoom, SELECT puts it back where it started; START again ends it.",
-        "It can be turned off and on in game, from the START menu's randomfu entry.",
+        inMenu
+          ? "It can be turned off and on in game, from the START menu's randomfu entry."
+          : "It starts as this disc's setting, unless the save holds a choice from another disc's START menu: this disc has no START menu entry to change it.",
       ]
     : ["Photo mode isn't in this image: it's blob code, and the code loader isn't on this disc."];
   return {

@@ -70,12 +70,25 @@ test("presets do what their help says", () => {
           (o.type.kind === "choice" && o.type.choices.some((c) => c.action === action))),
     );
 
-  // QoL only: the defaults with nothing shuffled or randomized, so the extras alone change the game.
+  // QoL only: nothing shuffled or randomized, with its own pick of extras.
   const qol = preset("QoL only");
   assert.deepEqual(keys(qol), []);
+  const qolExtras: Partial<Record<OptionKey, boolean>> = {
+    "rewards.sendAll": true,
+    "camera.photoMode": true,
+    "quests.keyLabel": true,
+    "mods.nodeMap": true,
+    "poogie.enabled": false,
+    "hints.bookshelf": false,
+    "hints.almanac": false,
+  };
   for (const option of OPTIONS) {
     if (option.key === "questRewards.mode" || option.key === "monsterRewards.mode") continue;
-    assert.equal(qol[option.key], option.default, `QoL only keeps ${option.key}`);
+    assert.equal(
+      qol[option.key],
+      qolExtras[option.key] ?? option.default,
+      `QoL only sets ${option.key}`,
+    );
   }
 
   // "The defaults: quest rewards and carves are shuffled."
@@ -125,8 +138,8 @@ test("presets do what their help says", () => {
   }
   for (const key of keys(full)) assert.ok(actionsOf(chaos).has(key), `Chaos has ${key}`);
 
-  // Every preset writes the bookshelf guides, as the defaults do.
-  for (const { name } of PRESETS) {
+  // Every preset but QoL only writes the bookshelf guides, as the defaults do.
+  for (const { name } of PRESETS.filter((p) => p.name !== "QoL only")) {
     for (const key of ["hints.bookshelf", "hints.almanac"] as const) {
       assert.equal(preset(name)[key], true, `${name}: ${key}`);
     }

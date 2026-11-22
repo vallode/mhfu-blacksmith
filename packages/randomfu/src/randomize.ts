@@ -1460,7 +1460,7 @@ export function randomize(
       // A lean loader leaves photo mode's code out when it's off.
       const photoLinked = loader.applied && photo !== null && (photoOn || !wentLean);
       if (photo && photoLinked) patchDim(edits.eboot(), photo);
-      if (photoOn && photo) reports.push(photoReport(photoLinked));
+      if (photoOn && photo) reports.push(photoReport(photoLinked, !wentLean && menus !== null));
       if (targetCamera) {
         // Written after the camera's patch below, whose unreached words it takes.
         if (loader.applied && !wentLean) {

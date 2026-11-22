@@ -184,19 +184,38 @@ test("projectToMap adds the stage's origin and scales by the map's size and zoom
   assert.equal(projectToMap(map, 1, 0, 0), null);
 });
 
+/** Each region's table addresses and game_sub load address, as the discs have them. */
+const TABLES = {
+  eu: {
+    sizes: 0x0893887c,
+    zooms: 0x08938a7c,
+    base: 0x09c19000,
+    lists: 0x09ce4708,
+    origins: 0x09cdef40,
+  },
+  jp: {
+    sizes: 0x08935dc4,
+    zooms: 0x08935fc4,
+    base: 0x09c14280,
+    lists: 0x09cdf678,
+    origins: 0x09cd9eb0,
+  },
+};
+
 /** The map tables with Forest and Hills (map 2) and the Swamp (map 4) in them. */
-function mapTables({ campX = 11400, swampZoom = 0.9 } = {}) {
-  const SIZES = 0x0893887c - JP_BASE_ADDRESS;
-  const ZOOMS = 0x08938a7c - JP_BASE_ADDRESS;
+function mapTables({ campX = 11400, swampZoom = 0.9, region = "eu" as keyof typeof TABLES } = {}) {
+  const at = TABLES[region];
+  const SIZES = at.sizes - JP_BASE_ADDRESS;
+  const ZOOMS = at.zooms - JP_BASE_ADDRESS;
   const { buf: ebootBuf, reader: eboot } = fixtureReader(ZOOMS + 32 * 4);
   ebootBuf.writeFloatLE(45000, SIZES + 2 * 8);
   ebootBuf.writeFloatLE(50000, SIZES + 2 * 8 + 4);
   ebootBuf.writeFloatLE(1, ZOOMS + 2 * 4);
   ebootBuf.writeFloatLE(swampZoom, ZOOMS + 4 * 4);
 
-  const base = 0x09c19000;
-  const lists = 0x09ce4708 - base;
-  const origins = 0x09cdef40 - base;
+  const base = at.base;
+  const lists = at.lists - base;
+  const origins = at.origins - base;
   const stageIds = lists + 32 * 8; // all stage 0
   const sub = Buffer.alloc(stageIds + 13 * 2);
   for (const [map, count] of [
@@ -222,6 +241,14 @@ test("readMapGeometry checks the tables against known maps", () => {
   assert.throws(() => readMapGeometry(moved.eboot, moved.gameSub), /EU addresses/);
   const zoom = mapTables({ swampZoom: 1 });
   assert.throws(() => readMapGeometry(zoom.eboot, zoom.gameSub), /EU addresses/);
+});
+
+test("readMapGeometry reads the JP disc's tables at their own addresses", () => {
+  const jp = mapTables({ region: "jp" });
+  assert.equal(readMapGeometry(jp.eboot, jp.gameSub, "jp").get(2)!.origins[0]![1], 37000);
+  // Read at EU addresses, the JP tables are out of place (or out of the file).
+  assert.throws(() => readMapGeometry(jp.eboot, jp.gameSub, "eu"), /EU addresses/);
+  assert.throws(() => readMapGeometry(jp.eboot, jp.gameSub, "us"), /aren't known on the US disc/);
 });
 
 test("loadMapLayouts stops on a bad texture, or when there are none", async () => {
