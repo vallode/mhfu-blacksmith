@@ -139,7 +139,15 @@ a table in the blob; without it, to the game's function from the gate's own
 table, as if the game had called it. So the cave holds 18 words of gate and
 3 a call (`test/code-loader.test.ts` keeps every hook with the START menus
 well inside it), and a stub can be any size. The gate keeps the call's
-arguments and `$ra`, using only temporaries (`$t0`-`$t2`, `$t4`-`$t6`).
+arguments and `$ra`, using only `$t4`-`$t7` (the game is EABI, which passes
+a 5th to 8th argument in `$t0`-`$t3`).
+
+While a hooked call runs, its return address is in the blob's stub, so no
+hooked call may reach the loader (a save load or a new character): that
+rewrites or clears the slots under it. None of today's do (the HUD and pad
+reads, the reward roll, the quest card, the quest loader, the hit's status
+buildup, the quest and village START menus, the reward screen's label and
+the follow camera); keep a new hook off any call that can.
 
 A stub saves `$a0`, makes the game's call, then calls `dispatch(a0, k)`,
 which jumps to the blob's `rf_hookK` when the header's entry isn't 0 (it

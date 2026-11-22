@@ -32,6 +32,7 @@ import {
   MENU,
   PAD_READ_SIGNATURE,
   assembleHookGate,
+  assembleHooks,
   assemblePickHook,
   findPadSites,
   type MenuSites,
@@ -507,6 +508,71 @@ test("addCodeLoader points lobby_task's quest card call at the cave's gate to ho
       loaded ? [HOOK.questCard, 0x08a00000, HOOK.pad, 0x08a00100] : [],
       loaded ? "then hooks 6 and 2 run, with the call's $a0" : "and no hook without the blob",
     );
+  }
+});
+
+test("the gate takes every kind of hook call to its stub in the blob, or to the game's function", () => {
+  const blob = 0x099a1820;
+  const code = 0x099b0000;
+  const fn = (k: number) => 0x08840000 + k * 0x100;
+  const call = (target: number) => ({ call: 0x08810000, target });
+  const menus: MenuSites[] = [
+    {
+      ...{ menu: MENU.quest, entry: 11, placeholder: 0x78, label: call(fn(3)) },
+      ...{ select: call(fn(4)), run: call(fn(5)), draw: call(fn(6)) },
+    },
+  ];
+  const args = [[{ hook: HOOK.pad, target: fn(0) }], fn(1), fn(2), menus, [call(fn(7))]] as const;
+  const hooks = assembleHooks(code, blob, ...args);
+  const gate = assembleHookGate(LOADER, blob, code + hooks.code.length * 4, ...args);
+  const cpu = new Cpu();
+  cpu.load(code, [...hooks.code, ...hooks.sites]);
+  cpu.load(LOADER, gate.code);
+  const ran: number[] = [];
+  for (const hook of [HOOK.pad, HOOK.questLoad, HOOK.hit, HOOK.menu]) {
+    cpu.setU32(blob + HEADER.hooks + hook * 4, 0x08850000 + hook * 0x10);
+    cpu.native.set(0x08850000 + hook * 0x10, () => (ran.push(hook), 0));
+  }
+  // $t0-$t3: an EABI call's 5th to 8th arguments, which the gate leaves alone.
+  const extra = [0x11, 0x22, 0x33, 0x44];
+  const reached: { game: number; extra: number[] }[] = [];
+  for (let k = 0; k < 8; k++) {
+    cpu.native.set(fn(k), (c) => {
+      reached.push({ game: k, extra: [8, 9, 10, 11].map((r) => c.reg[r]!) });
+      return 0x100 + k;
+    });
+  }
+  const entries = [
+    [gate.stubs[0]!, 0, [HOOK.pad]],
+    [gate.questLoad!.accept, 1, [HOOK.questLoad, HOOK.questLoad]],
+    [gate.questLoad!.depart, 1, [HOOK.questLoad, HOOK.questLoad]],
+    [gate.hit!, 2, [HOOK.hit]],
+    [gate.menus[0]!.label, 3, [HOOK.menu]],
+    [gate.menus[0]!.select, 4, [HOOK.menu]],
+    [gate.menus[0]!.run, 5, [HOOK.menu]],
+    [gate.menus[0]!.draw, 6, [HOOK.menu]],
+    [gate.calls[0]!, 7, [HOOK.menu]],
+  ] as const;
+  for (const loaded of [true, false]) {
+    cpu.setU32(blob + HEADER.magic, loaded ? BLOB_MAGIC : 0);
+    for (const [entry, game, hooksRun] of entries) {
+      const why = `game function ${game}, ${loaded ? "with" : "without"} the blob`;
+      ran.length = 0;
+      reached.length = 0;
+      cpu.calls.length = 0;
+      extra.forEach((value, k) => (cpu.reg[8 + k] = value));
+      assert.equal(cpu.call(entry, [0x08a00000, 1, 2, 3]), 0x100 + game, why);
+      assert.deepEqual(
+        reached.map((r) => r.game),
+        [game],
+        why,
+      );
+      const made = cpu.calls.find((c) => c.address === fn(game))!;
+      assert.deepEqual(made.args.slice(0, 2), [0x08a00000, 1], `${why}: its arguments`);
+      assert.deepEqual(ran, loaded ? hooksRun : [], `${why}: the hooks`);
+      // The blob's simple stubs make the call first, as the gate does without the blob.
+      if (!loaded || game === 0) assert.deepEqual(reached[0]!.extra, extra, `${why}: $t0-$t3`);
+    }
   }
 });
 

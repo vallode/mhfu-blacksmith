@@ -550,11 +550,17 @@ export function findHookSites(
 }
 
 /**
- * Sets `$t0` to the blob and branches to `miss` unless its magic is there
- * (it uses `$t1` and `$t2`). The next word the caller emits is the delay slot.
+ * Sets `base` (`$t0`) to the blob and branches to `miss` unless its magic is
+ * there (it uses `$t1` and `$t2`, or the two registers given). The next word
+ * the caller emits is the delay slot.
  */
-function emitBlobCheck(a: Assembler, blob: number, miss: string): void {
-  const { zero, t0, t1, t2 } = R;
+function emitBlobCheck(
+  a: Assembler,
+  blob: number,
+  miss: string,
+  [t0, t1, t2]: readonly [number, number, number] = [R.t0, R.t1, R.t2],
+): void {
+  const { zero } = R;
   a.i(LUI, zero, t0, hi16(blob));
   a.i(ADDIU, t0, t0, blob & 0xffff);
   a.i(LW, t0, t1, HEADER.magic);
@@ -821,7 +827,8 @@ export function assembleHooks(
  * With the blob's magic there it jumps to the hook code's entry for the site,
  * from the blob's `table` (`assembleHooks`' `sites`); otherwise to the game's
  * function, as if the game had called it. Either way the call's arguments
- * and `$ra` are as the game left them; it uses `$t0`-`$t2` and `$t4`-`$t6`.
+ * and `$ra` are as the game left them: it uses only `$t4`-`$t7`, which the
+ * game's EABI doesn't pass arguments in (`$t0`-`$t3` are its 5th to 8th).
  */
 export function assembleHookGate(
   at: number,
@@ -834,7 +841,7 @@ export function assembleHookGate(
   calls: readonly HookCall[] = [],
 ): HookEntries & { code: number[] } {
   const a = new Assembler();
-  const { zero, t4, t5, t6 } = R;
+  const { zero, t4, t5, t6, t7 } = R;
   const nop = () => a.emit(0);
   const sites = hookSiteList(originals, questLoader, hit, menus, calls);
   for (const [k, { label }] of sites.entries()) {
@@ -843,7 +850,7 @@ export function assembleHookGate(
     a.i(ADDIU, zero, t4, k);
   }
   a.label("gate");
-  emitBlobCheck(a, blob, "game");
+  emitBlobCheck(a, blob, "game", [t5, t6, t7]);
   a.r(zero, t4, t5, 2, SLL);
   a.i(LUI, zero, t6, hi16(table));
   a.r(t6, t5, t6, 0, 0x21);
