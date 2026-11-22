@@ -808,11 +808,22 @@ textarea.text-input {
   white-space: nowrap;
 
   &.shuffle {
+    --icon: url(images/shuffle.png);
     color: var(--color-gem-blue);
   }
 
   &.randomize {
+    --icon: url(images/randomize.png);
     color: var(--color-gem-orange);
+  }
+
+  /* The sprite at the game's pixel size, tinted in the tag's colour. */
+  & .icon {
+    --tint: currentColor;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-right: 0.4rem;
+    vertical-align: -0.25em;
   }
 
   dt > & {
