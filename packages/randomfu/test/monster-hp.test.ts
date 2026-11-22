@@ -148,7 +148,7 @@ function sprite(u: number, v: number, w: number, h: number) {
 }
 
 const fills = (draws: Draw[]) => draws.filter((d) => d.what === "fill");
-/** The draws after the gauge's fills: its crown, if any. */
+/** The crown sprites: the only sprites drawn right of the left cap. */
 const crowns = (draws: Draw[]) => draws.filter((d) => d.what === "sprite" && d.x > 100);
 
 test("a large monster gets a short gauge on the left, capped at both ends", () => {
@@ -163,7 +163,7 @@ test("a large monster gets a short gauge on the left, capped at both ends", () =
   ]);
 });
 
-test("a crown-sized monster gets the HUD's crown after its gauge, as the Guild Card decides", () => {
+test("a crown-sized monster gets the HUD's crown over its gauge's right end, as the Guild Card decides", () => {
   const q = quest("always");
   const m = q.monster(0, LARGE, 300, 480);
   // Giadrome: a mini crown at 90 or less, silver from 119, gold from 123.
@@ -171,16 +171,19 @@ test("a crown-sized monster gets the HUD's crown after its gauge, as the Guild C
     q.cpu.setU16(m + 0x274, size);
     return crowns(q.frame());
   };
-  assert.deepEqual(at(123), [{ what: "sprite", x: 133, y: 92, w: 16, h: 12, sprite: GOLD }]);
-  assert.deepEqual(at(125), [{ what: "sprite", x: 133, y: 92, w: 16, h: 12, sprite: GOLD }]);
-  assert.deepEqual(at(122), [{ what: "sprite", x: 133, y: 92, w: 16, h: 12, sprite: SILVER }]);
-  assert.deepEqual(at(119), [{ what: "sprite", x: 133, y: 92, w: 16, h: 12, sprite: SILVER }]);
+  assert.deepEqual(at(123), [{ what: "sprite", x: 106, y: 90, w: 16, h: 12, sprite: GOLD }]);
+  // Drawn after the right cap, so it sits on top of it.
+  const order = q.frame().map((d) => d.what);
+  assert.ok(order.lastIndexOf("sprite") > order.indexOf("cap"));
+  assert.deepEqual(at(125), [{ what: "sprite", x: 106, y: 90, w: 16, h: 12, sprite: GOLD }]);
+  assert.deepEqual(at(122), [{ what: "sprite", x: 106, y: 90, w: 16, h: 12, sprite: SILVER }]);
+  assert.deepEqual(at(119), [{ what: "sprite", x: 106, y: 90, w: 16, h: 12, sprite: SILVER }]);
   assert.deepEqual(at(118), []);
   assert.deepEqual(at(100), []);
   assert.deepEqual(at(91), []);
-  // No mini crown sprite: the gold one, smaller, on the same bottom line.
-  assert.deepEqual(at(90), [{ what: "sprite", x: 133, y: 95, w: 12, h: 9, sprite: GOLD }]);
-  assert.deepEqual(at(75), [{ what: "sprite", x: 133, y: 95, w: 12, h: 9, sprite: GOLD }]);
+  // No mini crown sprite: the gold one, smaller, with the same centre.
+  assert.deepEqual(at(90), [{ what: "sprite", x: 108, y: 91, w: 12, h: 9, sprite: GOLD }]);
+  assert.deepEqual(at(75), [{ what: "sprite", x: 108, y: 91, w: 12, h: 9, sprite: GOLD }]);
 });
 
 test("a subspecies takes its group's crown entry, and a monster without thresholds gets none", () => {
@@ -189,8 +192,8 @@ test("a subspecies takes its group's crown entry, and a monster without threshol
   q.monster(1, KUT_KU, 100, 100, 114);
   q.monster(2, RAJANG, 100, 100, 50);
   assert.deepEqual(crowns(q.frame()), [
-    { what: "sprite", x: 133, y: 92, w: 16, h: 12, sprite: GOLD },
-    { what: "sprite", x: 133, y: 106, w: 16, h: 12, sprite: SILVER },
+    { what: "sprite", x: 106, y: 90, w: 16, h: 12, sprite: GOLD },
+    { what: "sprite", x: 106, y: 104, w: 16, h: 12, sprite: SILVER },
   ]);
 });
 

@@ -94,10 +94,12 @@ static struct {
 
 /*
  * The crown mark: the HUD texture's own crowns (sprites 31 and 32, 16×12),
- * right of the gauge's end cap. It has no mini crown: that's the gold one,
- * smaller, sitting on the same line.
+ * drawn over the right end cap, overlapping the gauge's end and centred on
+ * the bar's height. It has no mini crown: that's the gold one, smaller,
+ * with the same centre.
  */
-#define CROWN_X (X + WIDTH + CAP_W + 1)
+#define CROWN_CENTRE_X (X + WIDTH + 6)
+#define CROWN_TOP(h) (((7 - (s32)(h)) / 2)) /* from the row's y: the bar's middle is y + 3.5 */
 #define CROWN_W 16
 #define CROWN_H 12
 #define MINI_W 12
@@ -199,9 +201,11 @@ static void draw(u8 *hud) {
     fill(hud, X, y + FILL_Y, w, HP_R, HP_G, HP_B);
     const u32 c = crown(m[EM_ID], *(u16 *)(m + SIZE));
     if (c == MINI) {
-      rf_call8(rf_hud_sprite, (u32)hud, CROWN_X, y + CROWN_H - MINI_H, MINI_W, MINI_H, GOLD_SPRITE, 0, 0);
+      rf_call8(rf_hud_sprite, (u32)hud, CROWN_CENTRE_X - MINI_W / 2, y + CROWN_TOP(MINI_H), MINI_W, MINI_H,
+               GOLD_SPRITE, 0, 0);
     } else if (c != NO_CROWN) {
-      rf_call8(rf_hud_sprite, (u32)hud, CROWN_X, y, CROWN_W, CROWN_H, c == GOLD ? GOLD_SPRITE : SILVER_SPRITE, 0, 0);
+      rf_call8(rf_hud_sprite, (u32)hud, CROWN_CENTRE_X - CROWN_W / 2, y + CROWN_TOP(CROWN_H), CROWN_W, CROWN_H,
+               c == GOLD ? GOLD_SPRITE : SILVER_SPRITE, 0, 0);
     }
     if (trail[slot] > w) trail[slot]--;
     row++;

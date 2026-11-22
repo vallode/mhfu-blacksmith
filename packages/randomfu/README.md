@@ -1303,8 +1303,8 @@ randomfu entry (Damage numbers, below) changes it in game.
   frames).
 - **`always`** shows every large monster in the area.
 
-A monster whose size makes a crown gets one right of its gauge, whenever
-the gauge shows: the HUD's own gold or silver crown, and for a mini crown
+A monster whose size makes a crown gets one over its gauge's right end
+(on the end cap, centred on the bar), whenever the gauge shows: the HUD's own gold or silver crown, and for a mini crown
 the gold one drawn smaller (the HUD has no mini crown). It's the crown the
 Guild Card would record if the monster were killed or captured now: its
 size against its species' entry in the crown table, so a subspecies uses
