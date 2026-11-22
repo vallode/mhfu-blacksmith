@@ -87,10 +87,8 @@ const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
 };
 
 /**
- * A Guild Card size record (percent) in centimetres, with the crown it earns.
- * A gold crown on the largest or a mini crown on the smallest already says
- * which record it is, so the label is left out then. One row per record, the
- * crowns in a fixed column so they line up.
+ * A Guild Card size record (percent) in centimetres, with the crown it earns
+ * after the size.
  */
 function SizeRecord({
   size,
@@ -103,20 +101,16 @@ function SizeRecord({
 }) {
   const { t, formatNumber } = useLocale();
   const crown = monster.crowns ? crownFor(size, monster.crowns) : null;
-  const implied = crown === (kind === "largest" ? "gold" : "mini");
   return (
-    <div className="flex items-center whitespace-nowrap">
-      {/* A fixed slot, so the small mini crown centres under the big ones. */}
-      <span className="flex h-[22px] w-[21px] shrink-0 items-center justify-center">
-        {crown && <CrownIcon crown={crown} />}
-      </span>
-      <span className="ml-[0.6rem]">
-        {!implied && <>{t.monsters.detail[kind]} </>}
+    <p className="flex items-center gap-[0.6rem] whitespace-nowrap">
+      <span>
+        {t.monsters.detail[kind]}{" "}
         <span className="text-white tabular-nums">
           {t.monsters.detail.cm(formatNumber(Math.round(sizeInCm(size, monster.base_size ?? 0))))}
         </span>
       </span>
-    </div>
+      {crown && <CrownIcon crown={crown} />}
+    </p>
   );
 }
 
@@ -405,18 +399,28 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 <span className="text-white tabular-nums">{formatNumber(monster.base_hp)}</span>
               </p>
             )}
-            {record && (
-              <p className="text-small whitespace-normal text-stat">
-                {t.monsters.detail.hunted}{" "}
-                <span className="text-white tabular-nums">{formatNumber(record.kills)}</span>
+            {record && save && (
+              // The loaded save's records, under the hunter's name so they
+              // read as theirs and not the monster's.
+              <div className="mt-2 flex flex-col gap-[0.2rem] text-small text-stat">
+                <p className="text-gold">{t.monsters.detail.guildCard(save.name)}</p>
+                <p>
+                  {t.monsters.detail.hunted}{" "}
+                  <span className="text-white tabular-nums">{formatNumber(record.kills)}</span>
+                </p>
                 {canCapture(monster) && (
-                  <>
-                    {" · "}
+                  <p>
                     {t.monsters.detail.captured}{" "}
                     <span className="text-white tabular-nums">{formatNumber(record.captures)}</span>
-                  </>
+                  </p>
                 )}
-              </p>
+                {monster.base_size !== undefined && record.largest > 0 && (
+                  <SizeRecord size={record.largest} monster={monster} kind="largest" />
+                )}
+                {monster.base_size !== undefined && record.smallest > 0 && (
+                  <SizeRecord size={record.smallest} monster={monster} kind="smallest" />
+                )}
+              </div>
             )}
           </div>
           <div className="flex shrink-0 flex-col items-center gap-[0.8rem] mobile:mx-auto">
@@ -429,19 +433,6 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 onError={hideBroken}
               />
             </div>
-            {record &&
-              monster.base_size !== undefined &&
-              (record.largest > 0 || record.smallest > 0) && (
-                // A record the hunter hasn't set is 0; leave it out.
-                <div className="flex flex-col gap-[0.2rem] text-small text-stat">
-                  {record.largest > 0 && (
-                    <SizeRecord size={record.largest} monster={monster} kind="largest" />
-                  )}
-                  {record.smallest > 0 && (
-                    <SizeRecord size={record.smallest} monster={monster} kind="smallest" />
-                  )}
-                </div>
-              )}
           </div>
         </div>
 
