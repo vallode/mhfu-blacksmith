@@ -126,6 +126,7 @@ export interface Settings {
   "camera.fov": "normal" | "wide" | "wider" | "widest";
   "camera.distance": "normal" | "far" | "farther" | "farthest";
   "camera.tilt": "steps" | "slow" | "smooth" | "fast";
+  "camera.photoMode": boolean;
   "quest.endWait": "normal" | "short" | "instant";
   "hud.monsterHp": "off" | "painted" | "always";
   "hud.damageNumbers": "off" | "total" | "split";
@@ -1848,6 +1849,14 @@ export const OPTIONS: readonly OptionDef[] = [
       ],
     },
     default: "steps",
+  },
+  {
+    key: "camera.photoMode",
+    section: "Camera",
+    label: "Photo mode",
+    help: "In a quest, hold L and R and press START: the game stops where it is (as SELECT's pause does, but without dimming the screen), the HUD goes, and the camera is yours. The stick turns it round what it looks at, the D-pad moves it along the ground, △ and × raise and lower it, □ and ○ bring it nearer and take it further, L and R zoom in and out, and SELECT puts it back where it started. START again puts the camera back as it was and the quest goes on. The camera goes through walls and the ground. Not online (the game can't pause there) and not in the village. This picks whether the disc starts with it on: the START menu's last entry, randomfu, turns it on or off in game, and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    type: { kind: "boolean" },
+    default: false,
   },
   {
     key: "quest.endWait",
