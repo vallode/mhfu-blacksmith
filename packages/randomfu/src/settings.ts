@@ -2240,8 +2240,9 @@ export const PRESETS: readonly Preset[] = [
     name: "QoL only",
     points: [
       "Shuffles and randomizes nothing: items, monsters, equipment and numbers stay as on the disc",
-      "Keeps the extras that are on by default: Send All to Item Box, Poogie's luck and the bookshelf guides",
-      "Turn on camera, HUD and quest extras in the later steps",
+      "Keeps the extras that are on by default: Send All to Item Box, Poogie's luck and the bookshelf guides; their code caps received Guild Cards at 3",
+      "Turn on camera, HUD and quest extras in the later steps; the settings then show as custom, still with nothing shuffled",
+      "Hunter's Pact, if you turn it on, draws its rewards from the seed",
     ],
     changes: {
       "questRewards.mode": "off",
