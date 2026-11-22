@@ -65,8 +65,6 @@ export const setBuilder = {
       badSkills: "bad skills allowed",
       allQuests: "all quests",
       ownedArmor: "owned armor",
-      alwaysUsed: (n: number) => `${n} always used`,
-      neverUsed: (n: number) => `${n} never used`,
     },
     allowBadSkills: "Allow bad skills",
     allowBadSkillsNote: "Keep sets that also activate a negative skill, such as Defense -20.",
@@ -82,16 +80,22 @@ export const setBuilder = {
       ),
     ownedOnly: "Owned armor only",
     ownedOnlyNote: "Only use armor in your hunter's equipment box.",
-    /** The locked pieces, in the options; `remove` labels each one's chip. */
+    /** The locked pieces, under the skills; `remove` labels each one's chip. */
     locked: {
       title: "Always used",
       note: "Every set uses these, whatever the rank or quest progress, if the hunter can wear them.",
       remove: (name: string) => `Take ${name} off the always used pieces`,
+      clear: "Clear",
+      clearLabel: "Clear the always used pieces",
+      /** Under the list when a crossed-out piece doesn't fit the hunter. */
+      cantWear: "Crossed-out pieces don't fit this hunter, so the search leaves them out.",
     },
     excluded: {
       title: "Never used",
       note: "The search never uses these.",
       remove: (name: string) => `Take ${name} off the never used pieces`,
+      clear: "Clear",
+      clearLabel: "Clear the never used pieces",
     },
     search: "Search",
     cancel: "Cancel",
