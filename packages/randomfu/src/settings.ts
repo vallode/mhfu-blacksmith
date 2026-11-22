@@ -122,6 +122,7 @@ export interface Settings {
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
+  "mods.buttonIcons": "psp" | "xbox";
   "camera.fov": "normal" | "wide" | "wider" | "widest";
   "camera.distance": "normal" | "far" | "farther" | "farthest";
   "camera.tilt": "steps" | "slow" | "smooth" | "fast";
@@ -1777,6 +1778,24 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only.",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "mods.buttonIcons",
+    section: "Extras",
+    label: "Button icons",
+    help: "The button pictures the game shows in its text and on screen, for playing with a controller in PPSSPP. Xbox draws the buttons PPSSPP maps an Xbox controller to by default: A for ×, B for ○, X for □, Y for △, LB and RB for L and R, Menu and View for START and SELECT. The analog stick and d-pad stay as they are, and so would any button drawn into another picture.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "psp", label: "PSP", help: "The game's own: ○ × △ □, L, R, START and SELECT." },
+        {
+          value: "xbox",
+          label: "Xbox",
+          help: "A B X Y in their colours, LB, RB, Menu and View.",
+        },
+      ],
+    },
+    default: "psp",
   },
   {
     key: "camera.fov",

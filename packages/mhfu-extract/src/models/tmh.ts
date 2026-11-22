@@ -119,13 +119,20 @@ export interface IndexedImageLocation {
 }
 
 /**
- * Where the first image of a texture set keeps its 8-bit pixels and palette,
- * or null if it isn't a palettized 8-bit image. For editing a texture in
- * place; `readTmh` decodes the same layout.
+ * Where an image of a texture set keeps its 8-bit pixels and palette, or null
+ * if it isn't a palettized 8-bit image. Without `image`, the set must hold
+ * just the one image. For editing a texture in place; `readTmh` decodes the
+ * same layout.
  */
-export function locateIndexedImage(buf: Buffer): IndexedImageLocation | null {
-  const imageAt = 16;
-  if (!isTmh(buf) || buf.length < 64 || buf.readUInt32LE(8) !== 1) return null;
+export function locateIndexedImage(buf: Buffer, image?: number): IndexedImageLocation | null {
+  if (!isTmh(buf) || buf.length < 64) return null;
+  const count = buf.readUInt32LE(8);
+  if (image === undefined ? count !== 1 : image >= count) return null;
+  let imageAt = 16;
+  for (let i = 0; i < (image ?? 0); i++) {
+    imageAt += buf.readUInt32LE(imageAt);
+    if (imageAt + 48 > buf.length) return null;
+  }
   if (buf.readUInt32LE(imageAt + 12) !== 1) return null; // no palette
   const pixelHeader = pixelHeaderAt(imageAt);
   const {
