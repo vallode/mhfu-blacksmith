@@ -2280,8 +2280,9 @@ key quest label are built on it.
   reads `/PSP_GAME/USRDIR/RANDOMFU.BIN` over the slots with `sceIoOpen` and
   `sceIoRead`, checks its header, syncs the caches and calls the blob's
   `rf_init`.
-- **Game hooks.** Game calls go through stubs in the cave that make the
-  call, then run the blob's `rf_hookN` if a blob is loaded: once a frame in
+- **Game hooks.** Game calls go through a gate in the cave to stubs in the
+  blob that make the call, then run the blob's `rf_hookN` (without a blob,
+  the gate makes the game's call alone): once a frame in
   a quest, after the HUD draws the hunter's gauges, after the pad read gets
   the controller, around the quest loader's calls, and after a completed
   quest's reward roll, when a hit lands on a monster, and in the quest
