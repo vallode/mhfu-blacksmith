@@ -342,6 +342,27 @@ export const setBuilder = {
   },
 
   /** The wanted skills' chips and the skills sheet (SkillPicker). */
+  /**
+   * The "Skills within reach" sheet (SkillReach): skills that can be added to
+   * the wanted ones, or wanted ones that can be raised, with a set for them all.
+   */
+  reach: {
+    /** The button under the chosen skills, and the sheet's title. */
+    open: "Skills within reach",
+    note: (chosen: boolean): string =>
+      chosen
+        ? "Skills you can add to yours, or raise yours to: at least one set still activates them all, with your options. Pick one and the list checks again."
+        : "Every skill at least one set can activate, with your options. Pick one and the list checks what still fits with it.",
+    /** `checked` of `total` skill trees; `total` is 0 before the first. */
+    checking: (checked: number, total: number) =>
+      total ? `Checking skills… ${checked}/${total}` : "Checking skills…",
+    noBase: "No set activates the skills you chose, so nothing can be added to them.",
+    unsureBase: "Checking your skills took too long. Try fewer skills.",
+    nothingMore: "Nothing more fits: no set activates another skill along with yours.",
+    unsure: "Some checks took too long: a stronger level of a skill may fit too.",
+    failed: "Couldn't check the skills.",
+  },
+
   skillPicker: {
     remove: (name: string) => `Remove ${name}`,
     filter: "Filter skills",

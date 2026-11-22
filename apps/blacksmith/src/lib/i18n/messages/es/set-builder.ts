@@ -298,6 +298,22 @@ export const setBuilder: Messages["setBuilder"] = {
     summary: (hunterType: string, defense: string) => `${hunterType}, Defensa ${defense}`,
   },
 
+  reach: {
+    open: "Habilidades a tu alcance",
+    note: (chosen: boolean) =>
+      chosen
+        ? "Habilidades que puedes añadir a las tuyas, o niveles a los que subir las tuyas: al menos un conjunto sigue activándolas todas, con tus opciones. Elige una y la lista se comprueba de nuevo."
+        : "Todas las habilidades que al menos un conjunto puede activar, con tus opciones. Elige una y la lista comprueba qué más cabe con ella.",
+    checking: (checked: number, total: number) =>
+      total ? `Comprobando habilidades… ${checked}/${total}` : "Comprobando habilidades…",
+    noBase: "Ningún conjunto activa las habilidades que elegiste, así que no se puede añadir nada.",
+    unsureBase: "Comprobar tus habilidades tardó demasiado. Prueba con menos.",
+    nothingMore: "No cabe nada más: ningún conjunto activa otra habilidad junto a las tuyas.",
+    unsure:
+      "Algunas comprobaciones tardaron demasiado: puede que también quepa un nivel más alto de alguna habilidad.",
+    failed: "No se pudieron comprobar las habilidades.",
+  },
+
   skillPicker: {
     remove: (name: string) => `Quitar ${name}`,
     filter: "Filtrar habilidades",
