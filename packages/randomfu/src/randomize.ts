@@ -167,6 +167,7 @@ import {
 import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
 import { damageObjects, findDamageExterns } from "./patches/damage.js";
 import { patchElementMotion } from "./patches/element-motion.js";
+import { disableOnline, offlineReport } from "./patches/no-online.js";
 import { bootReport, patchBoot } from "./patches/boot.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -1554,6 +1555,15 @@ export function randomize(
           },
     );
   }
+
+  // Every disc is offline, after the other patches so none of them reads it.
+  reports.push(
+    offlineReport(
+      game.eboot
+        ? disableOnline(game.eboot, game.region, game.dataBin.fileCount, edits)
+        : "the EBOOT wasn't loaded",
+    ),
+  );
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.
   reports.push(

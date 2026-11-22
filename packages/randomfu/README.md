@@ -2082,8 +2082,9 @@ accepted; departing names the monster in the quest's goal. Clearing it
 sets a clear flag the game keeps for that ID, unused on the disc.
 
 It runs as blob code on the code loader (below), so it caps Guild Cards
-at 3. Only the hunter who accepts rolls, so in ad-hoc play the others get a
-different quest: **solo only** for now. How it works:
+at 3. Only the hunter who accepts rolls, so in ad-hoc play the others would
+get a different quest; discs are offline for now anyway (see "No online
+play"). How it works:
 
 - Each board star has a 0-terminated list of quest IDs in the EBOOT,
   reached through one pointer table. After every load the blob copies the
@@ -2303,6 +2304,47 @@ padding:
 - Tested on the CPU in `test/boot.test.ts`, with each state, the held buttons, the title
   menu's case and JP's ○, and traced in PPSSPP from the task slots, the
   select object, the fade and the options.
+
+## No online play
+
+Every disc randomfu writes is offline, whatever the settings: a randomized
+disc plays a different game from anyone else's, so for now it doesn't meet
+other hunters ad hoc (the Gathering Hall, the Training School) or reach the
+download servers. It isn't an option. `src/patches/no-online.ts` does it.
+
+What the game does (EU addresses; found statically on the EU and JP discs):
+
+- Before and during network play it reads the WLAN switch with
+  `sceWlanGetSwitchState` (1 is on). The EBOOT polls it (EU 0x088ABE58,
+  keeping `state == 1` at `+0x176`), and `lobby_task`, `game_sub` and
+  `arcade_task` test it before going on, or flag the session to end (EU
+  `*0x09A0B544 + 0x1AFC`) when it's off, as when the switch is flipped
+  mid-session.
+- The network starts with `sceNetInit`, in the EBOOT's net state machine
+  (EU 0x088AC66C, which goes on to `sceNetAdhocInit` or `sceNetInetInit`
+  and their control libraries) and once in `lobby_task`. A negative result
+  puts the state machine in its error state (2).
+
+The patch finds the two imports' stubs by NID and replaces every `jal` to
+them, in the EBOOT and every `overlay/*.ovl`, with the result: the switch
+reads 0 (off), so the game takes its own WLAN-off path, and `sceNetInit`
+returns 0x80410000, so the network can't start even where the switch isn't
+read. The calls' delay slots only set up arguments and still run. That's
+22 calls on EU (5 in the EBOOT) and 19 on FUC (2). Since it changes the
+EBOOT, every disc has the decrypted EBOOT (most did already: Poogie's luck,
+on by default, patches it too).
+
+Not yet played: what the Gathering Hall and the Training School show with
+the switch off, and that single player in them still works, are unchecked.
+
+This covers the disc, not the save. HunterVerse and similar services tunnel
+PPSSPP's ad hoc traffic, so a randomfu disc can't reach them, and the game
+can't tell them from any other network. A hunter saved on a randomfu disc
+still loads on a vanilla disc and can go online from there. Saves are left
+as they are on purpose: the save file is encrypted and never leaves the
+player's machine, so a hidden "made with randomfu" mark is something no
+server could check, and a visible one (on the Guild Card, say) or a separate
+save folder hasn't been done. The FAQ asks players not to.
 
 ## Code loader (prototype)
 
