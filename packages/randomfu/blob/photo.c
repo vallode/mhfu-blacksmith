@@ -6,7 +6,7 @@
  * src/patches/photo.ts, which finds the addresses below on each disc and
  * patches the pause's dimming.
  *
- * The freeze is the game's own pause (SELECT in a quest alone): pause(save)
+ * The freeze is the game's own pause (in a quest, alone): pause(save)
  * sets the save's pause byte to 1 and stops the sound, and while the byte
  * isn't 0 game_task's frame runs only the HUD's update and the dimming, not
  * the hunters, monsters, camera or clock. The HUD's layers that draw the
@@ -26,16 +26,18 @@
  * play update, which the pause skips too. The rain is one of them: a texture
  * on a mesh at the camera (type 0xD: its update copies the camera's position
  * to +0x50 and scrolls the texture, which is the rain falling). Frozen, it
- * stays where the camera was. On its quest frames (hook 0, in the paused
- * frame) photo mode runs the update of each effect of that type and puts its
- * texture's scroll back after, so the rain stays still round the camera it
- * flies. The other ambient effects (animated textures) stay frozen, like the
- * hunters, monsters and their effects.
+ * stays where the camera was. Each frame, once the view is built, photo mode
+ * runs the update of each effect of that type and puts its texture's scroll
+ * back after, so the rain stays still round the camera it flies; leaving puts
+ * back the camera angles the effect keeps, so the game's next update doesn't
+ * scroll it by the photo camera's turn. The other ambient effects (animated
+ * textures) stay frozen, like the hunters, monsters and their effects.
  *
  * Input: the pad hook gets the buttons before the game. While photo mode is
- * on (and until every button is up after) it holds the game's input lock and
- * clears the buttons and stick it passes on, so the paused HUD sees nothing
- * (it would unpause on × or ○, and open the menu on START).
+ * on it holds the game's input lock and clears the buttons and stick it
+ * passes on, so the paused HUD sees nothing (it would unpause on × or ○, and
+ * open the menu on START); after, it lets the lock go at once but keeps the
+ * buttons cleared until every one is up.
  *
  * Built with the FPU (single precision only), like camera.c.
  */
@@ -57,7 +59,7 @@ extern const u8 rf_ambient_slot[];
 /* A constant, not an address: the disc's choice + 1 (an extern's address is never 0). */
 extern const u8 rf_photo_mode[];
 
-/* The save's pause byte: 0 playing, 1 paused (SELECT), 4 unpausing; 2 is photo mode's. */
+/* The save's pause byte: 0 playing, 1 paused, 4 unpausing; 2 is photo mode's. */
 #define PAUSE 0x6af1a
 #define PAUSED 1
 #define PHOTO 2
@@ -163,6 +165,59 @@ static float axis(u8 raw) {
   return (float)sign * f;
 }
 
+/* An ambient effect: its type, and for type 0xD (at the camera) its textures' scroll. */
+#define EFFECT_TYPE 0x18
+#define AT_CAMERA 0x0d
+#define ANGLES 0x60 /* the camera's yaw and pitch, as its last update saw them */
+#define SCROLL 0x64 /* to 0x94: the layers' scroll, U and V, and how they ease */
+#define SCROLL_WORDS 12
+#define MAX_EFFECTS 64
+#define KEPT_EFFECTS 8
+
+/* The effects at the camera, and their angles, as they were when photo mode started. */
+static u8 *kept_effects[KEPT_EFFECTS];
+static u32 kept_angles[KEPT_EFFECTS];
+static u32 kept_count;
+
+/* The ambient effects at the camera, `fn` called on each (at most MAX_EFFECTS walked). */
+static void at_camera(void (*fn)(u8 *effect)) {
+  u8 *manager = *rf_ambient;
+  if (!in_ram(manager)) return;
+  u8 *effect = *(u8 **)(manager + (u32)rf_ambient_list);
+  for (int n = 0; n < MAX_EFFECTS && in_ram(effect); n++) {
+    u8 *next = *(u8 **)(effect + (u32)rf_ambient_next);
+    if (*(u32 *)(effect + EFFECT_TYPE) == AT_CAMERA && in_ram(*(u8 **)effect)) fn(effect);
+    effect = next;
+  }
+}
+
+static void keep_angles(u8 *effect) {
+  if (kept_count >= KEPT_EFFECTS) return;
+  kept_effects[kept_count] = effect;
+  kept_angles[kept_count++] = *(u32 *)(effect + ANGLES);
+}
+
+/* An effect at the camera to the camera, its textures (the rain) as they were. */
+static void to_camera(u8 *effect) {
+  u8 *vtable = *(u8 **)effect;
+  void (*update)(u8 *) = *(void (**)(u8 *))(vtable + (u32)rf_ambient_slot);
+  if (!in_ram((void *)update)) return;
+  u32 *scroll = (u32 *)(effect + SCROLL), keep[SCROLL_WORDS];
+  for (int k = 0; k < SCROLL_WORDS; k++) keep[k] = scroll[k];
+  update(effect);
+  for (int k = 0; k < SCROLL_WORDS; k++) scroll[k] = keep[k];
+}
+
+/*
+ * Their angles back as the game had them, so its next update doesn't scroll the
+ * textures by the photo camera's turn; for the effects still in the list only.
+ */
+static void put_back_angles(u8 *effect) {
+  for (u32 k = 0; k < kept_count; k++) {
+    if (kept_effects[k] == effect) *(u32 *)(effect + ANGLES) = kept_angles[k];
+  }
+}
+
 static void write_camera(u8 *r) {
   float *e = (float *)(r + EYE), *t = (float *)(r + TARGET);
   float *ve = (float *)(r + VIEW_EYE), *vt = (float *)(r + VIEW_TARGET);
@@ -198,20 +253,32 @@ static void begin(u8 *r, u8 *p, u32 buttons) {
   if (!(fov >= MIN_FOV && fov <= MAX_FOV)) fov = 0.8726646f;
   for (u32 k = 0; k < 3; k++) start_focus[k] = focus[k], start_offset[k] = offset[k];
   start_fov = fov;
+  kept_count = 0;
+  at_camera(keep_angles);
   on = 1;
   ignored = buttons;
   last = 0;
   if (!p[PAD_LOCK]) locking = 1;
 }
 
-static void end(u8 *r) {
+/* The camera (when there's still a renderer) and the game back as they were. */
+static void end(u8 *r, u8 *p) {
   on = 0;
-  u32 *words = (u32 *)(r + EYE);
-  for (u32 k = 0; k < 8; k++) words[k] = kept[k];
-  words = (u32 *)(r + VIEW_EYE);
-  for (u32 k = 0; k < 8; k++) words[k] = kept[8 + k];
-  *(float *)(r + FOV) = kept_fov;
-  ((void (*)(u8 *))rf_look)(r);
+  if (r) {
+    u32 *words = (u32 *)(r + EYE);
+    for (u32 k = 0; k < 8; k++) words[k] = kept[k];
+    words = (u32 *)(r + VIEW_EYE);
+    for (u32 k = 0; k < 8; k++) words[k] = kept[8 + k];
+    *(float *)(r + FOV) = kept_fov;
+    ((void (*)(u8 *))rf_look)(r);
+  }
+  at_camera(put_back_angles);
+  /*
+   * The input lock back now, as it was when photo mode started (off), not when the buttons
+   * are let go: by then the game runs and may have locked them itself. The buttons stay
+   * cleared until then, so the START that ended it doesn't reach the game.
+   */
+  if (p && locking) p[PAD_LOCK] = 0;
   /* Unless the game unpaused by itself. */
   if (save[PAUSE] == PHOTO) {
     save[PAUSE] = PAUSED;
@@ -278,38 +345,9 @@ static void fly(u8 *ctrl, u32 buttons) {
 
 static u32 setting(void);
 
-/* An ambient effect: its type, and for type 0xD (at the camera) its textures' scroll. */
-#define EFFECT_TYPE 0x18
-#define AT_CAMERA 0x0d
-#define SCROLL 0x64 /* to 0x94: the layers' scroll, U and V, and how they ease */
-#define SCROLL_WORDS 12
-#define MAX_EFFECTS 64
-
-/* The ambient effects at the camera to the camera, their textures (the rain) as they were. */
-static void follow_camera(void) {
-  u8 *manager = *rf_ambient;
-  if (!in_ram(manager)) return;
-  u8 *effect = *(u8 **)(manager + (u32)rf_ambient_list);
-  for (int n = 0; n < MAX_EFFECTS && in_ram(effect); n++) {
-    u8 *next = *(u8 **)(effect + (u32)rf_ambient_next);
-    u8 *vtable = *(u8 **)effect;
-    if (*(u32 *)(effect + EFFECT_TYPE) == AT_CAMERA && in_ram(vtable)) {
-      void (*update)(u8 *) = *(void (**)(u8 *))(vtable + (u32)rf_ambient_slot);
-      if (in_ram((void *)update)) {
-        u32 *scroll = (u32 *)(effect + SCROLL), keep[SCROLL_WORDS];
-        for (int k = 0; k < SCROLL_WORDS; k++) keep[k] = scroll[k];
-        update(effect);
-        for (int k = 0; k < SCROLL_WORDS; k++) scroll[k] = keep[k];
-      }
-    }
-    effect = next;
-  }
-}
-
 static void quest_frame(u8 *arg) {
   hud = arg;
   quest_at = frames;
-  if (on && save[PAUSE] == PHOTO) follow_camera();
 }
 
 static void pad_hook(u8 *ctrl) {
@@ -320,10 +358,12 @@ static void pad_hook(u8 *ctrl) {
   u8 *r = renderer(), *p = pad();
   if (on) {
     if (!r || !p || save[PAUSE] != PHOTO || ((now & ~ignored & ~last) & START)) {
-      if (r) end(r);
+      end(r, p);
     } else {
       fly(ctrl, now);
       write_camera(r);
+      /* The rain to the camera just built, whichever of the two hooks runs first. */
+      at_camera(to_camera);
     }
   } else if (setting() && (now & (L | R)) == (L | R) && (now & START)) {
     /*
@@ -341,7 +381,7 @@ static void pad_hook(u8 *ctrl) {
   previous = now;
   if (on || locking) {
     if (!on && !now) locking = 0;
-    if (p) p[PAD_LOCK] = (u8)(on || locking);
+    if (p && on) p[PAD_LOCK] = 1;
     *buttons = 0;
     ctrl[CTRL_X] = ctrl[CTRL_Y] = 128;
   }
@@ -383,6 +423,7 @@ void rf_photo_init(u32 reason, u8 *s) {
   quest_at = (u32)-100;
   on = locking = 0;
   last = ignored = previous = 0;
+  kept_count = 0;
   rf_on(RF_HOOK_QUEST_FRAME, quest_frame);
   rf_on(RF_HOOK_PAD, pad_hook);
   if (rf_add_setting) rf_add_setting(&photo_setting);

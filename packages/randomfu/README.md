@@ -1477,7 +1477,7 @@ it looks at (left and right orbit, up and down pitch), the D-pad moves it
 along the ground, △ and × raise and lower it, □ and ○ bring it nearer and
 further, L and R narrow and widen the field of view, and SELECT puts it
 back where it started. START again ends it: the camera, its field of view
-and the game go back exactly as they were, and the buttons stay locked
+and the game go back exactly as they were, and the buttons stay cleared
 until they're all let go, so the START doesn't open the menu. The rain stays
 still round the camera, as everything else does. The camera
 goes through walls and the ground. The option picks what a disc starts
@@ -1536,13 +1536,15 @@ without dimming; with the byte at 2 the game's own unpause buttons do
 nothing, as the HUD tests for 1. Each frame the blob clears the pad's
 buttons and centres the stick, sets the pad's input lock (`+0x17`), moves
 its own camera from the real buttons and writes the four vectors and the
-field of view before calling `look`. Ending writes back the 16 words and
-the field of view it kept, calls `look`, and `unpause`. On its quest frames
-(hook 0, in the paused frame) it also runs the update of each ambient effect
-of the rain's type and puts its scroll (+0x64 to +0x94) back after, so the
-rain follows the camera without falling; the other ambient effects aren't
-updated. If the game leaves the pause by itself (the
-byte isn't 2), photo mode ends too.
+field of view before calling `look`, then runs the update of each ambient
+effect of the rain's type and puts its scroll (+0x64 to +0x94) back after,
+so the rain follows the camera without falling; the other ambient effects
+aren't updated. Ending writes back the 16 words and the field of view it
+kept, calls `look`, puts back the camera angles the rain's effects keep
+(+0x60, so the game's next update doesn't scroll them by the photo
+camera's turn), lets the input lock go, and calls `unpause`; the buttons
+stay cleared until every one is up. If the game leaves the pause by itself
+(the byte isn't 2), or the renderer or pad goes, photo mode ends too.
 
 ## Quest end
 

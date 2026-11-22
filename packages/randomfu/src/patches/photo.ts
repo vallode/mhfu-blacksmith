@@ -8,8 +8,8 @@
  *
  * - The save's byte `+0x6AF1A` is the pause: `isPaused(save)` (EU
  *   0x088567B4) is it not being 0. `pause(save)` (EU 0x088567C8), which the
- *   HUD's update calls for SELECT, sets it to 1 and stops the sound, unless
- *   the game is online; `unpause(save)` (EU 0x0885683C) sets it to 4 and
+ *   HUD's update calls, sets it to 1 and stops the sound, unless the game is
+ *   online; `unpause(save)` (EU 0x0885683C) sets it to 4 and
  *   starts the sound, and game_task clears the 4 after a frame.
  *   `noPause(save, 0)` (EU 0x0884FA5C) is the HUD's other check before it
  *   pauses (the game mode, save `+0x2E`).
@@ -171,10 +171,20 @@ export function findPhotoExterns(
   const renderer = findRendererGlobal(vanillaEboot, segment);
   if (typeof renderer === "string") return renderer;
   const at = (vaddr: number) => word(vanillaEboot, segment.offset + (vaddr - segment.vaddr));
+  // `lui v0, hi; jal padRead; lw a0, lo(pad)(v0)`: the pad object's global.
+  const [lui, lw] = [at(sites.pad - 4), at(sites.pad + 4)];
+  const luiReg = (lui >>> 16) & 31;
+  if (
+    lui >>> 26 !== 0x0f ||
+    lw >>> 26 !== 0x23 ||
+    ((lw >>> 16) & 31) !== 4 ||
+    ((lw >>> 21) & 31) !== luiReg
+  ) {
+    return "this EBOOT's pad read doesn't load the pad as expected";
+  }
   return {
     rf_camera: renderer,
-    // `lui v0, hi; jal padRead; lw a0, lo(pad)(v0)`: the pad object's global.
-    rf_pad: hiLo(at(sites.pad - 4), at(sites.pad + 4)),
+    rf_pad: hiLo(lui, lw),
     rf_pause: photo.paused + PAUSE_AT,
     rf_unpause: photo.paused + UNPAUSE_AT,
     rf_no_pause: photo.noPause,

@@ -147,6 +147,7 @@ const OTHER = 0x09a456c0;
 const RAIN_VTABLE = 0x089be370;
 const OTHER_VTABLE = 0x089be430;
 const RAIN_UPDATE = 0x09cbab70;
+const RAIN_ANGLES = 0x20001000;
 const OTHER_UPDATE = 0x09cbab90;
 const RENDERER = 0x09998d30;
 const CTRL = 0x09fff000;
@@ -226,6 +227,7 @@ function game({ on = true, online = false } = {}) {
   cpu.setU32(RAIN, RAIN_VTABLE);
   cpu.setU32(RAIN + 0x14, OTHER);
   cpu.setU32(RAIN + 0x18, 0x0d);
+  cpu.setU32(RAIN + 0x60, RAIN_ANGLES);
   cpu.setU32(OTHER, OTHER_VTABLE);
   cpu.setU32(OTHER + 0x14, 0);
   cpu.setU32(OTHER + 0x18, 0x13);
@@ -237,6 +239,7 @@ function game({ on = true, online = false } = {}) {
     // To the camera, and the texture scrolls (the rain falls).
     [0, 1, 2].forEach((k) => c.setU32(RAIN + 0x50 + k * 4, c.u32(RENDERER + 0x20 + k * 4)));
     c.setU32(RAIN + 0x8c, bits(float(c.u32(RAIN + 0x8c)) + 0.03));
+    c.setU32(RAIN + 0x60, 0x40008000 + ambient.frames); // the camera's angles, as it saw them
     return 0;
   });
   cpu.native.set(OTHER_UPDATE, () => {
@@ -291,9 +294,7 @@ test("L+R+START pauses the quest and hands over the camera; START puts it back",
   assert.deepEqual(first, { buttons: 0, x: 128, lock: 1 });
   near(g.looks.at(-1)!.eye, EYE, "it starts where the camera was");
   near(g.looks.at(-1)!.target, TARGET, "looking where it looked");
-  assert.equal(g.ambient.frames, 1, "the rain goes to the camera");
   assert.equal(g.ambient.other, 0, "the other ambient effects stay still");
-  assert.equal(g.cpu.u32(RAIN + 0x8c), 0, "the rain doesn't fall");
 
   // Held from the start, L, R and START do nothing until let go.
   g.frame(L | R | START);
@@ -304,8 +305,9 @@ test("L+R+START pauses the quest and hands over the camera; START puts it back",
   for (let k = 0; k < 10; k++) g.frame(0, 255, 128);
   let { eye, target } = g.looks.at(-1)!;
   near(target, TARGET, "the stick keeps what it looks at");
+  assert.ok(g.ambient.frames >= 10, "the rain goes to the camera each frame");
   near(g.vec(RAIN + 0x50), eye, "the rain follows the camera");
-  assert.equal(g.cpu.u32(RAIN + 0x8c), 0, "still not falling");
+  assert.equal(g.cpu.u32(RAIN + 0x8c), 0, "the rain doesn't fall");
   assert.ok(Math.abs(distance(eye, target) - distance(EYE, TARGET)) < 0.5);
   assert.ok(eye[0]! < EYE[0]!, "right turns it to the left of the target");
   assert.ok(Math.abs(eye[1]! - EYE[1]!) < 0.01, "at the same height");
@@ -345,12 +347,16 @@ test("L+R+START pauses the quest and hands over the camera; START puts it back",
   assert.deepEqual(g.vec(0x09998d30 + 0xb40), EYE);
   assert.equal(g.cpu.u32(RENDERER + 0xc), bits(FOV));
   assert.deepEqual(g.looks.at(-1)!.eye, EYE, "the view built again from it");
-  // The buttons stay the blob's until every one is up, so START doesn't reach the game.
-  assert.deepEqual(ended, { buttons: 0, x: 128, lock: 1 });
-  assert.equal(g.frame(START).lock, 1);
+  assert.equal(g.cpu.u32(RAIN + 0x60), RAIN_ANGLES, "the rain's angles as the game had them");
+  // The lock goes at once; the buttons stay cleared until every one is up, so START doesn't
+  // reach the game, and a lock the game takes meanwhile (a dialogue) is left alone.
+  assert.deepEqual(ended, { buttons: 0, x: 128, lock: 0 });
+  g.cpu.setU8(PAD + 0x17, 1);
+  assert.deepEqual(g.frame(START), { buttons: 0, x: 128, lock: 1 });
   const ambientFrames = g.ambient.frames;
   g.cpu.setU8(PAUSE, 0); // game_task clears the 4
-  assert.equal(g.frame().lock, 0);
+  assert.equal(g.frame().lock, 1, "the game's lock");
+  g.cpu.setU8(PAD + 0x17, 0);
   assert.equal(g.frame(UP).buttons, UP, "the game has the buttons again");
   const looked = g.looks.length;
   g.frame(0, 255, 128);
@@ -436,4 +442,18 @@ test("with no ambient effects (no stage loaded), photo mode updates none", () =>
   g.frame();
   assert.equal(g.cpu.u8(PAUSE), 2);
   assert.equal(g.ambient.frames, 0);
+});
+
+test("photo mode ends, the game going on, if the renderer goes", () => {
+  const g = game();
+  g.frame();
+  g.frame(L | R | START);
+  assert.equal(g.cpu.u8(PAUSE), 2);
+  g.cpu.setU32(0x089cbbe4, 0);
+  const seen = g.frame();
+  assert.deepEqual(g.calls, ["pause", "unpause"]);
+  assert.equal(g.cpu.u8(PAUSE), 4);
+  assert.equal(seen.lock, 0);
+  g.cpu.setU8(PAUSE, 0);
+  assert.equal(g.frame(UP).buttons, UP, "the buttons are the game's again");
 });
