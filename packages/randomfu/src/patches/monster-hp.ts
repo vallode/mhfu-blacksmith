@@ -47,6 +47,15 @@
  *   the HUD texture's crown sprites (31 silver, 32 gold, 16×12; there's no
  *   mini crown, so the gold one smaller) over the gauge's right end cap.
  *   Where the crown code isn't found, the gauge goes on without crowns.
+ * - A captured monster lies asleep with health left until the quest ends.
+ *   The quest object (`*0x08A62C7C`) keeps a 60-byte record per spawn,
+ *   which an EBOOT lookup `(quest, monster)` (EU 0x0886DD3C) finds by the
+ *   monster's area, `+0x1E6` and `+0x4AC`, or returns 0. The capture code
+ *   (EU 0x0886AD58, `(quest, monster)`, called from 7 places in
+ *   `game_task`) skips a record whose state (`+0x2E`, s16) has 8, and sets
+ *   8 in it; the kill code before it (0x0886AB7C) skips one with 1 or 4,
+ *   and makes it 1 or 4. The blob hides the gauge of a monster whose record
+ *   has 8. Where the capture code isn't found, captured monsters keep it.
  *
  * Everything is found by code signatures, which match the EU and JP (FUC)
  * discs. The blob only reads game state.
@@ -126,6 +135,24 @@ export const MAP_SHOWS_SIGNATURE = [
   0x00001021, 0x0c000000, 0x92320578, 0x304200ff, 0x52420003, 0x920401e8, 0x1000001a, 0x00001021,
 ];
 
+/**
+ * The capture code (EU 0x0886AD58), immediates masked: `addiu sp,sp,-16`,
+ * saves, `move s2,a0; move s1,a1; jal lookup; sw s0,0(sp); beqz v0;
+ * move s0,v0; lh v0,0x2e(s0); andi v0,v0,8; beqzl v0; lbu v0,0x1e8(s1)`.
+ * The kill code has the same start with `andi v0,v0,5` and `lb v0,4(s0)`.
+ */
+export const CAPTURE_SIGNATURE = [
+  0x27bdfff0, 0xafbf000c, 0xafb20008, 0xafb10004, 0x00809021, 0x00a08821, 0x0e21b74f, 0xafb00000,
+  0x10400056, 0x00408021, 0x8602002e, 0x30420008, 0x50400006, 0x922201e8,
+].map(maskImmediates);
+/** Kept exact: the record's state, the captured bit, and the monster's species. */
+const CAPTURE_WORDS: readonly [number, number][] = [
+  [0x28, 0x8602002e],
+  [0x2c, 0x30420008],
+  [0x34, 0x922201e8],
+];
+const CAPTURE_LOOKUP_CALL = 0x18;
+
 const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
 
 function findAll(buf: Buffer, from: number, signature: readonly number[], masked: boolean) {
@@ -189,6 +216,41 @@ export function findMonsterExterns(
   };
 }
 
+/**
+ * The quest object's global and its spawn record lookup, from the capture
+ * code and `game_task`'s calls to it (`lui r,hi; lw a0,lo(r); jal capture`);
+ * none if they aren't found, and then captured monsters keep their gauge.
+ */
+export function findCaptureExterns(
+  vanillaEboot: Buffer,
+  segment: Segment,
+  gameTask: Buffer,
+  ovl: OvlFile,
+): Record<string, number> {
+  const [capture] = findUnique(vanillaEboot, segment, [CAPTURE_SIGNATURE], maskImmediates);
+  if (capture == null) return {};
+  const at = segment.offset + (capture - segment.vaddr);
+  if (CAPTURE_WORDS.some(([o, w]) => word(vanillaEboot, at + o) !== w)) return {};
+  const lookup = jumpTarget(
+    word(vanillaEboot, at + CAPTURE_LOOKUP_CALL),
+    capture + CAPTURE_LOOKUP_CALL,
+  );
+
+  const quests = new Set<number>();
+  for (let o = OVL_HEADER_SIZE + 8; o + 4 <= gameTask.length; o += 4) {
+    const w = word(gameTask, o);
+    if (w >>> 26 !== 0x03 || jumpTarget(w, ovl.loadBase + o) !== capture) continue;
+    const lw = word(gameTask, o - 4);
+    const lui = word(gameTask, o - 8);
+    const base = (lw >>> 21) & 31;
+    if (lw >>> 26 !== 0x23 || ((lw >>> 16) & 31) !== 4) return {};
+    if (lui >>> 26 !== 0x0f || ((lui >>> 16) & 31) !== base) return {};
+    quests.add(hiLo(lui, lw));
+  }
+  if (quests.size !== 1) return {};
+  return { rf_quest: [...quests][0]!, rf_spawn_record: lookup };
+}
+
 /** The blob's externs for monster HP, or why they can't be found. */
 export function findMonsterHpExterns(
   vanillaEboot: Buffer,
@@ -234,6 +296,7 @@ export function findMonsterHpExterns(
 
   const monsters = findMonsterExterns(gameTask, ovl);
   if (typeof monsters === "string") return monsters;
+  const capture = findCaptureExterns(vanillaEboot, segment, gameTask, ovl);
   if (findAll(gameTask, OVL_HEADER_SIZE, PAINT_CODE, false).length !== 1) {
     return "game_task's paintball code doesn't match";
   }
@@ -247,6 +310,7 @@ export function findMonsterHpExterns(
     rf_hud_sprite: sprite,
     rf_hud_sprites: sprites,
     ...crowns,
+    ...capture,
     rf_monster_hp_mode: MODE[mode],
   };
 }

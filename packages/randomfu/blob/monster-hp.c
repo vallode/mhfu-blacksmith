@@ -19,6 +19,9 @@ extern const u8 rf_hud_sprites[];    /* the HUD's sprite table that `sprite` ind
 /* Weak: left out (0) on a disc whose crown code isn't found, and then no crowns show. */
 __attribute__((weak)) extern const u8 rf_crowns[];         /* the Guild Card's crown table */
 __attribute__((weak)) extern const u8 *const rf_crown_groups[]; /* by emID: its group's emIDs, ending 0xFF */
+/* Weak: left out on a disc whose capture code isn't found, and then a captured monster keeps its gauge. */
+__attribute__((weak)) extern u8 *const rf_quest[];         /* the global holding the quest object */
+__attribute__((weak)) extern const u8 rf_spawn_record[];  /* record(quest, m): the quest's record of m, or 0 */
 /* A constant, not an address: the disc's default MODE_* + 1 (an extern's address is never 0). */
 extern const u8 rf_monster_hp_mode[];
 
@@ -48,6 +51,9 @@ static u32 mode(void) {
 #define CHUNK_BYTES 0x1d0
 #define CHUNK_SET 0x14f
 #define SPECIES 90
+/* A spawn record's state (s16): a capture sets 8 in it, a kill makes it 1 or 4. */
+#define RECORD_STATE 0x2e
+#define RECORD_CAPTURED 8
 /* The HUD: bit 1 of +0x1194 hides the gauges (the gauge routine checks it too). */
 #define HUD_FLAGS 0x1194
 #define HUD_GAUGES_HIDDEN 2
@@ -162,6 +168,16 @@ static int is_large(u32 em) {
 }
 
 typedef u32 (*map_shows_fn)(u8 *hud, u8 *m);
+typedef u8 *(*spawn_record_fn)(u8 *quest, u8 *m);
+
+/* Captured: the quest's record of it says so, as the capture code leaves it (EBOOT 0x0886AD58). */
+static int captured(u8 *m) {
+  if (!rf_quest || !rf_spawn_record) return 0;
+  u8 *quest = *rf_quest;
+  if (!quest) return 0;
+  u8 *record = ((spawn_record_fn)rf_spawn_record)(quest, m);
+  return record && (*(s16 *)(record + RECORD_STATE) & RECORD_CAPTURED);
+}
 
 /* The sprite index the routine turns into `record`: index × 12 wraps to the offset (× 0xAAAAAAAB is ÷ 3). */
 static u32 sprite_index(const void *record) {
@@ -189,7 +205,7 @@ static void draw(u8 *hud) {
     if (!(m[FLAGS] & 1) || *(u16 *)(m + AREA) != area) continue;
     s32 hp = *(short *)(m + HP);
     u32 max = *(u16 *)(m + HP_MAX);
-    if (max == 0 || hp <= 0) continue;
+    if (max == 0 || hp <= 0 || captured(m)) continue;
     if (!always && !(u8)((map_shows_fn)rf_map_shows)(hud, m)) continue;
     if ((u32)hp > max) hp = (s32)max;
     u32 w = ((u32)hp * WIDTH + max - 1) / max;

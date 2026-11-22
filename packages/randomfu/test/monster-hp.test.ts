@@ -25,7 +25,10 @@ const EXTERNS = {
   rf_hud_sprites: 0x089391a8,
   rf_crowns: 0x08930bdc,
   rf_crown_groups: 0x0899bf40,
+  rf_quest: 0x08a62c7c,
+  rf_spawn_record: 0x0886dd3c,
 };
+const QUEST = 0x09a05dc0;
 const AREA = 0x64;
 const LARGE = 77;
 const SMALL = 35;
@@ -51,11 +54,12 @@ interface Draw {
 }
 
 /** The blob, the hooks and a quest in a CPU: the HUD routines record what they draw. */
-function quest(mode: keyof typeof MODE, { crownCode = true } = {}) {
-  const { rf_crowns, rf_crown_groups, ...gauge } = EXTERNS;
+function quest(mode: keyof typeof MODE, { crownCode = true, captureCode = true } = {}) {
+  const { rf_crowns, rf_crown_groups, rf_quest, rf_spawn_record, ...gauge } = EXTERNS;
   const blob = linkBlob([...runtime(), ...monsterHpObjects()], BLOB, {
     ...gauge,
     ...(crownCode ? { rf_crowns, rf_crown_groups } : {}),
+    ...(captureCode ? { rf_quest, rf_spawn_record } : {}),
     rf_monster_hp_mode: MODE[mode],
   });
   const cpu = new Cpu();
@@ -89,6 +93,13 @@ function quest(mode: keyof typeof MODE, { crownCode = true } = {}) {
   });
   const painted = new Set<number>();
   cpu.native.set(EXTERNS.rf_map_shows, () => (painted.has(arg(1)) ? 1 : 0));
+  // The quest's spawn records, by monster: the lookup returns one or 0.
+  const records = new Map<number, number>();
+  cpu.native.set(EXTERNS.rf_spawn_record, () => {
+    assert.equal(arg(0), QUEST);
+    return records.get(arg(1)) ?? 0;
+  });
+  cpu.setU32(EXTERNS.rf_quest, QUEST);
 
   // game_task is loaded, the HUD shows the hunter, and the manager holds no one yet.
   cpu.write(EXTERNS.rf_game_task + 0x20, Buffer.from("game_task\0"));
@@ -138,7 +149,13 @@ function quest(mode: keyof typeof MODE, { crownCode = true } = {}) {
     return draws.map((d) => ({ ...d }));
   };
   cpu.call(blob.symbols.get("rf_init")!, [0, 0x09999c60, BLOB]);
-  return { cpu, blob, hooks, frame, monster, painted, draws };
+  /** The monster's spawn record, as the capture code leaves it (state 8) or not (0). */
+  const record = (m: number, state: number) => {
+    const at = 0x09a10000 + records.size * 60;
+    cpu.setU16(at + 0x2e, state);
+    records.set(m, at);
+  };
+  return { cpu, blob, hooks, frame, monster, painted, draws, record };
 }
 
 /** A record of the HUD's sprite table: u, v, w, h, texture 0x8001, set 0. */
@@ -228,6 +245,31 @@ test("small monsters, dead ones, inactive ones and ones in other areas get none"
   const away = q.monster(3, LARGE, 100, 480);
   q.cpu.setU16(away + 0x29a, AREA + 1);
   assert.deepEqual(q.frame(), []);
+});
+
+test("a captured monster's gauge goes, though it has health left", () => {
+  const q = quest("always");
+  const captured = q.monster(0, LARGE, 300, 480);
+  q.monster(1, LARGE, 120, 480);
+  q.record(captured, 0);
+  assert.equal(fills(q.frame()).length, 2);
+  // The capture code sets 8 in the record's state; a monster with no record keeps its gauge.
+  q.record(captured, 8);
+  assert.deepEqual(
+    q.frame().filter((d) => d.what === "frame"),
+    [{ what: "frame", x: 28, y: 92, w: 80 }],
+  );
+  assert.equal(fills(q.frame())[0]!.w, 20);
+});
+
+test("without the disc's capture code, or outside a quest, a captured monster keeps its gauge", () => {
+  const q = quest("always", { captureCode: false });
+  q.record(q.monster(0, LARGE, 300, 480), 8);
+  assert.equal(fills(q.frame())[0]!.w, 50);
+  const r = quest("always");
+  r.record(r.monster(0, LARGE, 300, 480), 8);
+  r.cpu.setU32(EXTERNS.rf_quest, 0);
+  assert.equal(fills(r.frame())[0]!.w, 50);
 });
 
 test("the gauge shows only while the map shows the monster, in the painted mode", () => {

@@ -1338,6 +1338,10 @@ entry in the crown table, so a subspecies uses its base monster's
 thresholds (mhfu-extract's README, "Monster size"). On a disc where the
 crown code isn't found, the gauges show without crowns.
 
+A captured monster's gauge goes once it's captured, though it lies asleep
+with health left until the quest ends. On a disc where the capture code
+isn't found, it keeps its gauge.
+
 What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
 
 - A monster is an entity like the hunter: species `+0x1E8`, HP `+0x2E4`
@@ -1364,6 +1368,13 @@ What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
   entry's `mini`, gold at least `gold`, else silver at least `silver`. The
   blob finds the crown table through that check and the emID groups
   through their lookup (`0x0884FC74`); both match once on EU and JP.
+- The quest object (`*0x08A62C7C`) keeps a 60-byte record per spawn, which
+  an EBOOT lookup `(quest, monster)` (`0x0886DD3C`) finds or returns 0. The
+  capture code (`0x0886AD58`, called from 7 places in `game_task`) sets 8
+  in the record's state (`+0x2E`, s16), and the gauge hides a monster
+  whose record has it. The blob finds the lookup through the capture code
+  and the global through `game_task`'s calls to it; both match on EU and
+  JP.
 - The HUD texture (0x8001, in RAM while in a quest) has a silver and a gold
   crown, 16×12: sprites 31 and 32 of its sprite table. Seen in EU's
   texture and in game; JP's sprite table has the same records, but its
@@ -1371,7 +1382,8 @@ What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
 
 Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
 dies or leaves the area, and `painted` shows it once a Paintball hits. Not
-yet tried: JP in game, captures, and two large monsters in one area.
+yet tried: JP in game, the gauge going on a capture, and two large
+monsters in one area.
 
 ## Camera
 
