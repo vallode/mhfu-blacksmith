@@ -312,7 +312,12 @@ function update(key: OptionKey, value: boolean | number | string): void {
 /** A Shuffle or Randomize badge: shuffles move what's in the game, randomizers roll new values. */
 function tag(action: Action | undefined): HTMLElement | null {
   if (!action) return null;
-  return el("span", { class: `tag ${action}` }, action === "shuffle" ? "Shuffle" : "Randomize");
+  return el(
+    "span",
+    { class: `tag ${action}` },
+    el("span", { class: "icon", "aria-hidden": "true" }),
+    action === "shuffle" ? "Shuffle" : "Randomize",
+  );
 }
 
 function optionText(option: OptionDef, labelFor: string | null): HTMLElement {

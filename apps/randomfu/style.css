@@ -772,7 +772,9 @@ textarea.text-input {
 
 /* Shuffle or Randomize, beside an option, a choice or a preset: what it does to the game. */
 .tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   margin-left: 0.8rem;
   padding: 0 0.4rem;
   border: 1px solid currentColor;
@@ -783,11 +785,20 @@ textarea.text-input {
   white-space: nowrap;
 
   &.shuffle {
+    --icon: url(images/shuffle.png);
     color: var(--color-gem-blue);
   }
 
   &.randomize {
+    --icon: url(images/randomize.png);
     color: var(--color-gem-orange);
+  }
+
+  /* The sprite at the game's pixel size, tinted in the tag's colour. */
+  & .icon {
+    --tint: currentColor;
+    width: 1.6rem;
+    height: 1.6rem;
   }
 
   dt > & {
