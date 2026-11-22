@@ -96,7 +96,9 @@
  *   `RF_MENU_RUN` and returns its result.
  *
  * Other calls can go through the same stub (`calls`), as sites from 8 on
- * (`CALL_SITE`): the reward screen's label getter (`send-all.ts`).
+ * (`CALL_SITE`): the reward screen's label getter (`send-all.ts`), the
+ * follow camera's yaw read (`target-camera.ts`) and, in `lobby_task`, the box
+ * picker's grid (`improve-pips.ts`).
  *
  * A stub saves the call's arguments' first register and its result, so the
  * hook gets the HUD object (the `SceCtrlData` for hook 2, the results step's
@@ -105,6 +107,7 @@
  * found by code signatures, which match the EU and JP (FUC) discs.
  */
 import { BLOB_MAGIC, HEADER } from "../blob/link.js";
+import type { LoadedOverlay } from "../game/load.js";
 import { QUEST_REWARD_SIGNATURE } from "./poogie-luck.js";
 import {
   ADDIU,
@@ -411,6 +414,8 @@ const MENU_BOUNDS = {
 export interface HookCall {
   call: number;
   target: number;
+  /** The overlay the call is in, when it isn't the EBOOT's (its `call` an address in it). */
+  overlay?: LoadedOverlay;
 }
 
 /** One START menu's calls for hook 8. */

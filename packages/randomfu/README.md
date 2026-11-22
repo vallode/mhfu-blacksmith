@@ -199,6 +199,7 @@ web app shows as a tag):
 | `quests.unknown`                  | off         | "Unknown Monster?!" quests on Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards) |
 | `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards) |
 | `rewards.sendAll`                 | on          | A Send All to Item Box row in the reward screen's menu (caps Guild Cards)                              |
+| `smithy.improvePips`              | on          | A pip on each weapon the smithy's Improve can improve now (caps Guild Cards)                           |
 | `boot.skip`                       | `normal`    | A faster start: `title` (no notice, logos or intro movie) or `village` (straight into the last hunter) |
 
 ### Presets
@@ -219,7 +220,7 @@ code loader fits.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                                                   |
 | ------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| QoL only     | Nothing             | The defaults with quest rewards and carves left alone: nothing is shuffled or randomized, so only the extras (Send All, Poogie, bookshelf guides, and any you turn on) change the game                                                                                                                                             |
+| QoL only     | Nothing             | The defaults with quest rewards and carves left alone: nothing is shuffled or randomized, so only the extras (Send All, improve pips, Poogie, bookshelf guides, and any you turn on) change the game                                                                                                                               |
 | Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                                                                                                                                                                    |
 | Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills and stats (by rarity; rarity within its rank), shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                                              |
 | Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon and armor stats, new armor skills, Low Rank starting armor |
@@ -2170,6 +2171,38 @@ the screen is only called with 0 or 1 for its second argument, from the
 EBOOT and the overlays. Tried in PPSSPP on EU: the row, the layout, sending
 and ending, and a town screen keeping its three rows. Not yet seen in game: the help bar's text on the new row and End,
 and JP, which builds (its code matches) but hasn't been played.
+
+## Improve pips
+
+`smithy.improvePips` marks, in the box the smithy's Improve shows, each
+weapon the hunter can improve right now with a small orange pip (3 × 3) in a dark
+frame in its cell's top left corner. "Can improve" is the game's own test
+for the list Improve opens on a weapon: at least one of the weapons it
+improves into has every material in the pouch and box together, and the
+zenny. It's blob code (`blob/improve-pips.c`) on the START menu's hook (a
+call in `lobby_task`) and the pad hook, so it goes in with the START menu
+entry and caps Guild Cards; a disc whose loader only fits without the menu
+leaves it out.
+
+What it found (`lobby_task.ovl`, from RAM on FUC with the picker open, and
+matched on EU; `src/patches/improve-pips.ts` has the addresses):
+
+- The box picker draws a page with `grid(object, cursor, flags, layout)`,
+  from eight places. Improve's picker passes 0x410: 0x10 the equipment box
+  (`save + 0x548`, 12 bytes a slot: used, type, u16 ID), 0x400 dimming all
+  but weapons (types 5 and 6). The layout is a row of a table of s16s: the
+  first cell's x, y, width, height and the steps to the next column and
+  row (Improve's is 244, 32, 18, 18, 22, 20).
+- The list of what a weapon improves into reads its row of the EBOOT's
+  upgrade table (28 bytes: four materials, then five targets at +16; a
+  melee section and a ranged one, which a ranged weapon only uses when a
+  check says it has a row). A target is greyed out when a material falls
+  short (`has(_, item, amount)`) or the zenny does (`afford(_, cost)`, half
+  its price). The blob calls those same functions.
+
+Which cells get a pip is worked out once a page and kept while the picker
+shows: again for a slot that changes, and for the page when the zenny does
+or the picker's been closed. Not yet seen in game.
 
 ## Faster start
 
