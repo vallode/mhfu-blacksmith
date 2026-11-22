@@ -122,9 +122,12 @@ export interface Settings {
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
+  "mods.buttonIcons": "psp" | "xbox";
   "camera.fov": "normal" | "wide" | "wider" | "widest";
   "camera.distance": "normal" | "far" | "farther" | "farthest";
   "camera.tilt": "steps" | "slow" | "smooth" | "fast";
+  "camera.photoMode": boolean;
+  "camera.target": "off" | "tap" | "follow";
   "quest.endWait": "normal" | "short" | "instant";
   "hud.monsterHp": "off" | "painted" | "always";
   "hud.damageNumbers": "off" | "total" | "split";
@@ -136,6 +139,7 @@ export interface Settings {
   "quests.unknown": boolean;
   "quests.keyLabel": boolean;
   "rewards.sendAll": boolean;
+  "smithy.improvePips": boolean;
   "boot.skip": "normal" | "title" | "village";
 }
 
@@ -1774,9 +1778,27 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "mods.nodeMap",
     section: "Extras",
     label: "Gathering nodes on the area map",
-    help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only.",
+    help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU and JP discs only.",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "mods.buttonIcons",
+    section: "Extras",
+    label: "Button icons",
+    help: "The button pictures the game shows in its text and on screen, for playing with a controller in PPSSPP. Xbox draws the buttons PPSSPP maps an Xbox controller to by default: A for ×, B for ○, X for □, Y for △, LB and RB for L and R, Menu and View for START and SELECT. The analog stick and d-pad stay as they are, and so would any button drawn into another picture.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "psp", label: "PSP", help: "The game's own: ○ × △ □, L, R, START and SELECT." },
+        {
+          value: "xbox",
+          label: "Xbox",
+          help: "A B X Y in their colours, LB, RB, Menu and View.",
+        },
+      ],
+    },
+    default: "psp",
   },
   {
     key: "camera.fov",
@@ -1829,6 +1851,37 @@ export const OPTIONS: readonly OptionDef[] = [
       ],
     },
     default: "steps",
+  },
+  {
+    key: "camera.photoMode",
+    section: "Camera",
+    label: "Photo mode",
+    help: "In a quest, hold L and R and press START: the game stops where it is (as its own pause does, but without dimming the screen), the HUD goes, and the camera is yours. The stick turns it round what it looks at, the D-pad moves it along the ground, △ and × raise and lower it, □ and ○ bring it nearer and take it further, L and R zoom in and out, and SELECT puts it back where it started. START again puts the camera back as it was and the quest goes on. The camera goes through walls and the ground. Not online (the game can't pause there) and not in the village. This picks whether the disc starts with it on: the START menu's last entry, randomfu, turns it on or off in game, and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "camera.target",
+    section: "Camera",
+    label: "Target camera",
+    help: "L turns the camera to face a large monster in your area, from behind your hunter, as the newer games' target camera does, instead of behind where your hunter faces. It turns as smoothly as the game's own L. The target is the large monster nearest the middle of the screen; hold L and press D-pad left or right for the next one to that side. Press L twice quickly for the game's own L, behind your hunter; with no large monster in the area, L is the game's. D-pad left and right alone turn the camera as always, and let go of the target. This picks what the disc starts with: the START menu's last entry, randomfu, changes it in game, and your save keeps that choice. It goes in with that entry, so every disc caps received Guild Cards at 3 to make room for it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Off", help: "L is the game's own: behind your hunter." },
+        {
+          value: "tap",
+          label: "Tap",
+          help: "L turns the camera to the monster once; then it stays where it is.",
+        },
+        {
+          value: "follow",
+          label: "Follow",
+          help: "L keeps the monster in view until you press L twice, turn the camera with the D-pad, or the monster leaves or falls.",
+        },
+      ],
+    },
+    default: "off",
   },
   {
     key: "quest.endWait",
@@ -1963,7 +2016,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "quests.keyLabel",
     section: "Key quests",
     label: "Mark key quests",
-    help: "The Village Chief's quest card (and likely the Guild's, not yet tried) shows a yellow ★ in its top right corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
+    help: "The Village Chief's quest card (and likely the Guild's, not yet tried) shows a yellow ★ in its top left corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
     type: { kind: "boolean" },
     default: false,
   },
@@ -1972,6 +2025,14 @@ export const OPTIONS: readonly OptionDef[] = [
     section: "Reward screen",
     label: "Send All to Item Box",
     help: "The reward screen's menu after a quest gets a row between Send to Item Box and End: Send All to Item Box sends every reward the Item Box can take in one go, the comrade's items too, and ends the screen. What doesn't fit stays, with the menu, to take or sell as before. It goes in with the START menu's randomfu entry, so a disc with too many other new features to fit that leaves it out too.",
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
+    key: "smithy.improvePips",
+    section: "Improve pips",
+    label: "Mark weapons you can improve",
+    help: "In the smithy's Improve, each weapon in the box that you can improve right now gets a small orange pip in its top left corner: you have the materials (pouch and box together) and the zenny for at least one of the weapons it improves into, as the game's own list of them would show. It goes in with the START menu's randomfu entry, so a disc with too many other new features to fit that leaves it out too.",
     type: { kind: "boolean" },
     default: true,
   },
@@ -2217,6 +2278,26 @@ const STAT_RANDOMIZERS = {
 } as const;
 
 export const PRESETS: readonly Preset[] = [
+  {
+    name: "QoL only",
+    points: [
+      "Shuffles and randomizes nothing: items, monsters, equipment and numbers stay as on the disc",
+      "Adds Send All to Item Box, the smithy's improve pips, photo mode, key quest marks and gathering nodes on the area map; all but the map's code caps received Guild Cards at 3",
+      "Leaves out Poogie's luck and the bookshelf guides",
+      "Turn on camera, HUD and quest extras in the later steps; the settings then show as custom, still with nothing shuffled",
+      "Hunter's Pact, if you turn it on, draws its rewards from the seed",
+    ],
+    changes: {
+      "questRewards.mode": "off",
+      "monsterRewards.mode": "off",
+      "camera.photoMode": true,
+      "quests.keyLabel": true,
+      "mods.nodeMap": true,
+      "poogie.enabled": false,
+      "hints.bookshelf": false,
+      "hints.almanac": false,
+    },
+  },
   {
     name: "Rewards only",
     points: [

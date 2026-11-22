@@ -65,6 +65,11 @@ struct rf_save_data {
   /* The block smooth tilt last wrote, and its presets as the game had them */
   u32 camera_block;
   u32 camera_presets[40];
+  /* Photo mode (photo.c): off 0 or on 1, + 1 */
+  u8 photo_mode;
+  /* The target camera (target-camera.c): its mode chosen in game + 1 */
+  u8 camera_target;
+  u8 camera_mark; /* and its mark on screen: the same */
 };
 
 /* The save's randomfu data, set up by rf_init before any feature's init. */
@@ -200,7 +205,9 @@ struct rf_load {
  * Other game calls go through the same stub, from site 8 on (menu.c leaves
  * them alone). RF_CALL_REWARD_LABEL: box() getting a row's label from
  * game_task's messages (its names 4), `msg(object, id)`, with the row in
- * `s2` and box()'s list of IDs in args[2] (send-all.c).
+ * `s2` and box()'s list of IDs in args[2] (send-all.c). The target camera's
+ * call (target-camera.c), the follow camera's read of the yaw it turns to,
+ * is known by its `game` instead: its site depends on which calls a disc has.
  */
 #define RF_CALL_REWARD_LABEL 8
 struct rf_menu {

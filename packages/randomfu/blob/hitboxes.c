@@ -269,7 +269,7 @@ static void draw(u8 *hud) {
 
 __attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
 
-static const char *const mode_names[MODES] = {"Off", "On"};
+static const char *const mode_names[MODES] = {"OFF", "ON"};
 static void set_on(u32 choice) {
   struct rf_save_data *d = rf_save_data();
   if (d && choice < MODES) d->hitboxes = (u8)(choice + 1);

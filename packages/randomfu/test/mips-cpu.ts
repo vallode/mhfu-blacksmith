@@ -167,6 +167,10 @@ export class Cpu {
       else if (op === 0x0d) set(rt, u(rs) | imm);
       else if (op === 0x0e) set(rt, u(rs) ^ imm);
       else if (op === 0x0f) set(rt, imm << 16);
+      else if (op === 0x1f && (w & 63) === 0x20 && sa === 0x18)
+        set(rd, (u(rt) << 16) >> 16); // seh
+      else if (op === 0x1f && (w & 63) === 0x20 && sa === 0x10)
+        set(rd, (u(rt) << 24) >> 24); // seb
       else if (op === 0x20) set(rt, (this.u8(at()) << 24) >> 24);
       else if (op === 0x21) set(rt, (this.u16(at()) << 16) >> 16);
       else if (op === 0x23) set(rt, this.u32(at()));

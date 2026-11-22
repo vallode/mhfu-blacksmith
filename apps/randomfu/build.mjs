@@ -207,6 +207,9 @@ const assets = [
   "images/sac.png",
   "images/scroll.png",
   "images/meat.png",
+  // Inside the Shuffle and Randomize tags.
+  "images/shuffle.png",
+  "images/randomize.png",
   "images/favicons/felyne-favicon.png",
   "images/favicons/felyne-apple-touch-icon.png",
   // The gathering-node map preview's picture.

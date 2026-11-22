@@ -316,7 +316,7 @@ static void draw(u8 *q) {
 
 __attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
 
-static const char *const mode_names[MODES] = {"Off", "Total", "Split"};
+static const char *const mode_names[MODES] = {"OFF", "TOTAL", "SPLIT"};
 static u32 get_mode(void) { return mode(); }
 static void set_mode(u32 choice) {
   struct rf_save_data *d = rf_save_data();
@@ -324,7 +324,7 @@ static void set_mode(u32 choice) {
 }
 static const struct rf_setting setting = {
     "Damage numbers",
-    "Show the damage of each of\nyour hits where it strikes.\nSplit shows the element's\nshare apart.",
+    "Show the damage of each of\nyour hits where it strikes.\nSPLIT shows the element's\nshare apart.",
     mode_names,
     MODES,
     get_mode,

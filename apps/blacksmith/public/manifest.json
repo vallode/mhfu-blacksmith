@@ -1,7 +1,7 @@
 {
   "name": "MHFU Blacksmith",
   "short_name": "MHFU Blacksmith",
-  "description": "Monster Hunter Freedom Unite — weapons, armor, decorations, monsters",
+  "description": "Every Monster Hunter Freedom Unite weapon, armor piece, decoration, item, monster and quest, with recipes, skills, hitzones and drops. Build armor sets, plan a wishlist, and load your save file to track your hunter.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

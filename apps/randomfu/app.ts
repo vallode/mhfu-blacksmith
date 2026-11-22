@@ -115,11 +115,12 @@ const OPTION_STEPS: Step[] = [
       "HUD",
       "Camera",
       "Reward screen",
+      "Improve pips",
       "Quest end",
       "Boot",
     ],
     intro:
-      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code, which caps received Guild Cards at 3 to make room for it. Monster health, damage numbers, attack hitboxes, the camera and the wait after a quest are on every disc, switched in game from the START menu's randomfu entry, so every disc caps Guild Cards; their options only pick how a disc starts. Of the rest only Poogie's luck and Send All to Item Box are on unless you turn the others on. Elite monsters and damage numbers haven't been tried in game yet. The faster start only changes the title screens' own code.",
+      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code, which caps received Guild Cards at 3 to make room for it. Monster health, damage numbers, attack hitboxes, the camera and the wait after a quest are on every disc, switched in game from the START menu's randomfu entry, so every disc caps Guild Cards; their options only pick how a disc starts. Of the rest only Poogie's luck, Send All to Item Box and the smithy's improve pips are on unless you turn the others on. Elite monsters and damage numbers haven't been tried in game yet. The faster start only changes the title screens' own code.",
   },
   {
     id: "extras",
@@ -158,6 +159,7 @@ const SECTION_ICONS: Record<string, Sprite> = {
   "Elite monsters": { icon: "monsters/elder-dragon", tint: "var(--color-gem-slate)" },
   "Unknown Monster?! quests": { icon: "ukwn", tint: "var(--color-gem-cyan)" },
   "Key quests": { icon: "ticket", tint: "var(--color-gem-yellow)" },
+  "Improve pips": { icon: "great-sword", tint: "var(--color-gem-orange)" },
   Weaknesses: { icon: "fire" },
   Hints: { icon: "ukwn", tint: "var(--color-gem-cyan)" },
   HUD: { icon: "fluid", tint: "var(--color-gem-red)" },
@@ -312,7 +314,12 @@ function update(key: OptionKey, value: boolean | number | string): void {
 /** A Shuffle or Randomize badge: shuffles move what's in the game, randomizers roll new values. */
 function tag(action: Action | undefined): HTMLElement | null {
   if (!action) return null;
-  return el("span", { class: `tag ${action}` }, action === "shuffle" ? "Shuffle" : "Randomize");
+  return el(
+    "span",
+    { class: `tag ${action}` },
+    el("span", { class: "icon", "aria-hidden": "true" }),
+    action === "shuffle" ? "Shuffle" : "Randomize",
+  );
 }
 
 function optionText(option: OptionDef, labelFor: string | null): HTMLElement {
