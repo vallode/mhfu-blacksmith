@@ -242,7 +242,12 @@ code {
 
   @media (hover: hover) {
     &:hover {
-      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
+      background: linear-gradient(
+        0.25turn,
+        transparent,
+        color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
+        transparent
+      );
       animation: var(--animate-hover-glow);
     }
   }
@@ -347,7 +352,12 @@ code {
 
   @media (hover: hover) {
     &:enabled:not([aria-current]):hover {
-      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
+      background: linear-gradient(
+        0.25turn,
+        transparent,
+        color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
+        transparent
+      );
       animation: var(--animate-hover-glow);
     }
   }
@@ -525,7 +535,12 @@ code {
   @media (hover: hover) {
     &:enabled:hover {
       color: white;
-      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
+      background: linear-gradient(
+        0.25turn,
+        transparent,
+        color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
+        transparent
+      );
       animation: var(--animate-hover-glow);
     }
   }
@@ -621,7 +636,12 @@ textarea.text-input {
     content: "";
     position: absolute;
     inset: 0.8rem 1rem;
-    background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
+    background: linear-gradient(
+      0.25turn,
+      transparent,
+      color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
+      transparent
+    );
     animation: var(--animate-hover-glow);
     visibility: hidden;
     pointer-events: none;
@@ -753,7 +773,12 @@ textarea.text-input {
 
   @media (hover: hover) {
     &:not(:has(input:checked, input:disabled)):hover {
-      background: linear-gradient(0.25turn, transparent, color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent), transparent);
+      background: linear-gradient(
+        0.25turn,
+        transparent,
+        color-mix(in srgb, var(--color-hover-glow) calc(var(--glow-alpha) * 100%), transparent),
+        transparent
+      );
       animation: var(--animate-hover-glow);
     }
   }
@@ -772,9 +797,7 @@ textarea.text-input {
 
 /* Shuffle or Randomize, beside an option, a choice or a preset: what it does to the game. */
 .tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  display: inline-block;
   margin-left: 0.8rem;
   padding: 0 0.4rem;
   border: 1px solid currentColor;
@@ -799,6 +822,8 @@ textarea.text-input {
     --tint: currentColor;
     width: 1.6rem;
     height: 1.6rem;
+    margin-right: 0.4rem;
+    vertical-align: -0.25em;
   }
 
   dt > & {
