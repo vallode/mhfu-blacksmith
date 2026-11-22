@@ -70,6 +70,14 @@ test("presets do what their help says", () => {
           (o.type.kind === "choice" && o.type.choices.some((c) => c.action === action))),
     );
 
+  // QoL only: the defaults with nothing shuffled or randomized, so the extras alone change the game.
+  const qol = preset("QoL only");
+  assert.deepEqual(keys(qol), []);
+  for (const option of OPTIONS) {
+    if (option.key === "questRewards.mode" || option.key === "monsterRewards.mode") continue;
+    assert.equal(qol[option.key], option.default, `QoL only keeps ${option.key}`);
+  }
+
   // "The defaults: quest rewards and carves are shuffled."
   assert.deepEqual(preset("Rewards only"), defaultSettings("S"));
   assert.deepEqual(keys(preset("Rewards only")), ["monsterRewards.mode", "questRewards.mode"]);
