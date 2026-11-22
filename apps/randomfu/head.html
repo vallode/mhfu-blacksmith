@@ -3,11 +3,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- Discord colours the edge of a link's embed with this. -->
 <meta name="theme-color" content="#6e905f" />
-<!-- Everything runs here: the page can't send the disc, or anything else, anywhere. -->
+<!--
+  Everything runs here: the page loads nothing from elsewhere and can only
+  talk to its own site, where it sends anonymous usage events (page.js,
+  analytics/). The disc never leaves the browser.
+-->
 <meta
   http-equiv="Content-Security-Policy"
-  content="default-src 'none'; script-src 'self'; worker-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'"
+  content="default-src 'none'; script-src 'self'; worker-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'"
 />
+<!-- Not deferred: it watches for errors before the builder's app.js runs. -->
+<script src="page.js"></script>
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="RandomFU" />
 <meta property="og:image" content="%SITE_URL%/images/social-card.png" />

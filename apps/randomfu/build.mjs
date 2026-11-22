@@ -1,7 +1,7 @@
 /**
  * Builds the randomfu web app into dist/: its pages (index.html, the about
  * page; faq.html; and build.html, the builder), each with style.css inlined,
- * the builder's app.js and worker.js, and the few images and the font it
+ * the builder's app.js and worker.js, every page's analytics (page.js), and the few images and the font it
  * shares with the MHFU Blacksmith site. Node-only modules the shared code imports are
  * swapped for the browser versions in shims/.
  *
@@ -25,6 +25,7 @@
  */
 import { build } from "esbuild";
 import postcss from "postcss";
+import { execFileSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -54,9 +55,19 @@ const nodeMapPreview = {
   points: nodeMapPoints(readData(dataDir, "gathering.json"), previewTexture),
 };
 
+/** The commit the build is made from, which every analytics event carries. */
+function buildId() {
+  if (process.env.GITHUB_SHA) return process.env.GITHUB_SHA.slice(0, 8);
+  try {
+    return execFileSync("git", ["rev-parse", "--short=8", "HEAD"], { cwd: web }).toString().trim();
+  } catch {
+    return "dev";
+  }
+}
+
 mkdirSync(dist, { recursive: true });
-await build({
-  entryPoints: { app: path.join(web, "app.ts"), worker: path.join(web, "worker.ts") },
+const buildIdJson = JSON.stringify(buildId());
+const browserBuild = {
   outdir: dist,
   bundle: true,
   format: "iife",
@@ -65,12 +76,25 @@ await build({
   minify: true,
   sourcemap: true,
   legalComments: "linked",
+  logLevel: "warning",
+};
+// page.js is every page's analytics (analytics/page.ts), which head.html loads before the page
+// renders: built on its own, without the shims, so it stays small.
+await build({
+  ...browserBuild,
+  entryPoints: { page: path.join(web, "analytics", "page.ts") },
+  define: { BUILD_ID: buildIdJson },
+});
+await build({
+  ...browserBuild,
+  entryPoints: { app: path.join(web, "app.ts"), worker: path.join(web, "worker.ts") },
   inject: [shim("buffer-global.ts")],
   // The shared code finds its vendored files relative to its own module; any path will do,
   // since the fs shim serves them by name.
   define: {
     "import.meta.url": JSON.stringify("file:///randomfu/bundle.js"),
     NODE_MAP_PREVIEW: JSON.stringify(nodeMapPreview),
+    BUILD_ID: buildIdJson,
   },
   alias: {
     "node:crypto": shim("crypto.ts"),
@@ -79,7 +103,6 @@ await build({
     "node:url": shim("url.ts"),
   },
   loader: { ".csv": "text", ".enum": "text" },
-  logLevel: "warning",
 });
 
 // ---------------------------------------------------------------- the site's look
