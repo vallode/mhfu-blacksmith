@@ -22,11 +22,15 @@
  * and projection from them (look(renderer)). Leaving writes back what they
  * were.
  *
- * The stage's ambient effects (rain; EU 0x09A4F060's manager) are placed round
- * the camera by their update, which the pause skips too: frozen, the rain
- * stays where the camera was. Photo mode runs that update on its quest frames
- * (hook 0, in the paused frame), so the rain falls round the camera it flies;
- * the hunters, monsters and their effects stay still.
+ * The stage's ambient effects (EU 0x09A4F060's manager) are updated in the
+ * play update, which the pause skips too. The rain is one of them: a texture
+ * on a mesh at the camera (type 0xD: its update copies the camera's position
+ * to +0x50 and scrolls the texture, which is the rain falling). Frozen, it
+ * stays where the camera was. On its quest frames (hook 0, in the paused
+ * frame) photo mode runs the update of each effect of that type and puts its
+ * texture's scroll back after, so the rain stays still round the camera it
+ * flies. The other ambient effects (animated textures) stay frozen, like the
+ * hunters, monsters and their effects.
  *
  * Input: the pad hook gets the buttons before the game. While photo mode is
  * on (and until every button is up after) it holds the game's input lock and
@@ -45,7 +49,11 @@ extern const u8 rf_unpause[];  /* unpause(save): the byte 4 (0 the next frame), 
 extern const u8 rf_no_pause[]; /* noPause(save, 0): 1 where the game can't pause (online) */
 extern const u8 rf_look[];     /* look(renderer): the view and projection from the eye and target */
 extern u8 *const rf_ambient[]; /* the global holding the stage's ambient effects (rain) */
-extern const u8 rf_ambient_update[]; /* their update(manager), a frame of them */
+/* Constants, not addresses, from the effects' update: the list's head in the manager, an
+ * effect's next, and its update's slot in its vtable. */
+extern const u8 rf_ambient_list[];
+extern const u8 rf_ambient_next[];
+extern const u8 rf_ambient_slot[];
 /* A constant, not an address: the disc's choice + 1 (an extern's address is never 0). */
 extern const u8 rf_photo_mode[];
 
@@ -270,13 +278,38 @@ static void fly(u8 *ctrl, u32 buttons) {
 
 static u32 setting(void);
 
+/* An ambient effect: its type, and for type 0xD (at the camera) its textures' scroll. */
+#define EFFECT_TYPE 0x18
+#define AT_CAMERA 0x0d
+#define SCROLL 0x64 /* to 0x94: the layers' scroll, U and V, and how they ease */
+#define SCROLL_WORDS 12
+#define MAX_EFFECTS 64
+
+/* The ambient effects at the camera to the camera, their textures (the rain) as they were. */
+static void follow_camera(void) {
+  u8 *manager = *rf_ambient;
+  if (!in_ram(manager)) return;
+  u8 *effect = *(u8 **)(manager + (u32)rf_ambient_list);
+  for (int n = 0; n < MAX_EFFECTS && in_ram(effect); n++) {
+    u8 *next = *(u8 **)(effect + (u32)rf_ambient_next);
+    u8 *vtable = *(u8 **)effect;
+    if (*(u32 *)(effect + EFFECT_TYPE) == AT_CAMERA && in_ram(vtable)) {
+      void (*update)(u8 *) = *(void (**)(u8 *))(vtable + (u32)rf_ambient_slot);
+      if (in_ram((void *)update)) {
+        u32 *scroll = (u32 *)(effect + SCROLL), keep[SCROLL_WORDS];
+        for (int k = 0; k < SCROLL_WORDS; k++) keep[k] = scroll[k];
+        update(effect);
+        for (int k = 0; k < SCROLL_WORDS; k++) scroll[k] = keep[k];
+      }
+    }
+    effect = next;
+  }
+}
+
 static void quest_frame(u8 *arg) {
   hud = arg;
   quest_at = frames;
-  if (on && save[PAUSE] == PHOTO) {
-    u8 *ambient = *rf_ambient;
-    if (in_ram(ambient)) ((void (*)(u8 *))rf_ambient_update)(ambient);
-  }
+  if (on && save[PAUSE] == PHOTO) follow_camera();
 }
 
 static void pad_hook(u8 *ctrl) {

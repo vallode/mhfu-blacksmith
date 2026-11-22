@@ -24,9 +24,12 @@
  *   0x08815384) rebuilds the projection if the field of view (`+0xC`)
  *   changed and the view (`+0xB80`) from the second pair.
  *
- * - The stage's ambient effects (rain) have a manager (EU `*0x09A4F060`)
- *   whose update (EU 0x088C33E8), in the play update, places them round the
- *   camera: paused, the rain stays where the camera was. Photo mode runs it.
+ * - The stage's ambient effects have a manager (EU `*0x09A4F060`) whose
+ *   update (EU 0x088C33E8), in the play update, runs each effect's (a list at
+ *   +0xA2E0, next at +0x14, the update at vtable +0x1C). The rain is one (type
+ *   0xD): its update moves it to the camera and scrolls its texture. Paused,
+ *   it stays where the camera was; photo mode runs its update and puts the
+ *   scroll back.
  *
  * The patch: the dimming's first eight words test the byte for 1 instead of
  * calling `isPaused`, returning through the `jr $ra` just before it, so
@@ -115,9 +118,12 @@ export interface PhotoSites {
   dim: number;
   noPause: number;
   look: number;
-  /** The global holding the ambient effects' manager, and their update. */
+  /** The global holding the ambient effects' manager. */
   ambient: number;
-  ambientUpdate: number;
+  /** From their update: the list's head in the manager, an effect's next, its update's slot. */
+  ambientList: number;
+  ambientNext: number;
+  ambientSlot: number;
 }
 
 const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
@@ -141,12 +147,16 @@ export function findPhotoSites(vanillaEboot: Buffer): PhotoSites | string {
   }
   const at = (vaddr: number) => word(vanillaEboot, segment.offset + (vaddr - segment.vaddr));
   const ambient = hiLo(at(ambientSet), at(ambientSet + 4));
+  // `lui v1, 1; …; lw s2, -0x5D20(v1)`, `lw t9, 0x1C(t9)`, `lw s1, 0x14(s2)`.
+  const ambientList = hiLo(at(ambientUpdate + 4 * 4), at(ambientUpdate + 7 * 4));
+  const ambientSlot = at(ambientUpdate + 11 * 4) & 0xffff;
+  const ambientNext = at(ambientUpdate + 18 * 4) & 0xffff;
   const dim = paused - DIM_BEFORE_PAUSED;
   const matches = DIM_SIGNATURE.every((w, k) => maskWord(at(dim - 8 + k * 4)) === w);
   if (!matches || jumpTarget(at(dim + 8), dim + 8) !== paused) {
     return "this EBOOT's pause dimming doesn't match";
   }
-  return { paused, dim, noPause, look, ambient, ambientUpdate };
+  return { paused, dim, noPause, look, ambient, ambientList, ambientNext, ambientSlot };
 }
 
 /** The blob's externs for photo mode, from the vanilla EBOOT, or why not. */
@@ -170,7 +180,9 @@ export function findPhotoExterns(
     rf_no_pause: photo.noPause,
     rf_look: photo.look,
     rf_ambient: photo.ambient,
-    rf_ambient_update: photo.ambientUpdate,
+    rf_ambient_list: photo.ambientList,
+    rf_ambient_next: photo.ambientNext,
+    rf_ambient_slot: photo.ambientSlot,
     // Off or on, + 1: an extern's address is never 0 (`blob/photo.c`).
     rf_photo_mode: on ? 2 : 1,
   };

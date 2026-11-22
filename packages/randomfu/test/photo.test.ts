@@ -6,7 +6,6 @@ import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
 import { jalTo } from "../src/patches/mips.js";
 import {
   AMBIENT_SET_SIGNATURE,
-  AMBIENT_UPDATE_SIGNATURE,
   DIM_SIGNATURE,
   LOOK_SIGNATURE,
   NO_PAUSE_SIGNATURE,
@@ -30,6 +29,12 @@ const LOOK = 0x08815384;
 const AMBIENT_UPDATE = 0x088c33e8;
 const AMBIENT_SET = 0x088c3138;
 const AMBIENT = 0x09a4f060;
+/** EU's effects update, as it is (the signature masks the offsets photo mode reads from it). */
+const AMBIENT_UPDATE_WORDS = [
+  0x27bdfff0, 0xafbf000c, 0xafb20008, 0xafb10004, 0x3c030001, 0xafb00000, 0x00831821, 0x8c72a2e0,
+  0x1240000f, 0x00808021, 0x8e590000, 0x8f39001c, 0x0320f809, 0x02402021, 0x8e430004, 0x30630001,
+  0x0003182b, 0x14600004, 0x8e510014, 0x02402821, 0x0e231c61, 0x02002021, 0x1620fff3, 0x02209021,
+];
 
 function elfWith(parts: [number, number[]][]): Buffer {
   const size = 0x100000;
@@ -58,7 +63,7 @@ function eboot(dimCall = PAUSED) {
     [DIM - 8, dim],
     [NO_PAUSE, NO_PAUSE_SIGNATURE],
     [LOOK, LOOK_SIGNATURE],
-    [AMBIENT_UPDATE, AMBIENT_UPDATE_SIGNATURE],
+    [AMBIENT_UPDATE, AMBIENT_UPDATE_WORDS],
     // `lui v0, 0x09A5; sw a0, -0xFA0(v0)`: the global, 0x09A4F060.
     [AMBIENT_SET, [0x3c0209a5, 0xac44f060, ...AMBIENT_SET_SIGNATURE.slice(2)]],
   ]);
@@ -72,7 +77,9 @@ test("photo mode finds the game's pause and camera code", () => {
     noPause: NO_PAUSE,
     look: LOOK,
     ambient: AMBIENT,
-    ambientUpdate: AMBIENT_UPDATE,
+    ambientList: 0xa2e0,
+    ambientNext: 0x14,
+    ambientSlot: 0x1c,
   });
   assert.equal(PAUSED + PAUSE_AT, 0x088567c8);
   assert.equal(PAUSED + UNPAUSE_AT, 0x0885683c);
@@ -135,6 +142,12 @@ const PAUSE = SAVE + 0x6af1a;
 const SAVED_PHOTO = SAVE + 0x666e0 + 188;
 const HUD = 0x09a04ba0;
 const MANAGER = 0x09a44c70;
+const RAIN = 0x09a45550;
+const OTHER = 0x09a456c0;
+const RAIN_VTABLE = 0x089be370;
+const OTHER_VTABLE = 0x089be430;
+const RAIN_UPDATE = 0x09cbab70;
+const OTHER_UPDATE = 0x09cbab90;
 const RENDERER = 0x09998d30;
 const CTRL = 0x09fff000;
 const PAD_GLOBAL = 0x08a62c64;
@@ -170,7 +183,9 @@ function game({ on = true, online = false } = {}) {
     rf_no_pause: NO_PAUSE,
     rf_look: LOOK,
     rf_ambient: AMBIENT,
-    rf_ambient_update: AMBIENT_UPDATE,
+    rf_ambient_list: 0xa2e0,
+    rf_ambient_next: 0x14,
+    rf_ambient_slot: 0x1c,
     rf_photo_mode: on ? 2 : 1,
   };
   const runtime = RUNTIME_OBJECTS.map((o) => ({
@@ -188,8 +203,8 @@ function game({ on = true, online = false } = {}) {
   cpu.native.set(HUD_UPDATE, () => 0);
   cpu.native.set(PAD_READ, () => 0);
   const calls: string[] = [];
-  /** Frames the stage's ambient effects (rain) were updated. */
-  const ambient = { frames: 0 };
+  /** Frames the rain (an ambient effect at the camera) and another effect were updated. */
+  const ambient = { frames: 0, other: 0 };
   const looks: { eye: number[]; target: number[]; fov: number }[] = [];
   const vec = (at: number) => [0, 1, 2].map((k) => float(cpu.u32(at + k * 4)));
   cpu.native.set(externs.rf_pause, (c) => {
@@ -205,10 +220,27 @@ function game({ on = true, online = false } = {}) {
     return 0;
   });
   cpu.native.set(NO_PAUSE, () => 0);
+  // The manager's list: the rain (type 0xD), then an animated texture (type 0x13).
   cpu.setU32(AMBIENT, MANAGER);
-  cpu.native.set(AMBIENT_UPDATE, (c) => {
-    assert.equal(c.reg[4]! >>> 0, MANAGER);
+  cpu.setU32(MANAGER + 0xa2e0, RAIN);
+  cpu.setU32(RAIN, RAIN_VTABLE);
+  cpu.setU32(RAIN + 0x14, OTHER);
+  cpu.setU32(RAIN + 0x18, 0x0d);
+  cpu.setU32(OTHER, OTHER_VTABLE);
+  cpu.setU32(OTHER + 0x14, 0);
+  cpu.setU32(OTHER + 0x18, 0x13);
+  cpu.setU32(RAIN_VTABLE + 0x1c, RAIN_UPDATE);
+  cpu.setU32(OTHER_VTABLE + 0x1c, OTHER_UPDATE);
+  cpu.native.set(RAIN_UPDATE, (c) => {
+    assert.equal(c.reg[4]! >>> 0, RAIN);
     ambient.frames++;
+    // To the camera, and the texture scrolls (the rain falls).
+    [0, 1, 2].forEach((k) => c.setU32(RAIN + 0x50 + k * 4, c.u32(RENDERER + 0x20 + k * 4)));
+    c.setU32(RAIN + 0x8c, bits(float(c.u32(RAIN + 0x8c)) + 0.03));
+    return 0;
+  });
+  cpu.native.set(OTHER_UPDATE, () => {
+    ambient.other++;
     return 0;
   });
   cpu.native.set(LOOK, (c) => {
@@ -259,7 +291,9 @@ test("L+R+START pauses the quest and hands over the camera; START puts it back",
   assert.deepEqual(first, { buttons: 0, x: 128, lock: 1 });
   near(g.looks.at(-1)!.eye, EYE, "it starts where the camera was");
   near(g.looks.at(-1)!.target, TARGET, "looking where it looked");
-  assert.equal(g.ambient.frames, 1, "the rain goes on round the camera");
+  assert.equal(g.ambient.frames, 1, "the rain goes to the camera");
+  assert.equal(g.ambient.other, 0, "the other ambient effects stay still");
+  assert.equal(g.cpu.u32(RAIN + 0x8c), 0, "the rain doesn't fall");
 
   // Held from the start, L, R and START do nothing until let go.
   g.frame(L | R | START);
@@ -270,6 +304,8 @@ test("L+R+START pauses the quest and hands over the camera; START puts it back",
   for (let k = 0; k < 10; k++) g.frame(0, 255, 128);
   let { eye, target } = g.looks.at(-1)!;
   near(target, TARGET, "the stick keeps what it looks at");
+  near(g.vec(RAIN + 0x50), eye, "the rain follows the camera");
+  assert.equal(g.cpu.u32(RAIN + 0x8c), 0, "still not falling");
   assert.ok(Math.abs(distance(eye, target) - distance(EYE, TARGET)) < 0.5);
   assert.ok(eye[0]! < EYE[0]!, "right turns it to the left of the target");
   assert.ok(Math.abs(eye[1]! - EYE[1]!) < 0.01, "at the same height");
@@ -320,6 +356,7 @@ test("L+R+START pauses the quest and hands over the camera; START puts it back",
   g.frame(0, 255, 128);
   assert.equal(g.looks.length, looked, "and the camera");
   assert.equal(g.ambient.frames, ambientFrames, "the game updates the rain itself again");
+  assert.equal(g.ambient.other, 0);
 });
 
 test("photo mode starts only in a quest frame, with the game free to pause", () => {
