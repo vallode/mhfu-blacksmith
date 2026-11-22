@@ -62,6 +62,9 @@ struct rf_save_data {
   u8 camera_pitched; /* 1 once camera_pitch is set */
   u8 camera_spare;
   s16 camera_pitch; /* the sine of the angle the camera looks down at, × 32000 */
+  /* The block smooth tilt last wrote, and its presets as the game had them */
+  u32 camera_block;
+  u32 camera_presets[40];
 };
 
 /* The save's randomfu data, set up by rf_init before any feature's init. */

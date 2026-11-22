@@ -31,8 +31,11 @@
  * while the button that stepped it stays held the pitch moves that way,
  * and the game eases the camera after it. A tilted block keeps preset 1 as
  * the game had it in two more of the zeros after its field of view; its
- * mark says so, and the other presets come back as the EBOOT's own (most
- * stages share them).
+ * mark says so. The save keeps a copy of the block's presets as the game had
+ * them, which a blob loaded again takes if it's this block's; else the
+ * other presets come back as the EBOOT's own (most stages share them) until
+ * the game loads the block again. Only EU's renderer is known to keep the
+ * level where this looks (rf_camera_level), so tilt is off elsewhere.
  *
  * Built with the FPU (single precision only), like hitboxes.c. It makes no
  * game calls.
@@ -46,19 +49,24 @@ extern u32 rf_fov_scale[];    /* the patched projection update's scale: a float 
 extern const u8 rf_camera_fov[];
 extern const u8 rf_camera_distance[];
 extern const u8 rf_camera_tilt[];
+/* The renderer's tilt level's offset + 1; 1 where it isn't known (only EU's is), and tilt stays off. */
+extern const u8 rf_camera_level[];
+extern u8 *const rf_pad[]; /* the global holding the game's pad object */
+u32 sceKernelGetSystemTimeLow(void);
 
 #define CHOICES 4
 static const float fov_scales[CHOICES] = {1.0f, 1.15f, 1.25f, 1.4f};
 static const float distance_scales[CHOICES] = {1.0f, 1.15f, 1.3f, 1.5f};
-/* The tilt: the game's steps, or smooth at this many radians a frame (30 frames a second). */
-#define DEGREES_A_SECOND(d) ((d) * 3.14159265f / 180.0f / 30.0f)
+/* The tilt: the game's steps, or smooth at this many radians a microsecond. */
+#define DEGREES_A_SECOND(d) ((d) * 3.14159265f / 180.0f / 1000000.0f)
+#define LONGEST_FRAME 100000 /* µs: a longer gap (a pause, the first frame) counts as 1/30 s */
+#define FRAME 33333
 static const float tilt_rates[CHOICES] = {0.0f, DEGREES_A_SECOND(30), DEGREES_A_SECOND(50),
                                           DEGREES_A_SECOND(80)};
 
 /* The renderer. */
 #define BUILT_FOV 0x10 /* the field of view the projection was last built with */
-#define LEVEL 0x14     /* u32: the tilt step, 0 (the highest) to 4 */
-#define LEVELS 5
+#define LEVELS 5 /* the u32 at rf_camera_level - 1: the tilt step, 0 (the highest) to 4 */
 #define MIDDLE 2 /* preset 1, the usual camera */
 static const u8 level_presets[LEVELS] = {4, 0, 1, 2, 3};
 #define BLOCK 0x1bc    /* the camera's block of presets */
@@ -94,6 +102,7 @@ static const float game_presets[WORDS] = {
 #define CTRL_BUTTONS 4
 #define UP 0x10
 #define DOWN 0x40
+#define PAD_LOCK 0x17 /* the pad object's: 1 while shops and dialogues have the buttons */
 
 static u32 choice(u8 chosen, const u8 *disc) {
   return chosen && chosen <= CHOICES ? chosen - 1u : (u32)disc - 1u;
@@ -106,7 +115,9 @@ static u32 distance(void) {
   const struct rf_save_data *d = rf_save_data();
   return choice(d ? d->camera_distance : 0, rf_camera_distance);
 }
+static int tilt_known(void) { return (u32)rf_camera_level > 1; }
 static u32 tilt(void) {
+  if (!tilt_known()) return 0;
   const struct rf_save_data *d = rf_save_data();
   return choice(d ? d->camera_tilt : 0, rf_camera_tilt);
 }
@@ -178,14 +189,23 @@ static float pitch;         /* smooth tilt's: the sine of the angle the camera l
 static float pitch_written; /* the one written */
 static int pitched;         /* pitch is set */
 static int loaded;          /* and the save's looked at */
+static float pitch_saved;   /* the one in the save */
 static u32 holding;         /* the D-pad button tilting the camera, 0 for none */
 static float heading;       /* 1 to look further down, -1 up */
+static u32 held1, held2;    /* UP and DOWN the last two frames */
+static u32 last_time;       /* µs, at the last frame */
 
 static void save_pitch(void) {
   struct rf_save_data *d = rf_save_data();
   if (!d) return;
   d->camera_pitched = 1;
   d->camera_pitch = (s16)(pitch * 32000.0f);
+  pitch_saved = pitch;
+}
+
+static int locked(void) {
+  const u8 *p = *rf_pad;
+  return in_ram(p) && p[PAD_LOCK];
 }
 
 /* The sine of the angle preset `k` of `presets` looks down at. */
@@ -232,12 +252,23 @@ static void follow(u8 *ctrl) {
           pitch = pitch_of(presets, USUAL); /* as an earlier load left it, unless the save has one */
           pitched = 1;
         }
-        /* Every preset is the tilted camera: preset 1 was kept, the others are the EBOOT's. */
+        /*
+         * Every preset is the tilted camera: the save's copy if it's this block's (preset 1
+         * agrees with what the block kept), else preset 1 as kept and the EBOOT's others,
+         * exact again once the game loads the block again.
+         */
+        const struct rf_save_data *d = rf_save_data();
         const u32 *usual = presets + USUAL * PRESET_WORDS;
-        for (u32 k = 0; k < WORDS; k++) ((float *)original)[k] = game_presets[k];
-        for (u32 i = 0; i < PRESET_WORDS; i++) original[USUAL * PRESET_WORDS + i] = usual[i];
-        original[USUAL * PRESET_WORDS + EYE] = b[KEPT_EYE];
-        original[USUAL * PRESET_WORDS + DISTANCE] = b[KEPT_DISTANCE];
+        const u32 *copy = d ? d->camera_presets + USUAL * PRESET_WORDS : 0;
+        if (copy && d->camera_block == (u32)b && copy[EYE] == b[KEPT_EYE] &&
+            copy[DISTANCE] == b[KEPT_DISTANCE] && copy[LOOK] == usual[LOOK]) {
+          for (u32 k = 0; k < WORDS; k++) original[k] = d->camera_presets[k];
+        } else {
+          for (u32 k = 0; k < WORDS; k++) ((float *)original)[k] = game_presets[k];
+          for (u32 i = 0; i < PRESET_WORDS; i++) original[USUAL * PRESET_WORDS + i] = usual[i];
+          original[USUAL * PRESET_WORDS + EYE] = b[KEPT_EYE];
+          original[USUAL * PRESET_WORDS + DISTANCE] = b[KEPT_DISTANCE];
+        }
       } else if (before) {
         scale(original, 1.0f / distance_scales[before]);
       }
@@ -249,33 +280,47 @@ static void follow(u8 *ctrl) {
     }
   }
 
-  /* Smooth tilt: the game's step is the input; the button that made it tilts while held. */
-  u32 *level = (u32 *)(r + LEVEL);
+  /*
+   * Smooth tilt: the game's step is the input. A step of one, just after a press of the
+   * button, tilts the camera that way for a frame, and on while the button is held and
+   * the game keeps the buttons.
+   */
+  const u32 time = sceKernelGetSystemTimeLow();
+  u32 elapsed = time - last_time;
+  last_time = time;
+  if (elapsed > LONGEST_FRAME) elapsed = FRAME;
+  const u32 buttons = ctrl ? *(const u32 *)(ctrl + CTRL_BUTTONS) & (UP | DOWN) : 0;
+  const u32 pressed = (buttons & ~held1) | (held1 & ~held2); /* this frame or the last */
+  held2 = held1;
+  held1 = buttons;
   if (smooth) {
+    u32 *level = (u32 *)(r + (u32)rf_camera_level - 1);
     const u32 l = *level;
     if (!loaded) {
       const struct rf_save_data *d = rf_save_data();
       if (d && d->camera_pitched) {
-        pitch = (float)d->camera_pitch / 32000.0f;
+        pitch = pitch_saved = (float)d->camera_pitch / 32000.0f;
       } else if (!pitched) {
         /* From the step the game is on, so the camera doesn't move. */
         pitch = pitch_of(original, l < LEVELS ? level_presets[l] : USUAL);
       }
-      pitched = loaded = 1;
+      pitched = 1;
+      loaded = d != 0;
     }
-    const u32 buttons = ctrl ? *(const u32 *)(ctrl + CTRL_BUTTONS) & (UP | DOWN) : 0;
+    const int lock = locked();
+    int stepped = 0;
     if (l < LEVELS && l != MIDDLE) {
-      if (buttons == UP || buttons == DOWN) {
-        holding = buttons;
+      if ((l == MIDDLE - 1 || l == MIDDLE + 1) && (pressed == UP || pressed == DOWN) && !lock) {
+        holding = buttons & pressed; /* 0 for a tap already let go: it still tilts a frame */
         heading = l < MIDDLE ? 1.0f : -1.0f;
+        stepped = 1;
       }
       *level = MIDDLE;
     }
-    if (holding && !(buttons & holding)) {
-      holding = 0;
-      save_pitch();
-    }
-    if (holding) pitch += heading * tilt_rates[smooth] * root(1.0f - pitch * pitch);
+    if (holding && (!(buttons & holding) || lock)) holding = 0;
+    if (holding || stepped)
+      pitch += heading * tilt_rates[smooth] * (float)(s32)elapsed * root(1.0f - pitch * pitch);
+    if (!holding && pitch != pitch_saved) save_pitch();
   } else {
     holding = 0;
   }
@@ -288,6 +333,11 @@ static void follow(u8 *ctrl) {
     tilt_all(written, (const float *)original + USUAL * PRESET_WORDS, distance_scales[now]);
     b[KEPT_EYE] = original[USUAL * PRESET_WORDS + EYE];
     b[KEPT_DISTANCE] = original[USUAL * PRESET_WORDS + DISTANCE];
+    struct rf_save_data *d = rf_save_data();
+    if (d) {
+      d->camera_block = (u32)b;
+      for (u32 k = 0; k < WORDS; k++) d->camera_presets[k] = original[k];
+    }
   } else {
     b[KEPT_EYE] = b[KEPT_DISTANCE] = 0;
   }
@@ -353,12 +403,14 @@ void rf_camera_init(u32 reason, u8 *save) {
   scaled_with = 0;
   tilted_with = 0;
   pitched = loaded = 0;
-  holding = 0;
+  pitch_saved = 2.0f; /* none */
+  holding = held1 = held2 = 0;
+  last_time = sceKernelGetSystemTimeLow() - FRAME;
   apply_fov();
   rf_on(RF_HOOK_PAD, follow);
   if (rf_add_setting) {
     rf_add_setting(&fov_setting);
     rf_add_setting(&distance_setting);
-    rf_add_setting(&tilt_setting);
+    if (tilt_known()) rf_add_setting(&tilt_setting);
   }
 }

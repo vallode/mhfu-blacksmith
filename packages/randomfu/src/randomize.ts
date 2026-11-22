@@ -1100,7 +1100,7 @@ export function randomize(
     const cameraFound = !game.eboot
       ? "the EBOOT wasn't loaded"
       : cameraWanted || typeof sites !== "string"
-        ? prepareCamera(game.eboot, settings)
+        ? prepareCamera(game.eboot, settings, game.region, sites)
         : null;
     if (typeof cameraFound === "string") {
       if (cameraWanted) reports.push(notApplied("Camera", cameraFound));
@@ -1389,7 +1389,7 @@ export function randomize(
       if (typeof patched === "string") {
         if (cameraWanted) reports.push(notApplied("Camera", patched));
       } else if (cameraWanted) {
-        reports.push(cameraReport(settings, cameraLinked));
+        reports.push(cameraReport(settings, cameraLinked, game.region));
       }
     }
   }

@@ -42,8 +42,11 @@ import { decodeObjects } from "../blob/link.js";
 import { CAMERA_OBJECTS } from "../blob/camera-object.js";
 import type { Settings } from "../settings.js";
 import type { ShuffleReport } from "../shuffles/shuffle.js";
+import { findImports } from "./code-loader.js";
+import type { HookSites } from "./game-hooks.js";
 import { findRendererGlobal } from "./hitboxes.js";
-import { codeSegment, findUnique, hi16, maskWord } from "./mips.js";
+import { codeSegment, findUnique, hi16, hiLo, maskWord } from "./mips.js";
+import { SYSTEM_TIME_LOW_NID } from "./unknown-quests.js";
 
 /** The scales of each choice, as `blob/camera.c` has them. */
 export const FOV_SCALES = { normal: 1, wide: 1.15, wider: 1.25, widest: 1.4 } as const;
@@ -53,6 +56,10 @@ export const TILT_RATES = { steps: 0, slow: 30, smooth: 50, fast: 80 } as const;
 const FOV_CHOICES = Object.keys(FOV_SCALES);
 const DISTANCE_CHOICES = Object.keys(DISTANCE_SCALES);
 const TILT_CHOICES = Object.keys(TILT_RATES);
+/** Where the renderer keeps the tilt level; seen only on EU, so tilt is EU's only. */
+const LEVEL_OFFSET: Partial<Record<string, number>> = { eu: 0x14 };
+/** Whether smooth tilt works on a disc of `region`. */
+export const tiltKnown = (region: string) => LEVEL_OFFSET[region] !== undefined;
 
 /** Whether any camera option is off the game's own. */
 export const cameraOn = (settings: Settings) =>
@@ -126,12 +133,15 @@ export function patchFov(eboot: Buffer, scale: number): number | string {
 }
 
 /**
- * The blob's externs for the camera, from the vanilla EBOOT, or why not.
- * The EBOOT is patched later (`patchFov`), once it's known to be needed.
+ * The blob's externs for the camera, from the vanilla EBOOT, or why not
+ * (the blob's need the hook sites). The EBOOT is patched later
+ * (`patchFov`), once it's known to be needed.
  */
 export function prepareCamera(
   vanillaEboot: Buffer,
   settings: Settings,
+  region: string,
+  sites: HookSites | string,
 ): Record<string, number> | string {
   const segment = codeSegment(vanillaEboot);
   if (!segment) return "the EBOOT isn't an ELF";
@@ -139,7 +149,20 @@ export function prepareCamera(
   if (typeof renderer === "string") return renderer;
   const found = findProjectionUpdate(vanillaEboot);
   if (typeof found === "string") return found;
+  const blob: Record<string, number> = {};
+  if (typeof sites !== "string") {
+    const time = findImports(vanillaEboot, segment).get(SYSTEM_TIME_LOW_NID);
+    if (time === undefined) return "this EBOOT doesn't import sceKernelGetSystemTimeLow";
+    const at = (vaddr: number) =>
+      vanillaEboot.readUInt32LE(segment.offset + (vaddr - segment.vaddr));
+    // `lui v0, hi; jal padRead; lw a0, lo(pad)(v0)`: the pad object's global.
+    blob.rf_pad = hiLo(at(sites.pad - 4), at(sites.pad + 4));
+    blob.sceKernelGetSystemTimeLow = time;
+  }
   return {
+    ...blob,
+    // The level's offset + 1, or 1 where it isn't known: an extern's address is never 0.
+    rf_camera_level: (LEVEL_OFFSET[region] ?? 0) + 1,
     rf_camera: renderer,
     rf_fov_scale: found.at + SCALE_WORD * 4,
     // The disc's choices + 1: an extern's address is never 0 (`blob/camera.c`).
@@ -152,7 +175,7 @@ export function prepareCamera(
 export const cameraObjects = () => decodeObjects(CAMERA_OBJECTS);
 
 /** What the disc starts with; `linked` when the blob is in, to move the camera back. */
-export function cameraReport(settings: Settings, linked: boolean): ShuffleReport {
+export function cameraReport(settings: Settings, linked: boolean, region: string): ShuffleReport {
   const fov = FOV_SCALES[settings["camera.fov"]];
   const distance = DISTANCE_SCALES[settings["camera.distance"]];
   const tilt = TILT_RATES[settings["camera.tilt"]];
@@ -165,14 +188,16 @@ export function cameraReport(settings: Settings, linked: boolean): ShuffleReport
   }
   if (tilt) {
     notes.push(
-      linked
-        ? `D-pad up and down tilt the camera smoothly, ${tilt}° a second.`
-        : blob("Camera tilt"),
+      !tiltKnown(region)
+        ? "Camera tilt isn't on this disc: only EU's camera is known to keep its step where it looks."
+        : linked
+          ? `D-pad up and down tilt the camera smoothly, ${tilt}° a second.`
+          : blob("Camera tilt"),
     );
   }
   notes.push(
     linked
-      ? "All three can be changed in game, from the START menu's randomfu entry."
+      ? "They can be changed in game, from the START menu's randomfu entry."
       : "The field of view can't be changed in game on this disc.",
   );
   return { title: "Camera", notes, lines: [], summary: `Camera: ${notes.join(" ")}` };

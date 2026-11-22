@@ -112,6 +112,12 @@ const SAVED_PITCH = SAVED_FOV + 6;
 /** The renderer's tilt step (0 the highest, preset 4, to 4); the pad hook's SceCtrlData. */
 const LEVEL = RENDERER + 0x14;
 const CTRL = 0x09fff000;
+/** The pad object's global, the pad object (its +0x17 locks the buttons), and the system timer. */
+const PAD_GLOBAL = 0x08a62c64;
+const PAD = 0x09a00000;
+const TIME = 0x08880000;
+/** µs a frame, at 30 frames a second. */
+const FRAME_US = 33333;
 const UP = 0x10;
 const DOWN = 0x40;
 const SCALE = UPDATE + SCALE_WORD * 4;
@@ -125,13 +131,16 @@ const PRESETS = [
 ];
 
 /** The blob linked, with a renderer whose camera uses a stage's block; the disc's choices given. */
-function game(fov: number, distance: number, blockFov = FOV, tilt = 0) {
+function game(fov: number, distance: number, blockFov = FOV, tilt = 0, level = 0x14 + 1) {
   const externs = {
     rf_camera: 0x089cbbe4,
     rf_fov_scale: SCALE,
     rf_camera_fov: fov + 1,
     rf_camera_distance: distance + 1,
     rf_camera_tilt: tilt + 1,
+    rf_camera_level: level,
+    rf_pad: PAD_GLOBAL,
+    sceKernelGetSystemTimeLow: TIME,
   };
   const runtime = RUNTIME_OBJECTS.map((o) => ({
     name: o.name,
@@ -143,6 +152,9 @@ function game(fov: number, distance: number, blockFov = FOV, tilt = 0) {
   const hooks = assembleHooks(HOOKS, BLOB, [{ hook: HOOK.pad, target: PAD_READ }]);
   cpu.load(HOOKS, hooks.code);
   cpu.native.set(PAD_READ, () => 0);
+  const clock = { now: 0x10000000, step: FRAME_US };
+  cpu.native.set(TIME, () => (clock.now = (clock.now + clock.step) >>> 0));
+  cpu.setU32(PAD_GLOBAL, PAD);
   cpu.setU32(externs.rf_camera, RENDERER);
   cpu.setU32(RENDERER + 0xc, bits(FOV));
   cpu.setU32(RENDERER + 0x10, bits(FOV));
@@ -171,7 +183,7 @@ function game(fov: number, distance: number, blockFov = FOV, tilt = 0) {
     cpu.call(hooks.stubs[0]!, [CTRL]);
   };
   init();
-  return { cpu, frame, init, presets, writeBlock };
+  return { cpu, clock, frame, init, presets, writeBlock };
 }
 
 /** The presets `scale` times as far back: eye height, distance, look height. */
@@ -299,8 +311,8 @@ const sineOf = ([eye, distance, look]: number[]) =>
   (eye! - look!) / Math.hypot(distance!, eye! - look!);
 const savedPitch = (cpu: Cpu) => ((cpu.u16(SAVED_PITCH) << 16) >> 16) / 32000;
 const smooth = Object.keys(TILT_RATES).indexOf("smooth");
-/** Smooth's step a frame, in radians, at 30 frames a second. */
-const RATE = (TILT_RATES.smooth * Math.PI) / 180 / 30;
+/** Smooth's step a frame, in radians. */
+const RATE = (((TILT_RATES.smooth * Math.PI) / 180) * FRAME_US) / 1e6;
 
 test("smooth tilt makes every step the usual camera, at the angle of the step the game is on", () => {
   const g = game(0, 0, FOV, smooth);
@@ -399,4 +411,91 @@ test("the game's steps leave the tilt step alone", () => {
   g.frame(DOWN);
   assert.equal(g.cpu.u32(LEVEL), 0);
   near(g.presets(), expected(1.3));
+});
+
+test("only a step of one just after a press tilts, and a tap tilts a frame", () => {
+  const g = game(0, 0, FOV, smooth);
+  g.frame(UP); // held already
+  g.frame(UP);
+  const start = sineOf(g.presets()[1]!);
+  // The game moves the level while the button was held all along (an area loading): nothing.
+  g.cpu.setU32(LEVEL, 0);
+  g.frame(UP);
+  g.frame(UP);
+  near(g.presets(), tilted(start), "not a press");
+  assert.equal(g.cpu.u32(LEVEL), 2);
+  // Two levels at once, just after a press: nothing.
+  g.frame();
+  g.cpu.setU32(LEVEL, 0);
+  g.frame(DOWN);
+  g.frame(DOWN);
+  near(g.presets(), tilted(start), "not a step of one");
+  // A tap: pressed one frame, the game's step seen the next, with the button up.
+  g.frame();
+  g.frame(DOWN);
+  g.cpu.setU32(LEVEL, 1);
+  g.frame();
+  const once = start + RATE * Math.sqrt(1 - start * start);
+  near(g.presets(), tilted(once), "a frame's tilt");
+  g.frame();
+  near(g.presets(), tilted(once), "and no more");
+});
+
+test("tilting stops when the game locks the buttons", () => {
+  const g = game(0, 0, FOV, smooth);
+  g.frame();
+  g.cpu.setU32(LEVEL, 1);
+  g.frame(DOWN);
+  g.frame(DOWN);
+  const before = sineOf(g.presets()[1]!);
+  g.cpu.setU8(PAD + 0x17, 1);
+  g.frame(DOWN);
+  g.frame(DOWN);
+  near(g.presets(), tilted(before), "locked");
+  // A step while locked doesn't start one either.
+  g.frame();
+  g.cpu.setU32(LEVEL, 3);
+  g.frame(UP);
+  near(g.presets(), tilted(before), "locked step");
+});
+
+test("smooth tilt turns as fast at 60 frames a second", () => {
+  const at = (step: number) => {
+    const g = game(0, 0, FOV, smooth);
+    g.clock.step = step;
+    g.frame();
+    g.cpu.setU32(LEVEL, 1);
+    for (let k = 0; k < (FRAME_US * 10) / step; k++) g.frame(DOWN);
+    return sineOf(g.presets()[1]!);
+  };
+  assert.ok(Math.abs(at(FRAME_US) - at(FRAME_US / 2)) < 2e-3);
+});
+
+test("the save's copy brings back every preset of a tilted block, and only that block's", () => {
+  const word0 = (cpu: Cpu) => float(cpu.u32(BLOCK + 0x20 + 2 * 0x20));
+  const g = game(0, 2, FOV, smooth);
+  g.frame();
+  g.init();
+  g.frame();
+  g.cpu.setU8(SAVED_TILT, 1); // steps
+  g.frame();
+  assert.equal(word0(g.cpu), f(-501.3), "preset 2's first word, the stage's");
+  // A copy of another block: preset 1 as kept, the EBOOT's others.
+  const h = game(0, 2, FOV, smooth);
+  h.frame();
+  h.cpu.setU32(SAVE + 0x666e0 + 24, BLOCK + 0x1000);
+  h.init();
+  h.frame();
+  h.cpu.setU8(SAVED_TILT, 1);
+  h.frame();
+  assert.equal(word0(h.cpu), 0);
+  near(h.presets(), expected(1.3));
+});
+
+test("tilt stays off where the renderer's level isn't known", () => {
+  const g = game(0, 0, FOV, smooth, 1);
+  g.cpu.setU32(LEVEL, 0);
+  g.frame(DOWN);
+  assert.equal(g.cpu.u32(LEVEL), 0);
+  near(g.presets(), expected(1));
 });

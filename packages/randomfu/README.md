@@ -184,7 +184,7 @@ web app shows as a tag):
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
 | `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
 | `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
-| `camera.tilt`                     | `steps`     | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast` (caps Guild Cards)       |
+| `camera.tilt`                     | `steps`     | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast` (EU disc only)           |
 | `quest.endWait`                   | `normal`    | The wait after a quest: `short` (20 s for every quest) or `instant` (straight to the rewards)          |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
 | `hud.damageNumbers`               | off         | Numbers at the part each of your hits strikes: `total` or `split` element (caps Guild Cards)           |
@@ -1400,16 +1400,27 @@ How randomfu does it (`src/patches/camera.ts`, `blob/camera.c`):
   are one transform of the same copy) and look height, at a pitch the save
   keeps (`camera_pitch`, the sine × 32000). It puts the game's level back on
   the middle one each frame, so every step looks the same and the game's
-  own step is the input: when the game steps (it doesn't while a menu has
-  the D-pad), the pitch moves that way for as long as the button that
-  stepped it is held, at 30, 50 or 80° a second, between 55° down and 20°
-  up, with the eye kept 40 above the ground under the hunter. It starts at
-  the angle of the step the game was on. A tilted block's mark has a
-  second bit, and preset 1's eye height and distance as the game had them
-  go in two more of the zeros after the field of view (words 5 and 6); a
-  blob loaded again takes preset 1 from there, the others from the
-  EBOOT's own presets (`game_presets` in `blob/camera.c`), and the pitch
-  from the save or, if it has none, from the block.
+  own step is the input. A step of one level, in the frame of a press of up
+  or down or the frame after (the game steps after the pad hook), tilts the
+  camera that way: for a frame if the button is already up, and on while
+  it's held and the pad object's input lock (+0x17, shops and dialogues)
+  stays off. A level the game moves by more, or while the button was held
+  all along (an area loading), only goes back to the middle. The game
+  doesn't step while a menu has the D-pad. It turns at 30, 50 or 80° a
+  second, timed by `sceKernelGetSystemTimeLow` (a gap over 0.1 s counts as
+  1/30 s), between 55° down and 20° up, with the eye kept 40 above the
+  ground under the hunter, and starts at the angle of the step the game was
+  on. A tilted block's mark has a second bit, and preset 1's eye height and
+  distance as the game had them go in two more of the zeros after the field
+  of view (words 5 and 6). The save keeps a copy of the block's presets as
+  the game had them, and the block's address (`camera_block`,
+  `camera_presets`): a blob loaded again takes that copy when it's the
+  block's and preset 1 agrees with what the block kept, else preset 1 from
+  the block and the others from the EBOOT's own presets (`game_presets` in
+  `blob/camera.c`), exact again once the game loads the block again; the
+  pitch comes from the save or, if it has none, from the block. Only EU's
+  renderer is known to keep the level at +0x14 (`rf_camera_level`), so
+  other discs keep the game's steps and have no Camera tilt setting.
 
 ## Quest end
 
