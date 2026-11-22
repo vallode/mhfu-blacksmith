@@ -23,10 +23,19 @@ const EXTERNS = {
   rf_map_shows: 0x08844578,
   rf_hud_sprite: 0x0882af70,
   rf_hud_sprites: 0x089391a8,
+  rf_crowns: 0x08930bdc,
+  rf_crown_groups: 0x0899bf40,
 };
 const AREA = 0x64;
 const LARGE = 77;
 const SMALL = 35;
+/** Yian Kut-Ku and its subspecies share one crown entry; Rajang (a large monster) has an empty one. */
+const KUT_KU = 6;
+const BLUE_KUT_KU = 38;
+const RAJANG = 11;
+/** The HUD's crown sprites (31 silver, 32 gold) as the stretching routine reads them. */
+const SILVER = [216, 52, 16, 12, -0x7fff, 0];
+const GOLD = [232, 52, 16, 12, -0x7fff, 0];
 
 const runtime = () =>
   RUNTIME_OBJECTS.map((o) => ({ name: o.name, data: Buffer.from(o.base64, "base64") }));
@@ -42,9 +51,11 @@ interface Draw {
 }
 
 /** The blob, the hooks and a quest in a CPU: the HUD routines record what they draw. */
-function quest(mode: keyof typeof MODE) {
+function quest(mode: keyof typeof MODE, { crownCode = true } = {}) {
+  const { rf_crowns, rf_crown_groups, ...gauge } = EXTERNS;
   const blob = linkBlob([...runtime(), ...monsterHpObjects()], BLOB, {
-    ...EXTERNS,
+    ...gauge,
+    ...(crownCode ? { rf_crowns, rf_crown_groups } : {}),
     rf_monster_hp_mode: MODE[mode],
   });
   const cpu = new Cpu();
@@ -86,8 +97,29 @@ function quest(mode: keyof typeof MODE) {
   cpu.setU32(EXTERNS.rf_monsters, MANAGER);
   cpu.setU8(EXTERNS.rf_em_chunks + LARGE * 0x1d0 + 0x14f, 1);
   cpu.setU8(EXTERNS.rf_em_chunks + SMALL * 0x1d0 + 0x14f, 0);
+  for (const em of [KUT_KU, BLUE_KUT_KU, RAJANG]) {
+    cpu.setU8(EXTERNS.rf_em_chunks + em * 0x1d0 + 0x14f, 1);
+  }
+  // The HUD's crown sprites, and the crown table as the EU disc has these entries.
+  cpu.write(EXTERNS.rf_hud_sprites + 31 * 12, sprite(216, 52, 16, 12));
+  cpu.write(EXTERNS.rf_hud_sprites + 32 * 12, sprite(232, 52, 16, 12));
+  const groups = 0x0899c000;
+  const crownEntry = (i: number, em: number, members: number[], [silver, gold, mini]: number[]) => {
+    const at = EXTERNS.rf_crowns + i * 14;
+    cpu.setU8(at, i);
+    cpu.setU8(at + 3, em);
+    cpu.setU16(at + 4, silver!);
+    cpu.setU16(at + 6, gold!);
+    cpu.setU16(at + 8, mini!);
+    const list = groups + em * 8;
+    cpu.write(list, Buffer.from([...members, 0xff]));
+    for (const member of members) cpu.setU32(EXTERNS.rf_crown_groups + member * 4, list);
+  };
+  crownEntry(15, LARGE, [LARGE], [119, 123, 90]);
+  crownEntry(22, KUT_KU, [KUT_KU, BLUE_KUT_KU], [114, 122, 90]);
+  crownEntry(40, RAJANG, [RAJANG], [0, 0, 0]);
 
-  const monster = (slot: number, em: number, hp: number, max: number) => {
+  const monster = (slot: number, em: number, hp: number, max: number, size = 100) => {
     const at = 0x090bd2e0 + slot * 0x53b0;
     cpu.setU32(MANAGER + 0x1220 + slot * 4, at);
     cpu.setU32(at + 4, 3);
@@ -95,6 +127,7 @@ function quest(mode: keyof typeof MODE) {
     cpu.setU8(at + 0x1e8, em);
     cpu.setU16(at + 0x2e4, hp);
     cpu.setU16(at + 0x41e, max);
+    cpu.setU16(at + 0x274, size);
     return at;
   };
   // A frame: game_task's HUD update, then the gauge call inside it.
@@ -108,7 +141,17 @@ function quest(mode: keyof typeof MODE) {
   return { cpu, blob, hooks, frame, monster, painted, draws };
 }
 
+/** A record of the HUD's sprite table: u, v, w, h, texture 0x8001, set 0. */
+function sprite(u: number, v: number, w: number, h: number) {
+  const record = Buffer.alloc(12);
+  [u, v, w, h].forEach((n, k) => record.writeInt16LE(n, k * 2));
+  record.writeUInt16LE(0x8001, 8);
+  return record;
+}
+
 const fills = (draws: Draw[]) => draws.filter((d) => d.what === "fill");
+/** The crown sprites: the only sprites drawn right of the left cap. */
+const crowns = (draws: Draw[]) => draws.filter((d) => d.what === "sprite" && d.x > 100);
 
 test("a large monster gets a short gauge on the left, capped at both ends", () => {
   const q = quest("always");
@@ -120,6 +163,60 @@ test("a large monster gets a short gauge on the left, capped at both ends", () =
     { what: "cap", x: 108, y: 92 },
     { what: "fill", x: 28, y: 93, w: 50, colour: [0xc0, 0x10, 0x10] },
   ]);
+});
+
+test("a crown-sized monster gets the HUD's crown over its gauge's right end, as the Guild Card decides", () => {
+  const q = quest("always");
+  const m = q.monster(0, LARGE, 300, 480);
+  // Giadrome: a mini crown at 90 or less, silver from 119, gold from 123.
+  const at = (size: number) => {
+    q.cpu.setU16(m + 0x274, size);
+    return crowns(q.frame());
+  };
+  assert.deepEqual(at(123), [{ what: "sprite", x: 106, y: 90, w: 16, h: 12, sprite: GOLD }]);
+  // Drawn after the right cap, so it sits on top of it.
+  const order = q.frame().map((d) => d.what);
+  assert.ok(order.lastIndexOf("sprite") > order.indexOf("cap"));
+  assert.deepEqual(at(125), [{ what: "sprite", x: 106, y: 90, w: 16, h: 12, sprite: GOLD }]);
+  assert.deepEqual(at(122), [{ what: "sprite", x: 106, y: 90, w: 16, h: 12, sprite: SILVER }]);
+  assert.deepEqual(at(119), [{ what: "sprite", x: 106, y: 90, w: 16, h: 12, sprite: SILVER }]);
+  assert.deepEqual(at(118), []);
+  assert.deepEqual(at(100), []);
+  assert.deepEqual(at(91), []);
+  // No mini crown sprite: the gold one, smaller, with the same centre.
+  assert.deepEqual(at(90), [{ what: "sprite", x: 108, y: 91, w: 12, h: 9, sprite: GOLD }]);
+  assert.deepEqual(at(75), [{ what: "sprite", x: 108, y: 91, w: 12, h: 9, sprite: GOLD }]);
+  // 0 is no size yet, not a tiny monster.
+  assert.deepEqual(at(0), []);
+});
+
+test("without the disc's crown code the gauge still shows, with no crowns", () => {
+  const q = quest("always", { crownCode: false });
+  q.monster(0, LARGE, 300, 480, 125);
+  const draws = q.frame();
+  assert.equal(fills(draws)[0]!.w, 50);
+  assert.deepEqual(crowns(draws), []);
+});
+
+test("a subspecies takes its group's crown entry, and a monster without thresholds gets none", () => {
+  const q = quest("always");
+  q.monster(0, BLUE_KUT_KU, 100, 100, 122);
+  q.monster(1, KUT_KU, 100, 100, 114);
+  q.monster(2, RAJANG, 100, 100, 50);
+  assert.deepEqual(crowns(q.frame()), [
+    { what: "sprite", x: 106, y: 90, w: 16, h: 12, sprite: GOLD },
+    { what: "sprite", x: 106, y: 104, w: 16, h: 12, sprite: SILVER },
+  ]);
+});
+
+test("the crown goes with the gauge: none for a monster whose gauge isn't drawn", () => {
+  const q = quest("painted");
+  const m = q.monster(0, LARGE, 480, 480, 125);
+  assert.deepEqual(q.frame(), []);
+  q.painted.add(m);
+  assert.equal(crowns(q.frame()).length, 1);
+  q.cpu.setU32(HUD + 0x1194, 2);
+  assert.deepEqual(q.frame(), []);
 });
 
 test("small monsters, dead ones, inactive ones and ones in other areas get none", () => {

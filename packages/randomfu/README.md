@@ -1303,6 +1303,15 @@ randomfu entry (Damage numbers, below) changes it in game.
   frames).
 - **`always`** shows every large monster in the area.
 
+A monster whose size makes a crown gets one over its gauge's right end
+(on the end cap, centred on the bar), whenever the gauge shows: the HUD's
+own gold or silver crown, and for a mini crown the gold one drawn smaller
+(the HUD has no mini crown). It's the crown the Guild Card would record if
+the monster were killed or captured now: its size against its species'
+entry in the crown table, so a subspecies uses its base monster's
+thresholds (mhfu-extract's README, "Monster size"). On a disc where the
+crown code isn't found, the gauges show without crowns.
+
 What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
 
 - A monster is an entity like the hunter: species `+0x1E8`, HP `+0x2E4`
@@ -1319,6 +1328,20 @@ What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
   show (not in cutscenes, nor with the HUD hidden). The monster gauges are
   drawn right after it, from a hook on that call, so they show and hide
   with it.
+- A monster's size in percent is a u16 at `+0x274`. `game_task` copies it
+  from the quest's monster record (`+0x30`, where the size roll puts it)
+  when the monster spawns, scales the model by it, and a kill or capture
+  writes it to the quest's largest and smallest records (EBOOT
+  `0x0886AC48`). Read live on EU: a Yian Kut-Ku's record and entity both
+  held 98.
+- The Guild Card's check (EU `0x08853F84`) gives a mini crown at most the
+  entry's `mini`, gold at least `gold`, else silver at least `silver`. The
+  blob finds the crown table through that check and the emID groups
+  through their lookup (`0x0884FC74`); both match once on EU and JP.
+- The HUD texture (0x8001, in RAM while in a quest) has a silver and a gold
+  crown, 16×12: sprites 31 and 32 of its sprite table. Seen in EU's
+  texture and in game; JP's sprite table has the same records, but its
+  texture wasn't looked at.
 
 Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
 dies or leaves the area, and `painted` shows it once a Paintball hits. Not

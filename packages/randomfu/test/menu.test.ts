@@ -50,6 +50,8 @@ const EXTERNS = {
   rf_map_shows: 0x08844578,
   rf_hud_sprite: 0x0882af70,
   rf_hud_sprites: 0x089391a8,
+  rf_crowns: 0x08930bdc,
+  rf_crown_groups: 0x0899bf40,
   rf_monster_hp_mode: 1, // off
   rf_quest_menu_id: 0x78,
   rf_village_menu_id: VILLAGE_IDS + 13 * 2,

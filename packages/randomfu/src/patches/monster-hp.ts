@@ -33,6 +33,21 @@
  *   cells of cockpit texture 0x8002 found through a lookup the panel calls,
  *   were tried at the gauge's start and looked out of place at half size.)
  *
+ * - A monster's size, in percent, is a u16 at `+0x274`: `game_task`
+ *   (EU 0x09AB2D84) copies it from the quest's monster record (`+0x30`,
+ *   where the size roll puts it), the model is scaled by it, and a kill or
+ *   capture writes it to the quest's largest and smallest records (EBOOT
+ *   0x0886AC48), which the Guild Card keeps. Two story quests grow a
+ *   monster in place, and it's `+0x274` that grows.
+ * - The Guild Card gives a crown by its check (EU 0x08853F84) against the
+ *   crown table (mhfu-extract `monsters/sizes.ts`): at most `mini`, at least
+ *   `gold`, else at least `silver`. An entry covers the emIDs its group
+ *   lists (`u8*` by emID, EU 0x0899BF40, found through the lookup at
+ *   0x0884FC74). The blob finds a monster's entry by its group and draws
+ *   the HUD texture's crown sprites (31 silver, 32 gold, 16×12; there's no
+ *   mini crown, so the gold one smaller) over the gauge's right end cap.
+ *   Where the crown code isn't found, the gauge goes on without crowns.
+ *
  * Everything is found by code signatures, which match the EU and JP (FUC)
  * discs. The blob only reads game state.
  */
@@ -40,7 +55,7 @@ import { OVL_HEADER_SIZE, type OvlFile } from "mhfu-extract/src/container/ovl.js
 import { locateMonsterChunks } from "mhfu-extract/src/monsters/hitzones.js";
 import { decodeObjects } from "../blob/link.js";
 import { MONSTER_HP_OBJECTS } from "../blob/monster-hp-object.js";
-import { findUnique, hiLo, jumpTarget, maskWord, type Segment } from "./mips.js";
+import { findUnique, hiLo, jumpTarget, maskImmediates, maskWord, type Segment } from "./mips.js";
 
 export const MONSTER_HP_MODES = ["off", "painted", "always"] as const;
 export type MonsterHpMode = (typeof MONSTER_HP_MODES)[number];
@@ -77,6 +92,32 @@ export const ICON_PANEL_SIGNATURE = [
 const ICON_PANEL_SPRITE_CALL = 0x30;
 /** The sprite table's address: `lui` and `addiu` in the cap and stretch routines. */
 const SPRITE_TABLE_WORDS = { cap: [0x20, 0x28], sprite: [0x28, 0x30] } as const;
+
+/**
+ * The crown group lookup (EU 0x0884FC74) and the one after it, immediates
+ * masked: `andi v0,a1,0xff; sll v1,v0,2; lui v0,hi; addiu v0,v0,lo;
+ * addu v0,v0,v1; lw v0,0(v0); jr ra; lbu v0,0(v0)`, then the same without
+ * the `lbu`. `hi`/`lo` (words 2 and 3) are the group table.
+ */
+export const CROWN_GROUPS_SIGNATURE = [
+  0x30a200ff, 0x00021880, 0x3c02089a, 0x2442bf40, 0x00431021, 0x8c420000, 0x03e00008, 0x90420000,
+  0x30a200ff, 0x00021880, 0x3c02089a, 0x2442bf40, 0x00431021, 0x03e00008,
+].map(maskImmediates);
+/**
+ * The Guild Card's crown check (EU 0x08853F84), immediates masked: `lbu
+ * a1,0(s1); lui v0,hi; addiu v0,v0,lo; a0 = a1 × 14 + v0; lh v0,8(a0)` (the
+ * mini threshold), `slt`, then `lh v0,6(a0)` (gold). `hi`/`lo` (words 1 and
+ * 2) are the crown table.
+ */
+export const CROWN_CHECK_SIGNATURE = [
+  0x92250000, 0x3c020893, 0x24420bdc, 0x000520c0, 0x00852023, 0x00042040, 0x00442021, 0x84820008,
+  0x3203ffff, 0x0043082a, 0x5420000b, 0x84820006,
+].map(maskImmediates);
+/** The crown table's offsets the check reads, kept exact: mini at 8, gold at 6. */
+const CROWN_CHECK_WORDS: readonly [number, number][] = [
+  [0x1c, 0x84820008],
+  [0x2c, 0x84820006],
+];
 
 /** The map's test (EU 0x08844578), masked: it reads `+4`, `+0x29A`, the HUD's floor and `+0x1E8`. */
 export const MAP_SHOWS_SIGNATURE = [
@@ -176,6 +217,21 @@ export function findMonsterHpExterns(
     return "this EBOOT's HUD sprite code doesn't match";
   }
 
+  // Crowns are extra: without their code the gauge links with no crowns (weak externs).
+  const [groups, check] = findUnique(
+    vanillaEboot,
+    segment,
+    [CROWN_GROUPS_SIGNATURE, CROWN_CHECK_SIGNATURE],
+    maskImmediates,
+  );
+  const crowns: Record<string, number> =
+    groups == null || check == null || CROWN_CHECK_WORDS.some(([o, w]) => at32(check + o) !== w)
+      ? {}
+      : {
+          rf_crowns: hiLo(at32(check + 4), at32(check + 8)),
+          rf_crown_groups: hiLo(at32(groups + 8), at32(groups + 12)),
+        };
+
   const monsters = findMonsterExterns(gameTask, ovl);
   if (typeof monsters === "string") return monsters;
   if (findAll(gameTask, OVL_HEADER_SIZE, PAINT_CODE, false).length !== 1) {
@@ -190,6 +246,7 @@ export function findMonsterHpExterns(
     rf_map_shows: mapShows,
     rf_hud_sprite: sprite,
     rf_hud_sprites: sprites,
+    ...crowns,
     rf_monster_hp_mode: MODE[mode],
   };
 }
