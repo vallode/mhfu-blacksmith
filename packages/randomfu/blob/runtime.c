@@ -48,6 +48,7 @@ __attribute__((weak)) void rf_camera_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_send_all_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_quest_end_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_photo_init(u32 reason, u8 *save);
+__attribute__((weak)) void rf_target_camera_init(u32 reason, u8 *save);
 
 static struct rf_save_data *save_data;
 
@@ -75,6 +76,7 @@ void rf_init(u32 reason, u8 *save, u8 *blob) {
   if (rf_damage_init) rf_damage_init(reason, save);
   if (rf_hitboxes_init) rf_hitboxes_init(reason, save);
   if (rf_camera_init) rf_camera_init(reason, save);
+  if (rf_target_camera_init) rf_target_camera_init(reason, save);
   if (rf_quest_end_init) rf_quest_end_init(reason, save);
   if (rf_photo_init) rf_photo_init(reason, save);
 }

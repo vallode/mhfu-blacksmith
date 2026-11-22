@@ -656,7 +656,11 @@ Other calls can share the stub (`calls` in `assembleHooks`, sites 8 on:
 All to Item Box (`blob/send-all.c`) takes `box()`'s call to the label
 getter (EU 0x0882F8A8, `CALL_SITE.rewardLabel`), and its quest draw callback
 runs before `menu.c`'s, making the game's call itself (`menu.c` then
-doesn't).
+doesn't). The target camera (`blob/target-camera.c`) takes the follow
+camera's read of the yaw it turns to (EU 0x08887614): its call's `game` is
+two words left in the projection update, `jr $ra; lh $v0, 0x80($a0)`, and
+the blob knows its call by that address, since its site number depends on
+whether Send All is on.
 
 `menu.c` gives the label "randomfu" only when a feature has added a
 setting, takes the entry (clearing the help bar, whose text for the

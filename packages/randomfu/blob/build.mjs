@@ -49,6 +49,7 @@ const BLOBS = {
   // Projects 3D shapes: Allegrex's FPU, single precision only.
   hitboxes: [["hitboxes.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
   camera: [["camera.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
+  targetCamera: [["target-camera.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
   questEnd: [["quest-end.c"], "src/blob"],
   photo: [["photo.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
   linkTest: [["link-test.c"], "test"],

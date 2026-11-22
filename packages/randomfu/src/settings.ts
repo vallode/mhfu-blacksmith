@@ -127,6 +127,7 @@ export interface Settings {
   "camera.distance": "normal" | "far" | "farther" | "farthest";
   "camera.tilt": "steps" | "slow" | "smooth" | "fast";
   "camera.photoMode": boolean;
+  "camera.target": "off" | "tap" | "follow";
   "quest.endWait": "normal" | "short" | "instant";
   "hud.monsterHp": "off" | "painted" | "always";
   "hud.damageNumbers": "off" | "total" | "split";
@@ -1857,6 +1858,29 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "In a quest, hold L and R and press START: the game stops where it is (as its own pause does, but without dimming the screen), the HUD goes, and the camera is yours. The stick turns it round what it looks at, the D-pad moves it along the ground, △ and × raise and lower it, □ and ○ bring it nearer and take it further, L and R zoom in and out, and SELECT puts it back where it started. START again puts the camera back as it was and the quest goes on. The camera goes through walls and the ground. Not online (the game can't pause there) and not in the village. This picks whether the disc starts with it on: the START menu's last entry, randomfu, turns it on or off in game, and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "camera.target",
+    section: "Camera",
+    label: "Target camera",
+    help: "L turns the camera to face a large monster in your area, from behind your hunter, as the newer games' target camera does, instead of behind where your hunter faces. It turns as smoothly as the game's own L. The target is the large monster nearest the middle of the screen; hold L and press D-pad left or right for the next one to that side. Press L twice quickly for the game's own L, behind your hunter; with no large monster in the area, L is the game's. D-pad left and right alone turn the camera as always, and let go of the target. This picks what the disc starts with: the START menu's last entry, randomfu, changes it in game, and your save keeps that choice. It goes in with that entry, so every disc caps received Guild Cards at 3 to make room for it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Off", help: "L is the game's own: behind your hunter." },
+        {
+          value: "tap",
+          label: "Tap",
+          help: "L turns the camera to the monster once; then it stays where it is.",
+        },
+        {
+          value: "follow",
+          label: "Follow",
+          help: "L keeps the monster in view until you press L twice, turn the camera with the D-pad, or the monster leaves or falls.",
+        },
+      ],
+    },
+    default: "off",
   },
   {
     key: "quest.endWait",
