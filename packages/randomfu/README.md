@@ -1005,8 +1005,8 @@ Not yet tried in game.
   change and the report says the pauses don't.
 - Quicker recoveries and turns: once a large monster's move is past its
   last hit (or roar, wind or tremor), the rest of it plays 50% faster
-  (`more`) or twice as fast (`relentless`); a move whose only hits are the
-  light contact of a turn or a step plays faster all through. The monster
+  (`more`) or twice as fast (`relentless`); a turn (a short motion whose
+  only hits are light contact) plays faster all through. The monster
   update sets its animation speed every frame from a percent bonus at
   `+0x769` (u8) that some moves set for themselves (Tigrex's charge); the
   blob raises it for the rest of the move, keeps a move's own bonus where

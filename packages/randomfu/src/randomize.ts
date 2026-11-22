@@ -144,6 +144,8 @@ import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import {
   AGGRESSION_IDLE_FRAMES,
   AGGRESSION_TAIL_SPEED,
+  ELITE_IDLE_FRAMES,
+  ELITE_TAIL_SPEED,
   aggressionExterns,
   encodeMotionTails,
   tailSpeedProblem,
@@ -1246,7 +1248,11 @@ export function randomize(
         objects.push(...eliteObjects());
         Object.assign(externs, found);
         elites = true;
-        motionTails ||= tailSpeedProblem(ovl.reader.buf) === null;
+        const idleWhy = idleCapProblem(ovl.reader.buf);
+        if (idleWhy) reports.push(notApplied("Elite monsters' shorter pauses", idleWhy));
+        const tailWhy = tailSpeedProblem(ovl.reader.buf);
+        if (tailWhy) reports.push(notApplied("Elite monsters' quicker recoveries", tailWhy));
+        else motionTails = true;
       }
     }
     // Aggression's shorter pauses: the shared monster boosts, on the same monster list.
@@ -1596,15 +1602,22 @@ export function randomize(
 
   if (aggressionReport && aggression !== "off") {
     const frames = AGGRESSION_IDLE_FRAMES[aggression];
+    const speed = AGGRESSION_TAIL_SPEED[aggression];
+    // Where an elite's own is better, it says so.
+    const elitesOn = settings["elites.enabled"];
+    const eliteIdle =
+      elitesOn && ELITE_IDLE_FRAMES < frames ? `; an elite's is ${ELITE_IDLE_FRAMES} frames` : "";
+    const eliteSpeed =
+      elitesOn && ELITE_TAIL_SPEED > speed ? ` (an elite's ${ELITE_TAIL_SPEED}%)` : "";
     aggressionReport.notes.push(
       pausesWhy === null
-        ? `Between moves, a large monster stands in its idle at most ${frames} frames (${Math.round((frames / 30) * 100) / 100} s; an elite's shorter cap wins).`
+        ? `Between moves, a large monster stands in its idle at most ${frames} frames (${Math.round((frames / 30) * 100) / 100} s${eliteIdle}).`
         : `Pauses between moves aren't shortened: ${pausesWhy}.`,
     );
     if (pausesWhy === null) {
       aggressionReport.notes.push(
         tailsWhy === null
-          ? `Once a move is past its last hit, and all through a turn, a large monster moves ${AGGRESSION_TAIL_SPEED[aggression]}% faster (an elite's faster speed wins).`
+          ? `Once a move is past its last hit, and all through a turn, a large monster moves ${speed}% faster${eliteSpeed}.`
           : `Recoveries after a move aren't quicker: ${tailsWhy}.`,
       );
     }

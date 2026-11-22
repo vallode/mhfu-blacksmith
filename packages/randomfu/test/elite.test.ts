@@ -475,7 +475,11 @@ test("an elite recovers from a move 50% faster past its last hit, and turns 50% 
   play(q, m, 5, 60);
   q.frame();
   assert.equal(q.cpu.u8(m + 0x769), 10, "before the last hit ends, the elite's own 10%");
-  play(q, m, 5, 100.5);
+  // The elite's 10% gets its motion there sooner: the tail starts at 110.
+  play(q, m, 5, 108);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 10);
+  play(q, m, 5, 110.5);
   q.frame();
   assert.equal(q.cpu.u8(m + 0x769), 50);
   // Another move: back to what was there.

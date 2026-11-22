@@ -129,8 +129,12 @@ static u32 whole(u32 f) {
   return ((f & 0x7fffff) | 0x800000) >> (23 - e);
 }
 
-/* Whether its motion is past its last hit, or has only light ones. */
-static int in_tail(const u8 *m) {
+/*
+ * Whether its motion is past its last hit, or is a turn. The table's frames
+ * are at the game's base speed; with the game's own `bonus` on (an elite's,
+ * a charge's) the motion gets there sooner, so the start is that much later.
+ */
+static int in_tail(const u8 *m, u32 bonus) {
   if (!rf_motion_tails) return 0;
   const u16 *index = (const u16 *)rf_motion_tails;
   const u16 *entries = index + SPECIES + 1;
@@ -140,21 +144,24 @@ static int in_tail(const u8 *m) {
     u32 r = entries[k] & 0xff;
     if (r < record) continue;
     if (r > record) return 0;
-    return whole(*(const u32 *)(m + MOTION_FRAME)) >= (u32)(entries[k] >> 8) * 4;
+    u32 start = (u32)(entries[k] >> 8) * 4;
+    return whole(*(const u32 *)(m + MOTION_FRAME)) * 100 >= start * (100 + bonus);
   }
   return 0;
 }
 
 /*
  * Its animation `percent` faster while in_tail, at least: over the game's
- * own bonus, which is put back after.
+ * own bonus, which is put back after. A game write is seen only as a value
+ * other than ours: if a move set exactly the bonus written, the old one
+ * comes back when the tail ends (the moves seen set 20 or 30).
  */
 static void speed_up(u8 *m, u32 slot, u32 percent) {
   u8 now = m[SPEED_BONUS];
   if (sped[slot] && now != sped[slot]) sped[slot] = 0; /* the game set it again */
   u8 game = sped[slot] ? unsped[slot] : now;
   u32 want = game;
-  if (percent > want && *(s16 *)(m + HP) > 0 && in_tail(m)) want = percent > 255 ? 255 : percent;
+  if (percent > want && *(s16 *)(m + HP) > 0 && in_tail(m, game)) want = percent > 255 ? 255 : percent;
   if (want == game) {
     if (sped[slot]) m[SPEED_BONUS] = game;
     sped[slot] = 0;
