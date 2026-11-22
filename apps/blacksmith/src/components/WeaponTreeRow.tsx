@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
 import Icon from "./Icon";
@@ -8,6 +8,7 @@ import { cn } from "@/lib/cn";
 import { filterFade, filteredOut } from "@/styles/list";
 import { prefetchBundle } from "@/lib/client-data";
 import { isNodeCollapsed, onNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
+import { useActiveRowSlug, useIsActiveRow } from "@/context/ActiveRowContext";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { useTreeFilterResult, useWeaponTree } from "@/context/TreeFilterContext";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -24,7 +25,6 @@ interface WeaponTreeRowProps {
   basePath: string;
   /** Same key TreeScroll uses for this tree; persists collapse state across navigation. */
   treeKey: string;
-  activeSlug?: string;
   /** The enclosing row's page, if any: the weapon this one is upgraded from. */
   parentHref?: string;
   /** Rendered inside another row's branch (draws the connector lines). */
@@ -172,12 +172,16 @@ function hasDescendant(node: WeaponTreeNode, slug: string): boolean {
   );
 }
 
-export default function WeaponTreeRow({
+/**
+ * One row of a tree, and its branch. Memoised, and told which row is open by
+ * the enclosing TreeScroll (ActiveRowContext) rather than a prop, so opening
+ * an item re-renders the rows whose highlight changes, not the whole tree.
+ */
+const WeaponTreeRow = memo(function WeaponTreeRow({
   node,
   sectionType,
   basePath,
   treeKey,
-  activeSlug,
   parentHref,
   nested = false,
   hasNextSibling = false,
@@ -186,6 +190,7 @@ export default function WeaponTreeRow({
 }: WeaponTreeRowProps) {
   // A branch holding the active row opens, so arriving at a weapon (from the
   // global search, say) shows it even if its branch was collapsed earlier.
+  const activeSlug = useActiveRowSlug();
   const [collapsed, setCollapsed] = useState(() => {
     if (!isNodeCollapsed(treeKey, node.slug)) return false;
     if (activeSlug && hasDescendant(node, activeSlug)) {
@@ -198,7 +203,7 @@ export default function WeaponTreeRow({
   useEffect(() => onNodeCollapsed(treeKey, node.slug, setCollapsed), [treeKey, node.slug]);
   const tree = useWeaponTree();
 
-  const isActive = activeSlug === node.slug;
+  const isActive = useIsActiveRow(node.slug);
   // Cross-type rows in a weapon tree are weapons too.
   const nameKind = gameTextKind(basePath);
 
@@ -343,7 +348,6 @@ export default function WeaponTreeRow({
               sectionType={sectionType}
               basePath={basePath}
               treeKey={treeKey}
-              activeSlug={activeSlug}
               parentHref={href}
               nested
               hasNextSibling={i < node.children!.length - 1}
@@ -354,4 +358,6 @@ export default function WeaponTreeRow({
       )}
     </li>
   );
-}
+});
+
+export default WeaponTreeRow;

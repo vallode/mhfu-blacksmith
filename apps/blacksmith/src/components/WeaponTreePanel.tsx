@@ -7,11 +7,11 @@
  * hunter loaded the hunter filter. Rows that don't match the filters are
  * dimmed in place, so the tree's lines and indentation never move.
  */
-import { useMemo, useState } from "react";
+import { startTransition, useMemo, useState } from "react";
 import Card from "./Card";
 import CardBox from "./CardBox";
 import ElementGlyph from "./ElementGlyph";
-import TreeScroll from "./TreeScroll";
+import TreeScroll, { shownRows, TreeBranch } from "./TreeScroll";
 import TreeSortBar, { type SortSection } from "./TreeSortBar";
 import WeaponTreeGroups from "./WeaponTreeGroups";
 import WeaponTreeRow from "./WeaponTreeRow";
@@ -75,18 +75,28 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
   );
   const counts = useMemo(() => elementFilterCounts(weapons), [weapons]);
 
-  // Recomputed every render: craftCheck answers null until a bundle has
-  // loaded, and the provider re-renders us when it arrives.
-  const result = visibleTree
-    ? filterTree(visibleTree, type, basePath, progress, { hunter, element })
-    : null;
+  // craftCheck answers null until a bundle has loaded; the provider hands us
+  // a new `progress` when it arrives, which works this out again. Kept
+  // otherwise, so opening a weapon leaves the rows (memoised) alone.
+  const result = useMemo(
+    () =>
+      visibleTree ? filterTree(visibleTree, type, basePath, progress, { hunter, element }) : null,
+    [visibleTree, type, basePath, progress, hunter, element],
+  );
 
-  const groups =
-    view === "element"
-      ? groupByElement(weapons).filter((g) => groupMatchesElementFilter(g, element))
-      : view === "rarity"
-        ? groupByRarity(weapons)
-        : null;
+  const groups = useMemo(
+    () =>
+      view === "element"
+        ? groupByElement(weapons).filter((g) => groupMatchesElementFilter(g, element))
+        : view === "rarity"
+          ? groupByRarity(weapons)
+          : null,
+    [view, weapons, element],
+  );
+
+  // A new view or filter re-renders the whole list: let the tap paint first,
+  // and the list follow (a transition, which yields to the browser).
+  const choose = (apply: () => void) => startTransition(apply);
 
   const sections: SortSection[] = [
     {
@@ -96,8 +106,8 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
         label: t.equipment.treeViews[v],
         selected: v === view,
         choose: () => {
-          setView(v);
           writeTreeView(v);
+          choose(() => setView(v));
         },
       })),
     },
@@ -112,8 +122,8 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
           count: counts[f],
           selected: f === element,
           choose: () => {
-            setElement(f);
             writeElementFilter(f);
+            choose(() => setElement(f));
           },
         }),
       ),
@@ -127,8 +137,8 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
         label: t.equipment.treeFilters[f.id],
         selected: f.id === hunterFilter,
         choose: () => {
-          setHunterFilter(f.id);
           writeTreeFilter(f.id);
+          choose(() => setHunterFilter(f.id));
         },
       })),
     });
@@ -160,19 +170,17 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
                   sectionType={type}
                   basePath={basePath}
                   treeKey={treeKey}
-                  activeSlug={activeSlug}
                 />
               ) : (
                 visibleTree?.map((node) => (
-                  <ul key={node.slug}>
+                  <TreeBranch key={node.slug} rows={shownRows(node, treeKey)}>
                     <WeaponTreeRow
                       node={node}
                       sectionType={type}
                       basePath={basePath}
                       treeKey={treeKey}
-                      activeSlug={activeSlug}
                     />
-                  </ul>
+                  </TreeBranch>
                 ))
               )}
             </WeaponTreeContext.Provider>

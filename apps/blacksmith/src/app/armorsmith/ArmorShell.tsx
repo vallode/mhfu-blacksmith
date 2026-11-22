@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import ArmorNav from "@/components/ArmorNav";
 import ArmorTreePanel from "@/components/ArmorTreePanel";
 import SplitPage from "@/components/SplitPage";
-import TreeScroll from "@/components/TreeScroll";
+import TreeScroll, { shownRows, TreeBranch } from "@/components/TreeScroll";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
-import { useVisibleTree } from "@/hooks/useVisibleTree";
+import { useKeepingActive, useVisibleTree } from "@/hooks/useVisibleTree";
 import { useArmorVersions, type ArmorVersionRow } from "@/lib/client-data";
 import { useArmorRankFilter, type ArmorRankFilter } from "@/lib/armor-rank-filter-store";
 import type { WeaponTreeNode } from "@/lib/types";
@@ -37,33 +37,31 @@ function ArmorSidebar({ slot, rank, slug }: { slot: ArmorSlot; rank: ArmorRank; 
   const basePath = `/armorsmith/${slot}/`;
   const treeKey = `armor-${slot}-${filter}`;
   const activeSlug = slug && `${rank}/${slug}`;
-  const tree = useMemo(
-    () => families && versionsTree(families, filter, activeSlug),
-    [families, filter, activeSlug],
+  // Each step keeps the open piece, and stays the same tree while it is in
+  // it anyway, so moving between pieces leaves the rows alone.
+  const tree = useKeepingActive(
+    (keep) => families && versionsTree(families, filter, keep),
+    [families, filter],
+    activeSlug,
   );
   const prunedTree = useVisibleTree(tree, slot, basePath, activeSlug);
   // Quest progress can take every row at the filter's rank out of a piece's
   // line, leaving only its faded versions: drop those lines too.
-  const visibleTree = useMemo(
-    () =>
+  const visibleTree = useKeepingActive(
+    (keep) =>
       filter === "all"
         ? prunedTree
-        : (prunedTree?.filter((node) => hasBrightRow(node, activeSlug)) ?? null),
-    [prunedTree, filter, activeSlug],
+        : (prunedTree?.filter((node) => hasBrightRow(node, keep)) ?? null),
+    [prunedTree, filter],
+    activeSlug,
   );
   return (
     <ArmorTreePanel slot={slot} rank={rank} slug={slug} filter={filter}>
       <TreeScroll treeKey={treeKey} activeSlug={activeSlug}>
         {visibleTree?.map((node) => (
-          <ul key={node.slug}>
-            <WeaponTreeRow
-              node={node}
-              sectionType={slot}
-              basePath={basePath}
-              treeKey={treeKey}
-              activeSlug={activeSlug}
-            />
-          </ul>
+          <TreeBranch key={node.slug} rows={shownRows(node, treeKey)}>
+            <WeaponTreeRow node={node} sectionType={slot} basePath={basePath} treeKey={treeKey} />
+          </TreeBranch>
         ))}
       </TreeScroll>
     </ArmorTreePanel>

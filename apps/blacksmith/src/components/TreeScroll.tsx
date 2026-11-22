@@ -1,7 +1,10 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import { ActiveRowProvider } from "@/context/ActiveRowContext";
+import { isNodeCollapsed } from "@/lib/tree-collapse-store";
 import { PHONE } from "@/lib/media";
+import type { WeaponTreeNode } from "@/lib/types";
 
 /**
  * Persistent-scroll wrapper for the weapon/armor/decoration tree sidebar.
@@ -146,7 +149,36 @@ export default function TreeScroll({
       className="flex-none pl-[13px] [&_li_ul]:pl-[26px] [&_ul]:m-0 [&_ul]:w-max [&_ul]:min-w-full [&_ul]:list-none [&_ul]:p-0"
       ref={ref}
     >
-      {children}
+      <ActiveRowProvider slug={activeSlug}>{children}</ActiveRowProvider>
     </div>
+  );
+}
+
+/** A tree row's height (WeaponTreeRow's h-[38px]). */
+const ROW_HEIGHT = 38;
+
+/** The rows a node takes up: itself, and its branch unless it is collapsed. */
+export function shownRows(node: WeaponTreeNode, treeKey: string): number {
+  if (!node.children || isNodeCollapsed(treeKey, node.slug)) return 1;
+  return node.children.reduce((n, child) => n + shownRows(child, treeKey), 1);
+}
+
+/**
+ * A top-level list of tree rows (a branch, or a group in the list views). On
+ * phones, where the trees run to hundreds of rows on slow hardware, the
+ * browser skips the style, layout and paint of the lists out of view
+ * (content-visibility), holding their place by their row count. A tap then
+ * restyles and hit-tests only the rows near it. Wider screens keep every
+ * list laid out: there a row's highlight runs out past the list's left edge,
+ * which the skipping's paint containment would clip.
+ */
+export function TreeBranch({ rows, children }: { rows: number; children: React.ReactNode }) {
+  return (
+    <ul
+      className="mobile:[content-visibility:auto]"
+      style={{ containIntrinsicHeight: `auto ${rows * ROW_HEIGHT}px` }}
+    >
+      {children}
+    </ul>
   );
 }
