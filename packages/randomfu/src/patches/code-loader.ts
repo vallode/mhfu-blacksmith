@@ -336,7 +336,7 @@ export interface CodeLoaderOptions {
     hit?: HitSite;
     /** The START menus' calls (hook 8), for randomfu's own entry. */
     menus?: readonly MenuSites[];
-    /** Other EBOOT calls through hook 8's stub, as its sites from 8 on (`CALL_SITE`). */
+    /** Other calls through hook 8's stub, as its sites from 8 on (`CALL_SITE`). */
     calls?: readonly HookCall[];
   };
   /** The blob's externs that are found per disc. */
@@ -489,7 +489,12 @@ export function addCodeLoader(
       writeMenuCalls(out, segment, menu, hookStubs.menus[k]!);
     }
     for (const [k, call] of (hooks.calls ?? []).entries()) {
-      out.writeUInt32LE(jal(hookStubs.calls[k]!), segment.offset + (call.call - segment.vaddr));
+      if (call.overlay) {
+        const file = edits.overlay(call.overlay);
+        file.writeUInt32LE(jal(hookStubs.calls[k]!), call.call - call.overlay.ovl.loadBase);
+      } else {
+        out.writeUInt32LE(jal(hookStubs.calls[k]!), segment.offset + (call.call - segment.vaddr));
+      }
     }
     hooksAt = `, hooks ${hex(hookAt)}`;
     if (hooks.pick) {

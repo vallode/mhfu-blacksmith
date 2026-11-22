@@ -153,6 +153,12 @@ import {
 import { menuObjects, prepareMenu } from "./patches/menu.js";
 import { prepareSendAll, type SendAll, sendAllObjects, sendAllReport } from "./patches/send-all.js";
 import {
+  type ImprovePips,
+  improvePipsObjects,
+  improvePipsReport,
+  prepareImprovePips,
+} from "./patches/improve-pips.js";
+import {
   prepareTargetCamera,
   type TargetCamera,
   targetCameraObjects,
@@ -1314,10 +1320,12 @@ export function randomize(
     // randomfu's START menu entry, where the features with settings can be changed in game.
     let menus: MenuSites[] | null = null;
     const sendAllOn = settings["rewards.sendAll"];
+    const pipsOn = settings["smithy.improvePips"];
     if (sendAllOn && typeof sites === "string")
       reports.push(notApplied("Send All to Item Box", sites));
+    if (pipsOn && typeof sites === "string") reports.push(notApplied("Improve pips", sites));
     if (
-      (hit || monsterHp || hitboxes || camera || questEnd || photo || sendAllOn) &&
+      (hit || monsterHp || hitboxes || camera || questEnd || photo || sendAllOn || pipsOn) &&
       typeof sites !== "string"
     ) {
       const found = prepareMenu(game.eboot!, sites);
@@ -1329,6 +1337,7 @@ export function randomize(
           ),
         );
         if (sendAllOn) reports.push(notApplied("Send All to Item Box", found));
+        if (pipsOn) reports.push(notApplied("Improve pips", found));
       } else {
         optional.push(...menuObjects());
         Object.assign(externs, found.externs);
@@ -1350,6 +1359,17 @@ export function randomize(
         optional.push(...sendAllObjects());
         Object.assign(externs, found.externs);
         sendAll = found;
+      }
+    }
+    // Improve pips: a call of the menu's hook in lobby_task, so it goes in (and out) with them.
+    let improvePips: ImprovePips | null = null;
+    if (menus && pipsOn) {
+      const found = prepareImprovePips(game.eboot!, game.lobbyTask);
+      if (typeof found === "string") reports.push(notApplied("Improve pips", found));
+      else {
+        optional.push(...improvePipsObjects());
+        Object.assign(externs, found.externs);
+        improvePips = found;
       }
     }
     // The target camera: a call of the menu's hook, so it goes in (and out) with
@@ -1391,7 +1411,8 @@ export function randomize(
         camera ||
         questEnd ||
         photo ||
-        sendAll)
+        sendAll ||
+        improvePips)
     ) {
       const install = (lean: boolean) => {
         const all = lean ? objects : [...objects, ...optional];
@@ -1412,7 +1433,11 @@ export function randomize(
             ...(menus &&
               !lean && {
                 menus,
-                calls: [...(sendAll?.calls ?? []), ...(targetCamera?.calls ?? [])],
+                calls: [
+                  ...(sendAll?.calls ?? []),
+                  ...(targetCamera?.calls ?? []),
+                  ...(improvePips?.calls ?? []),
+                ],
               }),
           },
           externs,
@@ -1456,6 +1481,18 @@ export function randomize(
         } else {
           reports.push(notApplied("Send All to Item Box", "the code loader isn't on this disc"));
         }
+      }
+      if (improvePips) {
+        reports.push(
+          loader.applied && !wentLean
+            ? improvePipsReport()
+            : notApplied(
+                "Improve pips",
+                loader.applied
+                  ? "it goes in with the START menu entry, which didn't fit"
+                  : "the code loader isn't on this disc",
+              ),
+        );
       }
       // A lean loader leaves photo mode's code out when it's off.
       const photoLinked = loader.applied && photo !== null && (photoOn || !wentLean);

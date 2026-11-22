@@ -139,6 +139,7 @@ export interface Settings {
   "quests.unknown": boolean;
   "quests.keyLabel": boolean;
   "rewards.sendAll": boolean;
+  "smithy.improvePips": boolean;
   "boot.skip": "normal" | "title" | "village";
 }
 
@@ -2015,7 +2016,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "quests.keyLabel",
     section: "Key quests",
     label: "Mark key quests",
-    help: "The Village Chief's quest card (and likely the Guild's, not yet tried) shows a yellow ★ in its top right corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
+    help: "The Village Chief's quest card (and likely the Guild's, not yet tried) shows a yellow ★ in its top left corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
     type: { kind: "boolean" },
     default: false,
   },
@@ -2024,6 +2025,14 @@ export const OPTIONS: readonly OptionDef[] = [
     section: "Reward screen",
     label: "Send All to Item Box",
     help: "The reward screen's menu after a quest gets a row between Send to Item Box and End: Send All to Item Box sends every reward the Item Box can take in one go, the comrade's items too, and ends the screen. What doesn't fit stays, with the menu, to take or sell as before. It goes in with the START menu's randomfu entry, so a disc with too many other new features to fit that leaves it out too.",
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
+    key: "smithy.improvePips",
+    section: "Improve pips",
+    label: "Mark weapons you can improve",
+    help: "In the smithy's Improve, each weapon in the box that you can improve right now gets a small orange pip in its top left corner: you have the materials (pouch and box together) and the zenny for at least one of the weapons it improves into, as the game's own list of them would show. It goes in with the START menu's randomfu entry, so a disc with too many other new features to fit that leaves it out too.",
     type: { kind: "boolean" },
     default: true,
   },
@@ -2273,7 +2282,7 @@ export const PRESETS: readonly Preset[] = [
     name: "QoL only",
     points: [
       "Shuffles and randomizes nothing: items, monsters, equipment and numbers stay as on the disc",
-      "Adds Send All to Item Box, photo mode, key quest marks and gathering nodes on the area map; the first three's code caps received Guild Cards at 3",
+      "Adds Send All to Item Box, the smithy's improve pips, photo mode, key quest marks and gathering nodes on the area map; all but the map's code caps received Guild Cards at 3",
       "Leaves out Poogie's luck and the bookshelf guides",
       "Turn on camera, HUD and quest extras in the later steps; the settings then show as custom, still with nothing shuffled",
       "Hunter's Pact, if you turn it on, draws its rewards from the seed",
