@@ -26,7 +26,7 @@ import {
 } from "./game/quest-fields.js";
 import { changeCarveCounts, collectCarveCounts } from "./shuffles/carve-counts.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
-import { randomizeGoals } from "./shuffles/quest-goals.js";
+import { capturableMonsters, randomizeGoals } from "./shuffles/quest-goals.js";
 import {
   collectGatheringSlots,
   randomizeGathering,
@@ -134,12 +134,20 @@ import {
   ARMOR_BOX_TYPE,
   MELEE_BOX_TYPE,
   RANGED_BOX_TYPE,
+  demandCaps,
+  encodeCapturable,
+  encodeDrops,
+  encodeLevelFn,
   encodePactPool,
   findPactExterns,
+  findSharpnessLevel,
   pactObjects,
+  pactLevels,
   pactPool,
   readItemValues,
+  tiedItems,
 } from "./patches/pact.js";
+import { readMonsterDrops } from "./hints/sources.js";
 import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
@@ -1265,9 +1273,37 @@ export function randomize(
         const tiers = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
         // As the shops left prices and carry limits, so no reward pays past the limit.
         const values = readItemValues(out, table);
-        data.rf_pact_pool = encodePactPool(
-          pactPool(tiers, values, equipment, rng.fork("pact-pool")),
+        // What every recipe needs, as the recipe shuffles left them: no reward gives a third of it.
+        const demand = demandCaps(collectRecipeSlots(out, game.resolver));
+        // What each quest is about, as the shuffles left it: its large monsters'
+        // drops at its rank and its own rewards. The blob leans its items to those.
+        const drops = readMonsterDrops(game, edits);
+        const questRewards = collectQuestRewardSlots(game.quests, (q) => edits.questNow(q)).map(
+          (s) => ({ band: s.tier.band, itemId: s.itemId }),
         );
+        const tied = tiedItems([...drops, ...questRewards]);
+        data.rf_pact_pool = encodePactPool(
+          pactPool(tiers, values, equipment, rng.fork("pact-pool"), demand, tied),
+        );
+        data.rf_pact_drops = encodeDrops(drops);
+        // The blade pacts' colour lookup; without it they aren't offered.
+        const level =
+          typeof sites === "string" ? null : findSharpnessLevel(game.eboot!, sites.segment);
+        data.rf_pact_level_fn = encodeLevelFn(level);
+        if (level === null) {
+          reports.push(
+            notApplied("Hunter's Pact blade pacts", "this EBOOT's sharpness code doesn't match"),
+          );
+        }
+        // Equipment that fits each quest's stars.
+        data.rf_pact_levels = pactLevels(
+          game.quests.flatMap((q) => {
+            const tier = questTier(q.parsed);
+            return tier ? [tier] : [];
+          }),
+        );
+        // Capture or nothing's monsters: those the disc's own quests hunt.
+        data.rf_pact_capturable = encodeCapturable(capturableMonsters(game.quests));
         pact = true;
       }
     }

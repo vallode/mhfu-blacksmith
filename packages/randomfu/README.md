@@ -1863,6 +1863,8 @@ quest. Page 3's fail conditions have room for one more line only.
 | No supply box                        | 1      |
 | Frail: health capped at 50           | 2      |
 | Weary: stamina capped at half        | 1      |
+| Dull blade: a colour lower           | 2      |
+| Brittle blade: twice the wear        | 1      |
 | Deliver 50% more / twice as many     | 2/3    |
 
 Two of the same kind (health +30% and +60%) are never offered together,
@@ -1871,9 +1873,11 @@ loaded quest file: monster penalties need a large monster in the quest,
 delivery ones a delivery whose item isn't in the supply box (they raise
 the delivery's target and its item objective, rounding up; the goal line
 still shows the old number), and half the time isn't offered on the
-gathering quests, which time over wins. So a gathering quest draws from
-one cart, no supply box (which holds its Paw Pass Ticket), frail and
-weary. Each penalty's weight picks its reward:
+gathering quests, which time over wins. The blade pacts (Dull and Brittle
+blade, and Broken blade below) are only for a Blademaster, and never two
+in a window. So a gathering quest draws from one cart, no supply box
+(which holds its Paw Pass Ticket), frail and weary, and the blade pacts.
+Each penalty's weight picks its reward:
 
 | Weight | Rewards                                                                         |
 | ------ | ------------------------------------------------------------------------------- |
@@ -1892,8 +1896,81 @@ the amount:
 | G    | 4000 / 8000 / 15000           |
 
 Items and equipment come up twice as often as the rest. No two pacts in a
-window pay zenny or quest rewards alike, or give the same item or piece. Rewards
-are paid only for a completed quest:
+window pay zenny or quest rewards alike (the jackpot below aside, which pays
+zenny on top of its item), or give the same item or piece.
+
+About one window in 10, on a quest with a large monster, the last pact is
+a jackpot, its penalty in the game's highlight colour, drawn from those that
+fit the quest:
+
+| Jackpot                        | What it does                                                                                                      | Zenny (×, floor) | Rare item | Leaves out      |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------- | ---------------- | --------- | --------------- |
+| Glass: 1 health, a faint fails | health (its red part and maximum too) held at 1, so any hit, heat or poison faints; and one cart                  | 10×, 100%        | ×5        | One cart, Frail |
+| Lost pouch: items to the box   | everything in the pouch goes to the item box when it's sealed (onto its stacks, then free slots), as if left home | 8×, 80%          | ×4        |                 |
+| Bleeding: health drains to 1   | a point of health every two seconds, down to 1 (never a faint); no red health to win back                         | 7×, 70%          | ×4        | Frail           |
+| Capture or nothing: no kills   | killing a large monster loses the jackpot; only where every large monster can be captured                         | 6×, 60%          | ×3        |                 |
+| Exhausted: a quarter stamina   | stamina held at a quarter (Weary, worse)                                                                          | 5×, 50%          | ×3        | Weary           |
+| Broken blade: red sharpness    | sharpness held at the top of red, so most hits bounce; only for a Blademaster                                     | 10×, 100%        | ×5        | Dull, Brittle   |
+
+Each pays an item of the rank's hardest grade, that many times what a hard
+pact gives (Rathalos Plate ×5 rather than ×1 for Glass, at most 99), and
+that many times the quest's zenny, at least its share of 30000 / 100000 /
+200000 (Low / High / G), up to a reward of 999999 (six digits, as much as
+any disc quest shows; another zenny pact taken with it stays within that
+too); only zenny where the rank's pool has no such item. No other pact in
+the window gives its item.
+
+Every jackpot also asks for no faints, and pays for speed (the window says
+so with the cursor on it, and the quest's details list it):
+
+- A faint while the quest is under way loses it whatever one cart does: the
+  item isn't paid and its zenny comes off the reward and the faint's
+  penalty. A faint after the quest is completed (the banner and the wait
+  after it) costs nothing.
+- When the quest ends with time left, it pays its zenny again times the
+  share of the time left since it was sealed: half the clock left, half
+  again. A quest that times out gets none, nor a lost jackpot.
+
+The quest's state (its object's `+0` byte: 0 under way, 1 completed or
+timed out, 2 rewards) tells the two apart. Capture or nothing's monsters are
+those the disc's own quests hunt (`capturableMonsters`; elder dragons,
+Akantor, Ukanlos and the like aren't); a kill is a large monster seen alive
+whose health reaches 0, as a captured one keeps its health. The pouch and
+item box are the save's `+0x43C8` (24 slots) and `+0x3428` (1000 slots,
+item and amount, stacks of 99), the save file's offsets plus 0x4A0.
+
+The blade pacts work on the hunter's sharpness (read from the code on the
+EU and FUC discs):
+
+- `hunter+0x10F2` (s16) is what's left; `hunter+0x60C` (s16) the bar's
+  length, 50 × (SharpnessAmount + 3), 50 more or less with the Handicraft
+  skills, within 150 to 450 (EBOOT EU 0x088DAAA0). The hunter's reset, at
+  the quest's start and after a cart (game_task EU 0x09A65398,
+  0x09A65678), sets the length and fills the bar.
+- A hit's wear goes through game_task's `sharpen(hunter, amount, flag)`
+  (EU 0x09A67E68): Razor Sharp halves it, its opposite doubles it, and
+  the result is kept within 0 and the length.
+- `level(hunter, sharpness)` (EBOOT EU 0x088DAB94, FUC 0x088DD4DC,
+  `SHARPNESS_LEVEL_SIGNATURE`) is the colour: 0 for a gunner
+  (`hunter+0x4E9`, the weapon's box type, isn't 5), else how many of the
+  weapon's cumulative thresholds lie below it (0 red to 6 purple). Every
+  melee hit asks it of the sharpness left, so writing that changes the
+  damage at once.
+
+Dull blade and Broken blade find the top of the colour below the bar's
+best (Dull) or of red (Broken) by asking `level` (a binary search), then
+hold both the length and what's left there every frame: a whetstone
+sharpens up to it, and after a cart the game's refill is cut back. Dull
+blade is only offered where the best colour is at least an eighth of the
+bar (so a sliver of white doesn't make it free), and no blade pact on a
+bar that's all red. A blade pact whose hunter can't be read when it's
+sealed holds, and its penalty starts on the first frame the hunter can be
+read. Brittle blade takes what the hits wore off since the last frame off again (never
+below 0); a whetstone's sharpening isn't touched. Where `level` isn't found
+the blade pacts aren't offered. A colour change the pact makes shows on
+the HUD at the next hit, when `sharpen` next looks.
+
+Rewards are paid only for a completed quest:
 
 - zenny added to the quest's own (a faint costs the same share of the new
   reward as of the old);
@@ -1906,8 +1983,39 @@ are paid only for a completed quest:
 
 The items and equipment come from the quest's rank (Low, High or G), drawn
 per seed: items first found at that rank (after the shuffles), and weapons
-and armor of that rank's rarities (armor both sexes can wear). Up to 16
-items a grade and 32 pieces a rank.
+and armor of that rank's rarities (armor both sexes can wear). Up to 12
+pieces a rarity.
+
+An item reward is the quest's own where it can be: something its large
+monsters carve, capture or break for at its rank, or that its own reward
+tables give, as the shuffles left them (a Tigrex hunt pays Tigrex parts,
+not Kirin or Velocidrome ones). Every such item that fits a grade is in the
+pool (`tiedItems`, whatever rank it's first found at; up to 200 a grade,
+`TIED_PER_GRADE`, so the pool stays under the 64 KB its u16 offsets
+reach: about 28 KB with every reward randomized anywhere), with 16 more a
+grade drawn from the rest (made up with tied items where fewer than 16 of
+the rest fit; a pool past 64 KB fails the build rather than encoding). The blob reads the quest's large monsters and reward
+tables from the loaded file, marks those items (`tie_quest`, from
+`rf_pact_drops`: each species' drops by rank), and offers one of them; it
+falls back on those 16 only when none is left (another offer has it, or
+nothing of the quest's is worth that grade), never on another quest's own
+(the entry's `TIED_BIT`). Gathering quests
+tie only their reward tables. On the FUC disc every one of Low Rank
+Tigrex's parts is in the pool.
+
+A piece of equipment also has to fit the quest's stars: the quest's place
+among its rank's star levels on the disc is its place among the rank's
+rarities (Low 1-5, High 6-8, G 9-10), and a piece is that rarity or the
+next. On the FUC disc:
+
+| Rank | Stars: rarities                             |
+| ---- | ------------------------------------------- |
+| Low  | 1-2★: 1-2, 3★: 2-3, 4★: 3-4, 5★: 4-5, 6★: 5 |
+| High | 6-7★: 6-7, 8★: 7-8, 9★: 8                   |
+| G    | 9-10★: 9-10, 11★: 10                        |
+
+So a hard penalty on a late quest never pays a starter weapon (Absolute
+Power, Low Rank 5★, once offered Hunter's Dagger+, rarity 1).
 
 An item's grade is what it's worth, by the item table's price (the
 general store's for what it sells, and on the same scale for materials:
@@ -1917,6 +2025,14 @@ and an item is in it if some amount within the grade's range comes within
 something cheap, and a light one never a plate. An item can be in more
 than one grade, in different amounts. Items with no price (supplies,
 Commendations) or that don't stack (eggs) are never rewards.
+
+No item reward, a jackpot's pile included, gives more than a third of what
+every crafting and upgrade recipe on the disc needs of it (after the recipe
+shuffles; at least 1), so a niche material never comes in a pile that
+covers every craft it's for: Lost Umbrella, which seven light bowguns need
+15 of, comes at most 5 at a time (a jackpot once gave 12). An item that
+can't come in enough for its grade within that isn't in the grade. Items no
+recipe needs (they only sell) have no such limit.
 
 | Rank | Value (grade 1/2/3)     | For example                                               |
 | ---- | ----------------------- | --------------------------------------------------------- |
@@ -1970,7 +2086,12 @@ have the details):
   shared `blob/monsters.c` scales them each time, and health once.
 
 Tried in game (EU): the window, its shade, layers and text, its controls
-and the input lock. Not yet: the rewards, the delivery penalties, and JP.
+and the input lock. Not yet: the rewards, the delivery penalties, the
+jackpots (whether health held at 1 shows or plays oddly, whether a faint
+reads as health 0 for a frame, whether the game reads the pouch from the
+save during a quest, whether the reward zenny is read after the quest's
+state turns 1, so the speed bonus is paid), the blade pacts (the bar's
+drawing with a shorter length, the colour change's cue), and JP.
 The pacts in the quest's info were tried in their first place, the fail
 conditions, where they ran out of the box; not yet in the details.
 Some quest starts crashed on the EU disc before the window showed (cause
