@@ -1,6 +1,6 @@
 /**
- * The camera's field of view (`camera.fov`) and distance
- * (`camera.distance`), and their settings in randomfu's START menu entry:
+ * The camera's field of view (`camera.fov`), distance (`camera.distance`)
+ * and tilt (`camera.tilt`), and their settings in randomfu's START menu entry:
  * an EBOOT patch and blob code (`blob/camera.c`). This patches the EBOOT and
  * finds the addresses the blob uses, per disc.
  *
@@ -21,6 +21,10 @@
  *   looking at 170. The block's field of view is read once, when a camera
  *   is set up; the presets as it follows, so writing them moves the camera
  *   at once.
+ * - The presets are the steps D-pad up and down tilt the camera through.
+ *   The renderer keeps the step at +0x14 as a level, 0 (the highest:
+ *   preset 4) to 4 (the lowest: preset 3), the levels being presets 4, 0,
+ *   1, 2, 3; a level written there sticks.
  *
  * How randomfu changes them:
  *
@@ -31,7 +35,8 @@
  *   works with no blob, from the title screen; the blob changes it to the
  *   save's choice and zeroes +0x10 to have the projection rebuilt.
  * - The blob scales the presets of whatever block the camera uses, once a
- *   frame on the pad hook (`blob/camera.c`).
+ *   frame on the pad hook (`blob/camera.c`), and for smooth tilt writes
+ *   them all as one camera at the save's pitch, which a held step moves.
  */
 import { decodeObjects } from "../blob/link.js";
 import { CAMERA_OBJECTS } from "../blob/camera-object.js";
@@ -43,8 +48,17 @@ import { codeSegment, findUnique, hi16, maskWord } from "./mips.js";
 /** The scales of each choice, as `blob/camera.c` has them. */
 export const FOV_SCALES = { normal: 1, wide: 1.15, wider: 1.25, widest: 1.4 } as const;
 export const DISTANCE_SCALES = { normal: 1, far: 1.15, farther: 1.3, farthest: 1.5 } as const;
+/** Smooth tilt's speed, degrees a second; 0 for the game's steps. */
+export const TILT_RATES = { steps: 0, slow: 30, smooth: 50, fast: 80 } as const;
 const FOV_CHOICES = Object.keys(FOV_SCALES);
 const DISTANCE_CHOICES = Object.keys(DISTANCE_SCALES);
+const TILT_CHOICES = Object.keys(TILT_RATES);
+
+/** Whether any camera option is off the game's own. */
+export const cameraOn = (settings: Settings) =>
+  settings["camera.fov"] !== "normal" ||
+  settings["camera.distance"] !== "normal" ||
+  settings["camera.tilt"] !== "steps";
 
 /**
  * The projection update, `updateProjection(renderer)` (EU 0x08815348, JP
@@ -131,6 +145,7 @@ export function prepareCamera(
     // The disc's choices + 1: an extern's address is never 0 (`blob/camera.c`).
     rf_camera_fov: FOV_CHOICES.indexOf(settings["camera.fov"]) + 1,
     rf_camera_distance: DISTANCE_CHOICES.indexOf(settings["camera.distance"]) + 1,
+    rf_camera_tilt: TILT_CHOICES.indexOf(settings["camera.tilt"]) + 1,
   };
 }
 
@@ -140,18 +155,24 @@ export const cameraObjects = () => decodeObjects(CAMERA_OBJECTS);
 export function cameraReport(settings: Settings, linked: boolean): ShuffleReport {
   const fov = FOV_SCALES[settings["camera.fov"]];
   const distance = DISTANCE_SCALES[settings["camera.distance"]];
+  const tilt = TILT_RATES[settings["camera.tilt"]];
   const notes: string[] = [];
   if (fov !== 1) notes.push(`Field of view ×${fov}: 50° to ${(50 * fov).toFixed(1)}° high.`);
+  const blob = (what: string) =>
+    `${what} isn't in this image: it's blob code, and the code loader isn't on this disc.`;
   if (distance !== 1) {
+    notes.push(linked ? `Camera ×${distance} as far back.` : blob("Camera distance"));
+  }
+  if (tilt) {
     notes.push(
       linked
-        ? `Camera ×${distance} as far back.`
-        : "Camera distance isn't in this image: it's blob code, and the code loader isn't on this disc.",
+        ? `D-pad up and down tilt the camera smoothly, ${tilt}° a second.`
+        : blob("Camera tilt"),
     );
   }
   notes.push(
     linked
-      ? "Both can be changed in game, from the START menu's randomfu entry."
+      ? "All three can be changed in game, from the START menu's randomfu entry."
       : "The field of view can't be changed in game on this disc.",
   );
   return { title: "Camera", notes, lines: [], summary: `Camera: ${notes.join(" ")}` };

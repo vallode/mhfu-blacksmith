@@ -124,6 +124,7 @@ export interface Settings {
   "mods.nodeMap": boolean;
   "camera.fov": "normal" | "wide" | "wider" | "widest";
   "camera.distance": "normal" | "far" | "farther" | "farthest";
+  "camera.tilt": "steps" | "slow" | "smooth" | "fast";
   "quest.endWait": "normal" | "short" | "instant";
   "hud.monsterHp": "off" | "painted" | "always";
   "hud.damageNumbers": "off" | "total" | "split";
@@ -1811,6 +1812,22 @@ export const OPTIONS: readonly OptionDef[] = [
       ],
     },
     default: "normal",
+  },
+  {
+    key: "camera.tilt",
+    section: "Camera",
+    label: "Camera tilt",
+    help: "How D-pad up and down tilt the camera. The game's camera has five fixed steps, from looking down at 45° to looking up at 18°, and the high ones also pull the camera in close. Smooth tilt tilts the camera for as long as you hold the button, to any angle between 55° down and 20° up, always as far from your hunter as the usual camera (or as Camera distance puts it), and the game eases the camera after it as it does between its steps. This picks what the disc starts with: the START menu's last entry, randomfu, changes it in game (in a quest or in the village), and your save keeps that choice and the angle. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "steps", label: "Steps", help: "The game's own five steps." },
+        { value: "slow", label: "Slow", help: "Smooth, 30° a second." },
+        { value: "smooth", label: "Smooth", help: "Smooth, 50° a second." },
+        { value: "fast", label: "Fast", help: "Smooth, 80° a second." },
+      ],
+    },
+    default: "steps",
   },
   {
     key: "quest.endWait",

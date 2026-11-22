@@ -7,6 +7,7 @@ import {
   DISTANCE_SCALES,
   FOV_SCALES,
   SCALE_WORD,
+  TILT_RATES,
   cameraObjects,
   patchFov,
 } from "../src/patches/camera.js";
@@ -104,6 +105,15 @@ const SAVE = 0x09999c60;
 /** `struct rf_save_data`'s camera_fov and camera_distance (`blob/rf.h`): the menu's choice + 1. */
 const SAVED_FOV = SAVE + 0x666e0 + 16;
 const SAVED_DISTANCE = SAVED_FOV + 1;
+/** camera_tilt, camera_pitched and camera_pitch (sine × 32000, s16). */
+const SAVED_TILT = SAVED_FOV + 3;
+const SAVED_PITCHED = SAVED_FOV + 4;
+const SAVED_PITCH = SAVED_FOV + 6;
+/** The renderer's tilt step (0 the highest, preset 4, to 4); the pad hook's SceCtrlData. */
+const LEVEL = RENDERER + 0x14;
+const CTRL = 0x09fff000;
+const UP = 0x10;
+const DOWN = 0x40;
 const SCALE = UPDATE + SCALE_WORD * 4;
 const BLOCK = 0x0958b9d0;
 const PRESETS = [
@@ -115,12 +125,13 @@ const PRESETS = [
 ];
 
 /** The blob linked, with a renderer whose camera uses a stage's block; the disc's choices given. */
-function game(fov: number, distance: number, blockFov = FOV) {
+function game(fov: number, distance: number, blockFov = FOV, tilt = 0) {
   const externs = {
     rf_camera: 0x089cbbe4,
     rf_fov_scale: SCALE,
     rf_camera_fov: fov + 1,
     rf_camera_distance: distance + 1,
+    rf_camera_tilt: tilt + 1,
   };
   const runtime = RUNTIME_OBJECTS.map((o) => ({
     name: o.name,
@@ -136,6 +147,7 @@ function game(fov: number, distance: number, blockFov = FOV) {
   cpu.setU32(RENDERER + 0xc, bits(FOV));
   cpu.setU32(RENDERER + 0x10, bits(FOV));
   cpu.setU32(RENDERER + 0x1bc, BLOCK);
+  cpu.setU32(LEVEL, 2);
   cpu.setU32(SCALE, bits([1, 1.15, 1.25, 1.4][fov]!));
   const writeBlock = () => {
     cpu.fill(BLOCK, 0xc0, 0);
@@ -154,7 +166,10 @@ function game(fov: number, distance: number, blockFov = FOV) {
       return [1, 2, 4].map((i) => float(cpu.u32(at + i * 4)));
     });
   const init = () => cpu.call(blob.symbols.get("rf_init")!, [0, SAVE, BLOB]);
-  const frame = () => cpu.call(hooks.stubs[0]!, [0x09fff000]);
+  const frame = (buttons = 0) => {
+    cpu.setU32(CTRL + 4, buttons);
+    cpu.call(hooks.stubs[0]!, [CTRL]);
+  };
   init();
   return { cpu, frame, init, presets, writeBlock };
 }
@@ -270,4 +285,118 @@ test("the field of view follows the save's choice, and the projection is rebuilt
   g.init();
   assert.equal(float(g.cpu.u32(SCALE)), f(1.4));
   assert.equal(g.cpu.u32(RENDERER + 0x10), 0);
+});
+
+// --- Smooth tilt ---
+
+/** Every preset as preset 1's camera, `scale` times as far from what it looks at, at `sine`. */
+const tilted = (sine: number, scale = 1) => {
+  const [, eye, distance, look] = PRESETS[1]!;
+  const r = Math.hypot(distance!, eye! - look!) * scale;
+  return PRESETS.map(() => [look! + r * sine, r * Math.sqrt(1 - sine * sine), look!]);
+};
+const sineOf = ([eye, distance, look]: number[]) =>
+  (eye! - look!) / Math.hypot(distance!, eye! - look!);
+const savedPitch = (cpu: Cpu) => ((cpu.u16(SAVED_PITCH) << 16) >> 16) / 32000;
+const smooth = Object.keys(TILT_RATES).indexOf("smooth");
+/** Smooth's step a frame, in radians, at 30 frames a second. */
+const RATE = (TILT_RATES.smooth * Math.PI) / 180 / 30;
+
+test("smooth tilt makes every step the usual camera, at the angle of the step the game is on", () => {
+  const g = game(0, 0, FOV, smooth);
+  g.cpu.setU32(LEVEL, 3); // preset 2, a little below what it looks at
+  g.frame();
+  near(g.presets(), tilted(sineOf([140, 490, 170])));
+  assert.equal(g.cpu.u32(LEVEL), 2, "the game's step goes back to the middle");
+});
+
+test("a step the game takes tilts the camera while its button is held", () => {
+  const g = game(0, 0, FOV, smooth);
+  g.frame();
+  const start = sineOf([270, 490, 170]);
+  near(g.presets(), tilted(start), "the usual camera to start");
+  // D-pad down: the game steps a level higher.
+  g.cpu.setU32(LEVEL, 1);
+  g.frame(DOWN);
+  assert.equal(g.cpu.u32(LEVEL), 2);
+  let sine = start;
+  for (let k = 0; k < 10; k++) {
+    sine += RATE * Math.sqrt(1 - sine * sine);
+    if (k) g.frame(DOWN);
+    near(g.presets(), tilted(sine), `frame ${k}`);
+  }
+  assert.ok(sine > start + 0.15, "it looks further down");
+  // Let go: it stays, and the save keeps it.
+  g.frame();
+  g.frame();
+  near(g.presets(), tilted(sine), "held");
+  assert.equal(g.cpu.u8(SAVED_PITCHED), 1);
+  assert.ok(Math.abs(savedPitch(g.cpu) - sine) < 1e-4);
+  // Up, without a step of the game's (a menu has the D-pad): nothing.
+  g.frame(UP);
+  near(g.presets(), tilted(sine), "no step, no tilt");
+  // Up, with one.
+  g.cpu.setU32(LEVEL, 3);
+  g.frame(UP);
+  g.frame(UP);
+  assert.ok(sineOf(g.presets()[1]!) < sine, "looks up");
+});
+
+test("smooth tilt stops at its limits and above the ground", () => {
+  const g = game(0, 3, FOV, smooth); // farthest: the floor comes first going up
+  g.frame();
+  g.cpu.setU32(LEVEL, 1);
+  for (let k = 0; k < 200; k++) g.frame(DOWN);
+  near(g.presets(), tilted(0.82, 1.5), "55° down");
+  g.cpu.setU32(LEVEL, 3);
+  for (let k = 0; k < 200; k++) g.frame(UP);
+  const lowest = g.presets()[0]!;
+  assert.ok(Math.abs(lowest[0]! - 40) < 1e-3, `40 above the ground: ${lowest[0]}`);
+  near(g.presets(), tilted((40 - 170) / (Math.hypot(490, 100) * 1.5), 1.5), "the floor");
+});
+
+test("smooth tilt keeps the distance, and the save's angle", () => {
+  const g = game(0, 2, FOV, smooth);
+  g.cpu.setU8(SAVED_PITCHED, 1);
+  g.cpu.setU16(SAVED_PITCH, Math.round(0.3 * 32000));
+  g.init();
+  g.frame();
+  near(g.presets(), tilted(Math.round(0.3 * 32000) / 32000, 1.3));
+  // Steps again, from the menu: the game's presets, scaled.
+  g.cpu.setU8(SAVED_TILT, 1);
+  g.frame();
+  near(g.presets(), expected(1.3));
+  g.cpu.setU8(SAVED_TILT, 3);
+  g.frame();
+  near(g.presets(), tilted(Math.round(0.3 * 32000) / 32000, 1.3), "smooth again");
+});
+
+test("a blob loaded again finds the game's presets under a tilted block", () => {
+  for (const distance of [0, 2]) {
+    const g = game(0, distance, FOV, smooth);
+    g.cpu.setU32(LEVEL, 1);
+    g.frame(DOWN);
+    g.frame(DOWN);
+    const before = g.presets();
+    // A save load: the blob starts over, the block it wrote is still there.
+    g.init();
+    g.frame();
+    near(g.presets(), before, `as it was (distance ${distance})`);
+    g.cpu.setU8(SAVED_TILT, 1); // steps
+    g.frame();
+    // Preset 1 as it was; the others are the EBOOT's, which these are.
+    near(
+      g.presets(),
+      expected([1, 1.15, 1.3, 1.5][distance]!),
+      `the game's (distance ${distance})`,
+    );
+  }
+});
+
+test("the game's steps leave the tilt step alone", () => {
+  const g = game(0, 2);
+  g.cpu.setU32(LEVEL, 0);
+  g.frame(DOWN);
+  assert.equal(g.cpu.u32(LEVEL), 0);
+  near(g.presets(), expected(1.3));
 });
