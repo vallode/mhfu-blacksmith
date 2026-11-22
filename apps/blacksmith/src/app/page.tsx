@@ -1,7 +1,4 @@
-import { DEFAULT_WEAPON } from "@/lib/last-weapon";
-import { WeaponShell } from "./blacksmith/WeaponShell";
-import LastWeaponRedirect from "./blacksmith/LastWeaponRedirect";
-import WeaponTreeListClient from "./blacksmith/[type]/WeaponTreeListClient";
+import { DefaultWeaponPage } from "./blacksmith/LastWeaponRedirect";
 
 /**
  * The site has no main page: `/` opens the weapon type you last viewed. It is
@@ -9,10 +6,5 @@ import WeaponTreeListClient from "./blacksmith/[type]/WeaponTreeListClient";
  * visit opens, so that paints without waiting for a redirect.
  */
 export default function Home() {
-  return (
-    <WeaponShell type={DEFAULT_WEAPON}>
-      <WeaponTreeListClient type={DEFAULT_WEAPON} />
-      <LastWeaponRedirect />
-    </WeaponShell>
-  );
+  return <DefaultWeaponPage />;
 }

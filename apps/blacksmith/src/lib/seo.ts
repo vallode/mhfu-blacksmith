@@ -23,6 +23,7 @@ export {
   THEME_COLOR,
   tintFor,
   titleCase,
+  weaponTreeTitle,
 } from "./embed-format";
 
 /**

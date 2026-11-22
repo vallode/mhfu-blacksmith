@@ -34,4 +34,4 @@ export function writeLastWeapon(type: WeaponType): void {
  * to that type's page before any of the default one is drawn, instead of
  * waiting for the app to load and redirect.
  */
-export const LAST_WEAPON_SCRIPT = `(function(){try{if(${JSON.stringify(LAST_WEAPON_PATHS)}.indexOf(location.pathname)<0)return;var t=localStorage.getItem(${JSON.stringify(LAST_WEAPON_KEY)});if(t&&t!==${JSON.stringify(DEFAULT_WEAPON)}&&${JSON.stringify(WEAPON_TYPES)}.indexOf(t)>=0)location.replace("/blacksmith/"+t+"/")}catch(e){}})()`;
+export const LAST_WEAPON_SCRIPT = `(function(){try{if(${JSON.stringify(LAST_WEAPON_PATHS)}.indexOf(location.pathname)<0)return;var t=localStorage.getItem(${JSON.stringify(LAST_WEAPON_KEY)});if(t&&t!==${JSON.stringify(DEFAULT_WEAPON)}&&${JSON.stringify(WEAPON_TYPES)}.indexOf(t)>=0)location.replace("/blacksmith/"+t+"/"+location.search+location.hash)}catch(e){}})()`;
