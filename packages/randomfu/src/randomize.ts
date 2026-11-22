@@ -145,6 +145,7 @@ import { prepareSendAll, type SendAll, sendAllObjects, sendAllReport } from "./p
 import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
 import { damageObjects, findDamageExterns } from "./patches/damage.js";
 import { patchElementMotion } from "./patches/element-motion.js";
+import { bootReport, patchBoot } from "./patches/boot.js";
 import { LOGIC_VERSION } from "./version.js";
 
 export { LOGIC_VERSION };
@@ -829,6 +830,17 @@ export function randomize(
     reports.push(
       patchElementMotion(game.gameTask, game.gameSub, settings["weapons.elementMotionFrom"], edits),
     );
+  }
+
+  // The faster boot: a data patch of the title screens' overlays, no blob.
+  const bootSkip = settings["boot.skip"];
+  if (bootSkip !== "normal") {
+    const { demoTask = null, contTask = null } = game;
+    const result =
+      demoTask && contTask
+        ? patchBoot(bootSkip, demoTask, contTask, game.eboot, edits)
+        : "its title overlays couldn't be read";
+    reports.push(bootReport(bootSkip, demoTask, contTask, result, game.region));
   }
 
   // Armor only changes which piece each create entry makes, so the recipe

@@ -135,6 +135,7 @@ export interface Settings {
   "quests.unknown": boolean;
   "quests.keyLabel": boolean;
   "rewards.sendAll": boolean;
+  "boot.skip": "normal" | "title" | "village";
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -1956,6 +1957,33 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The reward screen's menu after a quest gets a row between Send to Item Box and End: Send All to Item Box sends every reward the Item Box can take in one go, the comrade's items too, and ends the screen. What doesn't fit stays, with the menu, to take or sell as before. It goes in with the START menu's randomfu entry, so a disc with too many other new features to fit that leaves it out too.",
     type: { kind: "boolean" },
     default: true,
+  },
+  {
+    key: "boot.skip",
+    section: "Boot",
+    label: "Faster start",
+    help: "What the game shows from power-on. It normally asks for a language (EU), autoloads your options with a message to wait out, and shows a notice (EU), two logos and the intro movie before the title screen, then a menu and a list of saves. This can skip to the title screen, or on into the village with the hunter you saved last (else the first slot with a save), loaded on a black screen with no menu: hold START (or L or SELECT) from power-on to see the list of saves and choose, and Load Game from the title menu always shows the list. Either way the game keeps the PSP's language. It's a change to the title screens' own code, so it doesn't cap Guild Cards.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "normal",
+          label: "Normal",
+          help: "The game's own: language, notice, logos and the intro movie.",
+        },
+        {
+          value: "title",
+          label: "Title screen",
+          help: "Straight to Press START: no language choice, autoload wait, notice, logos or intro movie.",
+        },
+        {
+          value: "village",
+          label: "Village",
+          help: "Straight into the village with the hunter you saved last. Hold START from power-on for the list of saves.",
+        },
+      ],
+    },
+    default: "normal",
   },
 ];
 

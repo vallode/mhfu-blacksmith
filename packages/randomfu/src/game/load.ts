@@ -30,6 +30,8 @@ const GAME_SUB_PATH = "overlay/game_sub.ovl";
 const GAME_TASK_PATH = "overlay/game_task.ovl";
 const LOBBY_TASK_PATH = "overlay/lobby_task.ovl";
 const EDIT_TASK_PATH = "overlay/edit_task.ovl";
+const DEMO_TASK_PATH = "overlay/demo_task.ovl";
+const CONT_TASK_PATH = "overlay/cont_task.ovl";
 
 export interface LoadedQuest {
   /** DATA.BIN file index. */
@@ -61,6 +63,12 @@ export interface GameData {
    * can't be read: only the starting equipment needs it, so nothing else fails.
    */
   editTask: LoadedOverlay | null;
+  /**
+   * Boot and the title screen, and Load Game: only the faster boot needs
+   * them, so null (that's all) when they can't be read.
+   */
+  demoTask?: LoadedOverlay | null;
+  contTask?: LoadedOverlay | null;
   /** The quest board files (`level*.mib`) that are on the disc and read as boards. */
   boards: BoardFile[];
   /** The decrypted EBOOT. */
@@ -196,6 +204,8 @@ export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): 
     gameTask: overlay(GAME_TASK_PATH),
     lobbyTask: overlay(LOBBY_TASK_PATH),
     editTask: optionalOverlay(EDIT_TASK_PATH),
+    demoTask: optionalOverlay(DEMO_TASK_PATH),
+    contTask: optionalOverlay(CONT_TASK_PATH),
     boards: readBoards(region, dataBin),
     eboot,
     resolver,
