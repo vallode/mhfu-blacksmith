@@ -118,6 +118,7 @@ import {
   questEndObjects,
   questEndReport,
 } from "./patches/quest-end.js";
+import { addButtonIcons } from "./patches/button-icons.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findHitboxExterns, hitboxObjects } from "./patches/hitboxes.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
@@ -1429,6 +1430,7 @@ export function randomize(
   );
 
   if (settings["mods.nodeMap"]) reports.push(addNodeMap(game, edits));
+  if (settings["mods.buttonIcons"] === "xbox") reports.push(addButtonIcons(game, edits));
 
   return {
     edits,

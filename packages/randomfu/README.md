@@ -182,6 +182,7 @@ web app shows as a tag):
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
+| `mods.buttonIcons`                | `psp`       | `xbox` draws the button icons as an Xbox controller's: A B X Y, LB, RB, Menu and View                  |
 | `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
 | `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
 | `camera.tilt`                     | `steps`     | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast` (EU disc only)           |
@@ -1108,6 +1109,24 @@ quest on the map, and nodes sit in the same places in all of them, so a
 texture gets the union. The markers use palette entries the art leaves
 unused (every map has over 200), so nothing else recolours and file sizes
 are unchanged. Checked in PPSSPP on the Snowy Mountains map.
+
+**Xbox button icons** (`mods.buttonIcons`, `src/patches/button-icons.ts`)
+redraws the PSP's ○ × △ □ L R START SELECT, wherever the game draws them
+(its text's `~B` icons and the HUD), as the Xbox buttons PPSSPP maps them to
+by default: B A Y X, LB RB, Menu and View. They are sprites 50-58 of the HUD
+sprite table (EU 0x089391A8, 12-byte rows of u16 u, v, w, h, texture, set),
+all on texture 0x8001: the second image of `system/resides.tmh` (256x256,
+8-bit swizzled, RGBA8888 palette; JP file 18, EU files 30-34, one per
+language). The stick (56) and d-pad (59) stay. `system/demo.tmh`'s fourth
+image (JP 17, EU 25-29) repeats the faces, L and R from (104, 144) in the
+same art; what draws those isn't known, and they're redrawn too. Every
+palette entry of the HUD sheet is in use, so nothing is added: each button
+is the PSP one with its symbol painted out in its own body colour, and the
+letters take the palette's nearest green, red, blue and yellow. A sheet is
+drawn on only if its icons hash to the EU or FUC art (`PSP_ART`). The EU
+file list's best fit for the system files (`filelist-eu.json`) names EU
+33 and 34 `connect` and `demo`, but both hold `resides.tmh`, like 30-32.
+Not yet seen in game.
 
 `supplies` changes what each quest's supply box holds. The box is a list
 of `{ u16 item, u16 amount }` at the header's `SuppliesPTR`, ending at item
