@@ -109,7 +109,7 @@ export function projectionWords(at: number, jal: number): number[] {
 }
 
 /** Where the projection update is in `eboot`, or why not. */
-function findProjectionUpdate(eboot: Buffer): { at: number; offset: number } | string {
+export function findProjectionUpdate(eboot: Buffer): { at: number; offset: number } | string {
   const segment = codeSegment(eboot);
   if (!segment) return "the EBOOT isn't an ELF";
   const at = findUnique(eboot, segment, [PROJECTION_SIGNATURE])[0];
