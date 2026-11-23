@@ -492,14 +492,14 @@ export function questsWithMonster(quests: Quest[], name: string): Quest[] {
 }
 
 /**
- * Where a monster is first hunted: the lowest star level of the Village's
+ * The star levels a monster is hunted at, lowest first: of the Village's
  * quests it's in, and of each Guild rank's (stored stars: G Rank's are
  * ★9-★11, see `questStarLevel`). A board or rank it's never hunted in is
  * missing.
  */
-export type FirstQuests = Partial<Record<"village" | QuestRank, number>>;
+export type HuntStars = Partial<Record<"village" | QuestRank, number[]>>;
 
-/** A data/quests record, as much of it as `firstQuestsByMonster` reads. */
+/** A data/quests record, as much of it as `huntStarsByMonster` reads. */
 export interface QuestAppearance {
   id: number;
   hub: string;
@@ -511,13 +511,13 @@ export interface QuestAppearance {
 }
 
 /**
- * Each monster's first Village and Guild quests, by name. Counts the quests
- * it's a large monster or the target in, but not the gathering ones: Tigrex
- * passes through the Village ★1 delivery "Sinking Feeling", but is first
- * hunted at ★5.
+ * The star levels each monster is hunted at on the Village and Guild boards,
+ * by name. Counts the quests it's a large monster or the target in, but not
+ * the gathering ones: Tigrex passes through the Village ★1 delivery "Sinking
+ * Feeling", but is first hunted at ★5.
  */
-export function firstQuestsByMonster(quests: QuestAppearance[]): Map<string, FirstQuests> {
-  const out = new Map<string, FirstQuests>();
+export function huntStarsByMonster(quests: QuestAppearance[]): Map<string, HuntStars> {
+  const out = new Map<string, HuntStars>();
   for (const q of quests) {
     if (isHiddenQuest(q.id) || questType(q.hub, q.goal) === "gathering") continue;
     const names = new Set(q.large_monsters.map((m) => m.monster));
@@ -531,7 +531,8 @@ export function firstQuestsByMonster(quests: QuestAppearance[]): Map<string, Fir
     if (!board) continue;
     for (const name of names) {
       const first = out.get(name) ?? {};
-      first[board] = Math.min(first[board] ?? Infinity, q.stars);
+      const levels = new Set([...(first[board] ?? []), q.stars]);
+      first[board] = [...levels].sort((a, b) => a - b);
       out.set(name, first);
     }
   }

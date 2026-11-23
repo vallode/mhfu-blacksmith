@@ -9,7 +9,7 @@
  *   kept for embeds shared before the cards). See embedIcon() in
  *   src/lib/seo.ts.
  * - cards/monsters/<slug>.png: each monster page's large preview card, its
- *   portrait, hitzone table and first quests in the site's card frame. See
+ *   portrait, hitzone table and quest star levels in the site's card frame. See
  *   src/lib/monster-card.ts.
  * - oembed/<route>.json: each detail page's oEmbed file, which gives Discord
  *   the line above the title ("Rarity 10 Long Sword"). See oembedJson().
@@ -29,7 +29,7 @@ import { getArmorParams, getArmorPieces } from "../src/lib/armor";
 import { WEAPON_TYPES } from "../src/lib/constants";
 import { getDecorations } from "../src/lib/decorations";
 import { getMonsterCategories, getMonsters } from "../src/lib/monsters";
-import { getFirstQuests } from "../src/lib/quests-data";
+import { getHuntStars } from "../src/lib/quests-data";
 import {
   EMBED_ICON_TINTS,
   EMBED_ICON_TYPES,
@@ -374,7 +374,7 @@ async function writeMonsterCards() {
       );
       const tree = monsterCardTree(
         m,
-        getFirstQuests(m.name),
+        getHuntStars(m.name),
         frame,
         dataUri(await portrait.toBuffer()),
         sprites,

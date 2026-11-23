@@ -5,10 +5,10 @@
 import fs from "fs";
 import path from "path";
 import {
-  firstQuestsByMonster,
+  huntStarsByMonster,
   isHiddenQuest,
   questHubSlug,
-  type FirstQuests,
+  type HuntStars,
   type QuestAppearance,
   type QuestHubSlug,
 } from "./quests";
@@ -53,14 +53,14 @@ export function getQuestSummary(hub: string, id: number): QuestSummary | undefin
   return getQuestSummaries().find((q) => q.hub === hub && q.id === id);
 }
 
-let firstQuests: Map<string, FirstQuests> | null = null;
+let huntStars: Map<string, HuntStars> | null = null;
 
-/** Where a monster (by English name) is first hunted on the Village and Guild boards. */
-export function getFirstQuests(name: string): FirstQuests {
-  firstQuests ??= firstQuestsByMonster(
+/** The star levels a monster (by English name) is hunted at on the Village and Guild boards. */
+export function getHuntStars(name: string): HuntStars {
+  huntStars ??= huntStarsByMonster(
     ["village.json", "guild.json"].flatMap(
       (file) => readData<{ quests: QuestAppearance[] }>(DATA_DIR, "quests", file).quests,
     ),
   );
-  return firstQuests.get(name) ?? {};
+  return huntStars.get(name) ?? {};
 }

@@ -1,8 +1,8 @@
 /**
  * Monster link-preview cards (lib/monster-card.ts): every monster's card lays
  * out with satori and fits the card, its URL changes with its data, and its
- * alt text says what the card shows. Where monsters are first hunted
- * (firstQuestsByMonster) skips gathering quests.
+ * alt text says what the card shows. The star levels monsters are hunted
+ * at (huntStarsByMonster) skip gathering quests.
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -19,7 +19,7 @@ import {
   type MonsterCardSprites,
 } from "../src/lib/monster-card";
 import { getMonster, getMonsterCategories, getMonsters } from "../src/lib/monsters";
-import { getFirstQuests } from "../src/lib/quests-data";
+import { getHuntStars } from "../src/lib/quests-data";
 
 const font = fs.readFileSync(path.join(process.cwd(), "public", CARD_FONT_PATH));
 // A 1×1 transparent PNG for every image: the layout is what's under test.
@@ -34,7 +34,7 @@ describe("monster card", () => {
     for (const category of getMonsterCategories()) {
       for (const m of getMonsters(category)) {
         const svg = await satori(
-          monsterCardTree(m, getFirstQuests(m.name), pixel, pixel, sprites) as never,
+          monsterCardTree(m, getHuntStars(m.name), pixel, pixel, sprites) as never,
           {
             width: CARD.width,
             height: CARD.height,
@@ -49,7 +49,7 @@ describe("monster card", () => {
   it("fits every monster's text on its card", () => {
     for (const category of getMonsterCategories()) {
       for (const m of getMonsters(category)) {
-        assert.deepEqual(monsterCardOverflow(m, getFirstQuests(m.name)), [], m.slug);
+        assert.deepEqual(monsterCardOverflow(m, getHuntStars(m.name)), [], m.slug);
       }
     }
   });
@@ -60,7 +60,7 @@ describe("monster card", () => {
       ...rathalos,
       hitzones: { ...rathalos.hitzones, "back-tail-spikes": {}, a: {}, b: {} },
     };
-    assert.deepEqual(monsterCardOverflow(crowded, {}), [
+    assert.deepEqual(monsterCardOverflow(crowded, getHuntStars("Rathalos")), [
       "10 hitzone rows",
       'part "Back-Tail-Spikes"',
     ]);
@@ -68,24 +68,24 @@ describe("monster card", () => {
 
   it("gives a changed monster a new card URL", () => {
     const rathalos = getMonster("flying-wyvern", "rathalos")!;
-    const first = getFirstQuests("Rathalos");
-    const url = monsterCardUrl(rathalos, first);
+    const hunts = getHuntStars("Rathalos");
+    const url = monsterCardUrl(rathalos, hunts);
     assert.match(url, /^\/embed\/cards\/monsters\/rathalos\.png\?v=\d+\.[0-9a-z]+$/);
-    assert.equal(monsterCardUrl({ ...rathalos }, { ...first }), url);
-    assert.notEqual(monsterCardUrl(rathalos, { ...first, village: 1 }), url);
+    assert.equal(monsterCardUrl({ ...rathalos }, { ...hunts }), url);
+    assert.notEqual(monsterCardUrl(rathalos, { ...hunts, village: [1] }), url);
     const changed = {
       ...rathalos,
       hitzones: { ...rathalos.hitzones, head: { ...rathalos.hitzones!.head, cut: "75" } },
     };
-    assert.notEqual(monsterCardUrl(changed, first), url);
+    assert.notEqual(monsterCardUrl(changed, hunts), url);
   });
 
   it("puts the card's facts in its alt text", () => {
     const rathalos = getMonster("flying-wyvern", "rathalos")!;
-    const alt = monsterCardAlt(rathalos, getFirstQuests("Rathalos"));
+    const alt = monsterCardAlt(rathalos, getHuntStars("Rathalos"));
     assert.match(
       alt,
-      /^Rathalos, Flying Wyvern\. First hunted at Village 6★, Low Rank 2★, High Rank 7★, G Rank 2★\./,
+      /^Rathalos, Flying Wyvern\. Hunted in Village 6, 9★; Low Rank 2, 5★; High Rank 7, 8★; G Rank 2, 3★\./,
     );
     assert.match(alt, /Base HP 3200\./);
     assert.match(alt, /Cut Head 80/);
@@ -93,26 +93,26 @@ describe("monster card", () => {
     // A break's condition is left off: Ukanlos's "chest - requires fire element".
     const ukanlos = monsterCardAlt(getMonster("flying-wyvern", "ukanlos")!, {});
     assert.match(ukanlos, /Breaks: [^.]*\bChest\b/);
-    assert.doesNotMatch(ukanlos, /First hunted/);
+    assert.doesNotMatch(ukanlos, /Hunted in/);
   });
 
-  it("finds where monsters are first hunted", () => {
-    assert.deepEqual(getFirstQuests("Rathalos"), {
-      village: 6,
-      "low-rank": 2,
-      "high-rank": 7,
-      "g-rank": 10,
+  it("finds the star levels monsters are hunted at", () => {
+    assert.deepEqual(getHuntStars("Rathalos"), {
+      village: [6, 9],
+      "low-rank": [2, 5],
+      "high-rank": [7, 8],
+      "g-rank": [10, 11],
     });
     // Village ★1 "Sinking Feeling" is a delivery Tigrex only passes through.
-    assert.equal(getFirstQuests("Tigrex").village, 5);
+    assert.equal(getHuntStars("Tigrex").village?.[0], 5);
     // G Rank only: stored as ★11, the game's G★3.
-    assert.deepEqual(getFirstQuests("Ukanlos"), { "g-rank": 11 });
+    assert.deepEqual(getHuntStars("Ukanlos"), { "g-rank": [11] });
     assert.match(
-      monsterCardAlt(getMonster("flying-wyvern", "ukanlos")!, getFirstQuests("Ukanlos")),
-      /First hunted at G Rank 3★\./,
+      monsterCardAlt(getMonster("flying-wyvern", "ukanlos")!, getHuntStars("Ukanlos")),
+      /Hunted in G Rank 3★\./,
     );
     // Basarios is in G Rank only on its gathering tours.
-    assert.equal(getFirstQuests("Basarios")["g-rank"], undefined);
-    assert.deepEqual(getFirstQuests("Kelbi"), {});
+    assert.equal(getHuntStars("Basarios")["g-rank"], undefined);
+    assert.deepEqual(getHuntStars("Kelbi"), {});
   });
 });

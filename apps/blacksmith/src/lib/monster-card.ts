@@ -2,7 +2,7 @@
  * The image in a monster page's link embed: its portrait on the scroll with
  * its HP, crown sizes and breakable parts under it, and beside them its name
  * and hitzone table, given most of the room, the best part in each column in green as on the page,
- * and under the table where it's first hunted on the Village board and each Guild rank.
+ * and under the table the star levels it's hunted at on the Village board and each Guild rank.
  *
  * scripts/generate-embeds.ts draws one per monster at build time (with satori
  * and resvg, like the set card the Worker draws) to monsterCardPath(). It
@@ -14,7 +14,7 @@
 import { CARD, cardShell, COLOR, h, text, type CardNode } from "./card-tree";
 import { CROWN_ORDER, sizeInCm, type Crown } from "./crowns";
 import { titleCase } from "./embed-format";
-import { questStarLevel, type FirstQuests } from "./quests";
+import { questStarLevel, type HuntStars } from "./quests";
 import type { Monster } from "./types";
 
 /** Bump when the card's look changes, so link previews pick up the new image. */
@@ -28,9 +28,9 @@ export const monsterCardPath = (slug: string) => `/embed/cards/monsters/${slug}.
  * hash of what the card shows, so a data change gets a new URL, which link
  * previews fetch again rather than keep the old image.
  */
-export function monsterCardUrl(monster: Monster, first: FirstQuests): string {
+export function monsterCardUrl(monster: Monster, hunts: HuntStars): string {
   const { name, type, hitzones, base_hp, base_size, crowns, breaks } = monster;
-  const shown = JSON.stringify({ name, type, hitzones, base_hp, base_size, crowns, breaks, first });
+  const shown = JSON.stringify({ name, type, hitzones, base_hp, base_size, crowns, breaks, hunts });
   // FNV-1a, 32-bit.
   let hash = 0x811c9dc5;
   for (let i = 0; i < shown.length; i++) {
@@ -51,6 +51,8 @@ export const MONSTER_CARD_PORTRAIT_SCALE = 3;
 export const MONSTER_CARD_SPRITE_SCALE = 2;
 const SPRITE = 16 * MONSTER_CARD_SPRITE_SCALE;
 const SCROLL = { width: 49 * MONSTER_CARD_SCROLL_SCALE, height: 32 * MONSTER_CARD_SCROLL_SCALE };
+/** How far the stats under the scroll sit in from its left and right edges. */
+const STATS_INSET = 8;
 
 const COLUMNS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
 /** The sprites the card uses (public/images/<name>.png), as data: URIs by name. */
@@ -109,11 +111,11 @@ const PART_WIDTH = 215;
 const COLUMN_WIDTH = 56;
 /** The table's row height, unless its rows need less to fit; never below the least. */
 const ROW_HEIGHT = 45;
-const MIN_ROW_HEIGHT = 40;
+const MIN_ROW_HEIGHT = 36;
 const NAME_TEXT = 40;
 const BREAK_TEXT = 20;
 const TABLE_TEXT = 24;
-/** The right column's gap, between the name, the table and the first-hunt row. */
+/** The right column's gap, between the name, the table and the quest rows. */
 const RIGHT_GAP = 16;
 
 /** The inside of the frame, where the card lays out. */
@@ -127,13 +129,14 @@ const lineHeight = (fontSize: number) => Math.ceil(fontSize * 1.2);
 
 /**
  * The hitzone table's row height: ROW_HEIGHT, or less where the header and
- * rows would otherwise push the first-hunt row off the card (the 8-row
- * monsters: Gravios, Diablos, Lao-Shan Lung, ...).
+ * rows would otherwise push the quest rows off the card (the 8-row
+ * monsters with two quest rows: Gravios, Diablos and their variants).
  */
-function rowHeight(monster: Monster, first: FirstQuests): number {
+function rowHeight(monster: Monster, hunts: HuntStars): number {
   const rows = Object.keys(monster.hitzones ?? {}).length;
   const name = lineHeight(NAME_TEXT) + 4 + lineHeight(22);
-  const foot = firstBoards(first).length ? RIGHT_GAP + FIRST_ROW : 0;
+  const lines = boardRows(hunts).length;
+  const foot = lines ? RIGHT_GAP + lines * HUNT_ROW : 0;
   const room = INNER.height - name - RIGHT_GAP - foot;
   return Math.min(ROW_HEIGHT, Math.floor(room / (rows + 1)));
 }
@@ -205,14 +208,14 @@ function hitzoneTable(
   );
 }
 
-/** A board or rank the monster is hunted on, and the lowest star level of its quests there. */
-interface FirstBoard {
+/** A board or rank the monster is hunted on, and the star levels of its quests there. */
+interface HuntBoard {
   /** The card's short name: "Village", "LR", "HR", "G". */
   short: string;
   /** In full, for the alt text: "Village", "Low Rank". */
   name: string;
-  /** As the board shows it: G Rank's ★9-★11 are 1-3, its name saying G. */
-  stars: number;
+  /** As the board shows them: G Rank's ★9-★11 are 1-3, its name saying G. */
+  stars: number[];
 }
 
 const BOARDS = [
@@ -222,51 +225,88 @@ const BOARDS = [
   { key: "g-rank", short: "G", name: "G Rank" },
 ] as const;
 
-function firstBoards(first: FirstQuests): FirstBoard[] {
+function huntBoards(hunts: HuntStars): HuntBoard[] {
   return BOARDS.flatMap(({ key, short, name }) => {
-    const stars = first[key];
-    return stars ? [{ short, name, stars: questStarLevel(key, stars).stars }] : [];
+    const stars = hunts[key];
+    return stars?.length
+      ? [{ short, name, stars: stars.map((s) => questStarLevel(key, s).stars) }]
+      : [];
   });
 }
 
 /** The star sprite (13×14) at the sprite scale. */
 const STAR = { width: 13 * MONSTER_CARD_SPRITE_SCALE, height: 14 * MONSTER_CARD_SPRITE_SCALE };
-/** Space between a board's name, stars and star sprite, and between boards. */
+/** Space after a board's name, between its stars and star sprite, and between boards. */
+const BOARD_NAME_GAP = 12;
 const BOARD_INNER_GAP = 6;
 const BOARD_GAP = 28;
-/** The first-hunt row's height. */
-const FIRST_ROW = 36;
+/** A star-level row's height. */
+const HUNT_ROW = 34;
+
+const boardText = (b: HuntBoard) => b.stars.join(" ");
+const boardWidth = (b: HuntBoard) =>
+  textWidth(b.short.length + boardText(b).length, TABLE_TEXT) +
+  BOARD_NAME_GAP +
+  BOARD_INNER_GAP +
+  STAR.width;
+
+/** The boards in rows that fit beside the label, in order. */
+function boardRows(hunts: HuntStars): HuntBoard[][] {
+  const room = INNER.width - LEFT_WIDTH - 36 - PART_WIDTH;
+  const rows: HuntBoard[][] = [];
+  let width = Infinity;
+  for (const b of huntBoards(hunts)) {
+    const w = boardWidth(b);
+    if (width + BOARD_GAP + w > room) {
+      rows.push([b]);
+      width = w;
+    } else {
+      rows[rows.length - 1].push(b);
+      width += BOARD_GAP + w;
+    }
+  }
+  return rows;
+}
 
 /**
- * "First hunt  Village 6★  LR 2★  HR 7★  G 2★" at the foot of the table's
- * column, laid out like a table row: where the monster is first hunted on
- * each board and rank, or null when it never is.
+ * "Quests  Village 2 3 4 7 9★  LR 2 3 4★ / HR 6 8★  G 1 2★" at the foot of
+ * the table's column, laid out like table rows: the star levels of the
+ * quests the monster is hunted in on each board and rank, wrapping onto a
+ * second row when they don't fit one, or null when it never is.
  */
-function firstHuntRow(first: FirstQuests, sprites: MonsterCardSprites): CardNode | null {
-  const boards = firstBoards(first);
-  if (boards.length === 0) return null;
+function huntStarsRows(hunts: HuntStars, sprites: MonsterCardSprites): CardNode | null {
+  const rows = boardRows(hunts);
+  if (rows.length === 0) return null;
   return h(
     "div",
-    {
-      style: {
-        display: "flex",
-        alignItems: "center",
-        height: FIRST_ROW,
-        marginTop: "auto",
-        flexShrink: 0,
-      },
-    },
-    text({ width: PART_WIDTH, color: COLOR.stat, fontSize: TABLE_TEXT }, "First hunt"),
-    h(
-      "div",
-      { style: { display: "flex", alignItems: "center", gap: BOARD_GAP } },
-      ...boards.map(({ short, stars }) =>
+    { style: { display: "flex", flexDirection: "column", marginTop: "auto", flexShrink: 0 } },
+    ...rows.map((boards, i) =>
+      h(
+        "div",
+        { style: { display: "flex", alignItems: "center", height: HUNT_ROW } },
+        text(
+          { width: PART_WIDTH, color: COLOR.stat, fontSize: TABLE_TEXT },
+          i === 0 ? "Quests" : "",
+        ),
         h(
           "div",
-          { style: { display: "flex", alignItems: "center", gap: BOARD_INNER_GAP } },
-          text({ color: COLOR.parchment, fontSize: TABLE_TEXT }, short),
-          text({ color: COLOR.white, fontSize: TABLE_TEXT }, stars),
-          h("img", { src: sprites.star, style: STAR }),
+          { style: { display: "flex", alignItems: "center", gap: BOARD_GAP } },
+          ...boards.map((b) =>
+            h(
+              "div",
+              { style: { display: "flex", alignItems: "center", gap: BOARD_INNER_GAP } },
+              text(
+                {
+                  color: COLOR.parchment,
+                  fontSize: TABLE_TEXT,
+                  marginRight: BOARD_NAME_GAP - BOARD_INNER_GAP,
+                },
+                b.short,
+              ),
+              text({ color: COLOR.white, fontSize: TABLE_TEXT }, boardText(b)),
+              h("img", { src: sprites.star, style: STAR }),
+            ),
+          ),
         ),
       ),
     ),
@@ -282,13 +322,13 @@ const statLine = (label: string, value: string) =>
   );
 
 /**
- * The card for a monster, as a satori element tree. `first` is where it's
- * first hunted (getFirstQuests), `frame` the frame at CARD's size and
+ * The card for a monster, as a satori element tree. `hunts` is the star
+ * levels it's hunted at (getHuntStars), `frame` the frame at CARD's size and
  * `portrait` the portrait on its scroll, both as data: URIs.
  */
 export function monsterCardTree(
   monster: Monster,
-  first: FirstQuests,
+  hunts: HuntStars,
   frame: string,
   portrait: string,
   sprites: MonsterCardSprites,
@@ -328,7 +368,16 @@ export function monsterCardTree(
     h("img", { src: portrait, style: SCROLL }),
     h(
       "div",
-      { style: { display: "flex", flexDirection: "column", gap: 10, padding: "0 8px" } },
+      // The stats sit under the scroll, inset from its edges.
+      {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          gap: 10,
+          width: SCROLL.width,
+          padding: `0 ${STATS_INSET}px`,
+        },
+      },
       monster.base_hp ? statLine("Base HP", String(monster.base_hp)) : null,
       crowns && base_size
         ? h(
@@ -354,8 +403,8 @@ export function monsterCardTree(
       text({ color: COLOR.white, fontSize: NAME_TEXT }, monster.name),
       text({ color: COLOR.parchment, fontSize: 22 }, titleCase(monster.type)),
     ),
-    hitzoneTable(monster, rowHeight(monster, first), sprites),
-    firstHuntRow(first, sprites),
+    hitzoneTable(monster, rowHeight(monster, hunts), sprites),
+    huntStarsRows(hunts, sprites),
   );
 
   return cardShell(
@@ -378,7 +427,7 @@ const COLUMN_NAMES: Record<(typeof COLUMNS)[number], string> = {
 };
 
 /** Everything on the card in words, for the image's alt text. */
-export function monsterCardAlt(monster: Monster, first: FirstQuests): string {
+export function monsterCardAlt(monster: Monster, hunts: HuntStars): string {
   const rows = Object.entries(monster.hitzones ?? {});
   const best = COLUMNS.filter((c) => c !== "ko")
     .map((col) => {
@@ -389,11 +438,11 @@ export function monsterCardAlt(monster: Monster, first: FirstQuests): string {
       return top && `${COLUMN_NAMES[col]} ${partLabel(top[0])} ${top[1]}`;
     })
     .filter(Boolean);
-  const boards = firstBoards(first);
+  const boards = huntBoards(hunts);
   return [
     `${monster.name}, ${titleCase(monster.type)}.`,
     boards.length
-      ? `First hunted at ${boards.map((b) => `${b.name} ${b.stars}★`).join(", ")}.`
+      ? `Hunted in ${boards.map((b) => `${b.name} ${b.stars.join(", ")}★`).join("; ")}.`
       : "",
     monster.base_hp ? `Base HP ${monster.base_hp}.` : "",
     best.length ? `Best hitzones: ${best.join(", ")}.` : "",
@@ -410,38 +459,26 @@ const textWidth = (chars: number, fontSize: number) => chars * fontSize * 0.64;
  * What on a monster's card wouldn't fit its place (an empty list when it all
  * fits), measured with the layout's own sizes: the name across the right
  * column, part names beside the table's first column, the rows down it,
- * the first-hunt row across it,
+ * the quest rows across it,
  * and the break names across the left column and down it.
  */
-export function monsterCardOverflow(monster: Monster, first: FirstQuests): string[] {
+export function monsterCardOverflow(monster: Monster, hunts: HuntStars): string[] {
   const inner = INNER;
   const right = inner.width - LEFT_WIDTH - 36;
   const problems: string[] = [];
   if (textWidth(monster.name.length, NAME_TEXT) > right) problems.push(`name "${monster.name}"`);
   const rows = Object.keys(monster.hitzones ?? {});
-  if (rowHeight(monster, first) < MIN_ROW_HEIGHT) problems.push(`${rows.length} hitzone rows`);
+  if (rowHeight(monster, hunts) < MIN_ROW_HEIGHT) problems.push(`${rows.length} hitzone rows`);
   for (const part of rows) {
     if (textWidth(partLabel(part).length, TABLE_TEXT) > PART_WIDTH - 8) {
       problems.push(`part "${partLabel(part)}"`);
     }
   }
-  const boards = firstBoards(first);
-  // "First hunt" in the part column, then each board: its name, stars and star sprite.
-  const foot =
-    PART_WIDTH +
-    boards.reduce(
-      (w, b) =>
-        w +
-        textWidth(b.short.length + String(b.stars).length, TABLE_TEXT) +
-        2 * BOARD_INNER_GAP +
-        STAR.width,
-      0,
-    ) +
-    BOARD_GAP * (boards.length - 1);
-  if (boards.length && foot > right) problems.push(`first-hunt row ${foot}px of ${right}px`);
   const breaks = breakLabels(monster);
   for (const b of breaks) {
-    if (textWidth(b.length, BREAK_TEXT) > LEFT_WIDTH - 16) problems.push(`break "${b}"`);
+    if (textWidth(b.length, BREAK_TEXT) > SCROLL.width - 2 * STATS_INSET) {
+      problems.push(`break "${b}"`);
+    }
   }
   // The left column's height: the portrait, then lines about 1.2em high
   // with the gaps between them (the layout's gap: 14, 10 and 4).
