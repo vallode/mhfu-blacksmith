@@ -98,7 +98,12 @@ import {
   randomizeMonsterStats,
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
-import { makeMonstersAggressive, randomizeMonsterAi, readScripts } from "./shuffles/monster-ai.js";
+import {
+  keepMonstersInReach,
+  makeMonstersAggressive,
+  randomizeMonsterAi,
+  readScripts,
+} from "./shuffles/monster-ai.js";
 import { writeGuides } from "./hints/guides.js";
 import { DEMO_OBJECTS } from "./blob/demo-object.js";
 import { decodeObjects } from "./blob/link.js";
@@ -552,7 +557,8 @@ export function randomize(
   const aggression = settings["monsterAi.aggression"];
   // Its odds are data; its shorter pauses go in with the blob, below, which notes them here.
   let aggressionReport: ShuffleReport | null = null;
-  if (settings["monsterAi.branches"] || aggression !== "off") {
+  const reach = settings["monsterAi.reach"];
+  if (settings["monsterAi.branches"] || aggression !== "off" || reach !== "off") {
     const scripts = readScripts(game.gameTask, loadEmOverlays(game));
     if (settings["monsterAi.branches"]) {
       reports.push(
@@ -569,6 +575,11 @@ export function randomize(
     if (aggression !== "off") {
       aggressionReport = makeMonstersAggressive(aggression, edits, scripts, monsterName);
       reports.push(aggressionReport);
+    }
+    // Last, so it leans the odds the other two left.
+    if (reach !== "off") {
+      const large = questsAfter.flatMap((q) => q.largeMonsters.map((m) => m.monsterId));
+      reports.push(keepMonstersInReach(reach, edits, scripts, game.gameTask, large, monsterName));
     }
   }
 
