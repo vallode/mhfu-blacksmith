@@ -1061,8 +1061,10 @@ frames }` pairs, then `{ -1, default }`), plus 0 to 3 minutes the game
   (Lunastra and Teostra nearly 18 in one of the Tower's). Every value is
   multiplied by 2 or 4, at most 27,367 frames (about 15 minutes), so the
   added minutes can't wrap the countdown, and never lowered. The 23 lists
-  sit in `game_task.ovl` or the family's `emNN.ovl` (found as for the AI
-  scripts); species that share one change together.
+  sit in `game_task.ovl` or the family's `emNN.ovl` (no other overlay is
+  tried, as they all load at the same addresses); species that share one
+  change together. A stage above 1000 gets none of the added minutes, so
+  its time is capped at 32767 instead.
 - The same monsters keep after a hunter they can't see for longer:
   its `emChunk`'s `+0x146` (s16, frames) is the time it stays engaged once
   the hunter is out of sight, after which it decides to walk or fly off to
@@ -1077,7 +1079,9 @@ frames }` pairs, then `{ -1, default }`), plus 0 to 3 minutes the game
   choices; Cephadrome and Cephalos dive into sand outside choices; Akantor,
   Ukanlos, Plesioth and Lavasioth's burrows and dives weren't classified;
   a monster charging the moment you enter its area isn't changed; nor are
-  the minutes some scripts add to the area time.
+  the minutes some scripts add to the area time, nor the area time a
+  quest's spawn record sets itself (its `+0x34`, which the game uses
+  instead of the list when it's above 0).
 
 The area timer was found in game (EU, PPSSPP); the option itself hasn't
 been played.

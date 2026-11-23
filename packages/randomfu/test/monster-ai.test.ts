@@ -372,9 +372,13 @@ test("an area-time list reads as stage and frame pairs ending in the default", (
       ]),
       0,
     ),
-    [2, 6, 10],
+    [
+      { at: 2, bonus: true },
+      { at: 6, bonus: false },
+      { at: 10, bonus: true },
+    ],
   );
-  assert.deepEqual(readAreaTimes(list([[-1, 1800]]), 0), [2]);
+  assert.deepEqual(readAreaTimes(list([[-1, 1800]]), 0), [{ at: 2, bonus: true }]);
   assert.equal(
     readAreaTimes(
       list([
@@ -405,12 +409,16 @@ test("area times grow once per shared list, capped below the game's bonus, never
   const listAt = tableAt + 90 * MONSTER_CHUNK_SIZE;
   const buf = Buffer.alloc(listAt + 0x40);
   const BASE = 0x09000000;
-  // Rathian and Rathalos share one list; Yama Tsukami points at nothing that reads.
+  // Rathian and Rathalos share one list, and Kut-Ku points at its tail;
+  // Yama Tsukami points at nothing that reads.
   for (const em of [1, 11]) {
     buf.writeUInt32LE(BASE + listAt, tableAt + em * MONSTER_CHUNK_SIZE + AREA_TIMES_OFFSET);
   }
+  buf.writeUInt32LE(BASE + listAt + 8, tableAt + 6 * MONSTER_CHUNK_SIZE + AREA_TIMES_OFFSET);
   buf.writeUInt32LE(BASE + 4, tableAt + 58 * MONSTER_CHUNK_SIZE + AREA_TIMES_OFFSET);
-  [32, 3600, 37, 10800, 99, 32000, -1, 9000].forEach((v, i) => buf.writeInt16LE(v, listAt + i * 2));
+  [32, 3600, 37, 10800, 99, 32000, 1142, 8000, -1, 9000].forEach((v, i) =>
+    buf.writeInt16LE(v, listAt + i * 2),
+  );
   const gameTask = {
     index: 0,
     ovl: {
@@ -419,14 +427,70 @@ test("area times grow once per shared list, capped below the game's bonus, never
       vaddrToOffset: (v: number) => v - BASE,
     },
   } as unknown as LoadedOverlay;
-  const edits = { overlay: () => buf } as unknown as Edits;
-  const { lists, missing } = lengthenAreaTimes(edits, gameTask, new Map(), tableAt, [1, 11, 58], 4);
-  assert.deepEqual(lists, [{ emIds: [1, 11], before: 9000, after: AREA_TIMES_CAP }]);
+  const edited = Buffer.from(buf);
+  const edits = { overlay: () => edited } as unknown as Edits;
+  const { lists, missing } = lengthenAreaTimes(
+    edits,
+    gameTask,
+    new Map(),
+    tableAt,
+    [1, 6, 11, 58],
+    4,
+  );
+  assert.deepEqual(lists, [
+    { emIds: [1, 11], before: 9000, after: AREA_TIMES_CAP },
+    { emIds: [6], before: 9000, after: AREA_TIMES_CAP },
+  ]);
   assert.deepEqual(missing, [58]);
-  const at = (i: number) => buf.readInt16LE(listAt + i * 4 + 2);
+  const at = (i: number) => edited.readInt16LE(listAt + i * 4 + 2);
   assert.equal(at(0), 14400);
-  assert.equal(at(1), AREA_TIMES_CAP);
+  assert.equal(at(1), AREA_TIMES_CAP, "scaled once, though two lists hold it");
   assert.equal(at(2), 32000, "already above the cap: left as it was");
+  assert.equal(at(3), 32000, "no minutes added here, so it may pass the cap");
   // The game's bonus (up to 3 minutes) still fits in the s16 countdown.
   assert.ok(AREA_TIMES_CAP + 3 * 1800 <= 0x7fff);
+});
+
+test("area times are found in the overlay with the monster's scripts, never another", () => {
+  const tableAt = 0;
+  const chunks = Buffer.alloc(90 * MONSTER_CHUNK_SIZE);
+  const EM = 0x09d00000;
+  // Rathian's (em01) list is in em01.ovl; Diablos's (em14) pointer is at the
+  // same address, but em14.ovl, which holds its scripts, has nothing there.
+  for (const em of [1, 14]) {
+    chunks.writeUInt32LE(EM + 0x10, tableAt + em * MONSTER_CHUNK_SIZE + AREA_TIMES_OFFSET);
+  }
+  const overlay = (index: number, words: number[]) => {
+    const buf = Buffer.alloc(0x40);
+    words.forEach((v, i) => buf.writeInt16LE(v, 0x10 + i * 2));
+    return {
+      index,
+      ovl: {
+        reader: { buf },
+        isOwnVaddr: (v: number) => v - EM >= 0 && v - EM < buf.length,
+        vaddrToOffset: (v: number) => v - EM,
+      },
+    } as unknown as LoadedOverlay;
+  };
+  const gameTask = {
+    index: 0,
+    ovl: { reader: { buf: chunks }, isOwnVaddr: () => false },
+  } as unknown as LoadedOverlay;
+  const em01 = overlay(1, [-1, 9000]);
+  const em14 = overlay(14, []);
+  const edited = new Map<number, Buffer>();
+  const edits = {
+    overlay: (f: LoadedOverlay) => {
+      if (!edited.has(f.index)) edited.set(f.index, Buffer.from(f.ovl.reader.buf));
+      return edited.get(f.index)!;
+    },
+  } as unknown as Edits;
+  const own = new Map([
+    [1, em01],
+    [14, em14],
+  ]);
+  const { lists, missing } = lengthenAreaTimes(edits, gameTask, own, tableAt, [1, 14], 2);
+  assert.deepEqual(lists, [{ emIds: [1], before: 9000, after: 18000 }]);
+  assert.deepEqual(missing, [14], "em01.ovl reads there, but isn't Diablos's");
+  assert.deepEqual([...edited.keys()], [1]);
 });

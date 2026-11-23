@@ -572,16 +572,17 @@ export function lengthenEngagement(
 /**
  * The file offsets of an area-time list's frames (s16) at `at` in `buf`, the
  * default last, or null if it doesn't read as one: `{ s16 stage, s16 frames }`
- * pairs (a stage above 1000 is the stage plus 1000), then `{ -1, default }`.
+ * pairs, then `{ -1, default }`. A stage above 1000 is the stage plus 1000
+ * and gets none of the game's added minutes (`bonus` false).
  */
-export function readAreaTimes(buf: Buffer, at: number): number[] | null {
-  const frames: number[] = [];
+export function readAreaTimes(buf: Buffer, at: number): { at: number; bonus: boolean }[] | null {
+  const frames: { at: number; bonus: boolean }[] = [];
   for (let i = 0; i < AREA_TIMES_MAX; i++) {
     const o = at + i * 4;
     if (o < 0 || o + 4 > buf.length) return null;
     const stage = buf.readInt16LE(o);
     if (buf.readInt16LE(o + 2) <= 0) return null;
-    frames.push(o + 2);
+    frames.push({ at: o + 2, bonus: stage <= 1000 });
     if (stage === -1) return frames;
     if (stage < 0 || stage >= 2000) return null;
   }
@@ -610,15 +611,18 @@ export function scaleFrames(
 
 /**
  * Each of `largeIds`' area times (`AREA_TIMES_OFFSET`) times `factor`, in
- * the file that holds them: `game_task.ovl`, or the monster's own or family
- * overlay, else the only one where the list reads (`scriptOverlay`). Lists
- * species share change once. Returns, by list, its species and its default
- * before and after; and the species whose list wasn't found.
+ * the file that holds them: `game_task.ovl` or the overlay that holds the
+ * monster's AI scripts (`ownOverlay`, from `locateScripts`; every `emNN.ovl`
+ * loads at the same addresses, so no other is tried).
+ * Times at most `AREA_TIMES_CAP`, or 0x7fff where the game adds no minutes;
+ * each time changes once, however many lists or species share it. Returns,
+ * by list, its species and its default before and after; and the species
+ * whose list wasn't found.
  */
 export function lengthenAreaTimes(
   edits: Edits,
   gameTask: LoadedOverlay,
-  emOverlays: ReadonlyMap<number, LoadedOverlay>,
+  ownOverlay: ReadonlyMap<number, LoadedOverlay>,
   tableAt: number,
   largeIds: Iterable<number>,
   factor: number,
@@ -628,14 +632,14 @@ export function lengthenAreaTimes(
       ? readAreaTimes(file.ovl.reader.buf, file.ovl.vaddrToOffset(vaddr))
       : null;
   const lists = new Map<string, { emIds: number[]; before: number; after: number }>();
+  const scaled = new Set<string>();
   const missing: number[] = [];
   const chunks = gameTask.ovl.reader.buf;
   for (const emId of [...new Set(largeIds)].sort((a, b) => a - b)) {
     if (emId <= 0 || emId >= MONSTER_CHUNK_COUNT) continue;
     const vaddr = chunks.readUInt32LE(tableAt + emId * MONSTER_CHUNK_SIZE + AREA_TIMES_OFFSET);
-    const file = reads(gameTask, vaddr)
-      ? gameTask
-      : scriptOverlay(emId, emOverlays, (f) => reads(f, vaddr) !== null)?.[1];
+    const own = ownOverlay.get(emId);
+    const file = reads(gameTask, vaddr) ? gameTask : own && reads(own, vaddr) ? own : null;
     const frames = file && reads(file, vaddr);
     if (!file || !frames) {
       missing.push(emId);
@@ -648,9 +652,13 @@ export function lengthenAreaTimes(
       continue;
     }
     const buf = edits.overlay(file);
-    const last = frames[frames.length - 1]!;
-    const before = buf.readInt16LE(last);
-    scaleFrames(buf, frames, factor, AREA_TIMES_CAP);
+    for (const { at, bonus } of frames) {
+      if (scaled.has(`${file.index}:${at}`)) continue;
+      scaled.add(`${file.index}:${at}`);
+      scaleFrames(buf, [at], factor, bonus ? AREA_TIMES_CAP : 0x7fff);
+    }
+    const last = frames[frames.length - 1]!.at;
+    const before = file.ovl.reader.buf.readInt16LE(last);
     lists.set(key, { emIds: [emId], before, after: buf.readInt16LE(last) });
   }
   return { lists: [...lists.values()], missing };
@@ -665,8 +673,8 @@ export function lengthenAreaTimes(
  * `randomizeMonsterAi` and `makeMonstersAggressive`. Every large monster in
  * `largeIds` also keeps after a hunter it lost sight of for longer before it
  * gives up and wanders off to another area, and fights in each area for
- * longer before it leaves mid-fight (its area times, found through
- * `emOverlays`).
+ * longer before it leaves mid-fight (its area times, in `game_task.ovl` or
+ * the overlay that holds its scripts).
  */
 export function keepMonstersInReach(
   level: ReachLevel,
@@ -676,11 +684,9 @@ export function keepMonstersInReach(
   largeIds: Iterable<number>,
   monsterName: MonsterNames,
   {
-    emOverlays = new Map<number, LoadedOverlay>(),
     data = MONSTER_REACH,
     tableAt = locateMonsterChunks(gameTask.ovl)?.offset,
   }: {
-    emOverlays?: ReadonlyMap<number, LoadedOverlay>;
     data?: Readonly<Record<string, AttackData>>;
     tableAt?: number;
   } = {},
@@ -696,7 +702,10 @@ export function keepMonstersInReach(
     monsterName,
   );
   const engaged = lengthenEngagement(edits.overlay(gameTask), tableAt, largeIds, timeFactor);
-  const areas = lengthenAreaTimes(edits, gameTask, emOverlays, tableAt, largeIds, timeFactor);
+  const ownOverlay = new Map(
+    scripts.files.flatMap(({ file, emIds }) => emIds.map((emId) => [emId, file] as const)),
+  );
+  const areas = lengthenAreaTimes(edits, gameTask, ownOverlay, tableAt, largeIds, timeFactor);
   const seconds = (frames: number) => `${Math.round(frames / 30)} s`;
   const byTime = new Map<string, number[]>();
   for (const e of engaged) {
