@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { crownFor, formatChance, possibleCrowns, sizeInCm } from "../src/lib/crowns";
+import { crownCutoffCm, crownFor, formatChance, possibleCrowns, sizeInCm } from "../src/lib/crowns";
 
 const RATHALOS = { mini: 90, silver: 114, gold: 127 };
 
@@ -15,6 +15,15 @@ test("crownFor gives a size's crown at the thresholds, inclusive", () => {
 
 test("sizeInCm scales the monster's base size", () => {
   assert.ok(Math.abs(sizeInCm(127, 1629.4) - 2069.338) < 1e-9);
+});
+
+test("crownCutoffCm rounds to a tenth the safe way: gold and silver up, mini down", () => {
+  // Giadrome: 908.232 and 664.56 cm.
+  const giadrome = { mini: 90, silver: 115, gold: 123 };
+  assert.equal(crownCutoffCm("gold", giadrome, 738.4), 908.3);
+  assert.equal(crownCutoffCm("mini", giadrome, 738.4), 664.5);
+  // An exact tenth stays put: 125% of 1024.4 is 1280.5000000000002 in floats.
+  assert.equal(crownCutoffCm("gold", { mini: 90, silver: 115, gold: 125 }, 1024.4), 1280.5);
 });
 
 test("formatChance rounds to a tenth of a percent", () => {

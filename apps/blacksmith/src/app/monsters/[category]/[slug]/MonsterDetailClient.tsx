@@ -23,7 +23,7 @@ import {
   questsWithMonster,
   smallMonsterStages,
 } from "@/lib/quests";
-import { crownFor, sizeInCm, type Crown } from "@/lib/crowns";
+import { crownCutoffCm, crownFor, sizeInCm, type Crown } from "@/lib/crowns";
 import CrownIcon from "@/components/CrownIcon";
 import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -301,13 +301,13 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     label: rankLabel(t, rank),
     content: <MonsterDrops sources={sources} />,
   }));
-  // Crown cutoffs in centimetres.
+  // Crown cutoffs in centimetres, to a tenth the safe way.
   const crowns =
     monster.crowns && monster.base_size !== undefined
       ? {
-          mini: sizeInCm(monster.crowns.mini, monster.base_size),
-          silver: sizeInCm(monster.crowns.silver, monster.base_size),
-          gold: sizeInCm(monster.crowns.gold, monster.base_size),
+          mini: crownCutoffCm("mini", monster.crowns, monster.base_size),
+          silver: crownCutoffCm("silver", monster.crowns, monster.base_size),
+          gold: crownCutoffCm("gold", monster.crowns, monster.base_size),
         }
       : null;
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];

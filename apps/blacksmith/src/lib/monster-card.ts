@@ -1,6 +1,6 @@
 /**
  * The image in a monster page's link embed: its portrait on the scroll with
- * its HP, crown sizes and breakable parts under it, and beside them its name
+ * its HP, gold and mini crown sizes and breakable parts under it, and beside them its name
  * and hitzone table, given most of the room, the best part in each column in green as on the page,
  * and under the table the star levels it's hunted at on the Village board and each Guild rank.
  *
@@ -12,7 +12,7 @@
  * spelled as the monster page's English shows them).
  */
 import { CARD, cardShell, COLOR, h, text, type CardNode } from "./card-tree";
-import { CROWN_ORDER, sizeInCm, type Crown } from "./crowns";
+import { crownCutoffCm, type Crown } from "./crowns";
 import { titleCase } from "./embed-format";
 import { questStarLevel, type HuntStars } from "./quests";
 import type { Monster } from "./types";
@@ -63,7 +63,6 @@ export const MONSTER_CARD_SPRITES = [
   "ice",
   "dragon",
   "crown-gold",
-  "crown-silver",
   "crown-mini",
   "star",
 ] as const;
@@ -92,7 +91,10 @@ const SHORT_COLUMNS: Record<(typeof COLUMNS)[number], string> = {
   drg: "Drg",
   ko: "KO",
 };
-const CROWN_NAMES: Record<Crown, string> = { gold: "Gold", silver: "Silver", mini: "Mini" };
+/** The crowns the card lists: the record sizes, largest and smallest, not silver. */
+const CARD_CROWNS = ["gold", "mini"] as const satisfies readonly Crown[];
+type CardCrown = (typeof CARD_CROWNS)[number];
+const CROWN_NAMES: Record<CardCrown, string> = { gold: "Gold", mini: "Mini" };
 
 /** A hitzone part or break in words: "front-legs" → "Front-Legs", "dorsal fin" → "Dorsal Fin". */
 const partLabel = (part: string) =>
@@ -242,8 +244,11 @@ const BOARD_INNER_GAP = 6;
 const BOARD_GAP = 28;
 /** A star-level row's height. */
 const HUNT_ROW = 34;
+/** The "Quests" label's column: the word, then a gap before the boards. */
+const QUESTS_LABEL = "Quests";
+const QUESTS_LABEL_WIDTH = Math.ceil(QUESTS_LABEL.length * TABLE_TEXT * 0.64) + 20;
 
-const boardText = (b: HuntBoard) => b.stars.join(" ");
+const boardText = (b: HuntBoard) => b.stars.join(", ");
 const boardWidth = (b: HuntBoard) =>
   textWidth(b.short.length + boardText(b).length, TABLE_TEXT) +
   BOARD_NAME_GAP +
@@ -252,7 +257,7 @@ const boardWidth = (b: HuntBoard) =>
 
 /** The boards in rows that fit beside the label, in order. */
 function boardRows(hunts: HuntStars): HuntBoard[][] {
-  const room = INNER.width - LEFT_WIDTH - 36 - PART_WIDTH;
+  const room = INNER.width - LEFT_WIDTH - 36 - QUESTS_LABEL_WIDTH;
   const rows: HuntBoard[][] = [];
   let width = Infinity;
   for (const b of huntBoards(hunts)) {
@@ -269,7 +274,7 @@ function boardRows(hunts: HuntStars): HuntBoard[][] {
 }
 
 /**
- * "Quests  Village 2 3 4 7 9★  LR 2 3 4★ / HR 6 8★  G 1 2★" at the foot of
+ * "Quests  Village 2, 3, 4, 7, 9★  LR 2, 3, 4★ / HR 6, 8★  G 1, 2★" at the foot of
  * the table's column, laid out like table rows: the star levels of the
  * quests the monster is hunted in on each board and rank, wrapping onto a
  * second row when they don't fit one, or null when it never is.
@@ -285,8 +290,8 @@ function huntStarsRows(hunts: HuntStars, sprites: MonsterCardSprites): CardNode 
         "div",
         { style: { display: "flex", alignItems: "center", height: HUNT_ROW } },
         text(
-          { width: PART_WIDTH, color: COLOR.stat, fontSize: TABLE_TEXT },
-          i === 0 ? "Quests" : "",
+          { width: QUESTS_LABEL_WIDTH, color: COLOR.stat, fontSize: TABLE_TEXT },
+          i === 0 ? QUESTS_LABEL : "",
         ),
         h(
           "div",
@@ -336,7 +341,7 @@ export function monsterCardTree(
   const breaks = breakLabels(monster);
   const { crowns, base_size } = monster;
   // The crown cutoffs, laid out like the monster page's (CrownCutoffs).
-  const crownLine = (crown: Crown) =>
+  const crownLine = (crown: CardCrown) =>
     h(
       "div",
       { style: { display: "flex", alignItems: "center", gap: 8 } },
@@ -351,7 +356,7 @@ export function monsterCardTree(
       text({ color: COLOR.stat, fontSize: 22, flexGrow: 1 }, CROWN_NAMES[crown]),
       text(
         { color: COLOR.white, fontSize: 22 },
-        `${Math.round(sizeInCm(crowns![crown], base_size!))} cm`,
+        crownCutoffCm(crown, crowns!, base_size!).toFixed(1),
       ),
     );
   const group = (label: string, ...lines: CardNode[]) =>
@@ -383,7 +388,7 @@ export function monsterCardTree(
         ? h(
             "div",
             { style: { display: "flex", flexDirection: "column", gap: 4 } },
-            ...CROWN_ORDER.map(crownLine),
+            ...CARD_CROWNS.map(crownLine),
           )
         : null,
       breaks.length > 0 &&
@@ -485,7 +490,9 @@ export function monsterCardOverflow(monster: Monster, hunts: HuntStars): string[
   const line = lineHeight;
   const groups = [
     monster.base_hp ? line(22) : 0,
-    monster.crowns && monster.base_size ? 3 * line(22) + 2 * 4 : 0,
+    monster.crowns && monster.base_size
+      ? CARD_CROWNS.length * line(22) + (CARD_CROWNS.length - 1) * 4
+      : 0,
     breaks.length ? line(22) + breaks.length * (line(BREAK_TEXT) + 4) : 0,
   ].filter((g) => g > 0);
   const left = SCROLL.height + 14 + groups.reduce((a, b) => a + b, 0) + 10 * (groups.length - 1);
