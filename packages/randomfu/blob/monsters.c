@@ -9,6 +9,14 @@
 extern const u8 rf_game_task[]; /* game_task.ovl's load address */
 extern u8 *const rf_monsters[]; /* the global holding the monster manager */
 extern const u8 rf_em_chunks[]; /* game_task's per-species table */
+/*
+ * Where each species' moves are past their last hit (src/patches/
+ * aggression.ts, encodeMotionTails): u16 first entry of each species,
+ * SPECIES + 1 of them, then u16 entries sorted by record, `record |
+ * (frame / 4) << 8` (rounded up), frame 0 being the whole motion. Absent (0) when no
+ * feature speeds monsters up.
+ */
+extern const u8 rf_motion_tails[] __attribute__((weak));
 
 /* The monster manager: up to 20 monsters, large and small. */
 #define MANAGER_SLOTS 0x1220
@@ -19,6 +27,15 @@ extern const u8 rf_em_chunks[]; /* game_task's per-species table */
 #define HP_MAX 0x41e
 #define ATTACK 0x380  /* f32, rewritten at spawn and at rage start and end */
 #define DEFENSE 0x384 /* f32, likewise */
+/* What it's doing: its move's group, its body's motion, and its AI's "think now" flag. */
+#define ACTION_GROUP 0x298 /* u8: 0 is standing, turning in place and the like */
+#define MOTION 0x324       /* u16: motion record + 1000 */
+#define IDLE_MOTION 1001   /* record 1: every species' looping idle */
+#define THINK 0x4b5        /* u8: the AI picks its next move the next frame */
+/* Its body's first animation channel: the frame it's at (f32, two a game frame). */
+#define MOTION_FRAME 0x90
+/* u8: % added to its animation speed, read each frame; moves set and clear it. */
+#define SPEED_BONUS 0x769
 /* game_task's species table: 0x1D0 bytes each; its stat set is 0 for small monsters. */
 #define CHUNK_BYTES 0x1d0
 #define CHUNK_SET 0x14f
@@ -41,6 +58,10 @@ static u8 quest_over;
 static s16 scaled_max[SLOTS];
 static u16 hp_percent[SLOTS];
 static u32 base[SLOTS][2], written[SLOTS][2];
+/* Frames it has stood in its idle. */
+static u16 idled[SLOTS];
+/* The speed bonus written over the game's, and the game's under it. */
+static u8 sped[SLOTS], unsped[SLOTS];
 
 void rf_add_booster(rf_booster fn) {
   for (u32 k = 0; k < BOOSTERS; k++) {
@@ -89,6 +110,68 @@ static s16 rescale16(s16 n, u32 from, u32 to) {
   return (s16)(v > 0x7fff ? 0x7fff : v);
 }
 
+/* Ends a monster's idle once it has stood `cap` frames in it (monsters.h). */
+static void cut_idle(u8 *m, u32 slot, u32 cap) {
+  if (!cap || m[ACTION_GROUP] != 0 || *(u16 *)(m + MOTION) != IDLE_MOTION || *(s16 *)(m + HP) <= 0) {
+    idled[slot] = 0;
+    return;
+  }
+  if (++idled[slot] < cap) return;
+  idled[slot] = 0;
+  m[THINK] = 1;
+}
+
+/* A non-negative float's whole part, without an FPU. */
+static u32 whole(u32 f) {
+  s32 e = (s32)((f >> 23) & 0xff) - 127;
+  if ((f >> 31) || e < 0) return 0;
+  if (e > 23) return 0xffffff;
+  return ((f & 0x7fffff) | 0x800000) >> (23 - e);
+}
+
+/*
+ * Whether its motion is past its last hit, or is a turn. The table's frames
+ * are at the game's base speed; with the game's own `bonus` on (an elite's,
+ * a charge's) the motion gets there sooner, so the start is that much later.
+ */
+static int in_tail(const u8 *m, u32 bonus) {
+  if (!rf_motion_tails) return 0;
+  const u16 *index = (const u16 *)rf_motion_tails;
+  const u16 *entries = index + SPECIES + 1;
+  u32 em = m[EM_ID];
+  u32 record = *(const u16 *)(m + MOTION) - 1000u;
+  for (u32 k = index[em]; k < index[em + 1]; k++) {
+    u32 r = entries[k] & 0xff;
+    if (r < record) continue;
+    if (r > record) return 0;
+    u32 start = (u32)(entries[k] >> 8) * 4;
+    return whole(*(const u32 *)(m + MOTION_FRAME)) * 100 >= start * (100 + bonus);
+  }
+  return 0;
+}
+
+/*
+ * Its animation `percent` faster while in_tail, at least: over the game's
+ * own bonus, which is put back after. A game write is seen only as a value
+ * other than ours: if a move set exactly the bonus written, the old one
+ * comes back when the tail ends (the moves seen set 20 or 30).
+ */
+static void speed_up(u8 *m, u32 slot, u32 percent) {
+  u8 now = m[SPEED_BONUS];
+  if (sped[slot] && now != sped[slot]) sped[slot] = 0; /* the game set it again */
+  u8 game = sped[slot] ? unsped[slot] : now;
+  u32 want = game;
+  if (percent > want && *(s16 *)(m + HP) > 0 && in_tail(m, game)) want = percent > 255 ? 255 : percent;
+  if (want == game) {
+    if (sped[slot]) m[SPEED_BONUS] = game;
+    sped[slot] = 0;
+    return;
+  }
+  unsped[slot] = game;
+  sped[slot] = (u8)want;
+  m[SPEED_BONUS] = (u8)want;
+}
+
 static void frame(u8 *hud) {
   u8 *manager = *rf_monsters;
   if (!boosters[0] || !manager || !game_task_loaded()) return;
@@ -110,10 +193,12 @@ static void frame(u8 *hud) {
       species[slot] = m[EM_ID];
       hp_percent[slot] = 0;
       written[slot][0] = written[slot][1] = 0;
+      idled[slot] = 0;
+      sped[slot] = 0;
       fresh[slot] = 1;
     }
     alive[slot] = living;
-    rf_boost b = {0, 0, 0};
+    rf_boost b = {0, 0, 0, 0, 0};
     for (u32 k = 0; k < BOOSTERS && boosters[k]; k++) boosters[k](m, slot, &b);
     fresh[slot] = 0;
     if (b.hp != hp_percent[slot] && max > 0 && *(s16 *)(m + HP) > 0) {
@@ -126,6 +211,8 @@ static void frame(u8 *hud) {
     scaled_max[slot] = max;
     if (b.attack || written[slot][0]) rescale(m, ATTACK, slot, 0, b.attack);
     if (b.defense || written[slot][1]) rescale(m, DEFENSE, slot, 1, b.defense);
+    cut_idle(m, slot, b.idle);
+    speed_up(m, slot, b.speed);
   }
 }
 

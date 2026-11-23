@@ -108,6 +108,7 @@ const MONSTERS: Category = {
   fields: [
     { field: "description", kind: "scalar" },
     { field: "base_hp", kind: "scalar" },
+    { field: "base_scale", kind: "scalar" },
     { field: "hitzones", kind: "hitzones" },
     { field: "drops", kind: "drops" },
     { field: "breaks", kind: "scalar" },
@@ -123,6 +124,7 @@ const MONSTERS: Category = {
   // rank's list pasted in).
   // `base_hp` (chunk +0x100) is new to the site: it has no committed value
   // to disagree with, and is the HP before a quest's multiplier.
+  // `base_scale` (chunk +0x40) is new too.
   // `breaks` (monsters/breaks.ts, overlay/breaks.json) and
   // `flinch_thresholds` and `tolerances` (hitzones.ts) are new too, as are
   // `base_size` and `crowns` (monsters/sizes.ts). `description` replaces
@@ -130,6 +132,7 @@ const MONSTERS: Category = {
   take: [
     "description",
     "base_hp",
+    "base_scale",
     "hitzones",
     "drops",
     "breaks",

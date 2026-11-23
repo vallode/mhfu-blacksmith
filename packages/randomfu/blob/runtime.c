@@ -38,6 +38,7 @@ __attribute__((weak)) void rf_monster_hp_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_pact_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_monsters_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_elite_init(u32 reason, u8 *save);
+__attribute__((weak)) void rf_aggression_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_unknown_quests_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_poogie_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_key_quests_init(u32 reason, u8 *save);
@@ -50,6 +51,8 @@ __attribute__((weak)) void rf_quest_end_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_photo_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_target_camera_init(u32 reason, u8 *save);
 __attribute__((weak)) void rf_improve_pips_init(u32 reason, u8 *save);
+__attribute__((weak)) void rf_harvest_init(u32 reason, u8 *save);
+__attribute__((weak)) void rf_combine_init(u32 reason, u8 *save);
 
 static struct rf_save_data *save_data;
 
@@ -71,6 +74,7 @@ void rf_init(u32 reason, u8 *save, u8 *blob) {
   if (rf_pact_init) rf_pact_init(reason, save);
   if (rf_monsters_init) rf_monsters_init(reason, save);
   if (rf_elite_init) rf_elite_init(reason, save);
+  if (rf_aggression_init) rf_aggression_init(reason, save);
   if (rf_unknown_quests_init) rf_unknown_quests_init(reason, save);
   if (rf_poogie_init) rf_poogie_init(reason, save);
   if (rf_key_quests_init) rf_key_quests_init(reason, save);
@@ -81,4 +85,7 @@ void rf_init(u32 reason, u8 *save, u8 *blob) {
   if (rf_quest_end_init) rf_quest_end_init(reason, save);
   if (rf_photo_init) rf_photo_init(reason, save);
   if (rf_improve_pips_init) rf_improve_pips_init(reason, save);
+  if (rf_harvest_init) rf_harvest_init(reason, save);
+  /* After send-all and the menu, which make the menus' draw call first. */
+  if (rf_combine_init) rf_combine_init(reason, save);
 }

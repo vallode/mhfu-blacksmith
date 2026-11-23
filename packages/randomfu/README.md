@@ -176,13 +176,14 @@ web app shows as a tag):
 | `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                               |
 | `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                        |
 | `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                          |
-| `monsterAi.aggression`            | `off`       | `off`, `more` (attacks twice as likely against other moves) or `relentless` (four times)               |
+| `monsterAi.aggression`            | `off`       | `off`, `more` (attacks ×2, idle ≤ 1 s, recoveries 50% faster) or `relentless` (×4, ⅓ s, recoveries ×2) |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                            |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                      |
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU and JP discs)                        |
-| `mods.buttonIcons`                | `psp`       | `xbox` draws the button icons as an Xbox controller's: A B X Y, LB, RB, Menu and View                  |
+| `paint.stays`                     | off         | A painted monster stays on the area map until the quest ends                                           |
+| `mods.buttonIcons`                | `psp`       | `xbox`, `nintendo`, `playstation` or `keyboard` draws that set's icons                                 |
 | `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
 | `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
 | `camera.tilt`                     | `steps`     | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast` (EU disc only)           |
@@ -200,6 +201,9 @@ web app shows as a tag):
 | `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards) |
 | `rewards.sendAll`                 | on          | A Send All to Item Box row in the reward screen's menu (caps Guild Cards)                              |
 | `smithy.improvePips`              | on          | A pip on each weapon the smithy's Improve can improve now (caps Guild Cards)                           |
+| `farm.harvestAll`                 | on          | △ at the farm's Item Box sends everything the farm holds to the Item Box (caps Guild Cards)            |
+| `pouch.bulkCombine`               | on          | The pouch's Combine asks how many at "Combine?" and makes them all at once (caps Guild Cards)          |
+| `monsterList.slainCaptured`       | off         | The Monster List's card shows slain and captured counts, from the save, in place of one hunted count   |
 | `boot.skip`                       | `normal`    | A faster start: `title` (no notice, logos or intro movie) or `village` (straight into the last hunter) |
 
 ### Presets
@@ -991,10 +995,39 @@ Not yet tried in game.
   least 1. It runs after `monsterAi.branches`, on the rerolled weights.
 - A file is changed only if its choices and their vanilla weights hash to
   what the data was made from; the EU and FUC discs both match.
+- Shorter pauses: every large monster stands in its idle between moves at
+  most 30 frames (`more`, one second) or 10 (`relentless`), as blob code on
+  the code loader (`src/patches/aggression.ts`, `blob/aggression.c`, on the
+  shared monster boosts of `blob/monsters.c`). The idle (action group 0
+  playing motion record 1, every species' looping stand) otherwise runs to
+  the end of its loop before the AI goes on: Tigrex's is three seconds,
+  then it turns to its next move. The blob sets the monster's "think now"
+  flag (`+0x4B5`) once the cap is up, which is what the idle sets when its
+  loop ends. No flag for "has seen a hunter" was found, so a monster that
+  rests while it wanders rests less too. It goes in where `game_task`'s AI
+  gate and AI match the EU code (EU and FUC do); elsewhere the odds still
+  change and the report says the pauses don't.
+- Quicker recoveries and turns: once a large monster's move is past its
+  last hit (or roar, wind or tremor), the rest of it plays 50% faster
+  (`more`) or twice as fast (`relentless`); a turn (a short motion whose
+  only hits are light contact) plays faster all through. The monster
+  update sets its animation speed every frame from a percent bonus at
+  `+0x769` (u8) that some moves set for themselves (Tigrex's charge); the
+  blob raises it for the rest of the move, keeps a move's own bonus where
+  it's faster, and puts the game's back after. Where each move's last hit
+  ends is data from the EU disc (`src/shuffles/monster-motions.ts`, from the
+  attack sweep the site's attack viewer uses), by species and motion
+  record. Moves whose hits the game's code spawns (Tigrex's charge) and
+  walks aren't listed, so they run as they did. It goes in where
+  `game_task`'s speed code matches the EU code; elsewhere the report says
+  so.
 
 Tried in game on the EU disc at four times: Giadrome was clearly more
 aggressive. Species with walking contact and the elder dragons haven't been
-played.
+played. The shorter pauses were played against Tigrex on the EU disc at
+`relentless` (better, but its turns and some recoveries were still slow,
+which the quicker recoveries are for). With the quicker recoveries too,
+Tigrex's turns felt much better.
 
 **The bookshelf guides** rewrite runs of the house bookshelf's articles
 (Open Bookshelf, Info Magazine) and make them readable from the start
@@ -1115,10 +1148,17 @@ texture gets the union. The markers use palette entries the art leaves
 unused (every map has over 200), so nothing else recolours and file sizes
 are unchanged. Checked in PPSSPP on the Snowy Mountains map.
 
-**Xbox button icons** (`mods.buttonIcons`, `src/patches/button-icons.ts`)
+**Button icons** (`mods.buttonIcons`, `src/patches/button-icons.ts`)
 redraws the PSP's ○ × △ □ L R START SELECT, wherever the game draws them
-(its text's `~B` icons and the HUD), as the Xbox buttons PPSSPP maps them to
-by default: B A Y X, LB RB, Menu and View. They are sprites 50-58 of the HUD
+(its text's `~B` icons and the HUD), as another set's. `xbox` is the buttons
+PPSSPP maps them to by default: B A Y X, LB RB, Menu and View. `nintendo` keeps
+the Xbox's places with a Switch's letters (A ○, B ×, X △, Y □) and L R + −.
+`playstation` draws coloured shapes (blue ×, red ○, pink □, green △), L1 R1,
+Options (≡) and a touchpad rectangle. `keyboard` draws outlined keycaps with
+PPSSPP's default keys: X ○, Z ×, S △, A □, Q W, Space (START) and Enter (SELECT); its keys are
+drawn from scratch (outline 1, white top, 200 shade, 148/117 front, letters in
+73 grey) rather than on the painted-out button, and take the nearest palette
+entries too. START and SELECT exist only on the HUD sheet. They are sprites 50-58 of the HUD
 sprite table (EU 0x089391A8, 12-byte rows of u16 u, v, w, h, texture, set),
 all on texture 0x8001: the second image of `system/resides.tmh` (256x256,
 8-bit swizzled, RGBA8888 palette; JP file 18, EU files 30-34, one per
@@ -2113,6 +2153,13 @@ elite:
 - has half again its health (at most 32767), and hits 30% harder;
 - moves 10% faster: its animations run 10% faster, except during moves
   that set their own speed;
+- pauses less between moves: it stands in its idle at most 20 frames
+  (two thirds of a second) before its next move, where the game would let
+  the idle loop run out (Tigrex's three seconds). Monster aggression's cap
+  applies too, and the shorter one wins;
+- recovers and turns faster: past a move's last hit, and all through a
+  turn, its animations run 50% faster (Monster aggression's, the faster
+  one winning);
 - enrages after 60% of the damage it would otherwise take, and stays
   enraged half again as long (monsters that don't enrage skip this);
 - is 15% bigger than the quest made it (at most 250%), which the Guild
@@ -2338,6 +2385,133 @@ matched on EU; `src/patches/improve-pips.ts` has the addresses):
 Which cells get a pip is worked out once a page and kept while the picker
 shows: again for a slot that changes, and for the page when the zenny does
 or the picker's been closed. Not yet seen in game.
+
+## Harvest all
+
+`farm.harvestAll`: standing at Pokke Farm's Item Box, its prompt ("□ :Open
+Item Box") gets a second line, "△ :Harvest All to Item Box", while the farm
+holds anything. △ sends everything every spot holds (the field, the Mining
+Points, Insect Thickets, Mushroom Tree and Bee Hive) to the Item Box, with a
+line in the message log for each kind of item and one saying how many went.
+What doesn't fit stays on the farm, at the front of its spot. Gathering at a
+spot is the game's. It's blob code (`blob/harvest.c`) on one call of the
+START menu's hook in the EBOOT, so it goes in with the START menu entry and
+caps Guild Cards.
+
+What it found (EU and JP (FUC), the same code at other addresses;
+`src/patches/harvest.ts` has the details):
+
+- The farm is in the save at `+0x6A238`: what's built (the field's plots,
+  Mining Points and Insect Thickets as the highest one there, the Mushroom
+  Tree and Bee Hive as a level 1-3), then each spot's stock, which the farm
+  restock rolls after every quest for every table, built or not, writing
+  over whatever was left. A Mining Point or Insect Thicket holds 4 items, a
+  tree 8 and a hive 6 (one list per level); a field plot 12 items with
+  amounts.
+- The prompt at an interaction point switches on the point's type (7 the
+  farm's Item Box, 6 the house's): each prints its button's " :" message and
+  its text, then a shared tail draws the banner and the button's sprite. An
+  NPC with a second choice gets a second banner a line (16) lower. The
+  village's interaction code takes □ for every type, and other buttons only
+  for NPCs, so △ at the box is free.
+
+The blob takes the farm box case's last message lookup (its text again, for
+the banner's width): it makes the game's call, draws its own line under the
+game's as an NPC's second choice is drawn, and on △ (the buttons the Item
+Box's menu reads, nothing while input is locked) sends it all with the
+reward screen's box calls. Not yet seen in game; the finder matches the EU
+and FUC discs.
+
+## Bulk combine
+
+`pouch.bulkCombine`: in the item pouch's Combine (the START menus' second
+entry), "Combine?" gets a "How many?" window beside Yes/No. Left and right
+pick the count, from 1 up to what the ingredients make and what the pouch
+has room for (the room for the result over the most one combine can make,
+so nothing is lost); × on Yes combines that many at once, and the game's
+own result message shows the lot. Each combine still rolls its own chance:
+failures past the first give their Garbage too, and the message log says
+how many failed. With one at most (one ingredient left, or no free slot for
+the result), Combine is the game's, left and right moving the pouch's
+cursor as ever. It's blob code (`blob/combine.c`) on the START menu's hook,
+so it goes in with the START menu entry and caps Guild Cards.
+
+What it found (EU and JP (FUC), the same code at other addresses;
+`src/patches/combine.ts` has the details):
+
+- Both menus run entry 1 with the same `combine_run`, a state machine in
+  the HUD object: two states pick the ingredients (and the recipe), then
+  "Combine?" (Yes/No on up and down, the pouch's cursor on left and right,
+  and what's wrong: the pouch full, an ingredient gone), then the result.
+- × on Yes calls `combine()` once: the recipe's chance, then the result
+  and how many (up to the recipe's quantity class's most), or a failure; it
+  takes one of each ingredient either way and doesn't give the result: the
+  next state does, turning a failure into one Garbage.
+- The Yes/No window is at (248, 200), 80 by 48, on both discs; the count's
+  window goes right of it.
+
+The blob takes the menus' run and draw calls while Combine runs, and the
+combine call: that makes the game's call the count's times and answers with
+the last result and the amounts summed. Not yet seen in game; the finder
+matches the EU and FUC discs.
+
+## Paint
+
+`paint.stays` keeps a Paintball's mark for the rest of the quest: the
+painted monster stays on the area map, where the game drops it after ten
+minutes. It's a one-word patch of `game_task` (`src/patches/paint.ts`), no
+blob, so it doesn't cap Guild Cards.
+
+What it found (`game_task.ovl`, statically on EU and matched on JP):
+
+- A Paintball hit sets the monster's paint flag (`+0x3D0`, u8) to 1 and its
+  timer (`+0x3D2`, s16) to 18000 frames. The map draws a monster's icon
+  while the flag is set (the map's test, EU 0x08844578, see "Monster
+  health").
+- Each frame the monster's update counts the timer down while the flag is
+  set and isn't 0xFF, and clears the flag at 0 (EU 0x09AC74E8, JP
+  0x09AC27B8). That's the only countdown; the flag is otherwise cleared
+  when a monster is set up (spawned, or reset) and by the ad hoc sync, which
+  every randomfu disc turns off ("No online play").
+- A monster that leaves the area stays in the quest's monster list with its
+  fields, paint included, so the mark follows it to the next area. Each
+  monster has its own flag and timer.
+
+The patch turns the countdown's decrement into a `nop`, so the timer is
+written back unchanged. Not yet seen in game: the mark across area changes
+and with two monsters painted are what the code says, not what's been
+played.
+
+## Monster List
+
+`monsterList.slainCaptured` changes the card the Monster List (the menu
+with the Combo List and Comrade Info) shows for a monster: its "No. Hunted"
+line becomes "Slain: n Captured: n".
+Nothing in the save changes; the counts are the ones the game keeps on any
+disc, so hunts from before the patch count, and the save still loads on an
+unmodified disc. It's an EBOOT patch (`src/patches/monster-list.ts`), no
+blob, so it doesn't cap Guild Cards.
+
+What it found (the EBOOT, statically on EU and matched on JP):
+
+- The save keeps slain and captured apart: a u16 per emID of captures at
+  `save + 0x44CC` and of kills at `+0x46E8`, each capped at 9999, beside the
+  record sizes (`+0x4580` largest, `+0x4634` smallest). At a quest's end the
+  quest object's own counts (`+0x29C` slain, `+0x350` captured, counted up
+  by the kill and capture code, see "Monster health") are added to them.
+- A Monster List entry is a crown group, a list of emIDs (variants
+  together). Two functions sum a group's slain and captured counts, and a
+  third adds them, capped at 9999: that's what the card shows, as message
+  90 ("No. Hunted:%d"), and whether it shows the record sizes.
+- The Guild Card's Monster Log stores only the sum, in 14 bits of the card
+  that is traded with other hunters, so it's left as it is.
+
+The patch rewrites the two group sums as one function that returns both, a
+second that prints the line, and the sum in place. The card's line calls
+the new one and keeps the sum where the card reads it. The text is English
+on every disc, like Send All to Item Box's row: the game's message would
+need a second number. The card's window is 35 half-width columns; the line
+is at most 25 characters. Not yet seen in game.
 
 ## Faster start
 

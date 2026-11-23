@@ -40,7 +40,11 @@ function PickerFrame({
     <div
       className="flex flex-col gap-[1.3rem]"
       onKeyDown={(e) => {
-        if (e.key === "Escape") onClose();
+        if (e.key === "Escape") {
+          // Back to what opened it, not out of a sheet around it too.
+          e.preventDefault();
+          onClose();
+        }
       }}
     >
       <div className="flex items-center gap-[1rem] bg-selector px-[0.8rem] py-[0.4rem]">
@@ -116,6 +120,7 @@ export function PiecePicker({
   isOwned,
   onPick,
   onClose,
+  embedded,
 }: {
   slot: ArmorSlot;
   /** Every piece (all slots). */
@@ -132,6 +137,11 @@ export function PiecePicker({
   isOwned?: (p: Piece) => boolean;
   onPick: (p: Piece | null) => void;
   onClose: () => void;
+  /**
+   * Inside another sheet (a search result's piece): no title bar, no
+   * "Remove" and no autofocus, which would raise a phone's keyboard.
+   */
+  embedded?: boolean;
 }) {
   const [query, setQuery] = useState("");
   const [rankFilter, setRankFilter] = useState<RankFilter>(rank);
@@ -189,8 +199,8 @@ export function PiecePicker({
     locale,
   ]);
 
-  return (
-    <PickerFrame title={text.pieceTitle(binLabel(t, slot))} onClose={onClose}>
+  const body = (
+    <>
       <input
         className={ui.searchInput}
         type="search"
@@ -199,7 +209,7 @@ export function PiecePicker({
         value={query}
         autoComplete="off"
         spellCheck={false}
-        autoFocus
+        autoFocus={!embedded}
         onChange={(e) => setQuery(e.target.value)}
       />
       <SelectorRow
@@ -222,7 +232,7 @@ export function PiecePicker({
         )}
       </p>
       <ul className="m-0 list-none p-0">
-        {current && (
+        {current && !embedded && (
           <li>
             <button type="button" className={rowButton} onClick={() => onPick(null)}>
               <span />
@@ -237,8 +247,8 @@ export function PiecePicker({
           <li key={p.id}>
             <button
               type="button"
-              className={cn(rowButton, p === current && "bg-white/10")}
-              aria-current={p === current || undefined}
+              className={cn(rowButton, p.id === current?.id && "bg-white/10")}
+              aria-current={p.id === current?.id || undefined}
               onClick={() => onPick(p)}
             >
               <Icon type={p.slot} size="mini" rarity={p.rarity} alt="" />
@@ -266,6 +276,13 @@ export function PiecePicker({
           </li>
         ))}
       </ul>
+    </>
+  );
+  return embedded ? (
+    <div className="flex flex-col gap-[1.3rem]">{body}</div>
+  ) : (
+    <PickerFrame title={text.pieceTitle(binLabel(t, slot))} onClose={onClose}>
+      {body}
     </PickerFrame>
   );
 }

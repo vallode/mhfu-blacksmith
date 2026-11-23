@@ -342,6 +342,7 @@ test("emitMonsters names parts and groups through overlay/monsters.json", () => 
     (m) => m.name === "Rathian",
   )!;
   assert.equal(rathian.base_hp, 4000);
+  assert.equal(rathian.base_scale, 1);
   assert.deepEqual((rathian.hitzones as Record<string, unknown>).head, {
     cut: 80,
     bash: 70,

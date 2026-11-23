@@ -122,7 +122,8 @@ export interface Settings {
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
-  "mods.buttonIcons": "psp" | "xbox";
+  "paint.stays": boolean;
+  "mods.buttonIcons": "psp" | "xbox" | "nintendo" | "playstation" | "keyboard";
   "camera.fov": "normal" | "wide" | "wider" | "widest";
   "camera.distance": "normal" | "far" | "farther" | "farthest";
   "camera.tilt": "steps" | "slow" | "smooth" | "fast";
@@ -140,6 +141,9 @@ export interface Settings {
   "quests.keyLabel": boolean;
   "rewards.sendAll": boolean;
   "smithy.improvePips": boolean;
+  "farm.harvestAll": boolean;
+  "pouch.bulkCombine": boolean;
+  "monsterList.slainCaptured": boolean;
   "boot.skip": "normal" | "title" | "village";
 }
 
@@ -1730,7 +1734,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "monsterAi.aggression",
     section: "Monster stats",
     label: "Aggression",
-    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, so it spends less time between them. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
+    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, and a large monster stands idle between moves for less time and recovers and turns faster, so it spends less time between attacks. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
     type: {
       kind: "choice",
       choices: [
@@ -1738,12 +1742,12 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "more",
           label: "More aggressive",
-          help: "Each attack is twice as likely as before against the other moves.",
+          help: "Each attack is twice as likely as before against the other moves, and a monster stands idle at most a second between moves and recovers from its moves and turns 50% faster.",
         },
         {
           value: "relentless",
           label: "Relentless",
-          help: "Each attack is four times as likely as before against the other moves.",
+          help: "Each attack is four times as likely as before against the other moves, and a monster stands idle at most a third of a second between moves and recovers from its moves and turns twice as fast.",
         },
       ],
     },
@@ -1795,6 +1799,14 @@ export const OPTIONS: readonly OptionDef[] = [
     default: false,
   },
   {
+    key: "paint.stays",
+    section: "Area map",
+    label: "Paint never wears off",
+    help: "A monster hit by a Paintball stays on the area map for the rest of the quest, instead of for ten minutes. Each painted monster keeps its own mark.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
     key: "mods.buttonIcons",
     section: "Buttons",
     label: "Button icons",
@@ -1807,6 +1819,21 @@ export const OPTIONS: readonly OptionDef[] = [
           value: "xbox",
           label: "Xbox",
           help: "A B X Y in their colours, LB, RB, Menu and View.",
+        },
+        {
+          value: "nintendo",
+          label: "Nintendo",
+          help: "A B X Y as a Switch has them (B below, A right), L, R, + and −.",
+        },
+        {
+          value: "playstation",
+          label: "PlayStation",
+          help: "Coloured × ○ □ △, L1, R1, Options and the touchpad.",
+        },
+        {
+          value: "keyboard",
+          label: "Keyboard",
+          help: "Keys for PPSSPP's defaults: Z X A S, Q, W, Space and Enter.",
         },
       ],
     },
@@ -2028,6 +2055,7 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Now and then a large monster is an elite, with a faint crimson pulse. The quest board doesn't tell.",
     points: [
       "+50% health, +30% damage, +10% speed, longer rages",
+      "Shorter pauses between moves, quicker turns and recoveries",
       "An extra reward draw, +50% zenny and rarer rewards",
     ],
     type: { kind: "boolean" },
@@ -2067,12 +2095,36 @@ export const OPTIONS: readonly OptionDef[] = [
     default: true,
   },
   {
+    key: "farm.harvestAll",
+    section: "Pokke Farm",
+    label: "Harvest all",
+    help: "At the farm's Item Box, △ sends everything the farm holds (field, Mining Points, Insect Thickets, Mushroom Tree, Bee Hive) to the Item Box.",
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
+    key: "pouch.bulkCombine",
+    section: "Item pouch",
+    label: "Bulk combine",
+    help: 'The item pouch\'s Combine asks how many at "Combine?": left and right pick up to what the ingredients and the pouch allow, and × on Yes combines them all at once.',
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
     key: "smithy.improvePips",
     section: "Improve pips",
     label: "Mark weapons you can improve",
     help: "In the smithy's Improve, an orange pip marks each weapon you have the materials and zenny to improve.",
     type: { kind: "boolean" },
     default: true,
+  },
+  {
+    key: "monsterList.slainCaptured",
+    section: "Monster List",
+    label: "Slain and captured",
+    help: "The Monster List's card shows how many of each monster you slew and how many you captured, in place of one hunted count. The save already keeps both, so old hunts count too. In English on every disc.",
+    type: { kind: "boolean" },
+    default: false,
   },
   {
     key: "boot.skip",
@@ -2320,7 +2372,7 @@ export const PRESETS: readonly Preset[] = [
     name: "QoL only",
     points: [
       "Shuffles and randomizes nothing: items, monsters, equipment and numbers stay as on the disc",
-      "Adds Send All to Item Box, the smithy's improve pips, photo mode, key quest marks and gathering nodes on the area map; all but the map's code caps received Guild Cards at 3",
+      "Adds Send All to Item Box, the smithy's improve pips, harvest all at Pokke Farm, bulk combine, photo mode, key quest marks and gathering nodes on the area map; all but the map's code caps received Guild Cards at 3",
       "Leaves out Poogie's luck and the bookshelf guides",
       "Turn on camera, HUD and quest extras in the later steps; the settings then show as custom, still with nothing shuffled",
       "Hunter's Pact, if you turn it on, draws its rewards from the seed",

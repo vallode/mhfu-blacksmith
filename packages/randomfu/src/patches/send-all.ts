@@ -219,6 +219,34 @@ const BOX_WORDS: readonly [number, number][] = [
 /** The help draw's usual rect: `lui $s0; addiu $s0`. */
 const HELP_RECT = 0x25c;
 
+/**
+ * The Item Box calls "Send to Item Box" makes (`can_store`, `add_to_box`,
+ * `item_seen`), from the reward screen's update, for blob code that sends
+ * items to the box: externs `rf_can_store`, `rf_can_store_object`,
+ * `rf_add_to_box` and `rf_item_seen`. Or why they can't be found.
+ */
+export function findBoxCalls(
+  vanillaEboot: Buffer,
+  segment: HookSites["segment"],
+): Record<string, number> | string {
+  const [update] = findUnique(vanillaEboot, segment, [REWARD_UPDATE_SIGNATURE], maskImmediates);
+  if (update == null) return "this EBOOT's reward screen doesn't match";
+  const at = (vaddr: number) => vanillaEboot.readUInt32LE(segment.offset + (vaddr - segment.vaddr));
+  if (!UPDATE_WORDS.every(([offset, w]) => maskImmediates(at(update + offset)) === w)) {
+    return "this EBOOT's reward screen doesn't match";
+  }
+  const call = (offset: number) => jumpTarget(at(update + offset), update + offset);
+  return {
+    rf_add_to_box: call(UPDATE.addToBox),
+    rf_item_seen: call(UPDATE.itemSeen),
+    rf_can_store: call(UPDATE.canStore),
+    rf_can_store_object: luiLwAddress(
+      at(update + UPDATE.canStoreLui),
+      at(update + UPDATE.canStoreLw),
+    ),
+  };
+}
+
 export interface SendAll {
   externs: Record<string, number>;
   /** The call it adds to hook 8: the first of `calls`, `CALL_SITE.rewardLabel`. */

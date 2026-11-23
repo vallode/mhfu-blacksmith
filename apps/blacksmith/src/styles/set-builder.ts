@@ -9,6 +9,10 @@ export const pressable =
 export const resultRow =
   "grid min-h-[5.2rem] w-full grid-cols-[3.2rem_minmax(0,1fr)_auto] items-center gap-x-[1rem] border-b border-white/10 px-[0.6rem] py-[0.6rem]";
 
+/** A full-width row of the search card that opens a sheet (Skills within reach, Options). */
+export const menuRow =
+  "flex w-full items-center justify-between gap-[1rem] px-[0.4rem] py-[0.6rem] text-small";
+
 /** A small text button beside a card's heading (Clear). */
 export const textButton =
   "cursor-pointer border-none bg-transparent p-0 font-[inherit] text-fine text-white/50 hover:text-white focus-visible:text-white";

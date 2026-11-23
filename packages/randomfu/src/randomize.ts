@@ -149,10 +149,22 @@ import {
 } from "./patches/pact.js";
 import { readMonsterDrops } from "./hints/sources.js";
 import { eliteObjects, findEliteExterns } from "./patches/elite.js";
+import {
+  AGGRESSION_IDLE_FRAMES,
+  AGGRESSION_TAIL_SPEED,
+  ELITE_IDLE_FRAMES,
+  ELITE_TAIL_SPEED,
+  aggressionExterns,
+  encodeMotionTails,
+  tailSpeedProblem,
+  aggressionObjects,
+  idleCapProblem,
+} from "./patches/aggression.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
 import {
   findHitSite,
+  FIRST_CALL_SITE,
   findHookSites,
   findPadSites,
   type HitSite,
@@ -166,6 +178,8 @@ import {
   improvePipsReport,
   prepareImprovePips,
 } from "./patches/improve-pips.js";
+import { type Harvest, harvestObjects, harvestReport, prepareHarvest } from "./patches/harvest.js";
+import { type Combine, combineObjects, combineReport, prepareCombine } from "./patches/combine.js";
 import {
   prepareTargetCamera,
   type TargetCamera,
@@ -176,6 +190,8 @@ import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
 import { damageObjects, findDamageExterns } from "./patches/damage.js";
 import { patchElementMotion } from "./patches/element-motion.js";
 import { disableOnline, offlineReport } from "./patches/no-online.js";
+import { monsterListReport, patchMonsterList } from "./patches/monster-list.js";
+import { paintReport, patchPaintStays } from "./patches/paint.js";
 import { bootReport, patchBoot } from "./patches/boot.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -534,6 +550,8 @@ export function randomize(
     }
   }
   const aggression = settings["monsterAi.aggression"];
+  // Its odds are data; its shorter pauses go in with the blob, below, which notes them here.
+  let aggressionReport: ShuffleReport | null = null;
   if (settings["monsterAi.branches"] || aggression !== "off") {
     const scripts = readScripts(game.gameTask, loadEmOverlays(game));
     if (settings["monsterAi.branches"]) {
@@ -549,7 +567,8 @@ export function randomize(
     }
     // After the reroll, so it leans whatever odds the choices have by then.
     if (aggression !== "off") {
-      reports.push(makeMonstersAggressive(aggression, edits, scripts, monsterName));
+      aggressionReport = makeMonstersAggressive(aggression, edits, scripts, monsterName);
+      reports.push(aggressionReport);
     }
   }
 
@@ -1039,6 +1058,10 @@ export function randomize(
       ? "the EBOOT wasn't loaded"
       : patchQuestEnd(edits.eboot(), settings["quest.endWait"]));
   let questEndInGame = false;
+  // Whether aggression's shorter pauses went in with the blob, or why not.
+  let pausesWhy: string | null = "the loader demo's blob replaces its code";
+  // Why its quicker recoveries didn't go in where the shorter pauses did.
+  let tailsWhy: string | null = null;
   if (options.loaderDemo) {
     const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
       objects: decodeObjects(DEMO_OBJECTS),
@@ -1207,6 +1230,8 @@ export function randomize(
     }
     // Elites share the monster list and species table monster health finds.
     let elites = false;
+    // Where moves are past their last hit, for elites' and aggression's quicker recoveries.
+    let motionTails = false;
     if (settings["elites.enabled"]) {
       let found: Record<string, number> | string =
         typeof sites === "string"
@@ -1237,10 +1262,47 @@ export function randomize(
         objects.push(...eliteObjects());
         Object.assign(externs, found);
         elites = true;
+        const idleWhy = idleCapProblem(ovl.reader.buf);
+        if (idleWhy) reports.push(notApplied("Elite monsters' shorter pauses", idleWhy));
+        const tailWhy = tailSpeedProblem(ovl.reader.buf);
+        if (tailWhy) reports.push(notApplied("Elite monsters' quicker recoveries", tailWhy));
+        else motionTails = true;
+      }
+    }
+    // Aggression's shorter pauses: the shared monster boosts, on the same monster list.
+    let aggressionIdle = false;
+    pausesWhy = "the code loader didn't go in";
+    if (aggression !== "off") {
+      const found =
+        typeof sites === "string"
+          ? sites
+          : (idleCapProblem(ovl.reader.buf) ??
+            findMonsterHpExterns(
+              game.eboot!,
+              sites.segment,
+              sites.gauges,
+              ovl.reader.buf,
+              ovl,
+              mode === "off" ? "always" : mode,
+            ));
+      if (typeof found === "string") pausesWhy = found;
+      else {
+        const { rf_game_task, rf_monsters, rf_em_chunks } = found;
+        objects.push(...aggressionObjects());
+        Object.assign(externs, {
+          rf_game_task: rf_game_task!,
+          rf_monsters: rf_monsters!,
+          rf_em_chunks: rf_em_chunks!,
+          ...aggressionExterns(aggression),
+        });
+        aggressionIdle = true;
+        tailsWhy = tailSpeedProblem(ovl.reader.buf);
+        motionTails ||= tailsWhy === null;
       }
     }
     let pact = false;
     const data: Record<string, Buffer> = { ...unknown?.data };
+    if (motionTails) data.rf_motion_tails = encodeMotionTails();
     if (settings["pact.enabled"]) {
       const found =
         typeof sites === "string"
@@ -1358,11 +1420,24 @@ export function randomize(
     let menus: MenuSites[] | null = null;
     const sendAllOn = settings["rewards.sendAll"];
     const pipsOn = settings["smithy.improvePips"];
+    const harvestOn = settings["farm.harvestAll"];
+    const combineOn = settings["pouch.bulkCombine"];
     if (sendAllOn && typeof sites === "string")
       reports.push(notApplied("Send All to Item Box", sites));
     if (pipsOn && typeof sites === "string") reports.push(notApplied("Improve pips", sites));
+    if (harvestOn && typeof sites === "string") reports.push(notApplied("Harvest all", sites));
+    if (combineOn && typeof sites === "string") reports.push(notApplied("Bulk combine", sites));
     if (
-      (hit || monsterHp || hitboxes || camera || questEnd || photo || sendAllOn || pipsOn) &&
+      (hit ||
+        monsterHp ||
+        hitboxes ||
+        camera ||
+        questEnd ||
+        photo ||
+        sendAllOn ||
+        pipsOn ||
+        harvestOn ||
+        combineOn) &&
       typeof sites !== "string"
     ) {
       const found = prepareMenu(game.eboot!, sites);
@@ -1375,6 +1450,8 @@ export function randomize(
         );
         if (sendAllOn) reports.push(notApplied("Send All to Item Box", found));
         if (pipsOn) reports.push(notApplied("Improve pips", found));
+        if (harvestOn) reports.push(notApplied("Harvest all", found));
+        if (combineOn) reports.push(notApplied("Bulk combine", found));
       } else {
         optional.push(...menuObjects());
         Object.assign(externs, found.externs);
@@ -1409,6 +1486,28 @@ export function randomize(
         improvePips = found;
       }
     }
+    // Harvest all: a call of the menu's hook, so it goes in (and out) with them.
+    let harvest: Harvest | null = null;
+    if (menus && harvestOn) {
+      const found = prepareHarvest(game.eboot!, game.lobbyTask);
+      if (typeof found === "string") reports.push(notApplied("Harvest all", found));
+      else {
+        optional.push(...harvestObjects());
+        Object.assign(externs, found.externs);
+        harvest = found;
+      }
+    }
+    // Bulk combine: the menu's hook, and a call of it in the EBOOT, so it goes in (and out) with them.
+    let combine: Combine | null = null;
+    if (menus && combineOn) {
+      const found = prepareCombine(game.eboot!, menus, game.lobbyTask);
+      if (typeof found === "string") reports.push(notApplied("Bulk combine", found));
+      else {
+        optional.push(...combineObjects());
+        Object.assign(externs, found.externs);
+        combine = found;
+      }
+    }
     // The target camera: a call of the menu's hook, so it goes in (and out) with
     // them, and the read the game makes without the blob, in the camera's patch.
     let targetCamera: TargetCamera | null = null;
@@ -1441,6 +1540,7 @@ export function randomize(
         hitboxes ||
         unknown ||
         elites ||
+        aggressionIdle ||
         pact ||
         luck ||
         keys ||
@@ -1449,8 +1549,24 @@ export function randomize(
         questEnd ||
         photo ||
         sendAll ||
-        improvePips)
+        improvePips ||
+        harvest ||
+        combine)
     ) {
+      // Hook 8's other calls; harvest.c and combine.c know theirs by its site.
+      const calls = [
+        ...(sendAll?.calls ?? []),
+        ...(targetCamera?.calls ?? []),
+        ...(improvePips?.calls ?? []),
+      ];
+      if (harvest) {
+        externs.rf_harvest_site = FIRST_CALL_SITE + calls.length;
+        calls.push(...harvest.calls);
+      }
+      if (combine) {
+        externs.rf_combine_site = FIRST_CALL_SITE + calls.length;
+        calls.push(...combine.calls);
+      }
       const install = (lean: boolean) => {
         const all = lean ? objects : [...objects, ...optional];
         return addCodeLoader(game.eboot, game.gameSub, edits, {
@@ -1470,11 +1586,7 @@ export function randomize(
             ...(menus &&
               !lean && {
                 menus,
-                calls: [
-                  ...(sendAll?.calls ?? []),
-                  ...(targetCamera?.calls ?? []),
-                  ...(improvePips?.calls ?? []),
-                ],
+                calls,
               }),
           },
           externs,
@@ -1499,6 +1611,7 @@ export function randomize(
         }
       }
       reports.push(loader);
+      if (aggressionIdle && loader.applied) pausesWhy = null;
       // A lean loader leaves out the camera's code when its options are off.
       cameraLinked = loader.applied && camera && (cameraWanted || !wentLean);
       // Its code is always optional: the EBOOT patch alone carries the disc's
@@ -1525,6 +1638,30 @@ export function randomize(
             ? improvePipsReport()
             : notApplied(
                 "Improve pips",
+                loader.applied
+                  ? "it goes in with the START menu entry, which didn't fit"
+                  : "the code loader isn't on this disc",
+              ),
+        );
+      }
+      if (harvest) {
+        reports.push(
+          loader.applied && !wentLean
+            ? harvestReport()
+            : notApplied(
+                "Harvest all",
+                loader.applied
+                  ? "it goes in with the START menu entry, which didn't fit"
+                  : "the code loader isn't on this disc",
+              ),
+        );
+      }
+      if (combine) {
+        reports.push(
+          loader.applied && !wentLean
+            ? combineReport()
+            : notApplied(
+                "Bulk combine",
                 loader.applied
                   ? "it goes in with the START menu entry, which didn't fit"
                   : "the code loader isn't on this disc",
@@ -1578,6 +1715,30 @@ export function randomize(
     if (targetPatch) throw new Error("The target camera's call went in without the camera's patch");
   }
 
+  if (aggressionReport && aggression !== "off") {
+    const frames = AGGRESSION_IDLE_FRAMES[aggression];
+    const speed = AGGRESSION_TAIL_SPEED[aggression];
+    // Where an elite's own is better, it says so.
+    const elitesOn = settings["elites.enabled"];
+    const eliteIdle =
+      elitesOn && ELITE_IDLE_FRAMES < frames ? `; an elite's is ${ELITE_IDLE_FRAMES} frames` : "";
+    const eliteSpeed =
+      elitesOn && ELITE_TAIL_SPEED > speed ? ` (an elite's ${ELITE_TAIL_SPEED}%)` : "";
+    aggressionReport.notes.push(
+      pausesWhy === null
+        ? `Between moves, a large monster stands in its idle at most ${frames} frames (${Math.round((frames / 30) * 100) / 100} s${eliteIdle}).`
+        : `Pauses between moves aren't shortened: ${pausesWhy}.`,
+    );
+    if (pausesWhy === null) {
+      aggressionReport.notes.push(
+        tailsWhy === null
+          ? `Once a move is past its last hit, and all through a turn, a large monster moves ${speed}% faster${eliteSpeed}.`
+          : `Recoveries after a move aren't quicker: ${tailsWhy}.`,
+      );
+    }
+    if (pausesWhy !== null) aggressionReport.summary += `; pauses not shortened (${pausesWhy})`;
+  }
+
   if (questEndOn) {
     const why = typeof questEndAt === "string" ? questEndAt : null;
     reports.push(
@@ -1610,7 +1771,12 @@ export function randomize(
   );
 
   if (settings["mods.nodeMap"]) reports.push(addNodeMap(game, edits));
-  if (settings["mods.buttonIcons"] === "xbox") reports.push(addButtonIcons(game, edits));
+  if (settings["paint.stays"]) reports.push(paintReport(patchPaintStays(game.gameTask, edits)));
+  if (settings["monsterList.slainCaptured"]) {
+    reports.push(monsterListReport(patchMonsterList(game.eboot, edits)));
+  }
+  const buttonIcons = settings["mods.buttonIcons"];
+  if (buttonIcons !== "psp") reports.push(addButtonIcons(game, edits, buttonIcons));
 
   return {
     edits,

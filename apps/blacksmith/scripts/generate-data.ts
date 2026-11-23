@@ -364,6 +364,7 @@ function encodeMonster(
   }
   if (typeof m.base_hp === "number") out.hp = m.base_hp;
   if (typeof m.base_size === "number") out.bs = m.base_size;
+  if (typeof m.base_scale === "number") out.sc = m.base_scale;
   if (m.crowns) out.cr = [m.crowns.mini, m.crowns.silver, m.crowns.gold];
   if (sizeRange) out.sz = [sizeRange.min, sizeRange.max];
   if (Array.isArray(m.breaks) && m.breaks.length > 0) out.bk = m.breaks;

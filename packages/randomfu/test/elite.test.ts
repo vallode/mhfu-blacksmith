@@ -4,6 +4,14 @@ import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
 import { decodeObjects, linkBlob } from "../src/blob/link.js";
 import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
 import { eliteObjects } from "../src/patches/elite.js";
+import {
+  aggressionExterns,
+  aggressionObjects,
+  encodeMotionTails,
+  idleCapProblem,
+  tailSpeedProblem,
+} from "../src/patches/aggression.js";
+import { MOTION_TAILS } from "../src/shuffles/monster-motions.js";
 import { monsterHpObjects } from "../src/patches/monster-hp.js";
 import { Cpu } from "./mips-cpu.js";
 
@@ -42,12 +50,38 @@ const fromF32 = (bits: number) => new Float32Array(new Uint32Array([bits]).buffe
 const near = (actual: number, expected: number) =>
   assert.ok(Math.abs(actual - expected) < 1e-6, `${actual} isn't ${expected}`);
 
-/** The blob, the hooks and a quest in a CPU, with elites at `chance`%. */
-function quest(chance: number) {
-  const blob = linkBlob([...decodeObjects(RUNTIME_OBJECTS), ...eliteObjects()], BLOB, {
-    ...EXTERNS,
-    rf_elite_chance: chance,
-  });
+/**
+ * The blob, the hooks and a quest in a CPU, with elites at `chance`% (their
+ * idle cap `eliteIdle` frames, 0 for none) and Monster aggression's pauses
+ * if `aggression` is on. `tails` is the moves' last hits (MOTION_TAILS'
+ * format), none by default.
+ */
+function quest(
+  chance: number,
+  {
+    eliteIdle = 20,
+    aggression,
+    tails,
+  }: {
+    eliteIdle?: number;
+    aggression?: "more" | "relentless";
+    tails?: Record<number, string>;
+  } = {},
+) {
+  const objects = [...decodeObjects(RUNTIME_OBJECTS), ...eliteObjects()];
+  if (aggression) objects.push(...aggressionObjects());
+  const blob = linkBlob(
+    objects.filter((o, k) => objects.findIndex((x) => x.name === o.name) === k),
+    BLOB,
+    {
+      ...EXTERNS,
+      rf_elite_chance: chance,
+      rf_elite_idle: eliteIdle + 1,
+      ...(aggression && aggressionExterns(aggression)),
+    },
+    Infinity,
+    tails ? { rf_motion_tails: encodeMotionTails(tails) } : {},
+  );
   const cpu = new Cpu();
   cpu.write(BLOB, blob.image);
   const hooks = assembleHooks(HOOKS, BLOB, [
@@ -329,4 +363,209 @@ test("monster health alone links without elites", () => {
     rf_monster_hp_mode: 3, // always (its mode + 1)
   });
   assert.equal(blob.symbols.get("rf_add_booster"), undefined);
+});
+
+/** Stands the monster in its idle: action group 0, motion record 1. */
+const idle = (q: ReturnType<typeof quest>, m: number) => {
+  q.cpu.setU8(m + 0x298, 0);
+  q.cpu.setU16(m + 0x324, 1001);
+};
+/** Frames until the monster is told to pick its next move (its "think now" flag), up to `most`. */
+function framesToThink(q: ReturnType<typeof quest>, m: number, most = 200): number | null {
+  for (let n = 1; n <= most; n++) {
+    q.frame();
+    if (q.cpu.u8(m + 0x4b5)) return n;
+  }
+  return null;
+}
+
+test("an elite stands in its idle 20 frames at most, then picks its next move", () => {
+  const q = quest(100);
+  const m = q.monster(0);
+  idle(q, m);
+  assert.equal(framesToThink(q, m), 20);
+  // The game clears the flag as its AI runs; the next idle gets its own 20 frames.
+  q.cpu.setU8(m + 0x4b5, 0);
+  assert.equal(framesToThink(q, m), 20);
+});
+
+test("only the idle is cut: other moves and motions, and a dead monster, run as the game has them", () => {
+  const q = quest(100);
+  const m = q.monster(0);
+  idle(q, m);
+  for (let k = 0; k < 15; k++) q.frame();
+  // Another motion starts the count again.
+  q.cpu.setU16(m + 0x324, 1021);
+  assert.equal(framesToThink(q, m, 60), null);
+  idle(q, m);
+  q.cpu.setU8(m + 0x298, 3); // an attack's group, playing record 1 for a moment
+  assert.equal(framesToThink(q, m, 60), null);
+  idle(q, m);
+  assert.equal(framesToThink(q, m), 20);
+  q.cpu.setU8(m + 0x4b5, 0);
+  q.cpu.setU16(m + 0x2e4, 0);
+  assert.equal(framesToThink(q, m, 60), null);
+});
+
+test("monsters that aren't elites keep their idle; with no cap, elites keep theirs", () => {
+  const q = quest(0);
+  const m = q.monster(0);
+  idle(q, m);
+  assert.equal(framesToThink(q, m), null);
+  const r = quest(100, { eliteIdle: 0 });
+  const e = r.monster(0);
+  idle(r, e);
+  assert.equal(framesToThink(r, e), null);
+});
+
+test("aggression caps every large monster's idle, elites' at the shorter cap; small monsters keep theirs", () => {
+  const q = quest(0, { aggression: "more" });
+  const m = q.monster(0);
+  const small = q.monster(1, SMALL, 50, 50);
+  idle(q, m);
+  idle(q, small);
+  assert.equal(framesToThink(q, m), 30);
+  assert.equal(q.cpu.u8(small + 0x4b5), 0);
+  assert.equal(q.cpu.u16(m + 0x41e), 480, "aggression alone doesn't boost");
+
+  const elite = quest(100, { aggression: "more" });
+  const e = elite.monster(0);
+  idle(elite, e);
+  assert.equal(framesToThink(elite, e), 20, "the elite's cap is shorter");
+
+  const relentless = quest(100, { aggression: "relentless" });
+  const r = relentless.monster(0);
+  idle(relentless, r);
+  assert.equal(framesToThink(relentless, r), 10, "relentless is shorter still");
+});
+
+test("the idle cap goes in only where game_task's AI is the one it was made for", () => {
+  // The AI gate (EU 0x09AD8284) and the AI's start (0x09AB4B68), as the EU disc has them.
+  const gate = [
+    0x84830778, 0x1c600008, 0x00808021, 0x920304b5, 0x50600008, 0x8fbf000c, 0x0e6ad2da, 0,
+    0x10000003, 0xa20004b5, 0x2463ffff, 0xa6030778,
+  ];
+  const think = [
+    0x27bdffe0, 0xafbf001c, 0xafb30018, 0xafb20014, 0xafb10010, 0xafb0000c, 0x90850298,
+  ];
+  const task = (...parts: number[][]) => {
+    const words = parts.flatMap((p) => [0, ...p]);
+    const buf = Buffer.alloc(words.length * 4);
+    words.forEach((w, k) => buf.writeUInt32LE(w >>> 0, k * 4));
+    return buf;
+  };
+  assert.equal(idleCapProblem(task(gate, think)), null);
+  assert.match(idleCapProblem(task(think)) ?? "", /gate/);
+  assert.match(idleCapProblem(task(gate)) ?? "", /AI doesn't match/);
+  assert.match(idleCapProblem(task(gate, gate, think)) ?? "", /gate/);
+});
+
+/** Giadrome's moves, made up: record 2 a turn, record 5's last hit ending at frame 100. */
+const TAILS = { [LARGE]: "2:0 5:100" };
+/** Plays motion `record` at `frame`. */
+const play = (q: ReturnType<typeof quest>, m: number, record: number, frame: number) => {
+  q.cpu.setU8(m + 0x298, 3);
+  q.cpu.setU16(m + 0x324, 1000 + record);
+  q.cpu.setU32(m + 0x90, f32(frame));
+};
+
+test("an elite recovers from a move 50% faster past its last hit, and turns 50% faster", () => {
+  const q = quest(100, { tails: TAILS });
+  const m = q.monster(0);
+  play(q, m, 5, 60);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 10, "before the last hit ends, the elite's own 10%");
+  // The elite's 10% gets its motion there sooner: the tail starts at 110.
+  play(q, m, 5, 108);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 10);
+  play(q, m, 5, 110.5);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 50);
+  // Another move: back to what was there.
+  play(q, m, 7, 120);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 10);
+  play(q, m, 2, 0);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 50, "a turn is faster all through");
+  // A move's own bonus that's faster stays.
+  play(q, m, 5, 140);
+  q.cpu.setU8(m + 0x769, 70);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 70);
+  play(q, m, 6, 0);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 70, "the game's 70 isn't ours to put back");
+});
+
+test("the game's new bonus wins over the one written, and a dead monster isn't sped up", () => {
+  const q = quest(100, { tails: TAILS });
+  const m = q.monster(0);
+  play(q, m, 5, 150);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 50);
+  // A move change clears it while still in the tail: the elite's 10 comes back, then ours.
+  q.cpu.setU8(m + 0x769, 0);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 50);
+  play(q, m, 8, 0);
+  q.frame();
+  assert.equal(q.cpu.u8(m + 0x769), 10, "what the elite wrote is put back, not the cleared 0");
+  q.cpu.setU16(m + 0x2e4, 0);
+  play(q, m, 5, 150);
+  q.frame();
+  assert.notEqual(q.cpu.u8(m + 0x769), 50);
+});
+
+test("aggression speeds every large monster's recoveries, the faster of it and an elite's winning", () => {
+  const more = quest(0, { aggression: "more", tails: TAILS });
+  const m = more.monster(0);
+  const small = more.monster(1, SMALL, 50, 50);
+  play(more, m, 5, 150);
+  play(more, small, 5, 150);
+  more.frame();
+  assert.equal(more.cpu.u8(m + 0x769), 50);
+  assert.equal(more.cpu.u8(small + 0x769), 0);
+
+  const relentless = quest(100, { aggression: "relentless", tails: TAILS });
+  const r = relentless.monster(0);
+  play(relentless, r, 5, 150);
+  relentless.frame();
+  assert.equal(relentless.cpu.u8(r + 0x769), 100, "relentless is faster than the elite's 50");
+
+  const untabled = quest(0, { aggression: "relentless" });
+  const u = untabled.monster(0);
+  play(untabled, u, 5, 150);
+  untabled.frame();
+  assert.equal(untabled.cpu.u8(u + 0x769), 0, "without the table nothing is sped up");
+});
+
+test("the moves' last hits pack as monsters.c reads them", () => {
+  const out = encodeMotionTails({ 3: "7:0 2:41", 5: "1:600" });
+  const at = (k: number) => out.readUInt16LE(k * 2);
+  assert.equal(out.length, (91 + 3) * 2);
+  assert.deepEqual([at(0), at(3), at(4), at(5), at(6), at(90)], [0, 0, 2, 2, 3, 3]);
+  assert.deepEqual([at(91), at(92), at(93)], [2 | (11 << 8), 7, 1 | (150 << 8)]);
+  assert.throws(() => encodeMotionTails({ 1: "256:10" }), /doesn't fit/);
+  encodeMotionTails(); // every species' table fits
+  // Tigrex: its turns all through, its tail swipe's recovery past frame 186.
+  assert.match(MOTION_TAILS[75] ?? "", /^2:0 7:0 8:0 .*\b43:186\b/);
+});
+
+test("recoveries are sped up only where game_task's speed code is the one they were made for", () => {
+  // The monster update's speed (EU 0x09AC667C), as the EU disc has it.
+  const speed = [
+    0x92430769, 0x3c0242c8, 0x44820000, 0x24620064, 0x44820800, 0x46800860, 0xc64204b0, 0x3c034000,
+    0x24020001, 0x46000803, 0x46001042, 0x44830000, 0x46010002, 0xe6400094,
+  ];
+  const task = (...parts: number[][]) => {
+    const words = parts.flatMap((p) => [0, ...p]);
+    const buf = Buffer.alloc(words.length * 4);
+    words.forEach((w, k) => buf.writeUInt32LE(w >>> 0, k * 4));
+    return buf;
+  };
+  assert.equal(tailSpeedProblem(task(speed)), null);
+  assert.match(tailSpeedProblem(task()) ?? "", /speed code/);
+  assert.match(tailSpeedProblem(task(speed, speed)) ?? "", /speed code/);
 });

@@ -157,7 +157,7 @@ export const MENU_PHASE = { label: 0, select: 1, run: 2, draw: 3 } as const;
  * `site` it gives them: the first is 8, after both menus' four.
  */
 export const CALL_SITE = { rewardLabel: 8 } as const;
-const FIRST_CALL_SITE = 8;
+export const FIRST_CALL_SITE = 8;
 
 /** The game's picker (hook 5): its address and its first two words, which the stub runs instead. */
 export interface PickSite {

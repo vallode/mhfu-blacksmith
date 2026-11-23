@@ -87,6 +87,7 @@
         }
       },
       "base_hp": 78,
+      "base_scale": 1.3,
       "flinch_thresholds": [
         60
       ],
@@ -192,6 +193,7 @@
         }
       },
       "base_hp": 96,
+      "base_scale": 1.1,
       "flinch_thresholds": [
         60
       ],
@@ -309,6 +311,7 @@
         }
       },
       "base_hp": 60,
+      "base_scale": 1,
       "flinch_thresholds": [
         30
       ],
@@ -426,6 +429,7 @@
         }
       },
       "base_hp": 50,
+      "base_scale": 1.2,
       "flinch_thresholds": [
         10
       ],
@@ -511,6 +515,7 @@
         }
       },
       "base_hp": 80,
+      "base_scale": 1,
       "flinch_thresholds": [
         20
       ],
@@ -627,6 +632,7 @@
         }
       },
       "base_hp": 200,
+      "base_scale": 1,
       "flinch_thresholds": [
         60
       ],

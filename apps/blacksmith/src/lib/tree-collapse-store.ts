@@ -6,8 +6,12 @@
  * sessionStorage so collapsed branches stay collapsed across the session.
  * Rows subscribe to their own node, so a branch can be opened from elsewhere
  * in the tree (an alias row revealing its weapon's first row).
+ *
+ * Every row asks as it mounts, so each tree's set is parsed once and kept in
+ * memory; changes are written through to sessionStorage.
  */
 const PREFIX = "tree-collapsed:";
+const cache = new Map<string, Set<string>>();
 
 type Listener = (collapsed: boolean) => void;
 const listeners = new Map<string, Set<Listener>>();
@@ -15,12 +19,17 @@ const listenerKey = (treeKey: string, slug: string) => `${treeKey}|${slug}`;
 
 function readSet(treeKey: string): Set<string> {
   if (typeof window === "undefined") return new Set();
-  try {
-    const raw = sessionStorage.getItem(`${PREFIX}${treeKey}`);
-    return raw ? new Set(JSON.parse(raw) as string[]) : new Set();
-  } catch {
-    return new Set();
+  let slugs = cache.get(treeKey);
+  if (!slugs) {
+    try {
+      const raw = sessionStorage.getItem(`${PREFIX}${treeKey}`);
+      slugs = raw ? new Set(JSON.parse(raw) as string[]) : new Set();
+    } catch {
+      slugs = new Set();
+    }
+    cache.set(treeKey, slugs);
   }
+  return slugs;
 }
 
 function writeSet(treeKey: string, slugs: Set<string>): void {

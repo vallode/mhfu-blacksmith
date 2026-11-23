@@ -535,22 +535,29 @@ function riskyTrees(
   return risky;
 }
 
+/** A slot's pieces, best score first (then defence, then ID). */
+function byScore(pieces: Piece[], sort: SortKey): Piece[] {
+  const score = new Map(pieces.map((p) => [p, pieceScore(p, sort)]));
+  return [...pieces].sort(
+    (a, b) => score.get(b)! - score.get(a)! || b.defence - a.defence || a.id - b.id,
+  );
+}
+
 /**
- * Drop every piece another piece of the slot is at least as good as, in
- * everything the search cares about, and group the rest.
+ * The pieces of a slot (`sorted` by byScore) no other piece is at least as
+ * good as, in everything the search cares about: points in the wanted trees
+ * (and in the risky ones, up to their caps), slots, defence and the sort key.
+ * Of pieces equal in all that, the first is kept.
  */
-function pieceClasses(
-  pieces: Piece[],
+function dominantPieces(
+  sorted: Piece[],
   wanted: string[],
   risky: { tree: string; cap: number }[],
   sort: SortKey,
-): PieceClass[] {
+): Set<Piece> {
   const vecOf = (p: Piece) =>
     p.torsoUp ? wanted.map(() => 0) : wanted.map((t) => p.points[t] ?? 0);
   const score = (p: Piece) => pieceScore(p, sort);
-  const byScore = [...pieces].sort(
-    (a, b) => score(b) - score(a) || b.defence - a.defence || a.id - b.id,
-  );
 
   // Compare each distinct profile once.
   interface Profile {
@@ -562,7 +569,7 @@ function pieceClasses(
     vec: number[];
   }
   const profiles = new Map<string, Profile>();
-  for (const p of byScore) {
+  for (const p of sorted) {
     const vec = vecOf(p);
     if (!p.torsoUp) {
       for (const { tree, cap } of risky) vec.push(Math.min(p.points[tree] ?? 0, cap));
@@ -599,10 +606,19 @@ function pieceClasses(
     }
     if (!beaten) kept.add(a.piece);
   }
+  return kept;
+}
 
+/** Group a slot's pieces (`sorted` by byScore) by their points in the wanted trees and slots. */
+function pieceClasses(
+  sorted: Piece[],
+  wanted: string[],
+  kept: Set<Piece>,
+  sort: SortKey,
+): PieceClass[] {
   const classes = new Map<string, PieceClass>();
-  for (const p of byScore) {
-    const vec = vecOf(p);
+  for (const p of sorted) {
+    const vec = p.torsoUp ? wanted.map(() => 0) : wanted.map((t) => p.points[t] ?? 0);
     const key = `${p.torsoUp ? "T" : ""}|${p.slots}|${vec.join()}`;
     let c = classes.get(key);
     if (!c) {
@@ -615,8 +631,146 @@ function pieceClasses(
   // Best first, so good sets turn up early and raise the bar for the rest.
   return [...classes.values()]
     .filter((c) => c.members.length > 0)
-    .map((c) => ({ ...c, best: score(c.members[0]) }))
+    .map((c) => ({ ...c, best: pieceScore(c.members[0], sort) }))
     .sort((a, b) => b.best - a.best);
+}
+
+/**
+ * Which pieces of one slot beat which, for SearchBase: for each piece (by
+ * its index in the slot's byScore order), the pieces at least as good as it
+ * in the base's wanted trees and in every risky tree up to its cap, plus
+ * slots, defence and the sort key. Torso Up pieces only compare slots,
+ * defence and the sort key, with each other.
+ */
+interface SlotDominance {
+  sorted: Piece[];
+  /** beaters[i]: indices of the pieces at least as good as sorted[i] (not i). */
+  beaters: Int32Array[];
+  /** Equal ids for pieces equal in everything beaters compares. */
+  profile: Int32Array;
+}
+
+function slotDominance(
+  sorted: Piece[],
+  wanted: string[],
+  risky: { tree: string; cap: number }[],
+  sort: SortKey,
+): SlotDominance {
+  const n = sorted.length;
+  const m = wanted.length + risky.length;
+  const vecs = new Float64Array(n * m);
+  const score = new Float64Array(n);
+  const profile = new Int32Array(n);
+  const ids = new Map<string, number>();
+  sorted.forEach((p, i) => {
+    score[i] = pieceScore(p, sort);
+    if (!p.torsoUp) {
+      wanted.forEach((t, j) => (vecs[i * m + j] = p.points[t] ?? 0));
+      risky.forEach(
+        ({ tree, cap }, j) =>
+          (vecs[i * m + wanted.length + j] = Math.min(p.points[tree] ?? 0, cap)),
+      );
+    }
+    const key = `${p.torsoUp ? "T" : ""}|${p.slots}|${score[i]}|${p.defence}|${vecs.subarray(i * m, i * m + m).join()}`;
+    let id = ids.get(key);
+    if (id === undefined) ids.set(key, (id = ids.size));
+    profile[i] = id;
+  });
+  const beaters: Int32Array[] = [];
+  const found: number[] = [];
+  for (let a = 0; a < n; a++) {
+    const pa = sorted[a];
+    found.length = 0;
+    // Best score first: only a piece scoring at least as much can beat another.
+    for (let b = 0; b < n && score[b] >= score[a]; b++) {
+      const pb = sorted[b];
+      if (b === a || pb.torsoUp !== pa.torsoUp || pb.slots < pa.slots || pb.defence < pa.defence) {
+        continue;
+      }
+      let j = 0;
+      while (j < m && vecs[b * m + j] >= vecs[a * m + j]) j++;
+      if (j === m) found.push(b);
+    }
+    beaters.push(Int32Array.from(found));
+  }
+  return { sorted, beaters, profile };
+}
+
+/**
+ * What every search with one query's options (hunter, rank, slots, bad
+ * skills, pieces, progress, sort) shares, whatever its skills, as long as it
+ * wants at least the trees the base was made for: the pieces it may use,
+ * the decorations, and which pieces beat which. For running many searches
+ * that each add a skill or two to one query (skill-reach.ts): pass it to
+ * prepareSearch, which then skips most of its setup.
+ */
+export interface SearchBase {
+  /** The wanted trees it was made for. */
+  trees: Set<string>;
+  bySlot: SlotDominance[];
+  decorations: Deco[];
+  /** Each piece's points, without Torso Up. */
+  pointList: [string, number][][];
+}
+
+export function searchBase(data: SearchData, query: SearchQuery): SearchBase {
+  const trees = [...resolveWanted(data.trees, query.skills).wanted.keys()];
+  const eligible = eligiblePieces(data, query);
+  const bySlot = SEARCH_ORDER.map((slot) => eligible.filter((p) => p.slot === slot));
+  const decorations = data.decorations.filter((d) =>
+    isAvailable(d.minRank, query.progress ?? null),
+  );
+  const risky = query.allowBadSkills
+    ? []
+    : riskyTrees(bySlot, decorations, badSkillLimits(data.trees), query.weaponSlots);
+  const sort = query.sort ?? "defence";
+  // A wanted tree isn't risky: its points count in full.
+  const own = risky.filter((r) => !trees.includes(r.tree));
+  return {
+    trees: new Set(trees),
+    bySlot: bySlot.map((ps) => slotDominance(byScore(ps, sort), trees, own, sort)),
+    decorations,
+    pointList: data.pieces.map((p) =>
+      Object.entries(p.points).filter(([t]) => t !== TORSO_UP_TREE),
+    ),
+  };
+}
+
+/**
+ * dominantPieces for a search that wants the base's trees and `extra`: a
+ * piece is beaten by one of its base beaters that has as many points in
+ * each extra tree. (An extra tree that was risky now counts in full, which
+ * only lets fewer pieces beat others.)
+ */
+function keptFromBase(slot: SlotDominance, extra: string[]): Set<Piece> {
+  const { sorted, beaters, profile } = slot;
+  const pts = (p: Piece, t: string) => (p.torsoUp ? 0 : (p.points[t] ?? 0));
+  const kept = new Set<Piece>();
+  for (let a = 0; a < sorted.length; a++) {
+    const pa = sorted[a];
+    let beaten = false;
+    for (const b of beaters[a]) {
+      const pb = sorted[b];
+      let same = profile[b] === profile[a];
+      let atLeast = true;
+      for (const t of extra) {
+        const vb = pts(pb, t);
+        const va = pts(pa, t);
+        if (vb < va) {
+          atLeast = false;
+          break;
+        }
+        if (vb !== va) same = false;
+      }
+      if (!atLeast) continue;
+      // Of equal pieces, the first is kept.
+      if (same && b > a) continue;
+      beaten = true;
+      break;
+    }
+    if (!beaten) kept.add(pa);
+  }
+  return kept;
 }
 
 /** A way to fill the last slots: points in the wanted trees, slots, Torso Up pieces. */
@@ -624,6 +778,33 @@ interface Completion {
   vec: number[];
   slots: number;
   torsoUps: number;
+}
+
+/** Completions in flat arrays: completion p's points are vec[p * k .. p * k + k). */
+interface PackedCompletions {
+  count: number;
+  vec: Float64Array;
+  slots: Int32Array;
+  torsoUpsOf: Int32Array;
+  maxTorsoUps: number;
+}
+
+function packCompletions(list: Completion[] | undefined, k: number): PackedCompletions {
+  const all = list ?? [];
+  const packed: PackedCompletions = {
+    count: all.length,
+    vec: new Float64Array(all.length * k),
+    slots: new Int32Array(all.length),
+    torsoUpsOf: new Int32Array(all.length),
+    maxTorsoUps: 0,
+  };
+  all.forEach((c, p) => {
+    packed.vec.set(c.vec, p * k);
+    packed.slots[p] = c.slots;
+    packed.torsoUpsOf[p] = c.torsoUps;
+    packed.maxTorsoUps = Math.max(packed.maxTorsoUps, c.torsoUps);
+  });
+  return packed;
 }
 
 /** The completions no other one beats, with as many Torso Up pieces. */
@@ -761,7 +942,16 @@ export function searchSets(
   return result;
 }
 
-export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSearch {
+/**
+ * Set up a search, to run round by round. `base`, made with searchBase for
+ * the same options, saves most of the setup when the search wants at least
+ * its trees (and is ignored otherwise).
+ */
+export function prepareSearch(
+  data: SearchData,
+  query: SearchQuery,
+  base?: SearchBase,
+): PreparedSearch {
   const started = Date.now();
   const limit = Math.max(1, query.limit ?? DEFAULT_LIMIT);
   const deadline = started + (query.timeLimitMs ?? DEFAULT_TIME_LIMIT_MS);
@@ -779,18 +969,38 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
   const nothing: PreparedSearch = { run: () => done([]) };
   if (k === 0) return nothing;
 
-  const eligible = eligiblePieces(data, query);
-  const bySlot = SEARCH_ORDER.map((slot) => eligible.filter((p) => p.slot === slot));
-  const decorations = data.decorations.filter((d) =>
-    isAvailable(d.minRank, query.progress ?? null),
-  );
+  const sort = query.sort ?? "defence";
   const limits = badSkillLimits(data.trees);
   for (const t of trees) limits.delete(t);
-  const risky = query.allowBadSkills
-    ? []
-    : riskyTrees(bySlot, decorations, limits, query.weaponSlots);
-  const sort = query.sort ?? "defence";
-  const classes = bySlot.map((ps) => pieceClasses(ps, trees, risky, sort));
+  let decorations: Deco[];
+  let classes: PieceClass[][];
+  let pointList: [string, number][][];
+  if (base && [...base.trees].every((t) => wanted.has(t))) {
+    const extra = trees.filter((t) => !base.trees.has(t));
+    decorations = base.decorations;
+    pointList = base.pointList;
+    classes = base.bySlot.map((slot) =>
+      pieceClasses(slot.sorted, trees, keptFromBase(slot, extra), sort),
+    );
+  } else {
+    const eligible = eligiblePieces(data, query);
+    const bySlot = SEARCH_ORDER.map((slot) =>
+      byScore(
+        eligible.filter((p) => p.slot === slot),
+        sort,
+      ),
+    );
+    decorations = data.decorations.filter((d) => isAvailable(d.minRank, query.progress ?? null));
+    const risky = query.allowBadSkills
+      ? []
+      : riskyTrees(bySlot, decorations, limits, query.weaponSlots);
+    classes = bySlot.map((ps) =>
+      pieceClasses(ps, trees, dominantPieces(ps, trees, risky, sort), sort),
+    );
+    pointList = data.pieces.map((p) =>
+      Object.entries(p.points).filter(([t]) => t !== TORSO_UP_TREE),
+    );
+  }
   if (classes.some((c) => c.length === 0)) return nothing;
 
   const solver = new DecoSolver({
@@ -804,10 +1014,6 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
   // Best points per decoration slot, per wanted tree (for the bounds).
   const perSlot = trees.map((t) =>
     decorations.reduce((best, d) => Math.max(best, (d.points[t] ?? 0) / d.slots), 0),
-  );
-  // Each piece's points, without Torso Up.
-  const pointList = data.pieces.map((p) =>
-    Object.entries(p.points).filter(([t]) => t !== TORSO_UP_TREE),
   );
   // Highest score the slots from `depth` on can add (with free slots, the
   // weapon's count too).
@@ -861,59 +1067,92 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
   // per torso (see slotsNeeded), and sifting them can cost more than that.
   const completions: Completion[][] = [];
   completions[SEARCH_ORDER.length] = [{ vec: trees.map(() => 0), slots: 0, torsoUps: 0 }];
-  for (let d = SEARCH_ORDER.length - 1; d >= 1; d--) {
-    const all = classes[d].flatMap((c) =>
-      completions[d + 1].map((p) =>
-        c.torsoUp
-          ? { ...p, torsoUps: p.torsoUps + 1 }
-          : {
-              vec: p.vec.map((v, i) => v + c.vec[i]),
-              slots: p.slots + c.slots,
-              torsoUps: p.torsoUps,
-            },
-      ),
+  const extend = (c: PieceClass, p: Completion): Completion =>
+    c.torsoUp
+      ? { ...p, torsoUps: p.torsoUps + 1 }
+      : { vec: p.vec.map((v, i) => v + c.vec[i]), slots: p.slots + c.slots, torsoUps: p.torsoUps };
+  for (let d = SEARCH_ORDER.length - 1; d >= 2; d--) {
+    completions[d] = unbeaten(
+      classes[d].flatMap((c) => completions[d + 1].map((p) => extend(c, p))),
     );
-    completions[d] = d === 1 ? all : unbeaten(all);
   }
+  // Checked as often as they are, packed for a faster loop.
+  const packed: PackedCompletions[] = completions.map((list) => packCompletions(list, k));
+  packed[1] = packCompletions(
+    classes[1].flatMap((c) => completions[2].map((p) => extend(c, p))),
+    k,
+  );
+  /** Per number of Torso Up pieces in a completion: the points each tree needs from it. */
+  const deficits = new Float64Array((SEARCH_ORDER.length + 1) * k);
   /** slotsNeeded(1) for each torso class: it depends on the torso alone. */
   const afterTorso = new Map<PieceClass, number>();
+  // A torso with no more points or slots than one no completion works for
+  // has none either: check the torsos nothing beats first.
+  const coversTorso = (a: PieceClass, b: PieceClass) =>
+    a.slots >= b.slots && a.vec.every((v, i) => v >= b.vec[i]);
+  const topTorsos = new Set(
+    classes[0].filter(
+      (c) => !classes[0].some((o) => o !== c && coversTorso(o, c) && !coversTorso(c, o)),
+    ),
+  );
+  const torsoFewest = (c: PieceClass): number => {
+    let fewest = afterTorso.get(c);
+    if (fewest !== undefined) return fewest;
+    const hopeless =
+      !topTorsos.has(c) &&
+      [...topTorsos].some((t) => coversTorso(t, c) && torsoFewest(t) === Infinity);
+    fewest = hopeless ? Infinity : fewestOf(packed[1], c, c.vec, query.weaponSlots, 0);
+    afterTorso.set(c, fewest);
+    return fewest;
+  };
 
   // Could some completion of the slots from `depth` make every threshold?
   // The fewest decoration slots one would need, or Infinity if none can.
   // (Only the free slots sort needs the fewest: the others take any.)
   const slotsNeeded = (depth: number): number => {
-    if (depth === 1) {
-      let fewest = afterTorso.get(chosen[0]);
-      if (fewest === undefined) afterTorso.set(chosen[0], (fewest = fewestSlots(1)));
-      return fewest;
-    }
-    return fewestSlots(depth);
-  };
-  const fewestSlots = (depth: number): number => {
-    const plateVec = chosen[0].vec;
+    if (depth === 1) return torsoFewest(chosen[0]);
     let torsoUps = 0;
     let capacity = query.weaponSlots;
     for (let d = 1; d < chosen.length; d++) {
       if (chosen[d].torsoUp) torsoUps++;
       else capacity += chosen[d].slots;
     }
+    return fewestOf(packed[depth], chosen[0], cur, capacity, torsoUps);
+  };
+  /**
+   * slotsNeeded for the completions `list`, after `torso`, with `points` in
+   * the wanted trees and `capacity` decoration slots (the torso's aside) so
+   * far, and `torsoUps` Torso Up pieces.
+   */
+  const fewestOf = (
+    list: PackedCompletions,
+    torso: PieceClass,
+    points: number[],
+    capacity: number,
+    torsoUps: number,
+  ): number => {
+    const { count, vec, slots, torsoUpsOf, maxTorsoUps } = list;
+    for (let t = 0; t <= maxTorsoUps; t++) {
+      for (let i = 0; i < k; i++) deficits[t * k + i] = need[i] - points[i] - t * torso.vec[i];
+    }
     let fewest = Infinity;
-    completions: for (const p of completions[depth]) {
+    completions: for (let p = 0; p < count; p++) {
+      const t = torsoUpsOf[p];
       // Slots counted as often as their decorations count: the torso's once
       // more per Torso Up piece.
-      const copies = torsoUps + p.torsoUps;
-      const slots = capacity + p.slots + chosen[0].slots * (1 + copies);
+      const copies = torsoUps + t;
+      const room = capacity + slots[p] + torso.slots * (1 + copies);
       let required = 0;
       for (let i = 0; i < k; i++) {
-        const deficit = need[i] - (cur[i] + p.vec[i] + p.torsoUps * plateVec[i]);
+        const deficit = deficits[t * k + i] - vec[p * k + i];
         if (deficit <= 0) continue;
         if (perSlot[i] <= 0) continue completions;
         required += Math.ceil(deficit / perSlot[i]);
-        if (required > slots) continue completions;
+        if (required > room) continue completions;
       }
       if (sort !== "slots") return 0;
       // Counted that way, the torso's slots could stand for more of them.
-      fewest = Math.min(fewest, Math.max(0, required - copies * chosen[0].slots));
+      fewest = Math.min(fewest, Math.max(0, required - copies * torso.slots));
       if (fewest === 0) break;
     }
     return fewest;
@@ -964,7 +1203,8 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
     const pieces: Piece[] = [];
     // `score` is the most the pieces so far can add (see pieceScore).
     const go = (d: number, score: number) => {
-      if (timedOut || enough) return;
+      // First only: any set will do, not the best of these groups.
+      if (timedOut || enough || (options.firstOnly && result.pick)) return;
       if (d === chosen.length) {
         if (outOfTime()) return;
         const armor: Record<string, number> = {};
