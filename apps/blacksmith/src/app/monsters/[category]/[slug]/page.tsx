@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import { getMonsters, getMonster } from "@/lib/monsters";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 import type { Metadata } from "next";
-import { monsterDescription, monsterEmbedIcon, pageMetadata } from "@/lib/seo";
+import { monsterDescription, pageMetadata } from "@/lib/seo";
+import { monsterCardAlt, monsterCardUrl } from "@/lib/monster-card";
+import { getHuntStars } from "@/lib/quests-data";
 import { faviconMetadata } from "@/lib/favicon";
 import { MOVED_MONSTER_SLUGS, movedMonsterSlug } from "@/lib/moved-monsters";
 import MonsterDetailClient from "./MonsterDetailClient";
@@ -30,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = moved ?? requested;
   const monster = getMonster(category as MonsterCategory, slug);
   if (!monster) return {};
+  const hunts = getHuntStars(monster.name);
   return {
     // An old URL: describes the current page, which search engines should index instead.
     ...(moved && { robots: { index: false } }),
@@ -38,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: monster.name,
       description: monsterDescription(monster),
       path: `/monsters/${category}/${slug}/`,
-      image: monsterEmbedIcon(slug, category),
+      card: { url: monsterCardUrl(monster, hunts), alt: monsterCardAlt(monster, hunts) },
       oembed: true,
     }),
   };

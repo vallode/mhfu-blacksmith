@@ -1,7 +1,8 @@
 "use client";
 
 /**
- * The hunter section's save file page: pick a save file, then pick a
+ * The hunter section's save file page: link the site to PPSSPP (the hunter
+ * then comes from the running game), or pick a save file, then pick a
  * character, like the game's Character Select screen: three slots, "NO DATA"
  * for an empty one, the chosen hunter lit green.
  */
@@ -10,6 +11,7 @@ import { useSaveWorker, type CharacterResult } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
 import { saveFromCharacter } from "@/lib/save-store";
 import { useFileSync } from "@/context/FileSyncContext";
+import PpssppLink from "@/components/PpssppLink";
 import { useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import {
@@ -62,8 +64,8 @@ interface Hunter {
 }
 
 interface SlotRowProps {
-  /** 0-based slot; shown 1-based like the game. */
-  slot: number;
+  /** 0-based slot; shown 1-based like the game. Null for the hunter read from PPSSPP, which has none. */
+  slot: number | null;
   hunter: Hunter | null;
   active: boolean;
   /** Load this hunter (not called for the loaded one). */
@@ -77,7 +79,7 @@ function SlotRow({ slot, hunter, active, onSelect }: SlotRowProps) {
     return (
       <div className={cn(slotBase, "text-white/50")}>
         <span className={slotName}>
-          <span>{slot + 1}</span>
+          <span>{(slot ?? 0) + 1}</span>
           <span className="uppercase">{text.noData}</span>
         </span>
       </div>
@@ -101,11 +103,13 @@ function SlotRow({ slot, hunter, active, onSelect }: SlotRowProps) {
       aria-pressed={active}
     >
       <span className={slotName}>
-        <span>{slot + 1}</span>
+        {slot !== null && <span>{slot + 1}</span>}
         {hunter.name}
       </span>
       {meta.length > 0 && (
-        <span className="pl-[2.8rem] text-small text-stat">{meta.join(" · ")}</span>
+        <span className={cn("text-small text-stat", slot !== null && "pl-[2.8rem]")}>
+          {meta.join(" · ")}
+        </span>
       )}
       {active && <span className="sr-only">{text.selected}</span>}
     </button>
@@ -144,7 +148,8 @@ function UnloadHunter({ name, onUnload }: { name: string; onUnload: () => void }
 }
 
 export default function SaveUpload() {
-  const text = useT().site.hunter;
+  const t = useT().site;
+  const text = t.hunter;
   const { parse, result, error, loading } = useSaveWorker();
   const { save, load, clear } = useSave();
   const fileSync = useFileSync();
@@ -199,8 +204,10 @@ export default function SaveUpload() {
     [result, load, fileSync],
   );
 
+  // The hunter read from PPSSPP shows under the link, not in a save's slots.
+  const live = save?.source === "ppsspp" ? save : null;
   // With no save open, the stored hunter still shows in its slot.
-  const storedSlot = save && !result ? (save.slot ?? 0) : null;
+  const storedSlot = save && !live && !result ? (save.slot ?? 0) : null;
 
   const loaderCta =
     "block w-full cursor-pointer border border-dashed border-white/35 bg-transparent p-[2.4rem] text-center font-[inherit] text-sub text-white/70 hover:border-white/60 hover:text-white";
@@ -211,6 +218,17 @@ export default function SaveUpload() {
         <DetailName>{text.pages.save}</DetailName>
       </DetailHeader>
       <DetailBody>
+        <h3 className={ui.subheading}>{t.ppssppLink.title}</h3>
+        <PpssppLink />
+        {live && !result && (
+          <>
+            <div className="text-small text-white/70">{t.ppssppLink.liveHunter}</div>
+            <SlotRow slot={null} hunter={live} active />
+            <UnloadHunter key={live.savedAt} name={live.name} onUnload={clear} />
+          </>
+        )}
+        <DetailRule />
+        <h3 className={ui.subheading}>{t.saveSync.fileTitle}</h3>
         <div
           className={cn(isDragOver && "outline-2 outline-offset-4 outline-white/40 outline-dashed")}
           onDragOver={handleDragOver}
@@ -237,7 +255,7 @@ export default function SaveUpload() {
         {loading && <Loading className={cn(notice, "justify-center")}>{text.reading}</Loading>}
         {error && <div className={cn(notice, "text-negative")}>{error}</div>}
 
-        {(result || save) && (
+        {(result || (save && !live)) && (
           <>
             <DetailRule />
             {result && !save && (

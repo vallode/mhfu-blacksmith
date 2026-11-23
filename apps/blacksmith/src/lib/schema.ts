@@ -25,6 +25,7 @@ import type {
 } from "./types";
 import type { Crowns } from "./crowns";
 import { splitDropQuantity } from "./monster-drops";
+import { decodeTolerances, type CompactTolerances } from "./monster-status";
 
 // ---------------------------------------------------------------------------
 // Dictionaries (shared across all bundles, emitted as dictionaries.json)
@@ -68,6 +69,7 @@ export interface CompactTreeNode {
   m?: MinRankTuple; // earliest quest progress needed to make it
   d?: number; // armor max defence
   a?: 1; // alias: listed again under another parent, its branch is under the first
+  f?: number; // armor: version family, shared by the piece's versions at every rank (lib/armor-versions)
   k?: CompactTreeNode[]; // children
 }
 
@@ -144,8 +146,10 @@ export interface CompactMonster {
   dr?: [number, [number, [number, number][]][]][];
   /** base_hp */
   hp?: number;
-  /** base_size, in cm */
+  /** base_size */
   bs?: number;
+  /** base_scale */
+  sc?: number;
   /** crowns: [mini, silver, gold] in percent */
   cr?: [number, number, number];
   /** size_range: [min, max] in percent, across the monster's quests */
@@ -154,6 +158,8 @@ export interface CompactMonster {
   bk?: MonsterBreak[];
   /** hitzone_flinch: a flinch stringIdx (or null) per `hz` row, in its order */
   hf?: (number | null)[];
+  /** tolerances (lib/monster-status `CompactTolerances`) */
+  tl?: CompactTolerances;
   /** 1 when the monster can be captured (lib/monster-drops' canCapture), for the list's filter */
   ca?: 1;
 }
@@ -295,6 +301,7 @@ export function decodeTreeNode(node: CompactTreeNode, bundleType: string): Weapo
     min_rank: decodeMinRank(node.m),
     max_defence: node.d,
     alias: node.a === 1 || undefined,
+    family: node.f,
     children: node.k?.map((c) => decodeTreeNode(c, bundleType)),
   };
 }
@@ -455,10 +462,12 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     drops: m.dr ? drops : undefined,
     base_hp: m.hp,
     base_size: m.bs,
+    base_scale: m.sc,
     crowns: m.cr ? decodeCrowns(m.cr) : undefined,
     size_range: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
     breaks: m.bk,
     hitzone_flinch: hitzoneFlinch,
+    tolerances: m.tl ? decodeTolerances(m.tl) : undefined,
   };
 }
 

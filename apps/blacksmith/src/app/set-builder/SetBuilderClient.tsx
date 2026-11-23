@@ -7,7 +7,8 @@
  * SearchOptions). The search (in workers, see hooks/useSetSearch.ts) lists
  * the best armor sets with decorations that activate them, by defence or
  * another sort, one at a time (ResultView). Pieces of a result can be
- * locked into every set or excluded from the next search. Beside the
+ * locked into every set or excluded from the next search. "Skills within
+ * reach" lists the skills that could still be added (SkillReach). Beside the
  * results, the editor builds a set by hand, and My sets keeps saved ones.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -17,11 +18,14 @@ import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
 import Tabs from "@/components/Tabs";
 import { useHunterProgress } from "@/context/HunterProgressContext";
-import { useLocale, useT } from "@/context/LanguageContext";
+import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useToast } from "@/context/ToastContext";
 import { useSetSearch, type SetSearchError } from "@/hooks/useSetSearch";
+import type { ArmorSlot } from "@/lib/constants";
+import { useSkillReach } from "@/hooks/useSkillReach";
+import { cn } from "@/lib/cn";
 import { useEquipmentIds } from "@/lib/equipment";
 import type { Messages } from "@/lib/i18n/messages";
 import {
@@ -53,16 +57,26 @@ import {
   type Piece,
   type SearchQuery,
 } from "@/lib/set-search";
-import { pressable, primaryButton } from "@/styles/set-builder";
+import {
+  menuRow,
+  pressable,
+  primaryButton,
+  secondaryButton,
+  textButton,
+} from "@/styles/set-builder";
 import * as ui from "@/styles/settings";
 import { PanelTitle } from "./ArmorSetView";
 import MySets from "./MySets";
+import PieceChips from "./PieceChips";
 import ResultView, { type PieceActions } from "./ResultView";
 import SearchBar from "./SearchBar";
+import { LockNote, LockRows, withLock } from "./LockedArmor";
+import { PiecePicker } from "./Pickers";
 import { DEFAULT_FORM, OptionsSummary, SearchOptions, type Form } from "./SearchOptions";
 import SetEditor from "./SetEditor";
 import Sheet from "./Sheet";
 import { SkillBrowser, SkillChips } from "./SkillPicker";
+import SkillReach from "./SkillReach";
 
 const STORAGE_KEY = "set-builder";
 
@@ -137,6 +151,7 @@ function readForm(): Form {
 export default function SetBuilderClient() {
   const t = useT();
   const text = t.setBuilder;
+  const game = useGameText();
   const { formatNumber } = useLocale();
   const {
     data,
@@ -209,9 +224,12 @@ export default function SetBuilderClient() {
     piecesOf(hrefs)
       .filter((p) => !cantWear(p, hunter))
       .map((p) => p.id);
-  /** The search the form asks for; null until the data loads or with no skills. */
-  const queryFor = (f: Form): SearchQuery | null => {
-    if (!data || f.skills.length === 0) return null;
+  /**
+   * The search the form asks for; null until the data loads or, unless
+   * `noSkills`, with no skills.
+   */
+  const queryFor = (f: Form, noSkills = false): SearchQuery | null => {
+    if (!data || (f.skills.length === 0 && !noSkills)) return null;
     return {
       sort: f.sort,
       lockPieces: lockIds(f.locked, f),
@@ -249,19 +267,12 @@ export default function SetBuilderClient() {
       excludePieces: pieceIds(next.excluded),
     });
   };
+  const slotOf = (href: string) => byHref.get(href)?.slot;
   const pieceActions: PieceActions = {
     isLocked: (p) => form.locked.includes(p.href),
     onLock: (p) =>
-      changePieces(
-        form.locked.includes(p.href)
-          ? { ...form, locked: form.locked.filter((h) => h !== p.href) }
-          : {
-              ...form,
-              // One locked piece per slot.
-              locked: [...form.locked.filter((h) => byHref.get(h)?.slot !== p.slot), p.href],
-              excluded: form.excluded.filter((h) => h !== p.href),
-            },
-      ),
+      changePieces(withLock(form, p.slot, form.locked.includes(p.href) ? null : p, slotOf)),
+    onUse: (p) => changePieces(withLock(form, p.slot, p, slotOf)),
     onExclude: (p) =>
       changePieces({
         ...form,
@@ -290,6 +301,12 @@ export default function SetBuilderClient() {
   const wanted = useMemo(
     () => (data ? [...resolveWanted(data.trees, form.skills).wanted.keys()] : []),
     [data, form.skills],
+  );
+  // The results' piece lists follow the search behind them, not later edits to the form.
+  const searchedWanted = useMemo(
+    () =>
+      data && searched ? [...resolveWanted(data.trees, searched.skills).wanted.keys()] : wanted,
+    [data, searched, wanted],
   );
   const isOwned = useMemo(
     () => (progress.active ? (p: Piece) => progress.isOwned(p.href) : undefined),
@@ -510,10 +527,48 @@ export default function SetBuilderClient() {
   // Whether the form asks for something other than the results show.
   const asked = queryFor(form);
   const stale = !!asked && (!searched || !sameQuery(asked, searched));
-  const [sheet, setSheet] = useState<"skills" | "options" | null>(null);
-  const closeSheet = useCallback(() => setSheet(null), []);
-  const searchFromSheet = () => {
+  const [sheet, setSheet] = useState<"skills" | "options" | "reach" | "lock" | null>(null);
+  // The order of the sets doesn't change which skills fit.
+  const reachQuery = queryFor(form, true);
+  const reach = useSkillReach(
+    data,
+    reachQuery && { ...reachQuery, sort: undefined },
+    sheet === "reach",
+  );
+  /**
+   * The lock sheet: the slot it picks a piece for, or (null) the slot rows;
+   * and the last slot picked for, whose row has the focus back.
+   */
+  const [lockSlot, setLockSlot] = useState<ArmorSlot | null>(null);
+  const [lastLockSlot, setLastLockSlot] = useState<ArmorSlot | null>(null);
+  const lockSlotRef = useRef(lockSlot);
+  lockSlotRef.current = lockSlot;
+  const openLock = (slot: ArmorSlot | null) => {
+    if (slot) setLastLockSlot(slot);
+    setLockSlot(slot);
+    setSheet("lock");
+  };
+  const closeSheet = useCallback(() => {
     setSheet(null);
+    setLockSlot(null);
+    setLastLockSlot(null);
+  }, []);
+  // In the piece picker, ×, Escape and the dimmed page go back to the slot
+  // rows. Stable, so the sheet keeps its focus.
+  const closeLock = useCallback(
+    () => (lockSlotRef.current ? setLockSlot(null) : closeSheet()),
+    [closeSheet],
+  );
+  const lockPiece = (slot: ArmorSlot, p: Piece | null) =>
+    setForm((f) => withLock(f, slot, p, slotOf));
+  const lockedPieces = piecesOf(form.locked);
+  const lockProps = {
+    pieces: lockedPieces,
+    onPick: openLock,
+    onRemove: (slot: ArmorSlot) => lockPiece(slot, null),
+  };
+  const searchFromSheet = () => {
+    closeSheet();
     runSearch();
   };
 
@@ -569,11 +624,7 @@ export default function SetBuilderClient() {
             <div className="flex items-baseline justify-between">
               <PanelTitle>{text.form.title}</PanelTitle>
               {form.skills.length > 0 && (
-                <button
-                  type="button"
-                  className="cursor-pointer border-none bg-transparent p-0 font-[inherit] text-fine text-white/50 hover:text-white focus-visible:text-white"
-                  onClick={() => update("skills", [])}
-                >
+                <button type="button" className={textButton} onClick={() => update("skills", [])}>
                   {text.form.clear}
                 </button>
               )}
@@ -589,17 +640,67 @@ export default function SetBuilderClient() {
               onAdd={() => setSheet("skills")}
               addLabel={form.skills.length ? text.form.addMore : text.form.addFirst}
             />
-            <button
-              type="button"
-              className={`${pressable} flex min-h-[4.8rem] w-full items-center justify-between gap-[1rem] border-t border-white/15 pt-[0.8rem] text-small`}
-              aria-label={text.form.optionsLabel}
-              onClick={() => setSheet("options")}
-            >
-              <OptionsSummary form={form} ownedOnly={ownedOnly} />
-              <span className="flex-none text-white/50" aria-hidden="true">
-                {text.form.options} ›
-              </span>
-            </button>
+            {/* Taking pieces off marks the results out of date, like the
+                skills: Search runs the whole form. */}
+            <PieceChips
+              text={text.form.locked}
+              on
+              hrefs={form.locked}
+              piecesOf={piecesOf}
+              isOff={(p) => !!cantWear(p, form)}
+              offNote={text.form.locked.cantWear}
+              onRemove={(href) =>
+                update(
+                  "locked",
+                  form.locked.filter((h) => h !== href),
+                )
+              }
+              onClear={() => update("locked", [])}
+              onPick={{
+                label: (p) =>
+                  text.form.locked.pick(t.common.armorSlots[p.slot], game.name("armor", p.name)),
+                onClick: (p) => openLock(p.slot),
+              }}
+              add={{ label: text.form.locked.add, onClick: () => openLock(null) }}
+            />
+            <PieceChips
+              text={text.form.excluded}
+              hrefs={form.excluded}
+              piecesOf={piecesOf}
+              onRemove={(href) =>
+                update(
+                  "excluded",
+                  form.excluded.filter((h) => h !== href),
+                )
+              }
+              onClear={() => update("excluded", [])}
+            />
+            {/* The dividers sit outside the rows, so each row's glow is
+                centred on its text. */}
+            <div className="flex flex-col border-t border-white/15">
+              <button
+                type="button"
+                className={cn(pressable, menuRow, "min-h-[4.4rem]")}
+                disabled={!data}
+                aria-haspopup="dialog"
+                onClick={() => setSheet("reach")}
+              >
+                <span className="min-w-0 truncate text-white">{text.reach.open}</span>
+              </button>
+              <div aria-hidden="true" className="h-px bg-white/15" />
+              <button
+                type="button"
+                className={cn(pressable, menuRow, "min-h-[4.8rem]")}
+                aria-label={text.form.optionsLabel}
+                aria-haspopup="dialog"
+                onClick={() => setSheet("options")}
+              >
+                <OptionsSummary form={form} ownedOnly={ownedOnly} />
+                <span className="flex-none text-white/50" aria-hidden="true">
+                  {text.form.options}
+                </span>
+              </button>
+            </div>
           </Card>
         </CardBox>
 
@@ -622,8 +723,13 @@ export default function SetBuilderClient() {
                         onStep={step}
                         weaponSlots={searched?.weaponSlots ?? 0}
                         hunterType={searched?.hunterType ?? form.hunterType}
+                        sex={searched?.sex ?? form.sex}
                         rank={searched?.rank ?? form.rank}
                         progress={searched ? (searched.progress ?? null) : questLimit}
+                        pieces={data?.pieces ?? []}
+                        wantedTrees={searchedWanted}
+                        ownedOnly={searched ? !!searched.onlyPieces : ownedOnly}
+                        isOwned={isOwned}
                         weaponClass={form.weaponClass}
                         onWeaponClass={(t) => update("weaponClass", t)}
                         sort={searched?.sort}
@@ -632,7 +738,7 @@ export default function SetBuilderClient() {
                         action={
                           <button
                             type="button"
-                            className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
+                            className={cn(secondaryButton, "gap-[0.8rem]")}
                             aria-label={r.editThis}
                             title={r.editThis}
                             onClick={() =>
@@ -641,6 +747,10 @@ export default function SetBuilderClient() {
                             }
                           >
                             <Icon type="item-37" className="mr-0" alt="" />
+                            {/* Just the icon on phones, beside the wishlist button. */}
+                            <span className="mobile:sr-only" aria-hidden="true">
+                              {r.editThis}
+                            </span>
                           </button>
                         }
                       >
@@ -723,6 +833,53 @@ export default function SetBuilderClient() {
       </Sheet>
 
       <Sheet
+        open={sheet === "reach"}
+        onClose={closeSheet}
+        title={text.reach.open}
+        tall
+        footer={searchFooter}
+      >
+        <SkillReach
+          reach={reach}
+          skills={skills}
+          value={form.skills}
+          onChange={(v) => update("skills", v)}
+        />
+      </Sheet>
+
+      <Sheet
+        open={sheet === "lock"}
+        onClose={closeLock}
+        title={text.form.locked.title}
+        tall={!!lockSlot}
+        footer={searchFooter}
+      >
+        {lockSlot ? (
+          <PiecePicker
+            slot={lockSlot}
+            pieces={data?.pieces ?? []}
+            current={lockedPieces.find((p) => p.slot === lockSlot) ?? null}
+            hunter={form}
+            rank={form.rank}
+            wanted={wanted}
+            questLimit={questLimit}
+            ownedOnly={ownedOnly}
+            isOwned={isOwned}
+            onPick={(p) => {
+              lockPiece(lockSlot, p);
+              closeLock();
+            }}
+            onClose={closeLock}
+          />
+        ) : (
+          <>
+            <LockNote />
+            <LockRows {...lockProps} focusSlot={lastLockSlot} />
+          </>
+        )}
+      </Sheet>
+
+      <Sheet
         open={sheet === "options"}
         onClose={closeSheet}
         title={text.form.options}
@@ -733,7 +890,6 @@ export default function SetBuilderClient() {
           update={update}
           questProgress={questProgress}
           canOwnedOnly={progress.active}
-          piecesOf={piecesOf}
         />
       </Sheet>
     </>

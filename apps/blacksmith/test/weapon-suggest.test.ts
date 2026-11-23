@@ -4,7 +4,7 @@ import path from "node:path";
 import { describe, it } from "node:test";
 import { decodeWeapon, type Dictionaries, type WeaponBundle } from "../src/lib/schema";
 import type { Weapon } from "../src/lib/types";
-import { suggestWeapons, weaponTypesFor } from "../src/lib/weapon-suggest";
+import { findWeapons, suggestWeapons, weaponTypesFor } from "../src/lib/weapon-suggest";
 import { loadShippedSetData } from "./helpers/set-data";
 
 const weapon = (name: string, attack: number, extra: Partial<Weapon> = {}): Weapon => ({
@@ -22,6 +22,29 @@ describe("weaponTypesFor", () => {
     const blade = weaponTypesFor("Blademaster");
     assert.equal(blade.length, 8);
     assert.ok(blade.includes("great-sword") && !blade.includes("bow"));
+  });
+});
+
+describe("findWeapons", () => {
+  const weapons = [
+    weapon("Bone Blade", 300),
+    weapon("Bone Slasher", 400, { slots: 2 }),
+    weapon("Bone Blade G", 1300, { slots: 2, min_rank: { rank: "g-rank", stars: 1 } }),
+    weapon("Iron Sword", 500, { slots: 2 }),
+    weapon("dummy (Bone)", 9999, { slots: 3 }),
+  ];
+  const bone = (w: Weapon) => w.name.toLowerCase().includes("bone");
+
+  it("finds the matches whether they fit or not, fitting ones first, with why the others don't", () => {
+    const found = findWeapons(weapons, { slots: 1, rank: "high-rank" }, bone);
+    assert.deepEqual(
+      found.map((f) => [f.weapon.name, f.misfit]),
+      [
+        ["Bone Slasher", null],
+        ["Bone Blade G", { kind: "later", needs: { rank: "g-rank", stars: 1 } }],
+        ["Bone Blade", { kind: "slots", slots: 0 }],
+      ],
+    );
   });
 });
 

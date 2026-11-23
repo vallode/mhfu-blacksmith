@@ -1,9 +1,10 @@
 /**
  * End-to-end check of the web app in a real browser: builds dist/,
- * serves it, uploads the test fixture disc, randomizes with every
+ * serves it, follows the about page and the FAQ to the builder, uploads the test fixture disc, randomizes with every
  * shuffle on, downloads the ISO and compares it byte for byte with the same
  * run of the randomizer in Node, so the browser build (shims, worker, Blob
- * assembly) changes nothing. Needs Playwright's Chromium.
+ * assembly) changes nothing, and checks the analytics events the walk
+ * sends would all be stored. Needs Playwright's Chromium.
  *
  *   pnpm test:e2e
  */
@@ -17,6 +18,8 @@ import { fileURLToPath } from "node:url";
 import { runRandomizer } from "randomfu/src/run.js";
 import { applySettings, defaultSettings, encodeSettings, PRESETS } from "randomfu/src/settings.js";
 import { assemble, buildFixtureDisc, memorySource, tempDir } from "randomfu/test/fixtures.js";
+import { toDataPoint } from "./analytics/collect.js";
+import { EVENT_PATH } from "./analytics/events.js";
 
 const web = path.dirname(fileURLToPath(import.meta.url));
 const dist = path.join(web, "dist");
@@ -58,7 +61,22 @@ const types: Record<string, string> = {
   ".js": "text/javascript",
   ".map": "application/json",
 };
+/** The analytics events the pages send, as the Worker would get them. */
+const events: Record<string, unknown>[] = [];
 const server = http.createServer((req, res) => {
+  if (req.url === EVENT_PATH && req.method === "POST") {
+    let body = "";
+    req.on("data", (chunk) => (body += chunk));
+    req.on("end", () => {
+      try {
+        events.push(JSON.parse(body) as Record<string, unknown>);
+      } catch (error) {
+        errors.push(`an analytics event isn't JSON (${(error as Error).message}): ${body}`);
+      }
+      res.writeHead(204).end();
+    });
+    return;
+  }
   const file = path.join(
     dist,
     path.normalize(new URL(req.url ?? "/", "http://x").pathname).replace(/^\/$/, "/index.html"),
@@ -83,7 +101,12 @@ try {
   page.on("console", (m: { type(): string; text(): string }) => {
     if (m.type() === "error") errors.push(m.text());
   });
-  await page.goto(url);
+  // The about page and the FAQ lead to the builder.
+  for (const start of ["", "faq.html"]) {
+    await page.goto(url + start);
+    await page.click(".page-actions a.primary");
+    await page.waitForURL(`${url}build.html`);
+  }
   await page.waitForSelector("[data-key='shops.scope']", { state: "attached" });
   const title = () => page.textContent("#step-title");
 
@@ -159,8 +182,40 @@ try {
   const spoiler = (await page.textContent("#spoiler"))!;
   assert.match(spoiler, /Settings: RF/);
 
+  // The walk's analytics: every page view, the funnel, the disc and the runs.
+  const sent = (event: string, match: Record<string, unknown> = {}) =>
+    events.some((e) => e.event === event && Object.entries(match).every(([k, v]) => e[k] === v));
+  const expected: [string, Record<string, unknown>][] = [
+    ["pageview", { page: "about" }],
+    ["pageview", { page: "faq" }],
+    ["pageview", { page: "build" }],
+    ["step", { detail: "game", stepIndex: 0 }],
+    ["step", { detail: "rewards" }],
+    ["step", { detail: "review" }],
+    ["disc", { region: "jp", discId: "ULJM05500", ok: true }],
+    ["settings_load", { detail: "string", ok: true }],
+    ["run_start", { dryRun: true, detail: "review", settings: settingsString }],
+    ["run_done", { dryRun: true }],
+    ["run_done", { dryRun: false, detail: "preview" }],
+    ["download", { detail: "iso" }],
+  ];
+  for (let tries = 0; tries < 20 && !expected.every(([e, m]) => sent(e, m)); tries++) {
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+  for (const [event, match] of expected) {
+    assert.ok(sent(event, match), `sent ${event} ${JSON.stringify(match)}`);
+  }
+  const browserFacts = { host: "randomfu.test", country: "", userAgent: "Mozilla/5.0 Chrome/130" };
+  for (const event of events) {
+    assert.ok(toDataPoint(event, browserFacts), `the Worker keeps ${JSON.stringify(event)}`);
+    assert.equal(typeof event.session, "string");
+  }
+  assert.equal(new Set(events.map((e) => e.session)).size, 1, "one tab, one session");
+
   assert.deepEqual(errors, []);
-  console.log("Web app end to end: the downloaded ISO matches the Node run's byte for byte.");
+  console.log(
+    `Web app end to end: the downloaded ISO matches the Node run's byte for byte; ${events.length} analytics events sent.`,
+  );
 } finally {
   await browser.close();
   server.close();

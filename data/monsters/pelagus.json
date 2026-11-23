@@ -87,6 +87,7 @@
         }
       },
       "base_hp": 200,
+      "base_scale": 1.8,
       "flinch_thresholds": [
         60
       ],
@@ -315,6 +316,7 @@
         }
       },
       "base_hp": 1200,
+      "base_scale": 2.5,
       "flinch_thresholds": [
         120
       ],
@@ -443,6 +445,7 @@
         }
       },
       "base_hp": 120,
+      "base_scale": 0.6,
       "flinch_thresholds": [
         20,
         20,
@@ -977,6 +980,7 @@
         }
       },
       "base_hp": 2800,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "head",
@@ -1227,6 +1231,7 @@
         }
       },
       "base_hp": 3000,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "head",
@@ -1379,6 +1384,7 @@
         }
       },
       "base_hp": 100,
+      "base_scale": 0.6,
       "flinch_thresholds": [
         25,
         12,
@@ -1817,6 +1823,7 @@
         }
       },
       "base_hp": 2800,
+      "base_scale": 1.2,
       "breaks": [
         {
           "name": "fang",
@@ -2037,6 +2044,7 @@
         }
       },
       "base_hp": 3400,
+      "base_scale": 1.2,
       "breaks": [
         {
           "name": "fang",
@@ -2383,6 +2391,7 @@
         }
       },
       "base_hp": 3600,
+      "base_scale": 1.35,
       "breaks": [
         {
           "name": "horn",
@@ -2512,6 +2521,7 @@
         }
       },
       "base_hp": 3600,
+      "base_scale": 1.35,
       "flinch_thresholds": [
         500,
         350,

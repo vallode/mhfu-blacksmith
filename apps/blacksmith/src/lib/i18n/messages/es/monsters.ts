@@ -8,19 +8,20 @@ export const monsters: Messages["monsters"] = {
   detail: {
     notFound: "No encontrado.",
     size: "Tamaño:",
-    sizeRange: (min: string, max: string) => `${min}–${max} cm`,
+    sizeRange: (min: string, max: string) => `${min}–${max}`,
     baseHp: "Vida base:",
+    guildCard: (hunter: string) => `Tarjeta del Gremio de ${hunter}`,
     hunted: "Cazados:",
     captured: "Capturados:",
     largest: "Mayor:",
     smallest: "Menor:",
-    cm: (n: string) => `${n} cm`,
     tabsLabel: (monster: string) => `Datos de ${monster}`,
     tabs: {
       hitzones: "Zonas débiles",
       quests: "Misiones",
       spawns: "Dónde abunda",
       attacks: "Ataques",
+      status: "Estados",
     },
   },
   attacks: {
@@ -45,6 +46,21 @@ export const monsters: Messages["monsters"] = {
       soiled: "Sucio",
       "defense down": "Defensa reducida",
     },
+  },
+  status: {
+    columns: {
+      status: "Estado",
+      initial: "Inicial",
+      increase: "Aumento",
+      duration: "Duración",
+      recovery: "Recup.",
+    },
+    names: { poison: "Veneno", paralysis: "Parálisis", sleep: "Sueño", ko: "KO" },
+    immune: "Inmune",
+    seconds: (n: string) => `${n} s`,
+    increase: (n: string) => `+${n}`,
+    recovery: (amount: string, seconds: string) => `−${amount} / ${seconds} s`,
+    note: "Los golpes acumulan el estado hasta llegar a Inicial; cada vez siguiente hace falta Aumento más. Recup. es lo rápido que se disipa la acumulación.",
   },
   list: {
     count: (count: string) => `×${count}`,
@@ -133,6 +149,7 @@ export const monsters: Messages["monsters"] = {
     },
     show: "Zonas débiles",
     attacks: "Ataques",
+    hunter: "Cazador",
     legend: "Partes del monstruo",
   },
   breaks: {

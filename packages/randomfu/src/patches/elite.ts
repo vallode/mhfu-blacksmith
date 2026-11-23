@@ -18,9 +18,14 @@
  *   and the meter's gain by health left. A monster copies the threshold to
  *   `+0x570` when it's set up, fills its meter at `+0x56E`, and when it's
  *   full starts rage: bit `0x20` of `+0x638`, `+0x56C` frames left.
+ * - Pauses: an elite stands in its idle between moves at most
+ *   `ELITE_IDLE_FRAMES`, through the shared monster boosts
+ *   (`src/patches/aggression.ts` says how).
  * - Speed: each frame a monster runs its animations at
  *   `2 × speed (+0x4B0) × (100 + +0x769) / 100`. Moves set `+0x769` (u8)
  *   for themselves and a change of move clears it; the blob sets it when 0.
+ *   Past a move's last hit, and through a turn, it's at least
+ *   `ELITE_TAIL_SPEED` (the shared monster boosts again).
  * - Size: `+0x274` (u16) is the size in percent and a `game_task` function
  *   scales the model (`+0x220`…) from it and the base scale at `+0x270`.
  *   The game itself grows a monster this way mid-quest. The quest's size
@@ -47,6 +52,7 @@ import { OVL_HEADER_SIZE, type OvlFile } from "mhfu-extract/src/container/ovl.js
 import { ELITE_OBJECTS } from "../blob/elite-object.js";
 import { decodeObjects } from "../blob/link.js";
 import { MONSTERS_OBJECTS } from "../blob/monsters-object.js";
+import { ELITE_IDLE_FRAMES, idleCapProblem } from "./aggression.js";
 import { hiLo, jumpTarget, type Segment } from "./mips.js";
 
 /**
@@ -154,6 +160,8 @@ export function findEliteExterns(
     rf_rng_streams: streams,
     rf_apply_size: ovl.loadBase + sizes[0]!,
     rf_elite_chance: chance,
+    // Shorter pauses between moves, where the AI is the one the cap was made for.
+    rf_elite_idle: idleCapProblem(gameTask) ? 1 : ELITE_IDLE_FRAMES + 1,
   };
 }
 

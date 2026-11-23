@@ -12,17 +12,17 @@ export const monsters = {
   detail: {
     notFound: "Not found.",
     size: "Size:",
-    /** "1,234–1,890 cm" */
-    sizeRange: (min: string, max: string) => `${min}–${max} cm`,
+    /** "1,234–1,890" */
+    sizeRange: (min: string, max: string) => `${min}–${max}`,
     baseHp: "Base HP:",
+    /** The heading over the loaded save's records of this monster. */
+    guildCard: (hunter: string) => `${hunter}'s Guild Card`,
     /** The loaded hunter's Guild Card counts. */
     hunted: "Hunted:",
     captured: "Captured:",
     /** The loaded hunter's Guild Card size records. */
     largest: "Largest:",
     smallest: "Smallest:",
-    /** A size in centimetres: "1,629 cm". */
-    cm: (n: string) => `${n} cm`,
     /** The tab row's accessible name. */
     tabsLabel: (monster: string) => `${monster} data`,
     tabs: {
@@ -31,6 +31,7 @@ export const monsters = {
       /** A small monster's tab: the quests with the most of it. */
       spawns: "Most plentiful",
       attacks: "Attacks",
+      status: "Status",
     },
   },
   /** The Attacks tab: each motion's hits, from the game's attack code. */
@@ -60,6 +61,26 @@ export const monsters = {
       soiled: "Soiled",
       "defense down": "Defense down",
     } as Record<string, string>,
+  },
+  /** The Status tab: each status's tolerance (lib/monster-status). */
+  status: {
+    columns: {
+      status: "Status",
+      initial: "Initial",
+      increase: "Increase",
+      duration: "Duration",
+      recovery: "Recovery",
+    },
+    names: { poison: "Poison", paralysis: "Paralysis", sleep: "Sleep", ko: "KO" },
+    /** A status that never builds up on this monster. */
+    immune: "Immune",
+    /** A time: "10 s". */
+    seconds: (n: string) => `${n} s`,
+    /** The buildup added to the threshold after each time: "+75". */
+    increase: (n: string) => `+${n}`,
+    /** The buildup that wears off: "−5 / 10 s". */
+    recovery: (amount: string, seconds: string) => `−${amount} / ${seconds} s`,
+    note: "Hits build up a status until it reaches Initial; each time after, it takes Increase more. Recovery is how fast the buildup wears off.",
   },
   /** A monster type's list down the left. */
   list: {
@@ -165,6 +186,8 @@ export const monsters = {
     show: "Hitzones",
     /** Shows the attack hitboxes while the motion playing can hit. */
     attacks: "Attacks",
+    /** Shows a hunter beside the monster, to scale. */
+    hunter: "Hunter",
     legend: "Hitzone parts",
   },
   breaks: {

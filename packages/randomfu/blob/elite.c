@@ -3,10 +3,12 @@
  * is an elite, a stronger version of itself, in the spirit of World's
  * Tempered and Sunbreak's Afflicted monsters. Each large monster rolls once
  * when it shows up; an elite has more health, hits harder, moves faster,
- * enrages sooner and for longer, and is bigger, and its hide has a faint
- * crimson pulse. The quest it's in pays out more.
+ * pauses less between moves, recovers and turns faster, enrages sooner and
+ * for longer, and is bigger, and its hide has a faint crimson pulse. The
+ * quest it's in pays out more.
  *
- * Health and attack go through the shared monster boosts (monsters.h), so
+ * Health, attack, the pauses and the recoveries go through the shared
+ * monster boosts (monsters.h), so
  * they compose with other features'. The rest is run-time state the game
  * keeps per monster and per quest, written from the same booster, which
  * monsters.c asks once a frame for every active large monster.
@@ -24,6 +26,11 @@ extern u8 *const rf_rng[];         /* the global holding the game's random numbe
 extern const u8 rf_rng_streams[];  /* a constant: where its streams' u16 states are in it */
 extern const u8 rf_apply_size[];   /* game_task: scale = base scale × size% / 100 (m) */
 extern const u8 rf_elite_chance[]; /* a constant: an elite's chance, in percent */
+/*
+ * A constant: 1 + the most frames (30 a second) an elite stands in its idle
+ * between moves, or 1 to leave its idle alone (an extern's address is never 0).
+ */
+extern const u8 rf_elite_idle[];
 
 /* A monster. */
 #define SLOTS 20
@@ -72,6 +79,8 @@ static const u8 COLOURS[6] = {0, 1, 2, 4, 5, 6};
 #define HP_BOOST 50
 #define ATTACK_BOOST 30
 #define SPEED_PERCENT 10
+/* Percent faster past a move's last hit, and through a turn (monsters.h). */
+#define TAIL_SPEED 50
 #define RAGE_NEEDED_PERCENT 60
 #define RAGE_LONGER_PERCENT 150
 #define SIZE_PERCENT 115
@@ -312,6 +321,8 @@ static void booster(u8 *m, u32 slot, rf_boost *b) {
   if (!s->elite) return;
   rf_boost_by(&b->hp, HP_BOOST);
   rf_boost_by(&b->attack, ATTACK_BOOST);
+  rf_boost_idle(b, (u32)rf_elite_idle - 1u);
+  rf_boost_speed(b, TAIL_SPEED);
   if (*(s16 *)(m + HP) > 0) boost(m, s);
 }
 

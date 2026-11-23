@@ -2,8 +2,9 @@
 
 /**
  * The set search's form and its options: the hunter, rank and weapon slots,
- * the sort, the toggles and the locked and excluded pieces (SearchOptions,
- * shown in a sheet), and all of it as one line (OptionsSummary).
+ * the sort and the toggles (SearchOptions, shown in a sheet), and all of it
+ * as one line (OptionsSummary). The locked and excluded pieces show under
+ * the skills (PieceChips).
  */
 import Link from "next/link";
 import Icon from "@/components/Icon";
@@ -14,13 +15,13 @@ import {
   ToggleRow,
   type IconChoice,
 } from "@/components/SettingRows";
-import { useGameText, useT } from "@/context/LanguageContext";
+import { useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { ARMOR_RANKS, type ArmorRank, type WeaponType } from "@/lib/constants";
 import type { Messages } from "@/lib/i18n/messages";
 import type { Tier } from "@/lib/min-rank";
 import { MAX_WEAPON_SLOTS } from "@/lib/set-build";
-import type { Piece, SearchQuery, SortKey } from "@/lib/set-search";
+import type { SearchQuery, SortKey } from "@/lib/set-search";
 import { chip, chipOff, chipOn } from "@/styles/set-builder";
 import * as ui from "@/styles/settings";
 
@@ -61,9 +62,9 @@ export const DEFAULT_FORM: Form = {
 export const weaponIconFor = (hunterType: string) =>
   hunterType === "Gunner" ? "heavy-bowgun" : "great-sword";
 
-/** The sorts, in order; the resistances show their element's icon. */
+/** The sorts, in order; defence shows a shield, the resistances their element's icon. */
 const SORTS: { value: SortKey; icon?: string }[] = [
-  { value: "defence" },
+  { value: "defence", icon: "defence" },
   { value: "fire", icon: "fire" },
   { value: "water", icon: "water" },
   { value: "thunder", icon: "thunder" },
@@ -122,7 +123,6 @@ export function SearchOptions({
   update,
   questProgress,
   canOwnedOnly,
-  piecesOf,
 }: {
   form: Form;
   update: Update;
@@ -130,7 +130,6 @@ export function SearchOptions({
   questProgress: Tier | null;
   /** A hunter's save is loaded, so "Owned armor only" can apply. */
   canOwnedOnly: boolean;
-  piecesOf: (hrefs: string[]) => Piece[];
 }) {
   const t = useT();
   const text = t.setBuilder.form;
@@ -201,65 +200,6 @@ export function SearchOptions({
           onChange={(v) => update("ownedOnly", v)}
         />
       )}
-      <PieceChips
-        text={text.locked}
-        on
-        pieces={piecesOf(form.locked)}
-        onRemove={(href) =>
-          update(
-            "locked",
-            form.locked.filter((h) => h !== href),
-          )
-        }
-      />
-      <PieceChips
-        text={text.excluded}
-        pieces={piecesOf(form.excluded)}
-        onRemove={(href) =>
-          update(
-            "excluded",
-            form.excluded.filter((h) => h !== href),
-          )
-        }
-      />
-    </div>
-  );
-}
-
-/** Locked or excluded pieces, as chips that come off the list with a tap. */
-function PieceChips({
-  text,
-  on,
-  pieces,
-  onRemove,
-}: {
-  text: Messages["setBuilder"]["form"]["locked"];
-  on?: boolean;
-  pieces: Piece[];
-  onRemove: (href: string) => void;
-}) {
-  const game = useGameText();
-  if (pieces.length === 0) return null;
-  return (
-    <div className="flex flex-col gap-[0.8rem]">
-      <span className={ui.statusLabel}>{text.title}</span>
-      <p className={ui.note}>{text.note}</p>
-      <ul className="m-0 flex list-none flex-wrap gap-[0.6rem] p-0">
-        {pieces.map((p) => (
-          <li key={p.href}>
-            <button
-              type="button"
-              className={cn(chip, on ? chipOn : chipOff, "text-fine")}
-              aria-label={text.remove(game.name("armor", p.name))}
-              onClick={() => onRemove(p.href)}
-            >
-              <Icon type={p.slot} size="mini" rarity={p.rarity} className="mr-0 scale-75" />
-              {game.name("armor", p.name)}
-              <span className="text-sub leading-none text-white/50">×</span>
-            </button>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
@@ -296,8 +236,6 @@ export function OptionsSummary({ form, ownedOnly }: { form: Form; ownedOnly: boo
     form.allowBadSkills && summary.badSkills,
     form.ignoreQuestProgress && summary.allQuests,
     ownedOnly && summary.ownedArmor,
-    form.locked.length > 0 && summary.alwaysUsed(form.locked.length),
-    form.excluded.length > 0 && summary.neverUsed(form.excluded.length),
   ].filter(Boolean);
   const sort = SORTS.find((x) => x.value === form.sort);
   const item = "flex items-center gap-[0.4rem] text-white";

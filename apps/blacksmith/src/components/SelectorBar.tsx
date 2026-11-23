@@ -7,8 +7,8 @@
 import SelectorArrow from "./SelectorArrow";
 import { cn } from "@/lib/cn";
 
-// The arrows stick out 1.2rem past the card frame, which stays inside the
-// body's 1.4rem gutter beside the tree card: no clipped arrow and no
+// The arrows stick out 1.2rem past the card frame, or less where the body's
+// gutter beside the tree card is narrower (phones): no clipped arrow and no
 // horizontal page scroll.
 //   bar inset 4px, bar height 56px, arrow 44px
 
@@ -50,7 +50,7 @@ export default function SelectorBar({
       data-filter-bar
       // A flat grey rectangle, as in the game's selector: no border or frame.
       // Side padding clears the arrows, which overlap the bar's ends.
-      className="absolute right-[4px] bottom-[4px] left-[4px] z-2 flex h-[56px] items-center gap-[1.6rem] bg-selector px-[calc(44px-1.2rem-4px+0.8rem)] py-0"
+      className="absolute right-[4px] bottom-[4px] left-[4px] z-2 flex h-[56px] items-center gap-[1.6rem] bg-selector px-[calc(44px-min(1.2rem,var(--spacing-gutter))-4px+0.8rem)] py-0"
       role="group"
       aria-label={groupLabel}
       onKeyDown={(event) => {
@@ -60,7 +60,7 @@ export default function SelectorBar({
       }}
     >
       <SelectorArrow
-        className={cn(arrowPosition, "left-[calc(-1*(1.2rem+4px))]")}
+        className={cn(arrowPosition, "left-[calc(-1*(min(1.2rem,var(--spacing-gutter))+4px))]")}
         label={previousLabel}
         onClick={() => onStep(-1)}
       />
@@ -75,7 +75,7 @@ export default function SelectorBar({
       )}
       <SelectorArrow
         next
-        className={cn(arrowPosition, "right-[calc(-1*(1.2rem+4px))]")}
+        className={cn(arrowPosition, "right-[calc(-1*(min(1.2rem,var(--spacing-gutter))+4px))]")}
         label={nextLabel}
         onClick={() => onStep(1)}
       />

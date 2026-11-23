@@ -5,6 +5,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { decodeMonster, decodeMonsterListItem, type Dictionaries } from "../src/lib/schema";
+import { encodeTolerances } from "../src/lib/monster-status";
+import type { MonsterTolerances } from "../src/lib/types";
 
 const dict = {
   strings: ["Head", "Tail", "180", "100–160"],
@@ -89,4 +91,27 @@ test("decodeMonsterListItem reads the capturable flag", () => {
     },
   );
   assert.equal(decodeMonsterListItem({ n: "Remobra", s: "remobra" }).crowns, undefined);
+});
+
+test("decodeMonster reads the status tolerances the data build encodes", () => {
+  const tolerances: MonsterTolerances = {
+    paralysis: { initial: 110, increase: 75, recovery: 5, recovery_time: 300, duration: 300 },
+    sleep: null,
+    ko: { initial: 120, increase: 75, recovery: 5, recovery_time: 300, duration: 300 },
+    poison: {
+      initial: 200,
+      increase: 75,
+      recovery: 10,
+      recovery_time: 150,
+      damage: 20,
+      damage_interval: 150,
+      total_time: 1800,
+    },
+  };
+  const monster = decodeMonster(
+    dict,
+    { n: "Rathalos", s: "rathalos", tl: encodeTolerances(tolerances) },
+    "flying-wyvern",
+  );
+  assert.deepEqual(monster.tolerances, tolerances);
 });

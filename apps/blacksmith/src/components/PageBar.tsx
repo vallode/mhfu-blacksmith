@@ -62,7 +62,7 @@ export function PageTabs({ label, children }: { label: string; children: React.R
       aria-label={label}
       className={cn(
         "relative flex min-w-0 flex-wrap items-center",
-        "mobile:mx-[-1.4rem] mobile:flex-1 mobile:[scrollbar-width:none] mobile:flex-nowrap mobile:overflow-x-auto mobile:px-[1.4rem]",
+        "mobile:-mx-gutter mobile:flex-1 mobile:[scrollbar-width:none] mobile:flex-nowrap mobile:overflow-x-auto mobile:px-gutter",
       )}
     >
       {children}

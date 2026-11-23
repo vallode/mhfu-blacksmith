@@ -28,7 +28,13 @@ import {
   decodeDecoration,
   decodeTree,
 } from "./schema";
-import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES, type MonsterCategory } from "./constants";
+import {
+  ARMOR_RANKS,
+  ARMOR_SLOTS,
+  MONSTER_CATEGORIES,
+  type ArmorRank,
+  type MonsterCategory,
+} from "./constants";
 import { decodeItemUses, type ItemUse, type ItemUsesBundle } from "./item-uses";
 import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
@@ -279,6 +285,53 @@ export function useArmorTree(slot: string, rank: string): ListState<never> {
     const b = bundle as ArmorBundle;
     return { tree: decodeTree(b.tree, b.slot), items: null };
   });
+}
+
+/** One version of an armor piece: its rank and its row in that rank's tree. */
+export interface ArmorVersionRow {
+  rank: ArmorRank;
+  node: WeaponTreeNode;
+  /** The row's place in that rank's tree (by rarity). */
+  order: number;
+}
+
+/**
+ * Every armor piece in a slot with its versions at every rank (see
+ * lib/armor-versions), from the slot's three rank bundles: one entry per
+ * piece, low rank first, in the order of each piece's first version. Null
+ * until every rank has loaded.
+ */
+export function useArmorVersions(slot: string): ArmorVersionRow[][] | null {
+  const files = ARMOR_RANKS.map((rank) => `armor-${slot}-${rank}`);
+  const [, forceUpdate] = useState(0);
+  const key = files.join(",");
+  useEffect(() => {
+    if (files.every((f) => bundleCache.has(f))) return;
+    let cancelled = false;
+    Promise.all(files.map((f) => getBundle(f))).then(() => {
+      if (!cancelled) forceUpdate((n) => n + 1);
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+  const bundles = files.map((f) => bundleCache.get(f) as ArmorBundle | undefined);
+  const ready = bundles.every(Boolean);
+  return useMemo(() => {
+    if (!ready) return null;
+    const families = new Map<number, ArmorVersionRow[]>();
+    const singles: ArmorVersionRow[][] = [];
+    for (const b of bundles as ArmorBundle[]) {
+      for (const [order, node] of decodeTree(b.tree, b.slot).entries()) {
+        const row = { rank: b.rank as ArmorRank, node, order };
+        if (node.family === undefined) singles.push([row]);
+        else families.set(node.family, [...(families.get(node.family) ?? []), row]);
+      }
+    }
+    return [...[...families.entries()].sort((a, b) => a[0] - b[0]).map(([, v]) => v), ...singles];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready, key]);
 }
 
 export function useMonsterList(category: string): ListState<MonsterListItem> {

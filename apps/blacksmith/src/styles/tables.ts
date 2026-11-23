@@ -77,3 +77,18 @@ export const attackTable = [
   "[&_th:last-of-type]:text-left [&_td:last-of-type]:text-left",
   "[&_th:first-of-type]:text-gold",
 ].join(" ");
+
+/**
+ * Monster status tolerances: the status (icon and name) left, its figures
+ * right-aligned after it. Normal tracking
+ * and a smaller size on a phone or a compact screen, like the hitzones; a
+ * phone shows the status's icon without its name, and closer columns.
+ */
+export const statusTable = [
+  "h-min w-full border-collapse text-small tracking-normal tabular-nums mobile:text-fine compact:text-fine",
+  "[&_th]:pb-[0.4rem] [&_th]:pl-[1.2rem] [&_th]:text-right [&_th]:font-normal [&_th]:whitespace-nowrap [&_th]:text-warm",
+  "[&_th:first-of-type]:pl-0 [&_th:first-of-type]:text-left [&_th:first-of-type]:text-gold",
+  "[&_td]:py-[0.2rem] [&_td]:pl-[1.2rem] [&_td]:text-right [&_td]:whitespace-nowrap",
+  "mobile:[&_td]:pl-[0.8rem] mobile:[&_th]:pl-[0.8rem]",
+  "[&_td:first-of-type]:pl-0 [&_td:first-of-type]:text-left",
+].join(" ");

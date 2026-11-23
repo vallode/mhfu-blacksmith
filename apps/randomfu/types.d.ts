@@ -13,7 +13,10 @@ declare class FileReaderSync {
   readAsArrayBuffer(blob: Blob): ArrayBuffer;
 }
 
-/** The Extras step's gathering-node map preview, filled in by build.mjs. */
+/** The commit the build was made from (build.mjs), sent with analytics events. */
+declare const BUILD_ID: string;
+
+/** The Quality of life step's gathering-node map preview, filled in by build.mjs. */
 declare const NODE_MAP_PREVIEW: {
   /** `images/area-maps/<texture>.png` */
   texture: string;

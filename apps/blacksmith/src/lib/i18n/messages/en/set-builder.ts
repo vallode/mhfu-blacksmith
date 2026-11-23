@@ -65,8 +65,6 @@ export const setBuilder = {
       badSkills: "bad skills allowed",
       allQuests: "all quests",
       ownedArmor: "owned armor",
-      alwaysUsed: (n: number) => `${n} always used`,
-      neverUsed: (n: number) => `${n} never used`,
     },
     allowBadSkills: "Allow bad skills",
     allowBadSkillsNote: "Keep sets that also activate a negative skill, such as Defense -20.",
@@ -82,16 +80,31 @@ export const setBuilder = {
       ),
     ownedOnly: "Owned armor only",
     ownedOnlyNote: "Only use armor in your hunter's equipment box.",
-    /** The locked pieces, in the options; `remove` labels each one's chip. */
+    /**
+     * The locked pieces, under the skills; `remove` labels each one's ×.
+     * `add` opens the lock sheet, a row per slot under `slotsNote`; `pick`
+     * labels a row or a piece (`slot` is translated, `name` null with none).
+     */
     locked: {
       title: "Always used",
       note: "Every set uses these, whatever the rank or quest progress, if the hunter can wear them.",
       remove: (name: string) => `Take ${name} off the always used pieces`,
+      clear: "Clear",
+      clearLabel: "Clear the always used pieces",
+      /** Under the list when a crossed-out piece doesn't fit the hunter. */
+      cantWear: "Crossed-out pieces don't fit this hunter, so the search leaves them out.",
+      any: "Any",
+      add: "+ Always use a piece",
+      slotsNote: "Choose a slot to pick the piece every set uses, if the hunter can wear it.",
+      pick: (slot: string, name: string | null) =>
+        `${slot}: ${name ?? "any piece"}. Choose the piece every set uses`,
     },
     excluded: {
       title: "Never used",
       note: "The search never uses these.",
       remove: (name: string) => `Take ${name} off the never used pieces`,
+      clear: "Clear",
+      clearLabel: "Clear the never used pieces",
     },
     search: "Search",
     cancel: "Cancel",
@@ -200,7 +213,6 @@ export const setBuilder = {
     weaponSlots: "Weapon slots",
     fewerWeaponSlots: "Fewer weapon slots",
     moreWeaponSlots: "More weapon slots",
-    weaponSlotCount: (n: number) => `${n} ${s(n, "weapon slot", "weapon slots")}`,
     sets: "Sets",
     previousSet: "Previous set",
     nextSet: "Next set",
@@ -246,6 +258,15 @@ export const setBuilder = {
     addToWishlist: "Add set to wishlist",
     /** The same button once they're all there: a link to the wishlist. */
     onWishlist: "On your wishlist",
+    /** The same, on a result's big wishlist button, over what the set needs made. */
+    addToWishlistShort: "Add to wishlist",
+    setCounts: (pieces: number, jewels: number) =>
+      [
+        pieces === 1 ? "1 piece" : `${pieces} pieces`,
+        jewels > 0 && (jewels === 1 ? "1 jewel" : `${jewels} jewels`),
+      ]
+        .filter(Boolean)
+        .join(", "),
     setAdded: "Set added to your wishlist.",
     setAddedWithJewels: "Set added to your wishlist, with its jewels.",
     alwaysUse: "Always use",
@@ -254,6 +275,12 @@ export const setBuilder = {
     unlockLabel: (name: string) => `Unlock ${name}`,
     neverUse: "Never use",
     neverUseLabel: (name: string) => `Never use ${name}: exclude it from the search`,
+    /** The slots at a row's right, for screen readers. */
+    slotsUsed: (used: number, total: number) =>
+      total === 0 ? "No slots" : `${used} of ${total} slots used`,
+    /** The piece sheet's list of the slot's other pieces. */
+    otherPiece: (slot: string) => `Other ${slot.toLowerCase()} pieces`,
+    otherPieceNote: "Pick one to use it in every set: the search runs again with it.",
   },
 
   /** Weapons for a result's slots (WeaponSuggestions). */
@@ -265,6 +292,14 @@ export const setBuilder = {
     none: "None of these fit. Try another class, or fewer weapon slots.",
     /** `attack` is formatted, or "-". */
     attack: (attack: string) => `ATK ${attack}`,
+    search: "Search every weapon of this class",
+    searchPlaceholder: "Search weapons",
+    matches: (n: number) => (n === 1 ? "1 weapon matches." : `${n} weapons match.`),
+    noMatch: "No weapon of this class matches.",
+    /** Why a weapon found by name isn't suggested. */
+    fewerSlots: (n: number) => (n === 1 ? "Only 1 slot" : `Only ${n} slots`),
+    /** `tier` is translated ("G Rank ★2"). */
+    needs: (tier: string) => `Needs ${tier}`,
   },
 
   /** The Status panel. */
@@ -342,6 +377,27 @@ export const setBuilder = {
   },
 
   /** The wanted skills' chips and the skills sheet (SkillPicker). */
+  /**
+   * The "Skills within reach" sheet (SkillReach): skills that can be added to
+   * the wanted ones, or wanted ones that can be raised, with a set for them all.
+   */
+  reach: {
+    /** The button under the chosen skills, and the sheet's title. */
+    open: "Skills within reach",
+    note: (chosen: boolean): string =>
+      chosen
+        ? "Skills you can add to yours, or raise yours to: at least one set still activates them all, with your options. Pick one and the list checks again."
+        : "Every skill at least one set can activate, with your options. Pick one and the list checks what still fits with it.",
+    /** `checked` of `total` skill trees; `total` is 0 before the first. */
+    checking: (checked: number, total: number) =>
+      total ? `Checking skills… ${checked}/${total}` : "Checking skills…",
+    noBase: "No set activates the skills you chose, so nothing can be added to them.",
+    unsureBase: "Checking your skills took too long. Try fewer skills.",
+    nothingMore: "Nothing more fits: no set activates another skill along with yours.",
+    unsure: "Some checks took too long: a stronger level of a skill may fit too.",
+    failed: "Couldn't check the skills.",
+  },
+
   skillPicker: {
     remove: (name: string) => `Remove ${name}`,
     filter: "Filter skills",
