@@ -248,9 +248,13 @@ const HUNT_ROW = 34;
 const QUESTS_LABEL = "Quests";
 const QUESTS_LABEL_WIDTH = Math.ceil(QUESTS_LABEL.length * TABLE_TEXT * 0.64) + 20;
 
-const boardText = (b: HuntBoard) => b.stars.join(", ");
+/** The comma between star levels: a narrow box, so the monospace font's wide cell doesn't space them out. */
+const COMMA_WIDTH = Math.round(TABLE_TEXT * 0.34);
+const COMMA_GAP = 3;
+const starDigits = (b: HuntBoard) => b.stars.reduce((n, s) => n + String(s).length, 0);
 const boardWidth = (b: HuntBoard) =>
-  textWidth(b.short.length + boardText(b).length, TABLE_TEXT) +
+  textWidth(b.short.length + starDigits(b), TABLE_TEXT) +
+  (b.stars.length - 1) * (COMMA_WIDTH + 2 * COMMA_GAP) +
   BOARD_NAME_GAP +
   BOARD_INNER_GAP +
   STAR.width;
@@ -308,7 +312,26 @@ function huntStarsRows(hunts: HuntStars, sprites: MonsterCardSprites): CardNode 
                 },
                 b.short,
               ),
-              text({ color: COLOR.white, fontSize: TABLE_TEXT }, boardText(b)),
+              h(
+                "div",
+                { style: { display: "flex", alignItems: "center", gap: COMMA_GAP } },
+                ...b.stars.flatMap((star, k) => [
+                  ...(k > 0
+                    ? [
+                        text(
+                          {
+                            color: COLOR.white,
+                            fontSize: TABLE_TEXT,
+                            width: COMMA_WIDTH,
+                            justifyContent: "center",
+                          },
+                          ",",
+                        ),
+                      ]
+                    : []),
+                  text({ color: COLOR.white, fontSize: TABLE_TEXT }, star),
+                ]),
+              ),
               h("img", { src: sprites.star, style: STAR }),
             ),
           ),
