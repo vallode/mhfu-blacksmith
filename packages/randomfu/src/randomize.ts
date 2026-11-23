@@ -1610,7 +1610,8 @@ export function randomize(
   );
 
   if (settings["mods.nodeMap"]) reports.push(addNodeMap(game, edits));
-  if (settings["mods.buttonIcons"] === "xbox") reports.push(addButtonIcons(game, edits));
+  const buttonIcons = settings["mods.buttonIcons"];
+  if (buttonIcons !== "psp") reports.push(addButtonIcons(game, edits, buttonIcons));
 
   return {
     edits,

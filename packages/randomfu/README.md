@@ -182,7 +182,7 @@ web app shows as a tag):
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU and JP discs)                        |
-| `mods.buttonIcons`                | `psp`       | `xbox` draws the button icons as an Xbox controller's: A B X Y, LB, RB, Menu and View                  |
+| `mods.buttonIcons`                | `psp`       | `xbox`, `nintendo`, `playstation` or `keyboard` draws that set's icons                                 |
 | `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
 | `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
 | `camera.tilt`                     | `steps`     | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast` (EU disc only)           |
@@ -1115,10 +1115,17 @@ texture gets the union. The markers use palette entries the art leaves
 unused (every map has over 200), so nothing else recolours and file sizes
 are unchanged. Checked in PPSSPP on the Snowy Mountains map.
 
-**Xbox button icons** (`mods.buttonIcons`, `src/patches/button-icons.ts`)
+**Button icons** (`mods.buttonIcons`, `src/patches/button-icons.ts`)
 redraws the PSP's ○ × △ □ L R START SELECT, wherever the game draws them
-(its text's `~B` icons and the HUD), as the Xbox buttons PPSSPP maps them to
-by default: B A Y X, LB RB, Menu and View. They are sprites 50-58 of the HUD
+(its text's `~B` icons and the HUD), as another set's. `xbox` is the buttons
+PPSSPP maps them to by default: B A Y X, LB RB, Menu and View. `nintendo` keeps
+the Xbox's places with a Switch's letters (A ○, B ×, X △, Y □) and L R + −.
+`playstation` draws coloured shapes (blue ×, red ○, pink □, green △), L1 R1,
+Options (≡) and a touchpad rectangle. `keyboard` draws outlined keycaps with
+PPSSPP's default keys: X ○, Z ×, S △, A □, Q W, Space (START) and Enter (SELECT); its keys are
+drawn from scratch (outline 1, white top, 200 shade, 148/117 front, letters in
+73 grey) rather than on the painted-out button, and take the nearest palette
+entries too. START and SELECT exist only on the HUD sheet. They are sprites 50-58 of the HUD
 sprite table (EU 0x089391A8, 12-byte rows of u16 u, v, w, h, texture, set),
 all on texture 0x8001: the second image of `system/resides.tmh` (256x256,
 8-bit swizzled, RGBA8888 palette; JP file 18, EU files 30-34, one per
