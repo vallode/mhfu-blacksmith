@@ -261,6 +261,42 @@ export async function connectFirst(
   return null;
 }
 
+/**
+ * PPSSPP lets the system pick its port (`RemoteISOPort` is 0 until the
+ * debugger first starts), so it lands in the system's dynamic range, 49152
+ * to 65535 on Apple systems and Windows. Refused connections to this machine
+ * fail at once, so trying the whole range takes a few seconds.
+ */
+const DYNAMIC_PORTS = { start: 49152, end: 65535 };
+const SCAN_PARALLEL = 256;
+
+/**
+ * Looks for PPSSPP on this machine by trying every port in the dynamic
+ * range. For when PPSSPP's discovery list can't match this browser (iCloud
+ * Private Relay), so nobody has to dig the port out of PPSSPP's settings.
+ * Resolves with the first one that answers as PPSSPP's debugger.
+ */
+export async function scanPorts(
+  signal?: AbortSignal,
+): Promise<{ debugger: PpssppDebugger; port: number } | null> {
+  let next = DYNAMIC_PORTS.start;
+  let found: { debugger: PpssppDebugger; port: number } | null = null;
+  const worker = async () => {
+    while (!found && !signal?.aborted && next <= DYNAMIC_PORTS.end) {
+      const port = next++;
+      try {
+        const dbg = await PpssppDebugger.open(port, 400);
+        if (found) dbg.close();
+        else found = { debugger: dbg, port };
+      } catch {
+        // Nothing, or not PPSSPP, on this port.
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: SCAN_PARALLEL }, worker));
+  return found;
+}
+
 export type LiveRead =
   | { kind: "noGame" }
   | { kind: "otherGame"; gameId: string; title: string }

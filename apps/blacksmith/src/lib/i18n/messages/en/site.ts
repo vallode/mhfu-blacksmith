@@ -134,7 +134,7 @@ export const site = {
     intro:
       "Playing on PPSSPP? Link the site to it and your hunter comes straight from the game whenever you switch back to this tab, saved or not.",
     setup:
-      "In PPSSPP, turn on Settings → Tools → Developer tools → Allow remote debugger. The first time, the site asks PPSSPP's own server (report.ppsspp.org) which port PPSSPP is on.",
+      "In PPSSPP, turn on Settings → Tools → Developer tools → Allow remote debugger. The first time, the site finds PPSSPP's port by itself (it asks PPSSPP's own server, report.ppsspp.org, then tries the ports PPSSPP can pick from), which can take a few seconds.",
     link: "Link to PPSSPP",
     unlink: "Unlink",
     syncNow: "Sync now",
@@ -149,7 +149,7 @@ export const site = {
       "While the site is linked to PPSSPP, it takes the hunter from the game, not the save file.",
     port: "Port",
     portHint:
-      "If the site can't find PPSSPP by itself (Safari sends the lookup through iCloud Private Relay, which hides that you're on PPSSPP's network), enter PPSSPP's port: RemoteISOPort in PSP/SYSTEM/ppsspp.ini in PPSSPP's folder.",
+      "If the site still can't find PPSSPP, enter its port: PPSSPP shows it on screen for a few seconds when the debugger starts (“Debugger web server running on port …”), and keeps it as RemoteISOPort in PSP/SYSTEM/ppsspp.ini.",
     connect: "Connect",
     liveHunter: "In the game",
   },
