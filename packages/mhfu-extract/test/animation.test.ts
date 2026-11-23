@@ -132,6 +132,7 @@ test("buildClips plays each part's motions in the same slot together, on that pa
   assert.equal(clip!.slot, 1);
   assert.equal(clip!.duration, 0.5);
   assert.equal(clip!.loopStart, 0.1);
+  assert.equal(clip!.bones, undefined, "every part with motions");
   assert.deepEqual(
     clip!.tracks.map((t) => `${t.bone} ${t.path}`),
     ["1 translation", "1 rotation", "2 scale"],
@@ -146,6 +147,27 @@ test("buildClips plays each part's motions in the same slot together, on that pa
   const grow = clip!.tracks.find((t) => t.path === "scale")!;
   assert.deepEqual(grow.times, [0, 0.25, 0.5]);
   assert.deepEqual(grow.values.slice(3), [2, 1, 1, 2, 1, 1]);
+});
+
+test("buildClips names the bones of a slot only some parts have a motion in", () => {
+  const nod = (frames: number) =>
+    motion(frames, [
+      [
+        channel("rotation", 0, [
+          [0, 0],
+          [frames, 1],
+        ]),
+      ],
+    ]);
+  const body = motion(30, [[], []]);
+  const clips = buildClips(BONES, [[body, null], [], [nod(30), nod(20)], []]);
+  assert.deepEqual(
+    clips.map((clip) => [clip.slot, clip.bones]),
+    [
+      [0, undefined],
+      [1, [2]],
+    ],
+  );
 });
 
 test("buildClips leaves out a part's motion whose bone count isn't the part's", () => {

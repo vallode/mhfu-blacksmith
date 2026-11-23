@@ -1485,7 +1485,7 @@ thresholds; the rest are zero.
 - Subspecies share their base monster's entry: `u8*` by emID at
   `0x0899BF40` lists the emIDs (ending `0xff`) whose records count
   together, and the card takes the largest and smallest across them.
-- The card shows centimetres: the percent times the monster's base size
+- The card shows sizes as the percent times the monster's base size
   (`f32` by emID at `0x0899C760`), over 100. Monsters without crowns have
   a base size of 0, except Akantor and Ukanlos (3049.97) and Shen Gaoren
   (1000).
@@ -1507,7 +1507,7 @@ Checked against what players report:
   The five that don't (larger Diablos, Tigrex, Kushala Daora and Teostra,
   smaller Rajang, and larger "規格外" Lavasioth and Bulldrome) likely come
   from download or event quests, which aren't on the disc.
-- mhcrown's Rajang mini crowns (912, 960 and 1008 cm) are all at most
+- mhcrown's Rajang mini crowns (912, 960 and 1008) are all at most
   105 percent.
 
 Before this, randomfu could only scale size per species

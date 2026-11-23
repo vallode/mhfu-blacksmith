@@ -145,7 +145,7 @@ export interface CompactMonster {
   dr?: [number, [number, [number, number][]][]][];
   /** base_hp */
   hp?: number;
-  /** base_size, in cm */
+  /** base_size */
   bs?: number;
   /** base_scale */
   sc?: number;

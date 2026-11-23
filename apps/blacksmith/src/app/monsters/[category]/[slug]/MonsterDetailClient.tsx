@@ -23,7 +23,7 @@ import {
   questsWithMonster,
   smallMonsterStages,
 } from "@/lib/quests";
-import { crownFor, sizeInCm, type Crown } from "@/lib/crowns";
+import { crownCutoff, crownFor, cardSize, type Crown } from "@/lib/crowns";
 import CrownIcon from "@/components/CrownIcon";
 import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -87,7 +87,7 @@ const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
 };
 
 /**
- * A Guild Card size record (percent) in centimetres, with the crown it earns
+ * A Guild Card size record (percent) as the card shows it, with the crown it earns
  * after the size.
  */
 function SizeRecord({
@@ -106,7 +106,7 @@ function SizeRecord({
       <span>
         {t.monsters.detail[kind]}{" "}
         <span className="text-white tabular-nums">
-          {t.monsters.detail.cm(formatNumber(Math.round(sizeInCm(size, monster.base_size ?? 0))))}
+          {formatNumber(Math.round(cardSize(size, monster.base_size ?? 0)))}
         </span>
       </span>
       {crown && <CrownIcon crown={crown} />}
@@ -186,8 +186,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   }
 
   const name = game.name("monster", monster.name);
-  /** Sizes are stored to two decimals; whole centimetres are enough here. */
-  const formatSize = (cm: number) => formatNumber(Math.round(cm));
+  /** Sizes are stored to two decimals; whole numbers are enough here. */
+  const formatSize = (size: number) => formatNumber(Math.round(size));
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
   // Each hitzone row's flinch threshold, worked out by the data build; no
@@ -303,24 +303,24 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     label: rankLabel(t, rank),
     content: <MonsterDrops sources={sources} />,
   }));
-  // Crown cutoffs in centimetres.
+  // Crown cutoffs as the Guild Card shows sizes, to a tenth the safe way.
   const crowns =
     monster.crowns && monster.base_size !== undefined
       ? {
-          mini: sizeInCm(monster.crowns.mini, monster.base_size),
-          silver: sizeInCm(monster.crowns.silver, monster.base_size),
-          gold: sizeInCm(monster.crowns.gold, monster.base_size),
+          mini: crownCutoff("mini", monster.crowns, monster.base_size),
+          silver: crownCutoff("silver", monster.crowns, monster.base_size),
+          gold: crownCutoff("gold", monster.crowns, monster.base_size),
         }
       : null;
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];
   // The quests with the best chance of each crown, and that chance.
   const bestCrowns = bestCrownQuests(monsterQuests, monster.name);
-  // The sizes its quests can roll, in centimetres.
+  // The sizes its quests can roll, as the Guild Card shows them.
   const sizeRange =
     monster.size_range && monster.base_size !== undefined
       ? {
-          min: sizeInCm(monster.size_range.min, monster.base_size),
-          max: sizeInCm(monster.size_range.max, monster.base_size),
+          min: cardSize(monster.size_range.min, monster.base_size),
+          max: cardSize(monster.size_range.max, monster.base_size),
         }
       : null;
   const bestChance: Partial<Record<Crown, number>> = {};
