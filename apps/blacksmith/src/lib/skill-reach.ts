@@ -7,8 +7,10 @@
  *
  * Each candidate is one search that stops at the first set it finds
  * (SearchOptions.firstOnly), unless a set an earlier check found also works
- * with other decorations. A tree's levels are tried weakest first, and the
- * first that no set reaches ends the tree: a stronger one needs more points.
+ * with other decorations. The searches share their setup (searchBase): each
+ * wants the query's trees and one more. A tree's levels are tried weakest
+ * first, and the first that no set reaches ends the tree: a stronger one
+ * needs more points.
  * Pure and synchronous, like set-search.ts; the page runs it in the worker.
  */
 import { DecoSolver, type SolverBin } from "./deco-solver";
@@ -18,9 +20,11 @@ import {
   prepareSearch,
   resolveWanted,
   SEARCH_ROUNDS,
+  searchBase,
   TORSO_UP_TREE,
   type Deco,
   type Piece,
+  type SearchBase,
   type SearchData,
   type SearchQuery,
   type SkillTreeData,
@@ -73,16 +77,19 @@ export function reachCandidates(
     .filter((c) => c.levels.length > 0);
 }
 
-/** What re-gemming a set needs that doesn't change between checks of one query. */
-interface RegemContext {
+/** What doesn't change between checks of one query. */
+interface CheckContext {
   decorations: Deco[];
   limits: Map<string, number>;
+  /** The searches' setup, for skills that include the query's. */
+  base: SearchBase;
 }
 
-function regemContext(data: SearchData, query: SearchQuery): RegemContext {
+function checkContext(data: SearchData, query: SearchQuery): CheckContext {
   return {
     decorations: data.decorations.filter((d) => isAvailable(d.minRank, query.progress ?? null)),
     limits: badSkillLimits(data.trees),
+    base: searchBase(data, query),
   };
 }
 
@@ -93,7 +100,7 @@ function regemContext(data: SearchData, query: SearchQuery): RegemContext {
 function regems(
   data: SearchData,
   query: SearchQuery,
-  ctx: RegemContext,
+  ctx: CheckContext,
   pieces: Piece[],
   skills: string[],
 ): boolean {
@@ -147,7 +154,7 @@ export function anySet(
   skills: string[],
   timeLimitMs = DEFAULT_CHECK_MS,
   witnesses: Witnesses = [],
-  ctx: RegemContext = regemContext(data, query),
+  ctx: CheckContext = checkContext(data, query),
 ): boolean | null {
   for (const [i, pieces] of witnesses.entries()) {
     if (regems(data, query, ctx, pieces, skills)) {
@@ -157,7 +164,7 @@ export function anySet(
       return true;
     }
   }
-  const search = prepareSearch(data, { ...query, skills, limit: 1, timeLimitMs });
+  const search = prepareSearch(data, { ...query, skills, limit: 1, timeLimitMs }, ctx.base);
   const result = search.run(SEARCH_ROUNDS - 1, { firstOnly: true });
   const set = result.sets[0];
   if (set) {
@@ -176,7 +183,7 @@ export function reachableSkills(
   const time = options.checkTimeMs ?? DEFAULT_CHECK_MS;
   const candidates = reachCandidates(data.trees, query.skills);
   const witnesses: Witnesses = [];
-  const ctx = regemContext(data, query);
+  const ctx = checkContext(data, query);
   // With no set for the wanted skills, adding one can't help.
   if (query.skills.length > 0) {
     const base = anySet(data, query, query.skills, time, witnesses, ctx);
