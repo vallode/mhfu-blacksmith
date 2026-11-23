@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { inPlace, parseMotions, type MotionClip } from "../src/lib/motions";
+import { inPlace, parseMotions, underneath, type MotionClip } from "../src/lib/motions";
 
 /** A motions file (before gzip) as mhfu-extract's motion-pack.ts writes it. */
 function motionsFile(): Uint8Array {
-  const bytes: number[] = [..."MHM1"].map((c) => c.charCodeAt(0));
+  const bytes: number[] = [..."MHM2"].map((c) => c.charCodeAt(0));
   const u8 = (v: number) => bytes.push(v & 0xff);
   const u16 = (v: number) => bytes.push(v & 0xff, (v >> 8) & 0xff);
   u16(1); // clips
@@ -12,6 +12,9 @@ function motionsFile(): Uint8Array {
   u16(60); // frames
   u8(1); // loop
   u16(15); // loop start
+  u8(2); // covers bones 0 and 1
+  u8(0);
+  u8(1);
   u16(2); // tracks
   u8(0);
   u8(1);
@@ -36,6 +39,7 @@ test("parseMotions reads tracks back from their delta-coded keys", () => {
   assert.equal(clip!.duration, 1);
   assert.equal(clip!.loop, true);
   assert.equal(clip!.loopStart, 0.25);
+  assert.deepEqual(clip!.bones, [0, 1]);
   const [turn, move] = clip!.tracks;
   assert.equal(turn!.path, "rotation");
   assert.deepEqual([...turn!.times], [0, 0.5]);
@@ -73,4 +77,26 @@ test("inPlace pins the hips' horizontal position to the bind pose, not deeper bo
   assert.deepEqual([...hips!.values], [3, 5, 7, 3, 6, 7]);
   assert.deepEqual([...tail!.values], [0, 5, 0, 100, 6, 200]);
   assert.deepEqual([...clip.tracks[0]!.values], [0, 5, 0, 100, 6, 200], "input untouched");
+});
+
+test("underneath plays the base motion on the bones a part motion doesn't cover", () => {
+  const track = (bone: number) => ({
+    bone,
+    path: "rotation" as const,
+    times: Float32Array.of(0),
+    values: Float32Array.of(0, 0, 0, 1),
+  });
+  const base: MotionClip = {
+    slot: 1,
+    duration: 3,
+    loop: true,
+    loopStart: 0,
+    tracks: [track(1), track(5), track(6)],
+  };
+  const head: MotionClip = { ...base, slot: 20, bones: [5, 6, 7], tracks: [track(5)] };
+  assert.deepEqual(
+    underneath(head, base)!.tracks.map((t) => t.bone),
+    [1],
+  );
+  assert.equal(underneath(base, base), null, "a whole-body motion");
 });

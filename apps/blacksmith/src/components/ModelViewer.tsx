@@ -39,7 +39,7 @@ import {
   type HunterLook,
 } from "@/lib/hunter-look";
 import { armorModelFile, armorModelSlot, armorSlotModelUrl } from "@/lib/models";
-import { fetchMotions, inPlace, MOTION_FPS, type MotionClip } from "@/lib/motions";
+import { fetchMotions, inPlace, MOTION_FPS, underneath, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
 import type { Messages } from "@/lib/i18n/messages";
@@ -853,28 +853,27 @@ export default function ModelViewer({
           const bind = (bone: number) =>
             (node(bone)?.position.toArray() ?? [0, 0, 0]) as [number, number, number];
           const sources = loaded.map((source) => inPlace(source, parentOf, bind));
-          const clips = sources.map(
-            (clip) =>
-              new THREE.AnimationClip(
-                `Motion ${clip.slot}`,
-                clip.duration,
-                clip.tracks.map((track) => {
-                  const name = `bone_${track.bone}`;
-                  if (track.path === "rotation")
-                    return new THREE.QuaternionKeyframeTrack(
-                      `${name}.quaternion`,
-                      track.times,
-                      track.values,
-                    );
-                  const property = track.path === "translation" ? "position" : "scale";
-                  return new THREE.VectorKeyframeTrack(
-                    `${name}.${property}`,
+          const toClip = (clip: MotionClip, name: string) =>
+            new THREE.AnimationClip(
+              name,
+              clip.duration,
+              clip.tracks.map((track) => {
+                const bone = `bone_${track.bone}`;
+                if (track.path === "rotation")
+                  return new THREE.QuaternionKeyframeTrack(
+                    `${bone}.quaternion`,
                     track.times,
                     track.values,
                   );
-                }),
-              ),
-          );
+                const property = track.path === "translation" ? "position" : "scale";
+                return new THREE.VectorKeyframeTrack(
+                  `${bone}.${property}`,
+                  track.times,
+                  track.values,
+                );
+              }),
+            );
+          const clips = sources.map((clip) => toClip(clip, `Motion ${clip.slot}`));
           mixer = new THREE.AnimationMixer(root);
           // Only a motion that scales a bone with bones under it poses
           // differently the game's way; the rest keep three.js's own.
@@ -886,6 +885,15 @@ export default function ModelViewer({
           // "finished" handler below restarts it where the game would.
           const actions = clips.map((clip) => mixer!.clipAction(clip).setLoop(THREE.LoopOnce, 1));
           for (const action of actions) action.clampWhenFinished = true;
+          // A head or tail motion (Rathian's 20-28) is one the game plays
+          // over the rest of the body's motion: the first whole-body one
+          // (standing, for most monsters) plays on the other bones meanwhile,
+          // looping on its own.
+          const base = sources.find((clip) => !clip.bones);
+          const under = sources.map((clip) => {
+            const rest = base && underneath(clip, base);
+            return rest ? mixer!.clipAction(toClip(rest, `Motion ${clip.slot} under`)) : null;
+          });
 
           // The ground: the lowest the first motion (standing, for most
           // monsters) reaches. Its height differs between models (Rathian
@@ -919,8 +927,11 @@ export default function ModelViewer({
           const apply = () => {
             const action = actions[state.index]!;
             placeWeapon?.((sources[state.index] as HunterClip | undefined)?.sheathed === true);
-            if (!action.isRunning() && !action.paused) action.play();
-            action.paused = !state.playing;
+            for (const playing of [action, under[state.index]]) {
+              if (!playing) continue;
+              if (!playing.isRunning() && !playing.paused) playing.play();
+              playing.paused = !state.playing;
+            }
             setMotion({
               count: actions.length,
               index: state.index,
@@ -934,6 +945,7 @@ export default function ModelViewer({
           playerRef.current = {
             select: (index) => {
               actions[state.index]!.stop();
+              under[state.index]?.stop();
               state.index = (index + actions.length) % actions.length;
               apply();
             },

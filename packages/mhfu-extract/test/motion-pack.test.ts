@@ -10,6 +10,7 @@ test("packMotions writes the header, then frame deltas, rotations and vectors as
     duration: 5,
     loop: true,
     loopStart: 0.25,
+    bones: [4, 5],
     tracks: [
       { bone: 4, path: "rotation", times: [0, 0.5], values: [0, 0, 0, 1, 0, 1, 0, 0] },
       { bone: 4, path: "translation", times: [0, 5], values: [1, 2, 3, 1, 2, 2] },
@@ -24,7 +25,9 @@ test("packMotions writes the header, then frame deltas, rotations and vectors as
   assert.equal(bytes.subarray(0, 4).toString("latin1"), MOTION_PACK_MAGIC);
   at = 4;
   assert.equal(u16(), 1); // clips
-  assert.deepEqual([u16(), u16(), u8(), u16(), u16()], [3, 300, 1, 15, 2]);
+  assert.deepEqual([u16(), u16(), u8(), u16()], [3, 300, 1, 15]);
+  assert.deepEqual([u8(), u8(), u8()], [2, 4, 5]); // covers bones 4 and 5
+  assert.equal(u16(), 2); // tracks
   assert.deepEqual([u8(), u8(), u16()], [4, 1, 2]); // bone 4, rotation, 2 keys
   assert.deepEqual([u8(), u8(), u16()], [4, 0, 2]); // bone 4, translation, 2 keys
   // Frames: 0 then 30 for the rotation; 0 then 300 (255 + u16) for the translation.
