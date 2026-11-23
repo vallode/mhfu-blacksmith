@@ -2088,7 +2088,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "farm.harvestAll",
     section: "Pokke Farm",
     label: "Harvest all",
-    help: "Gathering once at any Pokke Farm spot sends everything the farm holds to the Item Box.",
+    help: "At the farm's Item Box, △ sends everything the farm holds (field, Mining Points, Insect Thickets, Mushroom Tree, Bee Hive) to the Item Box.",
     type: { kind: "boolean" },
     default: true,
   },

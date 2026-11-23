@@ -1484,7 +1484,7 @@ export function randomize(
         improvePips = found;
       }
     }
-    // Harvest all: calls of the menu's hook in lobby_task, so it goes in (and out) with them.
+    // Harvest all: a call of the menu's hook, so it goes in (and out) with them.
     let harvest: Harvest | null = null;
     if (menus && harvestOn) {
       const found = prepareHarvest(game.eboot!, game.lobbyTask);
@@ -1551,14 +1551,14 @@ export function randomize(
         harvest ||
         combine)
     ) {
-      // Hook 8's other calls; harvest.c knows its five by their first site, combine.c its one.
+      // Hook 8's other calls; harvest.c and combine.c know theirs by its site.
       const calls = [
         ...(sendAll?.calls ?? []),
         ...(targetCamera?.calls ?? []),
         ...(improvePips?.calls ?? []),
       ];
       if (harvest) {
-        externs.rf_farm_site = FIRST_CALL_SITE + calls.length;
+        externs.rf_harvest_site = FIRST_CALL_SITE + calls.length;
         calls.push(...harvest.calls);
       }
       if (combine) {

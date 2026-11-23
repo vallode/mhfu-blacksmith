@@ -2,26 +2,34 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
 import { decodeObjects, linkBlob } from "../src/blob/link.js";
-import { FIRST_CALL_SITE, HOOK, assembleHooks } from "../src/patches/game-hooks.js";
+import { FIRST_CALL_SITE, assembleHooks } from "../src/patches/game-hooks.js";
 import { harvestObjects } from "../src/patches/harvest.js";
 import { Cpu } from "./mips-cpu.js";
 
 const BLOB = 0x099a1820;
 const HOOKS = 0x08901d38;
 const SAVE = 0x09999c60;
-const PAD_READ = 0x0890e120;
 const HUD = 0x09a04ba0;
+const PRINTER = 0x08b10000;
 const SOUNDS = 0x09a10000;
-const HUNTER = 0x09b00000;
-/** EU's addresses (src/patches/harvest.ts on the EU disc). */
+const MESSAGES = 0x09c00000;
+const STRINGS = 0x09c10000;
+/** EU's addresses (src/patches/harvest.ts on the EU disc; the printer menu.ts's). */
 const EXTERNS = {
   rf_add_to_box: 0x08853abc,
   rf_item_seen: 0x08858f1c,
   rf_can_store: 0x0885c498,
   rf_can_store_object: 0x08a62c50,
   rf_farm: 0x6a238,
-  rf_farm_frame: 0x08864348,
-  rf_farm_site: FIRST_CALL_SITE,
+  rf_harvest_site: FIRST_CALL_SITE,
+  rf_buttons: 0x0884fb6c,
+  rf_prompt_prefix: 0x09b04de0,
+  rf_prompt_print: 0x08891474,
+  rf_prompt_format: 0x0893b224,
+  rf_prompt_width: 0x08890e48,
+  rf_prompt_banner: 0x08838b08,
+  rf_prompt_icon: 0x08838e0c,
+  rf_printer: 0x08a631a8,
   rf_log_item: 0x08830728,
   rf_log_text: 0x088307bc,
   rf_log_object: 0x089cbbec,
@@ -29,9 +37,12 @@ const EXTERNS = {
   rf_item_sound_object: 0x08a62d90,
 };
 const FARM = SAVE + EXTERNS.rf_farm;
-/** The five actions' frame() calls, mining to field (EU). */
-const CALLS = [0x09ab2384, 0x09ab2504, 0x09ab2674, 0x09ab29d8, 0x09ab3030];
-const NO_SCREEN = 0x1d7;
+/** The farm box prompt's lookup of its text (EU), and the lookup. */
+const CALL = 0x08836bf8;
+const LOOKUP = 0x09a7b790;
+const PREFIX_ID = 0x1e;
+const TEXT_ID = 0x2c;
+const TRIANGLE = 0x1000;
 
 function farm(boxRoom = Infinity) {
   const blob = linkBlob([...decodeObjects(RUNTIME_OBJECTS), ...harvestObjects()], BLOB, EXTERNS);
@@ -40,24 +51,64 @@ function farm(boxRoom = Infinity) {
   const hooks = assembleHooks(
     HOOKS,
     BLOB,
-    [{ hook: HOOK.pad, target: PAD_READ }],
+    [],
     undefined,
     undefined,
     [],
-    CALLS.map((call) => ({ call, target: EXTERNS.rf_farm_frame })),
+    [{ call: CALL, target: LOOKUP }],
   );
   cpu.load(HOOKS, hooks.code);
   const reg = (k: number) => cpu.reg[k]! >>> 0;
   cpu.setU32(EXTERNS.rf_log_object, HUD);
+  cpu.setU32(EXTERNS.rf_printer, PRINTER);
   cpu.setU32(EXTERNS.rf_item_sound_object, SOUNDS);
   cpu.setU32(EXTERNS.rf_can_store_object, 0x08a70000);
+  cpu.setU16(EXTERNS.rf_prompt_prefix, PREFIX_ID);
+  cpu.setU8(HUD + 0x535, 0xff);
 
-  let reached = 1;
-  const frames: number[][] = [];
-  cpu.native.set(EXTERNS.rf_farm_frame, () => {
-    frames.push([reg(4), reg(5)]);
-    return reached;
+  // The game's messages: the button's " :" and the box's text.
+  const texts = new Map([
+    [PREFIX_ID, " :"],
+    [TEXT_ID, "Open Item Box"],
+  ]);
+  const address = new Map<number, number>();
+  let at = STRINGS;
+  for (const [id, s] of texts) {
+    cpu.write(at, Buffer.from(s + "\0", "latin1"));
+    address.set(id, at);
+    at += 0x40;
+  }
+  cpu.native.set(LOOKUP, () => {
+    assert.equal(reg(4), MESSAGES);
+    return address.get(reg(5))!;
   });
+  const drawn: unknown[][] = [];
+  cpu.native.set(EXTERNS.rf_prompt_print, () => {
+    assert.equal(reg(4), PRINTER);
+    assert.equal(reg(7), EXTERNS.rf_prompt_format);
+    drawn.push(["print", reg(5), reg(6), cpu.string(reg(8)) + cpu.string(reg(9))]);
+    return 0;
+  });
+  cpu.native.set(EXTERNS.rf_prompt_width, () => {
+    assert.equal(reg(4), PRINTER);
+    return cpu.string(reg(5)).length;
+  });
+  cpu.native.set(EXTERNS.rf_prompt_banner, () => {
+    assert.equal(reg(4), HUD);
+    drawn.push(["banner", reg(5), reg(6), reg(7), reg(8), reg(9), reg(10)]);
+    return 0;
+  });
+  cpu.native.set(EXTERNS.rf_prompt_icon, () => {
+    assert.equal(reg(4), HUD);
+    drawn.push(["icon", reg(5), reg(6), reg(7), reg(8) | 0, reg(9)]);
+    return 0;
+  });
+  let pressed = 0;
+  cpu.native.set(EXTERNS.rf_buttons, () => {
+    assert.equal(reg(4), SAVE);
+    return pressed;
+  });
+
   const box = new Map<number, number>();
   let room = boxRoom;
   cpu.native.set(EXTERNS.rf_can_store, () => (reg(5) === 999 ? 0 : 1));
@@ -90,8 +141,6 @@ function farm(boxRoom = Infinity) {
   });
   cpu.call(blob.symbols.get("rf_init")!, [0, SAVE, BLOB]);
 
-  /** The action of `kind` asking whether its motion reached the frame. */
-  const gather = (kind: number) => cpu.call(hooks.calls[kind]!, [HUNTER + 0x80, 0]) | 0;
   const levels = (
     field: number,
     mining: number,
@@ -115,7 +164,6 @@ function farm(boxRoom = Infinity) {
     });
   return {
     cpu,
-    gather,
     levels,
     list,
     read,
@@ -124,12 +172,35 @@ function farm(boxRoom = Infinity) {
     seen,
     log,
     sounds,
-    frames,
-    reach: (v: number) => (reached = v),
+    drawn,
+    /** A frame of the farm box's prompt, with `buttons` pressed: what its lookup gave. */
+    prompt: (buttons = 0) => {
+      pressed = buttons;
+      drawn.length = 0;
+      return cpu.call(hooks.calls[0]!, [MESSAGES, TEXT_ID]) >>> 0;
+    },
+    text: address.get(TEXT_ID)!,
   };
 }
 
-test("one gather sends every spot the farm has to the Item Box", () => {
+test("the prompt gets a second line while the farm holds anything", () => {
+  const f = farm();
+  f.levels(0, 0, 0, 0, 0);
+  assert.equal(f.prompt(), f.text, "the game's lookup, as it was");
+  assert.deepEqual(f.drawn, [], "an empty farm: the game's prompt alone");
+
+  f.list(FARM + 0x08, [100]);
+  assert.equal(f.prompt(), f.text);
+  const width = ("Harvest All to Item Box".length + 4) * 7 + 0x24;
+  assert.deepEqual(f.drawn, [
+    ["print", 0x24, 0x22, " :Harvest All to Item Box"],
+    ["banner", 0, 0x20, width, 0x10, 0x801d3905, 0],
+    ["icon", 0x10, 0x20, 0x34, -1, 0x14],
+  ]);
+  assert.equal(f.box.size, 0, "nothing sent without △");
+});
+
+test("△ sends every spot the farm has to the Item Box", () => {
   const f = farm();
   f.levels(1, 1, 0, 2, 1);
   f.list(FARM + 0x08, [100, 100, 101, 0]); // mining point 0
@@ -146,8 +217,7 @@ test("one gather sends every spot the farm has to the Item Box", () => {
   ]);
   f.plot(1, [[142, 2]]);
   f.plot(2, [[143, 5]]); // plot 2: not dug
-  assert.equal(f.gather(0), 0, "the game gathers nothing itself");
-  assert.deepEqual(f.frames, [[HUNTER + 0x80, 0]], "the game's frame() asked as it was");
+  assert.equal(f.prompt(TRIANGLE), f.text);
   assert.deepEqual(Object.fromEntries(f.box), {
     100: 2,
     101: 1,
@@ -184,37 +254,15 @@ test("one gather sends every spot the farm has to the Item Box", () => {
   ]);
   assert.deepEqual(f.sounds, [140]);
   assert.equal(f.seen.length, 14, "after each send, as the game");
-  assert.equal(f.cpu.u8(HUNTER + NO_SCREEN), 0, "a Mining Point has no screen to keep shut");
-});
 
-test("at a spot with a screen, it stays shut", () => {
-  for (const kind of [2, 3, 4]) {
-    const f = farm();
-    f.levels(0, 0, 0, 1, 0);
-    f.list(FARM + 0x58, [120]);
-    assert.equal(f.gather(kind), 0);
-    assert.equal(f.cpu.u8(HUNTER + NO_SCREEN), 1);
-  }
-});
-
-test("before the frame, an empty farm, or a full box: the game's own gather", () => {
-  const f = farm();
+  // Only what isn't built is left: no second line.
   f.levels(0, 0, 0, 0, 0);
-  f.reach(0);
-  f.list(FARM + 0x08, [100]);
-  assert.equal(f.gather(0), 0);
-  assert.equal(f.box.size, 0, "not before the frame");
-  f.reach(1);
-  f.list(FARM + 0x08, [0]);
-  assert.equal(f.gather(0), 1, "nothing on the farm");
-  assert.deepEqual(f.log, []);
-
-  const full = farm(0);
-  full.levels(0, 0, 0, 0, 0);
-  full.list(FARM + 0x08, [100, 101]);
-  assert.equal(full.gather(0), 1, "nothing fits");
-  assert.deepEqual(full.read(FARM + 0x08, 2), [100, 101], "and nothing taken");
-  assert.equal(full.cpu.u8(HUNTER + NO_SCREEN), 0);
+  f.list(FARM + 0x18, [0, 0, 0, 0]);
+  f.list(FARM + 0x38, [0]);
+  f.list(FARM + 0x58, [0, 0]);
+  f.cpu.setU16(FARM + 0xb4 + 80, 0);
+  f.prompt(TRIANGLE);
+  assert.deepEqual(f.drawn, []);
 });
 
 test("what doesn't fit stays at the front of its spot", () => {
@@ -222,11 +270,21 @@ test("what doesn't fit stays at the front of its spot", () => {
   f.levels(0, 0, 0, 0, 0);
   f.list(FARM + 0x08, [100, 999, 101, 102]);
   f.plot(0, [[140, 4]]);
-  assert.equal(f.gather(0), 0);
+  f.prompt(TRIANGLE);
   // The plot first: 3 of its 4 fit, then nothing.
   assert.deepEqual(Object.fromEntries(f.box), { 140: 3, 100: 0, 101: 0, 102: 0 });
   assert.equal(f.cpu.u16(FARM + 0xb4), 140);
   assert.equal(f.cpu.u8(FARM + 0xcc), 1);
   assert.deepEqual(f.read(FARM + 0x08, 4), [100, 999, 101, 102], "999 the box never takes");
   assert.deepEqual(f.log, [140, "Sent 3 items. Item Box full."]);
+});
+
+test("a full box: nothing taken, and the log says so", () => {
+  const f = farm(0);
+  f.levels(0, 0, 0, 0, 0);
+  f.list(FARM + 0x08, [100, 101]);
+  f.prompt(TRIANGLE);
+  assert.deepEqual(f.read(FARM + 0x08, 2), [100, 101]);
+  assert.deepEqual(f.log, ["Nothing fit in the Item Box."]);
+  assert.deepEqual(f.sounds, []);
 });

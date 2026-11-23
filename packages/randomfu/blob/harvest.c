@@ -1,23 +1,29 @@
 /*
- * Harvest all: gathering once at any of Pokke Farm's spots sends everything
- * the farm holds to the Item Box. See src/patches/harvest.ts, which finds
- * the game's addresses below on each disc and the five calls this takes.
+ * Harvest all: standing at the farm's Item Box, its prompt has a second
+ * line, "△ :Harvest All to Item Box", while the farm holds anything; △
+ * sends everything every spot holds to the Item Box. See
+ * src/patches/harvest.ts, which finds the game's addresses below on each
+ * disc and the call this takes.
  *
- * Hook: the menu hook's farm calls (rf_farm_site and the four after it, in
- * the order mining, insects, mushrooms, honey, field): each gathering
- * action asking frame(hunter + 0x80, 0) whether its motion has reached the
- * gathering frame, once. This makes the game's call ($f12, the frame, is as
- * the game left it: blob code is soft-float), and when it says yes and the
- * farm holds anything, sends it all and answers no, so the game gathers
- * nothing itself. What doesn't fit in the box stays on the farm; with
- * nothing sent, the game gathers as usual.
+ * Hook: the menu hook's prompt call (rf_harvest_site), the farm box
+ * prompt's last message lookup (its text, for the banner's width), which
+ * only that prompt makes. This makes the game's call, then draws the second
+ * banner below the game's as an NPC's second choice is drawn, and reads the
+ * buttons: on △ it harvests. What doesn't fit in the box stays on the farm.
  */
 #include "rf.h"
 
 /* Found per disc (src/patches/harvest.ts, send-all.ts' findBoxCalls). */
 extern const u8 rf_farm[];       /* the farm's offset in the save */
-extern const u8 rf_farm_frame[]; /* frame(motion, 0): the gathering frame, once */
-extern const u8 rf_farm_site[];  /* the first of the five calls' sites */
+extern const u8 rf_harvest_site[]; /* the prompt call's site */
+extern const u8 rf_buttons[];      /* buttons(save): this frame's presses, 0 while input is locked */
+extern const u8 rf_prompt_prefix[]; /* u16: the prompt's " :" after the button, a message ID */
+extern const u8 rf_prompt_print[];  /* print(printer, x, y, format, a, b) */
+extern const u8 rf_prompt_format[]; /* "%s%s" */
+extern const u8 rf_prompt_width[];  /* width(printer, text): its columns */
+extern const u8 rf_prompt_banner[]; /* banner(hud, 0, y, w, h, colour, 0) */
+extern const u8 rf_prompt_icon[];   /* icon(hud, x, y, sprite, blink, 0x14): its button */
+extern u8 *const rf_printer[];
 extern const u8 rf_add_to_box[]; /* add_to_box(save, item, amount, slot): what doesn't fit */
 extern const u8 rf_item_seen[];  /* item_seen(save, item), as the game after a send */
 extern const u8 rf_can_store[];  /* can_store(object, item): 0 for an item the box can't take */
@@ -50,10 +56,16 @@ extern u8 *const rf_item_sound_object[];
 #define PLOT_SLOTS 12
 #define PLOTS 3
 
-#define KINDS 5
-#define FIRST_SCREEN_KIND 2 /* mushrooms, honey and the field open a screen */
-#define HUNTER_MOTION 0x80  /* frame()'s first argument, in the hunter */
-#define HUNTER_NO_SCREEN 0x1d7
+/* The prompt, as the game draws an NPC's second choice under the first. */
+#define BUTTON_TRIANGLE 0x1000
+#define TRIANGLE_SPRITE 0x34 /* the HUD's button sprites: 50 ○, 51 ×, 52 △, 53 □ */
+#define LINE 0x10
+#define BANNER_X 0x10
+#define BANNER_Y (0x10 + LINE)
+#define TEXT_X 0x24
+#define TEXT_Y (0x12 + LINE)
+#define BANNER_COLOUR 0x801d3905
+#define HUD_BLINK 0x535 /* s8 */
 
 /* The log keeps 20 lines; leave the game a few. */
 #define LOG_ITEMS 12
@@ -187,19 +199,34 @@ static void report(void) {
   ((void (*)(u8 *, u32))rf_item_sound)(*rf_item_sound_object, items[0]);
 }
 
-static void menu(u8 *arg) {
-  struct rf_menu *m = (struct rf_menu *)arg;
-  const u32 kind = m->site - (u32)rf_farm_site;
-  if (m->handled || m->game != rf_farm_frame || kind >= KINDS) return;
-  m->result = (s32)rf_call8(m->game, m->args[0], m->args[1], m->args[2], m->args[3], 0, 0, 0, 0);
-  m->handled = 1;
-  if (!m->result || !each(0, 0)) return;
+static const char prompt[] = "Harvest All to Item Box";
+static const char nothing[] = "Nothing fit in the Item Box.";
+
+static void harvest(void) {
   kinds = sent = left = 0;
   each(take, take_plot);
-  if (!sent) return;
-  report();
-  if (kind >= FIRST_SCREEN_KIND) ((u8 *)m->args[0] - HUNTER_MOTION)[HUNTER_NO_SCREEN] = 1;
-  m->result = 0;
+  if (sent) report();
+  else ((void (*)(u8 *, const char *))rf_log_text)(*rf_log_object, nothing);
+}
+
+static void menu(u8 *arg) {
+  struct rf_menu *m = (struct rf_menu *)arg;
+  if (m->handled || m->site != (u32)rf_harvest_site) return;
+  m->result = (s32)rf_call8(m->game, m->args[0], m->args[1], m->args[2], m->args[3], 0, 0, 0, 0);
+  m->handled = 1;
+  if (!each(0, 0)) return;
+  u8 *hud = *rf_log_object, *printer = *rf_printer;
+  if (!hud || !printer) return;
+  /* The game's " :" after the button, from the same messages. */
+  const u32 prefix = rf_call8(m->game, m->args[0], *(const u16 *)rf_prompt_prefix, 0, 0, 0, 0, 0, 0);
+  rf_call8(rf_prompt_print, (u32)printer, TEXT_X, TEXT_Y, (u32)rf_prompt_format, prefix,
+           (u32)prompt, 0, 0);
+  const u32 columns = ((u32(*)(u8 *, const char *))rf_prompt_width)(printer, prompt);
+  rf_call8(rf_prompt_banner, (u32)hud, 0, BANNER_Y, (columns + 4) * 7 + 0x24, LINE, BANNER_COLOUR, 0,
+           0);
+  rf_call8(rf_prompt_icon, (u32)hud, BANNER_X, BANNER_Y, TRIANGLE_SPRITE, (u32)(s32)(s8)hud[HUD_BLINK],
+           0x14, 0, 0);
+  if (((u32(*)(u8 *))rf_buttons)(save) & BUTTON_TRIANGLE) harvest();
 }
 
 void rf_harvest_init(u32 reason, u8 *s) {

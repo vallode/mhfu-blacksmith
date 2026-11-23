@@ -66,8 +66,6 @@ void rf_init(u32 reason, u8 *save, u8 *blob) {
     for (u32 k = 0; k < RF_SAVE_DATA_BYTES / 4; k++) word[k] = 0;
     save_data->magic = RF_SAVE_DATA_MAGIC;
   }
-  /* First on the menu hook: its call keeps the game's $f12, which other features' code may not. */
-  if (rf_harvest_init) rf_harvest_init(reason, save);
   /* Before the menu, whose draw it makes the game's call ahead of. */
   if (rf_send_all_init) rf_send_all_init(reason, save);
   /* Before the features, which add their settings to it. */
@@ -87,6 +85,7 @@ void rf_init(u32 reason, u8 *save, u8 *blob) {
   if (rf_quest_end_init) rf_quest_end_init(reason, save);
   if (rf_photo_init) rf_photo_init(reason, save);
   if (rf_improve_pips_init) rf_improve_pips_init(reason, save);
+  if (rf_harvest_init) rf_harvest_init(reason, save);
   /* After send-all and the menu, which make the menus' draw call first. */
   if (rf_combine_init) rf_combine_init(reason, save);
 }

@@ -200,7 +200,7 @@ web app shows as a tag):
 | `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards) |
 | `rewards.sendAll`                 | on          | A Send All to Item Box row in the reward screen's menu (caps Guild Cards)                              |
 | `smithy.improvePips`              | on          | A pip on each weapon the smithy's Improve can improve now (caps Guild Cards)                           |
-| `farm.harvestAll`                 | on          | One gather at any Pokke Farm spot sends everything the farm holds to the Item Box (caps Guild Cards)   |
+| `farm.harvestAll`                 | on          | △ at the farm's Item Box sends everything the farm holds to the Item Box (caps Guild Cards)            |
 | `pouch.bulkCombine`               | on          | The pouch's Combine asks how many at "Combine?" and makes them all at once (caps Guild Cards)          |
 | `boot.skip`                       | `normal`    | A faster start: `title` (no notice, logos or intro movie) or `village` (straight into the last hunter) |
 
@@ -2386,14 +2386,15 @@ or the picker's been closed. Not yet seen in game.
 
 ## Harvest all
 
-`farm.harvestAll`: gathering once at any of Pokke Farm's spots (the field,
-a Mining Point, an Insect Thicket, the Mushroom Tree or the Bee Hive) sends
-everything every spot holds to the Item Box, with a line in the message log
-for each kind of item and one saying how many went. What doesn't fit stays
-on the farm, at the front of its spot. With the farm empty, or nothing
-fitting, the game gathers as usual. It's blob code (`blob/harvest.c`) on
-five calls of the START menu's hook in `lobby_task`, so it goes in with the
-START menu entry and caps Guild Cards.
+`farm.harvestAll`: standing at Pokke Farm's Item Box, its prompt ("□ :Open
+Item Box") gets a second line, "△ :Harvest All to Item Box", while the farm
+holds anything. △ sends everything every spot holds (the field, the Mining
+Points, Insect Thickets, Mushroom Tree and Bee Hive) to the Item Box, with a
+line in the message log for each kind of item and one saying how many went.
+What doesn't fit stays on the farm, at the front of its spot. Gathering at a
+spot is the game's. It's blob code (`blob/harvest.c`) on one call of the
+START menu's hook in the EBOOT, so it goes in with the START menu entry and
+caps Guild Cards.
 
 What it found (EU and JP (FUC), the same code at other addresses;
 `src/patches/harvest.ts` has the details):
@@ -2405,18 +2406,19 @@ What it found (EU and JP (FUC), the same code at other addresses;
   over whatever was left. A Mining Point or Insect Thicket holds 4 items, a
   tree 8 and a hive 6 (one list per level); a field plot 12 items with
   amounts.
-- Gathering is one of the hunter's actions in `lobby_task`, one per kind
-  of spot. Each plays its motion and asks the motion, every frame, whether
-  it has reached the gathering frame (once); then a Mining Point or Insect
-  Thicket gives its first item to the pouch, and the others open a screen
-  of their items when the motion ends, unless the hunter's flag for an
-  empty spot is set.
+- The prompt at an interaction point switches on the point's type (7 the
+  farm's Item Box, 6 the house's): each prints its button's " :" message and
+  its text, then a shared tail draws the banner and the button's sprite. An
+  NPC with a second choice gets a second banner a line (16) lower. The
+  village's interaction code takes □ for every type, and other buttons only
+  for NPCs, so △ at the box is free.
 
-The blob takes those five calls: when the motion reaches the frame and the
-farm holds anything, it sends it all with the reward screen's box calls,
-tells the game the frame hasn't come (so it gathers nothing itself) and,
-at a spot with a screen, sets the flag that keeps it shut. Not yet seen in
-game; the finder matches the EU and FUC discs.
+The blob takes the farm box case's last message lookup (its text again, for
+the banner's width): it makes the game's call, draws its own line under the
+game's as an NPC's second choice is drawn, and on △ (the buttons the Item
+Box's menu reads, nothing while input is locked) sends it all with the
+reward screen's box calls. Not yet seen in game; the finder matches the EU
+and FUC discs.
 
 ## Bulk combine
 
