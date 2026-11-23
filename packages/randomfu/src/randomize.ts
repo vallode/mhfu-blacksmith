@@ -149,6 +149,17 @@ import {
 } from "./patches/pact.js";
 import { readMonsterDrops } from "./hints/sources.js";
 import { eliteObjects, findEliteExterns } from "./patches/elite.js";
+import {
+  AGGRESSION_IDLE_FRAMES,
+  AGGRESSION_TAIL_SPEED,
+  ELITE_IDLE_FRAMES,
+  ELITE_TAIL_SPEED,
+  aggressionExterns,
+  encodeMotionTails,
+  tailSpeedProblem,
+  aggressionObjects,
+  idleCapProblem,
+} from "./patches/aggression.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
 import {
@@ -534,6 +545,8 @@ export function randomize(
     }
   }
   const aggression = settings["monsterAi.aggression"];
+  // Its odds are data; its shorter pauses go in with the blob, below, which notes them here.
+  let aggressionReport: ShuffleReport | null = null;
   if (settings["monsterAi.branches"] || aggression !== "off") {
     const scripts = readScripts(game.gameTask, loadEmOverlays(game));
     if (settings["monsterAi.branches"]) {
@@ -549,7 +562,8 @@ export function randomize(
     }
     // After the reroll, so it leans whatever odds the choices have by then.
     if (aggression !== "off") {
-      reports.push(makeMonstersAggressive(aggression, edits, scripts, monsterName));
+      aggressionReport = makeMonstersAggressive(aggression, edits, scripts, monsterName);
+      reports.push(aggressionReport);
     }
   }
 
@@ -1039,6 +1053,10 @@ export function randomize(
       ? "the EBOOT wasn't loaded"
       : patchQuestEnd(edits.eboot(), settings["quest.endWait"]));
   let questEndInGame = false;
+  // Whether aggression's shorter pauses went in with the blob, or why not.
+  let pausesWhy: string | null = "the loader demo's blob replaces its code";
+  // Why its quicker recoveries didn't go in where the shorter pauses did.
+  let tailsWhy: string | null = null;
   if (options.loaderDemo) {
     const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
       objects: decodeObjects(DEMO_OBJECTS),
@@ -1207,6 +1225,8 @@ export function randomize(
     }
     // Elites share the monster list and species table monster health finds.
     let elites = false;
+    // Where moves are past their last hit, for elites' and aggression's quicker recoveries.
+    let motionTails = false;
     if (settings["elites.enabled"]) {
       let found: Record<string, number> | string =
         typeof sites === "string"
@@ -1237,10 +1257,47 @@ export function randomize(
         objects.push(...eliteObjects());
         Object.assign(externs, found);
         elites = true;
+        const idleWhy = idleCapProblem(ovl.reader.buf);
+        if (idleWhy) reports.push(notApplied("Elite monsters' shorter pauses", idleWhy));
+        const tailWhy = tailSpeedProblem(ovl.reader.buf);
+        if (tailWhy) reports.push(notApplied("Elite monsters' quicker recoveries", tailWhy));
+        else motionTails = true;
+      }
+    }
+    // Aggression's shorter pauses: the shared monster boosts, on the same monster list.
+    let aggressionIdle = false;
+    pausesWhy = "the code loader didn't go in";
+    if (aggression !== "off") {
+      const found =
+        typeof sites === "string"
+          ? sites
+          : (idleCapProblem(ovl.reader.buf) ??
+            findMonsterHpExterns(
+              game.eboot!,
+              sites.segment,
+              sites.gauges,
+              ovl.reader.buf,
+              ovl,
+              mode === "off" ? "always" : mode,
+            ));
+      if (typeof found === "string") pausesWhy = found;
+      else {
+        const { rf_game_task, rf_monsters, rf_em_chunks } = found;
+        objects.push(...aggressionObjects());
+        Object.assign(externs, {
+          rf_game_task: rf_game_task!,
+          rf_monsters: rf_monsters!,
+          rf_em_chunks: rf_em_chunks!,
+          ...aggressionExterns(aggression),
+        });
+        aggressionIdle = true;
+        tailsWhy = tailSpeedProblem(ovl.reader.buf);
+        motionTails ||= tailsWhy === null;
       }
     }
     let pact = false;
     const data: Record<string, Buffer> = { ...unknown?.data };
+    if (motionTails) data.rf_motion_tails = encodeMotionTails();
     if (settings["pact.enabled"]) {
       const found =
         typeof sites === "string"
@@ -1441,6 +1498,7 @@ export function randomize(
         hitboxes ||
         unknown ||
         elites ||
+        aggressionIdle ||
         pact ||
         luck ||
         keys ||
@@ -1499,6 +1557,7 @@ export function randomize(
         }
       }
       reports.push(loader);
+      if (aggressionIdle && loader.applied) pausesWhy = null;
       // A lean loader leaves out the camera's code when its options are off.
       cameraLinked = loader.applied && camera && (cameraWanted || !wentLean);
       // Its code is always optional: the EBOOT patch alone carries the disc's
@@ -1576,6 +1635,30 @@ export function randomize(
     }
     // The call went in, but not the camera's patch: the ease's jal must go back to the game's read.
     if (targetPatch) throw new Error("The target camera's call went in without the camera's patch");
+  }
+
+  if (aggressionReport && aggression !== "off") {
+    const frames = AGGRESSION_IDLE_FRAMES[aggression];
+    const speed = AGGRESSION_TAIL_SPEED[aggression];
+    // Where an elite's own is better, it says so.
+    const elitesOn = settings["elites.enabled"];
+    const eliteIdle =
+      elitesOn && ELITE_IDLE_FRAMES < frames ? `; an elite's is ${ELITE_IDLE_FRAMES} frames` : "";
+    const eliteSpeed =
+      elitesOn && ELITE_TAIL_SPEED > speed ? ` (an elite's ${ELITE_TAIL_SPEED}%)` : "";
+    aggressionReport.notes.push(
+      pausesWhy === null
+        ? `Between moves, a large monster stands in its idle at most ${frames} frames (${Math.round((frames / 30) * 100) / 100} s${eliteIdle}).`
+        : `Pauses between moves aren't shortened: ${pausesWhy}.`,
+    );
+    if (pausesWhy === null) {
+      aggressionReport.notes.push(
+        tailsWhy === null
+          ? `Once a move is past its last hit, and all through a turn, a large monster moves ${speed}% faster${eliteSpeed}.`
+          : `Recoveries after a move aren't quicker: ${tailsWhy}.`,
+      );
+    }
+    if (pausesWhy !== null) aggressionReport.summary += `; pauses not shortened (${pausesWhy})`;
   }
 
   if (questEndOn) {

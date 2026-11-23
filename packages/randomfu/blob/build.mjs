@@ -40,6 +40,7 @@ const BLOBS = {
   pact: [["pact.c"], "src/blob"],
   monsters: [["monsters.c"], "src/blob"],
   elite: [["elite.c"], "src/blob"],
+  aggression: [["aggression.c"], "src/blob"],
   unknownQuests: [["unknown-quests.c"], "src/blob"],
   poogie: [["poogie.c"], "src/blob"],
   keyQuests: [["key-quests.c"], "src/blob"],

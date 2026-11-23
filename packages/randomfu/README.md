@@ -176,7 +176,7 @@ web app shows as a tag):
 | `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                               |
 | `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                        |
 | `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                          |
-| `monsterAi.aggression`            | `off`       | `off`, `more` (attacks twice as likely against other moves) or `relentless` (four times)               |
+| `monsterAi.aggression`            | `off`       | `off`, `more` (attacks ×2, idle ≤ 1 s, recoveries 50% faster) or `relentless` (×4, ⅓ s, recoveries ×2) |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                            |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                      |
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
@@ -991,10 +991,39 @@ Not yet tried in game.
   least 1. It runs after `monsterAi.branches`, on the rerolled weights.
 - A file is changed only if its choices and their vanilla weights hash to
   what the data was made from; the EU and FUC discs both match.
+- Shorter pauses: every large monster stands in its idle between moves at
+  most 30 frames (`more`, one second) or 10 (`relentless`), as blob code on
+  the code loader (`src/patches/aggression.ts`, `blob/aggression.c`, on the
+  shared monster boosts of `blob/monsters.c`). The idle (action group 0
+  playing motion record 1, every species' looping stand) otherwise runs to
+  the end of its loop before the AI goes on: Tigrex's is three seconds,
+  then it turns to its next move. The blob sets the monster's "think now"
+  flag (`+0x4B5`) once the cap is up, which is what the idle sets when its
+  loop ends. No flag for "has seen a hunter" was found, so a monster that
+  rests while it wanders rests less too. It goes in where `game_task`'s AI
+  gate and AI match the EU code (EU and FUC do); elsewhere the odds still
+  change and the report says the pauses don't.
+- Quicker recoveries and turns: once a large monster's move is past its
+  last hit (or roar, wind or tremor), the rest of it plays 50% faster
+  (`more`) or twice as fast (`relentless`); a turn (a short motion whose
+  only hits are light contact) plays faster all through. The monster
+  update sets its animation speed every frame from a percent bonus at
+  `+0x769` (u8) that some moves set for themselves (Tigrex's charge); the
+  blob raises it for the rest of the move, keeps a move's own bonus where
+  it's faster, and puts the game's back after. Where each move's last hit
+  ends is data from the EU disc (`src/shuffles/monster-motions.ts`, from the
+  attack sweep the site's attack viewer uses), by species and motion
+  record. Moves whose hits the game's code spawns (Tigrex's charge) and
+  walks aren't listed, so they run as they did. It goes in where
+  `game_task`'s speed code matches the EU code; elsewhere the report says
+  so.
 
 Tried in game on the EU disc at four times: Giadrome was clearly more
 aggressive. Species with walking contact and the elder dragons haven't been
-played.
+played. The shorter pauses were played against Tigrex on the EU disc at
+`relentless` (better, but its turns and some recoveries were still slow,
+which the quicker recoveries are for). With the quicker recoveries too,
+Tigrex's turns felt much better.
 
 **The bookshelf guides** rewrite runs of the house bookshelf's articles
 (Open Bookshelf, Info Magazine) and make them readable from the start
@@ -2120,6 +2149,13 @@ elite:
 - has half again its health (at most 32767), and hits 30% harder;
 - moves 10% faster: its animations run 10% faster, except during moves
   that set their own speed;
+- pauses less between moves: it stands in its idle at most 20 frames
+  (two thirds of a second) before its next move, where the game would let
+  the idle loop run out (Tigrex's three seconds). Monster aggression's cap
+  applies too, and the shorter one wins;
+- recovers and turns faster: past a move's last hit, and all through a
+  turn, its animations run 50% faster (Monster aggression's, the faster
+  one winning);
 - enrages after 60% of the damage it would otherwise take, and stays
   enraged half again as long (monsters that don't enrage skip this);
 - is 15% bigger than the quest made it (at most 250%), which the Guild

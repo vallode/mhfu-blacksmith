@@ -1730,7 +1730,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "monsterAi.aggression",
     section: "Monster stats",
     label: "Aggression",
-    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, so it spends less time between them. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
+    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, and a large monster stands idle between moves for less time and recovers and turns faster, so it spends less time between attacks. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
     type: {
       kind: "choice",
       choices: [
@@ -1738,12 +1738,12 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "more",
           label: "More aggressive",
-          help: "Each attack is twice as likely as before against the other moves.",
+          help: "Each attack is twice as likely as before against the other moves, and a monster stands idle at most a second between moves and recovers from its moves and turns 50% faster.",
         },
         {
           value: "relentless",
           label: "Relentless",
-          help: "Each attack is four times as likely as before against the other moves.",
+          help: "Each attack is four times as likely as before against the other moves, and a monster stands idle at most a third of a second between moves and recovers from its moves and turns twice as fast.",
         },
       ],
     },
@@ -2043,6 +2043,7 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Now and then a large monster is an elite, with a faint crimson pulse. The quest board doesn't tell.",
     points: [
       "+50% health, +30% damage, +10% speed, longer rages",
+      "Shorter pauses between moves, quicker turns and recoveries",
       "An extra reward draw, +50% zenny and rarer rewards",
     ],
     type: { kind: "boolean" },
