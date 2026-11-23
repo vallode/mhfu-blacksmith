@@ -164,6 +164,7 @@ import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
 import {
   findHitSite,
+  FIRST_CALL_SITE,
   findHookSites,
   findPadSites,
   type HitSite,
@@ -177,6 +178,8 @@ import {
   improvePipsReport,
   prepareImprovePips,
 } from "./patches/improve-pips.js";
+import { type Harvest, harvestObjects, harvestReport, prepareHarvest } from "./patches/harvest.js";
+import { type Combine, combineObjects, combineReport, prepareCombine } from "./patches/combine.js";
 import {
   prepareTargetCamera,
   type TargetCamera,
@@ -1417,11 +1420,24 @@ export function randomize(
     let menus: MenuSites[] | null = null;
     const sendAllOn = settings["rewards.sendAll"];
     const pipsOn = settings["smithy.improvePips"];
+    const harvestOn = settings["farm.harvestAll"];
+    const combineOn = settings["pouch.bulkCombine"];
     if (sendAllOn && typeof sites === "string")
       reports.push(notApplied("Send All to Item Box", sites));
     if (pipsOn && typeof sites === "string") reports.push(notApplied("Improve pips", sites));
+    if (harvestOn && typeof sites === "string") reports.push(notApplied("Harvest all", sites));
+    if (combineOn && typeof sites === "string") reports.push(notApplied("Bulk combine", sites));
     if (
-      (hit || monsterHp || hitboxes || camera || questEnd || photo || sendAllOn || pipsOn) &&
+      (hit ||
+        monsterHp ||
+        hitboxes ||
+        camera ||
+        questEnd ||
+        photo ||
+        sendAllOn ||
+        pipsOn ||
+        harvestOn ||
+        combineOn) &&
       typeof sites !== "string"
     ) {
       const found = prepareMenu(game.eboot!, sites);
@@ -1434,6 +1450,8 @@ export function randomize(
         );
         if (sendAllOn) reports.push(notApplied("Send All to Item Box", found));
         if (pipsOn) reports.push(notApplied("Improve pips", found));
+        if (harvestOn) reports.push(notApplied("Harvest all", found));
+        if (combineOn) reports.push(notApplied("Bulk combine", found));
       } else {
         optional.push(...menuObjects());
         Object.assign(externs, found.externs);
@@ -1466,6 +1484,28 @@ export function randomize(
         optional.push(...improvePipsObjects());
         Object.assign(externs, found.externs);
         improvePips = found;
+      }
+    }
+    // Harvest all: a call of the menu's hook, so it goes in (and out) with them.
+    let harvest: Harvest | null = null;
+    if (menus && harvestOn) {
+      const found = prepareHarvest(game.eboot!, game.lobbyTask);
+      if (typeof found === "string") reports.push(notApplied("Harvest all", found));
+      else {
+        optional.push(...harvestObjects());
+        Object.assign(externs, found.externs);
+        harvest = found;
+      }
+    }
+    // Bulk combine: the menu's hook, and a call of it in the EBOOT, so it goes in (and out) with them.
+    let combine: Combine | null = null;
+    if (menus && combineOn) {
+      const found = prepareCombine(game.eboot!, menus, game.lobbyTask);
+      if (typeof found === "string") reports.push(notApplied("Bulk combine", found));
+      else {
+        optional.push(...combineObjects());
+        Object.assign(externs, found.externs);
+        combine = found;
       }
     }
     // The target camera: a call of the menu's hook, so it goes in (and out) with
@@ -1509,8 +1549,24 @@ export function randomize(
         questEnd ||
         photo ||
         sendAll ||
-        improvePips)
+        improvePips ||
+        harvest ||
+        combine)
     ) {
+      // Hook 8's other calls; harvest.c and combine.c know theirs by its site.
+      const calls = [
+        ...(sendAll?.calls ?? []),
+        ...(targetCamera?.calls ?? []),
+        ...(improvePips?.calls ?? []),
+      ];
+      if (harvest) {
+        externs.rf_harvest_site = FIRST_CALL_SITE + calls.length;
+        calls.push(...harvest.calls);
+      }
+      if (combine) {
+        externs.rf_combine_site = FIRST_CALL_SITE + calls.length;
+        calls.push(...combine.calls);
+      }
       const install = (lean: boolean) => {
         const all = lean ? objects : [...objects, ...optional];
         return addCodeLoader(game.eboot, game.gameSub, edits, {
@@ -1530,11 +1586,7 @@ export function randomize(
             ...(menus &&
               !lean && {
                 menus,
-                calls: [
-                  ...(sendAll?.calls ?? []),
-                  ...(targetCamera?.calls ?? []),
-                  ...(improvePips?.calls ?? []),
-                ],
+                calls,
               }),
           },
           externs,
@@ -1586,6 +1638,30 @@ export function randomize(
             ? improvePipsReport()
             : notApplied(
                 "Improve pips",
+                loader.applied
+                  ? "it goes in with the START menu entry, which didn't fit"
+                  : "the code loader isn't on this disc",
+              ),
+        );
+      }
+      if (harvest) {
+        reports.push(
+          loader.applied && !wentLean
+            ? harvestReport()
+            : notApplied(
+                "Harvest all",
+                loader.applied
+                  ? "it goes in with the START menu entry, which didn't fit"
+                  : "the code loader isn't on this disc",
+              ),
+        );
+      }
+      if (combine) {
+        reports.push(
+          loader.applied && !wentLean
+            ? combineReport()
+            : notApplied(
+                "Bulk combine",
                 loader.applied
                   ? "it goes in with the START menu entry, which didn't fit"
                   : "the code loader isn't on this disc",

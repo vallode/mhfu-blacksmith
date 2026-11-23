@@ -201,6 +201,8 @@ web app shows as a tag):
 | `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards) |
 | `rewards.sendAll`                 | on          | A Send All to Item Box row in the reward screen's menu (caps Guild Cards)                              |
 | `smithy.improvePips`              | on          | A pip on each weapon the smithy's Improve can improve now (caps Guild Cards)                           |
+| `farm.harvestAll`                 | on          | △ at the farm's Item Box sends everything the farm holds to the Item Box (caps Guild Cards)            |
+| `pouch.bulkCombine`               | on          | The pouch's Combine asks how many at "Combine?" and makes them all at once (caps Guild Cards)          |
 | `monsterList.slainCaptured`       | off         | The Monster List's card shows slain and captured counts, from the save, in place of one hunted count   |
 | `boot.skip`                       | `normal`    | A faster start: `title` (no notice, logos or intro movie) or `village` (straight into the last hunter) |
 
@@ -2383,6 +2385,75 @@ matched on EU; `src/patches/improve-pips.ts` has the addresses):
 Which cells get a pip is worked out once a page and kept while the picker
 shows: again for a slot that changes, and for the page when the zenny does
 or the picker's been closed. Not yet seen in game.
+
+## Harvest all
+
+`farm.harvestAll`: standing at Pokke Farm's Item Box, its prompt ("□ :Open
+Item Box") gets a second line, "△ :Harvest All to Item Box", while the farm
+holds anything. △ sends everything every spot holds (the field, the Mining
+Points, Insect Thickets, Mushroom Tree and Bee Hive) to the Item Box, with a
+line in the message log for each kind of item and one saying how many went.
+What doesn't fit stays on the farm, at the front of its spot. Gathering at a
+spot is the game's. It's blob code (`blob/harvest.c`) on one call of the
+START menu's hook in the EBOOT, so it goes in with the START menu entry and
+caps Guild Cards.
+
+What it found (EU and JP (FUC), the same code at other addresses;
+`src/patches/harvest.ts` has the details):
+
+- The farm is in the save at `+0x6A238`: what's built (the field's plots,
+  Mining Points and Insect Thickets as the highest one there, the Mushroom
+  Tree and Bee Hive as a level 1-3), then each spot's stock, which the farm
+  restock rolls after every quest for every table, built or not, writing
+  over whatever was left. A Mining Point or Insect Thicket holds 4 items, a
+  tree 8 and a hive 6 (one list per level); a field plot 12 items with
+  amounts.
+- The prompt at an interaction point switches on the point's type (7 the
+  farm's Item Box, 6 the house's): each prints its button's " :" message and
+  its text, then a shared tail draws the banner and the button's sprite. An
+  NPC with a second choice gets a second banner a line (16) lower. The
+  village's interaction code takes □ for every type, and other buttons only
+  for NPCs, so △ at the box is free.
+
+The blob takes the farm box case's last message lookup (its text again, for
+the banner's width): it makes the game's call, draws its own line under the
+game's as an NPC's second choice is drawn, and on △ (the buttons the Item
+Box's menu reads, nothing while input is locked) sends it all with the
+reward screen's box calls. Not yet seen in game; the finder matches the EU
+and FUC discs.
+
+## Bulk combine
+
+`pouch.bulkCombine`: in the item pouch's Combine (the START menus' second
+entry), "Combine?" gets a "How many?" window beside Yes/No. Left and right
+pick the count, from 1 up to what the ingredients make and what the pouch
+has room for (the room for the result over the most one combine can make,
+so nothing is lost); × on Yes combines that many at once, and the game's
+own result message shows the lot. Each combine still rolls its own chance:
+failures past the first give their Garbage too, and the message log says
+how many failed. With one at most (one ingredient left, or no free slot for
+the result), Combine is the game's, left and right moving the pouch's
+cursor as ever. It's blob code (`blob/combine.c`) on the START menu's hook,
+so it goes in with the START menu entry and caps Guild Cards.
+
+What it found (EU and JP (FUC), the same code at other addresses;
+`src/patches/combine.ts` has the details):
+
+- Both menus run entry 1 with the same `combine_run`, a state machine in
+  the HUD object: two states pick the ingredients (and the recipe), then
+  "Combine?" (Yes/No on up and down, the pouch's cursor on left and right,
+  and what's wrong: the pouch full, an ingredient gone), then the result.
+- × on Yes calls `combine()` once: the recipe's chance, then the result
+  and how many (up to the recipe's quantity class's most), or a failure; it
+  takes one of each ingredient either way and doesn't give the result: the
+  next state does, turning a failure into one Garbage.
+- The Yes/No window is at (248, 200), 80 by 48, on both discs; the count's
+  window goes right of it.
+
+The blob takes the menus' run and draw calls while Combine runs, and the
+combine call: that makes the game's call the count's times and answers with
+the last result and the amounts summed. Not yet seen in game; the finder
+matches the EU and FUC discs.
 
 ## Paint
 

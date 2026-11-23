@@ -48,6 +48,8 @@ const BLOBS = {
   menu: [["menu.c"], "src/blob"],
   sendAll: [["send-all.c"], "src/blob"],
   improvePips: [["improve-pips.c"], "src/blob"],
+  harvest: [["harvest.c"], "src/blob"],
+  combine: [["combine.c"], "src/blob"],
   // Projects 3D shapes: Allegrex's FPU, single precision only.
   hitboxes: [["hitboxes.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
   camera: [["camera.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
