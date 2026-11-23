@@ -21,7 +21,23 @@ export const monsters: Messages["monsters"] = {
       hitzones: "Zonas débiles",
       quests: "Misiones",
       spawns: "Dónde abunda",
+      status: "Estados",
     },
+  },
+  status: {
+    columns: {
+      status: "Estado",
+      initial: "Inicial",
+      increase: "Aumento",
+      duration: "Duración",
+      recovery: "Recup.",
+    },
+    names: { poison: "Veneno", paralysis: "Parálisis", sleep: "Sueño", ko: "KO" },
+    immune: "Inmune",
+    seconds: (n: string) => `${n} s`,
+    increase: (n: string) => `+${n}`,
+    recovery: (amount: string, seconds: string) => `−${amount} / ${seconds} s`,
+    note: "Los golpes acumulan el estado hasta llegar a Inicial; cada vez siguiente hace falta Aumento más. Recup. es lo rápido que se disipa la acumulación.",
   },
   list: {
     count: (count: string) => `×${count}`,

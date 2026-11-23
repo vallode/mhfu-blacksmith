@@ -32,7 +32,28 @@ export const monsters = {
       quests: "Quests",
       /** A small monster's tab: the quests with the most of it. */
       spawns: "Most plentiful",
+      status: "Status",
     },
+  },
+  /** The Status tab: each status's tolerance (lib/monster-status). */
+  status: {
+    columns: {
+      status: "Status",
+      initial: "Initial",
+      increase: "Increase",
+      duration: "Duration",
+      recovery: "Recovery",
+    },
+    names: { poison: "Poison", paralysis: "Paralysis", sleep: "Sleep", ko: "KO" },
+    /** A status that never builds up on this monster. */
+    immune: "Immune",
+    /** A time: "10 s". */
+    seconds: (n: string) => `${n} s`,
+    /** The buildup added to the threshold after each time: "+75". */
+    increase: (n: string) => `+${n}`,
+    /** The buildup that wears off: "−5 / 10 s". */
+    recovery: (amount: string, seconds: string) => `−${amount} / ${seconds} s`,
+    note: "Hits build up a status until it reaches Initial; each time after, it takes Increase more. Recovery is how fast the buildup wears off.",
   },
   /** A monster type's list down the left. */
   list: {

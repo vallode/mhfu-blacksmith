@@ -12,6 +12,7 @@ import MonsterBreaks from "@/components/MonsterBreaks";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
+import MonsterStatus from "@/components/MonsterStatus";
 import SmallMonsterQuests from "@/components/SmallMonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { breakIndex, breakKey } from "@/lib/monster-breaks";
@@ -297,6 +298,15 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           },
         ]
       : [];
+  const statusTab: Tab[] = monster.tolerances
+    ? [
+        {
+          id: "status",
+          label: t.monsters.detail.tabs.status,
+          content: <MonsterStatus tolerances={monster.tolerances} />,
+        },
+      ]
+    : [];
   // One tab per rank's drop tables
   const dropTabs: Tab[] = Object.entries(monster.drops ?? {}).map(([rank, sources]) => ({
     id: rank,
@@ -360,7 +370,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // The loaded hunter's Guild Card counts. Captures only for monsters the
   // game gives capture rewards for.
   const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
-  const tabs = [...hitzoneTab, ...dropTabs, ...questTab, ...spawnTab];
+  const tabs = [...hitzoneTab, ...statusTab, ...dropTabs, ...questTab, ...spawnTab];
 
   return (
     <>
