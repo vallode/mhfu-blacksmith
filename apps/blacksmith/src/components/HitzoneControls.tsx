@@ -19,8 +19,8 @@ export interface HitzoneBreak {
   name: string;
 }
 
-/** The attack hitboxes' switch, for a monster that has them. */
-export interface AttackSwitch {
+/** A switch over the model: the attack hitboxes', or the size hunter's. */
+export interface ModelSwitch {
   show: boolean;
   onShowChange: (show: boolean) => void;
 }
@@ -37,14 +37,17 @@ interface Props {
   onPin: (part: string | null) => void;
   /** A part hovered or focused in the legend; null when it leaves. */
   onHover: (part: string | null) => void;
-  attacks?: AttackSwitch;
+  attacks?: ModelSwitch;
+  /** The switch for the hunter standing beside the monster for its size. */
+  hunter?: ModelSwitch;
 }
 
 /**
  * Over a monster's 3D model: a switch for its hitboxes and, while they show,
  * a legend of the hitzone parts in their colours, then its breakable parts.
  * Hovering or focusing an entry highlights its hitboxes; clicking pins it.
- * Next to the hitbox switch, one for its attack hitboxes.
+ * Next to the hitbox switch, one for its attack hitboxes and one for the
+ * hunter beside it.
  */
 export default function HitzoneControls({
   parts,
@@ -55,11 +58,13 @@ export default function HitzoneControls({
   onPin,
   onHover,
   attacks,
+  hunter,
 }: Props) {
   const { hitzones: t, breaks: breakText } = useT().monsters;
   return (
     <>
-      <div className="absolute bottom-2 left-2 z-10 flex gap-2">
+      {/* Stacked, so the motion panel beside them fits even in a narrow viewer. */}
+      <div className="absolute bottom-2 left-2 z-10 flex flex-col items-start gap-2">
         {parts.length > 0 && (
           <Switch on={show} onChange={onShowChange}>
             {t.show}
@@ -68,6 +73,11 @@ export default function HitzoneControls({
         {attacks && (
           <Switch on={attacks.show} onChange={attacks.onShowChange}>
             {t.attacks}
+          </Switch>
+        )}
+        {hunter && (
+          <Switch on={hunter.show} onChange={hunter.onShowChange}>
+            {t.hunter}
           </Switch>
         )}
       </div>

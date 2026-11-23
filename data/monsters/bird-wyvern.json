@@ -67,6 +67,7 @@
         }
       },
       "base_hp": 70,
+      "base_scale": 1.1,
       "flinch_thresholds": [
         100
       ],
@@ -233,6 +234,7 @@
         }
       },
       "base_hp": 800,
+      "base_scale": 1.4,
       "flinch_thresholds": [
         80
       ],
@@ -350,6 +352,7 @@
         }
       },
       "base_hp": 70,
+      "base_scale": 1.1,
       "flinch_thresholds": [
         60
       ],
@@ -516,6 +519,7 @@
         }
       },
       "base_hp": 800,
+      "base_scale": 1.4,
       "flinch_thresholds": [
         110
       ],
@@ -629,6 +633,7 @@
         }
       },
       "base_hp": 100,
+      "base_scale": 1.1,
       "flinch_thresholds": [
         70
       ],
@@ -799,6 +804,7 @@
         }
       },
       "base_hp": 1200,
+      "base_scale": 1.4,
       "flinch_thresholds": [
         180
       ],
@@ -912,6 +918,7 @@
         }
       },
       "base_hp": 150,
+      "base_scale": 1.1,
       "flinch_thresholds": [
         100
       ],
@@ -1044,6 +1051,7 @@
         }
       },
       "base_hp": 1600,
+      "base_scale": 1.4,
       "flinch_thresholds": [
         220
       ],
@@ -1481,6 +1489,7 @@
         }
       },
       "base_hp": 1600,
+      "base_scale": 0.8,
       "breaks": [
         {
           "name": "ears",
@@ -1870,6 +1879,7 @@
         }
       },
       "base_hp": 2800,
+      "base_scale": 0.8,
       "breaks": [
         {
           "name": "ears",
@@ -2361,6 +2371,7 @@
         }
       },
       "base_hp": 4000,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "beak",
@@ -2519,6 +2530,7 @@
         }
       },
       "base_hp": 3800,
+      "base_scale": 1,
       "flinch_thresholds": [
         160,
         150,
@@ -2978,6 +2990,7 @@
         }
       },
       "base_hp": 2400,
+      "base_scale": 0.9,
       "breaks": [
         {
           "name": "head",
@@ -3396,6 +3409,7 @@
         }
       },
       "base_hp": 2800,
+      "base_scale": 0.9,
       "breaks": [
         {
           "name": "head",
@@ -3720,6 +3734,7 @@
         }
       },
       "base_hp": 2600,
+      "base_scale": 0.8,
       "breaks": [
         {
           "name": "head",

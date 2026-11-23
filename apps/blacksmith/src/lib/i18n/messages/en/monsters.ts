@@ -138,6 +138,8 @@ export const monsters = {
     show: "Hitzones",
     /** Shows the attack hitboxes while the motion playing can hit. */
     attacks: "Attacks",
+    /** Shows a hunter beside the monster, to scale. */
+    hunter: "Hunter",
     legend: "Hitzone parts",
   },
   breaks: {

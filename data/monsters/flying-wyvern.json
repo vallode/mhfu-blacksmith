@@ -97,6 +97,7 @@
         }
       },
       "base_hp": 160,
+      "base_scale": 0.5,
       "flinch_thresholds": [
         70,
         100,
@@ -687,6 +688,7 @@
         }
       },
       "base_hp": 4000,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "head",
@@ -1224,6 +1226,7 @@
         }
       },
       "base_hp": 4400,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "head",
@@ -1638,6 +1641,7 @@
         }
       },
       "base_hp": 4400,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "head",
@@ -2261,6 +2265,7 @@
         }
       },
       "base_hp": 3200,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "head",
@@ -2796,6 +2801,7 @@
         }
       },
       "base_hp": 3600,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "head",
@@ -3207,6 +3213,7 @@
         }
       },
       "base_hp": 4000,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "head",
@@ -3662,6 +3669,7 @@
         }
       },
       "base_hp": 3200,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "head/back",
@@ -4050,6 +4058,7 @@
         }
       },
       "base_hp": 3600,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "head/back",
@@ -4485,6 +4494,7 @@
         }
       },
       "base_hp": 2400,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "stomach",
@@ -4926,6 +4936,7 @@
         }
       },
       "base_hp": 4000,
+      "base_scale": 1.5,
       "breaks": [
         {
           "name": "stomach",
@@ -5368,6 +5379,7 @@
         }
       },
       "base_hp": 4400,
+      "base_scale": 1.5,
       "breaks": [
         {
           "name": "stomach",
@@ -5656,6 +5668,7 @@
         }
       },
       "base_hp": 4000,
+      "base_scale": 1.2,
       "breaks": [
         {
           "name": "horn",
@@ -5945,6 +5958,7 @@
         }
       },
       "base_hp": 6000,
+      "base_scale": 1.2,
       "breaks": [
         {
           "name": "horn",
@@ -6341,6 +6355,7 @@
         }
       },
       "base_hp": 4000,
+      "base_scale": 1.2,
       "breaks": [
         {
           "name": "horns",
@@ -6757,6 +6772,7 @@
         }
       },
       "base_hp": 4400,
+      "base_scale": 1.2,
       "breaks": [
         {
           "name": "horns",
@@ -7305,6 +7321,7 @@
         }
       },
       "base_hp": 4000,
+      "base_scale": 0.9,
       "breaks": [
         {
           "name": "claw",
@@ -7759,6 +7776,7 @@
         }
       },
       "base_hp": 3600,
+      "base_scale": 0.8,
       "breaks": [
         {
           "name": "wings",
@@ -8029,6 +8047,7 @@
         }
       },
       "base_hp": 12000,
+      "base_scale": 1.5,
       "breaks": [
         {
           "name": "claws",
@@ -8285,6 +8304,7 @@
         }
       },
       "base_hp": 12000,
+      "base_scale": 1.5,
       "breaks": [
         {
           "name": "claws",

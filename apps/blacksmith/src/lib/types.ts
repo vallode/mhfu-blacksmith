@@ -208,6 +208,12 @@ export interface Monster {
   base_hp?: number;
   /** Centimetres at size 100 percent, as the Guild Card shows sizes (from the disc) */
   base_size?: number;
+  /**
+   * The size the game draws the model at, against its own units, at size
+   * 100 (from the disc): the 3D viewer's hunter stands at 1/base_scale
+   * beside it.
+   */
+  base_scale?: number;
   /** Guild Card crown thresholds, in percent of `base_size` (src/lib/crowns.ts) */
   crowns?: Crowns;
   /**
