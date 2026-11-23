@@ -1,8 +1,8 @@
 "use client";
 
 import { Fragment, useCallback, useEffect, useState, useSyncExternalStore } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import AfterLoadLink from "@/components/AfterLoadLink";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
@@ -135,6 +135,8 @@ function useCompact(): boolean {
   );
 }
 
+const WEAPONS_NAV = NAV_GROUPS[0][0];
+
 /** Where each entry goes: its own href, or the last page viewed in its section. */
 function useNavHrefs(pathname: string): (item: NavItem) => string {
   const sections: Record<MenuSection, string> = {
@@ -177,7 +179,7 @@ function HunterRow({
   const label = save ? save.name : t.nav.loadHunter;
   const rank = save?.hunterRank !== undefined ? t.hunter.rankShort(save.hunterRank) : null;
   return (
-    <Link
+    <AfterLoadLink
       href={HUNTER_MATCH}
       title={railLabel ? [label, rank].filter(Boolean).join(" · ") : undefined}
       aria-current={active ? "page" : undefined}
@@ -194,7 +196,7 @@ function HunterRow({
         <span className={cn("truncate", !save && "text-white/70")}>{label}</span>
         {rank && <span className="text-fine text-muted">{rank}</span>}
       </span>
-    </Link>
+    </AfterLoadLink>
   );
 }
 
@@ -229,13 +231,15 @@ function SidebarContents({
     onToggle && cn(collapsed && wide, !open && compact);
   return (
     <>
-      <Link
-        href="/"
+      {/* `/` opens the last weapon type viewed; link there directly so a client
+          navigation doesn't draw the default type on the way. */}
+      <AfterLoadLink
+        href={hrefFor(WEAPONS_NAV)}
         aria-label={t.nav.home}
         className={cn("mx-6 mt-2 mb-4 block flex-none", rail("wide:hidden", "compact:hidden"))}
       >
         <img className="h-auto w-full" src="/images/blacksmith.png" alt={t.logoAlt} />
-      </Link>
+      </AfterLoadLink>
 
       <nav className="flex flex-col" aria-label={t.nav.main}>
         {NAV_GROUPS.map((group, i) => (
@@ -244,7 +248,7 @@ function SidebarContents({
             {group.map((item) => {
               const active = pathname.startsWith(item.match);
               return (
-                <Link
+                <AfterLoadLink
                   key={item.match}
                   href={hrefFor(item)}
                   title={railLabel ? t.nav[item.label] : undefined}
@@ -261,7 +265,7 @@ function SidebarContents({
                   <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>
                     {t.nav[item.label]}
                   </span>
-                </Link>
+                </AfterLoadLink>
               );
             })}
           </Fragment>
@@ -286,7 +290,7 @@ function SidebarContents({
           <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.search}</span>
         </button>
 
-        <Link
+        <AfterLoadLink
           href={hrefFor(OPTIONS_NAV)}
           title={railLabel ? t.nav.options : undefined}
           aria-current={pathname.startsWith(OPTIONS_NAV.match) ? "page" : undefined}
@@ -299,7 +303,7 @@ function SidebarContents({
             className={rowIcon}
           />
           <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.options}</span>
-        </Link>
+        </AfterLoadLink>
 
         {SITE_GAME.sections.hunterImport && (
           <HunterRow pathname={pathname} railLabel={railLabel} rail={rail} />
@@ -373,7 +377,7 @@ function TabBar({
         {tabs.map((item) => {
           const active = !menuOpen && pathname.startsWith(item.match);
           return (
-            <Link
+            <AfterLoadLink
               key={item.match}
               href={hrefFor(item)}
               aria-current={active ? "page" : undefined}
@@ -387,7 +391,7 @@ function TabBar({
                 className={rowIcon}
               />
               <span className={label}>{t.nav[item.label]}</span>
-            </Link>
+            </AfterLoadLink>
           );
         })}
         <button

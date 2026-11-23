@@ -265,8 +265,8 @@ function parseMonsterRecords(view, base) {
   return records;
 }
 
-function parseCharacter(view, charIndex) {
-  const base = CHAR_BASES[charIndex];
+/** One hunter, read from the character block that starts at `base` in `view`. */
+function parseCharacter(view, base) {
   // Empty slot: first two name bytes are both 0x00
   if (view.getUint8(base) === 0 && view.getUint8(base + 1) === 0) return null;
 
@@ -336,9 +336,23 @@ async function decryptWith(buffer, region) {
   }
 }
 
-self.onmessage = async ({ data: { buffer, region } }) => {
+// One character block (CHARACTER_SIZE bytes, the save's block at
+// CHAR_BASES[0]) as the game keeps it in RAM: what the PPSSPP link reads.
+const CHARACTER_SIZE = CHAR_BASES[1] - CHAR_BASES[0];
+
+self.onmessage = async ({ data: { buffer, region, block } }) => {
   try {
     region = region ?? "us";
+    if (block) {
+      // A hunter read live from the game's memory: plaintext, and only the
+      // loaded hunter, so there is one "slot".
+      if (buffer.byteLength !== CHARACTER_SIZE) {
+        throw new Error(`Unexpected hunter size (${buffer.byteLength} bytes, expected ${CHARACTER_SIZE}).`);
+      }
+      const character = parseCharacter(new DataView(buffer), 0);
+      self.postMessage({ ok: true, characters: [character], decrypted: false, region });
+      return;
+    }
     const size = buffer.byteLength;
 
     if (size === DECRYPTED_SIZE) {
@@ -380,6 +394,6 @@ self.onmessage = async ({ data: { buffer, region } }) => {
 
 function postCharacters(plaintext, decrypted, region) {
   const view = new DataView(plaintext);
-  const characters = [0, 1, 2].map((i) => parseCharacter(view, i));
+  const characters = CHAR_BASES.map((base) => parseCharacter(view, base));
   self.postMessage({ ok: true, characters, decrypted, region });
 }

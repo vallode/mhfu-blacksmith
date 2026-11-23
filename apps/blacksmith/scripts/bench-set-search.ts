@@ -6,7 +6,9 @@
  * best and worst defence among them. "4 workers" is how long it takes split
  * into four shards, as the page runs it on a machine with eight cores or
  * more: round by round, the slowest shard (they run at once). Run it before
- * and after changing the search.
+ * and after changing the search. "reach" is how long finding the skills
+ * within reach of the search takes (src/lib/skill-reach.ts), and how many
+ * trees have one.
  */
 import { loadShippedSetData } from "../test/helpers/set-data";
 import {
@@ -17,6 +19,7 @@ import {
   type SearchQuery,
   type SearchResult,
 } from "../src/lib/set-search";
+import { reachableSkills } from "../src/lib/skill-reach";
 
 const query = (skills: string[], extra: Partial<SearchQuery> = {}): SearchQuery => ({
   skills,
@@ -66,6 +69,9 @@ const rows = cases.map((q) => {
   }
   const merged = mergeResults(parts).sets.map((s) => s.defence);
   if (merged.join() !== defence.join()) throw new Error(`Shards disagree: ${q.skills.join(", ")}`);
+  const reachStarted = Date.now();
+  const reach = reachableSkills(data, q);
+  const reachMs = Date.now() - reachStarted;
   return {
     search: `${q.skills.join(" + ")} (${q.hunterType}, ${q.rank}, ${q.weaponSlots} slots${q.allowBadSkills ? ", bad skills" : ""})`,
     ms: result.elapsedMs,
@@ -74,6 +80,8 @@ const rows = cases.map((q) => {
     best: defence.length ? Math.max(...defence) : "-",
     worst: defence.length ? Math.min(...defence) : "-",
     timedOut: result.timedOut,
+    "reach ms": reachMs,
+    reach: reach.base === "ok" ? reach.trees.length : reach.base,
   };
 });
 console.table(rows);

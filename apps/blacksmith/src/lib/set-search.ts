@@ -685,6 +685,12 @@ export interface SearchOptions {
    * shard `index` of `count`. Merge the parts with mergeResults.
    */
   shard?: { index: number; count: number };
+  /**
+   * Stop at the first set found, not the best: for asking whether any set
+   * activates the skills (see skill-reach.ts). Run it on the last round,
+   * which takes every set.
+   */
+  firstOnly?: boolean;
 }
 
 /**
@@ -841,9 +847,11 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
   const cur = new Array<number>(k).fill(0);
   let nodes = 0;
   let timedOut = false;
+  /** A firstOnly round found its set. */
+  let enough = false;
   const outOfTime = () => {
     if (++nodes % 1024 === 0 && Date.now() > deadline) timedOut = true;
-    return timedOut;
+    return timedOut || enough;
   };
 
   // The ways to fill the slots after the torso that no other way beats: as
@@ -956,7 +964,7 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
     const pieces: Piece[] = [];
     // `score` is the most the pieces so far can add (see pieceScore).
     const go = (d: number, score: number) => {
-      if (timedOut) return;
+      if (timedOut || enough) return;
       if (d === chosen.length) {
         if (outOfTime()) return;
         const armor: Record<string, number> = {};
@@ -995,7 +1003,10 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
       }
     };
     go(0, 0);
-    if (result.pick) keep(result.pick);
+    if (result.pick) {
+      keep(result.pick);
+      if (options.firstOnly) enough = true;
+    }
   };
 
   // A shard takes every count-th torso and helmet pair.
@@ -1031,7 +1042,7 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
       }
       chosen.pop();
       for (let i = 0; i < k; i++) cur[i] -= vec[i];
-      if (timedOut) return;
+      if (timedOut || enough) return;
     }
   };
   const build = (f: Found, withAlternatives = true): ArmorSet => {
@@ -1068,6 +1079,7 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
       floor = round < FLOOR_STEPS.length ? scoreLeft[0] - FLOOR_STEPS[round] * unit : -Infinity;
       const before = best.splice(0);
       found = 0;
+      enough = false;
       if (Date.now() > deadline) timedOut = true;
       if (!timedOut) dfs(0, 0);
       // Out of time partway through this round: the sets the last round

@@ -97,6 +97,23 @@ export function useSaveWorker(): UseSaveWorkerReturn {
  * need the persistent worker + streaming state that useSaveWorker provides.
  */
 export function parseSaveBuffer(buffer: ArrayBuffer, region: Region): Promise<WorkerResult> {
+  return runWorker({ buffer, region });
+}
+
+/**
+ * Parses one hunter's character block as the game keeps it in RAM (plaintext,
+ * the layout of a save's slot), as read from PPSSPP. The result has one
+ * character.
+ */
+export function parseHunterBlock(buffer: ArrayBuffer, region: Region): Promise<WorkerResult> {
+  return runWorker({ buffer, region, block: true });
+}
+
+function runWorker(message: {
+  buffer: ArrayBuffer;
+  region: Region;
+  block?: boolean;
+}): Promise<WorkerResult> {
   return new Promise((resolve, reject) => {
     const worker = new Worker("/javascript/save-worker.js", { type: "module" });
     worker.onmessage = (e: MessageEvent<WorkerMessage>) => {
@@ -109,6 +126,6 @@ export function parseSaveBuffer(buffer: ArrayBuffer, region: Region): Promise<Wo
       worker.terminate();
       reject(new Error(e.message ?? "Worker error"));
     };
-    worker.postMessage({ buffer, region }, [buffer]);
+    worker.postMessage(message, [message.buffer]);
   });
 }

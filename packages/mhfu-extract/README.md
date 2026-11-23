@@ -1298,12 +1298,12 @@ player's arrow with (EU EBOOT, around `0x8843358`), for x and z separately:
 pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
 ```
 
-| Table                                     | Where    | Address      | Layout                                  |
-| ----------------------------------------- | -------- | ------------ | --------------------------------------- |
-| Map size, by quest map ID                 | EBOOT    | `0x0893887c` | `{ f32 width, f32 depth }`              |
-| Zoom (1.0 or 0.9), by quest map ID        | EBOOT    | `0x08938a7c` | `f32`                                   |
-| Stages, by quest map ID                   | game_sub | `0x09ce4708` | `{ u32 count, u32 pointer to u16 IDs }` |
-| `Gamestage::stage_world_tbl`, by stage ID | game_sub | `0x09cdef40` | 32 bytes, starting `f32 x, f32 z`       |
+| Table                                     | Where    | EU           | JP           | Layout                                  |
+| ----------------------------------------- | -------- | ------------ | ------------ | --------------------------------------- |
+| Map size, by quest map ID                 | EBOOT    | `0x0893887c` | `0x08935dc4` | `{ f32 width, f32 depth }`              |
+| Zoom (1.0 or 0.9), by quest map ID        | EBOOT    | `0x08938a7c` | `0x08935fc4` | `f32`                                   |
+| Stages, by quest map ID                   | game_sub | `0x09ce4708` | `0x09cdf678` | `{ u32 count, u32 pointer to u16 IDs }` |
+| `Gamestage::stage_world_tbl`, by stage ID | game_sub | `0x09cdef40` | `0x09cd9eb0` | 32 bytes, starting `f32 x, f32 z`       |
 
 - **Areas**: a gathering point's area index is its place in the map's stage
   list, so index 0 is the Base Camp. Stage IDs aren't in area order.
@@ -1315,8 +1315,9 @@ pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
   pages this formula doesn't reach. A few areas aren't drawn on their map
   at all (the Desert's 11th), so an area with no point on opaque art loses
   its `positions`.
-- **Regions**: the addresses are the EU disc's, so `extract` only places
-  points for EU. On an EU disc it stops if the tables aren't where they
+- **Regions**: the JP addresses were found by searching the FUC disc's
+  files for the EU tables' contents (`readMapGeometry` takes the region;
+  randomfu's node map uses both). `extract` still only places points for EU. On an EU disc it stops if the tables aren't where they
   should be or a texture can't be read, rather than write data without
   positions.
 

@@ -5,6 +5,10 @@ the game files; read the section for the option you're changing.
 
 ## Text written into the game
 
+These rules are for the books' pages. The blob's HUD text (`blob/*.c`:
+damage numbers, the START menu's window) writes its own codes, and damage
+numbers' black shadow (`~C01`) is deliberate (README, "Damage numbers").
+
 Anything randomfu writes for the player to read in game (the bookshelf
 guides in `src/hints/`) is styled from `src/hints/style.ts`, which records
 what was seen to render on the EU disc in PPSSPP: the `~Cnn` colours, the

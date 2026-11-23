@@ -51,8 +51,6 @@ export const setBuilder: Messages["setBuilder"] = {
       badSkills: "habilidades negativas permitidas",
       allQuests: "todas las misiones",
       ownedArmor: "armadura obtenida",
-      alwaysUsed: (n: number) => `${n} ${s(n, "siempre usada", "siempre usadas")}`,
-      neverUsed: (n: number) => `${n} ${s(n, "nunca usada", "nunca usadas")}`,
     },
     allowBadSkills: "Permitir habilidades negativas",
     allowBadSkillsNote:
@@ -72,11 +70,16 @@ export const setBuilder: Messages["setBuilder"] = {
       title: "Siempre usadas",
       note: "Todos los conjuntos las usan, sea cual sea el rango o el progreso de misiones, si el cazador puede llevarlas.",
       remove: (name: string) => `Quitar ${name} de las piezas que siempre se usan`,
+      clear: "Borrar",
+      clearLabel: "Quitar todas las piezas que siempre se usan",
+      cantWear: "Las piezas tachadas no le sirven a este cazador, así que la búsqueda no las usa.",
     },
     excluded: {
       title: "Nunca usadas",
       note: "La búsqueda nunca las usa.",
       remove: (name: string) => `Quitar ${name} de las piezas que nunca se usan`,
+      clear: "Borrar",
+      clearLabel: "Quitar todas las piezas que nunca se usan",
     },
     search: "Buscar",
     cancel: "Cancelar",
@@ -296,6 +299,22 @@ export const setBuilder: Messages["setBuilder"] = {
     deleteLabel: (name: string) => `Eliminar ${name}`,
     cantOpen: "No se puede abrir en esta versión.",
     summary: (hunterType: string, defense: string) => `${hunterType}, Defensa ${defense}`,
+  },
+
+  reach: {
+    open: "Habilidades a tu alcance",
+    note: (chosen: boolean) =>
+      chosen
+        ? "Habilidades que puedes añadir a las tuyas, o niveles a los que subir las tuyas: al menos un conjunto sigue activándolas todas, con tus opciones. Elige una y la lista se comprueba de nuevo."
+        : "Todas las habilidades que al menos un conjunto puede activar, con tus opciones. Elige una y la lista comprueba qué más cabe con ella.",
+    checking: (checked: number, total: number) =>
+      total ? `Comprobando habilidades… ${checked}/${total}` : "Comprobando habilidades…",
+    noBase: "Ningún conjunto activa las habilidades que elegiste, así que no se puede añadir nada.",
+    unsureBase: "Comprobar tus habilidades tardó demasiado. Prueba con menos.",
+    nothingMore: "No cabe nada más: ningún conjunto activa otra habilidad junto a las tuyas.",
+    unsure:
+      "Algunas comprobaciones tardaron demasiado: puede que también quepa un nivel más alto de alguna habilidad.",
+    failed: "No se pudieron comprobar las habilidades.",
   },
 
   skillPicker: {

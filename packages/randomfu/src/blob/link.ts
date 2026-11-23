@@ -150,14 +150,15 @@ export function decodeObjects(
  * define `rf_init`; `rf_hook0`… are optional entry points for game hooks.
  * `maxBytes` bounds the image (the room the loader reads into). `data` adds
  * tables built per disc after everything else, each word-aligned and named
- * by a global symbol the objects can declare `extern`.
+ * by a global symbol the objects can declare `extern`. A table given as a
+ * function is built from the address it's linked at (code assembled for it).
  */
 export function linkBlob(
   objects: readonly { name: string; data: Buffer }[],
   base: number,
   externs: Readonly<Record<string, number>> = {},
   maxBytes = Infinity,
-  data: Readonly<Record<string, Buffer>> = {},
+  data: Readonly<Record<string, Buffer | ((at: number) => Buffer)>> = {},
 ): LinkedBlob {
   const files = objects.map((o) => parse(o.name, o.data));
 
@@ -198,9 +199,10 @@ export function linkBlob(
       cursor += sym.size;
     }
   }
-  const tables = Object.entries(data).map(([name, bytes]) => {
+  const tables = Object.entries(data).map(([name, table]) => {
     cursor = Math.ceil(cursor / 4) * 4;
     const at = cursor;
+    const bytes = typeof table === "function" ? table(at) : table;
     cursor += bytes.length;
     return { name, bytes, at };
   });

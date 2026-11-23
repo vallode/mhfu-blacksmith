@@ -11,10 +11,18 @@ import {
   ITEM_ICON_SIGNATURE_AT,
   TEXT_SETTERS,
   WINDOW_SIGNATURE,
+  demandCaps,
+  encodeCapturable,
+  encodeDrops,
+  encodeLevelFn,
   encodePactPool,
+  findSharpnessLevel,
+  TIED_PER_GRADE,
   findTextExterns,
+  pactLevels,
   pactObjects,
   pactPool,
+  tiedItems,
   type PactPool,
 } from "../src/patches/pact.js";
 import { Rng } from "../src/rng.js";
@@ -51,6 +59,9 @@ const EXTERNS = {
   rf_print: 0x088920a8,
 };
 const LARGE = 77;
+/** The EBOOT's sharpness level function, and the test weapon's bar: red to 50, orange to 100 ... white to 400. */
+const LEVEL_FN = 0x088dab94;
+const CURVE = [50, 100, 150, 200, 250, 400, 400];
 const SETTLE = 20;
 
 const B = { start: 0x8, up: 0x10, down: 0x40, circle: 0x2000, cross: 0x4000 } as const;
@@ -71,9 +82,22 @@ const runtime = () =>
   RUNTIME_OBJECTS.map((o) => ({ name: o.name, data: Buffer.from(o.base64, "base64") }));
 
 /** The blob, the hooks and a quest in a CPU; the printer records the lines drawn. */
-function quest(pool: PactPool = POOL) {
+/** Every rarity at every rank and star level: the pool's test pieces have none. */
+const ANY_LEVEL = Buffer.alloc(3 * 16, 0xf0);
+
+function quest(
+  pool: PactPool = POOL,
+  capturable: number[] = [LARGE],
+  levels: Buffer = ANY_LEVEL,
+  drops: Buffer = encodeDrops([]),
+  levelFn: number | null = LEVEL_FN,
+) {
   const blob = linkBlob([...runtime(), ...pactObjects()], BLOB, EXTERNS, Infinity, {
     rf_pact_pool: encodePactPool(pool),
+    rf_pact_capturable: encodeCapturable(capturable),
+    rf_pact_levels: levels,
+    rf_pact_drops: drops,
+    rf_pact_level_fn: encodeLevelFn(levelFn),
   });
   const cpu = new Cpu();
   cpu.write(BLOB, blob.image);
@@ -97,6 +121,14 @@ function quest(pool: PactPool = POOL) {
   cpu.native.set(HUD_UPDATE, () => 0);
   cpu.native.set(GAUGES, () => 0);
   cpu.native.set(REWARD_ROLL, () => 0);
+  // level(hunter, sharpness): 0 for a gunner, else the colour on the test curve.
+  cpu.native.set(LEVEL_FN, () => {
+    if (cpu.u8(arg(0) + 0x4e9) !== 5) return 0;
+    const v = arg(1) | 0;
+    let c = 0;
+    while (c < 7 && CURVE[c]! < v) c++;
+    return c;
+  });
   // The system's controller read, into a SceCtrlData: buttons at +4, the stick at +8.
   cpu.native.set(CTRL_READ, () => {
     cpu.setU32(arg(0) + 4, buttons);
@@ -167,6 +199,9 @@ function quest(pool: PactPool = POOL) {
   cpu.setU16(HUNTER + 0x41c, 100);
   cpu.setU16(HUNTER + 0x55a, 300);
   cpu.setU16(HUNTER + 0x62e, 300);
+  // Full sharpness, white on the test curve; the weapon's kind (+0x4E9) is a gunner's until a test says.
+  cpu.setU16(HUNTER + 0x60c, 300);
+  cpu.setU16(HUNTER + 0x10f2, 300);
 
   /**
    * The quest: 50 minutes, 900z (300z a faint), 50 HRP, a supply box, Low
@@ -301,7 +336,7 @@ test("a quest opens the window: three pacts, each a penalty and its reward, and 
   for (const { reward } of o) {
     assert.match(
       reward,
-      /^(Zenny \+\d+z|Quest rewards \+[123]|Iron Ore x10|Machalite Ore x5|Dragonite Ore x2|Bone Kris)$/,
+      /^(Zenny \+\d+z|Quest rewards \+[123]|Iron Ore x10|Machalite Ore x5|Dragonite Ore x(2|10 \+\d+z)|Bone Kris)$/,
     );
   }
   assert.ok(lines.includes("Hunt without a pact"));
@@ -372,6 +407,14 @@ function next(q: Quest, n: number, rank = 1, kind: Kind = "hunt", hrp = 50) {
   return offers(q.frame());
 }
 
+/** As `questOffering`, in a quest already set up (its own pool, say). */
+function questOfferingIn(q: Quest, wanted: (o: { penalty: string; reward: string }) => boolean) {
+  for (let n = 1; n < 3000; n++) {
+    if (next(q, n).some(wanted)) return { q, time: 90000 + n };
+  }
+  throw new Error("no offer matched");
+}
+
 /** A quest whose offers include one matching `wanted` (the draw is random); its clock. */
 function questOffering(
   wanted: (o: { penalty: string; reward: string }) => boolean,
@@ -402,7 +445,13 @@ test("taking a pact shows it, and the last row seals", () => {
 const amount = (o: { reward: string }) => Number(o.reward.match(/\d+/)![0]);
 /** The penalty's weight, from the names in pact.c. */
 const weightOf = (o: { penalty: string }) =>
-  /\+30%|No supply|Weary/.test(o.penalty) ? 1 : /\+100%|One cart|twice/.test(o.penalty) ? 3 : 2;
+  JACKPOT.test(o.penalty)
+    ? 4
+    : /\+30%|No supply|Weary|Brittle/.test(o.penalty)
+      ? 1
+      : /\+100%|One cart|twice/.test(o.penalty)
+        ? 3
+        : 2;
 
 test("a zenny reward pays the amount it shows", () => {
   const { q } = questOffering(reward(/^Zenny/));
@@ -480,7 +529,7 @@ test("rewards match the penalty: light ones pay little, hard ones equipment", ()
   for (let n = 1; n < 400; n++) {
     for (const o of next(q, n)) {
       if (/^Bone Kris$|^Dragonite/.test(o.reward)) {
-        assert.match(o.penalty, /\+100%|One cart/);
+        assert.match(o.penalty, /\+100%|One cart|^(Glass|Exhausted|Bleeding|Capture|Lost pouch)/);
       }
       if (/^Iron Ore/.test(o.reward)) assert.match(o.penalty, /\+30%|No supply|Weary/);
     }
@@ -604,6 +653,234 @@ test("frail and weary cap the hunter's health and stamina", () => {
   assert.equal(q.cpu.u16(HUNTER + 0x2e4), 50);
 });
 
+const glass = penalty(/^Glass: 1 health, a faint fails$/);
+const JACKPOT =
+  /^(Glass: 1 health, a faint fails|Exhausted: a quarter stamina|Bleeding: health drains to 1|Capture or nothing: no kills|Lost pouch: items to the box)$/;
+const jackpot = penalty(JACKPOT);
+/** Each jackpot's reward on the Low Rank test quest (900z): its share of the floor, its amount of Dragonite Ore (2 a hard pact). */
+const JACKPOT_REWARDS: Record<string, string> = {
+  Glass: "Dragonite Ore x10 +30000z",
+  Exhausted: "Dragonite Ore x6 +15000z",
+  Bleeding: "Dragonite Ore x8 +21000z",
+  Capture: "Dragonite Ore x6 +18000z",
+  Lost: "Dragonite Ore x8 +24000z",
+};
+
+test("a jackpot: rarely, on a hunt, the last pact, each leaving out what it already holds", () => {
+  const q = quest();
+  let windows = 0;
+  const seen = new Set<string>();
+  for (let n = 1; n < 1500; n++) {
+    const list = next(q, n);
+    const k = list.findIndex(jackpot);
+    if (k < 0) continue;
+    windows++;
+    assert.equal(k, 2, "the last");
+    assert.equal(list.filter(jackpot).length, 1);
+    const name = list[2]!.penalty.split(/[: ]/)[0]!;
+    seen.add(name);
+    assert.equal(list[2]!.reward, JACKPOT_REWARDS[name]);
+    const others = list.slice(0, 2);
+    assert.ok(!others.some(reward(/^Dragonite/)), "its item no other pact gives");
+    const left = { Glass: /^One cart|^Frail/, Exhausted: /^Weary/, Bleeding: /^Frail/ }[name];
+    if (left) assert.ok(!others.some(penalty(left)), list.map((o) => o.penalty).join(", "));
+  }
+  // About one window in 10, and each of the five comes up.
+  assert.ok(windows > 90 && windows < 220, `${windows} of 1499`);
+  assert.deepEqual([...seen].sort(), ["Bleeding", "Capture", "Exhausted", "Glass", "Lost"]);
+  for (const kind of ["gathering", "delivery"] as const) {
+    for (let n = 1; n < 300; n++) {
+      assert.ok(!next(q, 2000 + n, 1, kind).some(jackpot), "only where there's a monster to hunt");
+    }
+  }
+});
+
+test("capture or nothing only where every large monster can be captured", () => {
+  const q = quest(POOL, []);
+  for (let n = 1; n < 1000; n++) {
+    assert.ok(!next(q, n).some(penalty(/^Capture/)));
+  }
+});
+
+test("a jackpot shows its item's icon and the rule; zenny alone where the rank has no rare item", () => {
+  const { q } = questOffering(glass);
+  const lines = q.frame();
+  assert.ok(
+    q.icons().some(([id]) => id === 204),
+    "Dragonite Ore's icon",
+  );
+  q.press(B.down);
+  const on = q.press(B.down); // the cursor on the jackpot, the last pact
+  assert.ok(!lines.at(-1)!.includes("No faints"), "only on the jackpot");
+  assert.match(on.at(-1)!, /No faints; faster pays more$/);
+  // High Rank's pool has no items: 100000z, as 900z ten times is less.
+  const high = questOffering(glass, 2).q;
+  const list = offers(high.frame());
+  assert.equal(list.find(glass)!.reward, "Zenny +100000z");
+  assert.equal(list.find(glass)!.star, true);
+});
+
+test("Glass holds health at 1, one cart, and pays its jackpot for a completed quest", () => {
+  const { q } = questOffering(glass);
+  take(q, glass);
+  q.frame();
+  for (const at of [0x2e4, 0x41c, 0x41e]) assert.equal(q.cpu.u16(HUNTER + at), 1);
+  // A potion: still 1.
+  q.cpu.setU16(HUNTER + 0x2e4, 80);
+  q.frame();
+  assert.equal(q.cpu.u16(HUNTER + 0x2e4), 1);
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900 + 30000);
+  assert.equal(q.cpu.u32(QUEST + 0x18), q.cpu.u32(QUEST + 0x14), "a faint fails");
+  q.complete();
+  assert.deepEqual([q.cpu.u16(REWARD_BOX), q.cpu.u16(REWARD_BOX + 2)], [204, 10]);
+});
+
+test("a faint loses the jackpot: no item, its zenny off the reward, and no speed bonus", () => {
+  const { q } = questOffering(glass);
+  take(q, glass);
+  q.cpu.setU16(HUNTER + 0x2e4, 0);
+  q.frame();
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900);
+  q.frame();
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900, "once");
+  assert.equal(q.cpu.u32(QUEST + 0x18), 900, "the penalty is still the whole reward");
+  q.cpu.setU8(QUEST, 1);
+  q.frame();
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900);
+  q.complete();
+  assert.equal(q.cpu.u16(REWARD_BOX), 0);
+});
+
+test("the speed bonus: the jackpot's zenny again, times the share of the time left", () => {
+  for (const [left, extra] of [
+    [0.5, 15000],
+    [0.25, 7500],
+    [0, 0],
+  ] as const) {
+    const { q } = questOffering(glass);
+    take(q, glass);
+    const start = q.cpu.u32(QUEST + 0x10);
+    q.cpu.setU32(QUEST + 0x10, Math.floor(start * left));
+    q.frame();
+    assert.equal(q.cpu.u32(QUEST + 0x14), 900 + 30000, "nothing while it's under way");
+    q.cpu.setU8(QUEST, 1); // completed (or, with no time left, timed out)
+    q.frame();
+    q.frame();
+    // A share in whole percents of 30000z: 49% of the clock is 14700z.
+    const share = Math.floor((Math.floor(start * left) * 100) / start);
+    assert.equal(q.cpu.u32(QUEST + 0x14), 900 + 30000 + 300 * share, `${left} left`);
+    assert.ok(Math.abs(300 * share - extra) <= 300);
+  }
+});
+
+test("a faint after the quest is completed keeps the jackpot", () => {
+  const { q } = questOffering(glass);
+  take(q, glass);
+  q.cpu.setU8(QUEST, 1); // the quest's banner, then the wait
+  q.frame();
+  const paid = q.cpu.u32(QUEST + 0x14);
+  q.cpu.setU16(HUNTER + 0x2e4, 0);
+  q.frame();
+  assert.equal(q.cpu.u32(QUEST + 0x14), paid);
+  q.complete();
+  assert.deepEqual([q.cpu.u16(REWARD_BOX), q.cpu.u16(REWARD_BOX + 2)], [204, 10]);
+});
+
+test("exhausted holds stamina at a quarter", () => {
+  const { q } = questOffering(penalty(/^Exhausted/));
+  take(q, penalty(/^Exhausted/));
+  q.frame();
+  assert.equal(q.cpu.u16(HUNTER + 0x55a), 75);
+  assert.equal(q.cpu.u16(HUNTER + 0x62e), 75);
+});
+
+test("bleeding drains a point of health every two seconds, down to 1, and takes the red with it", () => {
+  const { q } = questOffering(penalty(/^Bleeding/));
+  take(q, penalty(/^Bleeding/));
+  q.cpu.setU16(HUNTER + 0x2e4, 5);
+  q.cpu.setU16(HUNTER + 0x41c, 40);
+  for (let k = 0; k < 60; k++) q.frame();
+  assert.equal(q.cpu.u16(HUNTER + 0x2e4), 4);
+  assert.equal(q.cpu.u16(HUNTER + 0x41c), 4, "no red health to win back");
+  for (let k = 0; k < 600; k++) q.frame();
+  assert.equal(q.cpu.u16(HUNTER + 0x2e4), 1, "never to a faint");
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900 + 21000, "the jackpot holds");
+  // Once the quest is completed, it stops.
+  q.cpu.setU16(HUNTER + 0x2e4, 50);
+  q.cpu.setU8(QUEST, 1);
+  for (let k = 0; k < 120; k++) q.frame();
+  assert.equal(q.cpu.u16(HUNTER + 0x2e4), 50);
+});
+
+test("capture or nothing: a kill loses the jackpot, a capture keeps it", () => {
+  const capture = penalty(/^Capture/);
+  const { q } = questOffering(capture);
+  const m = q.monster(0, 3000, 1);
+  take(q, capture);
+  q.frame();
+  // Captured: asleep, its health above 0, to the end of the quest.
+  q.cpu.setU16(m + 0x2e4, 200);
+  for (let k = 0; k < 5; k++) q.frame();
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900 + 18000);
+  // Killed.
+  q.cpu.setU16(m + 0x2e4, 0);
+  q.frame();
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900);
+  q.complete();
+  assert.equal(q.cpu.u16(REWARD_BOX), 0);
+
+  // A monster already dead when first seen isn't a kill of the hunter's.
+  const again = questOffering(capture).q;
+  const dead = again.monster(1, 0, 1);
+  take(again, capture);
+  again.frame();
+  assert.equal(again.cpu.u32(QUEST + 0x14), 900 + 18000);
+  assert.ok(dead);
+});
+
+test("lost pouch: everything in it goes to the item box, onto its stacks first", () => {
+  const lost = penalty(/^Lost pouch/);
+  const { q } = questOffering(lost);
+  const POUCH = SAVE + 0x43c8;
+  const BOX = SAVE + 0x3428;
+  // The box: 95 Potions (item 1), 99 Herbs (2), then free. The pouch: 10 Potions, 5 Herbs, 3 Antidotes (3).
+  q.cpu.load(BOX, [0x005f_0001, 0x0063_0002]);
+  q.cpu.load(POUCH, [0x000a_0001, 0x0005_0002, 0x0003_0003]);
+  take(q, lost);
+  assert.deepEqual([...q.cpu.bytes(POUCH, 24 * 4)].filter(Boolean), [], "an empty pouch");
+  const box = (k: number) => [q.cpu.u16(BOX + k * 4), q.cpu.u16(BOX + k * 4 + 2)];
+  assert.deepEqual(
+    [box(0), box(1), box(2), box(3), box(4), box(5)],
+    [
+      [1, 99],
+      [2, 99],
+      [1, 6],
+      [2, 5],
+      [3, 3],
+      [0, 0],
+    ],
+  );
+});
+
+test("the jackpot's zenny keeps the reward within six digits, the speed bonus too", () => {
+  const q = quest();
+  let list: ReturnType<typeof offers> = [];
+  for (let n = 1; n < 3000 && !list.some(glass); n++) {
+    q.setUpQuest(90000 + n, 5);
+    q.cpu.setU32(QUEST + 0x14, 150000);
+    q.cpu.setU32(QUEST + 0x18, 50000);
+    q.settle();
+    list = offers(q.frame());
+  }
+  // G Rank, 150000z: ten times would be 1500000z; 849999z brings it to 999999z.
+  assert.equal(list.find(glass)!.reward, "Zenny +849999z");
+  take(q, (o) => glass(o) || /^Zenny/.test(o.reward));
+  assert.equal(q.cpu.u32(QUEST + 0x14), 999999);
+  q.cpu.setU8(QUEST, 1);
+  q.frame();
+  assert.equal(q.cpu.u32(QUEST + 0x14), 999999);
+});
+
 test("more quest rewards: the main table draws as many more times", () => {
   const draws = reward(/^Quest rewards/);
   const { q } = questOffering(draws);
@@ -619,7 +896,8 @@ test("more quest rewards are offered only where all of them fit in 9 draws", () 
   for (const base of [7, 9]) {
     const seen = new Set<number>();
     for (let n = 1; n < 300; n++) {
-      q.setUpQuest(90000 + n);
+      // Each a new quest: its clock above the last one's.
+      q.setUpQuest(90000 + base * 1000 + n);
       q.cpu.setU8(TABLES + 3, base);
       q.settle();
       for (const o of offers(q.frame()).filter(reward(/^Quest rewards/))) seen.add(amount(o));
@@ -921,4 +1199,496 @@ test("the pool: items by rank and worth, equipment by rarity, wearable by anyone
   assert.equal(bytes[entry + 2], 1);
   const name = bytes.readUInt16LE(entry + 4);
   assert.equal(bytes.toString("latin1", name, bytes.indexOf(0, name)), "Leather Cap");
+  assert.equal(bytes.readUInt16LE(entry + 6), 1, "a piece's rarity, as shown");
+});
+
+test("no reward gives more than a third of what the recipes need of an item", () => {
+  // Lost Umbrella: five recipes take 1, two take 5: 15 in all, so 5 at most.
+  const umbrella = [1, 1, 1, 1, 1, 5, 5].map((quantity) => ({ itemId: 818, quantity }));
+  const caps = demandCaps([...umbrella, { itemId: 202, quantity: 1 }]);
+  assert.equal(caps.get(818), 5);
+  assert.equal(caps.get(202), 1, "at least 1");
+  assert.equal(caps.get(204), undefined, "no recipe: no limit");
+
+  const tiers = new Map([
+    [1, { band: "low" as const, stars: 1 }],
+    [2, { band: "low" as const, stars: 1 }],
+  ]);
+  const values = new Map([
+    [1, { price: 300, carry: 99 }], // grade 1 wants 10, at least 3
+    [2, { price: 12000, carry: 99 }], // grade 3 wants 3 (35000z), 2 at least (21000z)
+  ]);
+  const pool = pactPool(
+    tiers,
+    values,
+    [],
+    new Rng("demand"),
+    new Map([
+      [1, 2],
+      [2, 1],
+    ]),
+  );
+  assert.deepEqual(pool[0]![0], [], "2 at most is fewer than grade 1 gives: not a reward");
+  assert.deepEqual(
+    pool[0]![2]!.map((e) => [e.id, e.amount, e.most]),
+    [],
+    "nor where 1 is worth too little",
+  );
+  const loose = pactPool(tiers, values, [], new Rng("demand"), new Map([[2, 5]]));
+  assert.deepEqual(
+    loose[0]![2]!.map((e) => [e.id, e.amount, e.most]),
+    [[2, 3, 5]],
+  );
+  // A jackpot gives its multiple only up to that most: Glass's ×5 of 3 is 15, capped at 5.
+  const bytes = encodePactPool(loose);
+  const first = bytes.readUInt16LE(2 * 4);
+  assert.equal(bytes.readUInt16LE(48 + first * 8 + 6), 5);
+});
+
+test("a jackpot's pile stops at the item's share of what recipes need", () => {
+  const capped: PactPool = [
+    [[], [], [{ id: 204, type: 0xff, amount: 2, name: "Dragonite Ore", most: 5 }], []],
+    [[], [], [], []],
+    [[], [], [], []],
+  ];
+  // And so for one tied to the quest, whose cap shares its bits with the tie.
+  const tied: PactPool = [
+    [[], [], [{ ...capped[0]![2]![0]!, tied: true }], []],
+    [[], [], [], []],
+    [[], [], [], []],
+  ];
+  const dragonite = encodeDrops([{ band: "low", emId: LARGE, itemId: 204 }]);
+  for (const pool of [quest(capped), quest(tied, [LARGE], ANY_LEVEL, dragonite)]) {
+    const { q } = questOfferingIn(pool, glass);
+    const list = offers(q.frame());
+    assert.equal(list.find(glass)!.reward, "Dragonite Ore x5 +30000z");
+    take(q, glass);
+    q.complete();
+    assert.deepEqual([q.cpu.u16(REWARD_BOX), q.cpu.u16(REWARD_BOX + 2)], [204, 5]);
+  }
+});
+
+test("equipment rarities follow the quest's place among its rank's star levels", () => {
+  const levels = pactLevels(
+    [1, 2, 3, 4, 5, 6]
+      .map((stars): { band: "low" | "high" | "g"; stars: number } => ({ band: "low", stars }))
+      .concat([1, 2, 3].map((stars) => ({ band: "g" as const, stars })))
+      .concat([1, 6].map((stars) => ({ band: "high" as const, stars }))),
+  );
+  const at = (b: number, stars: number) => [
+    levels[b * 16 + stars]! & 15,
+    levels[b * 16 + stars]! >> 4,
+  ];
+  assert.deepEqual(at(0, 1), [1, 2], "Low Rank 1 star");
+  assert.deepEqual(at(0, 5), [4, 5], "Low Rank 5 stars, of 6");
+  assert.deepEqual(at(0, 6), [5, 5]);
+  assert.deepEqual(at(0, 0), [1, 2], "the Guild's rank-0 quests count as the first");
+  assert.deepEqual(at(0, 15), [5, 5]);
+  assert.deepEqual(at(1, 1), [6, 7]);
+  assert.deepEqual(at(1, 6), [8, 8]);
+  assert.deepEqual(at(2, 1), [9, 10]);
+  assert.deepEqual(at(2, 3), [10, 10]);
+
+  // Low Rank: a starter dagger (rarity 1) and a late piece (rarity 5).
+  const pieces: PactPool = [
+    [
+      [],
+      [],
+      [],
+      [
+        { id: 159, type: 5, amount: 1, name: "Hunter's Dagger+", rarity: 1 },
+        { id: 300, type: 5, amount: 1, name: "Late Blade", rarity: 5 },
+      ],
+    ],
+    [[], [], [], []],
+    [[], [], [], []],
+  ];
+  const q = quest(pieces, [LARGE], levels);
+  const seen = (stars: number) => {
+    const out = new Set<string>();
+    for (let n = 1; n < 150; n++) {
+      q.setUpQuest(90000 + stars * 1000 + n);
+      q.cpu.setU8(HEADER + 0x66, stars);
+      q.settle();
+      for (const o of offers(q.frame()))
+        if (o.reward === "Hunter's Dagger+" || o.reward === "Late Blade") out.add(o.reward);
+    }
+    return [...out].sort();
+  };
+  // Each quest's clock above the last one's, so each is a new quest.
+  assert.deepEqual(seen(1), ["Hunter's Dagger+"]);
+  assert.deepEqual(seen(5), ["Late Blade"], "5 stars: never the starter dagger");
+});
+
+/** Each grade has an Ore and a Tigrex part; the Tigrex parts are what the hunt's monster drops. */
+const TIED_POOL: PactPool = [
+  [
+    [
+      { id: 202, type: 0xff, amount: 10, name: "Iron Ore" },
+      { id: 205, type: 0xff, amount: 5, name: "Tigrex Scale" },
+    ],
+    [
+      { id: 203, type: 0xff, amount: 5, name: "Machalite Ore" },
+      { id: 206, type: 0xff, amount: 3, name: "Tigrex Shell" },
+    ],
+    [
+      { id: 204, type: 0xff, amount: 2, name: "Dragonite Ore" },
+      { id: 207, type: 0xff, amount: 1, name: "Tigrex Claw" },
+    ],
+    [],
+  ],
+  [[], [], [], []],
+  [[], [], [], []],
+];
+const TIGREX_DROPS = [205, 206, 207].map((itemId) => ({
+  band: "low" as const,
+  emId: LARGE,
+  itemId,
+}));
+
+test("a hunt's item rewards are its monster's drops at its rank, where the pool has them", () => {
+  const q = quest(TIED_POOL, [LARGE], ANY_LEVEL, encodeDrops(TIGREX_DROPS));
+  const seen = new Set<string>();
+  for (let n = 1; n < 300; n++) {
+    const window = next(q, n).map((o) => o.reward);
+    for (const reward of window) {
+      const item = /^(Tigrex \w+)/.exec(reward)?.[1];
+      if (item) seen.add(item);
+      // Ore only once another offer has its grade's Tigrex part.
+      const ore = ["Iron Ore", "Machalite Ore", "Dragonite Ore"].findIndex((o) =>
+        reward.startsWith(o),
+      );
+      if (ore >= 0) {
+        const part = ["Tigrex Scale", "Tigrex Shell", "Tigrex Claw"][ore]!;
+        assert.ok(
+          window.some((r) => r.startsWith(part)),
+          `${reward} before ${part}`,
+        );
+      }
+    }
+  }
+  assert.deepEqual([...seen].sort(), ["Tigrex Claw", "Tigrex Scale", "Tigrex Shell"]);
+
+  // Another rank's drops, or another monster's, aren't the hunt's: then any item.
+  const other = quest(
+    TIED_POOL,
+    [LARGE],
+    ANY_LEVEL,
+    encodeDrops([
+      ...TIGREX_DROPS.map((d) => ({ ...d, band: "high" as const })),
+      ...TIGREX_DROPS.map((d) => ({ ...d, emId: LARGE + 1 })),
+    ]),
+  );
+  questOfferingIn(other, reward(/Ore/));
+});
+
+test("a quest's own rewards tie its items too, and with nothing tied any item comes", () => {
+  const q = quest(TIED_POOL);
+  const delivery = (n: number) => {
+    q.setUpQuest(90000 + n, 1, "delivery");
+    // Its reward tables: one, giving Tigrex Shell (and an empty entry), then the end.
+    q.cpu.setU32(HEADER + 0x0c, 0x680);
+    q.cpu.load(HEADER + 0x680, [0x0003_8000, 0x6a0, 0x0000_ffff]);
+    q.cpu.load(HEADER + 0x6a0, [0x00ce_0032, 0xffff_0001]);
+    q.settle();
+    return offers(q.frame());
+  };
+  let shells = 0;
+  for (let n = 1; n < 400; n++) {
+    const window = delivery(n).map((o) => o.reward);
+    for (const reward of window) {
+      if (/^Machalite/.test(reward)) {
+        assert.ok(
+          window.some((r) => /^Tigrex Shell/.test(r)),
+          "grade 2 is the quest's Shell first",
+        );
+      }
+      if (/^Tigrex Shell/.test(reward)) shells++;
+    }
+  }
+  assert.ok(shells > 0);
+  // A quest with nothing tied (no rewards, a monster with no drops): any item comes.
+  questOfferingIn(quest(TIED_POOL), reward(/Iron Ore|Machalite Ore|Dragonite Ore/));
+});
+
+test("the pool keeps every tied item that fits a grade, whatever rank it's from", () => {
+  const tiers = new Map([
+    [1, { band: "low" as const, stars: 1 }],
+    [2, { band: "high" as const, stars: 6 }],
+  ]);
+  // Many low items worth grade 1: only a sample of them is in the pool.
+  for (let id = 10; id < 60; id++) tiers.set(id, { band: "low" as const, stars: 1 });
+  const values = new Map([...tiers.keys()].map((id) => [id, { price: 300, carry: 99 }]));
+  const tied = tiedItems([
+    { band: "low", itemId: 2, emId: LARGE }, // a High Rank item a Low Rank monster drops
+    { band: "low", itemId: 1 },
+    { band: "low", itemId: 5000 }, // past the tied bits: left out
+  ]);
+  assert.deepEqual([...tied.get("low")!].sort(), [1, 2]);
+  const pool = pactPool(tiers, values, [], new Rng("tied"), new Map(), tied);
+  const grade1 = pool[0]![0]!.map((e) => e.id);
+  assert.ok(grade1.includes(1) && grade1.includes(2), "both tied items");
+  assert.equal(grade1.length, 2 + 16, "and 16 of the rest");
+
+  const drops = encodeDrops([
+    { band: "high", emId: LARGE, itemId: 9 },
+    { band: "high", emId: LARGE, itemId: 8 },
+    { band: "high", emId: LARGE, itemId: 9 },
+    { band: "g", emId: 200, itemId: 1 }, // past the species: left out
+  ]);
+  const span = (1 * 96 + LARGE) * 4;
+  const first = drops.readUInt16LE(span);
+  assert.equal(drops.readUInt16LE(span + 2), 2);
+  const at = 3 * 96 * 4 + first * 2;
+  assert.deepEqual([drops.readUInt16LE(at), drops.readUInt16LE(at + 2)], [8, 9]);
+  assert.equal(drops.length, 3 * 96 * 4 + 2 * 2);
+});
+
+const BLADE = /^(Dull blade|Brittle blade|Broken blade)/;
+/** A quest for a Blademaster (melee weapon kind 5), its offers until one matches. */
+function bladeQuestOffering(wanted: (o: { penalty: string; reward: string }) => boolean) {
+  const q = quest();
+  q.cpu.setU8(HUNTER + 0x4e9, 5);
+  return questOfferingIn(q, wanted).q;
+}
+const sharpness = (q: Quest) => [q.cpu.u16(HUNTER + 0x10f2), q.cpu.u16(HUNTER + 0x60c)];
+
+test("blade pacts only for a Blademaster, and only where the level function was found", () => {
+  const gunner = quest();
+  const found = new Set<string>();
+  for (let n = 1; n < 200; n++) {
+    for (const o of next(gunner, n))
+      assert.doesNotMatch(o.penalty, BLADE, "a gunner has no sharpness");
+  }
+  const missing = quest(POOL, [LARGE], ANY_LEVEL, encodeDrops([]), null);
+  missing.cpu.setU8(HUNTER + 0x4e9, 5);
+  for (let n = 1; n < 200; n++) {
+    for (const o of next(missing, n)) assert.doesNotMatch(o.penalty, BLADE);
+  }
+  const q = quest();
+  q.cpu.setU8(HUNTER + 0x4e9, 5);
+  for (let n = 1; n < 900; n++) {
+    const list = next(q, n);
+    for (const o of list) {
+      const name = BLADE.exec(o.penalty)?.[1];
+      if (name) found.add(name);
+    }
+    // One sharpness pact a window: Dull and Brittle share a group, and Broken leaves both out.
+    assert.ok(list.filter(penalty(BLADE)).length <= 1, list.map((o) => o.penalty).join(", "));
+  }
+  assert.deepEqual([...found].sort(), ["Brittle blade", "Broken blade", "Dull blade"]);
+});
+
+test("dull blade: the bar ends a colour lower, and a whetstone sharpens only to there", () => {
+  const q = bladeQuestOffering(penalty(/^Dull blade/));
+  take(q, penalty(/^Dull blade/));
+  assert.deepEqual(sharpness(q), [250, 250], "the top of blue, under white");
+  q.cpu.setU16(HUNTER + 0x10f2, 120); // worn to yellow, then a whetstone
+  q.frame();
+  assert.equal(sharpness(q)[0], 120);
+  q.cpu.setU16(HUNTER + 0x10f2, 250);
+  q.frame();
+  assert.equal(sharpness(q)[0], 250);
+  // A cart: the game refills the bar to its full length; it's held again.
+  q.cpu.setU16(HUNTER + 0x60c, 300);
+  q.cpu.setU16(HUNTER + 0x10f2, 300);
+  q.frame();
+  assert.deepEqual(sharpness(q), [250, 250]);
+});
+
+test("brittle blade: hits wear it twice as fast, a whetstone sharpens as ever", () => {
+  const q = bladeQuestOffering(penalty(/^Brittle blade/));
+  take(q, penalty(/^Brittle blade/));
+  assert.deepEqual(sharpness(q), [300, 300]);
+  q.cpu.setU16(HUNTER + 0x10f2, 290); // a hit took 10
+  q.frame();
+  assert.equal(sharpness(q)[0], 280);
+  q.frame();
+  assert.equal(sharpness(q)[0], 280, "once");
+  q.cpu.setU16(HUNTER + 0x10f2, 300); // a whetstone
+  q.frame();
+  assert.equal(sharpness(q)[0], 300);
+  q.cpu.setU16(HUNTER + 0x10f2, 140); // a hit took 160: twice is more than is left
+  q.frame();
+  assert.equal(sharpness(q)[0], 0, "never below nothing");
+});
+
+test("broken blade: a jackpot, sharpness held at red", () => {
+  const broken = penalty(/^Broken blade: red sharpness$/);
+  const q = bladeQuestOffering(broken);
+  const list = take(q, broken);
+  assert.equal(list.findIndex(broken), 2, "the last pact");
+  assert.equal(list[2]!.reward, "Dragonite Ore x10 +30000z", "as much as Glass");
+  assert.ok(!list.slice(0, 2).some(penalty(/^(Dull|Brittle) blade/)));
+  assert.deepEqual(sharpness(q), [50, 50]);
+  q.cpu.setU16(HUNTER + 0x10f2, 300);
+  q.frame();
+  assert.equal(sharpness(q)[0], 50);
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900 + 30000);
+});
+
+/** level(hunter, sharpness) as the EU and FUC EBOOTs have it (EU 0x088DAB94, FUC 0x088DD4DC). */
+const LEVEL_EU = [
+  0x27bdfff0, 0xafbf000c, 0xafb10008, 0xafb00004, 0x908304e9, 0x24020005, 0x00a08021, 0x10620003,
+  0x00808821, 0x10000022, 0x00001021, 0x3c0208a6, 0x8c442c54, 0x0e21733a, 0x262504e8, 0x304200ff,
+  0x00022880, 0x3c020898, 0x2442923c, 0x00451021, 0x962304ea, 0x8c460000, 0x7c102620, 0x00031040,
+  0x00431021, 0x000218c0, 0x3c020896, 0x24429fd4, 0x00431021, 0x90450000, 0x000518c0, 0x00651823,
+  0x00031840, 0x00001021, 0x00c32821, 0x84a30000, 0x0064082a, 0x10200006, 0x00000000, 0x24420001,
+  0x304200ff, 0x28430007, 0x1460fff8, 0x24a50002, 0x8fbf000c, 0x8fb10008, 0x8fb00004, 0x03e00008,
+];
+/** FUC's differs only in the addresses it loads (the item and sharpness tables, a call). */
+const LEVEL_FUC = LEVEL_EU.map(
+  (w, k) =>
+    ({
+      12: 0x8c44dd24,
+      13: 0x0e217338,
+      17: 0x3c020897,
+      18: 0x24426738,
+      26: 0x3c020895,
+      27: 0x244274d0,
+    })[k] ?? w,
+);
+
+test("the sharpness level function is found by its code, on EU and FUC alike", () => {
+  const segment = { offset: 0, vaddr: 0x08804000, size: 0x400 };
+  const eboot = (...copies: [number, number[]][]) => {
+    const buf = Buffer.alloc(segment.size);
+    for (const [at, words] of copies)
+      words.forEach((w, k) => buf.writeUInt32LE(w >>> 0, at + k * 4));
+    return buf;
+  };
+  assert.equal(findSharpnessLevel(eboot([0x100, LEVEL_EU]), segment), 0x08804100);
+  assert.equal(findSharpnessLevel(eboot([0x40, LEVEL_FUC]), segment), 0x08804040);
+  assert.equal(
+    findSharpnessLevel(eboot([0x40, LEVEL_EU], [0x200, LEVEL_FUC]), segment),
+    null,
+    "two",
+  );
+  // The fields the blade pacts rest on: the weapon's kind, melee's 5, its ID.
+  for (const [k, w] of [
+    [4, 0x908304e8],
+    [5, 0x24020006],
+    [20, 0x962304ec],
+  ] as const) {
+    const changed = LEVEL_EU.map((x, j) => (j === k ? w : x));
+    assert.equal(findSharpnessLevel(eboot([0x100, changed]), segment), null, `word ${k}`);
+  }
+});
+
+test("dull blade only where the best colour is a fair share of the bar; none on an all-red one", () => {
+  const sliver = quest();
+  sliver.cpu.setU8(HUNTER + 0x4e9, 5);
+  sliver.cpu.setU16(HUNTER + 0x60c, 260); // white is 250 to 260: a sliver
+  const seen = new Set<string>();
+  for (let n = 1; n < 300; n++) {
+    for (const o of next(sliver, n)) {
+      assert.doesNotMatch(o.penalty, /^Dull blade/);
+      if (/^Brittle blade/.test(o.penalty)) seen.add(o.penalty);
+    }
+  }
+  assert.equal(seen.size, 1, "Brittle still is");
+  const red = quest();
+  red.cpu.setU8(HUNTER + 0x4e9, 5);
+  red.cpu.setU16(HUNTER + 0x60c, 40); // all red
+  for (let n = 1; n < 300; n++) {
+    for (const o of next(red, n)) assert.doesNotMatch(o.penalty, BLADE);
+  }
+});
+
+test("a blade pact the hunter can't be read for at its seal holds, and takes once it can be", () => {
+  const brittleZenny = (o: { penalty: string; reward: string }) =>
+    /^Brittle blade/.test(o.penalty) && /^Zenny/.test(o.reward);
+  const q = bladeQuestOffering(brittleZenny);
+  const list = offers(q.frame());
+  list.forEach((o, k) => {
+    if (k > 0) q.press(B.down);
+    if (brittleZenny(o)) q.press(B.cross);
+  });
+  q.cpu.setU32(HUD + 0x530, 0); // the HUD's hunter, gone for the seal
+  seal(q, 2);
+  q.frame();
+  q.cpu.setU32(HUD + 0x530, HUNTER);
+  q.frame(); // the first frame it can be read
+  assert.ok(q.cpu.u32(QUEST + 0x14) > 900, "its zenny");
+  q.cpu.setU16(HUNTER + 0x10f2, 290);
+  q.frame();
+  assert.equal(sharpness(q)[0], 280, "and double wear");
+});
+
+test("with nothing of the quest's, an item comes from the sample, not another quest's own", () => {
+  const pool: PactPool = [
+    [
+      [
+        { id: 202, type: 0xff, amount: 10, name: "Iron Ore" },
+        { id: 210, type: 0xff, amount: 3, name: "Kirin Hide", tied: true },
+      ],
+      [
+        { id: 203, type: 0xff, amount: 5, name: "Machalite Ore" },
+        { id: 211, type: 0xff, amount: 2, name: "Kirin Horn", tied: true },
+      ],
+      [{ id: 212, type: 0xff, amount: 1, name: "Kirin Azure Horn", tied: true }],
+      [],
+    ],
+    [[], [], [], []],
+    [[], [], [], []],
+  ];
+  const q = quest(pool);
+  for (let n = 1; n < 300; n++) {
+    for (const o of next(q, n)) assert.doesNotMatch(o.reward, /Kirin/, "not this hunt's");
+  }
+  questOfferingIn(quest(pool), reward(/Iron Ore|Machalite Ore/));
+  // Kirin's own hunt gets them.
+  const kirin = quest(
+    pool,
+    [LARGE],
+    ANY_LEVEL,
+    encodeDrops([210, 211, 212].map((itemId) => ({ band: "low" as const, emId: LARGE, itemId }))),
+  );
+  questOfferingIn(kirin, reward(/^Kirin Azure Horn/));
+});
+
+test("tied items per grade are capped, so the pool stays within its u16 offsets", () => {
+  const tiers = new Map<number, { band: "low"; stars: number }>();
+  for (let id = 1; id < 900; id++) tiers.set(id, { band: "low", stars: 1 });
+  const values = new Map([...tiers.keys()].map((id) => [id, { price: 300, carry: 99 }]));
+  const tied = tiedItems([...tiers.keys()].map((itemId) => ({ band: "low" as const, itemId })));
+  const pool = pactPool(tiers, values, [], new Rng("cap"), new Map(), tied);
+  const grade1 = pool[0]![0]!;
+  assert.ok(grade1.length <= TIED_PER_GRADE, `${grade1.length}`);
+  assert.equal(grade1.filter((e) => !e.tied).length, 16, "all tied: 16 of them are the sample too");
+  // Every rank and grade at the cap, a long name for each of the game's
+  // items (no more than 2048, `TIED_ITEMS`; the discs have under 1000), still encodes.
+  const per = TIED_PER_GRADE + 16;
+  const grade = (b: number) =>
+    Array.from({ length: per }, (_, k) => ({
+      id: b * per + k + 1,
+      type: 0xff,
+      amount: 1,
+      name: `Item ${b * per + k} of quite a long name`.slice(0, 28),
+      tied: true,
+    }));
+  assert.ok(
+    encodePactPool([0, 1, 2].map((b) => [grade(b), grade(b), grade(b), []])).length < 0x10000,
+  );
+  // Past its u16 offsets it says so, rather than writing a bad pool.
+  const huge = Array.from({ length: 3000 }, (_, k) => ({
+    id: k + 1,
+    type: 0xff,
+    amount: 1,
+    name: `Item ${k} of quite a long name`.slice(0, 28),
+  }));
+  assert.throws(() => encodePactPool([[huge, [], [], []]]), /64 KB/);
+});
+
+test("the sample is topped up with tied items when nearly every item is tied", () => {
+  const tiers = new Map<number, { band: "low"; stars: number }>();
+  for (let id = 1; id < 40; id++) tiers.set(id, { band: "low", stars: 1 });
+  const values = new Map([...tiers.keys()].map((id) => [id, { price: 300, carry: 99 }]));
+  // All but 3 tied.
+  const tied = tiedItems(
+    [...tiers.keys()].slice(3).map((itemId) => ({ band: "low" as const, itemId })),
+  );
+  const grade1 = pactPool(tiers, values, [], new Rng("top up"), new Map(), tied)[0]![0]!;
+  assert.equal(grade1.filter((e) => !e.tied).length, 16);
+  assert.equal(new Set(grade1.map((e) => e.id)).size, grade1.length, "each item once");
 });

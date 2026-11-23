@@ -67,6 +67,8 @@ export interface Settings {
   "weapons.statRange": "near" | "wide" | "any";
   "weapons.sharpness": boolean;
   "weapons.sharpnessMode": "shuffle" | "new";
+  "weapons.elementMotion": boolean;
+  "weapons.elementMotionFrom": number;
   "armor.enabled": boolean;
   "armor.scope": "rarity" | "rank" | "any";
   "armor.start": "smithy" | "rank" | "any";
@@ -120,13 +122,25 @@ export interface Settings {
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
+  "mods.buttonIcons": "psp" | "xbox";
+  "camera.fov": "normal" | "wide" | "wider" | "widest";
+  "camera.distance": "normal" | "far" | "farther" | "farthest";
+  "camera.tilt": "steps" | "slow" | "smooth" | "fast";
+  "camera.photoMode": boolean;
+  "camera.target": "off" | "tap" | "follow";
+  "quest.endWait": "normal" | "short" | "instant";
   "hud.monsterHp": "off" | "painted" | "always";
+  "hud.damageNumbers": "off" | "total" | "split";
+  "hud.attackHitboxes": boolean;
   "pact.enabled": boolean;
   "poogie.enabled": boolean;
   "elites.enabled": boolean;
   "elites.chance": number;
   "quests.unknown": boolean;
   "quests.keyLabel": boolean;
+  "rewards.sendAll": boolean;
+  "smithy.improvePips": boolean;
+  "boot.skip": "normal" | "title" | "village";
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -174,6 +188,15 @@ export interface OptionDef {
   enabledBy?: OptionKey;
   /** With `enabledBy` a choice: the values of it that count as on. */
   enabledWhen?: readonly string[];
+  /** A few short points under `help`, for what doesn't fit its one or two sentences. */
+  points?: readonly string[];
+  /**
+   * Switched in game from the START menu's randomfu entry, and the save
+   * keeps that choice: the option only picks how a disc starts.
+   */
+  inGame?: true;
+  /** The discs it works on, when that isn't all of them ("EU", "EU and JP"). */
+  discs?: string;
 }
 
 const SPREAD = { kind: "number", min: 0, max: 0.95, step: 0.05, percent: true } as const;
@@ -1015,6 +1038,23 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "weapons.sharpness",
   },
   {
+    key: "weapons.elementMotion",
+    section: "Weapons",
+    label: "Heavy hits carry more element",
+    help: "A Blademaster hit's element grows on a curve with how hard the move hits, so a slow weapon with the element its target is weak to pulls ahead of a raw one on every swing, and further the more it commits: at the default strength, a Great Sword's side slash carries 1.6 times its element, its draw slash 2.5 times, its level 3 charge 8.7 times, while quick hits (Dual Blades, Sword and Shield, light pokes) stay as they are. Status grows in step with the hit. Critical hits don't change either, as in the game. Weapon screens show the usual values.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "weapons.elementMotionFrom",
+    section: "Weapons",
+    label: "Element boost starts at",
+    help: "The motion value above which a hit's element and status grow. Lower is stronger: at 26, a hit with motion value 52 carries 2.8 times its element (twice the motion value, to the power 1.5) and twice its status. Hits at or below it stay as they are: Dual Blades hits are 6 to 25, Great Sword hits 36 to 110.",
+    type: { kind: "number", min: 10, max: 40, step: 1 },
+    default: 26,
+    enabledBy: "weapons.elementMotion",
+  },
+  {
     key: "armor.enabled",
     section: "Armor",
     label: "Shuffle which armor the smithy makes",
@@ -1731,7 +1771,8 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "hints.bookshelf",
     section: "Extras",
     label: "Monster guide on the bookshelf",
-    help: "The house bookshelf's Practical Hunting monster articles (Open Bookshelf, Info Magazine) become the RandomFU Bestiary: one page per large monster rating its elemental weaknesses, softest parts, status resistance and health in stars, as the shuffles left them, readable from the start. In English in every language. EU disc only; seen on the shelf in PPSSPP.",
+    help: "The bookshelf's Practical Hunting articles become a bestiary: each large monster's weaknesses, soft parts, status resistances and health, in stars.",
+    discs: "EU",
     type: { kind: "boolean" },
     default: true,
   },
@@ -1739,23 +1780,169 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "hints.almanac",
     section: "Extras",
     label: "Item almanac on the bookshelf",
-    help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
+    help: "The bookshelf's Lay of the Land articles become an almanac: where to buy, gather, carve or earn each crafting material.",
+    discs: "EU",
     type: { kind: "boolean" },
     default: true,
   },
   {
     key: "mods.nodeMap",
-    section: "Extras",
+    section: "Area map",
     label: "Gathering nodes on the area map",
-    help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only.",
+    help: "The map screen marks every gathering (green), mining (orange) and bug catching (yellow) point on the map.",
+    discs: "EU and JP",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "mods.buttonIcons",
+    section: "Buttons",
+    label: "Button icons",
+    help: "The buttons the game draws in its text and HUD, for playing with a controller in PPSSPP.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "psp", label: "PSP", help: "The game's own: ○ × △ □, L, R, START and SELECT." },
+        {
+          value: "xbox",
+          label: "Xbox",
+          help: "A B X Y in their colours, LB, RB, Menu and View.",
+        },
+      ],
+    },
+    default: "psp",
+  },
+  {
+    key: "camera.fov",
+    section: "Camera",
+    label: "Field of view",
+    help: "How wide the camera sees. The edges stretch a little the wider it gets.",
+    inGame: true,
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "normal", label: "Normal", help: "The game's own: 50° high, 79° across." },
+        { value: "wide", label: "Wide", help: "×1.15: 57.5° high, 88° across." },
+        {
+          value: "wider",
+          label: "Wider",
+          help: "×1.25: 62.5° high, 94° across.",
+        },
+        { value: "widest", label: "Widest", help: "×1.4: 70° high, 102° across." },
+      ],
+    },
+    default: "normal",
+  },
+  {
+    key: "camera.distance",
+    section: "Camera",
+    label: "Camera distance",
+    help: "How far behind your hunter the camera sits. Further shows more, but passes through walls more often in caves.",
+    inGame: true,
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "normal", label: "Normal", help: "The game's own distance." },
+        { value: "far", label: "Far", help: "×1.15 as far back." },
+        { value: "farther", label: "Farther", help: "×1.3 as far back." },
+        { value: "farthest", label: "Farthest", help: "×1.5 as far back." },
+      ],
+    },
+    default: "normal",
+  },
+  {
+    key: "camera.tilt",
+    section: "Camera",
+    label: "Camera tilt",
+    help: "How D-pad up and down tilt the camera: the game's five steps, or smoothly to any angle while you hold it.",
+    inGame: true,
+    discs: "EU",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "steps", label: "Steps", help: "The game's own five steps." },
+        { value: "slow", label: "Slow", help: "Smooth, 30° a second." },
+        { value: "smooth", label: "Smooth", help: "Smooth, 50° a second." },
+        { value: "fast", label: "Fast", help: "Smooth, 80° a second." },
+      ],
+    },
+    default: "steps",
+  },
+  {
+    key: "camera.photoMode",
+    section: "Camera",
+    label: "Photo mode",
+    help: "In a quest, hold L and R and press START: the game freezes, the HUD goes and the camera is yours. START again to play on.",
+    points: [
+      "Stick turns it, D-pad moves it, L and R zoom",
+      "△ × up and down, □ ○ nearer and further",
+      "SELECT puts it back where it started",
+    ],
+    inGame: true,
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "camera.target",
+    section: "Camera",
+    label: "Target camera",
+    help: "L turns the camera to face a large monster in your area, like the newer games' target camera.",
+    points: [
+      "Hold L and press D-pad left or right for the next monster",
+      "Press L twice for the game's own L",
+    ],
+    inGame: true,
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Off", help: "L is the game's own: behind your hunter." },
+        {
+          value: "tap",
+          label: "Tap",
+          help: "L turns the camera to the monster once; then it stays where it is.",
+        },
+        {
+          value: "follow",
+          label: "Follow",
+          help: "L keeps the monster in view until you press L twice, turn the camera with the D-pad, or the monster leaves or falls.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "quest.endWait",
+    section: "Quest end",
+    label: "Wait after a quest",
+    help: "How long the game waits after a quest is done before the reward screen.",
+    inGame: true,
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "normal",
+          label: "Normal",
+          help: "The game's own: the banner, then a minute (20 s on gathering quests).",
+        },
+        {
+          value: "short",
+          label: "Short",
+          help: "The banner, then 20 s for every quest: time to carve one monster.",
+        },
+        {
+          value: "instant",
+          label: "Instant",
+          help: "Straight to the rewards: no banner wait and no time to carve.",
+        },
+      ],
+    },
+    default: "normal",
   },
   {
     key: "questMonsters.text",
     section: "Extras",
     label: "Rename monsters in quest text",
-    help: "A swapped monster's name changes in the quest's title, goal, details and monster list, in every language, using names read from the disc's own quests. Text that can't change safely (another article, too long a line, no room) keeps the old name and is listed in the spoiler log. Seen working on the EU disc's Quest Details screen.",
+    help: "A swapped monster's name changes in its quests' titles, goals and details, in every language. What can't change safely is listed in the spoiler log.",
     type: { kind: "boolean" },
     default: true,
     enabledBy: "questMonsters.mode",
@@ -1765,7 +1952,8 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "hud.monsterHp",
     section: "HUD",
     label: "Monster health",
-    help: "A short health gauge for each large monster in your area, on the left under your name plate, in the HUD's own frame and red. It follows the HUD: hidden in cutscenes and wherever the game hides your gauges. Caps received Guild Cards at 3 to make room for the code that draws it.",
+    help: "A health gauge for each large monster in your area, under your name plate.",
+    inGame: true,
     type: {
       kind: "choice",
       choices: [
@@ -1773,7 +1961,7 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "painted",
           label: "On the map",
-          help: "A monster's gauge shows while the map shows it: from a Paintball hit until the mark wears off.",
+          help: "While it shows on the map: from a Paintball hit.",
         },
         {
           value: "always",
@@ -1785,10 +1973,43 @@ export const OPTIONS: readonly OptionDef[] = [
     default: "off",
   },
   {
+    key: "hud.damageNumbers",
+    section: "HUD",
+    label: "Damage numbers",
+    help: "Each hit pops the damage it dealt at the part it struck: white, or orange on a weak point.",
+    inGame: true,
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Off", help: "No damage numbers." },
+        { value: "total", label: "Total", help: "One number a hit: raw and element together." },
+        {
+          value: "split",
+          label: "Split element",
+          help: "The element's share as a second number in its colour.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "hud.attackHitboxes",
+    section: "HUD",
+    label: "Attack hitboxes",
+    help: "A faint red shading over every monster attack that can hit you right now, fireballs and other projectiles too. A few attacks aren't drawn.",
+    inGame: true,
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
     key: "pact.enabled",
     section: "Hunter's Pact",
     label: "Hunter's Pact",
-    help: "When a quest starts, a window in base camp offers three pacts drawn at random, each a penalty and the reward it pays: tougher or harder-hitting monsters, half the time, one cart, no supply box, a health or stamina cap or more to deliver (only those that fit the quest: no monster penalties on a gathering quest), for more zenny (at least a set amount per rank), more quest rewards (extra draws from the quest's own rewards), items or a weapon or armor piece of the quest's rank. The harder the penalty, the more its reward is worth: a handful of common items for a light one, one or two rare ones for a hard one. Monster penalties stack with elite monsters. Take any, or none and the quest is as it was. The clock stops while you choose; penalties last the quest, and rewards are paid only if you complete it. Caps received Guild Cards at 3 to make room for its code.",
+    help: "At the start of each quest, base camp offers three random pacts: a penalty for a reward. Take any, or none.",
+    points: [
+      "Penalties like tougher monsters, half the time, one cart or no supplies",
+      "Rewards you with more zenny, items or gear: harder penalties pay more and rarer rewards",
+    ],
     type: { kind: "boolean" },
     default: false,
   },
@@ -1796,7 +2017,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "poogie.enabled",
     section: "Poogie",
     label: "Poogie's luck",
-    help: "Pet Poogie at home before a hunt. If it lies down happily, that hunt's carves, captures, breaks and quest rewards lean towards rarer rewards: each draw rolls twice and keeps the rarer. Poogie remembers: after 50 happy hunts on a save it rolls three times, after 200 four. Its count is kept in the save, and carries over to discs from other seeds. Caps received Guild Cards at 3 to make room for its code.",
+    help: "Pet Poogie before a hunt and luck might be in your favor!",
     type: { kind: "boolean" },
     default: true,
   },
@@ -1804,16 +2025,19 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "elites.enabled",
     section: "Elite monsters",
     label: "Elite monsters",
-    help: "Now and then a large monster is an elite: half again its health, hits 30% harder, moves 10% faster, enrages sooner and for half again as long, and is 15% bigger. Its hide has a faint crimson pulse. Each elite adds a reward draw, half the quest's zenny and points again, and makes the main reward's rarer items half again as likely. Rolled as each monster shows up, so the quest board doesn't tell. Stacks on randomized monster stats. Caps received Guild Cards at 3 to make room for its code.",
+    help: "Now and then a large monster is an elite, with a faint crimson pulse. The quest board doesn't tell.",
+    points: [
+      "+50% health, +30% damage, +10% speed, longer rages",
+      "An extra reward draw, +50% zenny and rarer rewards",
+    ],
     type: { kind: "boolean" },
     default: false,
-    action: "randomize",
   },
   {
     key: "elites.chance",
     section: "Elite monsters",
     label: "Elite chance",
-    help: "Each large monster's chance of being an elite, rolled once per quest as it shows up.",
+    help: "Each large monster's chance of being an elite.",
     type: { kind: "number", min: 1, max: 100, step: 1, chance: true },
     default: 12,
     enabledBy: "elites.enabled",
@@ -1822,7 +2046,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "quests.unknown",
     section: "Unknown Monster?! quests",
     label: "Unknown Monster?! quests",
-    help: "Adds an investigation quest to the Guild 8★ and G★3 boards (high and G rank; low rank is left as it was). Each time you accept it, it rolls a monster met on that map in any quest, the map, size, crowns, difficulty for the rank, the rewards and whether you start in base camp or a random area (where that map's quests do either). The board doesn't say what you'll find, and the quest names the monster once it starts. Solo only: in ad-hoc play the others get a different roll. Caps received Guild Cards at 3 to make room for the code.",
+    help: "An investigation quest on the Guild 8★ and G★3 boards. Each time you accept it, it rolls a monster, map, size, difficulty and rewards, and doesn't say what until it starts.",
     type: { kind: "boolean" },
     default: false,
   },
@@ -1830,9 +2054,52 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "quests.keyLabel",
     section: "Key quests",
     label: "Mark key quests",
-    help: "The Village Chief's quest card (and likely the Guild's, not yet tried) shows a yellow ★ in its top right corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
+    help: "A yellow ★ on the Village Chief's quest cards marks the key quests that unlock the Urgent Quest.",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "rewards.sendAll",
+    section: "Reward screen",
+    label: "Send All to Item Box",
+    help: "The reward screen gets a Send All to Item Box row: every reward that fits, the comrade's too, in one go.",
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
+    key: "smithy.improvePips",
+    section: "Improve pips",
+    label: "Mark weapons you can improve",
+    help: "In the smithy's Improve, an orange pip marks each weapon you have the materials and zenny to improve.",
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
+    key: "boot.skip",
+    section: "Boot",
+    label: "Faster start",
+    help: "Skip the language choice, logos and intro movie from power-on.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "normal",
+          label: "Normal",
+          help: "The game's own: language, notice, logos and the intro movie.",
+        },
+        {
+          value: "title",
+          label: "Title screen",
+          help: "Straight to Press START.",
+        },
+        {
+          value: "village",
+          label: "Village",
+          help: "Straight into the village with your last save. Hold START from power-on to pick another.",
+        },
+      ],
+    },
+    default: "normal",
   },
 ];
 
@@ -2049,6 +2316,26 @@ const STAT_RANDOMIZERS = {
 } as const;
 
 export const PRESETS: readonly Preset[] = [
+  {
+    name: "QoL only",
+    points: [
+      "Shuffles and randomizes nothing: items, monsters, equipment and numbers stay as on the disc",
+      "Adds Send All to Item Box, the smithy's improve pips, photo mode, key quest marks and gathering nodes on the area map; all but the map's code caps received Guild Cards at 3",
+      "Leaves out Poogie's luck and the bookshelf guides",
+      "Turn on camera, HUD and quest extras in the later steps; the settings then show as custom, still with nothing shuffled",
+      "Hunter's Pact, if you turn it on, draws its rewards from the seed",
+    ],
+    changes: {
+      "questRewards.mode": "off",
+      "monsterRewards.mode": "off",
+      "camera.photoMode": true,
+      "quests.keyLabel": true,
+      "mods.nodeMap": true,
+      "poogie.enabled": false,
+      "hints.bookshelf": false,
+      "hints.almanac": false,
+    },
+  },
   {
     name: "Rewards only",
     points: [

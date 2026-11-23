@@ -15,6 +15,8 @@ export const monsters = {
     /** "1,234–1,890 cm" */
     sizeRange: (min: string, max: string) => `${min}–${max} cm`,
     baseHp: "Base HP:",
+    /** The heading over the loaded save's records of this monster. */
+    guildCard: (hunter: string) => `${hunter}'s Guild Card`,
     /** The loaded hunter's Guild Card counts. */
     hunted: "Hunted:",
     captured: "Captured:",

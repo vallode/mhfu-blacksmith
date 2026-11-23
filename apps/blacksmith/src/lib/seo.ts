@@ -23,6 +23,7 @@ export {
   THEME_COLOR,
   tintFor,
   titleCase,
+  weaponTreeTitle,
 } from "./embed-format";
 
 /**
@@ -32,7 +33,7 @@ export {
  */
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://mhfu.vallode.com";
 export const SITE_DESCRIPTION =
-  "Monster Hunter Freedom Unite — weapons, armor, decorations and monsters, with every recipe, skill and drop.";
+  "Every Monster Hunter Freedom Unite weapon, armor piece, decoration, item, monster and quest, with recipes, skills, hitzones and drops. Build armor sets, plan a wishlist, and load your save file to track your hunter.";
 /** Thumbnail for pages without a better one. */
 export const DEFAULT_IMAGE = {
   url: "/images/favicons/felyne-icon-512.png",

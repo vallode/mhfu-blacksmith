@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync, readdirSync } from "node:fs";
 import { test } from "node:test";
 import { DEMO_OBJECTS } from "../src/blob/demo-object.js";
 import {
@@ -97,4 +98,21 @@ test("a common symbol is the same object as a definition of its name, or of anot
   assert.equal(cpu.call(blob.symbols.get("rf_init")!), 7);
   cpu.setU32(alsoCommon, 5);
   assert.equal(cpu.call(blob.symbols.get("rf_init")!), 12, "both files' also_common are one");
+});
+
+test("every feature's callbacks fit a hook's room, with all of them linked", () => {
+  const blob = new URL("../blob/", import.meta.url);
+  const room = Number(
+    /#define PER_HOOK (\d+)/.exec(readFileSync(new URL("runtime.c", blob), "utf8"))![1],
+  );
+  const perHook = new Map<string, number>();
+  for (const file of readdirSync(blob).filter((f) => f.endsWith(".c"))) {
+    const source = readFileSync(new URL(file, blob), "utf8");
+    for (const [, hook] of source.matchAll(/rf_on\((RF_HOOK_\w+)/g)) {
+      perHook.set(hook!, (perHook.get(hook!) ?? 0) + 1);
+    }
+  }
+  assert.ok(perHook.size > 0);
+  // rf_on drops a callback past the room without a word.
+  for (const [hook, count] of perHook) assert.ok(count <= room, `${hook}: ${count} of ${room}`);
 });

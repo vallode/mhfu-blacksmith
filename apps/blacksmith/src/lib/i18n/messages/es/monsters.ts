@@ -10,6 +10,7 @@ export const monsters: Messages["monsters"] = {
     size: "Tamaño:",
     sizeRange: (min: string, max: string) => `${min}–${max} cm`,
     baseHp: "Vida base:",
+    guildCard: (hunter: string) => `Tarjeta del Gremio de ${hunter}`,
     hunted: "Cazados:",
     captured: "Capturados:",
     largest: "Mayor:",
