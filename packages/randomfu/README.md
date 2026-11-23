@@ -177,6 +177,7 @@ web app shows as a tag):
 | `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                        |
 | `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                          |
 | `monsterAi.aggression`            | `off`       | `off`, `more` (attacks ×2, idle ≤ 1 s, recoveries 50% faster) or `relentless` (×4, ⅓ s, recoveries ×2) |
+| `monsterAi.reach`                 | `off`       | `off`, `less` (takeoffs and burrows ÷3, keeps after a lost hunter ×2) or `rarely` (÷8, ×4)             |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                            |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                      |
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
@@ -1024,6 +1025,47 @@ played. The shorter pauses were played against Tigrex on the EU disc at
 `relentless` (better, but its turns and some recoveries were still slow,
 which the quicker recoveries are for). With the quicker recoveries too,
 Tigrex's turns felt much better.
+
+**Monster reach** (`monsterAi.reach`, `keepMonstersInReach` in
+`src/shuffles/monster-ai.ts`) makes large monsters spend less of the fight
+out of reach: fewer flights and burrows, and less wandering off.
+
+- Which entries take a monster into the air or underground is data
+  (`src/shuffles/monster-reach.ts`), worked out from the EU disc as
+  `docs/monster-ai.md` ("Out of reach") describes, in the same form as the
+  attack data: 534 choices in 5 files that mix taking off or digging in
+  (`L`) with other moves, and 3 of Fatalis's that mix landing (`B`) with
+  staying up. That's Rathian, Rathalos and their kin (306), Diablos and
+  Monoblos and their kin (145), Yian Kut-Ku and Gypceros and their kin
+  (42), Fatalis and its kin (40) and Chameleos (1).
+- `L` entries' weights are divided by 3 (`less`) or 8 (`rarely`) and `B`
+  entries' multiplied, and the choice is scaled back to 32, every possible
+  entry keeping at least 1. On the EU disc that takes Rathalos's chance of
+  taking off, where a choice offers it, from 22% on average to 12% (`less`)
+  or 8% (`rarely`), and Diablos's of digging in from 36% to 17% or 8%. It
+  runs after `monsterAi.branches` and `monsterAi.aggression`, on their
+  weights, so it stacks with both; an entry that is both an attack and a
+  takeoff is leaned both ways.
+- A flight or a burrow, once started, is a fixed sequence in one entry, and
+  no choice a flying monster makes mixes landing with staying up (outside
+  Fatalis's three), so flights and burrows get rarer, not shorter.
+- Every species that's a large monster in some quest (after
+  `questMonsters` changes) keeps after a hunter it can't see for longer:
+  its `emChunk`'s `+0x146` (s16, frames) is the time it stays engaged once
+  the hunter is out of sight, after which it decides to walk or fly off to
+  another area. It's 1800 frames (60 s) for most, 900 for the dromes and
+  2700 for Yian Garuga; `less` doubles it and `rarely` quadruples it (at
+  most 32767). Elites change with their species.
+- A file's flights change only if its choices and their vanilla weights
+  hash to what the data was made from; the EU and FUC discs both match. The
+  engagement time changes on any disc.
+- Not covered: Yian Garuga, Hypnocatrice, Kushala Daora, Lunastra and
+  Teostra decide their flights in choices that only fly, or outside
+  choices; Cephadrome and Cephalos dive into sand outside choices; Akantor,
+  Ukanlos, Plesioth and Lavasioth's burrows and dives weren't classified;
+  a monster charging the moment you enter its area isn't changed.
+
+Not yet tried in game.
 
 **The bookshelf guides** rewrite runs of the house bookshelf's articles
 (Open Bookshelf, Info Magazine) and make them readable from the start

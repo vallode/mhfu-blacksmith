@@ -32,7 +32,9 @@
  * share scripts (the dromes, Rathian and Rathalos...) change together.
  *
  * Monster aggression (`monsterAi.aggression`, `makeMonstersAggressive`) leans
- * the choices that mix attacks with other moves towards the attacks.
+ * the choices that mix attacks with other moves towards the attacks, and
+ * Monster reach (`monsterAi.reach`, `keepMonstersInReach`) leans the ones
+ * that mix taking off or digging in with other moves away from them.
  */
 import { OVL_HEADER_SIZE, type OvlFile } from "mhfu-extract/src/container/ovl.js";
 import { familyOverlayId } from "mhfu-extract/src/monsters/families.js";
@@ -48,6 +50,7 @@ import { fnv1a } from "../hash.js";
 import type { Rng } from "../rng.js";
 import type { Settings } from "../settings.js";
 import { MONSTER_ATTACKS, type AttackData } from "./monster-attacks.js";
+import { MONSTER_REACH } from "./monster-reach.js";
 import type { ShuffleReport } from "./shuffle.js";
 
 /** `emChunk` offset of the 28 behaviour pointers. */
@@ -193,6 +196,18 @@ export function favourAttacks(weights: readonly number[], kinds: string, factor:
   return backTo32(
     weights,
     weights.map((w, i) => (kinds[i] === "A" ? w * factor : w)),
+  );
+}
+
+/**
+ * Entries that take a monster out of reach (`L` in `kinds`) divided by
+ * `factor`, ones that bring it back (`B`) times it, back to 32; possible
+ * entries keep at least 1.
+ */
+export function keepInReach(weights: readonly number[], kinds: string, factor: number): number[] {
+  return backTo32(
+    weights,
+    weights.map((w, i) => (kinds[i] === "L" ? w / factor : kinds[i] === "B" ? w * factor : w)),
   );
 }
 
@@ -371,31 +386,101 @@ export function matchesAttackData(choices: readonly Choice[], known: AttackData)
 }
 
 /**
- * Leans `known`'s mixed choices towards their attacks in `buf` (the file's
- * edited copy, whose current weights are kept as the base). `choices` must
- * match `known` (`matchesAttackData`). Returns the changed choices' offsets.
+ * Reweights `known`'s mixed choices in `buf` (the file's edited copy, whose
+ * current weights are kept as the base) with `reweight(weights, kinds)`.
+ * `choices` must match `known` (`matchesAttackData`). Returns the changed
+ * choices' offsets.
  */
+function reweightKnown(
+  choices: readonly Choice[],
+  buf: Buffer,
+  known: AttackData,
+  reweight: (weights: readonly number[], kinds: string) => number[],
+  what: string,
+): Set<number> {
+  const changed = new Set<number>();
+  for (const [index, kinds] of parseMixed(known.mixed)) {
+    const c = choices[index];
+    if (c?.weights.length !== kinds.length) {
+      throw new Error(`${what}: choice ${index} doesn't match its data`);
+    }
+    const next = reweight(
+      c.weightAt.map((at) => buf[at]!),
+      kinds,
+    );
+    c.weightAt.forEach((at, k) => buf.writeUInt8(next[k]!, at));
+    changed.add(c.offset);
+  }
+  return changed;
+}
+
+/** Leans `known`'s mixed choices towards their attacks in `buf` (`reweightKnown`). */
 export function leanTowardsAttacks(
   choices: readonly Choice[],
   buf: Buffer,
   known: AttackData,
   factor: number,
 ): Set<number> {
-  const changed = new Set<number>();
-  for (const [index, kinds] of parseMixed(known.mixed)) {
-    const c = choices[index];
-    if (c?.weights.length !== kinds.length) {
-      throw new Error(`Monster aggression: choice ${index} doesn't match the attack data`);
+  return reweightKnown(
+    choices,
+    buf,
+    known,
+    (w, kinds) => favourAttacks(w, kinds, factor),
+    "Monster aggression",
+  );
+}
+
+/** Leans `known`'s mixed choices away from leaving reach in `buf` (`reweightKnown`). */
+export function leanTowardsReach(
+  choices: readonly Choice[],
+  buf: Buffer,
+  known: AttackData,
+  factor: number,
+): Set<number> {
+  return reweightKnown(
+    choices,
+    buf,
+    known,
+    (w, kinds) => keepInReach(w, kinds, factor),
+    "Monster reach",
+  );
+}
+
+/**
+ * Applies `lean` to every file `data` has whose choices match it. The report
+ * lines name the species whose own scripts hold a changed choice; `unmatched`
+ * lists files that don't match, or that this disc's scan didn't place.
+ */
+function leanFiles(
+  files: readonly ScriptChoices[],
+  edits: Edits,
+  data: Readonly<Record<string, AttackData>>,
+  lean: (choices: readonly Choice[], buf: Buffer, known: AttackData) => Set<number>,
+  monsterName: MonsterNames,
+) {
+  const lines: ShuffleReport["lines"] = [];
+  const unmatched: string[] = [];
+  let total = 0;
+  for (const { file, name, choices, emIds, rootsBy } of files) {
+    const known = data[name];
+    if (!known) continue;
+    if (!matchesAttackData(choices, known)) {
+      unmatched.push(name);
+      continue;
     }
-    const next = favourAttacks(
-      c.weightAt.map((at) => buf[at]!),
-      kinds,
-      factor,
+    const changed = lean(choices, edits.overlay(file), known);
+    total += changed.size;
+    const species = emIds.filter((emId) =>
+      findChoices(file.ovl, rootsBy.get(emId) ?? []).some((c) => changed.has(c.offset)),
     );
-    c.weightAt.forEach((at, k) => buf.writeUInt8(next[k]!, at));
-    changed.add(c.offset);
+    lines.push({
+      where: name,
+      text: `${changed.size} choices, for ${species.map(monsterName).join(", ")}`,
+    });
   }
-  return changed;
+  const seen = new Set(files.map((f) => f.name));
+  unmatched.push(...Object.keys(data).filter((name) => !seen.has(name)));
+  return { lines, unmatched, total };
 }
 
 /**
@@ -414,31 +499,13 @@ export function makeMonstersAggressive(
   data: Readonly<Record<string, AttackData>> = MONSTER_ATTACKS,
 ): ShuffleReport {
   const factor = AGGRESSION_FACTOR[level];
-  const { files } = scripts;
-  const lines: ShuffleReport["lines"] = [];
-  const unmatched: string[] = [];
-  let total = 0;
-  for (const { file, name, choices, emIds, rootsBy } of files) {
-    const known = data[name];
-    if (!known) continue;
-    if (!matchesAttackData(choices, known)) {
-      unmatched.push(name);
-      continue;
-    }
-    const changed = leanTowardsAttacks(choices, edits.overlay(file), known, factor);
-    total += changed.size;
-    // Only the species whose own scripts hold a changed choice.
-    const species = emIds.filter((emId) =>
-      findChoices(file.ovl, rootsBy.get(emId) ?? []).some((c) => changed.has(c.offset)),
-    );
-    lines.push({
-      where: name,
-      text: `${changed.size} choices, for ${species.map(monsterName).join(", ")}`,
-    });
-  }
-  // Files the data has that this disc's scan didn't place (their species unknown).
-  const seen = new Set(files.map((f) => f.name));
-  unmatched.push(...Object.keys(data).filter((name) => !seen.has(name)));
+  const { lines, unmatched, total } = leanFiles(
+    scripts.files,
+    edits,
+    data,
+    (choices, buf, known) => leanTowardsAttacks(choices, buf, known, factor),
+    monsterName,
+  );
   const notes = [
     `In each choice between attacks and other moves, attacks are ${factor} times as likely as before against the rest; every move stays possible.`,
   ];
@@ -454,5 +521,107 @@ export function makeMonstersAggressive(
     lines,
     // The summary is the run log's line, so a disc it can't change says so there too.
     summary: `Monster aggression: ${total} choices${unmatched.length ? `; warning: left alone, not the scripts the attack data was made from: ${list}` : ""}`,
+  };
+}
+
+type ReachLevel = Exclude<Settings["monsterAi.reach"], "off">;
+
+/** How many times less likely taking off or digging in gets against the other moves. */
+export const REACH_FACTOR: Readonly<Record<ReachLevel, number>> = { less: 3, rarely: 8 };
+/** How many times longer a large monster keeps after a hunter it can't see. */
+export const REACH_ENGAGED_FACTOR: Readonly<Record<ReachLevel, number>> = { less: 2, rarely: 4 };
+/**
+ * `emChunk` offset of the frames (s16) a monster stays after a hunter once
+ * it can't see them (`docs/monster-ai.md`, "Out of reach").
+ */
+export const ENGAGED_FRAMES_OFFSET = 0x146;
+
+/**
+ * Each of `emIds`' engagement time (`ENGAGED_FRAMES_OFFSET`) times `factor`,
+ * in `buf` (`game_task.ovl`'s edited copy, its monster table at `tableAt`),
+ * at most 32767. Returns the species changed with their frames before and
+ * after; ones without a time (0) are left alone.
+ */
+export function lengthenEngagement(
+  buf: Buffer,
+  tableAt: number,
+  emIds: Iterable<number>,
+  factor: number,
+): { emId: number; before: number; after: number }[] {
+  const out: { emId: number; before: number; after: number }[] = [];
+  for (const emId of [...new Set(emIds)].sort((a, b) => a - b)) {
+    if (emId <= 0 || emId >= MONSTER_CHUNK_COUNT) continue;
+    const at = tableAt + emId * MONSTER_CHUNK_SIZE + ENGAGED_FRAMES_OFFSET;
+    const before = buf.readInt16LE(at);
+    if (before <= 0) continue;
+    const after = Math.min(0x7fff, Math.round(before * factor));
+    buf.writeInt16LE(after, at);
+    out.push({ emId, before, after });
+  }
+  return out;
+}
+
+/**
+ * Monster reach (`monsterAi.reach`): in every choice that mixes taking off or
+ * digging in with other moves (`monster-reach.ts`), those entries' weights
+ * are divided by the level's factor, and in the few that mix landing or
+ * surfacing with staying away, those are multiplied by it; each choice goes
+ * back to 32. It works on the weights as they are, so it runs after
+ * `randomizeMonsterAi` and `makeMonstersAggressive`. Every large monster in
+ * `largeIds` also keeps after a hunter it lost sight of for longer before it
+ * gives up and wanders off to another area.
+ */
+export function keepMonstersInReach(
+  level: ReachLevel,
+  edits: Edits,
+  scripts: ReturnType<typeof readScripts>,
+  gameTask: LoadedOverlay,
+  largeIds: Iterable<number>,
+  monsterName: MonsterNames,
+  data: Readonly<Record<string, AttackData>> = MONSTER_REACH,
+  tableAt = locateMonsterChunks(gameTask.ovl)?.offset,
+): ShuffleReport {
+  if (tableAt === undefined) throw new Error("game_task.ovl: the monster table wasn't found");
+  const factor = REACH_FACTOR[level];
+  const { lines, unmatched, total } = leanFiles(
+    scripts.files,
+    edits,
+    data,
+    (choices, buf, known) => leanTowardsReach(choices, buf, known, factor),
+    monsterName,
+  );
+  const engaged = lengthenEngagement(
+    edits.overlay(gameTask),
+    tableAt,
+    largeIds,
+    REACH_ENGAGED_FACTOR[level],
+  );
+  const seconds = (frames: number) => `${Math.round(frames / 30)} s`;
+  const byTime = new Map<string, number[]>();
+  for (const e of engaged) {
+    const key = `${seconds(e.before)} → ${seconds(e.after)}`;
+    byTime.set(key, [...(byTime.get(key) ?? []), e.emId]);
+  }
+  for (const [time, ids] of byTime) {
+    lines.push({
+      where: "game_task.ovl",
+      text: `stays after a lost hunter ${time}: ${ids.map(monsterName).join(", ")}`,
+    });
+  }
+  const notes = [
+    `In each choice between taking off or digging in and other moves, taking off or digging in is ${factor} times less likely than before, and landing or surfacing ${factor} times likelier where a choice mixes it with staying away; every move stays possible.`,
+    `A large monster that can't see a hunter stays after them ${REACH_ENGAGED_FACTOR[level]} times as long before it gives up and may leave the area.`,
+  ];
+  const list = unmatched.join(", ");
+  if (unmatched.length) {
+    notes.push(
+      `Flights and burrows left alone, their scripts aren't the ones the data was made from (EU and FUC discs): ${list}.`,
+    );
+  }
+  return {
+    title: "Monster reach",
+    notes,
+    lines,
+    summary: `Monster reach: ${total} choices, ${engaged.length} species stay longer${unmatched.length ? `; warning: flights and burrows left alone, not the scripts the data was made from: ${list}` : ""}`,
   };
 }

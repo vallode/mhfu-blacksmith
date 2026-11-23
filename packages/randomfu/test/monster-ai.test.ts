@@ -4,9 +4,14 @@ import type { OvlFile } from "mhfu-extract/src/container/ovl.js";
 import {
   CHOICE_TOTAL,
   ROOT_TABLES,
+  ENGAGED_FRAMES_OFFSET,
   favourAttacks,
   findChoices,
+  keepInReach,
+  keepMonstersInReach,
   leanTowardsAttacks,
+  leanTowardsReach,
+  lengthenEngagement,
   makeMonstersAggressive,
   matchesAttackData,
   parseMixed,
@@ -16,6 +21,8 @@ import {
   splitWeights,
 } from "../src/shuffles/monster-ai.js";
 import { MONSTER_ATTACKS } from "../src/shuffles/monster-attacks.js";
+import { MONSTER_REACH } from "../src/shuffles/monster-reach.js";
+import { MONSTER_CHUNK_SIZE } from "mhfu-extract/src/monsters/hitzones.js";
 import type { Edits } from "../src/edits.js";
 import type { LoadedOverlay } from "../src/game/load.js";
 import { Rng } from "../src/rng.js";
@@ -226,5 +233,117 @@ test("a disc the attack data wasn't made from is left alone, with a warning in t
   assert.match(
     report.summary ?? "",
     /^Monster aggression: 0 choices; warning: left alone.*em01\.ovl, em02\.ovl$/,
+  );
+});
+
+test("keeping in reach makes taking off rarer and landing likelier, keeps 32 and every move possible", () => {
+  const before = [4, 12, 8, 8];
+  const after = keepInReach(before, "L--B", 3);
+  assert.equal(
+    after.reduce((s, w) => s + w, 0),
+    CHOICE_TOTAL,
+  );
+  assert.ok(after[0]! < before[0]!, "takeoff rarer");
+  assert.ok(after[3]! > before[3]!, "landing likelier");
+  // The other moves keep their odds against each other.
+  assert.ok(Math.abs(after[1]! / after[2]! - 12 / 8) < 0.2);
+  // An entry at 1 stays possible, one at 0 stays impossible.
+  assert.deepEqual(keepInReach([1, 31], "L-", 8), [1, 31]);
+  assert.equal(keepInReach([0, 16, 16], "L-L", 8)[0], 0);
+  // With no flight or burrow in it, a choice keeps its weights.
+  assert.deepEqual(keepInReach([8, 4, 14, 6], "----", 8), [8, 4, 14, 6]);
+  // Rarely leans further than less.
+  assert.ok(keepInReach([16, 16], "L-", 8)[0]! < keepInReach([16, 16], "L-", 3)[0]!);
+});
+
+test("reach data is applied to the edited weights, so it stacks after aggression", () => {
+  const { buf, ovl, root } = script();
+  const choices = findChoices(ovl, [root]);
+  const known = { choices: 2, hash: weightHash(choices), mixed: "0:-A-L 1:L-" };
+  leanTowardsAttacks(choices, buf, { ...known, mixed: "0:-A-A 1:-A" }, 2);
+  const leaned = findChoices(ovl, [root]).map((c) => c.weights);
+  leanTowardsReach(choices, buf, known, 3);
+  assert.deepEqual(
+    findChoices(ovl, [root]).map((c) => c.weights),
+    [keepInReach(leaned[0]!, "-A-L", 3), keepInReach(leaned[1]!, "L-", 3)],
+  );
+});
+
+test("the reach data reads: every mixed choice mixes leaving or coming back with other moves", () => {
+  let total = 0;
+  for (const [name, known] of Object.entries(MONSTER_REACH)) {
+    // The same scripts the attack data was made from: the same choices and vanilla weights.
+    assert.equal(known.choices, MONSTER_ATTACKS[name]?.choices, name);
+    assert.equal(known.hash, MONSTER_ATTACKS[name]?.hash, name);
+    for (const [index, kinds] of parseMixed(known.mixed)) {
+      assert.ok(index < known.choices, `${name} ${index}`);
+      assert.match(kinds, /^(?:[L-]+|[B-]+)$/);
+      assert.ok(/[LB]/.test(kinds) && kinds.includes("-"), `${name} ${index}`);
+      total++;
+    }
+  }
+  assert.equal(total, 534);
+});
+
+test("a large monster keeps after a lost hunter longer; capped, and species without a time left alone", () => {
+  const tableAt = 0x40;
+  const buf = Buffer.alloc(tableAt + 90 * MONSTER_CHUNK_SIZE);
+  const time = (emId: number) => tableAt + emId * MONSTER_CHUNK_SIZE + ENGAGED_FRAMES_OFFSET;
+  buf.writeInt16LE(1800, time(11));
+  buf.writeInt16LE(900, time(27));
+  buf.writeInt16LE(20000, time(75));
+  buf.writeInt16LE(1800, time(16));
+  const changed = lengthenEngagement(buf, tableAt, [11, 27, 75, 11, 33, 0, 90], 4);
+  assert.deepEqual(changed, [
+    { emId: 11, before: 1800, after: 7200 },
+    { emId: 27, before: 900, after: 3600 },
+    { emId: 75, before: 20000, after: 0x7fff },
+  ]);
+  assert.equal(buf.readInt16LE(time(11)), 7200, "once, though listed twice");
+  assert.equal(buf.readInt16LE(time(16)), 1800, "not listed, not changed");
+  assert.equal(buf.readInt16LE(time(33)), 0);
+});
+
+test("a disc the reach data wasn't made from keeps its flights, with a warning in the log line", () => {
+  const { ovl, root } = script();
+  const file = { index: 1, ovl } as LoadedOverlay;
+  const scripts = {
+    files: [
+      {
+        file,
+        name: "em01.ovl",
+        roots: [root],
+        emIds: [1],
+        rootsBy: new Map([[1, [root]]]),
+        choices: findChoices(ovl, [root]),
+      },
+    ],
+    unknown: [],
+  };
+  const known = { "em01.ovl": { choices: 2, hash: "00000000", mixed: "1:L-" } };
+  const table = Buffer.alloc(90 * MONSTER_CHUNK_SIZE);
+  table.writeInt16LE(1800, MONSTER_CHUNK_SIZE + ENGAGED_FRAMES_OFFSET);
+  const gameTask = { index: 0 } as LoadedOverlay;
+  const edits = { overlay: (f: LoadedOverlay) => (f === gameTask ? table : ovl.reader.buf) };
+  const before = findChoices(ovl, [root]).map((c) => c.weights);
+  const report = keepMonstersInReach(
+    "rarely",
+    edits as unknown as Edits,
+    scripts,
+    gameTask,
+    [1],
+    String,
+    known,
+    0,
+  );
+  assert.deepEqual(
+    findChoices(ovl, [root]).map((c) => c.weights),
+    before,
+  );
+  // The engagement time doesn't depend on the scripts, so it still changes.
+  assert.equal(table.readInt16LE(MONSTER_CHUNK_SIZE + ENGAGED_FRAMES_OFFSET), 7200);
+  assert.match(
+    report.summary ?? "",
+    /^Monster reach: 0 choices, 1 species stay longer; warning: flights and burrows left alone.*em01\.ovl$/,
   );
 });
