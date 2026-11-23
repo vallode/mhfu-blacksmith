@@ -25,6 +25,7 @@ import { useToast } from "@/context/ToastContext";
 import { useSetSearch, type SetSearchError } from "@/hooks/useSetSearch";
 import type { ArmorSlot } from "@/lib/constants";
 import { useSkillReach } from "@/hooks/useSkillReach";
+import { cn } from "@/lib/cn";
 import { useEquipmentIds } from "@/lib/equipment";
 import type { Messages } from "@/lib/i18n/messages";
 import {
@@ -56,7 +57,13 @@ import {
   type Piece,
   type SearchQuery,
 } from "@/lib/set-search";
-import { pressable, primaryButton, textButton } from "@/styles/set-builder";
+import {
+  menuRow,
+  pressable,
+  primaryButton,
+  secondaryButton,
+  textButton,
+} from "@/styles/set-builder";
 import * as ui from "@/styles/settings";
 import { PanelTitle } from "./ArmorSetView";
 import MySets from "./MySets";
@@ -265,6 +272,7 @@ export default function SetBuilderClient() {
     isLocked: (p) => form.locked.includes(p.href),
     onLock: (p) =>
       changePieces(withLock(form, p.slot, form.locked.includes(p.href) ? null : p, slotOf)),
+    onUse: (p) => changePieces(withLock(form, p.slot, p, slotOf)),
     onExclude: (p) =>
       changePieces({
         ...form,
@@ -293,6 +301,12 @@ export default function SetBuilderClient() {
   const wanted = useMemo(
     () => (data ? [...resolveWanted(data.trees, form.skills).wanted.keys()] : []),
     [data, form.skills],
+  );
+  // The results' piece lists follow the search behind them, not later edits to the form.
+  const searchedWanted = useMemo(
+    () =>
+      data && searched ? [...resolveWanted(data.trees, searched.skills).wanted.keys()] : wanted,
+    [data, searched, wanted],
   );
   const isOwned = useMemo(
     () => (progress.active ? (p: Piece) => progress.isOwned(p.href) : undefined),
@@ -661,29 +675,32 @@ export default function SetBuilderClient() {
               }
               onClear={() => update("excluded", [])}
             />
-            <button
-              type="button"
-              className={`${pressable} flex min-h-[4.4rem] w-full items-center justify-between gap-[1rem] border-t border-white/15 pt-[0.8rem] text-small`}
-              disabled={!data}
-              aria-haspopup="dialog"
-              onClick={() => setSheet("reach")}
-            >
-              <span className="min-w-0 truncate text-white">{text.reach.open}</span>
-              <span className="flex-none text-white/50" aria-hidden="true">
-                ›
-              </span>
-            </button>
-            <button
-              type="button"
-              className={`${pressable} flex min-h-[4.8rem] w-full items-center justify-between gap-[1rem] border-t border-white/15 pt-[0.8rem] text-small`}
-              aria-label={text.form.optionsLabel}
-              onClick={() => setSheet("options")}
-            >
-              <OptionsSummary form={form} ownedOnly={ownedOnly} />
-              <span className="flex-none text-white/50" aria-hidden="true">
-                {text.form.options} ›
-              </span>
-            </button>
+            {/* The dividers sit outside the rows, so each row's glow is
+                centred on its text. */}
+            <div className="flex flex-col border-t border-white/15">
+              <button
+                type="button"
+                className={cn(pressable, menuRow, "min-h-[4.4rem]")}
+                disabled={!data}
+                aria-haspopup="dialog"
+                onClick={() => setSheet("reach")}
+              >
+                <span className="min-w-0 truncate text-white">{text.reach.open}</span>
+              </button>
+              <div aria-hidden="true" className="h-px bg-white/15" />
+              <button
+                type="button"
+                className={cn(pressable, menuRow, "min-h-[4.8rem]")}
+                aria-label={text.form.optionsLabel}
+                aria-haspopup="dialog"
+                onClick={() => setSheet("options")}
+              >
+                <OptionsSummary form={form} ownedOnly={ownedOnly} />
+                <span className="flex-none text-white/50" aria-hidden="true">
+                  {text.form.options}
+                </span>
+              </button>
+            </div>
           </Card>
         </CardBox>
 
@@ -706,8 +723,13 @@ export default function SetBuilderClient() {
                         onStep={step}
                         weaponSlots={searched?.weaponSlots ?? 0}
                         hunterType={searched?.hunterType ?? form.hunterType}
+                        sex={searched?.sex ?? form.sex}
                         rank={searched?.rank ?? form.rank}
                         progress={searched ? (searched.progress ?? null) : questLimit}
+                        pieces={data?.pieces ?? []}
+                        wantedTrees={searchedWanted}
+                        ownedOnly={searched ? !!searched.onlyPieces : ownedOnly}
+                        isOwned={isOwned}
                         weaponClass={form.weaponClass}
                         onWeaponClass={(t) => update("weaponClass", t)}
                         sort={searched?.sort}
@@ -716,7 +738,7 @@ export default function SetBuilderClient() {
                         action={
                           <button
                             type="button"
-                            className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
+                            className={cn(secondaryButton, "gap-[0.8rem]")}
                             aria-label={r.editThis}
                             title={r.editThis}
                             onClick={() =>
@@ -725,6 +747,10 @@ export default function SetBuilderClient() {
                             }
                           >
                             <Icon type="item-37" className="mr-0" alt="" />
+                            {/* Just the icon on phones, beside the wishlist button. */}
+                            <span className="mobile:sr-only" aria-hidden="true">
+                              {r.editThis}
+                            </span>
                           </button>
                         }
                       >

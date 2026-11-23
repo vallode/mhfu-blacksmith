@@ -213,7 +213,6 @@ export const setBuilder = {
     weaponSlots: "Weapon slots",
     fewerWeaponSlots: "Fewer weapon slots",
     moreWeaponSlots: "More weapon slots",
-    weaponSlotCount: (n: number) => `${n} ${s(n, "weapon slot", "weapon slots")}`,
     sets: "Sets",
     previousSet: "Previous set",
     nextSet: "Next set",
@@ -259,6 +258,15 @@ export const setBuilder = {
     addToWishlist: "Add set to wishlist",
     /** The same button once they're all there: a link to the wishlist. */
     onWishlist: "On your wishlist",
+    /** The same, on a result's big wishlist button, over what the set needs made. */
+    addToWishlistShort: "Add to wishlist",
+    setCounts: (pieces: number, jewels: number) =>
+      [
+        pieces === 1 ? "1 piece" : `${pieces} pieces`,
+        jewels > 0 && (jewels === 1 ? "1 jewel" : `${jewels} jewels`),
+      ]
+        .filter(Boolean)
+        .join(", "),
     setAdded: "Set added to your wishlist.",
     setAddedWithJewels: "Set added to your wishlist, with its jewels.",
     alwaysUse: "Always use",
@@ -267,6 +275,12 @@ export const setBuilder = {
     unlockLabel: (name: string) => `Unlock ${name}`,
     neverUse: "Never use",
     neverUseLabel: (name: string) => `Never use ${name}: exclude it from the search`,
+    /** The slots at a row's right, for screen readers. */
+    slotsUsed: (used: number, total: number) =>
+      total === 0 ? "No slots" : `${used} of ${total} slots used`,
+    /** The piece sheet's list of the slot's other pieces. */
+    otherPiece: (slot: string) => `Other ${slot.toLowerCase()} pieces`,
+    otherPieceNote: "Pick one to use it in every set: the search runs again with it.",
   },
 
   /** Weapons for a result's slots (WeaponSuggestions). */
@@ -278,6 +292,14 @@ export const setBuilder = {
     none: "None of these fit. Try another class, or fewer weapon slots.",
     /** `attack` is formatted, or "-". */
     attack: (attack: string) => `ATK ${attack}`,
+    search: "Search every weapon of this class",
+    searchPlaceholder: "Search weapons",
+    matches: (n: number) => (n === 1 ? "1 weapon matches." : `${n} weapons match.`),
+    noMatch: "No weapon of this class matches.",
+    /** Why a weapon found by name isn't suggested. */
+    fewerSlots: (n: number) => (n === 1 ? "Only 1 slot" : `Only ${n} slots`),
+    /** `tier` is translated ("G Rank ★2"). */
+    needs: (tier: string) => `Needs ${tier}`,
   },
 
   /** The Status panel. */
