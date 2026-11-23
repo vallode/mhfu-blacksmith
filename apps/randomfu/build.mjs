@@ -10,7 +10,7 @@
  * src/app/globals.css, and its sprites and font are copied from its public/,
  * so the two stay in step.
  *
- * The Extras step's preview of the gathering-node map takes its nodes from
+ * The Quality of life step's preview of the gathering-node map takes its nodes from
  * data/gathering.json and the marker look from randomfu's patch
  * (node-map-preview.ts), and its map picture from the site's public/.
  *
@@ -44,7 +44,7 @@ const dist = path.join(web, "dist");
 const shim = (name) => path.join(web, "shims", name);
 const dataDir = path.resolve(web, "..", "..", "data");
 
-// The Extras step's gathering-node map preview (NODE_MAP_PREVIEW in app.ts): the Great Forest.
+// The Quality of life step's gathering-node map preview (NODE_MAP_PREVIEW in app.ts): the Great Forest.
 const previewTexture = "map30";
 const nodeMapPreview = {
   texture: previewTexture,

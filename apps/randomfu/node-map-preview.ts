@@ -1,5 +1,5 @@
 /**
- * The Extras step's preview of "Gathering nodes on the area map"
+ * The Quality of life step's preview of "Gathering nodes on the area map"
  * (`mods.nodeMap`): one map's nodes, sorted as randomfu's patch draws them.
  * build.mjs works this out from data/gathering.json and puts it in the page;
  * app.ts draws it on a canvas over the site's copy of the map's texture.
