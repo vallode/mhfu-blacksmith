@@ -7,8 +7,9 @@
  * tree's own rows (WeaponTreeRow, under the panel's TreeFilterContext), so
  * owned names, material pips and filter dimming work as in the tree.
  */
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import ElementGlyph from "./ElementGlyph";
+import { TreeBranch } from "./TreeScroll";
 import WeaponTreeRow from "./WeaponTreeRow";
 import { useTreeFilterResult } from "@/context/TreeFilterContext";
 import { useT } from "@/context/LanguageContext";
@@ -21,7 +22,6 @@ interface Props {
   sectionType: string;
   basePath: string;
   treeKey: string;
-  activeSlug?: string;
 }
 
 // Opaque, so rows scroll out of sight under a stuck header. TreeScroll
@@ -32,13 +32,7 @@ const header = cn(
   "hover:text-white focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white focus-visible:outline-solid",
 );
 
-export default function WeaponTreeGroups({
-  groups,
-  sectionType,
-  basePath,
-  treeKey,
-  activeSlug,
-}: Props) {
+export default function WeaponTreeGroups({ groups, sectionType, basePath, treeKey }: Props) {
   const t = useT();
   const tt = t.equipment.tree;
   const result = useTreeFilterResult();
@@ -50,10 +44,21 @@ export default function WeaponTreeGroups({
       return next;
     });
 
-  // A dual-element weapon is in two groups; only its first row is its anchor.
-  const seen = new Set<string>();
+  // Each weapon listed flat: its upgrades are rows of their own here. Made
+  // once per grouping, so the rows (memoised) keep their nodes. A
+  // dual-element weapon is in two groups; only its first row is its anchor.
+  const rows = useMemo(() => {
+    const seen = new Set<string>();
+    return groups.map((group) =>
+      group.weapons.map(({ node, parentHref }) => {
+        const listedAgain = seen.has(node.slug);
+        seen.add(node.slug);
+        return { node: { ...node, children: undefined }, parentHref, listedAgain };
+      }),
+    );
+  }, [groups]);
 
-  return groups.map((group) => {
+  return groups.map((group, g) => {
     const isFolded = folded.has(group.key);
     const total = group.weapons.length;
     const matched = result
@@ -90,25 +95,19 @@ export default function WeaponTreeGroups({
           </span>
         </button>
         {!isFolded && (
-          <ul>
-            {group.weapons.map(({ node, parentHref }) => {
-              const listedAgain = seen.has(node.slug);
-              seen.add(node.slug);
-              return (
-                <WeaponTreeRow
-                  key={node.slug}
-                  // Listed flat: its upgrades are rows of their own here.
-                  node={{ ...node, children: undefined }}
-                  parentHref={parentHref}
-                  sectionType={sectionType}
-                  basePath={basePath}
-                  treeKey={treeKey}
-                  activeSlug={activeSlug}
-                  listedAgain={listedAgain}
-                />
-              );
-            })}
-          </ul>
+          <TreeBranch rows={total}>
+            {rows[g].map(({ node, parentHref, listedAgain }) => (
+              <WeaponTreeRow
+                key={node.slug}
+                node={node}
+                parentHref={parentHref}
+                sectionType={sectionType}
+                basePath={basePath}
+                treeKey={treeKey}
+                listedAgain={listedAgain}
+              />
+            ))}
+          </TreeBranch>
         )}
       </section>
     );
