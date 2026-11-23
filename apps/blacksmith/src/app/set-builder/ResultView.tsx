@@ -184,7 +184,7 @@ export default function ResultView({
               ownedOnly={ownedOnly}
               isOwned={isOwned}
               onPick={(p) => {
-                if (p && p !== picked.piece) actions.onUse(p);
+                if (p && p.id !== picked.piece.id) actions.onUse(p);
                 setPicked(null);
               }}
               onClose={() => setPicked(null)}

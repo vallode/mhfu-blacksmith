@@ -197,9 +197,7 @@ function WeaponSlots({
         label={text.fewerWeaponSlots}
         onClick={() => step(-1)}
       />
-      <span aria-live="polite" aria-label={text.weaponSlotCount(count)}>
-        {pips}
-      </span>
+      <span aria-live="polite">{pips}</span>
       <SelectorArrow
         next
         className="size-[2.4rem]"

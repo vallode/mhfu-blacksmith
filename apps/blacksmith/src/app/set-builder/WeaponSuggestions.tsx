@@ -8,7 +8,7 @@
  * weapon trees. A search finds any weapon of the class by name, with why the
  * ones that don't fit weren't suggested.
  */
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
@@ -55,6 +55,12 @@ export default function WeaponSuggestions({
 }) {
   const t = useT();
   const [query, setQuery] = useState("");
+  // Each opening starts on the suggestions, whatever was searched before.
+  // (Stable while typing: Sheet refocuses itself when onClose changes.)
+  const close = useCallback(() => {
+    setQuery("");
+    onClose();
+  }, [onClose]);
   const choices: IconChoice<WeaponType>[] = weaponTypesFor(hunterType).map((w) => ({
     value: w,
     label: t.common.weaponTypes[w],
@@ -63,7 +69,7 @@ export default function WeaponSuggestions({
   return (
     <Sheet
       open={open}
-      onClose={onClose}
+      onClose={close}
       tall
       title={
         <span className="flex items-center gap-[0.8rem]">

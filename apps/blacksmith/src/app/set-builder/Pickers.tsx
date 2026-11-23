@@ -243,8 +243,8 @@ export function PiecePicker({
           <li key={p.id}>
             <button
               type="button"
-              className={cn(rowButton, p === current && "bg-white/10")}
-              aria-current={p === current || undefined}
+              className={cn(rowButton, p.id === current?.id && "bg-white/10")}
+              aria-current={p.id === current?.id || undefined}
               onClick={() => onPick(p)}
             >
               <Icon type={p.slot} size="mini" rarity={p.rarity} alt="" />

@@ -178,7 +178,6 @@ export const setBuilder: Messages["setBuilder"] = {
     weaponSlots: "Ranuras del arma",
     fewerWeaponSlots: "Menos ranuras del arma",
     moreWeaponSlots: "Más ranuras del arma",
-    weaponSlotCount: (n: number) => `${n} ${s(n, "ranura del arma", "ranuras del arma")}`,
     sets: "Conjuntos",
     previousSet: "Conjunto anterior",
     nextSet: "Conjunto siguiente",

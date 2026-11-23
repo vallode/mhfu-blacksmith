@@ -306,6 +306,12 @@ export default function SetBuilderClient() {
     () => (data ? [...resolveWanted(data.trees, form.skills).wanted.keys()] : []),
     [data, form.skills],
   );
+  // The results' piece lists follow the search behind them, not later edits to the form.
+  const searchedWanted = useMemo(
+    () =>
+      data && searched ? [...resolveWanted(data.trees, searched.skills).wanted.keys()] : wanted,
+    [data, searched, wanted],
+  );
   const isOwned = useMemo(
     () => (progress.active ? (p: Piece) => progress.isOwned(p.href) : undefined),
     [progress],
@@ -688,8 +694,8 @@ export default function SetBuilderClient() {
                         rank={searched?.rank ?? form.rank}
                         progress={searched ? (searched.progress ?? null) : questLimit}
                         pieces={data?.pieces ?? []}
-                        wantedTrees={wanted}
-                        ownedOnly={ownedOnly}
+                        wantedTrees={searchedWanted}
+                        ownedOnly={searched ? !!searched.onlyPieces : ownedOnly}
                         isOwned={isOwned}
                         weaponClass={form.weaponClass}
                         onWeaponClass={(t) => update("weaponClass", t)}

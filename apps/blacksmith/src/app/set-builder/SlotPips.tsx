@@ -25,10 +25,9 @@ export default function SlotPips({
   className?: string;
 }) {
   const label = useT().setBuilder.result.slotsUsed;
-  const used = Math.min(
-    total,
-    decorations.reduce((n, d) => (d.bin === bin ? n + d.deco.slots : n), 0),
-  );
+  // Can be more than `total` in the editor: the label says so and the slots turn red.
+  const used = decorations.reduce((n, d) => (d.bin === bin ? n + d.deco.slots : n), 0);
+  const over = used > total;
   return (
     <span
       role="img"
@@ -41,13 +40,13 @@ export default function SlotPips({
           aria-hidden="true"
           className={cn(
             "relative inline-flex w-cells-1 justify-center",
-            i < total ? "text-white" : "text-white/40",
+            over ? "text-negative" : i < total ? "text-white" : "text-white/40",
           )}
         >
           {i < total ? "O" : "-"}
           {/* The O's inside, filled: an oval over BIZ UDGothic's O (0.44em
               wide, from 0.8em above the baseline to just under it). */}
-          {i < used && (
+          {i < Math.min(used, total) && (
             <span className="absolute top-[0.16em] left-[0.03em] h-[0.8em] w-[0.44em] rounded-[50%] bg-current" />
           )}
         </span>

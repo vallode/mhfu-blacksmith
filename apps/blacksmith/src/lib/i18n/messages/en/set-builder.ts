@@ -204,7 +204,6 @@ export const setBuilder = {
     weaponSlots: "Weapon slots",
     fewerWeaponSlots: "Fewer weapon slots",
     moreWeaponSlots: "More weapon slots",
-    weaponSlotCount: (n: number) => `${n} ${s(n, "weapon slot", "weapon slots")}`,
     sets: "Sets",
     previousSet: "Previous set",
     nextSet: "Next set",
