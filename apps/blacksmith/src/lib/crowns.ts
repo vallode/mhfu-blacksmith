@@ -21,8 +21,8 @@ export function crownFor(size: number, crowns: Crowns): Crown | null {
   return null;
 }
 
-/** A size in percent as the Guild Card's centimetres. */
-export function sizeInCm(size: number, baseSize: number): number {
+/** A size in percent as the Guild Card shows it: the base size scaled. */
+export function cardSize(size: number, baseSize: number): number {
   return (size * baseSize) / 100;
 }
 

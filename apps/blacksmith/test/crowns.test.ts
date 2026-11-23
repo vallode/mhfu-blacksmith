@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { crownFor, formatChance, possibleCrowns, sizeInCm } from "../src/lib/crowns";
+import { crownFor, formatChance, possibleCrowns, cardSize } from "../src/lib/crowns";
 
 const RATHALOS = { mini: 90, silver: 114, gold: 127 };
 
@@ -13,8 +13,8 @@ test("crownFor gives a size's crown at the thresholds, inclusive", () => {
   assert.equal(crownFor(127, RATHALOS), "gold");
 });
 
-test("sizeInCm scales the monster's base size", () => {
-  assert.ok(Math.abs(sizeInCm(127, 1629.4) - 2069.338) < 1e-9);
+test("cardSize scales the monster's base size", () => {
+  assert.ok(Math.abs(cardSize(127, 1629.4) - 2069.338) < 1e-9);
 });
 
 test("formatChance rounds to a tenth of a percent", () => {
