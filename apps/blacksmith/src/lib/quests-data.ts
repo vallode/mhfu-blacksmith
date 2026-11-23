@@ -4,7 +4,14 @@
  */
 import fs from "fs";
 import path from "path";
-import { isHiddenQuest, questHubSlug, type QuestHubSlug } from "./quests";
+import {
+  firstQuestsByMonster,
+  isHiddenQuest,
+  questHubSlug,
+  type FirstQuests,
+  type QuestAppearance,
+  type QuestHubSlug,
+} from "./quests";
 import { DATA_DIR } from "./paths";
 import { readData } from "game-data";
 
@@ -44,4 +51,16 @@ export function getQuestSummaries(): QuestSummary[] {
 
 export function getQuestSummary(hub: string, id: number): QuestSummary | undefined {
   return getQuestSummaries().find((q) => q.hub === hub && q.id === id);
+}
+
+let firstQuests: Map<string, FirstQuests> | null = null;
+
+/** Where a monster (by English name) is first hunted on the Village and Guild boards. */
+export function getFirstQuests(name: string): FirstQuests {
+  firstQuests ??= firstQuestsByMonster(
+    ["village.json", "guild.json"].flatMap(
+      (file) => readData<{ quests: QuestAppearance[] }>(DATA_DIR, "quests", file).quests,
+    ),
+  );
+  return firstQuests.get(name) ?? {};
 }

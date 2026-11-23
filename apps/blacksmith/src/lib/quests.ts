@@ -491,6 +491,53 @@ export function questsWithMonster(quests: Quest[], name: string): Quest[] {
     .sort((a, b) => hubOrder(a) - hubOrder(b) || a.stars - b.stars || a.id - b.id);
 }
 
+/**
+ * Where a monster is first hunted: the lowest star level of the Village's
+ * quests it's in, and of each Guild rank's (stored stars: G Rank's are
+ * ★9-★11, see `questStarLevel`). A board or rank it's never hunted in is
+ * missing.
+ */
+export type FirstQuests = Partial<Record<"village" | QuestRank, number>>;
+
+/** A data/quests record, as much of it as `firstQuestsByMonster` reads. */
+export interface QuestAppearance {
+  id: number;
+  hub: string;
+  rank: string | null;
+  stars: number;
+  goal: string | null;
+  target?: { monster: string } | null;
+  large_monsters: { monster: string }[];
+}
+
+/**
+ * Each monster's first Village and Guild quests, by name. Counts the quests
+ * it's a large monster or the target in, but not the gathering ones: Tigrex
+ * passes through the Village ★1 delivery "Sinking Feeling", but is first
+ * hunted at ★5.
+ */
+export function firstQuestsByMonster(quests: QuestAppearance[]): Map<string, FirstQuests> {
+  const out = new Map<string, FirstQuests>();
+  for (const q of quests) {
+    if (isHiddenQuest(q.id) || questType(q.hub, q.goal) === "gathering") continue;
+    const names = new Set(q.large_monsters.map((m) => m.monster));
+    if (q.target) names.add(q.target.monster);
+    const board =
+      q.hub === "village"
+        ? "village"
+        : q.hub === "guild" && QUEST_RANKS.includes(q.rank as QuestRank)
+          ? (q.rank as QuestRank)
+          : null;
+    if (!board) continue;
+    for (const name of names) {
+      const first = out.get(name) ?? {};
+      first[board] = Math.min(first[board] ?? Infinity, q.stars);
+      out.set(name, first);
+    }
+  }
+  return out;
+}
+
 /** One star level of a quest board, with the quests that hold the most of a small monster. */
 export interface SmallMonsterStage {
   hub: QuestHubSlug;
