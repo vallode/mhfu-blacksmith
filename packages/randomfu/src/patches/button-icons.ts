@@ -4,7 +4,7 @@
  * redrawn as another controller's. Xbox: B A Y X LB RB Menu View, the buttons
  * PPSSPP maps them to by default. Nintendo: the same places, A B X Y L R + −.
  * PlayStation: ○ × △ □ as coloured shapes, L1 R1, ≡ and a touchpad. Keyboard:
- * keycaps for PPSSPP's default keys (X Z S A, Q W, Enter, Space).
+ * keycaps for PPSSPP's default keys (X Z S A, Q W, Space, Enter).
  *
  * - The icons are sprites 50-58 of the HUD sprite table (EU 0x089391A8,
  *   12-byte rows of u16 u, v, w, h, texture, set), all on texture 0x8001: a
@@ -263,24 +263,24 @@ const PLAYSTATION_PILL: Record<"start" | "select", readonly string[]> = {
   ],
 };
 
-/** Enter (↵) and Space (⎵), on keycaps. */
+/** Space (⎵) and Enter (↵), PPSSPP's default START and SELECT keys, on keycaps. */
 const KEYBOARD_PILL: Record<"start" | "select", readonly string[]> = {
   start: [
+    "..........",
+    "..........",
+    "#........#",
+    "#........#",
+    "##########",
+    "..........",
+    "..........",
+  ],
+  select: [
     "........##",
     "........##",
     "........##",
     ".#......##",
     "##########",
     ".#........",
-    "..........",
-  ],
-  select: [
-    "..........",
-    "..........",
-    "#........#",
-    "#........#",
-    "##########",
-    "..........",
     "..........",
   ],
 };
@@ -506,10 +506,8 @@ function drawStyled(image: SheetImage, sheet: Sheet, style: Style): void {
   const pill = hasPill ? image.copy(sx, sy, sw, sh) : null;
   const [cx, cy, cw, ch] = at(sheet, "cross");
   const face = image.copy(cx, cy, cw, ch);
-  // White is the START's words' colour, or on a sheet without one the × symbol's.
-  const light = pill
-    ? symbolColour(image, pill, [1, 5, 18, 9], true)
-    : symbolColour(image, face, [3, 4, 11, 12], true);
+  // White is the palette's whitest entry, the same on every sheet.
+  const light = image.nearest([255, 255, 255]);
   paintOut(image, face, [3, 4, 11, 12]);
   for (const icon of FACES) {
     const cell = face.map((row) => [...row]);
@@ -670,7 +668,7 @@ const NOTES: Record<ButtonSet, { name: string; note: string }> = {
   },
   keyboard: {
     name: "Keyboard",
-    note: "The PSP's button icons are drawn as keys, as PPSSPP maps a keyboard by default: Z for ×, X for ○, A for □, S for △, Q and W for L and R, Enter for START and Space for SELECT.",
+    note: "The PSP's button icons are drawn as keys, as PPSSPP maps a keyboard by default: Z for ×, X for ○, A for □, S for △, Q and W for L and R, Space for START and Enter for SELECT.",
   },
 };
 

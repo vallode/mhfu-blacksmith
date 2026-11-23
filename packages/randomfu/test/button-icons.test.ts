@@ -6,6 +6,7 @@ import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { locateIndexedImage, readTmh, swizzle } from "mhfu-extract/src/models/tmh.js";
 import { loadGame } from "../src/game/load.js";
 import {
+  buttonIconsTitle,
   drawSet,
   drawXbox,
   iconsHash,
@@ -159,18 +160,40 @@ test("a known sheet is redrawn in place: same size, only its icon cells change",
         assert.deepEqual(rgba(after, x, y), rgba(before, x, y), `${x}, ${y} is unchanged`);
 });
 
-test("randomize says so when the disc has no icon sheet", async () => {
+test("randomize says so when the disc has no icon sheet, for every set", async () => {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
   try {
     const game = await loadGame(source, iso);
-    const result = randomize(game, settingsWith("ICONS", [], { "mods.buttonIcons": "xbox" }));
-    const report = result.reports.find((r) => r.title === "Xbox button icons");
-    assert.ok(report);
-    assert.match(report.notes[0]!, /^Not written/);
+    for (const set of ["xbox", "nintendo", "playstation", "keyboard"] as const) {
+      const result = randomize(game, settingsWith("ICONS", [], { "mods.buttonIcons": set }));
+      const report = result.reports.find((r) => r.title === buttonIconsTitle(set));
+      assert.ok(report, set);
+      assert.match(report.notes[0]!, /^Not written/);
+    }
   } finally {
     source.close();
+  }
+});
+
+test("every set draws the title sheet's icons, which have no START or SELECT, and nothing else", () => {
+  for (const set of ["xbox", "nintendo", "playstation", "keyboard"] as const) {
+    const image = sheetImages(sheetFile()).next().value!.image;
+    const before = Buffer.from(image.pixels);
+    drawSet(image, SHEETS[1]!, set);
+    const [ox, oy] = SHEETS[1]!.origin;
+    let changed = 0;
+    for (let y = 0; y < 256; y++)
+      for (let x = 0; x < 256; x++) {
+        if (image.get(x, y) === before[y * 256 + x]) continue;
+        changed++;
+        assert.ok(
+          x >= ox && x < ox + 104 && y >= oy && y < oy + 16,
+          `${set}: ${x}, ${y} is outside the icons`,
+        );
+      }
+    assert.ok(changed > 0, `${set} drew something`);
   }
 });
 

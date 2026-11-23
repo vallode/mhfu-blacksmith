@@ -1122,7 +1122,7 @@ PPSSPP maps them to by default: B A Y X, LB RB, Menu and View. `nintendo` keeps
 the Xbox's places with a Switch's letters (A ○, B ×, X △, Y □) and L R + −.
 `playstation` draws coloured shapes (blue ×, red ○, pink □, green △), L1 R1,
 Options (≡) and a touchpad rectangle. `keyboard` draws outlined keycaps with
-PPSSPP's default keys: X ○, Z ×, S △, A □, Q W, Enter and Space; its keys are
+PPSSPP's default keys: X ○, Z ×, S △, A □, Q W, Space (START) and Enter (SELECT); its keys are
 drawn from scratch (outline 1, white top, 200 shade, 148/117 front, letters in
 73 grey) rather than on the painted-out button, and take the nearest palette
 entries too. START and SELECT exist only on the HUD sheet. They are sprites 50-58 of the HUD

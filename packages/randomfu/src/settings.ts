@@ -1821,7 +1821,7 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "keyboard",
           label: "Keyboard",
-          help: "Keys for PPSSPP's defaults: Z X A S, Q, W, Enter and Space.",
+          help: "Keys for PPSSPP's defaults: Z X A S, Q, W, Space and Enter.",
         },
       ],
     },
