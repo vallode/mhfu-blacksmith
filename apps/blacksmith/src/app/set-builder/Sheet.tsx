@@ -34,7 +34,8 @@ export default function Sheet({
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    // Not an Escape something in the sheet has handled (a picker going back).
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && !e.defaultPrevented && onClose();
     document.addEventListener("keydown", onKey);
     const before = document.activeElement as HTMLElement | null;
     ref.current?.focus();

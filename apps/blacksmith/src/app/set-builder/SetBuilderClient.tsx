@@ -22,6 +22,7 @@ import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useToast } from "@/context/ToastContext";
 import { useSetSearch, type SetSearchError } from "@/hooks/useSetSearch";
+import type { ArmorSlot } from "@/lib/constants";
 import { useEquipmentIds } from "@/lib/equipment";
 import type { Messages } from "@/lib/i18n/messages";
 import {
@@ -59,6 +60,8 @@ import { PanelTitle } from "./ArmorSetView";
 import MySets from "./MySets";
 import ResultView, { type PieceActions } from "./ResultView";
 import SearchBar from "./SearchBar";
+import { LockChips, LockNote, LockRows, withLock } from "./LockedArmor";
+import { PiecePicker } from "./Pickers";
 import { DEFAULT_FORM, OptionsSummary, SearchOptions, type Form } from "./SearchOptions";
 import SetEditor from "./SetEditor";
 import Sheet from "./Sheet";
@@ -249,19 +252,11 @@ export default function SetBuilderClient() {
       excludePieces: pieceIds(next.excluded),
     });
   };
+  const slotOf = (href: string) => byHref.get(href)?.slot;
   const pieceActions: PieceActions = {
     isLocked: (p) => form.locked.includes(p.href),
     onLock: (p) =>
-      changePieces(
-        form.locked.includes(p.href)
-          ? { ...form, locked: form.locked.filter((h) => h !== p.href) }
-          : {
-              ...form,
-              // One locked piece per slot.
-              locked: [...form.locked.filter((h) => byHref.get(h)?.slot !== p.slot), p.href],
-              excluded: form.excluded.filter((h) => h !== p.href),
-            },
-      ),
+      changePieces(withLock(form, p.slot, form.locked.includes(p.href) ? null : p, slotOf)),
     onExclude: (p) =>
       changePieces({
         ...form,
@@ -510,10 +505,41 @@ export default function SetBuilderClient() {
   // Whether the form asks for something other than the results show.
   const asked = queryFor(form);
   const stale = !!asked && (!searched || !sameQuery(asked, searched));
-  const [sheet, setSheet] = useState<"skills" | "options" | null>(null);
-  const closeSheet = useCallback(() => setSheet(null), []);
-  const searchFromSheet = () => {
+  const [sheet, setSheet] = useState<"skills" | "options" | "lock" | null>(null);
+  /**
+   * The lock sheet: the slot it picks a piece for, or (null) the slot rows;
+   * and the last slot picked for, whose row has the focus back.
+   */
+  const [lockSlot, setLockSlot] = useState<ArmorSlot | null>(null);
+  const [lastLockSlot, setLastLockSlot] = useState<ArmorSlot | null>(null);
+  const lockSlotRef = useRef(lockSlot);
+  lockSlotRef.current = lockSlot;
+  const openLock = (slot: ArmorSlot | null) => {
+    if (slot) setLastLockSlot(slot);
+    setLockSlot(slot);
+    setSheet("lock");
+  };
+  const closeSheet = useCallback(() => {
     setSheet(null);
+    setLockSlot(null);
+    setLastLockSlot(null);
+  }, []);
+  // In the piece picker, ×, Escape and the dimmed page go back to the slot
+  // rows. Stable, so the sheet keeps its focus.
+  const closeLock = useCallback(
+    () => (lockSlotRef.current ? setLockSlot(null) : closeSheet()),
+    [closeSheet],
+  );
+  const lockPiece = (slot: ArmorSlot, p: Piece | null) =>
+    setForm((f) => withLock(f, slot, p, slotOf));
+  const lockedPieces = piecesOf(form.locked);
+  const lockProps = {
+    pieces: lockedPieces,
+    onPick: openLock,
+    onRemove: (slot: ArmorSlot) => lockPiece(slot, null),
+  };
+  const searchFromSheet = () => {
+    closeSheet();
     runSearch();
   };
 
@@ -589,6 +615,7 @@ export default function SetBuilderClient() {
               onAdd={() => setSheet("skills")}
               addLabel={form.skills.length ? text.form.addMore : text.form.addFirst}
             />
+            <LockChips {...lockProps} onAdd={() => openLock(null)} />
             <button
               type="button"
               className={`${pressable} flex min-h-[4.8rem] w-full items-center justify-between gap-[1rem] border-t border-white/15 pt-[0.8rem] text-small`}
@@ -720,6 +747,38 @@ export default function SetBuilderClient() {
         footer={searchFooter}
       >
         <SkillBrowser skills={skills} value={form.skills} onChange={(v) => update("skills", v)} />
+      </Sheet>
+
+      <Sheet
+        open={sheet === "lock"}
+        onClose={closeLock}
+        title={text.form.locked.title}
+        tall={!!lockSlot}
+        footer={searchFooter}
+      >
+        {lockSlot ? (
+          <PiecePicker
+            slot={lockSlot}
+            pieces={data?.pieces ?? []}
+            current={lockedPieces.find((p) => p.slot === lockSlot) ?? null}
+            hunter={form}
+            rank={form.rank}
+            wanted={wanted}
+            questLimit={questLimit}
+            ownedOnly={ownedOnly}
+            isOwned={isOwned}
+            onPick={(p) => {
+              lockPiece(lockSlot, p);
+              closeLock();
+            }}
+            onClose={closeLock}
+          />
+        ) : (
+          <>
+            <LockNote />
+            <LockRows {...lockProps} focusSlot={lastLockSlot} />
+          </>
+        )}
       </Sheet>
 
       <Sheet

@@ -2,8 +2,9 @@
 
 /**
  * The set search's form and its options: the hunter, rank and weapon slots,
- * the sort, the toggles and the locked and excluded pieces (SearchOptions,
- * shown in a sheet), and all of it as one line (OptionsSummary).
+ * the sort, the toggles and the excluded pieces (SearchOptions, shown in a
+ * sheet), and all of it as one line (OptionsSummary). Locked pieces are on
+ * the search card itself (LockedArmor.tsx).
  */
 import Link from "next/link";
 import Icon from "@/components/Icon";
@@ -202,17 +203,6 @@ export function SearchOptions({
         />
       )}
       <PieceChips
-        text={text.locked}
-        on
-        pieces={piecesOf(form.locked)}
-        onRemove={(href) =>
-          update(
-            "locked",
-            form.locked.filter((h) => h !== href),
-          )
-        }
-      />
-      <PieceChips
         text={text.excluded}
         pieces={piecesOf(form.excluded)}
         onRemove={(href) =>
@@ -226,15 +216,13 @@ export function SearchOptions({
   );
 }
 
-/** Locked or excluded pieces, as chips that come off the list with a tap. */
+/** Excluded pieces, as chips that come off the list with a tap. */
 function PieceChips({
   text,
-  on,
   pieces,
   onRemove,
 }: {
-  text: Messages["setBuilder"]["form"]["locked"];
-  on?: boolean;
+  text: Messages["setBuilder"]["form"]["excluded"];
   pieces: Piece[];
   onRemove: (href: string) => void;
 }) {
@@ -249,7 +237,7 @@ function PieceChips({
           <li key={p.href}>
             <button
               type="button"
-              className={cn(chip, on ? chipOn : chipOff, "text-fine")}
+              className={cn(chip, chipOff, "text-fine")}
               aria-label={text.remove(game.name("armor", p.name))}
               onClick={() => onRemove(p.href)}
             >
@@ -296,7 +284,6 @@ export function OptionsSummary({ form, ownedOnly }: { form: Form; ownedOnly: boo
     form.allowBadSkills && summary.badSkills,
     form.ignoreQuestProgress && summary.allQuests,
     ownedOnly && summary.ownedArmor,
-    form.locked.length > 0 && summary.alwaysUsed(form.locked.length),
     form.excluded.length > 0 && summary.neverUsed(form.excluded.length),
   ].filter(Boolean);
   const sort = SORTS.find((x) => x.value === form.sort);

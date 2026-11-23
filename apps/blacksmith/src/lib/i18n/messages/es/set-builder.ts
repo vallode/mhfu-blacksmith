@@ -70,8 +70,12 @@ export const setBuilder: Messages["setBuilder"] = {
     ownedOnlyNote: "Usar solo la armadura de la caja de equipo de tu cazador.",
     locked: {
       title: "Siempre usadas",
-      note: "Todos los conjuntos las usan, sea cual sea el rango o el progreso de misiones, si el cazador puede llevarlas.",
+      note: "Todos los conjuntos las usan, sea cual sea el rango o el progreso de misiones, si el cazador puede llevarlas. Elige una parte para escoger su pieza.",
       remove: (name: string) => `Quitar ${name} de las piezas que siempre se usan`,
+      any: "Cualquiera",
+      add: "+ Usar siempre una pieza",
+      pick: (slot: string, name: string | null) =>
+        `${slot}: ${name ?? "cualquier pieza"}. Elegir la pieza que usan todos los conjuntos`,
     },
     excluded: {
       title: "Nunca usadas",
