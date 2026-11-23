@@ -122,7 +122,7 @@ export interface Settings {
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
-  "mods.buttonIcons": "psp" | "xbox";
+  "mods.buttonIcons": "psp" | "xbox" | "nintendo" | "playstation" | "keyboard";
   "camera.fov": "normal" | "wide" | "wider" | "widest";
   "camera.distance": "normal" | "far" | "farther" | "farthest";
   "camera.tilt": "steps" | "slow" | "smooth" | "fast";
@@ -1807,6 +1807,21 @@ export const OPTIONS: readonly OptionDef[] = [
           value: "xbox",
           label: "Xbox",
           help: "A B X Y in their colours, LB, RB, Menu and View.",
+        },
+        {
+          value: "nintendo",
+          label: "Nintendo",
+          help: "A B X Y as a Switch has them (B below, A right), L, R, + and −.",
+        },
+        {
+          value: "playstation",
+          label: "PlayStation",
+          help: "Coloured × ○ □ △, L1, R1, Options and the touchpad.",
+        },
+        {
+          value: "keyboard",
+          label: "Keyboard",
+          help: "Keys for PPSSPP's defaults: Z X A S, Q, W, Enter and Space.",
         },
       ],
     },

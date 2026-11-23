@@ -1,8 +1,10 @@
 /**
- * Xbox button icons: the PSP's ○ × △ □ L R START SELECT icons, which the
+ * Other button icons: the PSP's ○ × △ □ L R START SELECT icons, which the
  * game draws in its text (`~B00`-`~B09`, see `hints/style.ts`) and HUD, are
- * redrawn as an Xbox controller's B A Y X LB RB Menu View, the buttons
- * PPSSPP maps them to by default.
+ * redrawn as another controller's. Xbox: B A Y X LB RB Menu View, the buttons
+ * PPSSPP maps them to by default. Nintendo: the same places, A B X Y L R + −.
+ * PlayStation: ○ × △ □ as coloured shapes, L1 R1, ≡ and a touchpad. Keyboard:
+ * keycaps for PPSSPP's default keys (X Z S A, Q W, Enter, Space).
  *
  * - The icons are sprites 50-58 of the HUD sprite table (EU 0x089391A8,
  *   12-byte rows of u16 u, v, w, h, texture, set), all on texture 0x8001: a
@@ -47,6 +49,9 @@ export interface Sheet {
   origin: readonly [number, number];
   icons: readonly Icon[];
 }
+
+/** The button sets `mods.buttonIcons` can draw besides the PSP's own. */
+export type ButtonSet = "xbox" | "nintendo" | "playstation" | "keyboard";
 
 const FACES: readonly Icon[] = ["circle", "cross", "triangle", "square"];
 
@@ -121,6 +126,28 @@ const FACE_GLYPHS: Record<string, readonly string[]> = {
     "..###..",
     "..###..",
   ],
+  Z: [
+    "#######",
+    "#######",
+    "....##.",
+    "...##..",
+    "..##...",
+    ".##....",
+    "##.....",
+    "#######",
+    "#######",
+  ],
+  S: [
+    ".#####.",
+    "##...##",
+    "##.....",
+    ".####..",
+    "..####.",
+    ".....##",
+    "##...##",
+    "##...##",
+    ".#####.",
+  ],
 };
 
 /** 6x8 letters for the bumpers, as tall as the PSP's L and R. */
@@ -128,6 +155,134 @@ const BUMPER_GLYPHS: Record<string, readonly string[]> = {
   L: ["##....", "##....", "##....", "##....", "##....", "##....", "######", "######"],
   R: ["#####.", "##..##", "##..##", "#####.", "####..", "##.##.", "##..##", "##..##"],
   B: ["#####.", "##..##", "##..##", "#####.", "##..##", "##..##", "##..##", "#####."],
+  Q: [".####.", "##..##", "##..##", "##..##", "##..##", "##.###", ".####.", "....##"],
+  "1": [".##.", "###.", ".##.", ".##.", ".##.", ".##.", ".##.", "####"],
+};
+
+/** The keyboard's W, 8 wide. */
+const WIDE_W: readonly string[] = [
+  "##....##",
+  "##....##",
+  "##....##",
+  "##.##.##",
+  "##.##.##",
+  "##.##.##",
+  "########",
+  "###..###",
+];
+
+/** 9x9 PlayStation face symbols, 2-pixel strokes. */
+const SHAPES: Record<string, readonly string[]> = {
+  circle: [
+    "..#####..",
+    ".##...##.",
+    "##.....##",
+    "##.....##",
+    "##.....##",
+    "##.....##",
+    "##.....##",
+    ".##...##.",
+    "..#####..",
+  ],
+  cross: [
+    "##.....##",
+    ".##...##.",
+    "..##.##..",
+    "...###...",
+    "...###...",
+    "...###...",
+    "..##.##..",
+    ".##...##.",
+    "##.....##",
+  ],
+  triangle: [
+    "....#....",
+    "...###...",
+    "...#.#...",
+    "..##.##..",
+    "..#...#..",
+    ".##...##.",
+    ".#.....#.",
+    "#########",
+    "#########",
+  ],
+  square: [
+    "#########",
+    "##.....##",
+    "##.....##",
+    "##.....##",
+    "##.....##",
+    "##.....##",
+    "##.....##",
+    "##.....##",
+    "#########",
+  ],
+};
+
+/** Plus and minus (Nintendo), 10x7 like the other pill symbols. */
+const PLUS_MINUS: Record<"start" | "select", readonly string[]> = {
+  start: [
+    "....##....",
+    "....##....",
+    "..######..",
+    "..######..",
+    "....##....",
+    "....##....",
+    "..........",
+  ],
+  select: [
+    "..........",
+    "..........",
+    "..........",
+    ".########.",
+    ".########.",
+    "..........",
+    "..........",
+  ],
+};
+
+/** Options (≡) and the touchpad (PlayStation). */
+const PLAYSTATION_PILL: Record<"start" | "select", readonly string[]> = {
+  start: [
+    "..........",
+    ".########.",
+    "..........",
+    ".########.",
+    "..........",
+    ".########.",
+    "..........",
+  ],
+  select: [
+    "..........",
+    ".########.",
+    ".#......#.",
+    ".#......#.",
+    ".#......#.",
+    ".########.",
+    "..........",
+  ],
+};
+
+/** Enter (↵) and Space (⎵), on keycaps. */
+const KEYBOARD_PILL: Record<"start" | "select", readonly string[]> = {
+  start: [
+    "........##",
+    "........##",
+    "........##",
+    ".#......##",
+    "##########",
+    ".#........",
+    "..........",
+  ],
+  select: [
+    "..........",
+    "..........",
+    "#........#",
+    "#........#",
+    "##########",
+    "..........",
+    "..........",
+  ],
 };
 
 /** Menu (☰) on START and View (two windows) on SELECT, 10x7 from the cell's (5, 4). */
@@ -300,6 +455,158 @@ export function drawXbox(image: SheetImage, sheet: Sheet): void {
   }
 }
 
+type Rgb = readonly [number, number, number];
+
+/** What a dark-button set puts on the PSP's painted-out buttons. */
+interface Style {
+  faces: Record<string, { glyph: readonly string[]; x: number; y: number; colour: Rgb | "light" }>;
+  bumpers: Record<"l" | "r", readonly (readonly [glyph: readonly string[], x: number])[]>;
+  pills: Record<"start" | "select", readonly string[]>;
+}
+
+const letter = (name: string) => ({
+  glyph: FACE_GLYPHS[name]!,
+  x: 4,
+  y: 4,
+  colour: "light" as const,
+});
+
+const STYLES: Record<"nintendo" | "playstation", Style> = {
+  // The Xbox's places, a Switch's letters: B below, A right, Y left, X above.
+  nintendo: {
+    faces: { cross: letter("B"), circle: letter("A"), square: letter("Y"), triangle: letter("X") },
+    bumpers: { l: [[BUMPER_GLYPHS.L!, 7]], r: [[BUMPER_GLYPHS.R!, 7]] },
+    pills: PLUS_MINUS,
+  },
+  playstation: {
+    faces: {
+      cross: { glyph: SHAPES.cross!, x: 3, y: 3, colour: [90, 150, 255] },
+      circle: { glyph: SHAPES.circle!, x: 3, y: 3, colour: [235, 70, 70] },
+      square: { glyph: SHAPES.square!, x: 3, y: 3, colour: [235, 130, 210] },
+      triangle: { glyph: SHAPES.triangle!, x: 3, y: 3, colour: [60, 205, 150] },
+    },
+    bumpers: {
+      l: [
+        [BUMPER_GLYPHS.L!, 4],
+        [BUMPER_GLYPHS["1"]!, 11],
+      ],
+      r: [
+        [BUMPER_GLYPHS.R!, 4],
+        [BUMPER_GLYPHS["1"]!, 11],
+      ],
+    },
+    pills: PLAYSTATION_PILL,
+  },
+};
+
+/** Redraws a sheet's icons as a Nintendo or PlayStation controller's, on the PSP's painted-out buttons. */
+function drawStyled(image: SheetImage, sheet: Sheet, style: Style): void {
+  const hasPill = sheet.icons.includes("start");
+  const [sx, sy, sw, sh] = at(sheet, "start");
+  const pill = hasPill ? image.copy(sx, sy, sw, sh) : null;
+  const [cx, cy, cw, ch] = at(sheet, "cross");
+  const face = image.copy(cx, cy, cw, ch);
+  // White is the START's words' colour, or on a sheet without one the × symbol's.
+  const light = pill
+    ? symbolColour(image, pill, [1, 5, 18, 9], true)
+    : symbolColour(image, face, [3, 4, 11, 12], true);
+  paintOut(image, face, [3, 4, 11, 12]);
+  for (const icon of FACES) {
+    const cell = face.map((row) => [...row]);
+    const { glyph, x, y, colour } = style.faces[icon]!;
+    draw(cell, glyph, x, y, colour === "light" ? light : image.nearest(colour));
+    const [fx, fy] = at(sheet, icon);
+    image.paste(fx, fy, cell);
+  }
+
+  const [lx, ly, lw, lh] = at(sheet, "l");
+  const bumper = image.copy(lx, ly, lw, lh);
+  const ink = symbolColour(image, bumper, [3, 4, 16, 11], false);
+  paintOut(image, bumper, [3, 4, 16, 11]);
+  for (const icon of ["l", "r"] as const) {
+    const cell = bumper.map((row) => [...row]);
+    for (const [glyph, x] of style.bumpers[icon]) draw(cell, glyph, x, 4, ink);
+    const [x, y] = at(sheet, icon);
+    image.paste(x, y, cell);
+  }
+
+  if (!pill) return;
+  for (let y = 5; y <= 9; y++) pill[y] = [...pill[4]!];
+  for (const icon of ["start", "select"] as const) {
+    const cell = pill.map((row) => [...row]);
+    draw(cell, style.pills[icon], 5, 4, light);
+    const [x, y] = at(sheet, icon);
+    image.paste(x, y, cell);
+  }
+}
+
+/** A keycap `w` x `h`: outline, a light top `top` rows deep, a shaded front. */
+function keycap(image: SheetImage, clear: number, w: number, h: number, top: number): number[][] {
+  const [outline, white, shade, front, edge] = (
+    [
+      [1, 1, 1],
+      [255, 255, 255],
+      [200, 200, 200],
+      [148, 148, 148],
+      [117, 117, 117],
+    ] as const
+  ).map((c) => image.nearest(c)) as [number, number, number, number, number];
+  const cap = Array.from({ length: 16 }, () => Array<number>(w).fill(clear));
+  for (let y = 0; y < h; y++)
+    for (let x = 0; x < w; x++) {
+      const border = y === 0 || y === h - 1 || x === 0 || x === w - 1;
+      let index = white;
+      if (y > top) index = y === h - 2 ? edge : front;
+      else if (x === w - 2 || y === top) index = shade;
+      cap[y]![x] = border ? outline : index;
+    }
+  for (const [x, y] of [
+    [0, 0],
+    [w - 1, 0],
+    [0, h - 1],
+    [w - 1, h - 1],
+  ] as const)
+    cap[y]![x] = clear;
+  return cap;
+}
+
+/** Redraws a sheet's icons as keycaps for PPSSPP's default keys. */
+function drawKeyboard(image: SheetImage, sheet: Sheet): void {
+  const [cx, cy] = at(sheet, "cross");
+  const clear = image.get(cx, cy);
+  const ink = image.nearest([73, 73, 73]);
+  const key = (
+    icon: Icon,
+    h: number,
+    top: number,
+    glyph: readonly string[],
+    x: number,
+    y: number,
+  ) => {
+    const [w] = ICON_CELLS[icon].slice(2) as [number];
+    const cell = keycap(image, clear, w, h, top);
+    draw(cell, glyph, x, y, ink);
+    const [px, py] = at(sheet, icon);
+    image.paste(px, py, cell);
+  };
+  key("circle", 16, 11, FACE_GLYPHS.X!, 4, 2);
+  key("cross", 16, 11, FACE_GLYPHS.Z!, 4, 2);
+  key("triangle", 16, 11, FACE_GLYPHS.S!, 4, 2);
+  key("square", 16, 11, FACE_GLYPHS.A!, 4, 2);
+  key("l", 16, 11, BUMPER_GLYPHS.Q!, 7, 3);
+  key("r", 16, 11, WIDE_W, 6, 3);
+  if (!sheet.icons.includes("start")) return;
+  key("start", 14, 9, KEYBOARD_PILL.start, 5, 1);
+  key("select", 14, 9, KEYBOARD_PILL.select, 5, 1);
+}
+
+/** Redraws a sheet's icons as a set's. */
+export function drawSet(image: SheetImage, sheet: Sheet, set: ButtonSet): void {
+  if (set === "xbox") drawXbox(image, sheet);
+  else if (set === "keyboard") drawKeyboard(image, sheet);
+  else drawStyled(image, sheet, STYLES[set]);
+}
+
 /** The sheet images a file holds: each 256x256 8-bit image with an RGBA palette. */
 export function* sheetImages(file: Buffer) {
   if (!isTmh(file)) return;
@@ -319,19 +626,21 @@ export function* sheetImages(file: Buffer) {
 }
 
 /**
- * The file with its PSP icons redrawn as the Xbox's, and the names of the
- * sheets drawn on, or null if it has none this knows.
+ * The file with its PSP icons redrawn as a set's (the Xbox's unless told
+ * otherwise), and the names of the sheets drawn on, or null if it has none
+ * this knows.
  */
 export function redrawIcons(
   file: Buffer,
   known: Record<string, readonly string[]> = PSP_ART,
+  set: ButtonSet = "xbox",
 ): { file: Buffer; sheets: string[] } | null {
   const out = Buffer.from(file);
   const sheets: string[] = [];
   for (const { image, pixelsAt } of sheetImages(file)) {
     const sheet = SHEETS.find((s) => known[s.name]?.includes(iconsHash(image, s)));
     if (!sheet) continue;
-    drawXbox(image, sheet);
+    drawSet(image, sheet, set);
     swizzle(image.pixels, 256, 256).copy(out, pixelsAt);
     sheets.push(sheet.name);
   }
@@ -346,14 +655,35 @@ export const SHEET_FILES: Partial<Record<Region, readonly number[]>> = {
 /** Elsewhere, the first files are searched: the system files are among them. */
 export const SCAN_FILES = 64;
 
-const TITLE = "Xbox button icons";
+const NOTES: Record<ButtonSet, { name: string; note: string }> = {
+  xbox: {
+    name: "Xbox",
+    note: "The PSP's button icons are drawn as an Xbox controller's, as PPSSPP maps one by default: A for ×, B for ○, X for □, Y for △, LB and RB for L and R, Menu and View for START and SELECT.",
+  },
+  nintendo: {
+    name: "Nintendo",
+    note: "The PSP's button icons are drawn as a Switch controller's, in the same places as the Xbox's: B for ×, A for ○, Y for □, X for △, L and R, + and − for START and SELECT.",
+  },
+  playstation: {
+    name: "PlayStation",
+    note: "The PSP's button icons are drawn as a modern PlayStation controller's: coloured × ○ □ △ shapes, L1 and R1, Options (≡) for START and the touchpad for SELECT.",
+  },
+  keyboard: {
+    name: "Keyboard",
+    note: "The PSP's button icons are drawn as keys, as PPSSPP maps a keyboard by default: Z for ×, X for ○, A for □, S for △, Q and W for L and R, Enter for START and Space for SELECT.",
+  },
+};
+
+/** The title of a set's report. */
+export const buttonIconsTitle = (set: ButtonSet) => `${NOTES[set].name} button icons`;
 
 /** Redraws the button icons on every sheet that has them. */
-export function addButtonIcons(game: GameData, edits: Edits): ShuffleReport {
+export function addButtonIcons(game: GameData, edits: Edits, set: ButtonSet): ShuffleReport {
+  const TITLE = buttonIconsTitle(set);
   const drawn: string[] = [];
   const files = SHEET_FILES[game.region] ?? Array.from({ length: SCAN_FILES }, (_, index) => index);
   for (const index of files.filter((index) => index < game.dataBin.fileCount)) {
-    const result = redrawIcons(edits.dataFileNow(index));
+    const result = redrawIcons(edits.dataFileNow(index), PSP_ART, set);
     if (!result) continue;
     result.file.copy(edits.dataFile(index));
     drawn.push(`${index} (${result.sheets.join(", ")})`);
@@ -366,10 +696,7 @@ export function addButtonIcons(game: GameData, edits: Edits): ShuffleReport {
     };
   return {
     title: TITLE,
-    notes: [
-      "The PSP's button icons are drawn as an Xbox controller's, as PPSSPP maps one by default: A for ×, B for ○, X for □, Y for △, LB and RB for L and R, Menu and View for START and SELECT.",
-      `Drawn on DATA.BIN files ${drawn.join(", ")}.`,
-    ],
+    notes: [NOTES[set].note, `Drawn on DATA.BIN files ${drawn.join(", ")}.`],
     lines: [],
     summary: `${TITLE}: ${drawn.length} textures`,
   };

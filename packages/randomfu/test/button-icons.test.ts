@@ -6,6 +6,7 @@ import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { locateIndexedImage, readTmh, swizzle } from "mhfu-extract/src/models/tmh.js";
 import { loadGame } from "../src/game/load.js";
 import {
+  drawSet,
   drawXbox,
   iconsHash,
   redrawIcons,
@@ -170,5 +171,59 @@ test("randomize says so when the disc has no icon sheet", async () => {
     assert.match(report.notes[0]!, /^Not written/);
   } finally {
     source.close();
+  }
+});
+
+test("Nintendo keeps the Xbox's places with a Switch's letters, plus and minus", () => {
+  const image = sheetImages(sheetFile()).next().value!.image;
+  drawSet(image, SHEETS[0]!, "nintendo");
+  const xbox = drawnSheet();
+  const shape = (img: SheetImage, x: number) =>
+    img
+      .copy(x + 4, 4, 7, 9)
+      .flat()
+      .map((index) => index === FACE);
+  assert.deepEqual(shape(image, 0), shape(xbox, 16), "○ is A, the shape the Xbox gives ×");
+  assert.deepEqual(shape(image, 16), shape(xbox, 0), "× is B, the shape the Xbox gives ○");
+  assert.equal(image.get(5 + 4, 16 + 4), SYMBOL, "plus's stem, in the words' colour");
+  assert.equal(image.get(5, 16 + 4), PILL, "the words are gone");
+  assert.equal(image.get(20 + 5 + 1, 16 + 7), SYMBOL, "minus is a bar");
+  assert.equal(image.get(20 + 5, 16 + 7), PILL, "which stops short of its edges");
+  assert.equal(image.get(200, 200), SYMBOL, "art elsewhere is left alone");
+});
+
+test("PlayStation draws coloured shapes and L1 R1", () => {
+  const image = sheetImages(sheetFile()).next().value!.image;
+  drawSet(image, SHEETS[0]!, "playstation");
+  assert.equal(image.get(0 + 3 + 2, 3), RED, "○ is red");
+  assert.equal(image.get(64 + 4, 4), INK, "L of L1");
+  assert.equal(image.get(64 + 12, 4), INK, "the 1 of L1");
+  for (let y = 0; y < 16; y++)
+    for (let x = 0; x < 64; x++)
+      assert.notEqual(image.get(x, y), SYMBOL, `no PSP symbol at ${x}, ${y}`);
+});
+
+test("Keyboard draws outlined keycaps with their letters, leaving the corners clear", () => {
+  const image = sheetImages(sheetFile()).next().value!.image;
+  drawSet(image, SHEETS[0]!, "keyboard");
+  // The fixture's buttons are square, so what's "clear" is its body, FACE.
+  for (const x of [0, 16, 32, 48, 64, 84]) {
+    assert.equal(image.get(x, 0), FACE, "the corner is clear");
+    assert.equal(image.get(x + 5, 0), INK, "outline along the top");
+  }
+  assert.notEqual(image.get(16 + 4, 2), image.get(16 + 4, 4), "Z's bar differs from the key");
+  assert.equal(image.get(0, 16 + 15), FACE, "the Enter and Space keys are 14 tall");
+  assert.equal(image.get(5, 16 + 13), INK, "the key's bottom outline is its 14th row");
+  assert.equal(image.get(200, 200), SYMBOL, "art elsewhere is left alone");
+});
+
+test("every set redraws a known sheet in place, size unchanged", () => {
+  const file = sheetFile();
+  const sheet = [...sheetImages(file)][0]!.image;
+  for (const set of ["nintendo", "playstation", "keyboard"] as const) {
+    const result = redrawIcons(file, { HUD: [iconsHash(sheet, SHEETS[0]!)] }, set);
+    assert.ok(result, set);
+    assert.equal(result.file.length, file.length, set);
+    assert.notDeepEqual(result.file, file, set);
   }
 });
