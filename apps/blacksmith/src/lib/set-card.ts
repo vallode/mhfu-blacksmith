@@ -10,26 +10,29 @@
  * 9-slice frame or tint an image. Pure: no fs, no process.env.
  */
 import { ARMOR_SLOTS } from "./constants";
-import { EMBED_ICON_TINTS, slotGlyphs, tally, tintFor, UI_COLORS } from "./embed-format";
+import {
+  CARD,
+  CARD_FONT,
+  CARD_FONT_PATH,
+  cardShell,
+  COLOR,
+  h,
+  text,
+  type CardNode,
+} from "./card-tree";
+import { EMBED_ICON_TINTS, slotGlyphs, tally, tintFor } from "./embed-format";
 import { binSlots, evaluateBuild, type BuildSet } from "./set-build";
 import type { DecoBin, Piece, SkillTreeData } from "./set-search";
 
 /** Bump when the card's look changes, so caches and link previews pick it up. */
 export const SET_CARD_VERSION = 4;
 
-/**
- * The image: the site's card frame (the card-frame art, at the game's 4×,
- * drawn 1:1) and what's in it, about the usual large link-preview shape
- * (1.91:1). The frame tiles in 96×32 periods, so its middle is a whole number
- * of them: 32 + 11 × 96 + 32 wide and 24 + 17 × 32 + 24 high. Around it, the
- * frame's notches are transparent.
- */
-export const CARD = { width: 1120, height: 592, frameTop: 24, frameSide: 32 } as const;
+export { CARD, type CardNode };
 
 /** Where the build writes the card's frame and sprites, under public/. */
 export const SET_CARD_ASSETS_PATH = "/embed/set-card.json";
-export const SET_CARD_FONT_PATH = "/fonts/biz-udgothic-latin-400-normal.ttf";
-export const SET_CARD_FONT = "BIZ UDGothic";
+export const SET_CARD_FONT_PATH = CARD_FONT_PATH;
+export const SET_CARD_FONT = CARD_FONT;
 
 /** Sprites are drawn at this many times their size (the 16px mini icons at 32px). */
 export const SPRITE_SCALE = 2;
@@ -80,32 +83,6 @@ export function cardSpriteSources(): { name: string; file: string; tint?: string
     ...ICONS.elements.map((e) => ({ name: `${e}-plain`, file: `${e}.png` })),
   ];
 }
-
-// The @theme tokens the card uses (embed-format.ts keeps the copies satori needs).
-const COLOR = {
-  ...UI_COLORS,
-  white: "#ffffff",
-  faint: "rgba(255,255,255,0.5)",
-};
-
-/** satori's element shape: what React.createElement makes, without React. */
-export interface CardNode {
-  type: string;
-  props: { style?: Record<string, unknown>; src?: string; children?: CardChild | CardChild[] };
-}
-type CardChild = CardNode | string | number | null | false;
-
-function h(
-  type: string,
-  props: { style?: Record<string, unknown>; src?: string },
-  ...children: CardChild[]
-): CardNode {
-  const kept = children.filter((c) => c !== null && c !== false);
-  return { type, props: { ...props, children: kept.length === 1 ? kept[0] : kept } };
-}
-
-const text = (style: Record<string, unknown>, value: string | number) =>
-  h("div", { style: { display: "flex", ...style } }, String(value));
 
 const img = (sprites: CardSprites, name: string, size = SPRITE_SIZE) =>
   sprites[name] ? h("img", { src: sprites[name], style: { width: size, height: size } }) : null;
@@ -269,56 +246,28 @@ export function setCardTree(
     statLine("Free Slots", stats.freeSlots),
   );
 
-  const { width, height, frameTop, frameSide } = CARD;
-  return h(
-    "div",
-    {
-      style: {
-        display: "flex",
-        width,
-        height,
-        backgroundImage: `url(${frame})`,
-        backgroundSize: `${width}px ${height}px`,
-        fontFamily: SET_CARD_FONT,
-        letterSpacing: "0.14em",
-        color: COLOR.white,
-        textShadow: "2px 2px 0 #000",
-      },
-    },
+  return cardShell(
+    frame,
     h(
       "div",
-      {
-        style: {
-          display: "flex",
-          flexDirection: "column",
-          position: "absolute",
-          left: frameSide + 20,
-          top: frameTop + 14,
-          width: width - 2 * (frameSide + 20),
-          height: height - 2 * (frameTop + 14),
-        },
-      },
+      { style: { display: "flex", gap: 36, flexGrow: 1 } },
       h(
         "div",
-        { style: { display: "flex", gap: 36, flexGrow: 1 } },
-        h(
-          "div",
-          { style: { display: "flex", flexDirection: "column", gap: 8, width: 620 } },
-          ...rows,
-        ),
-        h(
-          "div",
-          {
-            style: {
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              flexGrow: 1,
-            },
+        { style: { display: "flex", flexDirection: "column", gap: 8, width: 620 } },
+        ...rows,
+      ),
+      h(
+        "div",
+        {
+          style: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            flexGrow: 1,
           },
-          skills,
-          status,
-        ),
+        },
+        skills,
+        status,
       ),
     ),
   );

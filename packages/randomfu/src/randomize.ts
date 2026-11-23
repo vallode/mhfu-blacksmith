@@ -190,6 +190,8 @@ import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
 import { damageObjects, findDamageExterns } from "./patches/damage.js";
 import { patchElementMotion } from "./patches/element-motion.js";
 import { disableOnline, offlineReport } from "./patches/no-online.js";
+import { monsterListReport, patchMonsterList } from "./patches/monster-list.js";
+import { paintReport, patchPaintStays } from "./patches/paint.js";
 import { bootReport, patchBoot } from "./patches/boot.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -1769,6 +1771,10 @@ export function randomize(
   );
 
   if (settings["mods.nodeMap"]) reports.push(addNodeMap(game, edits));
+  if (settings["paint.stays"]) reports.push(paintReport(patchPaintStays(game.gameTask, edits)));
+  if (settings["monsterList.slainCaptured"]) {
+    reports.push(monsterListReport(patchMonsterList(game.eboot, edits)));
+  }
   const buttonIcons = settings["mods.buttonIcons"];
   if (buttonIcons !== "psp") reports.push(addButtonIcons(game, edits, buttonIcons));
 
