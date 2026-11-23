@@ -9,7 +9,7 @@
  *   kept for embeds shared before the cards). See embedIcon() in
  *   src/lib/seo.ts.
  * - cards/monsters/<slug>.png: each monster page's large preview card, its
- *   portrait, status thresholds and hitzone table in the site's card frame. See
+ *   portrait, status thresholds, hitzone table and quest star levels in the site's card frame. See
  *   src/lib/monster-card.ts.
  * - oembed/<route>.json: each detail page's oEmbed file, which gives Discord
  *   the line above the title ("Rarity 10 Long Sword"). See oembedJson().
@@ -29,6 +29,7 @@ import { getArmorParams, getArmorPieces } from "../src/lib/armor";
 import { WEAPON_TYPES } from "../src/lib/constants";
 import { getDecorations } from "../src/lib/decorations";
 import { getMonsterCategories, getMonsters } from "../src/lib/monsters";
+import { getHuntStars } from "../src/lib/quests-data";
 import {
   EMBED_ICON_TINTS,
   EMBED_ICON_TYPES,
@@ -371,7 +372,13 @@ async function writeMonsterCards() {
         MONSTER_CARD_SCROLL_SCALE,
         MONSTER_CARD_PORTRAIT_SCALE,
       );
-      const tree = monsterCardTree(m, frame, dataUri(await portrait.toBuffer()), sprites);
+      const tree = monsterCardTree(
+        m,
+        getHuntStars(m.name),
+        frame,
+        dataUri(await portrait.toBuffer()),
+        sprites,
+      );
       const svg = await satori(tree as unknown as ReactNode, {
         width: CARD.width,
         height: CARD.height,

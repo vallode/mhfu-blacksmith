@@ -206,7 +206,7 @@ export interface Monster {
   drops?: Record<string, Record<string, MonsterDrop[]>>;
   /** HP before a quest's multiplier, from the disc */
   base_hp?: number;
-  /** Centimetres at size 100 percent, as the Guild Card shows sizes (from the disc) */
+  /** The size at 100 percent, as the Guild Card shows sizes (from the disc) */
   base_size?: number;
   /**
    * The size the game draws the model at, against its own units, at size
