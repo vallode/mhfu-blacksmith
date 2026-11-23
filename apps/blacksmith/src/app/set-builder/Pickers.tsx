@@ -40,7 +40,11 @@ function PickerFrame({
     <div
       className="flex flex-col gap-[1.3rem]"
       onKeyDown={(e) => {
-        if (e.key === "Escape") onClose();
+        if (e.key === "Escape") {
+          // Back to what opened it, not out of a sheet around it too.
+          e.preventDefault();
+          onClose();
+        }
       }}
     >
       <div className="flex items-center gap-[1rem] bg-selector px-[0.8rem] py-[0.4rem]">

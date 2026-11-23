@@ -73,6 +73,12 @@ export const setBuilder: Messages["setBuilder"] = {
       clear: "Borrar",
       clearLabel: "Quitar todas las piezas que siempre se usan",
       cantWear: "Las piezas tachadas no le sirven a este cazador, así que la búsqueda no las usa.",
+      any: "Cualquiera",
+      add: "+ Usar siempre una pieza",
+      slotsNote:
+        "Elige una parte para escoger la pieza que usan todos los conjuntos, si el cazador puede llevarla.",
+      pick: (slot: string, name: string | null) =>
+        `${slot}: ${name ?? "cualquier pieza"}. Elegir la pieza que usan todos los conjuntos`,
     },
     excluded: {
       title: "Nunca usadas",

@@ -80,7 +80,11 @@ export const setBuilder = {
       ),
     ownedOnly: "Owned armor only",
     ownedOnlyNote: "Only use armor in your hunter's equipment box.",
-    /** The locked pieces, under the skills; `remove` labels each one's chip. */
+    /**
+     * The locked pieces, under the skills; `remove` labels each one's ×.
+     * `add` opens the lock sheet, a row per slot under `slotsNote`; `pick`
+     * labels a row or a piece (`slot` is translated, `name` null with none).
+     */
     locked: {
       title: "Always used",
       note: "Every set uses these, whatever the rank or quest progress, if the hunter can wear them.",
@@ -89,6 +93,11 @@ export const setBuilder = {
       clearLabel: "Clear the always used pieces",
       /** Under the list when a crossed-out piece doesn't fit the hunter. */
       cantWear: "Crossed-out pieces don't fit this hunter, so the search leaves them out.",
+      any: "Any",
+      add: "+ Always use a piece",
+      slotsNote: "Choose a slot to pick the piece every set uses, if the hunter can wear it.",
+      pick: (slot: string, name: string | null) =>
+        `${slot}: ${name ?? "any piece"}. Choose the piece every set uses`,
     },
     excluded: {
       title: "Never used",
