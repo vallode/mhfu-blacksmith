@@ -26,7 +26,7 @@ import {
 } from "./game/quest-fields.js";
 import { changeCarveCounts, collectCarveCounts } from "./shuffles/carve-counts.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
-import { randomizeGoals } from "./shuffles/quest-goals.js";
+import { capturableMonsters, randomizeGoals } from "./shuffles/quest-goals.js";
 import {
   collectGatheringSlots,
   randomizeGathering,
@@ -118,19 +118,36 @@ import {
   questEndObjects,
   questEndReport,
 } from "./patches/quest-end.js";
+import { addButtonIcons } from "./patches/button-icons.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findHitboxExterns, hitboxObjects } from "./patches/hitboxes.js";
+import {
+  findPhotoExterns,
+  findPhotoSites,
+  patchDim,
+  photoObjects,
+  photoReport,
+  type PhotoSites,
+} from "./patches/photo.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
 import {
   ARMOR_BOX_TYPE,
   MELEE_BOX_TYPE,
   RANGED_BOX_TYPE,
+  demandCaps,
+  encodeCapturable,
+  encodeDrops,
+  encodeLevelFn,
   encodePactPool,
   findPactExterns,
+  findSharpnessLevel,
   pactObjects,
+  pactLevels,
   pactPool,
   readItemValues,
+  tiedItems,
 } from "./patches/pact.js";
+import { readMonsterDrops } from "./hints/sources.js";
 import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
@@ -143,9 +160,22 @@ import {
 } from "./patches/game-hooks.js";
 import { menuObjects, prepareMenu } from "./patches/menu.js";
 import { prepareSendAll, type SendAll, sendAllObjects, sendAllReport } from "./patches/send-all.js";
+import {
+  type ImprovePips,
+  improvePipsObjects,
+  improvePipsReport,
+  prepareImprovePips,
+} from "./patches/improve-pips.js";
+import {
+  prepareTargetCamera,
+  type TargetCamera,
+  targetCameraObjects,
+  targetCameraReport,
+} from "./patches/target-camera.js";
 import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
 import { damageObjects, findDamageExterns } from "./patches/damage.js";
 import { patchElementMotion } from "./patches/element-motion.js";
+import { disableOnline, offlineReport } from "./patches/no-online.js";
 import { bootReport, patchBoot } from "./patches/boot.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -1037,6 +1067,15 @@ export function randomize(
         summary: `Camera: not applied (${why})`,
       });
     }
+    if (settings["camera.photoMode"]) {
+      const why = "the loader demo's blob replaces its code";
+      reports.push({
+        title: "Photo mode",
+        notes: [`Photo mode isn't in this image: ${why}.`],
+        lines: [],
+        summary: `Photo mode: not applied (${why})`,
+      });
+    }
     if (questEndOn) patchQuestEndNow();
   } else {
     // Each feature is resolved on its own first: one that doesn't match this
@@ -1120,6 +1159,23 @@ export function randomize(
       (cameraWanted ? objects : optional).push(...cameraObjects());
       Object.assign(externs, cameraFound);
       camera = true;
+    }
+    // Photo mode: blob code on the pad and quest frame hooks, and the pause's dimming patched.
+    const photoOn = settings["camera.photoMode"];
+    let photo: PhotoSites | null = null;
+    {
+      const found = typeof sites === "string" ? sites : findPhotoSites(game.eboot!);
+      const photoExterns =
+        typeof found === "string" || typeof sites === "string"
+          ? found
+          : findPhotoExterns(game.eboot!, sites, found, photoOn);
+      if (typeof photoExterns === "string") {
+        if (photoOn) reports.push(notApplied("Photo mode", photoExterns));
+      } else {
+        (photoOn ? objects : optional).push(...photoObjects());
+        Object.assign(externs, photoExterns);
+        photo = found as PhotoSites;
+      }
     }
     let questEnd = false;
     if (questEndOn || typeof sites !== "string") {
@@ -1218,9 +1274,37 @@ export function randomize(
         const tiers = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
         // As the shops left prices and carry limits, so no reward pays past the limit.
         const values = readItemValues(out, table);
-        data.rf_pact_pool = encodePactPool(
-          pactPool(tiers, values, equipment, rng.fork("pact-pool")),
+        // What every recipe needs, as the recipe shuffles left them: no reward gives a third of it.
+        const demand = demandCaps(collectRecipeSlots(out, game.resolver));
+        // What each quest is about, as the shuffles left it: its large monsters'
+        // drops at its rank and its own rewards. The blob leans its items to those.
+        const drops = readMonsterDrops(game, edits);
+        const questRewards = collectQuestRewardSlots(game.quests, (q) => edits.questNow(q)).map(
+          (s) => ({ band: s.tier.band, itemId: s.itemId }),
         );
+        const tied = tiedItems([...drops, ...questRewards]);
+        data.rf_pact_pool = encodePactPool(
+          pactPool(tiers, values, equipment, rng.fork("pact-pool"), demand, tied),
+        );
+        data.rf_pact_drops = encodeDrops(drops);
+        // The blade pacts' colour lookup; without it they aren't offered.
+        const level =
+          typeof sites === "string" ? null : findSharpnessLevel(game.eboot!, sites.segment);
+        data.rf_pact_level_fn = encodeLevelFn(level);
+        if (level === null) {
+          reports.push(
+            notApplied("Hunter's Pact blade pacts", "this EBOOT's sharpness code doesn't match"),
+          );
+        }
+        // Equipment that fits each quest's stars.
+        data.rf_pact_levels = pactLevels(
+          game.quests.flatMap((q) => {
+            const tier = questTier(q.parsed);
+            return tier ? [tier] : [];
+          }),
+        );
+        // Capture or nothing's monsters: those the disc's own quests hunt.
+        data.rf_pact_capturable = encodeCapturable(capturableMonsters(game.quests));
         pact = true;
       }
     }
@@ -1273,10 +1357,12 @@ export function randomize(
     // randomfu's START menu entry, where the features with settings can be changed in game.
     let menus: MenuSites[] | null = null;
     const sendAllOn = settings["rewards.sendAll"];
+    const pipsOn = settings["smithy.improvePips"];
     if (sendAllOn && typeof sites === "string")
       reports.push(notApplied("Send All to Item Box", sites));
+    if (pipsOn && typeof sites === "string") reports.push(notApplied("Improve pips", sites));
     if (
-      (hit || monsterHp || hitboxes || camera || questEnd || sendAllOn) &&
+      (hit || monsterHp || hitboxes || camera || questEnd || photo || sendAllOn || pipsOn) &&
       typeof sites !== "string"
     ) {
       const found = prepareMenu(game.eboot!, sites);
@@ -1284,10 +1370,11 @@ export function randomize(
         reports.push(
           notApplied(
             "randomfu's START menu entry",
-            `${found}; monster health, attack hitboxes, damage numbers, the camera and the wait after a quest keep this disc's settings`,
+            `${found}; monster health, attack hitboxes, damage numbers, the camera, photo mode and the wait after a quest keep this disc's settings`,
           ),
         );
         if (sendAllOn) reports.push(notApplied("Send All to Item Box", found));
+        if (pipsOn) reports.push(notApplied("Improve pips", found));
       } else {
         optional.push(...menuObjects());
         Object.assign(externs, found.externs);
@@ -1311,6 +1398,43 @@ export function randomize(
         sendAll = found;
       }
     }
+    // Improve pips: a call of the menu's hook in lobby_task, so it goes in (and out) with them.
+    let improvePips: ImprovePips | null = null;
+    if (menus && pipsOn) {
+      const found = prepareImprovePips(game.eboot!, game.lobbyTask);
+      if (typeof found === "string") reports.push(notApplied("Improve pips", found));
+      else {
+        optional.push(...improvePipsObjects());
+        Object.assign(externs, found.externs);
+        improvePips = found;
+      }
+    }
+    // The target camera: a call of the menu's hook, so it goes in (and out) with
+    // them, and the read the game makes without the blob, in the camera's patch.
+    let targetCamera: TargetCamera | null = null;
+    let targetPatch: TargetCamera | null = null;
+    const targetOn = settings["camera.target"] !== "off";
+    if (menus && camera && typeof sites !== "string") {
+      const found = prepareTargetCamera(game.eboot!, ovl.reader.buf, ovl, settings);
+      if (typeof found === "string") {
+        if (targetOn) reports.push(notApplied("Target camera", found));
+      } else {
+        (targetOn ? objects : optional).push(...targetCameraObjects());
+        Object.assign(externs, found.externs);
+        targetCamera = found;
+      }
+    } else if (targetOn) {
+      reports.push(
+        notApplied(
+          "Target camera",
+          typeof sites === "string"
+            ? sites
+            : !camera
+              ? "the camera's code isn't on this disc"
+              : "it goes in with the START menu entry, which wasn't found",
+        ),
+      );
+    }
     if (
       typeof hookSites !== "string" &&
       (monsterHp ||
@@ -1323,7 +1447,9 @@ export function randomize(
         hit ||
         camera ||
         questEnd ||
-        sendAll)
+        photo ||
+        sendAll ||
+        improvePips)
     ) {
       const install = (lean: boolean) => {
         const all = lean ? objects : [...objects, ...optional];
@@ -1341,7 +1467,15 @@ export function randomize(
             }),
             // The hit hook is damage numbers' alone.
             ...(hit && !(lean && numbers === "off") && { hit }),
-            ...(menus && !lean && { menus, calls: sendAll?.calls ?? [] }),
+            ...(menus &&
+              !lean && {
+                menus,
+                calls: [
+                  ...(sendAll?.calls ?? []),
+                  ...(targetCamera?.calls ?? []),
+                  ...(improvePips?.calls ?? []),
+                ],
+              }),
           },
           externs,
           data,
@@ -1385,6 +1519,37 @@ export function randomize(
           reports.push(notApplied("Send All to Item Box", "the code loader isn't on this disc"));
         }
       }
+      if (improvePips) {
+        reports.push(
+          loader.applied && !wentLean
+            ? improvePipsReport()
+            : notApplied(
+                "Improve pips",
+                loader.applied
+                  ? "it goes in with the START menu entry, which didn't fit"
+                  : "the code loader isn't on this disc",
+              ),
+        );
+      }
+      // A lean loader leaves photo mode's code out when it's off.
+      const photoLinked = loader.applied && photo !== null && (photoOn || !wentLean);
+      if (photo && photoLinked) patchDim(edits.eboot(), photo);
+      if (photoOn && photo) reports.push(photoReport(photoLinked, !wentLean && menus !== null));
+      if (targetCamera) {
+        // Written after the camera's patch below, whose unreached words it takes.
+        if (loader.applied && !wentLean) {
+          targetPatch = targetCamera;
+        } else if (targetOn) {
+          reports.push(
+            notApplied(
+              "Target camera",
+              loader.applied
+                ? "it goes in with the START menu entry, which didn't fit"
+                : "the code loader isn't on this disc",
+            ),
+          );
+        }
+      }
       if (unknown) reports.push(unknown.finish(loader.applied));
       if (keys) reports.push(keyQuestsReport(loader.applied));
       if (luck) {
@@ -1400,10 +1565,17 @@ export function randomize(
       const patched = patchFov(edits.eboot(), FOV_SCALES[settings["camera.fov"]]);
       if (typeof patched === "string") {
         if (cameraWanted) reports.push(notApplied("Camera", patched));
-      } else if (cameraWanted) {
-        reports.push(cameraReport(settings, cameraLinked, game.region));
+      } else {
+        if (cameraWanted) reports.push(cameraReport(settings, cameraLinked, game.region));
+        if (targetPatch) {
+          targetPatch.patch(edits.eboot());
+          if (targetOn) reports.push(targetCameraReport(settings));
+          targetPatch = null;
+        }
       }
     }
+    // The call went in, but not the camera's patch: the ease's jal must go back to the game's read.
+    if (targetPatch) throw new Error("The target camera's call went in without the camera's patch");
   }
 
   if (questEndOn) {
@@ -1420,6 +1592,15 @@ export function randomize(
     );
   }
 
+  // Every disc is offline, after the other patches so none of them reads it.
+  reports.push(
+    offlineReport(
+      game.eboot
+        ? disableOnline(game.eboot, game.region, game.dataBin.fileCount, edits)
+        : "the EBOOT wasn't loaded",
+    ),
+  );
+
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.
   reports.push(
     ...writeGuides(game, questsAfter, settings.seed, edits, {
@@ -1429,6 +1610,8 @@ export function randomize(
   );
 
   if (settings["mods.nodeMap"]) reports.push(addNodeMap(game, edits));
+  const buttonIcons = settings["mods.buttonIcons"];
+  if (buttonIcons !== "psp") reports.push(addButtonIcons(game, edits, buttonIcons));
 
   return {
     edits,

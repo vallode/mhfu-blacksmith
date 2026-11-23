@@ -16,6 +16,26 @@ import * as ui from "@/styles/settings";
 
 export type SkillOption = SkillActivation & { tree: string };
 
+/** One collator per language: making one is slow next to the sort itself. */
+const collators = new Map<string, Intl.Collator>();
+function collator(tag: string): Intl.Collator {
+  let c = collators.get(tag);
+  if (!c) {
+    c = new Intl.Collator(tag);
+    collators.set(tag, c);
+  }
+  return c;
+}
+
+/**
+ * Room held by a tree's section while the browser skips it off screen: an
+ * estimate (its title bar, and a 4.6rem row and its 1px rule per skill), as
+ * a name that wraps makes a row taller. Once a section has been on screen
+ * its real height is kept (`auto`), so the estimate only shapes the
+ * scrollbar of a sheet not yet scrolled through.
+ */
+const sectionHeight = (skills: number) => `auto ${39 + skills * 47}px`;
+
 /** Choose a skill (replacing one from the same tree), or drop it if chosen. */
 function toggleSkill(value: string[], skill: SkillOption, all: SkillOption[]): string[] {
   if (value.includes(skill.name)) return value.filter((v) => v !== skill.name);
@@ -39,10 +59,10 @@ export function SkillChips({
   const text = useT().setBuilder.skillPicker;
   const game = useGameText();
   return (
-    <ul className="m-0 flex list-none flex-wrap gap-[0.8rem] p-0">
+    <ul className="m-0 flex list-none flex-col gap-[0.8rem] p-0">
       {value.map((name) => (
-        <li key={name} className={cn(chip, chipOn, "cursor-default pr-0")}>
-          <span>{game.name("skill", name)}</span>
+        <li key={name} className={cn(chip, chipOn, "w-full cursor-default justify-between pr-0")}>
+          <span className="min-w-0">{game.name("skill", name)}</span>
           <button
             type="button"
             aria-label={text.remove(game.name("skill", name))}
@@ -54,7 +74,7 @@ export function SkillChips({
         </li>
       ))}
       <li>
-        <button type="button" className={cn(chip, chipOff, "border-dashed")} onClick={onAdd}>
+        <button type="button" className={cn(chip, chipOff, "w-full border-dashed")} onClick={onAdd}>
           {addLabel}
         </button>
       </li>
@@ -72,12 +92,15 @@ export function SkillBrowser({
   skills,
   value,
   onChange,
+  pending,
 }: {
   /** Every skill that can be chosen. */
   skills: SkillOption[];
   /** The chosen skills, by name. */
   value: string[];
   onChange: (value: string[]) => void;
+  /** Trees shown dimmed, as not checked yet (SkillReach). */
+  pending?: ReadonlySet<string>;
 }) {
   const text = useT().setBuilder.skillPicker;
   const game = useGameText();
@@ -95,9 +118,9 @@ export function SkillBrowser({
       byTree.set(s.tree, [...(byTree.get(s.tree) ?? []), s]);
     }
     // In the order of the names shown; the trees stay keyed by English name.
-    const collator = new Intl.Collator(LOCALE_TAGS[locale]);
+    const { compare } = collator(LOCALE_TAGS[locale]);
     return [...byTree.entries()].sort(([a], [b]) =>
-      collator.compare(game.name("skill", a), game.name("skill", b)),
+      compare(game.name("skill", a), game.name("skill", b)),
     );
   }, [skills, query, game, locale]);
 
@@ -124,7 +147,18 @@ export function SkillBrowser({
       {groups.map(([tree, list]) => {
         const chosen = list.some((s) => value.includes(s.name));
         return (
-          <section key={tree} className="flex flex-col" aria-label={skillName(tree)}>
+          // The browser skips laying out the trees out of view (content-
+          // visibility), so the sheet opens without laying out every skill.
+          <section
+            key={tree}
+            className={cn(
+              "flex flex-col [content-visibility:auto]",
+              pending?.has(tree) && "opacity-50",
+            )}
+            style={{ containIntrinsicHeight: sectionHeight(list.length) }}
+            aria-label={skillName(tree)}
+            aria-busy={pending?.has(tree) || undefined}
+          >
             <h3
               className={cn(
                 "m-0 border-b-[3px] bg-selector px-[1rem] py-[0.6rem] text-small font-normal text-shadow-[0.15rem_0.15rem_black]",

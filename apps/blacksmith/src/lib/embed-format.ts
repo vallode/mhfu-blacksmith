@@ -10,6 +10,9 @@ import { titleCase } from "./title-case";
 export { titleCase };
 
 export const SITE_NAME = "MHFU Blacksmith";
+
+/** The title of a weapon type's tree page, before the site name. */
+export const weaponTreeTitle = (type: string): string => `${titleCase(type)} tree`;
 /** Discord colours the left edge of an embed with this. */
 export const THEME_COLOR = "#6e905f";
 

@@ -5,7 +5,7 @@
  *
  * Positions are worked out as the map screen works out the player's arrow
  * (`mhfu-extract/src/tables/map-layout.ts`), from the quests' own node
- * tables, so they are the EU disc's. A texture is shared by every quest on
+ * tables, on the EU and JP discs. A texture is shared by every quest on
  * its map (and by the night map), and the nodes of every quest on one map
  * sit in the same places, so each texture gets one set. Markers use palette
  * entries the art leaves unused, so nothing else changes colour, and the
@@ -16,6 +16,7 @@ import { loadFileList } from "mhfu-extract/src/container/filelist.js";
 import { locateIndexedImage, swizzle, unswizzle } from "mhfu-extract/src/models/tmh.js";
 import { NODE_KINDS, readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
 import {
+  hasMapTables,
   mapTextureName,
   projectToMap,
   readMapGeometry,
@@ -42,6 +43,12 @@ export const MARKER_SIZE = 3;
 const TITLE = "Gathering nodes on the map";
 /** A node is drawn only where the art's alpha is above this: the game leaves the rest blank. */
 export const ON_ART_ALPHA = 128;
+/**
+ * How many pixels off the art a node may land and still be drawn, moved onto
+ * the nearest pixel of art. Mining spots in walls land just past an area's
+ * outline (Snowy Mountains area 3); an area the map doesn't draw is further.
+ */
+export const SNAP_TO_ART = 1;
 /** Draw order: later kinds cover earlier ones where markers overlap. */
 export const DRAW_ORDER: readonly NodeKind[] = ["bug", "gather", "mine"];
 
@@ -74,6 +81,26 @@ function readArt(file: Buffer): MapArt | null {
     pixels,
     alphas: Array.from({ length: 256 }, (_, i) => file[found.palette + i * 4 + 3]!),
   };
+}
+
+/** The pixel of art nearest to (x, y), at most `SNAP_TO_ART` away, or null. */
+function nearestArt(art: MapArt, x: number, y: number): [number, number] | null {
+  let best: [number, number] | null = null;
+  let bestDistance = Infinity;
+  for (let dy = -SNAP_TO_ART; dy <= SNAP_TO_ART; dy++) {
+    for (let dx = -SNAP_TO_ART; dx <= SNAP_TO_ART; dx++) {
+      const px = x + dx;
+      const py = y + dy;
+      if (px < 0 || py < 0 || px >= MAP_SIZE || py >= MAP_SIZE) continue;
+      if (art.alphas[art.pixels[py * MAP_SIZE + px]!]! <= ON_ART_ALPHA) continue;
+      const distance = dx * dx + dy * dy;
+      if (distance < bestDistance) {
+        best = [px, py];
+        bestDistance = distance;
+      }
+    }
+  }
+  return best;
 }
 
 /**
@@ -113,8 +140,8 @@ export function drawNodes(file: Buffer, points: readonly NodePoint[]): Buffer | 
 
 /**
  * The nodes on each map by texture name (`map2`), one per place, from the
- * quests a player can take. Nodes off the map's art are left out, as the
- * game doesn't draw those areas.
+ * quests a player can take. A node just off the art is moved onto it;
+ * nodes further off are left out, as the game doesn't draw those areas.
  */
 export function collectNodePoints(
   game: GameData,
@@ -145,11 +172,8 @@ export function collectNodePoints(
       const kind = NODE_KINDS[node.type];
       const pixel = projectToMap(map, node.area, node.x, node.z);
       if (!kind || !pixel) continue;
-      const x = Math.round(pixel[0]);
-      const y = Math.round(pixel[1]);
-      if (x < 0 || y < 0 || x >= MAP_SIZE || y >= MAP_SIZE) continue;
-      if (art.alphas[art.pixels[y * MAP_SIZE + x]!]! > ON_ART_ALPHA)
-        points.set(`${kind}|${x}|${y}`, { kind, x, y });
+      const at = nearestArt(art, Math.round(pixel[0]), Math.round(pixel[1]));
+      if (at) points.set(`${kind}|${at[0]}|${at[1]}`, { kind, x: at[0], y: at[1] });
     }
   }
   return new Map(
@@ -162,18 +186,19 @@ export function collectNodePoints(
   );
 }
 
-/** Draws the nodes onto the map textures. Needs the EU disc. */
+/** Draws the nodes onto the map textures. Needs the EU or JP disc. */
 export function addNodeMap(game: GameData, edits: Edits): ShuffleReport {
   const notWritten = (problem: string): ShuffleReport => ({
     title: TITLE,
     notes: [`Not written: ${problem}.`],
     lines: [],
   });
-  if (game.region !== "eu") return notWritten("the map tables are only known on the EU disc");
+  if (!hasMapTables(game.region))
+    return notWritten("the map tables are only known on the EU and JP discs");
 
   let geometry: Map<number, MapGeometry>;
   try {
-    geometry = readMapGeometry(new BinaryReader(game.eboot), game.gameSub.ovl);
+    geometry = readMapGeometry(new BinaryReader(game.eboot), game.gameSub.ovl, game.region);
   } catch (error) {
     return notWritten(error instanceof Error ? error.message : String(error));
   }

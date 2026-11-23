@@ -9,6 +9,10 @@ export const pressable =
 export const resultRow =
   "grid min-h-[5.2rem] w-full grid-cols-[3.2rem_minmax(0,1fr)_auto] items-center gap-x-[1rem] border-b border-white/10 px-[0.6rem] py-[0.6rem]";
 
+/** A small text button beside a card's heading (Clear). */
+export const textButton =
+  "cursor-pointer border-none bg-transparent p-0 font-[inherit] text-fine text-white/50 hover:text-white focus-visible:text-white";
+
 /** A small framed chip (chosen skills, sorts, locked pieces). */
 export const chip =
   "inline-flex min-h-[3.6rem] flex-none cursor-pointer items-center gap-[0.6rem] border-2 px-[1rem] font-[inherit] text-small leading-none shadow-[0.2rem_0.2rem_0_black] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";

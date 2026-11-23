@@ -122,9 +122,12 @@ export interface Settings {
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
+  "mods.buttonIcons": "psp" | "xbox" | "nintendo" | "playstation" | "keyboard";
   "camera.fov": "normal" | "wide" | "wider" | "widest";
   "camera.distance": "normal" | "far" | "farther" | "farthest";
   "camera.tilt": "steps" | "slow" | "smooth" | "fast";
+  "camera.photoMode": boolean;
+  "camera.target": "off" | "tap" | "follow";
   "quest.endWait": "normal" | "short" | "instant";
   "hud.monsterHp": "off" | "painted" | "always";
   "hud.damageNumbers": "off" | "total" | "split";
@@ -136,6 +139,7 @@ export interface Settings {
   "quests.unknown": boolean;
   "quests.keyLabel": boolean;
   "rewards.sendAll": boolean;
+  "smithy.improvePips": boolean;
   "boot.skip": "normal" | "title" | "village";
 }
 
@@ -184,6 +188,15 @@ export interface OptionDef {
   enabledBy?: OptionKey;
   /** With `enabledBy` a choice: the values of it that count as on. */
   enabledWhen?: readonly string[];
+  /** A few short points under `help`, for what doesn't fit its one or two sentences. */
+  points?: readonly string[];
+  /**
+   * Switched in game from the START menu's randomfu entry, and the save
+   * keeps that choice: the option only picks how a disc starts.
+   */
+  inGame?: true;
+  /** The discs it works on, when that isn't all of them ("EU", "EU and JP"). */
+  discs?: string;
 }
 
 const SPREAD = { kind: "number", min: 0, max: 0.95, step: 0.05, percent: true } as const;
@@ -1758,7 +1771,8 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "hints.bookshelf",
     section: "Extras",
     label: "Monster guide on the bookshelf",
-    help: "The house bookshelf's Practical Hunting monster articles (Open Bookshelf, Info Magazine) become the RandomFU Bestiary: one page per large monster rating its elemental weaknesses, softest parts, status resistance and health in stars, as the shuffles left them, readable from the start. In English in every language. EU disc only; seen on the shelf in PPSSPP.",
+    help: "The bookshelf's Practical Hunting articles become a bestiary: each large monster's weaknesses, soft parts, status resistances and health, in stars.",
+    discs: "EU",
     type: { kind: "boolean" },
     default: true,
   },
@@ -1766,23 +1780,59 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "hints.almanac",
     section: "Extras",
     label: "Item almanac on the bookshelf",
-    help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
+    help: "The bookshelf's Lay of the Land articles become an almanac: where to buy, gather, carve or earn each crafting material.",
+    discs: "EU",
     type: { kind: "boolean" },
     default: true,
   },
   {
     key: "mods.nodeMap",
-    section: "Extras",
+    section: "Area map",
     label: "Gathering nodes on the area map",
-    help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only.",
+    help: "The map screen marks every gathering (green), mining (orange) and bug catching (yellow) point on the map.",
+    discs: "EU and JP",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "mods.buttonIcons",
+    section: "Buttons",
+    label: "Button icons",
+    help: "The buttons the game draws in its text and HUD, for playing with a controller in PPSSPP.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "psp", label: "PSP", help: "The game's own: ○ × △ □, L, R, START and SELECT." },
+        {
+          value: "xbox",
+          label: "Xbox",
+          help: "A B X Y in their colours, LB, RB, Menu and View.",
+        },
+        {
+          value: "nintendo",
+          label: "Nintendo",
+          help: "A B X Y as a Switch has them (B below, A right), L, R, + and −.",
+        },
+        {
+          value: "playstation",
+          label: "PlayStation",
+          help: "Coloured × ○ □ △, L1, R1, Options and the touchpad.",
+        },
+        {
+          value: "keyboard",
+          label: "Keyboard",
+          help: "Keys for PPSSPP's defaults: Z X A S, Q, W, Space and Enter.",
+        },
+      ],
+    },
+    default: "psp",
   },
   {
     key: "camera.fov",
     section: "Camera",
     label: "Field of view",
-    help: "How wide the camera sees. It widens every view the game builds the same way: tried in the village and in quests. The game's is 50° high (79° across the screen). Things at the edges look a little stretched the wider it gets. This picks what the disc starts with: the START menu's last entry, randomfu, changes it in game (in a quest or in the village), and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    help: "How wide the camera sees. The edges stretch a little the wider it gets.",
+    inGame: true,
     type: {
       kind: "choice",
       choices: [
@@ -1802,7 +1852,8 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "camera.distance",
     section: "Camera",
     label: "Camera distance",
-    help: "How far behind your hunter the camera sits, at the same angle: every camera preset of the stage you're on moves back along the line it looks down (the usual camera is 490 back and 100 above what it looks at). Further back shows more around you, but in tight spots, like caves, it may pass through walls more often. This picks what the disc starts with: the START menu's last entry, randomfu, changes it in game (in a quest or in the village), and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    help: "How far behind your hunter the camera sits. Further shows more, but passes through walls more often in caves.",
+    inGame: true,
     type: {
       kind: "choice",
       choices: [
@@ -1818,7 +1869,9 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "camera.tilt",
     section: "Camera",
     label: "Camera tilt",
-    help: "How D-pad up and down tilt the camera. The game's camera has five fixed steps, from looking down at 45° to looking up at 18°, and the high ones also pull the camera in close. Smooth tilt tilts the camera for as long as you hold the button, to any angle between 55° down and 20° up, always as far from your hunter as the usual camera (or as Camera distance puts it), and the game eases the camera after it as it does between its steps. This picks what the disc starts with: the START menu's last entry, randomfu, changes it in game (in a quest or in the village), and your save keeps that choice and the angle. EU disc only: other discs keep the game's steps. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    help: "How D-pad up and down tilt the camera: the game's five steps, or smoothly to any angle while you hold it.",
+    inGame: true,
+    discs: "EU",
     type: {
       kind: "choice",
       choices: [
@@ -1831,10 +1884,53 @@ export const OPTIONS: readonly OptionDef[] = [
     default: "steps",
   },
   {
+    key: "camera.photoMode",
+    section: "Camera",
+    label: "Photo mode",
+    help: "In a quest, hold L and R and press START: the game freezes, the HUD goes and the camera is yours. START again to play on.",
+    points: [
+      "Stick turns it, D-pad moves it, L and R zoom",
+      "△ × up and down, □ ○ nearer and further",
+      "SELECT puts it back where it started",
+    ],
+    inGame: true,
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "camera.target",
+    section: "Camera",
+    label: "Target camera",
+    help: "L turns the camera to face a large monster in your area, like the newer games' target camera.",
+    points: [
+      "Hold L and press D-pad left or right for the next monster",
+      "Press L twice for the game's own L",
+    ],
+    inGame: true,
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Off", help: "L is the game's own: behind your hunter." },
+        {
+          value: "tap",
+          label: "Tap",
+          help: "L turns the camera to the monster once; then it stays where it is.",
+        },
+        {
+          value: "follow",
+          label: "Follow",
+          help: "L keeps the monster in view until you press L twice, turn the camera with the D-pad, or the monster leaves or falls.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
     key: "quest.endWait",
     section: "Quest end",
     label: "Wait after a quest",
-    help: "How long the game waits once a quest is completed or runs out of time, before the reward screen (a quest failed by fainting goes back as it always does). The game shows the Quest Complete banner for 5 s, then gives you a minute (20 s on gathering quests) to carve and gather before it takes you back. Treasure Hunting quests keep the game's wait, their time to deliver. This picks what the disc starts with: the START menu's last entry, randomfu, changes it in game, and your save keeps that choice. It's a change to the game's own code, so it works without randomfu's other code; with it, every disc caps received Guild Cards at 3, as for the camera.",
+    help: "How long the game waits after a quest is done before the reward screen.",
+    inGame: true,
     type: {
       kind: "choice",
       choices: [
@@ -1861,7 +1957,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "questMonsters.text",
     section: "Extras",
     label: "Rename monsters in quest text",
-    help: "A swapped monster's name changes in the quest's title, goal, details and monster list, in every language, using names read from the disc's own quests. Text that can't change safely (another article, too long a line, no room) keeps the old name and is listed in the spoiler log. Seen working on the EU disc's Quest Details screen.",
+    help: "A swapped monster's name changes in its quests' titles, goals and details, in every language. What can't change safely is listed in the spoiler log.",
     type: { kind: "boolean" },
     default: true,
     enabledBy: "questMonsters.mode",
@@ -1871,7 +1967,8 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "hud.monsterHp",
     section: "HUD",
     label: "Monster health",
-    help: "A short health gauge for each large monster in your area, on the left under your name plate, in the HUD's own frame and red. It follows the HUD: hidden in cutscenes and wherever the game hides your gauges. This picks the mode the disc starts in: the START menu's last entry, randomfu, changes it in game (in a quest or in the village), and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    help: "A health gauge for each large monster in your area, under your name plate.",
+    inGame: true,
     type: {
       kind: "choice",
       choices: [
@@ -1879,7 +1976,7 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "painted",
           label: "On the map",
-          help: "A monster's gauge shows while the map shows it: from a Paintball hit until the mark wears off.",
+          help: "While it shows on the map: from a Paintball hit.",
         },
         {
           value: "always",
@@ -1894,7 +1991,8 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "hud.damageNumbers",
     section: "HUD",
     label: "Damage numbers",
-    help: "Each of your hits on a monster pops a number at the part it struck, in the game's own font, bold over a drop shadow: it lands big in a flash, settles, then rises and shrinks away; a weak point's shakes as it lands. It's the health the hit takes. White, orange on a weak point. Only your own hits; it follows the HUD. This picks the mode the disc starts in: the START menu's last entry, randomfu, changes it in game (in a quest or in the village), and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    help: "Each hit pops the damage it dealt at the part it struck: white, or orange on a weak point.",
+    inGame: true,
     type: {
       kind: "choice",
       choices: [
@@ -1903,7 +2001,7 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "split",
           label: "Split element",
-          help: "The element's share is a second, smaller number in its element's colour: red fire, blue water, yellow thunder, cyan ice, magenta dragon.",
+          help: "The element's share as a second number in its colour.",
         },
       ],
     },
@@ -1913,7 +2011,8 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "hud.attackHitboxes",
     section: "HUD",
     label: "Attack hitboxes",
-    help: "A faint red shading over every monster attack that can hit you right now: the parts of its body that hurt during the attack, and projectiles like fireballs, filled in over the scene as the game places them. It follows the HUD: hidden in cutscenes and wherever the game hides your gauges. A few attacks whose shape the monster's own code places aren't drawn. This picks whether the disc starts with it on: the START menu's last entry, randomfu, turns it on or off in game (in a quest or in the village), and your save keeps that choice. Its code goes on every disc, so every disc caps received Guild Cards at 3 to make room for it.",
+    help: "A faint red shading over every monster attack that can hit you right now, fireballs and other projectiles too. A few attacks aren't drawn.",
+    inGame: true,
     type: { kind: "boolean" },
     default: false,
   },
@@ -1921,7 +2020,11 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "pact.enabled",
     section: "Hunter's Pact",
     label: "Hunter's Pact",
-    help: "When a quest starts, a window in base camp offers three pacts drawn at random, each a penalty and the reward it pays: tougher or harder-hitting monsters, half the time, one cart, no supply box, a health or stamina cap or more to deliver (only those that fit the quest: no monster penalties on a gathering quest), for more zenny (at least a set amount per rank), more quest rewards (extra draws from the quest's own rewards), items or a weapon or armor piece of the quest's rank. The harder the penalty, the more its reward is worth: a handful of common items for a light one, one or two rare ones for a hard one. Monster penalties stack with elite monsters. Take any, or none and the quest is as it was. The clock stops while you choose; penalties last the quest, and rewards are paid only if you complete it. Caps received Guild Cards at 3 to make room for its code.",
+    help: "At the start of each quest, base camp offers three random pacts: a penalty for a reward. Take any, or none.",
+    points: [
+      "Penalties like tougher monsters, half the time, one cart or no supplies",
+      "Rewards you with more zenny, items or gear: harder penalties pay more and rarer rewards",
+    ],
     type: { kind: "boolean" },
     default: false,
   },
@@ -1929,7 +2032,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "poogie.enabled",
     section: "Poogie",
     label: "Poogie's luck",
-    help: "Pet Poogie at home before a hunt. If it lies down happily, that hunt's carves, captures, breaks and quest rewards lean towards rarer rewards: each draw rolls twice and keeps the rarer. Poogie remembers: after 50 happy hunts on a save it rolls three times, after 200 four. Its count is kept in the save, and carries over to discs from other seeds. Caps received Guild Cards at 3 to make room for its code.",
+    help: "Pet Poogie before a hunt and luck might be in your favor!",
     type: { kind: "boolean" },
     default: true,
   },
@@ -1937,16 +2040,19 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "elites.enabled",
     section: "Elite monsters",
     label: "Elite monsters",
-    help: "Now and then a large monster is an elite: half again its health, hits 30% harder, moves 10% faster, enrages sooner and for half again as long, and is 15% bigger. Its hide has a faint crimson pulse. Each elite adds a reward draw, half the quest's zenny and points again, and makes the main reward's rarer items half again as likely. Rolled as each monster shows up, so the quest board doesn't tell. Stacks on randomized monster stats. Caps received Guild Cards at 3 to make room for its code.",
+    help: "Now and then a large monster is an elite, with a faint crimson pulse. The quest board doesn't tell.",
+    points: [
+      "+50% health, +30% damage, +10% speed, longer rages",
+      "An extra reward draw, +50% zenny and rarer rewards",
+    ],
     type: { kind: "boolean" },
     default: false,
-    action: "randomize",
   },
   {
     key: "elites.chance",
     section: "Elite monsters",
     label: "Elite chance",
-    help: "Each large monster's chance of being an elite, rolled once per quest as it shows up.",
+    help: "Each large monster's chance of being an elite.",
     type: { kind: "number", min: 1, max: 100, step: 1, chance: true },
     default: 12,
     enabledBy: "elites.enabled",
@@ -1955,7 +2061,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "quests.unknown",
     section: "Unknown Monster?! quests",
     label: "Unknown Monster?! quests",
-    help: "Adds an investigation quest to the Guild 8★ and G★3 boards (high and G rank; low rank is left as it was). Each time you accept it, it rolls a monster met on that map in any quest, the map, size, crowns, difficulty for the rank, the rewards and whether you start in base camp or a random area (where that map's quests do either). The board doesn't say what you'll find, and the quest names the monster once it starts. Solo only: in ad-hoc play the others get a different roll. Caps received Guild Cards at 3 to make room for the code.",
+    help: "An investigation quest on the Guild 8★ and G★3 boards. Each time you accept it, it rolls a monster, map, size, difficulty and rewards, and doesn't say what until it starts.",
     type: { kind: "boolean" },
     default: false,
   },
@@ -1963,7 +2069,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "quests.keyLabel",
     section: "Key quests",
     label: "Mark key quests",
-    help: "The Village Chief's quest card (and likely the Guild's, not yet tried) shows a yellow ★ in its top right corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
+    help: "A yellow ★ on the Village Chief's quest cards marks the key quests that unlock the Urgent Quest.",
     type: { kind: "boolean" },
     default: false,
   },
@@ -1971,7 +2077,15 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "rewards.sendAll",
     section: "Reward screen",
     label: "Send All to Item Box",
-    help: "The reward screen's menu after a quest gets a row between Send to Item Box and End: Send All to Item Box sends every reward the Item Box can take in one go, the comrade's items too, and ends the screen. What doesn't fit stays, with the menu, to take or sell as before. It goes in with the START menu's randomfu entry, so a disc with too many other new features to fit that leaves it out too.",
+    help: "The reward screen gets a Send All to Item Box row: every reward that fits, the comrade's too, in one go.",
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
+    key: "smithy.improvePips",
+    section: "Improve pips",
+    label: "Mark weapons you can improve",
+    help: "In the smithy's Improve, an orange pip marks each weapon you have the materials and zenny to improve.",
     type: { kind: "boolean" },
     default: true,
   },
@@ -1979,7 +2093,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "boot.skip",
     section: "Boot",
     label: "Faster start",
-    help: "What the game shows from power-on. It normally asks for a language (EU), autoloads your options with a message to wait out, and shows a notice (EU), two logos and the intro movie before the title screen, then a menu and a list of saves. This can skip to the title screen, or on into the village with the hunter you saved last (else the first slot with a save), loaded on a black screen with no menu: hold START (or L or SELECT) from power-on to see the list of saves and choose, and Load Game from the title menu always shows the list. Either way the game keeps the PSP's language. It's a change to the title screens' own code, so it doesn't cap Guild Cards.",
+    help: "Skip the language choice, logos and intro movie from power-on.",
     type: {
       kind: "choice",
       choices: [
@@ -1991,12 +2105,12 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "title",
           label: "Title screen",
-          help: "Straight to Press START: no language choice, autoload wait, notice, logos or intro movie.",
+          help: "Straight to Press START.",
         },
         {
           value: "village",
           label: "Village",
-          help: "Straight into the village with the hunter you saved last. Hold START from power-on for the list of saves.",
+          help: "Straight into the village with your last save. Hold START from power-on to pick another.",
         },
       ],
     },
@@ -2217,6 +2331,26 @@ const STAT_RANDOMIZERS = {
 } as const;
 
 export const PRESETS: readonly Preset[] = [
+  {
+    name: "QoL only",
+    points: [
+      "Shuffles and randomizes nothing: items, monsters, equipment and numbers stay as on the disc",
+      "Adds Send All to Item Box, the smithy's improve pips, photo mode, key quest marks and gathering nodes on the area map; all but the map's code caps received Guild Cards at 3",
+      "Leaves out Poogie's luck and the bookshelf guides",
+      "Turn on camera, HUD and quest extras in the later steps; the settings then show as custom, still with nothing shuffled",
+      "Hunter's Pact, if you turn it on, draws its rewards from the seed",
+    ],
+    changes: {
+      "questRewards.mode": "off",
+      "monsterRewards.mode": "off",
+      "camera.photoMode": true,
+      "quests.keyLabel": true,
+      "mods.nodeMap": true,
+      "poogie.enabled": false,
+      "hints.bookshelf": false,
+      "hints.almanac": false,
+    },
+  },
   {
     name: "Rewards only",
     points: [
