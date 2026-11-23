@@ -23,7 +23,7 @@ import {
   questsWithMonster,
   smallMonsterStages,
 } from "@/lib/quests";
-import { crownFor, cardSize, type Crown } from "@/lib/crowns";
+import { crownCutoff, crownFor, cardSize, type Crown } from "@/lib/crowns";
 import CrownIcon from "@/components/CrownIcon";
 import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -303,13 +303,13 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     label: rankLabel(t, rank),
     content: <MonsterDrops sources={sources} />,
   }));
-  // Crown cutoffs as the Guild Card shows sizes.
+  // Crown cutoffs as the Guild Card shows sizes, to a tenth the safe way.
   const crowns =
     monster.crowns && monster.base_size !== undefined
       ? {
-          mini: cardSize(monster.crowns.mini, monster.base_size),
-          silver: cardSize(monster.crowns.silver, monster.base_size),
-          gold: cardSize(monster.crowns.gold, monster.base_size),
+          mini: crownCutoff("mini", monster.crowns, monster.base_size),
+          silver: crownCutoff("silver", monster.crowns, monster.base_size),
+          gold: crownCutoff("gold", monster.crowns, monster.base_size),
         }
       : null;
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];

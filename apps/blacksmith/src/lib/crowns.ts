@@ -27,6 +27,18 @@ export function cardSize(size: number, baseSize: number): number {
 }
 
 /**
+ * A crown's cutoff as the Guild Card shows sizes, to a tenth,
+ * rounded the safe way: gold and silver up, mini down. Every size at or past
+ * the number shown then earns the crown (Giadrome's gold, 908.232, shows
+ * as 908.3, not 908.2, which isn't gold).
+ */
+export function crownCutoff(crown: Crown, crowns: Crowns, baseSize: number): number {
+  // toFixed drops the float noise in an exact tenth (1122.0000000001).
+  const tenths = Number((cardSize(crowns[crown], baseSize) * 10).toFixed(6));
+  return (crown === "mini" ? Math.floor(tenths) : Math.ceil(tenths)) / 10;
+}
+
+/**
  * A chance (0-1) as a percent to a tenth, for display: 8.2, or 0.1 with
  * `below` for a chance under that.
  */
