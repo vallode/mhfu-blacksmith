@@ -130,7 +130,7 @@ export const site: Messages["site"] = {
     intro:
       "¿Juegas en PPSSPP? Enlaza el sitio con él y tu cazador llega directamente del juego cada vez que vuelves a esta pestaña, hayas guardado o no.",
     setup:
-      "En PPSSPP, activa Ajustes → Herramientas → Herramientas de desarrollo → Permitir depurador remoto. La primera vez, el sitio pregunta al servidor de PPSSPP (report.ppsspp.org) en qué puerto está.",
+      "En PPSSPP, activa Ajustes → Herramientas → Herramientas de desarrollo → Permitir depurador remoto. La primera vez, el sitio encuentra el puerto de PPSSPP por sí solo (pregunta al servidor de PPSSPP, report.ppsspp.org, y luego prueba los puertos que PPSSPP puede elegir), lo que puede tardar unos segundos.",
     link: "Enlazar con PPSSPP",
     unlink: "Desenlazar",
     syncNow: "Sincronizar",
@@ -145,7 +145,7 @@ export const site: Messages["site"] = {
       "Mientras el sitio está enlazado con PPSSPP, toma el cazador del juego y no del archivo de guardado.",
     port: "Puerto",
     portHint:
-      "Si el sitio no encuentra PPSSPP por sí solo (Safari hace la consulta a través de Retransmisión privada de iCloud, que oculta que estás en la red de PPSSPP), escribe el puerto de PPSSPP: RemoteISOPort en PSP/SYSTEM/ppsspp.ini, en la carpeta de PPSSPP.",
+      "Si el sitio sigue sin encontrar PPSSPP, escribe su puerto: PPSSPP lo muestra en pantalla unos segundos al iniciar el depurador («Debugger web server running on port …») y lo guarda como RemoteISOPort en PSP/SYSTEM/ppsspp.ini.",
     connect: "Conectar",
     liveHunter: "En el juego",
   },
