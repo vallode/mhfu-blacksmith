@@ -1787,7 +1787,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "mods.nodeMap",
-    section: "Extras",
+    section: "Area map",
     label: "Gathering nodes on the area map",
     help: "The map screen marks every gathering (green), mining (orange) and bug catching (yellow) point on the map.",
     discs: "EU and JP",
@@ -1796,7 +1796,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "mods.buttonIcons",
-    section: "Extras",
+    section: "Buttons",
     label: "Button icons",
     help: "The buttons the game draws in its text and HUD, for playing with a controller in PPSSPP.",
     type: {
