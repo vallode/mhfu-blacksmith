@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { faviconMetadata } from "@/lib/favicon";
+import { LAST_WEAPON_SCRIPT } from "@/lib/last-weapon";
 import { DEFAULT_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, THEME_COLOR } from "@/lib/seo";
 import AppShell from "@/components/AppShell";
 import GlobalSearch from "@/components/GlobalSearch";
@@ -49,6 +50,9 @@ export const viewport: Viewport = { themeColor: THEME_COLOR };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: LAST_WEAPON_SCRIPT }} />
+      </head>
       <body>
         <PreloadIcons />
         <PreferencesProvider>

@@ -198,6 +198,8 @@ code {
 
 .card-head {
   top: 0;
+  /* Above Back / Next, so the step menu that drops from it isn't covered. */
+  z-index: 6;
   margin-top: calc(-1 * (var(--frame-pad-top) + 3px));
   margin-bottom: 1.8rem;
   padding-block: var(--frame-pad-top) 1rem;
@@ -720,6 +722,11 @@ textarea.text-input {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+
+  &.compact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  }
 }
 
 .choice {
@@ -828,6 +835,54 @@ textarea.text-input {
 
   dt > & {
     margin-left: 0;
+  }
+}
+
+/* Notes on an option after its name (badges() in app.ts): quieter than the tags. */
+.badge {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0 0.4rem;
+  font-size: var(--text-fine);
+  line-height: 1.5;
+  text-shadow: none;
+  vertical-align: 0.15em;
+  white-space: nowrap;
+  cursor: help;
+  color: rgb(255 255 255 / 0.75);
+  background: rgb(255 255 255 / 0.1);
+
+  &.in-game {
+    color: var(--color-gem-cyan);
+  }
+}
+
+/* An option's points under its help, each after a small box like the toggles'. */
+.help-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-fine);
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.75);
+
+  & li {
+    position: relative;
+    padding-left: 1.6rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0.1rem;
+      top: 0.45em;
+      width: 0.6rem;
+      height: 0.6rem;
+      background: var(--color-stat);
+      box-shadow: 0.1rem 0.1rem 0 black;
+    }
   }
 }
 
@@ -1148,13 +1203,51 @@ input[type="range"] {
 
 .go {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  gap: 1.6rem;
+  gap: 1.2rem;
   margin-top: 1rem;
-  padding-top: 1.6rem;
+  padding-top: 2rem;
   border-top: 3px solid var(--color-hr);
+
+  & .button.primary {
+    min-width: 24rem;
+  }
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.2rem 0.4rem;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--text-sub);
+  color: rgb(255 255 255 / 0.7);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  cursor: pointer;
+
+  & .icon {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+  }
+
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      color: white;
+    }
+  }
 }
 
 /* ─── Run ──────────────────────────────────────────────────────────────────── */
@@ -1634,10 +1727,14 @@ a.button {
   }
 
   .go {
-    justify-content: stretch;
+    align-items: stretch;
 
-    & .button {
-      flex: 1 1 auto;
+    & .button.primary {
+      min-width: 0;
+    }
+
+    & .link-button {
+      justify-content: center;
     }
   }
 }

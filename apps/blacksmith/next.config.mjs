@@ -117,6 +117,18 @@ function collectPrecacheEntries() {
 }
 
 const additionalManifestEntries = collectPrecacheEntries();
+
+// How long the service worker waits for the network before it serves a page
+// (HTML or RSC payload) from its cache instead. Without one, NetworkFirst
+// waits as long as the connection does: real-user data (Cloudflare Web
+// Analytics, Nov 2026) had reloads of already-visited pages waiting 24-35 s
+// for their HTML on stalled connections, the slowest loads on desktop. The
+// network fetch carries on and updates the cache when it lands, and a page
+// that isn't cached still waits for the network. Only pages: scripts, workers
+// and other files must match the page that loads them. A new build's service
+// worker clears the page caches (worker/index.ts), so the fallback is never an
+// older build's page, whose chunks are gone.
+const PAGE_NETWORK_TIMEOUT = 4;
 // Version/cacheId from the data manifest hash so data updates invalidate cleanly.
 let cacheId = "mhfu-blacksmith";
 try {
@@ -233,6 +245,18 @@ export default withPWA({
         handler: "NetworkFirst",
         options: {
           cacheName: "pages-rsc",
+          networkTimeoutSeconds: PAGE_NETWORK_TIMEOUT,
+          expiration: { maxEntries: 4000, maxAgeSeconds: 86400 },
+        },
+      },
+      {
+        // Page loads: the same cache as the rule below, with the timeout.
+        urlPattern: ({ request, url: { pathname }, sameOrigin }) =>
+          request.mode === "navigate" && sameOrigin && !pathname.startsWith("/api/"),
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "pages",
+          networkTimeoutSeconds: PAGE_NETWORK_TIMEOUT,
           expiration: { maxEntries: 4000, maxAgeSeconds: 86400 },
         },
       },

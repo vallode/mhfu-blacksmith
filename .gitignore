@@ -15,6 +15,7 @@ apps/blacksmith/content/**/*.md
 /apps/blacksmith/public/workbox-*.js
 /apps/blacksmith/public/swe-worker-*.js
 /apps/blacksmith/public/fallback-*.js
+/apps/blacksmith/public/worker-*.js
 
 # vim temporary files
 **/.*.sw*
