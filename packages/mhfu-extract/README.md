@@ -392,6 +392,13 @@ the module comments:
   large monster's row to `data/quests` as `multipliers`, and with `--raw`
   the tables to `raw/monsters.json`.
 
+- **Base scale**: the chunk's `+0x40` (f32) is the size the game draws
+  the monster's model at, against the model's own units (Rathian 1.0,
+  Yian Kut-Ku 0.8, Gravios 1.5, Lao-Shan Lung 1.0); randomfu's size
+  option rewrites it. `extract` writes it as `base_scale`, and the site's
+  3D viewer sizes a hunter against it (at size 100, the hunter's model at
+  scale 1).
+
 The per-monster `emXX.ovl` files aren't needed: every chunk's hitzones are
 in `game_task.ovl`.
 

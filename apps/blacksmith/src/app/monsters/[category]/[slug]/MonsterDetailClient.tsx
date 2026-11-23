@@ -130,6 +130,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const unusedMotions = useMonsterUnusedMotions(modelUrl);
   const [showAttacks, setShowAttacks] = useState(false);
   const shownAttacks: ModelAttack[] | undefined = (showAttacks && attacks) || undefined;
+  /** The hunter beside the model, to scale. */
+  const [showHunter, setShowHunter] = useState(true);
   // A part or break hovered in the hitzone tab or the legend, and one picked
   // in the legend (which only shows with the hitboxes, so a pick ends with
   // them). Hitzone parts go by name, breaks by `breakKey`.
@@ -453,8 +455,10 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               capsules={capsules}
               attacks={shownAttacks}
               unusedMotions={unusedMotions ?? undefined}
+              sizeHunter={monster.base_scale}
+              showSizeHunter={showHunter}
             />
-            {(hitboxParts.length > 0 || attacks) && (
+            {(hitboxParts.length > 0 || attacks || monster.base_scale) && (
               <HitzoneControls
                 parts={hitboxParts}
                 breaks={breaks
@@ -466,6 +470,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 onPin={setPinnedPart}
                 onHover={setHoveredPart}
                 attacks={attacks ? { show: showAttacks, onShowChange: setShowAttacks } : undefined}
+                hunter={
+                  monster.base_scale ? { show: showHunter, onShowChange: setShowHunter } : undefined
+                }
               />
             )}
           </div>
