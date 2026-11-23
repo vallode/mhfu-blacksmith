@@ -122,6 +122,7 @@ export interface Settings {
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
+  "paint.stays": boolean;
   "mods.buttonIcons": "psp" | "xbox" | "nintendo" | "playstation" | "keyboard";
   "camera.fov": "normal" | "wide" | "wider" | "widest";
   "camera.distance": "normal" | "far" | "farther" | "farthest";
@@ -140,6 +141,7 @@ export interface Settings {
   "quests.keyLabel": boolean;
   "rewards.sendAll": boolean;
   "smithy.improvePips": boolean;
+  "monsterList.slainCaptured": boolean;
   "boot.skip": "normal" | "title" | "village";
 }
 
@@ -1795,6 +1797,14 @@ export const OPTIONS: readonly OptionDef[] = [
     default: false,
   },
   {
+    key: "paint.stays",
+    section: "Area map",
+    label: "Paint never wears off",
+    help: "A monster hit by a Paintball stays on the area map for the rest of the quest, instead of for ten minutes. Each painted monster keeps its own mark.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
     key: "mods.buttonIcons",
     section: "Buttons",
     label: "Button icons",
@@ -2089,6 +2099,14 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "In the smithy's Improve, an orange pip marks each weapon you have the materials and zenny to improve.",
     type: { kind: "boolean" },
     default: true,
+  },
+  {
+    key: "monsterList.slainCaptured",
+    section: "Monster List",
+    label: "Slain and captured",
+    help: "The Monster List's card shows how many of each monster you slew and how many you captured, in place of one hunted count. The save already keeps both, so old hunts count too. In English on every disc.",
+    type: { kind: "boolean" },
+    default: false,
   },
   {
     key: "boot.skip",

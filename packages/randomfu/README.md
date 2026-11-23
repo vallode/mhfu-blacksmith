@@ -182,6 +182,7 @@ web app shows as a tag):
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU and JP discs)                        |
+| `paint.stays`                     | off         | A painted monster stays on the area map until the quest ends                                           |
 | `mods.buttonIcons`                | `psp`       | `xbox`, `nintendo`, `playstation` or `keyboard` draws that set's icons                                 |
 | `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
 | `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
@@ -200,6 +201,7 @@ web app shows as a tag):
 | `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards) |
 | `rewards.sendAll`                 | on          | A Send All to Item Box row in the reward screen's menu (caps Guild Cards)                              |
 | `smithy.improvePips`              | on          | A pip on each weapon the smithy's Improve can improve now (caps Guild Cards)                           |
+| `monsterList.slainCaptured`       | off         | The Monster List's card shows slain and captured counts, from the save, in place of one hunted count   |
 | `boot.skip`                       | `normal`    | A faster start: `title` (no notice, logos or intro movie) or `village` (straight into the last hunter) |
 
 ### Presets
@@ -2381,6 +2383,64 @@ matched on EU; `src/patches/improve-pips.ts` has the addresses):
 Which cells get a pip is worked out once a page and kept while the picker
 shows: again for a slot that changes, and for the page when the zenny does
 or the picker's been closed. Not yet seen in game.
+
+## Paint
+
+`paint.stays` keeps a Paintball's mark for the rest of the quest: the
+painted monster stays on the area map, where the game drops it after ten
+minutes. It's a one-word patch of `game_task` (`src/patches/paint.ts`), no
+blob, so it doesn't cap Guild Cards.
+
+What it found (`game_task.ovl`, statically on EU and matched on JP):
+
+- A Paintball hit sets the monster's paint flag (`+0x3D0`, u8) to 1 and its
+  timer (`+0x3D2`, s16) to 18000 frames. The map draws a monster's icon
+  while the flag is set (the map's test, EU 0x08844578, see "Monster
+  health").
+- Each frame the monster's update counts the timer down while the flag is
+  set and isn't 0xFF, and clears the flag at 0 (EU 0x09AC74E8, JP
+  0x09AC27B8). That's the only countdown; the flag is otherwise cleared
+  when a monster is set up (spawned, or reset) and by the ad hoc sync, which
+  every randomfu disc turns off ("No online play").
+- A monster that leaves the area stays in the quest's monster list with its
+  fields, paint included, so the mark follows it to the next area. Each
+  monster has its own flag and timer.
+
+The patch turns the countdown's decrement into a `nop`, so the timer is
+written back unchanged. Not yet seen in game: the mark across area changes
+and with two monsters painted are what the code says, not what's been
+played.
+
+## Monster List
+
+`monsterList.slainCaptured` changes the card the Monster List (the menu
+with the Combo List and Comrade Info) shows for a monster: its "No. Hunted"
+line becomes "Slain: n Captured: n".
+Nothing in the save changes; the counts are the ones the game keeps on any
+disc, so hunts from before the patch count, and the save still loads on an
+unmodified disc. It's an EBOOT patch (`src/patches/monster-list.ts`), no
+blob, so it doesn't cap Guild Cards.
+
+What it found (the EBOOT, statically on EU and matched on JP):
+
+- The save keeps slain and captured apart: a u16 per emID of captures at
+  `save + 0x44CC` and of kills at `+0x46E8`, each capped at 9999, beside the
+  record sizes (`+0x4580` largest, `+0x4634` smallest). At a quest's end the
+  quest object's own counts (`+0x29C` slain, `+0x350` captured, counted up
+  by the kill and capture code, see "Monster health") are added to them.
+- A Monster List entry is a crown group, a list of emIDs (variants
+  together). Two functions sum a group's slain and captured counts, and a
+  third adds them, capped at 9999: that's what the card shows, as message
+  90 ("No. Hunted:%d"), and whether it shows the record sizes.
+- The Guild Card's Monster Log stores only the sum, in 14 bits of the card
+  that is traded with other hunters, so it's left as it is.
+
+The patch rewrites the two group sums as one function that returns both, a
+second that prints the line, and the sum in place. The card's line calls
+the new one and keeps the sum where the card reads it. The text is English
+on every disc, like Send All to Item Box's row: the game's message would
+need a second number. The card's window is 35 half-width columns; the line
+is at most 25 characters. Not yet seen in game.
 
 ## Faster start
 
