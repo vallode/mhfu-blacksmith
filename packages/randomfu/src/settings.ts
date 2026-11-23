@@ -140,6 +140,8 @@ export interface Settings {
   "quests.keyLabel": boolean;
   "rewards.sendAll": boolean;
   "smithy.improvePips": boolean;
+  "farm.harvestAll": boolean;
+  "pouch.bulkCombine": boolean;
   "boot.skip": "normal" | "title" | "village";
 }
 
@@ -2083,6 +2085,22 @@ export const OPTIONS: readonly OptionDef[] = [
     default: true,
   },
   {
+    key: "farm.harvestAll",
+    section: "Pokke Farm",
+    label: "Harvest all",
+    help: "Gathering once at any Pokke Farm spot sends everything the farm holds to the Item Box.",
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
+    key: "pouch.bulkCombine",
+    section: "Item pouch",
+    label: "Bulk combine",
+    help: 'The item pouch\'s Combine asks how many at "Combine?": left and right pick up to what the ingredients and the pouch allow, and × on Yes combines them all at once.',
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
     key: "smithy.improvePips",
     section: "Improve pips",
     label: "Mark weapons you can improve",
@@ -2336,7 +2354,7 @@ export const PRESETS: readonly Preset[] = [
     name: "QoL only",
     points: [
       "Shuffles and randomizes nothing: items, monsters, equipment and numbers stay as on the disc",
-      "Adds Send All to Item Box, the smithy's improve pips, photo mode, key quest marks and gathering nodes on the area map; all but the map's code caps received Guild Cards at 3",
+      "Adds Send All to Item Box, the smithy's improve pips, harvest all at Pokke Farm, bulk combine, photo mode, key quest marks and gathering nodes on the area map; all but the map's code caps received Guild Cards at 3",
       "Leaves out Poogie's luck and the bookshelf guides",
       "Turn on camera, HUD and quest extras in the later steps; the settings then show as custom, still with nothing shuffled",
       "Hunter's Pact, if you turn it on, draws its rewards from the seed",

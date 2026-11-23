@@ -132,7 +132,7 @@ const OPTION_STEPS: Step[] = [
     title: "Quality of life",
     icon: "ticket",
     tint: "var(--color-gem-green)",
-    sections: ["Reward screen", "Quest end", "Area map", "Boot"],
+    sections: ["Reward screen", "Pokke Farm", "Item pouch", "Quest end", "Area map", "Boot"],
     intro: "Less waiting and fewer menus.",
   },
   {
@@ -166,6 +166,8 @@ const SECTION_ICONS: Record<string, Sprite> = {
   Buttons: { icon: "ticket", tint: "var(--color-gem-yellow)" },
   Camera: { icon: "binoculars", tint: "var(--color-gem-cyan)" },
   "Quest end": { icon: "ticket", tint: "var(--color-gem-green)" },
+  "Pokke Farm": { icon: "ore", tint: "var(--color-gem-blue)" },
+  "Item pouch": { icon: "fluid", tint: "var(--color-gem-green)" },
   "Hunter's Pact": { icon: "ko", tint: "var(--color-gem-red)" },
   Poogie: { icon: "meat", tint: "var(--color-gem-pink)" },
   "Quest monsters": { icon: "monsters/flying-wyvern", tint: "var(--color-gem-orange)" },
