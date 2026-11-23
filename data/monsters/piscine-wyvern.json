@@ -153,6 +153,7 @@
         }
       },
       "base_hp": 300,
+      "base_scale": 0.7,
       "flinch_thresholds": [
         150,
         90,
@@ -475,6 +476,7 @@
         }
       },
       "base_hp": 1600,
+      "base_scale": 1.1,
       "breaks": [
         {
           "name": "back fin",
@@ -918,6 +920,7 @@
         }
       },
       "base_hp": 4000,
+      "base_scale": 1.5,
       "breaks": [
         {
           "name": "back fin",
@@ -1308,6 +1311,7 @@
         }
       },
       "base_hp": 4400,
+      "base_scale": 1.5,
       "breaks": [
         {
           "name": "back fin",
@@ -1548,6 +1552,7 @@
         }
       },
       "base_hp": 4000,
+      "base_scale": 1.5,
       "breaks": [
         {
           "name": "face",
