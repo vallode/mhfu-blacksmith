@@ -1754,7 +1754,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "monsterAi.reach",
     section: "Monster stats",
     label: "Time out of reach",
-    help: "Large monsters spend less of the fight where you can't hit them. Rathian and Rathalos and their kin, Yian Kut-Ku and Gypceros, Fatalis and Chameleos take off less often, Diablos and Monoblos dig in less often, and every large monster fights in each area for longer before it leaves mid-fight, and keeps after a hunter it lost sight of for longer before it gives up and wanders off. A flight or a burrow, once started, lasts as long as before, and every move stays possible. A quest that sets a monster's area time itself keeps it.",
+    help: "Large monsters spend less of the fight where you can't hit them. Rathian and Rathalos and their kin, Yian Kut-Ku and Gypceros, Fatalis and Chameleos take off less often, Diablos and Monoblos dig in less often, and every large monster fights in each area for longer before it leaves mid-fight, and keeps after a hunter it lost sight of for longer before it gives up and wanders off. A flight or a burrow, once started, lasts as long as before, and every move stays possible.",
     type: {
       kind: "choice",
       choices: [

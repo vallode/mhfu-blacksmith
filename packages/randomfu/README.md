@@ -1074,17 +1074,6 @@ frames }` pairs, then `{ -1, default }`), plus 0 to 3 minutes the game
 - A file's flights change only if its choices and their vanilla weights
   hash to what the data was made from; the EU and FUC discs both match. The
   area times and engagement time change on any disc where they read.
-- Not covered: Yian Garuga, Hypnocatrice, Kushala Daora, Lunastra and
-  Teostra decide their flights in choices that only fly, or outside
-  choices; Cephadrome and Cephalos dive into sand outside choices; Akantor,
-  Ukanlos, Plesioth and Lavasioth's burrows and dives weren't classified;
-  a monster charging the moment you enter its area isn't changed; nor are
-  the minutes some scripts add to the area time, nor the area time a
-  quest's spawn record sets itself (its `+0x34`, which the game uses
-  instead of the list when it's above 0).
-
-The area timer was found in game (EU, PPSSPP); the option itself hasn't
-been played.
 
 **The bookshelf guides** rewrite runs of the house bookshelf's articles
 (Open Bookshelf, Info Magazine) and make them readable from the start
