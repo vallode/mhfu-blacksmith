@@ -11,7 +11,7 @@
  * spelled as the monster page's English shows them).
  */
 import { CARD, cardShell, COLOR, h, text, type CardNode } from "./card-tree";
-import { CROWN_ORDER, sizeInCm, type Crown } from "./crowns";
+import { CROWN_ORDER, cardSize, type Crown } from "./crowns";
 import { titleCase } from "./embed-format";
 import type { Monster } from "./types";
 
@@ -210,7 +210,7 @@ export function monsterCardTree(
       text({ color: COLOR.stat, fontSize: 22, flexGrow: 1 }, CROWN_NAMES[crown]),
       text(
         { color: COLOR.white, fontSize: 22 },
-        `${Math.round(sizeInCm(crowns![crown], base_size!))} cm`,
+        String(Math.round(cardSize(crowns![crown], base_size!))),
       ),
     );
   const group = (label: string, ...lines: CardNode[]) =>

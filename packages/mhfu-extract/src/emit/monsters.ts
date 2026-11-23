@@ -76,7 +76,7 @@ export interface EmittedMonster {
   breaks?: EmittedBreak[];
   /** Damage each body part (hitbox capsule `part`) takes before a flinch; null: no such part. */
   flinch_thresholds?: (number | null)[];
-  /** Centimetres at size 100 (`monsters/sizes.ts`); absent where the game has none. */
+  /** The Guild Card size at 100 percent (`monsters/sizes.ts`); absent where the game has none. */
   base_size?: number;
   /** Crown thresholds in percent of `base_size`, shared with the monster's subspecies. */
   crowns?: Crowns;

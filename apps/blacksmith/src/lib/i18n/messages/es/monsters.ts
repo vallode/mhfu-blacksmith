@@ -8,14 +8,13 @@ export const monsters: Messages["monsters"] = {
   detail: {
     notFound: "No encontrado.",
     size: "Tamaño:",
-    sizeRange: (min: string, max: string) => `${min}–${max} cm`,
+    sizeRange: (min: string, max: string) => `${min}–${max}`,
     baseHp: "Vida base:",
     guildCard: (hunter: string) => `Tarjeta del Gremio de ${hunter}`,
     hunted: "Cazados:",
     captured: "Capturados:",
     largest: "Mayor:",
     smallest: "Menor:",
-    cm: (n: string) => `${n} cm`,
     tabsLabel: (monster: string) => `Datos de ${monster}`,
     tabs: {
       hitzones: "Zonas débiles",
