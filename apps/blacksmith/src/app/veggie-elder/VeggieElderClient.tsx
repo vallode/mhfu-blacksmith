@@ -33,6 +33,14 @@ import { groundName } from "../items/source-labels";
 
 const note = "whitespace-normal text-white leading-[1.25]";
 
+// Sticks to the top of the card while its section scrolls by. Opaque, and
+// run out to the card's edges (TreeScroll indents the list by 13px). Above
+// z-10, which the card's paragraphs sit at, so rows scroll under it.
+const header = cn(
+  "sticky top-0 z-20 -ml-[13px] flex h-[34px] w-[calc(100%+13px)] items-center border-b-2 border-black/40 px-5 text-sub tracking-[0.12em] text-parchment uppercase",
+  "[background:linear-gradient(var(--color-selector),var(--color-selector)),var(--color-sheet)]",
+);
+
 /** One reward, laid out like a recipe material: icon, name and its chance. */
 function RewardRow({
   id,
@@ -90,6 +98,15 @@ export default function VeggieElderClient() {
   const count = bundle.elders.length;
   const { maps, rows } = bundle.elders[elder]!;
   const trade = rows.find(([, give]) => give === picked);
+  // Items every ground's list takes, then the ones only this ground does,
+  // each in the game's order (the No. on the row is the place on the list).
+  const shared = rows.filter(([, give]) =>
+    bundle.elders.every((e) => e.rows.some(([, other]) => other === give)),
+  );
+  const sections = [
+    { key: "every", label: tv.everyGround, rows: shared },
+    { key: "here", label: tv.onlyHere, rows: rows.filter((row) => !shared.includes(row)) },
+  ].filter((section) => section.rows.length > 0);
   const itemName = (id: number) => {
     const item = items.get(id);
     return item.known ? game.name("item", item.name) : t.quests.rewards.unknownItem(id);
@@ -112,25 +129,31 @@ export default function VeggieElderClient() {
         <Card variant="weapon-tree">
           <TreeScroll treeKey={`veggie-elder-${elder}`}>
             <div ref={listRef} className="flex flex-col">
-              {rows.map(([row, give]) => {
-                const item = items.get(give);
-                const active = give === picked;
-                return (
-                  <button
-                    key={row}
-                    type="button"
-                    aria-pressed={active}
-                    onClick={() => setPicked(give)}
-                    className={cn(
-                      "list-row w-full cursor-pointer border-0 text-left font-[inherit] text-white",
-                      active ? "bg-(image:--gradient-hover-glow)" : "bg-transparent",
-                    )}
-                  >
-                    <Icon type={item.type} color={item.color} />
-                    <p className="truncate">{itemName(give)}</p>
-                  </button>
-                );
-              })}
+              {sections.map((section) => (
+                <section key={section.key}>
+                  <h2 className={header}>{section.label}</h2>
+                  {section.rows.map(([row, give]) => {
+                    const item = items.get(give);
+                    const active = give === picked;
+                    return (
+                      <button
+                        key={row}
+                        type="button"
+                        aria-pressed={active}
+                        onClick={() => setPicked(give)}
+                        className={cn(
+                          "list-row w-full cursor-pointer border-0 text-left font-[inherit] text-white",
+                          active ? "bg-(image:--gradient-hover-glow)" : "bg-transparent",
+                        )}
+                      >
+                        <Icon type={item.type} color={item.color} />
+                        <p className="min-w-0 flex-1 truncate">{itemName(give)}</p>
+                        <p className="flex-none pr-3 text-fine text-muted">{row}</p>
+                      </button>
+                    );
+                  })}
+                </section>
+              ))}
             </div>
           </TreeScroll>
           {/* Room to scroll the last rows clear of the ground selector. */}
