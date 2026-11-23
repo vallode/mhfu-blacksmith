@@ -1,6 +1,7 @@
 /**
  * Monster link-preview cards (lib/monster-card.ts): every monster's card lays
- * out with satori, and its alt text says what the card shows.
+ * out with satori and fits the card, its URL changes with its data, and its
+ * alt text says what the card shows.
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -11,7 +12,9 @@ import { CARD, CARD_FONT, CARD_FONT_PATH } from "../src/lib/card-tree";
 import {
   MONSTER_CARD_SPRITES,
   monsterCardAlt,
+  monsterCardOverflow,
   monsterCardTree,
+  monsterCardUrl,
   type MonsterCardSprites,
 } from "../src/lib/monster-card";
 import { getMonster, getMonsterCategories, getMonsters } from "../src/lib/monsters";
@@ -38,6 +41,35 @@ describe("monster card", () => {
     }
   });
 
+  it("fits every monster's text on its card", () => {
+    for (const category of getMonsterCategories()) {
+      for (const m of getMonsters(category)) {
+        assert.deepEqual(monsterCardOverflow(m), [], m.slug);
+      }
+    }
+  });
+
+  it("notices text that wouldn't fit", () => {
+    const rathalos = getMonster("flying-wyvern", "rathalos")!;
+    const crowded = {
+      ...rathalos,
+      hitzones: { ...rathalos.hitzones, "back-tail-spikes": {}, a: {}, b: {} },
+    };
+    assert.deepEqual(monsterCardOverflow(crowded), ["10 hitzone rows", 'part "Back-Tail-Spikes"']);
+  });
+
+  it("gives a changed monster a new card URL", () => {
+    const rathalos = getMonster("flying-wyvern", "rathalos")!;
+    const url = monsterCardUrl(rathalos);
+    assert.match(url, /^\/embed\/cards\/monsters\/rathalos\.png\?v=\d+\.[0-9a-z]+$/);
+    assert.equal(monsterCardUrl({ ...rathalos }), url);
+    const changed = {
+      ...rathalos,
+      hitzones: { ...rathalos.hitzones, head: { ...rathalos.hitzones!.head, cut: "75" } },
+    };
+    assert.notEqual(monsterCardUrl(changed), url);
+  });
+
   it("puts the card's facts in its alt text", () => {
     const rathalos = getMonster("flying-wyvern", "rathalos")!;
     const alt = monsterCardAlt(rathalos);
@@ -45,5 +77,7 @@ describe("monster card", () => {
     assert.match(alt, /Base HP 3200\./);
     assert.match(alt, /Cut Head 80/);
     assert.match(alt, /Breaks: Head, Wing\./);
+    // A break's condition is left off: Ukanlos's "chest - requires fire element".
+    assert.match(monsterCardAlt(getMonster("flying-wyvern", "ukanlos")!), /Breaks: [^.]*\bChest\b/);
   });
 });

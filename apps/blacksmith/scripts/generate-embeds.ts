@@ -5,7 +5,9 @@
  * - icons/<type>-<tint>.png: 180px thumbnails, the site's in-game icon sprite
  *   tinted the way the site tints it (multiply), in the site's blue card frame
  *   and its patterned fill. Monster categories get their icon on the scroll,
- *   as on the monster page. See embedIcon() in src/lib/seo.ts.
+ *   as on the monster page, and monsters their portrait (no longer linked,
+ *   kept for embeds shared before the cards). See embedIcon() in
+ *   src/lib/seo.ts.
  * - cards/monsters/<slug>.png: each monster page's large preview card, its
  *   portrait and hitzone table in the site's card frame. See
  *   src/lib/monster-card.ts.
@@ -202,11 +204,17 @@ async function writeIcons() {
     }
   }
 
-  // Monster categories: their icon on the scroll. Monsters have cards
-  // (writeMonsterCards).
+  // Monster categories: their icon on the scroll. Monster pages now use
+  // cards (writeMonsterCards), but their old thumbnails (the portrait on the
+  // scroll) stay, so embeds shared before the cards keep their image.
   for (const category of getMonsterCategories()) {
     await drawOnScroll(category, path.join(dir, `monster-${category}.png`));
     count++;
+    for (const m of getMonsters(category)) {
+      if (!fs.existsSync(path.join(publicDir, "images/monsters", `${m.slug}.png`))) continue;
+      await drawOnScroll(m.slug, path.join(dir, `monster-${m.slug}.png`));
+      count++;
+    }
   }
   return count;
 }

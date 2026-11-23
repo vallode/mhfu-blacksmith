@@ -3,7 +3,7 @@ import { getMonsters, getMonster } from "@/lib/monsters";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 import type { Metadata } from "next";
 import { monsterDescription, pageMetadata } from "@/lib/seo";
-import { MONSTER_CARD_VERSION, monsterCardAlt, monsterCardPath } from "@/lib/monster-card";
+import { monsterCardAlt, monsterCardUrl } from "@/lib/monster-card";
 import { faviconMetadata } from "@/lib/favicon";
 import { MOVED_MONSTER_SLUGS, movedMonsterSlug } from "@/lib/moved-monsters";
 import MonsterDetailClient from "./MonsterDetailClient";
@@ -39,11 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: monster.name,
       description: monsterDescription(monster),
       path: `/monsters/${category}/${slug}/`,
-      // The version in the URL makes Discord and others fetch a changed card again.
-      card: {
-        url: `${monsterCardPath(slug)}?v=${MONSTER_CARD_VERSION}`,
-        alt: monsterCardAlt(monster),
-      },
+      card: { url: monsterCardUrl(monster), alt: monsterCardAlt(monster) },
       oembed: true,
     }),
   };

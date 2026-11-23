@@ -7,12 +7,12 @@
  * and resvg, like the set card the Worker draws) to monsterCardPath(). It
  * makes the frame, the portrait and the sprites too, since satori can't draw
  * a 9-slice frame or scale pixel art without smoothing. Pure: no fs, no
- * process.env, and English only, like the rest of the embeds.
+ * process.env, and English only, like the rest of the embeds (the names
+ * spelled as the monster page's English shows them).
  */
-import { cardShell, COLOR, h, text, type CardNode } from "./card-tree";
+import { CARD, cardShell, COLOR, h, text, type CardNode } from "./card-tree";
 import { CROWN_ORDER, sizeInCm, type Crown } from "./crowns";
 import { titleCase } from "./embed-format";
-import { monsters as monsterText } from "./i18n/messages/en/monsters";
 import type { Monster } from "./types";
 
 /** Bump when the card's look changes, so link previews pick up the new image. */
@@ -20,6 +20,23 @@ export const MONSTER_CARD_VERSION = 2;
 
 /** Where the build writes a monster's card, under public/. */
 export const monsterCardPath = (slug: string) => `/embed/cards/monsters/${slug}.png`;
+
+/**
+ * The card's URL for the page's meta tags. Its `v` is the card version and a
+ * hash of what the card shows, so a data change gets a new URL, which link
+ * previews fetch again rather than keep the old image.
+ */
+export function monsterCardUrl(monster: Monster): string {
+  const { name, type, hitzones, base_hp, base_size, crowns, breaks } = monster;
+  const shown = JSON.stringify({ name, type, hitzones, base_hp, base_size, crowns, breaks });
+  // FNV-1a, 32-bit.
+  let hash = 0x811c9dc5;
+  for (let i = 0; i < shown.length; i++) {
+    hash = Math.imul(hash ^ shown.charCodeAt(i), 0x01000193);
+  }
+  const v = `${MONSTER_CARD_VERSION}.${(hash >>> 0).toString(36)}`;
+  return `${monsterCardPath(monster.slug)}?v=${v}`;
+}
 
 /** The left column, the portrait's and the stats under it. */
 const LEFT_WIDTH = 265;
@@ -58,13 +75,40 @@ const ELEMENT_ICONS: Partial<
   drg: "dragon",
 };
 
-const labels = monsterText.hitzones;
+/** The game's short column headers, as the monster page shows them. */
+const SHORT_COLUMNS: Record<(typeof COLUMNS)[number], string> = {
+  cut: "Cut",
+  bash: "Bsh",
+  shot: "Sht",
+  fir: "Fir",
+  wtr: "Wtr",
+  thn: "Thn",
+  ice: "Ice",
+  drg: "Drg",
+  ko: "KO",
+};
+const CROWN_NAMES: Record<Crown, string> = { gold: "Gold", silver: "Silver", mini: "Mini" };
+
+/** A hitzone part or break in words: "front-legs" → "Front-Legs", "dorsal fin" → "Dorsal Fin". */
 const partLabel = (part: string) =>
-  (labels.parts as Record<string, string>)[part] ?? titleCase(part);
+  part.replace(/(^|[\s/-])([a-z])/g, (_, sep: string, c: string) => sep + c.toUpperCase());
+
+/**
+ * A break's part, without the condition or detail the data adds after " - "
+ * ("chest - requires fire element" → "Chest"), which the card has no room for.
+ */
+const breakLabel = (name: string) => partLabel(name.split(" - ")[0]);
+const breakLabels = (monster: Monster) => [
+  ...new Set((monster.breaks ?? []).map((b) => breakLabel(b.name))),
+];
 
 const PART_WIDTH = 215;
 const COLUMN_WIDTH = 56;
 const ROW_HEIGHT = 45;
+/** The most hitzone rows the card has room for. */
+const MAX_ROWS = 8;
+const NAME_TEXT = 40;
+const BREAK_TEXT = 20;
 const TABLE_TEXT = 24;
 
 function hitzoneTable(monster: Monster, sprites: MonsterCardSprites): CardNode | null {
@@ -85,13 +129,13 @@ function hitzoneTable(monster: Monster, sprites: MonsterCardSprites): CardNode |
   const header = h(
     "div",
     { style: { display: "flex", alignItems: "center", height: ROW_HEIGHT } },
-    text({ width: PART_WIDTH, color: COLOR.stat, fontSize: TABLE_TEXT }, labels.part),
+    text({ width: PART_WIDTH, color: COLOR.stat, fontSize: TABLE_TEXT }, "Part"),
     ...COLUMNS.map((col) => {
       const icon = ELEMENT_ICONS[col];
       return cell(
         icon
           ? h("img", { src: sprites[icon], style: { width: SPRITE, height: SPRITE } })
-          : text({ color: COLOR.stat, fontSize: 22 }, labels.columns[col]),
+          : text({ color: COLOR.stat, fontSize: 22 }, SHORT_COLUMNS[col]),
       );
     }),
   );
@@ -148,7 +192,7 @@ export function monsterCardTree(
   portrait: string,
   sprites: MonsterCardSprites,
 ): CardNode {
-  const breaks = [...new Set((monster.breaks ?? []).map((b) => partLabel(b.name)))];
+  const breaks = breakLabels(monster);
   const { crowns, base_size } = monster;
   // The crown cutoffs, laid out like the monster page's (CrownCutoffs).
   const crownLine = (crown: Crown) =>
@@ -163,7 +207,7 @@ export function monsterCardTree(
           style: crown === "mini" ? { width: 13, height: 13 } : { width: 21, height: 22 },
         }),
       ),
-      text({ color: COLOR.stat, fontSize: 22, flexGrow: 1 }, monsterText.crowns.names[crown]),
+      text({ color: COLOR.stat, fontSize: 22, flexGrow: 1 }, CROWN_NAMES[crown]),
       text(
         { color: COLOR.white, fontSize: 22 },
         `${Math.round(sizeInCm(crowns![crown], base_size!))} cm`,
@@ -193,7 +237,10 @@ export function monsterCardTree(
           )
         : null,
       breaks.length > 0 &&
-        group("Breaks", ...breaks.map((b) => text({ color: COLOR.white, fontSize: 20 }, b))),
+        group(
+          "Breaks",
+          ...breaks.map((b) => text({ color: COLOR.white, fontSize: BREAK_TEXT }, b)),
+        ),
     ),
   );
 
@@ -203,7 +250,7 @@ export function monsterCardTree(
     h(
       "div",
       { style: { display: "flex", flexDirection: "column", gap: 4 } },
-      text({ color: COLOR.white, fontSize: 40 }, monster.name),
+      text({ color: COLOR.white, fontSize: NAME_TEXT }, monster.name),
       text({ color: COLOR.parchment, fontSize: 22 }, titleCase(monster.type)),
     ),
     hitzoneTable(monster, sprites),
@@ -244,10 +291,47 @@ export function monsterCardAlt(monster: Monster): string {
     `${monster.name}, ${titleCase(monster.type)}.`,
     monster.base_hp ? `Base HP ${monster.base_hp}.` : "",
     best.length ? `Best hitzones: ${best.join(", ")}.` : "",
-    monster.breaks?.length
-      ? `Breaks: ${[...new Set(monster.breaks.map((b) => partLabel(b.name)))].join(", ")}.`
-      : "",
+    monster.breaks?.length ? `Breaks: ${breakLabels(monster).join(", ")}.` : "",
   ]
     .filter(Boolean)
     .join(" ");
+}
+
+/** Width of `chars` characters at `fontSize`: the font's half-em glyphs plus the 0.14em tracking. */
+const textWidth = (chars: number, fontSize: number) => chars * fontSize * 0.64;
+
+/**
+ * What on a monster's card wouldn't fit its place (an empty list when it all
+ * fits), measured with the layout's own sizes: the name across the right
+ * column, part names beside the table's first column, the number of rows,
+ * and the break names across the left column and down it.
+ */
+export function monsterCardOverflow(monster: Monster): string[] {
+  const { width, height, frameTop, frameSide } = CARD;
+  const inner = { width: width - 2 * (frameSide + 20), height: height - 2 * (frameTop + 14) };
+  const right = inner.width - LEFT_WIDTH - 36;
+  const problems: string[] = [];
+  if (textWidth(monster.name.length, NAME_TEXT) > right) problems.push(`name "${monster.name}"`);
+  const rows = Object.keys(monster.hitzones ?? {});
+  if (rows.length > MAX_ROWS) problems.push(`${rows.length} hitzone rows`);
+  for (const part of rows) {
+    if (textWidth(partLabel(part).length, TABLE_TEXT) > PART_WIDTH - 8) {
+      problems.push(`part "${partLabel(part)}"`);
+    }
+  }
+  const breaks = breakLabels(monster);
+  for (const b of breaks) {
+    if (textWidth(b.length, BREAK_TEXT) > LEFT_WIDTH - 16) problems.push(`break "${b}"`);
+  }
+  // The left column's height: the portrait, then lines about 1.2em high
+  // with the gaps between them (the layout's gap: 14, 10 and 4).
+  const line = (fontSize: number) => Math.ceil(fontSize * 1.2);
+  const groups = [
+    monster.base_hp ? line(22) : 0,
+    monster.crowns && monster.base_size ? 3 * line(22) + 2 * 4 : 0,
+    breaks.length ? line(22) + breaks.length * (line(BREAK_TEXT) + 4) : 0,
+  ].filter((g) => g > 0);
+  const left = SCROLL.height + 14 + groups.reduce((a, b) => a + b, 0) + 10 * (groups.length - 1);
+  if (left > inner.height) problems.push(`left column ${left}px of ${inner.height}px`);
+  return problems;
 }
