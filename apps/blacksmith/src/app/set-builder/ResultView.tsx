@@ -5,24 +5,27 @@
  * selector, defence and resistances in a strip, the weapon and pieces as
  * big rows with their jewels under them, then [Activate Skill]. Swipe or use
  * the arrows to step through the sets. Tapping a piece opens its sheet: its
- * stats, swaps that keep the skills, and Always use / Never use (lock and
- * exclude for the next search). Tapping the weapon suggests weapons with its
- * slots (WeaponSuggestions).
+ * stats, swaps that keep the skills, the slot's other pieces (choosing one
+ * locks it and searches again), and Always use / Never use (lock and exclude
+ * for the next search). Tapping the weapon suggests weapons with its slots,
+ * or finds any weapon of a class by name (WeaponSuggestions).
  */
 import { useRef, useState } from "react";
 import Link from "next/link";
 import Icon from "@/components/Icon";
-import { Slots } from "@/components/DetailPanel";
+import type { ArmorSlot } from "@/lib/constants";
 import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { ARMOR_SLOTS, type ArmorRank, type WeaponType } from "@/lib/constants";
 import { readLastWeapon } from "@/lib/last-weapon";
 import { usedSlots } from "@/lib/set-build";
 import type { Tier } from "@/lib/min-rank";
-import type { ArmorSet, DecoBin, Piece, SortKey } from "@/lib/set-search";
+import type { ArmorSet, DecoBin, Piece, SearchQuery, SortKey } from "@/lib/set-search";
 import { pressable, primaryButton, resultRow, secondaryButton } from "@/styles/set-builder";
 import * as ui from "@/styles/settings";
 import { binLabel, SetHeader } from "./ArmorSetView";
+import { PiecePicker } from "./Pickers";
+import SlotPips from "./SlotPips";
 import { weaponTypesFor } from "@/lib/weapon-suggest";
 import SetWishlistButton from "./SetWishlistButton";
 import Sheet from "./Sheet";
@@ -33,6 +36,8 @@ export interface PieceActions {
   isLocked: (piece: Piece) => boolean;
   /** Lock the piece, or unlock it if it's locked. */
   onLock: (piece: Piece) => void;
+  /** Lock the piece in its slot (in place of any other locked there). */
+  onUse: (piece: Piece) => void;
   onExclude: (piece: Piece) => void;
 }
 
@@ -82,8 +87,13 @@ export default function ResultView({
   action,
   weaponSlots,
   hunterType,
+  sex,
   rank,
   progress,
+  pieces,
+  wantedTrees,
+  ownedOnly,
+  isOwned,
   weaponClass,
   onWeaponClass,
   sort,
@@ -95,13 +105,21 @@ export default function ResultView({
   index: number;
   count: number;
   onStep: (by: 1 | -1) => void;
-  /** A button on the selector bar (edit this set). */
+  /** A button beside Add to wishlist (edit this set). */
   action?: React.ReactNode;
   weaponSlots: number;
-  hunterType: string;
-  /** The search's rank and quest progress, for the weapon suggestions. */
+  hunterType: SearchQuery["hunterType"];
+  sex: SearchQuery["sex"];
+  /** The search's rank and quest progress, for the weapon suggestions and piece lists. */
   rank: ArmorRank;
   progress: Tier | null;
+  /** Every armor piece, for a piece's sheet to offer the slot's others. */
+  pieces: Piece[];
+  /** The wanted skill trees, which the piece lists sort by. */
+  wantedTrees: string[];
+  ownedOnly: boolean;
+  /** Only with a save loaded. */
+  isOwned?: (p: Piece) => boolean;
   /** The weapon class chosen for the suggestions (kept with the form), if any. */
   weaponClass: WeaponType | null;
   onWeaponClass: (type: WeaponType) => void;
@@ -125,7 +143,7 @@ export default function ResultView({
   const swipe = useSwipe(onStep);
   return (
     <div className="flex flex-col gap-[1.2rem]">
-      <SetHeader index={index} count={count} onStep={onStep} action={action} />
+      <SetHeader index={index} count={count} onStep={onStep} />
       {children}
       <div className="flex flex-col gap-[1.2rem]" {...swipe}>
         <StatusStrip set={set} sort={sort} />
@@ -142,13 +160,37 @@ export default function ResultView({
           <SkillLine set={set} wanted={wanted} />
         </div>
       </div>
-      <SetWishlistButton set={set} />
+      <div className="flex gap-[0.8rem]">
+        <SetWishlistButton set={set} main />
+        {action}
+      </div>
       <PieceSheet
         piece={picked?.piece ?? null}
         alternatives={picked ? (set.alternatives[picked.index] ?? []) : []}
         set={set}
         actions={actions}
         onClose={() => setPicked(null)}
+        picker={
+          picked && (
+            <PiecePicker
+              embedded
+              slot={picked.piece.slot as ArmorSlot}
+              pieces={pieces}
+              current={picked.piece}
+              hunter={{ hunterType, sex }}
+              rank={rank}
+              wanted={wantedTrees}
+              questLimit={progress}
+              ownedOnly={ownedOnly}
+              isOwned={isOwned}
+              onPick={(p) => {
+                if (p && p !== picked.piece) actions.onUse(p);
+                setPicked(null);
+              }}
+              onClose={() => setPicked(null)}
+            />
+          )
+        }
       />
       <WeaponSuggestions
         open={weaponsOpen}
@@ -177,7 +219,10 @@ function StatusStrip({
   return (
     <div className="flex items-center gap-[1.4rem]">
       <div className="flex flex-none flex-col items-start leading-none">
-        <span className="text-fine text-parchment">{text.result.def}</span>
+        <span className="flex items-center gap-[0.4rem] text-fine text-parchment">
+          <img src="/images/defence.png" alt="" className="size-[1.6rem] pixelated" />
+          {text.result.def}
+        </span>
         <span
           className={cn(
             "text-[2.8rem] text-shadow-[0.15rem_0.15rem_black]",
@@ -289,12 +334,12 @@ function PieceRows({
             </span>
             <DecoLine set={set} bin="weapon" />
           </span>
-          <span className="flex items-center gap-[0.8rem] text-fine">
-            <Slots count={weaponSlots} />
-            <span className="text-sub leading-none text-white/35" aria-hidden="true">
-              ›
-            </span>
-          </span>
+          <SlotPips
+            total={weaponSlots}
+            decorations={set.decorations}
+            bin="weapon"
+            className="text-sub"
+          />
         </button>
       </li>
       {ARMOR_SLOTS.map((slot) => {
@@ -331,12 +376,12 @@ function PieceRows({
                   )}
                 </span>
               </span>
-              <span className="flex items-center gap-[0.8rem] text-fine">
-                <Slots count={p.slots} />
-                <span className="text-sub leading-none text-white/35" aria-hidden="true">
-                  ›
-                </span>
-              </span>
+              <SlotPips
+                total={p.slots}
+                decorations={set.decorations}
+                bin={slot}
+                className="text-sub"
+              />
             </button>
           </li>
         );
@@ -345,7 +390,11 @@ function PieceRows({
   );
 }
 
-/** The activated skills as one wrapped line: wanted in yellow, others in white, bad in red. */
+/**
+ * The activated skills, one to a cell like the game's Activate Skill list (a
+ * wrapped line ran them together): wanted in yellow, others in white, bad in
+ * red.
+ */
 function SkillLine({ set, wanted }: { set: Pick<ArmorSet, "skills">; wanted: string[] }) {
   const text = useT().setBuilder.setView;
   const game = useGameText();
@@ -353,17 +402,20 @@ function SkillLine({ set, wanted }: { set: Pick<ArmorSet, "skills">; wanted: str
     return <p className="m-0 text-small text-white/40">{text.noSkills}</p>;
   }
   return (
-    <ul className="m-0 flex list-none flex-wrap gap-x-[1.2rem] gap-y-[0.4rem] p-0 text-small">
+    <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] gap-x-[1.6rem] p-0 text-small">
       {set.skills.map((sk) => (
         <li
           key={sk.tree}
-          className={
+          className={cn(
+            "py-[0.4rem]",
+            // Lines between skills; a lone one needs none.
+            set.skills.length > 1 && "border-b border-white/10",
             sk.threshold < 0
               ? "text-negative"
               : wanted.includes(sk.name)
                 ? "text-stat"
-                : "text-white/80"
-          }
+                : "text-white/80",
+          )}
         >
           {game.name("skill", sk.name)}
         </li>
@@ -379,12 +431,15 @@ function PieceSheet({
   set,
   actions,
   onClose,
+  picker,
 }: {
   piece: Piece | null;
   alternatives: Piece[];
   set: ArmorSet;
   actions: PieceActions;
   onClose: () => void;
+  /** The slot's other pieces, to use one in its place. */
+  picker: React.ReactNode;
 }) {
   const t = useT();
   const text = t.setBuilder.result;
@@ -397,6 +452,7 @@ function PieceSheet({
     <Sheet
       open={!!p}
       onClose={onClose}
+      tall
       title={
         p && (
           <span className="flex items-center gap-[0.8rem]">
@@ -443,7 +499,7 @@ function PieceSheet({
             <dd className="m-0 text-white">{formatNumber(p.defence)}</dd>
             <dt className="text-stat">{text.slots}</dt>
             <dd className="m-0">
-              <Slots count={p.slots} />
+              <SlotPips total={p.slots} decorations={set.decorations} bin={p.slot} />
             </dd>
             <dt className="text-stat">{text.skills}</dt>
             <dd className="m-0 flex flex-wrap gap-x-[1.2rem]">
@@ -487,6 +543,11 @@ function PieceSheet({
           <Link href={p.href} className="text-small text-white/70 underline hover:text-white">
             {text.openPage(name)}
           </Link>
+          <div className="flex flex-col gap-[0.6rem] border-t border-white/15 pt-[1.2rem]">
+            <span className={ui.statusLabel}>{text.otherPiece(binLabel(t, p.slot))}</span>
+            <p className={ui.note}>{text.otherPieceNote}</p>
+          </div>
+          {picker}
         </>
       )}
     </Sheet>

@@ -62,9 +62,9 @@ export const DEFAULT_FORM: Form = {
 export const weaponIconFor = (hunterType: string) =>
   hunterType === "Gunner" ? "heavy-bowgun" : "great-sword";
 
-/** The sorts, in order; the resistances show their element's icon. */
+/** The sorts, in order; defence shows a shield, the resistances their element's icon. */
 const SORTS: { value: SortKey; icon?: string }[] = [
-  { value: "defence" },
+  { value: "defence", icon: "defence" },
   { value: "fire", icon: "fire" },
   { value: "water", icon: "water" },
   { value: "thunder", icon: "thunder" },

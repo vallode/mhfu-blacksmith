@@ -57,21 +57,44 @@ const elementAttack = (w: Weapon) => (w.elements ?? []).reduce((n, e) => n + e.a
  */
 export function suggestWeapons(weapons: Weapon[], query: WeaponSuggestQuery): Weapon[] {
   return weapons
-    .filter(
-      (w) =>
-        !isDummy(w) &&
-        (w.slots ?? 0) >= query.slots &&
-        withinRank(w.min_rank, query.rank) &&
-        isAvailable(w.min_rank, query.progress ?? null),
-    )
-    .sort(
-      (a, b) =>
-        power(b) - power(a) ||
-        affinity(b) - affinity(a) ||
-        elementAttack(b) - elementAttack(a) ||
-        (b.slots ?? 0) - (a.slots ?? 0) ||
-        (b.rarity ?? 0) - (a.rarity ?? 0) ||
-        a.name.localeCompare(b.name),
-    )
+    .filter((w) => !isDummy(w) && weaponMisfit(w, query) === null)
+    .sort(strongestFirst)
     .slice(0, query.limit ?? 8);
+}
+
+const strongestFirst = (a: Weapon, b: Weapon) =>
+  power(b) - power(a) ||
+  affinity(b) - affinity(a) ||
+  elementAttack(b) - elementAttack(a) ||
+  (b.slots ?? 0) - (a.slots ?? 0) ||
+  (b.rarity ?? 0) - (a.rarity ?? 0) ||
+  a.name.localeCompare(b.name);
+
+/** Why a weapon isn't suggested: too few slots, or made later than the search allows. */
+export type WeaponMisfit = { kind: "slots"; slots: number } | { kind: "later"; needs: Tier };
+
+export function weaponMisfit(w: Weapon, query: WeaponSuggestQuery): WeaponMisfit | null {
+  if ((w.slots ?? 0) < query.slots) return { kind: "slots", slots: w.slots ?? 0 };
+  if (
+    w.min_rank &&
+    (!withinRank(w.min_rank, query.rank) || !isAvailable(w.min_rank, query.progress ?? null))
+  ) {
+    return { kind: "later", needs: w.min_rank };
+  }
+  return null;
+}
+
+/**
+ * One class's weapons that `matches` keeps (a name search), suggested or
+ * not: those that fit the search first, then the rest, strongest first.
+ */
+export function findWeapons(
+  weapons: Weapon[],
+  query: WeaponSuggestQuery,
+  matches: (w: Weapon) => boolean,
+): { weapon: Weapon; misfit: WeaponMisfit | null }[] {
+  return weapons
+    .filter((w) => !isDummy(w) && matches(w))
+    .map((weapon) => ({ weapon, misfit: weaponMisfit(weapon, query) }))
+    .sort((a, b) => Number(!!a.misfit) - Number(!!b.misfit) || strongestFirst(a.weapon, b.weapon));
 }

@@ -116,6 +116,7 @@ export function PiecePicker({
   isOwned,
   onPick,
   onClose,
+  embedded,
 }: {
   slot: ArmorSlot;
   /** Every piece (all slots). */
@@ -132,6 +133,11 @@ export function PiecePicker({
   isOwned?: (p: Piece) => boolean;
   onPick: (p: Piece | null) => void;
   onClose: () => void;
+  /**
+   * Inside another sheet (a search result's piece): no title bar, no
+   * "Remove" and no autofocus, which would raise a phone's keyboard.
+   */
+  embedded?: boolean;
 }) {
   const [query, setQuery] = useState("");
   const [rankFilter, setRankFilter] = useState<RankFilter>(rank);
@@ -189,8 +195,8 @@ export function PiecePicker({
     locale,
   ]);
 
-  return (
-    <PickerFrame title={text.pieceTitle(binLabel(t, slot))} onClose={onClose}>
+  const body = (
+    <>
       <input
         className={ui.searchInput}
         type="search"
@@ -199,7 +205,7 @@ export function PiecePicker({
         value={query}
         autoComplete="off"
         spellCheck={false}
-        autoFocus
+        autoFocus={!embedded}
         onChange={(e) => setQuery(e.target.value)}
       />
       <SelectorRow
@@ -222,7 +228,7 @@ export function PiecePicker({
         )}
       </p>
       <ul className="m-0 list-none p-0">
-        {current && (
+        {current && !embedded && (
           <li>
             <button type="button" className={rowButton} onClick={() => onPick(null)}>
               <span />
@@ -266,6 +272,13 @@ export function PiecePicker({
           </li>
         ))}
       </ul>
+    </>
+  );
+  return embedded ? (
+    <div className="flex flex-col gap-[1.3rem]">{body}</div>
+  ) : (
+    <PickerFrame title={text.pieceTitle(binLabel(t, slot))} onClose={onClose}>
+      {body}
     </PickerFrame>
   );
 }

@@ -13,13 +13,13 @@
 import Link from "next/link";
 import Icon from "@/components/Icon";
 import SelectorArrow from "@/components/SelectorArrow";
-import { Slots } from "@/components/DetailPanel";
 import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { ARMOR_SLOTS } from "@/lib/constants";
 import type { Messages } from "@/lib/i18n/messages";
 import { MAX_WEAPON_SLOTS, type SetProblem, type SetWarning } from "@/lib/set-build";
 import type { ArmorSet, DecoBin, Piece, PlacedDeco } from "@/lib/set-search";
+import SlotPips from "./SlotPips";
 
 /** A slot's name in the site's language: "Head", "Weapon". */
 export function binLabel(t: Messages, bin: DecoBin): string {
@@ -167,9 +167,18 @@ function EquipRow({
 }
 
 /** The weapon row's slot count: "◀ OO- ▶" when editing. */
-function WeaponSlots({ count, edit }: { count: number; edit?: SetEditing }) {
+function WeaponSlots({
+  count,
+  decorations,
+  edit,
+}: {
+  count: number;
+  decorations: readonly PlacedDeco[];
+  edit?: SetEditing;
+}) {
   const text = useT().setBuilder.setView;
-  if (!edit) return <Slots count={count} />;
+  const pips = <SlotPips total={count} decorations={decorations} bin="weapon" />;
+  if (!edit) return pips;
   const step = (by: 1 | -1) =>
     edit.onWeaponSlots((count + by + MAX_WEAPON_SLOTS + 1) % (MAX_WEAPON_SLOTS + 1));
   return (
@@ -189,7 +198,7 @@ function WeaponSlots({ count, edit }: { count: number; edit?: SetEditing }) {
         onClick={() => step(-1)}
       />
       <span aria-live="polite" aria-label={text.weaponSlotCount(count)}>
-        <Slots count={count} />
+        {pips}
       </span>
       <SelectorArrow
         next
@@ -329,7 +338,7 @@ export default function ArmorSetView({
           bin="weapon"
           icon={<Icon type={weaponIcon} size="mini" alt="" />}
           name={<span className="text-white/60">{text.weapon}</span>}
-          slots={<WeaponSlots count={weaponSlots} edit={edit} />}
+          slots={<WeaponSlots count={weaponSlots} decorations={set.decorations} edit={edit} />}
           decos={decosIn("weapon")}
           edit={edit}
           warnings={warningsFor("weapon")}
@@ -344,7 +353,7 @@ export default function ArmorSetView({
               bin={slot}
               icon={<Icon type={slot} size="mini" rarity={p?.rarity} alt={binLabel(t, slot)} />}
               name={<PieceName piece={p} slot={slot} edit={edit} />}
-              slots={<Slots count={p?.slots ?? 0} />}
+              slots={<SlotPips total={p?.slots ?? 0} decorations={set.decorations} bin={slot} />}
               decos={decosIn(slot)}
               edit={edit}
               warnings={warningsFor(slot)}
