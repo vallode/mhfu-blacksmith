@@ -8,8 +8,8 @@
  * names and group labels, in the committed order. Only parts and groups the
  * overlay maps are emitted. Values stay numeric: hitzones as numbers under
  * the site's column keys, drops as `{ itemId, name, chance, amount }` with
- * the `ItemID` enum name. `base_hp` is the chunk's base HP; `tolerances`
- * its status tolerances (`siteTolerances`). `breaks` lists the parts behind each
+ * the `ItemID` enum name. `base_hp` is the chunk's base HP, `base_scale`
+ * the size the game draws the model at; `tolerances` its status tolerances (`siteTolerances`). `breaks` lists the parts behind each
  * of the monster's break rewards (`monsters/breaks.ts`, `overlay/breaks.ts`),
  * named after its `break …` drop group. `flinch_thresholds` is each body
  * part's flinch threshold (`hitzones.ts` `readFlinchThresholds`).
@@ -64,13 +64,19 @@ export interface EmittedMonster {
   description?: string;
   /** Base HP before the quest's multiplier (`base_hp` on the site). */
   base_hp: number;
+  /**
+   * The size the game draws the model at, against the model's own units, at
+   * size 100 (`emChunk` +0x40, BaseScale): the site's viewer sizes the hunter
+   * against it.
+   */
+  base_scale: number;
   hitzones?: Record<string, Record<string, number>>;
   drops?: Record<string, Record<string, EmittedDrop[]>>;
   tolerances: EmittedTolerances;
   breaks?: EmittedBreak[];
   /** Damage each body part (hitbox capsule `part`) takes before a flinch; null: no such part. */
   flinch_thresholds?: (number | null)[];
-  /** Centimetres at size 100 (`monsters/sizes.ts`); absent where the game has none. */
+  /** The Guild Card size at 100 percent (`monsters/sizes.ts`); absent where the game has none. */
   base_size?: number;
   /** Crown thresholds in percent of `base_size`, shared with the monster's subspecies. */
   crowns?: Crowns;
@@ -261,6 +267,8 @@ export function emitMonsters(tables: MonsterTables): EmitOutput {
       name: monsterName(entry.id),
       ...(description ? { description } : {}),
       base_hp: chunk.baseHp,
+      // An f32: 0.95 reads as 0.949999988.
+      base_scale: Math.round(chunk.baseScale * 1e4) / 1e4,
       tolerances: siteTolerances(chunk.tolerances),
     };
     if (chunk.flinchThresholds) monster.flinch_thresholds = chunk.flinchThresholds;

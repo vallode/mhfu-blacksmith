@@ -12,7 +12,7 @@
  * spelled as the monster page's English shows them).
  */
 import { CARD, cardShell, COLOR, h, text, type CardNode } from "./card-tree";
-import { crownCutoffCm, type Crown } from "./crowns";
+import { crownCutoff, type Crown } from "./crowns";
 import { titleCase } from "./embed-format";
 import { questStarLevel, type HuntStars } from "./quests";
 import type { Monster } from "./types";
@@ -356,7 +356,7 @@ export function monsterCardTree(
       text({ color: COLOR.stat, fontSize: 22, flexGrow: 1 }, CROWN_NAMES[crown]),
       text(
         { color: COLOR.white, fontSize: 22 },
-        crownCutoffCm(crown, crowns!, base_size!).toFixed(1),
+        crownCutoff(crown, crowns!, base_size!).toFixed(1),
       ),
     );
   const group = (label: string, ...lines: CardNode[]) =>

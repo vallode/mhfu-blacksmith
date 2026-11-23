@@ -18,6 +18,7 @@
         }
       },
       "base_hp": 40,
+      "base_scale": 1.2,
       "flinch_thresholds": [
         10
       ],
@@ -153,6 +154,7 @@
         }
       },
       "base_hp": 50,
+      "base_scale": 1.2,
       "flinch_thresholds": [
         10
       ],
@@ -446,6 +448,7 @@
         }
       },
       "base_hp": 120,
+      "base_scale": 1,
       "flinch_thresholds": [
         120
       ],
@@ -658,6 +661,7 @@
         }
       },
       "base_hp": 800,
+      "base_scale": 1,
       "flinch_thresholds": [
         240
       ],

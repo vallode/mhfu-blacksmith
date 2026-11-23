@@ -39,7 +39,7 @@ import {
   type HunterLook,
 } from "@/lib/hunter-look";
 import { armorModelFile, armorModelSlot, armorSlotModelUrl } from "@/lib/models";
-import { fetchMotions, inPlace, MOTION_FPS, type MotionClip } from "@/lib/motions";
+import { fetchMotions, inPlace, MOTION_FPS, underneath, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
 import type { Messages } from "@/lib/i18n/messages";
@@ -102,6 +102,13 @@ interface Props {
    * load is left out.
    */
   parts?: string[];
+  /**
+   * The model's base scale (a monster's `base_scale`): a hunter stands
+   * beside it, idle, at 1/scale, as the game draws the two at size 100.
+   */
+  sizeHunter?: number;
+  /** Whether that hunter shows (default true); toggling it keeps the camera. */
+  showSizeHunter?: boolean;
 }
 
 type Three = typeof import("three");
@@ -191,6 +198,8 @@ interface SceneHandle {
   frameHooks: Set<() => void>;
   /** The motion playing and its frame (60 fps); null before motions load. */
   now: () => { slot: number; frame: number } | null;
+  /** The hunter standing beside the model for its size (`sizeHunter`), if any. */
+  sizeHunter: import("three").Object3D | null;
   /** Dresses the hunter wearing armor in a look; absent for other models. */
   relook?: (look: HunterLook) => Promise<void>;
   /** The bone a capsule (in the bind pose) rides on; null for an unskinned model. */
@@ -199,6 +208,55 @@ interface SceneHandle {
     end: ModelCapsule["end"],
     radius: number,
   ) => CapsuleMount | null;
+}
+
+/**
+ * Motions made playable on a model whose bones are named `bone_<joint>`:
+ * each clip in place (see `inPlace`) and as a three.js clip, a mixer for
+ * them, and the game's bone scaling where a motion needs it.
+ */
+function animate3d(
+  THREE: Three,
+  boneScaling: typeof import("@/lib/bone-scaling"),
+  root: import("three").Object3D,
+  loaded: MotionClip[],
+): {
+  sources: MotionClip[];
+  clips: import("three").AnimationClip[];
+  /** A three.js clip of a motion, as `clips` are made. */
+  toClip: (clip: MotionClip, name: string) => import("three").AnimationClip;
+  mixer: import("three").AnimationMixer;
+  pose: GamePose | null;
+} {
+  const node = (bone: number) => root.getObjectByName(`bone_${bone}`);
+  const parentOf = (bone: number) => {
+    const match = /^bone_(\d+)$/.exec(node(bone)?.parent?.name ?? "");
+    return match ? Number(match[1]) : -1;
+  };
+  const bind = (bone: number) =>
+    (node(bone)?.position.toArray() ?? [0, 0, 0]) as [number, number, number];
+  const sources = loaded.map((source) => inPlace(source, parentOf, bind));
+  const toClip = (clip: MotionClip, name: string) =>
+    new THREE.AnimationClip(
+      name,
+      clip.duration,
+      clip.tracks.map((track) => {
+        const bone = `bone_${track.bone}`;
+        if (track.path === "rotation")
+          return new THREE.QuaternionKeyframeTrack(`${bone}.quaternion`, track.times, track.values);
+        const property = track.path === "translation" ? "position" : "scale";
+        return new THREE.VectorKeyframeTrack(`${bone}.${property}`, track.times, track.values);
+      }),
+    );
+  const clips = sources.map((clip) => toClip(clip, `Motion ${clip.slot}`));
+  // Only a motion that scales a bone with bones under it poses differently
+  // the game's way; the rest keep three.js's own.
+  const hasChildBones = (bone: number) =>
+    node(bone)?.children.some((child) => (child as import("three").Bone).isBone) ?? false;
+  const pose = sources.some((clip) => boneScaling.scalesParent(clip.tracks, hasChildBones))
+    ? new boneScaling.GamePose(root)
+    : null;
+  return { sources, clips, toClip, mixer: new THREE.AnimationMixer(root), pose };
 }
 
 /** Angle of each blade of a pair from the centre line. */
@@ -218,6 +276,9 @@ const MOTIONS_WAIT_MS = 1500;
 const GRIP_ON = 8;
 const GRIP_OFF = 16;
 const GRIP_SLIDE = 20;
+
+/** Gap between a model and the hunter beside it, in the hunter's units (about centimetres). */
+const SIZE_HUNTER_GAP = 60;
 
 /** Poses of the first motion sampled for the ground's height. */
 const GROUND_SAMPLES = 8;
@@ -274,6 +335,8 @@ export default function ModelViewer({
   hunter,
   parts,
   wear,
+  sizeHunter,
+  showSizeHunter = true,
 }: Props) {
   const t = useT();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -288,6 +351,11 @@ export default function ModelViewer({
   const lookKey = look ? `${look.face}|${look.hair}|${look.hairColor}|${look.clothing}` : "";
   /** The look to show, for the model's first showing (the effect below follows later changes). */
   const lookRef = useRef(look);
+  /** Whether the size hunter shows, for its first showing (the effect below follows changes). */
+  const showSizeHunterRef = useRef(showSizeHunter);
+  useEffect(() => {
+    showSizeHunterRef.current = showSizeHunter;
+  }, [showSizeHunter]);
   useEffect(() => {
     lookRef.current = look;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -362,10 +430,16 @@ export default function ModelViewer({
       const frameHooks = new Set<() => void>();
       /** The motion playing and its frame; set once motions load. */
       let now: SceneHandle["now"] = () => null;
+      /** The size hunter's idle and its bone scaling, once loaded. */
+      let standInMixer: import("three").AnimationMixer | null = null;
+      let standInPose: GamePose | null = null;
       const animate = () => {
         frame = requestAnimationFrame(animate);
-        mixer?.update(clock.getDelta());
+        const delta = clock.getDelta();
+        mixer?.update(delta);
         pose?.update();
+        standInMixer?.update(delta);
+        standInPose?.update();
         holdWeapon?.();
         for (const hook of frameHooks) hook();
         controls.update();
@@ -373,6 +447,8 @@ export default function ModelViewer({
       };
 
       let model: import("three").Object3D | null = null;
+      /** The hunter beside the model for its size (`sizeHunter`). */
+      let standIn: import("three").Object3D | null = null;
       /** Moves the weapon between the hunter's hands and back; only with `hunter`. */
       let placeWeapon: ((sheathed: boolean) => void) | null = null;
       /** Hands a two-handed weapon between the fists each frame (`WeaponMount.hold`). */
@@ -384,18 +460,20 @@ export default function ModelViewer({
         sceneRef.current = null;
         playerRef.current = null;
         mixer?.stopAllAction();
+        standInMixer?.stopAllAction();
         cancelAnimationFrame(frame);
         observer.disconnect();
         controls.dispose();
-        model?.traverse((object) => {
-          const mesh = object as import("three").Mesh;
-          if (!mesh.isMesh) return;
-          mesh.geometry.dispose();
-          for (const material of [mesh.material].flat()) {
-            (material as import("three").MeshStandardMaterial).map?.dispose();
-            material.dispose();
-          }
-        });
+        for (const root of [model, standIn])
+          root?.traverse((object) => {
+            const mesh = object as import("three").Mesh;
+            if (!mesh.isMesh) return;
+            mesh.geometry.dispose();
+            for (const material of [mesh.material].flat()) {
+              (material as import("three").MeshStandardMaterial).map?.dispose();
+              material.dispose();
+            }
+          });
         if (ground) {
           ground.geometry.dispose();
           const material = ground.material as import("three").MeshBasicMaterial;
@@ -417,6 +495,9 @@ export default function ModelViewer({
             ? HUNTER_BARE_FEMALE_MODEL
             : HUNTER_BARE_MODEL
           : HUNTER_MODEL;
+        const standInLoad = sizeHunter
+          ? loader.loadAsync(HUNTER_MODEL).catch(() => null)
+          : Promise.resolve(null);
         const [body, own, ...extra] = await Promise.all([
           hunter || wear ? loader.loadAsync(bodyModel).catch(() => null) : null,
           loader.loadAsync(src),
@@ -707,6 +788,20 @@ export default function ModelViewer({
               });
           });
 
+        // The size hunter, at the game's scale against the model's.
+        standIn = sizeHunter ? ((await standInLoad)?.scene ?? null) : null;
+        if (disposed) return;
+        if (standIn && sizeHunter) {
+          standIn.scale.setScalar(1 / sizeHunter);
+          // Facing the model, from its right.
+          standIn.rotation.y = -Math.PI / 2;
+          standIn.visible = showSizeHunterRef.current;
+          standIn.traverse((object) => {
+            if ((object as import("three").SkinnedMesh).isSkinnedMesh) object.frustumCulled = false;
+          });
+          scene.add(standIn);
+        }
+
         // Frame the model for a turntable, viewed from slightly above (see fit).
         // Measured as posed (precise), so it's redone once a motion poses it.
         const box = new THREE.Box3();
@@ -717,21 +812,41 @@ export default function ModelViewer({
         // from all around the turntable, at the current viewing elevation.
         // Exact for any shape and aspect ratio, unlike a bounding sphere.
         let corners: import("three").Vector3[] = [];
-        /** Bounds of the model as posed, leaving out the capsules on its bones. */
-        const bounds = (target: import("three").Box3) => {
+        /**
+         * Bounds of the model (or of `objects`) as posed, leaving out the
+         * capsules on its bones.
+         */
+        const bounds = (target: import("three").Box3, objects = copies) => {
           // A skinned mesh comes before its bones in the scene, so their
           // world matrices must be current before the box reads them.
           scene.updateMatrixWorld(true);
           target.makeEmpty();
-          for (const object of copies)
+          for (const object of objects)
             object.traverse((child) => {
               if ((child as import("three").Mesh).isMesh && !child.userData.overlay)
                 target.expandByObject(child, true);
             });
           return target;
         };
+        /** What the camera frames: the model and the size hunter, shown or not. */
+        const framed = standIn ? [...copies, standIn] : copies;
+        /**
+         * Stands the size hunter beside the model as posed, on `floor` (the
+         * model's lowest point if not given), past its widest reach on +X.
+         */
+        const placeStandIn = (floor?: number) => {
+          if (!standIn || !sizeHunter) return;
+          const own = bounds(new THREE.Box3());
+          const hunter = bounds(new THREE.Box3(), [standIn]);
+          const ownCenter = own.getCenter(new THREE.Vector3());
+          const hunterCenter = hunter.getCenter(new THREE.Vector3());
+          standIn.position.x += own.max.x + SIZE_HUNTER_GAP / sizeHunter - hunter.min.x;
+          standIn.position.y += (floor ?? own.min.y) - hunter.min.y;
+          standIn.position.z += ownCenter.z - hunterCenter.z;
+        };
+        placeStandIn();
         const measure = () => {
-          bounds(box);
+          bounds(box, framed);
           box.getCenter(center);
           radius = box.getSize(new THREE.Vector3()).length() / 2;
           corners = [0, 1, 2, 3, 4, 5, 6, 7].map(
@@ -810,6 +925,7 @@ export default function ModelViewer({
           sceneRef.current = {
             THREE,
             scene,
+            sizeHunter: standIn,
             mount,
             jointMount: (joint) => jointMounts.get(joint) ?? null,
             frameHooks,
@@ -834,58 +950,45 @@ export default function ModelViewer({
                   // The model still shows, just still.
                   .catch(() => [])
               : Promise.resolve([]);
+        const idle = standIn
+          ? fetchHunterIdle("idle", abort.signal).catch(() => [])
+          : Promise.resolve([]);
         const early = await Promise.race([
           motions,
           new Promise<null>((resolve) => setTimeout(() => resolve(null), MOTIONS_WAIT_MS)),
         ]);
         if (disposed) return;
         if (early === null) show();
-        const loaded = early ?? (await motions);
+        const [loaded, standInIdle] = await Promise.all([early ?? motions, idle]);
         if (disposed) return;
+        if (standIn && standInIdle.length > 0) {
+          const animated = animate3d(THREE, boneScaling, standIn, standInIdle);
+          standInMixer = animated.mixer;
+          standInPose = animated.pose;
+          standInMixer.clipAction(animated.clips[0]!).play();
+          standInMixer.update(0);
+          standInPose?.update();
+        }
 
         if (loaded.length > 0) {
           const root = model;
-          const node = (bone: number) => root.getObjectByName(`bone_${bone}`);
-          const parentOf = (bone: number) => {
-            const match = /^bone_(\d+)$/.exec(node(bone)?.parent?.name ?? "");
-            return match ? Number(match[1]) : -1;
-          };
-          const bind = (bone: number) =>
-            (node(bone)?.position.toArray() ?? [0, 0, 0]) as [number, number, number];
-          const sources = loaded.map((source) => inPlace(source, parentOf, bind));
-          const clips = sources.map(
-            (clip) =>
-              new THREE.AnimationClip(
-                `Motion ${clip.slot}`,
-                clip.duration,
-                clip.tracks.map((track) => {
-                  const name = `bone_${track.bone}`;
-                  if (track.path === "rotation")
-                    return new THREE.QuaternionKeyframeTrack(
-                      `${name}.quaternion`,
-                      track.times,
-                      track.values,
-                    );
-                  const property = track.path === "translation" ? "position" : "scale";
-                  return new THREE.VectorKeyframeTrack(
-                    `${name}.${property}`,
-                    track.times,
-                    track.values,
-                  );
-                }),
-              ),
-          );
-          mixer = new THREE.AnimationMixer(root);
-          // Only a motion that scales a bone with bones under it poses
-          // differently the game's way; the rest keep three.js's own.
-          const hasChildBones = (bone: number) =>
-            node(bone)?.children.some((child) => (child as import("three").Bone).isBone) ?? false;
-          if (sources.some((clip) => boneScaling.scalesParent(clip.tracks, hasChildBones)))
-            pose = new boneScaling.GamePose(root);
+          const animated = animate3d(THREE, boneScaling, root, loaded);
+          const { sources, clips, toClip } = animated;
+          mixer = animated.mixer;
+          pose = animated.pose;
           // Each action plays once and stops on its last frame; the
           // "finished" handler below restarts it where the game would.
           const actions = clips.map((clip) => mixer!.clipAction(clip).setLoop(THREE.LoopOnce, 1));
           for (const action of actions) action.clampWhenFinished = true;
+          // A head or tail motion (Rathian's 20-28) is one the game plays
+          // over the rest of the body's motion: the first whole-body one
+          // (standing, for most monsters) plays on the other bones meanwhile,
+          // looping on its own.
+          const base = sources.find((clip) => !clip.bones);
+          const under = sources.map((clip) => {
+            const rest = base && underneath(clip, base);
+            return rest ? mixer!.clipAction(toClip(rest, `Motion ${clip.slot} under`)) : null;
+          });
 
           // The ground: the lowest the first motion (standing, for most
           // monsters) reaches. Its height differs between models (Rathian
@@ -919,8 +1022,11 @@ export default function ModelViewer({
           const apply = () => {
             const action = actions[state.index]!;
             placeWeapon?.((sources[state.index] as HunterClip | undefined)?.sheathed === true);
-            if (!action.isRunning() && !action.paused) action.play();
-            action.paused = !state.playing;
+            for (const playing of [action, under[state.index]]) {
+              if (!playing) continue;
+              if (!playing.isRunning() && !playing.paused) playing.play();
+              playing.paused = !state.playing;
+            }
             setMotion({
               count: actions.length,
               index: state.index,
@@ -934,6 +1040,7 @@ export default function ModelViewer({
           playerRef.current = {
             select: (index) => {
               actions[state.index]!.stop();
+              under[state.index]?.stop();
               state.index = (index + actions.length) % actions.length;
               apply();
             },
@@ -945,6 +1052,7 @@ export default function ModelViewer({
           apply();
           mixer.update(0);
           pose?.update();
+          placeStandIn(Number.isFinite(floor) ? floor : undefined);
           measure();
           // Frame the first motion's pose, unless the visitor has moved the camera.
           if (!interacted) fit?.();
@@ -984,6 +1092,11 @@ export default function ModelViewer({
             ground.position.set(center.x, floor, center.z);
             scene.add(ground);
           }
+        } else if (standIn) {
+          // The hunter is posed now; the model stands as it was.
+          placeStandIn();
+          measure();
+          if (!interacted) fit?.();
         }
         show();
       } catch {
@@ -999,7 +1112,13 @@ export default function ModelViewer({
     };
     // `wear` is compared by its fields: callers pass a fresh object each render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [src, pair, hunter, partsKey, wear?.slot, wear?.sex]);
+  }, [src, pair, hunter, partsKey, wear?.slot, wear?.sex, sizeHunter]);
+
+  // The size hunter shows or hides where it stands.
+  useEffect(() => {
+    const standIn = sceneRef.current?.sizeHunter;
+    if (status === "ready" && standIn) standIn.visible = showSizeHunter;
+  }, [status, showSizeHunter]);
 
   // A new look goes on the hunter already shown.
   useEffect(() => {

@@ -23,7 +23,7 @@ import {
   questsWithMonster,
   smallMonsterStages,
 } from "@/lib/quests";
-import { crownCutoffCm, crownFor, sizeInCm, type Crown } from "@/lib/crowns";
+import { crownCutoff, crownFor, cardSize, type Crown } from "@/lib/crowns";
 import CrownIcon from "@/components/CrownIcon";
 import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -87,7 +87,7 @@ const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
 };
 
 /**
- * A Guild Card size record (percent) in centimetres, with the crown it earns
+ * A Guild Card size record (percent) as the card shows it, with the crown it earns
  * after the size.
  */
 function SizeRecord({
@@ -106,7 +106,7 @@ function SizeRecord({
       <span>
         {t.monsters.detail[kind]}{" "}
         <span className="text-white tabular-nums">
-          {t.monsters.detail.cm(formatNumber(Math.round(sizeInCm(size, monster.base_size ?? 0))))}
+          {formatNumber(Math.round(cardSize(size, monster.base_size ?? 0)))}
         </span>
       </span>
       {crown && <CrownIcon crown={crown} />}
@@ -130,6 +130,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const unusedMotions = useMonsterUnusedMotions(modelUrl);
   const [showAttacks, setShowAttacks] = useState(false);
   const shownAttacks: ModelAttack[] | undefined = (showAttacks && attacks) || undefined;
+  /** The hunter beside the model, to scale. */
+  const [showHunter, setShowHunter] = useState(true);
   // A part or break hovered in the hitzone tab or the legend, and one picked
   // in the legend (which only shows with the hitboxes, so a pick ends with
   // them). Hitzone parts go by name, breaks by `breakKey`.
@@ -184,8 +186,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   }
 
   const name = game.name("monster", monster.name);
-  /** Sizes are stored to two decimals; whole centimetres are enough here. */
-  const formatSize = (cm: number) => formatNumber(Math.round(cm));
+  /** Sizes are stored to two decimals; whole numbers are enough here. */
+  const formatSize = (size: number) => formatNumber(Math.round(size));
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
   // Each hitzone row's flinch threshold, worked out by the data build; no
@@ -301,24 +303,24 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     label: rankLabel(t, rank),
     content: <MonsterDrops sources={sources} />,
   }));
-  // Crown cutoffs in centimetres, to a tenth the safe way.
+  // Crown cutoffs as the Guild Card shows sizes, to a tenth the safe way.
   const crowns =
     monster.crowns && monster.base_size !== undefined
       ? {
-          mini: crownCutoffCm("mini", monster.crowns, monster.base_size),
-          silver: crownCutoffCm("silver", monster.crowns, monster.base_size),
-          gold: crownCutoffCm("gold", monster.crowns, monster.base_size),
+          mini: crownCutoff("mini", monster.crowns, monster.base_size),
+          silver: crownCutoff("silver", monster.crowns, monster.base_size),
+          gold: crownCutoff("gold", monster.crowns, monster.base_size),
         }
       : null;
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];
   // The quests with the best chance of each crown, and that chance.
   const bestCrowns = bestCrownQuests(monsterQuests, monster.name);
-  // The sizes its quests can roll, in centimetres.
+  // The sizes its quests can roll, as the Guild Card shows them.
   const sizeRange =
     monster.size_range && monster.base_size !== undefined
       ? {
-          min: sizeInCm(monster.size_range.min, monster.base_size),
-          max: sizeInCm(monster.size_range.max, monster.base_size),
+          min: cardSize(monster.size_range.min, monster.base_size),
+          max: cardSize(monster.size_range.max, monster.base_size),
         }
       : null;
   const bestChance: Partial<Record<Crown, number>> = {};
@@ -453,8 +455,10 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               capsules={capsules}
               attacks={shownAttacks}
               unusedMotions={unusedMotions ?? undefined}
+              sizeHunter={monster.base_scale}
+              showSizeHunter={showHunter}
             />
-            {(hitboxParts.length > 0 || attacks) && (
+            {(hitboxParts.length > 0 || attacks || monster.base_scale) && (
               <HitzoneControls
                 parts={hitboxParts}
                 breaks={breaks
@@ -466,6 +470,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 onPin={setPinnedPart}
                 onHover={setHoveredPart}
                 attacks={attacks ? { show: showAttacks, onShowChange: setShowAttacks } : undefined}
+                hunter={
+                  monster.base_scale ? { show: showHunter, onShowChange: setShowHunter } : undefined
+                }
               />
             )}
           </div>

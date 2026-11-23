@@ -145,8 +145,10 @@ export interface CompactMonster {
   dr?: [number, [number, [number, number][]][]][];
   /** base_hp */
   hp?: number;
-  /** base_size, in cm */
+  /** base_size */
   bs?: number;
+  /** base_scale */
+  sc?: number;
   /** crowns: [mini, silver, gold] in percent */
   cr?: [number, number, number];
   /** size_range: [min, max] in percent, across the monster's quests */
@@ -457,6 +459,7 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     drops: m.dr ? drops : undefined,
     base_hp: m.hp,
     base_size: m.bs,
+    base_scale: m.sc,
     crowns: m.cr ? decodeCrowns(m.cr) : undefined,
     size_range: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
     breaks: m.bk,

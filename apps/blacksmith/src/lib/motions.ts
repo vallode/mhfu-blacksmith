@@ -5,7 +5,7 @@
  * step. Plain data here; ModelViewer makes three.js clips of it.
  */
 
-export const MOTIONS_MAGIC = "MHM1";
+export const MOTIONS_MAGIC = "MHM2";
 /** Motion frames per second (mhfu-extract's FRAMES_PER_SECOND). */
 export const MOTION_FPS = 60;
 
@@ -32,6 +32,11 @@ export interface MotionClip {
   /** Whether the game loops it, from `loopStart` (seconds) to the end. */
   loop: boolean;
   loopStart: number;
+  /**
+   * The bones it covers, when it's a head or tail motion the game plays over
+   * the rest of the body's (`underneath`); absent for a whole-body motion.
+   */
+  bones?: number[];
   tracks: MotionTrack[];
 }
 
@@ -55,6 +60,7 @@ export function parseMotions(bytes: Uint8Array): MotionClip[] {
     const frames = u16();
     const loop = u8() === 1;
     const loopStart = u16() / MOTION_FPS;
+    const bones = Array.from({ length: u8() }, u8);
     const tracks: MotionTrack[] = [];
     for (let t = u16(); t > 0; t--) {
       const bone = u8();
@@ -68,7 +74,14 @@ export function parseMotions(bytes: Uint8Array): MotionClip[] {
         values: new Float32Array(count * (path === "rotation" ? 4 : 3)),
       });
     }
-    clips.push({ slot, duration: frames / MOTION_FPS, loop, loopStart, tracks });
+    clips.push({
+      slot,
+      duration: frames / MOTION_FPS,
+      loop,
+      loopStart,
+      ...(bones.length > 0 && { bones }),
+      tracks,
+    });
   }
   const all = clips.flatMap((clip) => clip.tracks);
 
@@ -103,6 +116,18 @@ export async function fetchMotions(url: string, signal?: AbortSignal): Promise<M
   if (!res.ok || !res.body) throw new Error(`Motions unavailable (${res.status})`);
   const stream = res.body.pipeThrough(new DecompressionStream("gzip"));
   return parseMotions(new Uint8Array(await new Response(stream).arrayBuffer()));
+}
+
+/**
+ * What plays under a motion that covers only some bones (`clip.bones`): the
+ * tracks of `base` (a whole-body motion, such as the idle) on every other
+ * bone, so a head or tail motion shows on a moving body, as in the game,
+ * rather than on the bind pose. Null for a whole-body motion.
+ */
+export function underneath(clip: MotionClip, base: MotionClip): MotionClip | null {
+  if (!clip.bones) return null;
+  const covered = new Set(clip.bones);
+  return { ...base, tracks: base.tracks.filter((track) => !covered.has(track.bone)) };
 }
 
 /**

@@ -392,6 +392,13 @@ the module comments:
   large monster's row to `data/quests` as `multipliers`, and with `--raw`
   the tables to `raw/monsters.json`.
 
+- **Base scale**: the chunk's `+0x40` (f32) is the size the game draws
+  the monster's model at, against the model's own units (Rathian 1.0,
+  Yian Kut-Ku 0.8, Gravios 1.5, Lao-Shan Lung 1.0); randomfu's size
+  option rewrites it. `extract` writes it as `base_scale`, and the site's
+  3D viewer sizes a hunter against it (at size 100, the hunter's model at
+  scale 1).
+
 The per-monster `emXX.ovl` files aren't needed: every chunk's hitzones are
 in `game_task.ovl`.
 
@@ -1474,7 +1481,7 @@ thresholds; the rest are zero.
 - Subspecies share their base monster's entry: `u8*` by emID at
   `0x0899BF40` lists the emIDs (ending `0xff`) whose records count
   together, and the card takes the largest and smallest across them.
-- The card shows centimetres: the percent times the monster's base size
+- The card shows sizes as the percent times the monster's base size
   (`f32` by emID at `0x0899C760`), over 100. Monsters without crowns have
   a base size of 0, except Akantor and Ukanlos (3049.97) and Shen Gaoren
   (1000).
@@ -1496,7 +1503,7 @@ Checked against what players report:
   The five that don't (larger Diablos, Tigrex, Kushala Daora and Teostra,
   smaller Rajang, and larger "規格外" Lavasioth and Bulldrome) likely come
   from download or event quests, which aren't on the disc.
-- mhcrown's Rajang mini crowns (912, 960 and 1008 cm) are all at most
+- mhcrown's Rajang mini crowns (912, 960 and 1008) are all at most
   105 percent.
 
 Before this, randomfu could only scale size per species

@@ -12,8 +12,8 @@ export const monsters = {
   detail: {
     notFound: "Not found.",
     size: "Size:",
-    /** "1,234–1,890 cm" */
-    sizeRange: (min: string, max: string) => `${min}–${max} cm`,
+    /** "1,234–1,890" */
+    sizeRange: (min: string, max: string) => `${min}–${max}`,
     baseHp: "Base HP:",
     /** The heading over the loaded save's records of this monster. */
     guildCard: (hunter: string) => `${hunter}'s Guild Card`,
@@ -23,8 +23,6 @@ export const monsters = {
     /** The loaded hunter's Guild Card size records. */
     largest: "Largest:",
     smallest: "Smallest:",
-    /** A size in centimetres: "1,629 cm". */
-    cm: (n: string) => `${n} cm`,
     /** The tab row's accessible name. */
     tabsLabel: (monster: string) => `${monster} data`,
     tabs: {
@@ -138,6 +136,8 @@ export const monsters = {
     show: "Hitzones",
     /** Shows the attack hitboxes while the motion playing can hit. */
     attacks: "Attacks",
+    /** Shows a hunter beside the monster, to scale. */
+    hunter: "Hunter",
     legend: "Hitzone parts",
   },
   breaks: {

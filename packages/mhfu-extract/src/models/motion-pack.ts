@@ -7,8 +7,10 @@
  * it; keep the two in step).
  *
  * gzip of four sections, little-endian, so like data sits together:
- *   1. "MHM1", u16 clip count; per clip: u16 slot, u16 frames, u8 loop,
- *      u16 loop start frame, u16 track count; per track: u8 bone, u8 path
+ *   1. "MHM2", u16 clip count; per clip: u16 slot, u16 frames, u8 loop,
+ *      u16 loop start frame, u8 count then that many u8 bones the clip
+ *      covers (0: the whole body; else it plays over another clip, see
+ *      animation.ts), u16 track count; per track: u8 bone, u8 path
  *      (0 translation, 1 rotation, 2 scale), u16 key count.
  *   2. Key frames, every track's in order: each the frames since the last
  *      key of its track (the first: since 0) as a u8, or 255 then a u16.
@@ -22,7 +24,7 @@
 import { gzipSync } from "node:zlib";
 import { FRAMES_PER_SECOND, type Clip } from "./animation.js";
 
-export const MOTION_PACK_MAGIC = "MHM1";
+export const MOTION_PACK_MAGIC = "MHM2";
 const PATHS = ["translation", "rotation", "scale"] as const;
 /** Fixed-point units of each path's values. */
 const UNITS = { translation: 16, rotation: 0x7fff, scale: 256 } as const;
@@ -55,6 +57,10 @@ export function packMotions(clips: readonly Clip[]): Buffer {
     header.u16(frame(clip.duration));
     header.u8(clip.loop ? 1 : 0);
     header.u16(frame(clip.loopStart));
+    const covered = clip.bones ?? [];
+    if (covered.length > 255) throw new Error(`Motion ${clip.slot} covers too many bones`);
+    header.u8(covered.length);
+    for (const bone of covered) header.u8(bone);
     header.u16(clip.tracks.length);
     for (const track of clip.tracks) {
       header.u8(track.bone);
