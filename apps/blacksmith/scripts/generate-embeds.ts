@@ -9,7 +9,7 @@
  *   kept for embeds shared before the cards). See embedIcon() in
  *   src/lib/seo.ts.
  * - cards/monsters/<slug>.png: each monster page's large preview card, its
- *   portrait, hitzone table and quest star levels in the site's card frame. See
+ *   portrait, status thresholds, hitzone table and quest star levels in the site's card frame. See
  *   src/lib/monster-card.ts.
  * - oembed/<route>.json: each detail page's oEmbed file, which gives Discord
  *   the line above the title ("Rarity 10 Long Sword"). See oembedJson().
