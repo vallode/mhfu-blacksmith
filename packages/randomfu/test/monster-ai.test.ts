@@ -4,6 +4,8 @@ import type { OvlFile } from "mhfu-extract/src/container/ovl.js";
 import {
   CHOICE_TOTAL,
   ROOT_TABLES,
+  AREA_TIMES_CAP,
+  AREA_TIMES_OFFSET,
   ENGAGED_FRAMES_OFFSET,
   favourAttacks,
   findChoices,
@@ -11,7 +13,9 @@ import {
   keepMonstersInReach,
   leanTowardsAttacks,
   leanTowardsReach,
+  lengthenAreaTimes,
   lengthenEngagement,
+  readAreaTimes,
   makeMonstersAggressive,
   matchesAttackData,
   parseMixed,
@@ -323,7 +327,10 @@ test("a disc the reach data wasn't made from keeps its flights, with a warning i
   const known = { "em01.ovl": { choices: 2, hash: "00000000", mixed: "1:L-" } };
   const table = Buffer.alloc(90 * MONSTER_CHUNK_SIZE);
   table.writeInt16LE(1800, MONSTER_CHUNK_SIZE + ENGAGED_FRAMES_OFFSET);
-  const gameTask = { index: 0 } as LoadedOverlay;
+  const gameTask = {
+    index: 0,
+    ovl: { reader: { buf: table }, isOwnVaddr: () => false },
+  } as unknown as LoadedOverlay;
   const edits = { overlay: (f: LoadedOverlay) => (f === gameTask ? table : ovl.reader.buf) };
   const before = findChoices(ovl, [root]).map((c) => c.weights);
   const report = keepMonstersInReach(
@@ -333,8 +340,7 @@ test("a disc the reach data wasn't made from keeps its flights, with a warning i
     gameTask,
     [1],
     String,
-    known,
-    0,
+    { data: known, tableAt: 0 },
   );
   assert.deepEqual(
     findChoices(ovl, [root]).map((c) => c.weights),
@@ -344,6 +350,83 @@ test("a disc the reach data wasn't made from keeps its flights, with a warning i
   assert.equal(table.readInt16LE(MONSTER_CHUNK_SIZE + ENGAGED_FRAMES_OFFSET), 7200);
   assert.match(
     report.summary ?? "",
-    /^Monster reach: 0 choices, 1 species stay longer; warning: flights and burrows left alone.*em01\.ovl$/,
+    /^Monster reach: 0 choices, 1 species stay longer, 0 area-time lists \(1 species' not found\); warning: flights and burrows left alone.*em01\.ovl$/,
   );
+});
+
+test("an area-time list reads as stage and frame pairs ending in the default", () => {
+  const list = (pairs: number[][]) => {
+    const b = Buffer.alloc(pairs.length * 4 + 8);
+    pairs.forEach(([k, v], i) => {
+      b.writeInt16LE(k!, i * 4);
+      b.writeInt16LE(v!, i * 4 + 2);
+    });
+    return b;
+  };
+  assert.deepEqual(
+    readAreaTimes(
+      list([
+        [32, 3600],
+        [1142, 5400],
+        [-1, 9000],
+      ]),
+      0,
+    ),
+    [2, 6, 10],
+  );
+  assert.deepEqual(readAreaTimes(list([[-1, 1800]]), 0), [2]);
+  assert.equal(
+    readAreaTimes(
+      list([
+        [32, 0],
+        [-1, 9000],
+      ]),
+      0,
+    ),
+    null,
+    "a time of 0",
+  );
+  assert.equal(
+    readAreaTimes(
+      list([
+        [5000, 60],
+        [-1, 9000],
+      ]),
+      0,
+    ),
+    null,
+    "not a stage",
+  );
+  assert.equal(readAreaTimes(list([[32, 3600]]), 0), null, "no default");
+});
+
+test("area times grow once per shared list, capped below the game's bonus, never shorter", () => {
+  const tableAt = 0x40;
+  const listAt = tableAt + 90 * MONSTER_CHUNK_SIZE;
+  const buf = Buffer.alloc(listAt + 0x40);
+  const BASE = 0x09000000;
+  // Rathian and Rathalos share one list; Yama Tsukami points at nothing that reads.
+  for (const em of [1, 11]) {
+    buf.writeUInt32LE(BASE + listAt, tableAt + em * MONSTER_CHUNK_SIZE + AREA_TIMES_OFFSET);
+  }
+  buf.writeUInt32LE(BASE + 4, tableAt + 58 * MONSTER_CHUNK_SIZE + AREA_TIMES_OFFSET);
+  [32, 3600, 37, 10800, 99, 32000, -1, 9000].forEach((v, i) => buf.writeInt16LE(v, listAt + i * 2));
+  const gameTask = {
+    index: 0,
+    ovl: {
+      reader: { buf },
+      isOwnVaddr: (v: number) => v - BASE >= 0 && v - BASE < buf.length,
+      vaddrToOffset: (v: number) => v - BASE,
+    },
+  } as unknown as LoadedOverlay;
+  const edits = { overlay: () => buf } as unknown as Edits;
+  const { lists, missing } = lengthenAreaTimes(edits, gameTask, new Map(), tableAt, [1, 11, 58], 4);
+  assert.deepEqual(lists, [{ emIds: [1, 11], before: 9000, after: AREA_TIMES_CAP }]);
+  assert.deepEqual(missing, [58]);
+  const at = (i: number) => buf.readInt16LE(listAt + i * 4 + 2);
+  assert.equal(at(0), 14400);
+  assert.equal(at(1), AREA_TIMES_CAP);
+  assert.equal(at(2), 32000, "already above the cap: left as it was");
+  // The game's bonus (up to 3 minutes) still fits in the s16 countdown.
+  assert.ok(AREA_TIMES_CAP + 3 * 1800 <= 0x7fff);
 });

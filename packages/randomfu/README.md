@@ -177,7 +177,7 @@ web app shows as a tag):
 | `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                        |
 | `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                          |
 | `monsterAi.aggression`            | `off`       | `off`, `more` (attacks ×2, idle ≤ 1 s, recoveries 50% faster) or `relentless` (×4, ⅓ s, recoveries ×2) |
-| `monsterAi.reach`                 | `off`       | `off`, `less` (takeoffs and burrows ÷3, keeps after a lost hunter ×2) or `rarely` (÷8, ×4)             |
+| `monsterAi.reach`                 | `off`       | `off`, `less` (takeoffs and burrows ÷3, area and lost-hunter times ×2) or `rarely` (÷8, ×4)            |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                            |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                      |
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
@@ -1050,7 +1050,20 @@ out of reach: fewer flights and burrows, and less wandering off.
   no choice a flying monster makes mixes landing with staying up (outside
   Fatalis's three), so flights and burrows get rarer, not shorter.
 - Every species that's a large monster in some quest (after
-  `questMonsters` changes) keeps after a hunter it can't see for longer:
+  `questMonsters` changes) fights in each area for longer before it leaves
+  mid-fight. While it's aware of a hunter, its `+0x550` (s16, frames)
+  counts down, and at 0 it leaves the area even while engaged (seen on the
+  EU disc in PPSSPP: a Yian Kut-Ku took off and flew to the next area the
+  moment it ran out, with the hunter right there). Entering an area sets it
+  from the species' area-time list (`emChunk` `+0x1C0`: `{ s16 stage, s16
+frames }` pairs, then `{ -1, default }`), plus 0 to 3 minutes the game
+  picks. Most species stay 5 minutes by default, 1 to 10 in listed areas
+  (Lunastra and Teostra nearly 18 in one of the Tower's). Every value is
+  multiplied by 2 or 4, at most 27,367 frames (about 15 minutes), so the
+  added minutes can't wrap the countdown, and never lowered. The 23 lists
+  sit in `game_task.ovl` or the family's `emNN.ovl` (found as for the AI
+  scripts); species that share one change together.
+- The same monsters keep after a hunter they can't see for longer:
   its `emChunk`'s `+0x146` (s16, frames) is the time it stays engaged once
   the hunter is out of sight, after which it decides to walk or fly off to
   another area. It's 1800 frames (60 s) for most, 900 for the dromes and
@@ -1058,14 +1071,16 @@ out of reach: fewer flights and burrows, and less wandering off.
   most 32767). Elites change with their species.
 - A file's flights change only if its choices and their vanilla weights
   hash to what the data was made from; the EU and FUC discs both match. The
-  engagement time changes on any disc.
+  area times and engagement time change on any disc where they read.
 - Not covered: Yian Garuga, Hypnocatrice, Kushala Daora, Lunastra and
   Teostra decide their flights in choices that only fly, or outside
   choices; Cephadrome and Cephalos dive into sand outside choices; Akantor,
   Ukanlos, Plesioth and Lavasioth's burrows and dives weren't classified;
-  a monster charging the moment you enter its area isn't changed.
+  a monster charging the moment you enter its area isn't changed; nor are
+  the minutes some scripts add to the area time.
 
-Not yet tried in game.
+The area timer was found in game (EU, PPSSPP); the option itself hasn't
+been played.
 
 **The bookshelf guides** rewrite runs of the house bookshelf's articles
 (Open Bookshelf, Info Magazine) and make them readable from the start

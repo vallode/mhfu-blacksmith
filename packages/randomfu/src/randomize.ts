@@ -554,7 +554,8 @@ export function randomize(
   let aggressionReport: ShuffleReport | null = null;
   const reach = settings["monsterAi.reach"];
   if (settings["monsterAi.branches"] || aggression !== "off" || reach !== "off") {
-    const scripts = readScripts(game.gameTask, loadEmOverlays(game));
+    const emOverlays = loadEmOverlays(game);
+    const scripts = readScripts(game.gameTask, emOverlays);
     if (settings["monsterAi.branches"]) {
       reports.push(
         randomizeMonsterAi(
@@ -574,7 +575,11 @@ export function randomize(
     // Last, so it leans the odds the other two left.
     if (reach !== "off") {
       const large = questsAfter.flatMap((q) => q.largeMonsters.map((m) => m.monsterId));
-      reports.push(keepMonstersInReach(reach, edits, scripts, game.gameTask, large, monsterName));
+      reports.push(
+        keepMonstersInReach(reach, edits, scripts, game.gameTask, large, monsterName, {
+          emOverlays,
+        }),
+      );
     }
   }
 

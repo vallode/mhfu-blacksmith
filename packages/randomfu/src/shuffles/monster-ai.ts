@@ -535,6 +535,14 @@ export const REACH_ENGAGED_FACTOR: Readonly<Record<ReachLevel, number>> = { less
  * it can't see them (`docs/monster-ai.md`, "Out of reach").
  */
 export const ENGAGED_FRAMES_OFFSET = 0x146;
+/**
+ * `emChunk` offset of the pointer to a monster's area times: how long it
+ * fights in an area before it leaves (`docs/monster-ai.md`, "Leaving
+ * mid-fight").
+ */
+export const AREA_TIMES_OFFSET = 0x1c0;
+/** The most entries an area-time list is read for. */
+const AREA_TIMES_MAX = 64;
 
 /**
  * Each of `emIds`' engagement time (`ENGAGED_FRAMES_OFFSET`) times `factor`,
@@ -562,6 +570,93 @@ export function lengthenEngagement(
 }
 
 /**
+ * The file offsets of an area-time list's frames (s16) at `at` in `buf`, the
+ * default last, or null if it doesn't read as one: `{ s16 stage, s16 frames }`
+ * pairs (a stage above 1000 is the stage plus 1000), then `{ -1, default }`.
+ */
+export function readAreaTimes(buf: Buffer, at: number): number[] | null {
+  const frames: number[] = [];
+  for (let i = 0; i < AREA_TIMES_MAX; i++) {
+    const o = at + i * 4;
+    if (o < 0 || o + 4 > buf.length) return null;
+    const stage = buf.readInt16LE(o);
+    if (buf.readInt16LE(o + 2) <= 0) return null;
+    frames.push(o + 2);
+    if (stage === -1) return frames;
+    if (stage < 0 || stage >= 2000) return null;
+  }
+  return null;
+}
+
+/**
+ * The most an area time is scaled to: the game adds 0 to 3 minutes (1800
+ * frames each, by `+0x322`, EU 0x09AD0B48) to it in the s16 countdown, which
+ * must stay positive.
+ */
+export const AREA_TIMES_CAP = 0x7fff - 3 * 1800;
+
+/** Each of `frames` (offsets of s16s in `buf`) times `factor`, at most `cap`, never lower than it was. */
+export function scaleFrames(
+  buf: Buffer,
+  frames: readonly number[],
+  factor: number,
+  cap = 0x7fff,
+): void {
+  for (const o of frames) {
+    const before = buf.readInt16LE(o);
+    buf.writeInt16LE(Math.max(before, Math.min(cap, Math.round(before * factor))), o);
+  }
+}
+
+/**
+ * Each of `largeIds`' area times (`AREA_TIMES_OFFSET`) times `factor`, in
+ * the file that holds them: `game_task.ovl`, or the monster's own or family
+ * overlay, else the only one where the list reads (`scriptOverlay`). Lists
+ * species share change once. Returns, by list, its species and its default
+ * before and after; and the species whose list wasn't found.
+ */
+export function lengthenAreaTimes(
+  edits: Edits,
+  gameTask: LoadedOverlay,
+  emOverlays: ReadonlyMap<number, LoadedOverlay>,
+  tableAt: number,
+  largeIds: Iterable<number>,
+  factor: number,
+): { lists: { emIds: number[]; before: number; after: number }[]; missing: number[] } {
+  const reads = (file: LoadedOverlay, vaddr: number) =>
+    file.ovl.isOwnVaddr(vaddr)
+      ? readAreaTimes(file.ovl.reader.buf, file.ovl.vaddrToOffset(vaddr))
+      : null;
+  const lists = new Map<string, { emIds: number[]; before: number; after: number }>();
+  const missing: number[] = [];
+  const chunks = gameTask.ovl.reader.buf;
+  for (const emId of [...new Set(largeIds)].sort((a, b) => a - b)) {
+    if (emId <= 0 || emId >= MONSTER_CHUNK_COUNT) continue;
+    const vaddr = chunks.readUInt32LE(tableAt + emId * MONSTER_CHUNK_SIZE + AREA_TIMES_OFFSET);
+    const file = reads(gameTask, vaddr)
+      ? gameTask
+      : scriptOverlay(emId, emOverlays, (f) => reads(f, vaddr) !== null)?.[1];
+    const frames = file && reads(file, vaddr);
+    if (!file || !frames) {
+      missing.push(emId);
+      continue;
+    }
+    const key = `${file.index}:${vaddr}`;
+    const known = lists.get(key);
+    if (known) {
+      known.emIds.push(emId);
+      continue;
+    }
+    const buf = edits.overlay(file);
+    const last = frames[frames.length - 1]!;
+    const before = buf.readInt16LE(last);
+    scaleFrames(buf, frames, factor, AREA_TIMES_CAP);
+    lists.set(key, { emIds: [emId], before, after: buf.readInt16LE(last) });
+  }
+  return { lists: [...lists.values()], missing };
+}
+
+/**
  * Monster reach (`monsterAi.reach`): in every choice that mixes taking off or
  * digging in with other moves (`monster-reach.ts`), those entries' weights
  * are divided by the level's factor, and in the few that mix landing or
@@ -569,7 +664,9 @@ export function lengthenEngagement(
  * back to 32. It works on the weights as they are, so it runs after
  * `randomizeMonsterAi` and `makeMonstersAggressive`. Every large monster in
  * `largeIds` also keeps after a hunter it lost sight of for longer before it
- * gives up and wanders off to another area.
+ * gives up and wanders off to another area, and fights in each area for
+ * longer before it leaves mid-fight (its area times, found through
+ * `emOverlays`).
  */
 export function keepMonstersInReach(
   level: ReachLevel,
@@ -578,11 +675,19 @@ export function keepMonstersInReach(
   gameTask: LoadedOverlay,
   largeIds: Iterable<number>,
   monsterName: MonsterNames,
-  data: Readonly<Record<string, AttackData>> = MONSTER_REACH,
-  tableAt = locateMonsterChunks(gameTask.ovl)?.offset,
+  {
+    emOverlays = new Map<number, LoadedOverlay>(),
+    data = MONSTER_REACH,
+    tableAt = locateMonsterChunks(gameTask.ovl)?.offset,
+  }: {
+    emOverlays?: ReadonlyMap<number, LoadedOverlay>;
+    data?: Readonly<Record<string, AttackData>>;
+    tableAt?: number;
+  } = {},
 ): ShuffleReport {
   if (tableAt === undefined) throw new Error("game_task.ovl: the monster table wasn't found");
   const factor = REACH_FACTOR[level];
+  const timeFactor = REACH_ENGAGED_FACTOR[level];
   const { lines, unmatched, total } = leanFiles(
     scripts.files,
     edits,
@@ -590,12 +695,8 @@ export function keepMonstersInReach(
     (choices, buf, known) => leanTowardsReach(choices, buf, known, factor),
     monsterName,
   );
-  const engaged = lengthenEngagement(
-    edits.overlay(gameTask),
-    tableAt,
-    largeIds,
-    REACH_ENGAGED_FACTOR[level],
-  );
+  const engaged = lengthenEngagement(edits.overlay(gameTask), tableAt, largeIds, timeFactor);
+  const areas = lengthenAreaTimes(edits, gameTask, emOverlays, tableAt, largeIds, timeFactor);
   const seconds = (frames: number) => `${Math.round(frames / 30)} s`;
   const byTime = new Map<string, number[]>();
   for (const e of engaged) {
@@ -608,10 +709,23 @@ export function keepMonstersInReach(
       text: `stays after a lost hunter ${time}: ${ids.map(monsterName).join(", ")}`,
     });
   }
+  const minutes = (frames: number) => `${Math.round(frames / 180) / 10} min`;
+  for (const list of areas.lists) {
+    lines.push({
+      where: "area times",
+      text: `${list.emIds.map(monsterName).join(", ")}: ${minutes(list.before)} → ${minutes(list.after)} in most areas, the rest ×${timeFactor}`,
+    });
+  }
   const notes = [
     `In each choice between taking off or digging in and other moves, taking off or digging in is ${factor} times less likely than before, and landing or surfacing ${factor} times likelier where a choice mixes it with staying away; every move stays possible.`,
-    `A large monster that can't see a hunter stays after them ${REACH_ENGAGED_FACTOR[level]} times as long before it gives up and may leave the area.`,
+    `A large monster that can't see a hunter stays after them ${timeFactor} times as long before it gives up and may leave the area.`,
+    `A large monster fights in each area ${timeFactor} times as long before it leaves mid-fight (at most about 15 minutes, before the 0 to 3 the game adds).`,
   ];
+  if (areas.missing.length) {
+    notes.push(
+      `Area times left alone, their list not found: ${areas.missing.map(monsterName).join(", ")}.`,
+    );
+  }
   const list = unmatched.join(", ");
   if (unmatched.length) {
     notes.push(
@@ -622,6 +736,6 @@ export function keepMonstersInReach(
     title: "Monster reach",
     notes,
     lines,
-    summary: `Monster reach: ${total} choices, ${engaged.length} species stay longer${unmatched.length ? `; warning: flights and burrows left alone, not the scripts the data was made from: ${list}` : ""}`,
+    summary: `Monster reach: ${total} choices, ${engaged.length} species stay longer, ${areas.lists.length} area-time lists${areas.missing.length ? ` (${areas.missing.length} species' not found)` : ""}${unmatched.length ? `; warning: flights and burrows left alone, not the scripts the data was made from: ${list}` : ""}`,
   };
 }

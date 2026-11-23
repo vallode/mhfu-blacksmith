@@ -386,6 +386,36 @@ dromes and raptors, 2700 for Yian Garuga. `monsterAi.reach` multiplies it
 for large monsters. Not yet seen in game whether a monster that stays
 engaged with a hunter in another area waits or follows.
 
+### Leaving mid-fight
+
+Engaged or not, a monster leaves an area when its area time runs out.
+Watched live on the EU disc in PPSSPP (Yian Kut-Ku, Forest and Hills, the
+hunter dodging without hitting it):
+
+- The awareness timer `+0x4BE` (s16, set to `emChunk` `+0x148`, 900 for
+  nearly every species) stayed at 899 for 90 s with no hits while engaged.
+  Its countdown at 0x09AC9820 isn't what ends a fight.
+- `+0x550` (s16) counts down once a frame while the monster is aware
+  (`+0x4B9` = 1, 0x09AC650C). At 0 the Kut-Ku's combat state (4) went to
+  2, it took off (2.0), flew (2.8) and reached the next area about 20 s
+  later, still engaged; there `+0x550` was set again (9000).
+- Entering an area sets it (0x09AD0B88) from the list at `emChunk`
+  `+0x1C0`: `{ s16 stage, s16 frames }` pairs, then `{ -1, default }`. A
+  stage above 1000 is the stage plus 1000, and skips the next step.
+  Stages are the global IDs `quest-maps.ts` describes; a night stage seems
+  to match through tables at 0x09CE5008/0x09CE5220 (not decoded).
+- Then 0x09AD0B48 adds 1800 × k frames, k (0 to 3) from the byte table
+  0x09BCF148 by `+0x322 & 0x1F`. 0x09ACE9CC sets it instead from a spawn
+  record's `+0x34` when that's above 0.
+- Rathalos's state 2 also tests it (op `2a`: `+0x550` above 0).
+
+The lists, by family (23 on the EU disc, the same on FUC): most default
+to 9000 (5 min); Gypceros, Hypnocatrice and the Carapaceons 5400; Tigrex's
+family 10800; Cephadrome, Plesioth and Lavasioth 3600; Yama Tsukami 1800.
+Listed areas run from 1800 (Swamp area 6 for several) to 18000 (Forest and
+Hills area 2 for Rathalos and Kushala) and 32000 (Lunastra and Teostra in
+a Tower area). `areatimes.py` in the notes folder dumps them.
+
 ## Other things found on the way
 
 - `emChunk` `+0x60` and `+0x80` (DetectRange, DetectRadius) look like
