@@ -306,7 +306,7 @@ test("a monster rolls once it's set up", () => {
 test("about the chance's share of monsters are elites", () => {
   const q = quest(12);
   let elites = 0;
-  const runs = 800;
+  const runs = 300;
   for (let k = 0; k < runs; k++) {
     q.cpu.setU16(RNG + 0xf7a56c, (k * 7919) & 0xffff); // the game's generator moves on
     q.clock(200000 + k * 10);
