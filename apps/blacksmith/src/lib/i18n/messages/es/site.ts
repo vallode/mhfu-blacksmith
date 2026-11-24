@@ -276,6 +276,45 @@ export const site: Messages["site"] = {
       level: (level: string, done: number, total: number) =>
         `${level}: ${done} de ${total} completadas`,
     },
+    crowns: {
+      note: "Las tallas mayor y menor de cada entrada de monstruo de tu Tarjeta del Gremio.",
+      largest: "Mayor",
+      smallest: "Menor",
+      hunted: (count: string) => `Cazados ${count}`,
+      notHunted: "Sin cazar",
+      missing: "Falta",
+      complete: "Completo",
+      missingGold: "Falta la corona de oro",
+      missingMini: "Falta la corona mini",
+      missingBoth: "Faltan las coronas de oro y mini",
+      noRecords:
+        "Esta partida se guardó antes de leer los registros de monstruos. Vuelve a cargar la partida para ver tus coronas.",
+      goldCutoff: (size: string) => `Oro ≥ ${size}`,
+      miniCutoff: (size: string) => `Mini ≤ ${size}`,
+      goldCount: (earned: string, total: string) => `${earned}/${total} coronas de oro`,
+      miniCount: (earned: string, total: string) => `${earned}/${total} coronas mini`,
+    },
+    collection: {
+      note: "Tu caja de equipo frente a los premios de equipo de la Tarjeta del Gremio: lo que aún necesita cada tipo de arma y ranura de armadura. Cualquier pieza válida cuenta, y cada ranura de la caja cuenta.",
+      weapons: "Armas",
+      armor: "Armadura",
+      allAwards: "Todos los premios de la Tarjeta del Gremio",
+      ownedOf: (owned: string, needed: string) => `${owned}/${needed}`,
+      awardProgress: (done: string, total: string) => `${done}/${total}`,
+      awardLabel: (title: string, done: number, total: number) =>
+        `${title}: ${done} de ${total} completos`,
+      groupProgress: (label: string, owned: number, needed: number) =>
+        `${label}: ${owned} de ${needed} piezas`,
+      need: (n: number) => (n === 1 ? "Falta 1" : `Faltan ${n}`),
+      complete: "Completo",
+      missing: (n: number) => `Piezas válidas que no tienes (${n})`,
+      noEquipment:
+        "Esta partida no incluye la caja de equipo, así que no hay colección que mostrar. Carga una partida de esta versión del juego para verla.",
+      loading: "Leyendo tu caja de equipo…",
+      failed: "No se pudo cargar la lista de equipo.",
+      pieces: (n: string) => `${n} piezas`,
+      piecesLabel: (n: number) => `${n} piezas de equipo`,
+    },
   },
   search: {
     label: "Buscar",

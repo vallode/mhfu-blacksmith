@@ -13,6 +13,45 @@ export type Crowns = Record<Crown, number>;
 /** Crowns in the order the Guild Card ranks them. */
 export const CROWN_ORDER: readonly Crown[] = ["gold", "silver", "mini"];
 
+/**
+ * The Guild Card's crown groups (mhfu-extract's crown table): each is one
+ * monster list entry, a base monster and its subspecies, whose records count
+ * together. The card takes the largest and smallest size across a group.
+ */
+export const CROWN_GROUPS: readonly (readonly string[])[] = [
+  ["Rathian", "Pink Rathian", "Gold Rathian"],
+  ["Yian Kut-Ku", "Blue Yian Kut-Ku"],
+  ["Cephadrome"],
+  ["Rathalos", "Silver Rathalos", "Azure Rathalos"],
+  ["Diablos", "Black Diablos"],
+  ["Khezu", "Red Khezu"],
+  ["Gravios", "Black Gravios"],
+  ["Gypceros", "Purple Gypceros"],
+  ["Plesioth", "Green Plesioth"],
+  ["Basarios"],
+  ["Monoblos", "White Monoblos"],
+  ["Velocidrome"],
+  ["Gendrome"],
+  ["Iodrome"],
+  ["Kirin"],
+  ["Scarred Yian Garuga", "Yian Garuga"],
+  ["Daimyo Hermitaur", "Plum D.Hermitaur"],
+  ["Blangonga", "Copper Blangonga"],
+  ["Congalala", "Emerald Congalala"],
+  ["Rajang", "Furious Rajang"],
+  ["Kushala Daora", "Rusted Kushala Daora"],
+  ["Chameleos"],
+  ["Lunastra"],
+  ["Teostra"],
+  ["Shogun Ceanataur", "Terra S.Ceanataur"],
+  ["Bulldrome"],
+  ["Tigrex"],
+  ["Giadrome"],
+  ["Nargacuga"],
+  ["Hypnocatrice"],
+  ["Lavasioth"],
+];
+
 /** The crown a size (percent) earns, or null. */
 export function crownFor(size: number, crowns: Crowns): Crown | null {
   if (size <= crowns.mini) return "mini";
