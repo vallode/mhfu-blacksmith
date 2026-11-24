@@ -1,13 +1,25 @@
 /**
- * Where a quest's gathering points are on the game's map: data/mhfu/gathering.json's
- * positions, by quest ID. Pure, so scripts/generate-data.ts writes it into
- * public/data/area-maps.json and the tests build it from data/.
+ * A quest's map and its gathering points: data/mhfu/gathering.json's positions,
+ * by quest ID, plus an empty map for a quest whose map has no points. Pure,
+ * so scripts/generate-data.ts writes it into public/data/area-maps.json and
+ * the tests build it from data/mhfu/.
  */
 import { areaNumber } from "./area-numbers";
 import type { GatherKind, GatheringFile } from "./item-places";
 
 /** The textures' width and height, in the pixels `x` and `y` count. */
 export const AREA_MAP_SIZE = 160;
+
+/**
+ * Maps with a texture but no gathering points, so data/mhfu/gathering.json has no
+ * layout to name it by. Their quests still get a Map tab, and arena monsters
+ * keep their markers.
+ */
+const UNGATHERED_TEXTURES: Record<string, string> = {
+  "Arena (Small)": "map10",
+  "Tower 2": "map14",
+  "Tower 1": "map15",
+};
 
 export interface AreaMapPoint {
   /** 0 is the Base Camp, then the map's numbered areas. */
@@ -49,8 +61,12 @@ export interface AreaMapsBundle {
 
 const KINDS: GatherKind[] = ["gather", "mine", "bug"];
 
-/** Each layout with positions, and which quests use it. */
-export function buildAreaMaps(gathering: GatheringFile): AreaMapsBundle {
+/** Each layout with positions, and which quests use it; maps without points get an empty entry. */
+export function buildAreaMaps(
+  gathering: GatheringFile,
+  /** Every quest on a map, so one with no gathering points still gets its map. */
+  quests: readonly { id: number; map: string | null }[] = [],
+): AreaMapsBundle {
   const bundle: AreaMapsBundle = { names: [], lists: [], maps: [], quests: {} };
   const nameIndex = new Map<string, number>();
   const listIndex = new Map<string, number>();
@@ -66,6 +82,14 @@ export function buildAreaMaps(gathering: GatheringFile): AreaMapsBundle {
     if (i === undefined) listIndex.set(key, (i = bundle.lists.push(encoded) - 1));
     return i;
   };
+  /** A map name -> its texture, from the layouts (and the maps they don't cover). */
+  const textures = new Map<string, string>();
+  for (const layout of gathering.layouts) {
+    if (layout.texture && !textures.has(layout.map)) textures.set(layout.map, layout.texture);
+  }
+  for (const [map, texture] of Object.entries(UNGATHERED_TEXTURES)) {
+    if (!textures.has(map)) textures.set(map, texture);
+  }
   for (const layout of gathering.layouts) {
     if (!layout.texture) continue;
     const points = layout.areas.flatMap(({ area, nodes }) =>
@@ -84,6 +108,21 @@ export function buildAreaMaps(gathering: GatheringFile): AreaMapsBundle {
     if (points.length === 0) continue;
     const index = bundle.maps.push([layout.texture, points]) - 1;
     for (const quest of layout.quests) bundle.quests[quest] = index;
+  }
+
+  // A quest on a map we have a texture for keeps its Map tab, even when no
+  // gathering layout has points for it (the arena's own fights, the Tower).
+  const emptyMaps = new Map<string, number>();
+  for (const quest of quests) {
+    if (quest.map === null || bundle.quests[quest.id] !== undefined) continue;
+    const texture = textures.get(quest.map);
+    if (!texture) continue;
+    let index = emptyMaps.get(texture);
+    if (index === undefined) {
+      index = bundle.maps.push([texture, []]) - 1;
+      emptyMaps.set(texture, index);
+    }
+    bundle.quests[quest.id] = index;
   }
   return bundle;
 }

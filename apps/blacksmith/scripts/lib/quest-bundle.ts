@@ -18,6 +18,7 @@ import {
   type CompactQuest,
   type CompactQuestSize,
   type CompactRewardTable,
+  type CompactSpawn,
   type CompactSupplies,
   type QuestsBundle,
 } from "../../src/lib/quests";
@@ -43,11 +44,20 @@ export interface QuestRecord {
   }[];
   large_monsters: {
     monster: string;
+    quantity?: number;
     multipliers?: { hp: number; attack: number; defense: number; status: number };
     crown_chances?: { mini: number; silver: number; gold: number };
+    /** Pixels on the quest's area map, where the map tables place it. */
+    spawns?: { area: number; x: number; y: number }[];
   }[];
   monster_size?: { modifier: number; min: number; max: number; fixed_until_flag?: number } | null;
-  small_monsters: { monster: string; total_quantity?: number; endless?: boolean }[];
+  small_monsters: {
+    monster: string;
+    total_quantity?: number;
+    endless?: boolean;
+    /** Each record's pixel on the quest's area map, where the map tables place it. */
+    spawns?: { area: number; x: number; y: number; quantity: number; endless?: boolean }[];
+  }[];
   title: string | null;
   goal: string | null;
   details: string | null;
@@ -261,6 +271,70 @@ export function encodeQuestBundle({
     return { indices: [...spawns.keys()], counts: [...spawns.values()] };
   };
 
+  /**
+   * Every area's monsters, one row per species, for the map view. Records of
+   * the same species in one area share a marker, so their quantities and
+   * endless flags are merged and the first record's point is kept.
+   */
+  const mapSpawns = (q: QuestRecord): CompactSpawn[] => {
+    interface Group {
+      monster: number;
+      kind: 0 | 1;
+      area: number;
+      x: number;
+      y: number;
+      quantity: number;
+      endless: boolean;
+    }
+    const groups = new Map<string, Group>();
+    const add = (
+      name: string,
+      kind: 0 | 1,
+      area: number,
+      x: number,
+      y: number,
+      quantity: number,
+      endless: boolean,
+    ) => {
+      const index = monster(name);
+      const key = `${area}:${kind}:${index}`;
+      const group = groups.get(key);
+      if (group) {
+        if (endless) group.endless = true;
+        else group.quantity += quantity;
+      } else {
+        groups.set(key, {
+          monster: index,
+          kind,
+          area,
+          x: Math.round(x),
+          y: Math.round(y),
+          quantity: endless ? 0 : quantity,
+          endless,
+        });
+      }
+    };
+    for (const m of q.large_monsters) {
+      for (const p of m.spawns ?? []) add(m.monster, 0, p.area, p.x, p.y, m.quantity ?? 1, false);
+    }
+    for (const m of q.small_monsters) {
+      if (QUEST_NON_MONSTERS.has(m.monster)) continue;
+      for (const p of m.spawns ?? []) add(m.monster, 1, p.area, p.x, p.y, p.quantity, !!p.endless);
+    }
+    return [...groups.values()].map((group) => {
+      const row: CompactSpawn = [
+        group.monster,
+        group.kind,
+        group.area,
+        group.x,
+        group.y,
+        group.quantity,
+      ];
+      if (group.endless) row.push(1);
+      return row;
+    });
+  };
+
   const items: CompactQuest[] = [];
   for (const q of quests) {
     const hub = questHubSlug(q.hub, q.rank);
@@ -292,6 +366,7 @@ export function encodeQuestBundle({
       monsterSize(q),
       q.rank === null ? null : QUEST_RANKS.indexOf(q.rank as QuestRank),
       GUILD_POINT_HUBS.has(q.hub) ? (q.clear_points ?? null) : null,
+      mapSpawns(q),
     ]);
   }
 

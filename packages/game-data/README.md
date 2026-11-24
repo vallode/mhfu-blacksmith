@@ -78,6 +78,10 @@ References:
 - **Skills** on armor (`{ "skill": 36, "amount": 3 }`) and decorations
   (`{ "skill": 36, "points": 1 }`).
 - **Quests:** `map: 11`, items by ID, `{ "monster": 87, "quantity": 1 }`.
+  A large or small monster's `spawns` are pixels on the quest's area map
+  (160 across), shared with `data/mhfu/gathering.json`'s `positions`; `area` 0 is
+  the Base Camp. A small monster's points also carry `quantity` and, for
+  one that keeps coming, `endless`.
   A Training School quest's `arena_sets` name gear by slot and ID,
   `{ "slot": "helmet", "id": 241, "level": 0, "decorations": [989] }`, as
   a save's equipment box does. Gear with a record is named by it; the

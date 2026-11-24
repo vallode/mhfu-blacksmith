@@ -178,6 +178,12 @@ export interface MonsterSpawn {
   /** The hexpat's Attr1/Attr2 (u8 after `power`); raw, meaning unknown. */
   attr1?: number;
   attr2?: number;
+  /**
+   * The record's position in its stage's coordinates (float at +32 and +40;
+   * +36 is the height). Map layouts turn it into a pixel on the area map.
+   */
+  x?: number;
+  z?: number;
 }
 
 const LARGE_MON_DATA_ENTRY_SIZE = 60;
@@ -196,6 +202,8 @@ function readLargeMonsterData(
       attr1: reader.u8(off + 6),
       attr2: reader.u8(off + 7),
       stage: reader.u16(off + 8),
+      x: reader.f32(off + 32),
+      z: reader.f32(off + 40),
     });
     off += LARGE_MON_DATA_ENTRY_SIZE;
   }
@@ -234,6 +242,8 @@ function readSmallMonsterData(reader: BinaryReader, ptr: number): MonsterSpawn[]
       monsterId: reader.u16(off),
       quantity: reader.u8(off + 4),
       power: reader.u8(off + 5),
+      x: reader.f32(off + 32),
+      z: reader.f32(off + 40),
     });
     off += SMALL_MON_DATA_ENTRY_SIZE;
   }

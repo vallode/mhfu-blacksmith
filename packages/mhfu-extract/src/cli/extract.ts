@@ -422,7 +422,6 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     };
   if (!monsters.bestiary)
     console.warn(`Warning: region "${manifest.region}" has no monster descriptions.`);
-  Object.assign(output, emitQuestsFile(quests, multiplierLookup, sizes ?? undefined));
 
   // Only EU data gets positions: the JP tables (readMapGeometry) are known, but
   // JP's textures and positions haven't been checked against the site.
@@ -433,6 +432,8 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   if (!maps) {
     console.warn(`Warning: region "${manifest.region}" has no map tables, so no map positions.`);
   }
+  Object.assign(output, emitQuestsFile(quests, multiplierLookup, sizes ?? undefined, maps));
+
   const gathering = emitGathering(payloads, maps);
   for (const { questId, problem } of gathering.problems) {
     console.log(`Quest ${questId}: gathering points skipped (${problem}).`);

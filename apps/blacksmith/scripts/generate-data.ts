@@ -25,11 +25,12 @@
  * Reuses the transform logic from src/lib (slugify, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
  *
- * Budget: asserts total public/data raw size < 2.1 MB and logs a gzip
+ * Budget: asserts total public/data raw size < 2.25 MB and logs a gzip
  * estimate (raised from 1.5 MB for quests.json, ~190 KB, from 1.6 MB for
  * item-places.json, ~80 KB, from 1.7 MB for area-maps.json, from 1.8 MB
- * for veggie-trades.json, ~10 KB, and from 1.85 MB for item-uses.json,
- * ~245 KB).
+ * for veggie-trades.json, ~10 KB, from 1.85 MB for item-uses.json,
+ * ~245 KB, and from 2.1 MB for the monsters' spawn markers on the area
+ * map, ~110 KB in quests.json).
  */
 import fs from "fs";
 import path from "path";
@@ -105,7 +106,7 @@ const outDir = path.join(root, "public", "data");
 const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
 
-const BUDGET_BYTES = 2.1 * 1024 * 1024;
+const BUDGET_BYTES = 2.25 * 1024 * 1024;
 
 function readJson<T>(p: string): T {
   return JSON.parse(fs.readFileSync(p, "utf-8")) as T;
@@ -568,7 +569,7 @@ for (const category of MONSTER_CATEGORIES) {
     readData<{ items: ItemRecord[] }>(dataDir, GAME, "items.json").items,
   );
   const gathering = readData<GatheringFile>(dataDir, GAME, "gathering.json");
-  const areaMaps = buildAreaMaps(gathering);
+  const areaMaps = buildAreaMaps(gathering, quests);
   const { bundle, unresolvedItems } = encodeQuestBundle({
     quests,
     itemId: (name) => index.get(normalizeItemName(name)),
