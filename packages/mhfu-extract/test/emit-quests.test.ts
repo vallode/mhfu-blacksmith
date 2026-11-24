@@ -151,6 +151,68 @@ test("emitQuest reproduces the real 'Hunt 1 Giadrome' quest end-to-end", () => {
   assert.equal(emitted.client, "元気のいい少年");
 });
 
+test("emitQuest maps a spawn record's stage and position onto the quest's area map", () => {
+  const map = {
+    width: 50000,
+    depth: 50000,
+    zoom: 1,
+    stages: [92, 93, 97],
+    origins: [
+      [0, 0],
+      [0, 0],
+      [0, 0],
+    ] as [number, number][],
+    texture: "map11",
+    onArt: () => true,
+  };
+  const quest: ParsedQuest = {
+    ...GIADROME_HUNT,
+    largeMonsters: [{ monsterId: 77, quantity: 1, power: 4, stage: 97, x: 10018, z: 11722 }],
+    smallMonsters: [
+      {
+        stageId: 93,
+        dataPtr: 100,
+        monsters: [{ monsterId: 35, quantity: 2, power: 0, x: 1000, z: 2000 }],
+      },
+    ],
+  };
+  const emitted = emitQuest(quest, undefined, undefined, new Map([[11, map]]));
+  assert.ok(emitted);
+  // 150/50000 per unit, to a tenth of a pixel.
+  assert.deepEqual(emitted.large_monsters[0]!.spawns, [{ area: 2, x: 30.1, y: 35.2 }]);
+  assert.deepEqual(emitted.small_monsters[0]!.spawns, [{ area: 1, x: 3, y: 6, quantity: 2 }]);
+});
+
+test("emitQuest leaves spawns off when the map doesn't draw the stage or the point", () => {
+  const map = {
+    width: 50000,
+    depth: 50000,
+    zoom: 1,
+    stages: [92, 93],
+    origins: [
+      [0, 0],
+      [0, 0],
+    ] as [number, number][],
+    texture: "map11",
+    onArt: (u: number) => u < 40,
+  };
+  const quest: ParsedQuest = {
+    ...GIADROME_HUNT,
+    largeMonsters: [{ monsterId: 77, quantity: 1, power: 4, stage: 97, x: 10018, z: 11722 }],
+    smallMonsters: [
+      {
+        stageId: 93,
+        dataPtr: 100,
+        monsters: [{ monsterId: 35, quantity: 2, power: 0, x: 1000, z: 2000 }],
+      },
+    ],
+  };
+  const emitted = emitQuest(quest, undefined, undefined, new Map([[11, map]]));
+  assert.ok(emitted);
+  assert.equal(emitted.large_monsters[0]!.spawns, undefined); // stage 97 isn't on this map
+  assert.deepEqual(emitted.small_monsters[0]!.spawns, [{ area: 1, x: 3, y: 6, quantity: 2 }]);
+});
+
 test("emitQuest maps rank 3 (real Treasure Hunting client 'トレジィ') to the treasure-hunting hub with a null target", () => {
   const treasureHunt: ParsedQuest = {
     ...GIADROME_HUNT,

@@ -114,8 +114,9 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
   "Building `data/` from the disc".
 - `item-icons` slices the item icons out of the UI atlas into the site's
   `public/images/`. See "Items".
-- `area-maps` writes the area map textures `data/gathering.json` uses to
-  the site's `public/images/area-maps/`. See "Area maps".
+- `area-maps` writes the area map textures the cockpit has (including maps
+  with no gathering points) to the site's `public/images/area-maps/`. See
+  "Area maps".
 - `quest-probe` summarises `extract --raw`'s `raw/quests.json` for the
   open quest questions (`src/emit/quest-probe.ts`): the values the monster
   size candidates take, the header's two objective slots, each script
@@ -1296,6 +1297,14 @@ is deduplicated the same way for exact-duplicate `(monster, quantity, power)`
 rows. Each large monster's `multipliers` are its stat multiplier row (see
 "Monster overlays").
 
+Both lists also carry `spawns` when `src/tables/map-layout.ts` can place
+them (EU): each spawn record's `area` and pixel on the quest's area map.
+Large monster records have a stage ID (`+8`) and position (`+32`, `+40`);
+small monster records get their stage from their `SmallMonTable` and have
+the same position fields. Points the map doesn't draw (the Tower's maps,
+off-art areas) are left out, so a monster can have no `spawns` even though
+it spawns in the quest. The site's Map tab draws them as markers.
+
 Training School quests also carry `arena_sets`, the loadouts the hunter
 picks from (see "Arena sets" below). `QuestScript` isn't emitted (see
 "Quest script" below).
@@ -1337,10 +1346,12 @@ u16 table, u16 most gathers, u16 type, u16 fewest gathers`), ending at
 
 ### Area maps
 
-`src/tables/map-layout.ts` works out where a gathering point sits on the
-map, and `emit/gathering.ts` writes it as `positions` (one pixel per point)
-and the layout's `texture`. The formula is the one the map screen draws the
-player's arrow with (EU EBOOT, around `0x8843358`), for x and z separately:
+`src/tables/map-layout.ts` works out where a gathering point or monster
+spawn sits on the map, and `emit/gathering.ts` writes it as `positions` (one
+pixel per point) and the layout's `texture`; `emit/quests.ts` writes the
+monsters into each quest's `spawns`. The formula is the one the map screen
+draws the player's arrow with (EU EBOOT, around `0x8843358`), for x and z
+separately:
 
 ```
 pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
@@ -1357,8 +1368,9 @@ pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
   list, so index 0 is the Base Camp. Stage IDs aren't in area order.
 - **Textures**: `data-bin/cockpit/map<N>.tmh`, 160x160, named by quest map
   ID. Night maps reuse the day map's (16 uses 2, 18 uses 4, 21 uses 11, 31
-  uses 30). `area-maps` writes the ones `data/gathering.json` uses to
-  `public/images/area-maps/`, so run it after `build-data`.
+  uses 30). `area-maps` writes every map texture the cockpit has, including
+  the maps with no gathering points (the small arena, the Tower's floors),
+  to `public/images/area-maps/`, so run it after `build-data`.
 - **Not placed**: the Tower's maps (14 and 15) draw their floors on separate
   pages this formula doesn't reach. A few areas aren't drawn on their map
   at all (the Desert's 11th), so an area with no point on opaque art loses

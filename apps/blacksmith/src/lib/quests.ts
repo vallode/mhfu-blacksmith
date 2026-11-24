@@ -194,6 +194,21 @@ export type CompactQuestSize = [
 export type CompactSupplies = ([number, number] | [number, number, number])[];
 
 /**
+ * A monster spawn marker on the quest's area map: [monster, kind (0 large,
+ * 1 small), area, x, y, quantity, endless]. There is one row per species and
+ * area; positions are whole pixels on the map's 160-step texture.
+ */
+export type CompactSpawn = [
+  monster: number,
+  kind: 0 | 1,
+  area: number,
+  x: number,
+  y: number,
+  quantity: number,
+  endless?: 1,
+];
+
+/**
  * One quest. Indices point into the bundle's tables; null where a quest has
  * no value. Titles etc. index `strings`, monsters index `monsters`.
  */
@@ -223,6 +238,7 @@ export type CompactQuest = [
   size: CompactQuestSize | null, // null without large monsters
   rank: number | null, // index into QUEST_RANKS; null without a rank tier
   guildPoints: number | null, // null off GUILD_POINT_HUBS
+  spawns: CompactSpawn[], // monster markers on the area map
 ];
 
 export interface QuestsBundle {
@@ -244,6 +260,22 @@ export interface QuestMonster {
   name: string;
   /** Monster page, when the site has one. */
   href: string | null;
+}
+
+/** A monster's spawn marker on the quest's area map (`data/quests` `spawns`). */
+export interface QuestSpawn {
+  monster: QuestMonster;
+  /** Large or small; one marker per species and area. */
+  kind: "large" | "small";
+  /** 0 is the Base Camp, then the map's numbered areas. */
+  area: number;
+  /** Pixels on the map's 160-step texture, from the species' first record there. */
+  x: number;
+  y: number;
+  /** How many of the species spawn in the area; endless records are left out. */
+  quantity: number;
+  /** One of the species' records there is marked 99: it keeps coming. */
+  endless: boolean;
 }
 
 /**
@@ -333,6 +365,8 @@ export interface Quest {
   urgent: boolean;
   /** Whether area-maps.json places this quest's gathering points. */
   hasAreaMap: boolean;
+  /** Monsters' spawn markers on the area map; empty without the map tables. */
+  spawns: QuestSpawn[];
   /** Null without large monsters, or in a bundle cached before sizes were added. */
   monsterSize: QuestMonsterSize | null;
 }
@@ -379,6 +413,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       sz,
       rk,
       gp,
+      sp,
     ]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
@@ -416,6 +451,16 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       requires: rq ?? null,
       urgent: ur === 1,
       hasAreaMap: am === 1,
+      // `?? []`: a bundle cached before spawn markers were added has none.
+      spawns: (sp ?? []).map(([m, kind, area, x, y, quantity, endless]) => ({
+        monster: monsters[m]!,
+        kind: kind === 1 ? "small" : "large",
+        area,
+        x,
+        y,
+        quantity,
+        endless: endless === 1,
+      })),
       monsterSize: sz
         ? {
             modifier: sz[0],

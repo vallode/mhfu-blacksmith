@@ -517,6 +517,57 @@ test("encodeQuestBundle marks the quests area-maps.json has", () => {
   );
 });
 
+test("encodeQuestBundle round-trips spawn markers, to whole pixels and without non-monsters", () => {
+  const { bundle } = encode([
+    quest({
+      large_monsters: [
+        { monster: "Giadrome", quantity: 2, spawns: [{ area: 6, x: 80.5, y: 25.7 }] },
+      ],
+      small_monsters: [
+        {
+          monster: "Giaprey",
+          spawns: [
+            { area: 2, x: 77.8, y: 62.8, quantity: 2 },
+            { area: 3, x: 10, y: 12, quantity: 99, endless: true },
+            { area: 3, x: 12, y: 14, quantity: 1 },
+            { area: 2, x: 70.1, y: 60.2, quantity: 3 },
+          ],
+        },
+        { monster: "Rocks", spawns: [{ area: 1, x: 5, y: 6, quantity: 1 }] },
+      ],
+    }),
+  ]);
+  assert.deepEqual(decodeQuests(bundle)[0]!.spawns, [
+    {
+      monster: { name: "Giadrome", href: "/monsters/bird-wyvern/giadrome/" },
+      kind: "large",
+      area: 6,
+      x: 81,
+      y: 26,
+      quantity: 2,
+      endless: false,
+    },
+    {
+      monster: { name: "Giaprey", href: null },
+      kind: "small",
+      area: 2,
+      x: 78,
+      y: 63,
+      quantity: 5,
+      endless: false,
+    },
+    {
+      monster: { name: "Giaprey", href: null },
+      kind: "small",
+      area: 3,
+      x: 10,
+      y: 12,
+      quantity: 1,
+      endless: true,
+    },
+  ]);
+});
+
 describe("small monster totals", () => {
   const spawn = (monster: string, total_quantity: number, endless?: boolean) => ({
     monster,
