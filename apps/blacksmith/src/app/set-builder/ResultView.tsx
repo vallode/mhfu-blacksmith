@@ -27,6 +27,7 @@ import { binLabel, SetHeader } from "./ArmorSetView";
 import { PiecePicker } from "./Pickers";
 import SlotPips from "./SlotPips";
 import { weaponTypesFor } from "@/lib/weapon-suggest";
+import SetModel from "./SetModel";
 import SetWishlistButton from "./SetWishlistButton";
 import Sheet from "./Sheet";
 import WeaponSuggestions from "./WeaponSuggestions";
@@ -162,6 +163,11 @@ export default function ResultView({
       </div>
       <div className="flex gap-[0.8rem]">
         <SetWishlistButton set={set} main />
+        <SetModel
+          pieces={set.pieces}
+          sex={sex === "Female" ? "female" : "male"}
+          label={text.setView.setNumber(index + 1)}
+        />
         {action}
       </div>
       <PieceSheet

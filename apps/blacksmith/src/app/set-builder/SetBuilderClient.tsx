@@ -70,6 +70,7 @@ import MySets from "./MySets";
 import PieceChips from "./PieceChips";
 import ResultView, { type PieceActions } from "./ResultView";
 import SearchBar from "./SearchBar";
+import SetModel from "./SetModel";
 import { LockNote, LockRows, withLock } from "./LockedArmor";
 import { PiecePicker } from "./Pickers";
 import { DEFAULT_FORM, OptionsSummary, SearchOptions, type Form } from "./SearchOptions";
@@ -484,14 +485,18 @@ export default function SetBuilderClient() {
     }
   };
 
+  const editorLabel = savedSet ? savedSet.name : (linkName ?? text.editor.origins[origin]);
   const editorTitle = (
     <div className="flex flex-wrap items-center gap-[0.8rem]">
       <span className="min-w-0 flex-[1_1_20rem] truncate">
-        <PanelTitle>
-          {savedSet ? savedSet.name : (linkName ?? text.editor.origins[origin])}
-        </PanelTitle>
+        <PanelTitle>{editorLabel}</PanelTitle>
       </span>
       <div className={ui.actions}>
+        <SetModel
+          pieces={build.pieces}
+          sex={build.sex === "Female" ? "female" : "male"}
+          label={editorLabel}
+        />
         <button
           type="button"
           className={ui.button}
