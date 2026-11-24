@@ -47,11 +47,14 @@ worktree starts without one.
 - Read that manifest and `extracted/` rather than searching the filesystem for
   datamining inputs.
 
-Checks, from the root: `pnpm lint`, `pnpm typecheck`, `pnpm test`,
-`pnpm format:check`. Run one package's scripts with
+While iterating, run only the affected package's checks:
 `pnpm --filter <name> <script>` (`blacksmith`, `randomfu-web`,
-`mhfu-extract`, `randomfu`, `game-data`). Never commit a disc image or an unpacked dump
-of one (see `.gitignore`).
+`mhfu-extract`, `randomfu`, `game-data`), for example
+`pnpm --filter blacksmith test`. The root-wide `pnpm lint`,
+`pnpm typecheck`, `pnpm test` and `pnpm format:check` are all-or-nothing;
+`pnpm test` alone takes about 45 seconds, mostly randomfu's property tests.
+Save the full set for before a PR. Never commit a disc image or an unpacked
+dump of one (see `.gitignore`).
 
 Each disc image is close to 1 GB, and nothing clears temp folders or
 session scratchpads for you. Delete every disc you write (randomized

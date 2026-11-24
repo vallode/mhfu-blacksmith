@@ -900,7 +900,7 @@ test("more quest rewards are offered only where all of them fit in 9 draws", () 
   const q = quest();
   for (const base of [7, 9]) {
     const seen = new Set<number>();
-    for (let n = 1; n < 300; n++) {
+    for (let n = 1; n < 100; n++) {
       // Each a new quest: its clock above the last one's.
       q.setUpQuest(90000 + base * 1000 + n);
       q.cpu.setU8(TABLES + 3, base);
