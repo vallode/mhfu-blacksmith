@@ -23,11 +23,13 @@ import {
   artisanHammerCounts,
   artisanMittenCounts,
 } from "./award-collection";
-import { crownFor, type Crown, type Crowns } from "./crowns";
+import { CROWN_GROUPS, crownFor, type Crown, type Crowns } from "./crowns";
 import { monsterRecordFor } from "./monster-ids";
 import { questsOnHub, type Quest, type QuestHubSlug } from "./quests";
 import type { MonsterRecord, SaveData } from "./save-store";
 import type { EquipmentIds } from "./schema";
+
+export { CROWN_GROUPS };
 
 export type AwardGroup =
   "village" | "gathering" | "training" | "hunts" | "collection" | "farm" | "other";
@@ -187,47 +189,6 @@ const ECOLOGY: readonly string[] = [
   "Plum D.Hermitaur",
   "Terra S.Ceanataur",
   "Furious Rajang",
-];
-
-/**
- * The crown awards' groups: the 31 crown table entries with crown sizes
- * (mhfu-extract `monsters/sizes.ts`), each the monster named first and the
- * subspecies that share its records (EU `0x0899BF40`). The game pools a
- * group's records: hunts are summed, the largest is the group's largest and
- * the smallest its smallest.
- */
-export const CROWN_GROUPS: readonly (readonly string[])[] = [
-  ["Rathian", "Pink Rathian", "Gold Rathian"],
-  ["Yian Kut-Ku", "Blue Yian Kut-Ku"],
-  ["Cephadrome"],
-  ["Rathalos", "Silver Rathalos", "Azure Rathalos"],
-  ["Diablos", "Black Diablos"],
-  ["Khezu", "Red Khezu"],
-  ["Gravios", "Black Gravios"],
-  ["Gypceros", "Purple Gypceros"],
-  ["Plesioth", "Green Plesioth"],
-  ["Basarios"],
-  ["Monoblos", "White Monoblos"],
-  ["Velocidrome"],
-  ["Gendrome"],
-  ["Iodrome"],
-  ["Kirin"],
-  ["Scarred Yian Garuga", "Yian Garuga"],
-  ["Daimyo Hermitaur", "Plum D.Hermitaur"],
-  ["Blangonga", "Copper Blangonga"],
-  ["Congalala", "Emerald Congalala"],
-  ["Rajang", "Furious Rajang"],
-  ["Kushala Daora", "Rusted Kushala Daora"],
-  ["Chameleos"],
-  ["Lunastra"],
-  ["Teostra"],
-  ["Shogun Ceanataur", "Terra S.Ceanataur"],
-  ["Bulldrome"],
-  ["Tigrex"],
-  ["Giadrome"],
-  ["Nargacuga"],
-  ["Hypnocatrice"],
-  ["Lavasioth"],
 ];
 
 /** `n` of `max`: a count the game checks against a mark, capped there. */

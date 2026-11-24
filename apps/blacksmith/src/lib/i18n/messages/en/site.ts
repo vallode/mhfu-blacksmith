@@ -281,6 +281,24 @@ export const site = {
       level: (level: string, done: number, total: number) =>
         `${level}: ${done} of ${total} cleared`,
     },
+    crowns: {
+      note: "Your Guild Card's largest and smallest sizes for each monster entry.",
+      largest: "Largest",
+      smallest: "Smallest",
+      hunted: (count: string) => `Hunted ${count}`,
+      notHunted: "Not hunted",
+      missing: "Missing",
+      complete: "Complete",
+      missingGold: "Gold crown missing",
+      missingMini: "Mini crown missing",
+      missingBoth: "Gold and mini crowns missing",
+      noRecords:
+        "This save was stored before monster records were read. Load the save file again to see your crowns.",
+      goldCutoff: (size: string) => `Gold ≥ ${size}`,
+      miniCutoff: (size: string) => `Mini ≤ ${size}`,
+      goldCount: (earned: string, total: string) => `${earned}/${total} gold crowns`,
+      miniCount: (earned: string, total: string) => `${earned}/${total} mini crowns`,
+    },
     collection: {
       note: "Your equipment box against the Guild Card's equipment awards: what each weapon class and armor slot still needs. Any eligible piece counts, and each box slot counts.",
       weapons: "Weapons",
