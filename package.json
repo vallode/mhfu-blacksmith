@@ -9,6 +9,7 @@
     "test": "pnpm -r test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "link:cache": "node scripts/link-cache.mjs",
     "clean:discs": "node scripts/clean-discs.mjs"
   },
   "devDependencies": {

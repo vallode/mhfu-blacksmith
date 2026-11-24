@@ -47,7 +47,7 @@ mhef/
 # game data. See packages/mhfu-extract/README.md.
 *.iso
 *.pbp
-packages/mhfu-extract/.cache/
+packages/mhfu-extract/.cache
 packages/mhfu-extract/**/*.iso
 # randomfu web app build output
 apps/randomfu/dist/

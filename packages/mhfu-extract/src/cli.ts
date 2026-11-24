@@ -2,18 +2,18 @@
 /**
  * mhfu-extract CLI entrypoint. See README's "Usage" section.
  *
- *   tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
- *   tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw] [--dlc <cheat .ini or .mib dir>]
- *   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
+ *   tsx src/cli.ts unpack  --iso <path> [--out <dir>] [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
+ *   tsx src/cli.ts extract [--unpacked <dir>] [--out <dir>] [--raw] [--dlc <cheat .ini or .mib dir>]
+ *   tsx src/cli.ts diff    [--extracted <dir>] [--data <dir>] [--out <path>]
  *   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
- *   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
- *   tsx src/cli.ts item-icons --unpacked <dir> [--out <dir>]
- *   tsx src/cli.ts area-maps --unpacked <dir> [--data <dir>] [--out <dir>]
- *   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only <categories>] [--out <path>] [--markdown <path>]
- *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
- *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
- *   tsx src/cli.ts find-names --unpacked <dir> [--out <path>] [--tables <list>] [--all]
- *   tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots <map>] [--report <path>] [--dry-run] [--dlc <cheat .ini or .mib dir>]
+ *   tsx src/cli.ts export-site [--unpacked <dir>] [--data <dir>] [--out <dir>] [--lossless]
+ *   tsx src/cli.ts item-icons [--unpacked <dir>] [--out <dir>]
+ *   tsx src/cli.ts area-maps [--unpacked <dir>] [--data <dir>] [--out <dir>]
+ *   tsx src/cli.ts compare [--extracted <dir>] [--data <dir>] [--only <categories>] [--out <path>] [--markdown <path>]
+ *   tsx src/cli.ts build-data [--extracted <dir>] [--data <dir>] [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
+ *   tsx src/cli.ts quest-flags [--unpacked <dir>] [--out <path>]
+ *   tsx src/cli.ts find-names [--unpacked <dir>] [--out <path>] [--tables <list>] [--all]
+ *   tsx src/cli.ts locales [--unpacked <dir>] [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots <map>] [--report <path>] [--dry-run] [--dlc <cheat .ini or .mib dir>]
  */
 import { fileURLToPath } from "node:url";
 import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.js";
@@ -26,6 +26,7 @@ import { runExtract } from "./cli/extract.js";
 import { runFindNames } from "./cli/find-names.js";
 import { runLocales } from "./cli/locales.js";
 import { runModels } from "./cli/models.js";
+import { cachePaths, defaultDataDir, defaultDisc, sitePublicDir } from "./cli/paths.js";
 import { runQuestFlags } from "./cli/quest-flags.js";
 import { runQuestTextScan } from "./cli/quest-text-scan.js";
 import { runMessages } from "./cli/messages.js";
@@ -64,32 +65,46 @@ function requireFlag(flags: Record<string, string>, name: string): string {
   return value;
 }
 
+function flagOr(flags: Record<string, string>, name: string, fallback: string): string {
+  return flags[name] ?? fallback;
+}
+
+function discPath(flags: Record<string, string>): string {
+  const value = flags.iso ?? defaultDisc();
+  if (!value) throw new Error("Missing required flag --iso (or set MHFU_DISC)");
+  return value;
+}
+
 const USAGE = `Usage:
-  tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
-  tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw] [--dlc <cheat .ini or .mib dir>]
-  tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
+  tsx src/cli.ts unpack  --iso <path> [--out <dir>] [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
+  tsx src/cli.ts extract [--unpacked <dir>] [--out <dir>] [--raw] [--dlc <cheat .ini or .mib dir>]
+  tsx src/cli.ts diff    [--extracted <dir>] [--data <dir>] [--out <path>]
   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
-  tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
-  tsx src/cli.ts item-icons --unpacked <dir> [--out <dir>]
-  tsx src/cli.ts area-maps --unpacked <dir> [--data <dir>] [--out <dir>]
-  tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
-  tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,items,quests,gathering,shops,combinations,veggie-trades,farm,awards] [--report <path>] [--markdown <path>] [--dry-run]
-  tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
-  tsx src/cli.ts find-names --unpacked <dir> [--out <path>] [--tables ItemID,emID,...] [--all]
-  tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots spa=es,...] [--report <path>] [--dry-run] [--dlc <cheat .ini or .mib dir>]
-  tsx src/cli.ts quest-probe --quests <raw/quests.json> [--tsv <path>]
-  tsx src/cli.ts quest-text-scan --unpacked <dir> --quest <id> [--out <path>]
-  tsx src/cli.ts messages --unpacked <dir> --file <index> [--grep <word>] [--table <n> [--from <i>] [--count <n>]]`;
+  tsx src/cli.ts export-site [--unpacked <dir>] [--data <dir>] [--out <dir>] [--lossless]
+  tsx src/cli.ts item-icons [--unpacked <dir>] [--out <dir>]
+  tsx src/cli.ts area-maps [--unpacked <dir>] [--data <dir>] [--out <dir>]
+  tsx src/cli.ts compare [--extracted <dir>] [--data <dir>] [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
+  tsx src/cli.ts build-data [--extracted <dir>] [--data <dir>] [--only armor,weapons,decorations,monsters,items,quests,gathering,shops,combinations,veggie-trades,farm,awards] [--report <path>] [--markdown <path>] [--dry-run]
+  tsx src/cli.ts quest-flags [--unpacked <dir>] [--out <path>]
+  tsx src/cli.ts find-names [--unpacked <dir>] [--out <path>] [--tables ItemID,emID,...] [--all]
+  tsx src/cli.ts locales [--unpacked <dir>] [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots spa=es,...] [--report <path>] [--dry-run] [--dlc <cheat .ini or .mib dir>]
+  tsx src/cli.ts quest-probe [--quests <raw/quests.json>] [--tsv <path>]
+  tsx src/cli.ts quest-text-scan [--unpacked <dir>] --quest <id> [--out <path>]
+  tsx src/cli.ts messages [--unpacked <dir>] --file <index> [--grep <word>] [--table <n> [--from <i>] [--count <n>]]
+
+Paths default to packages/mhfu-extract/.cache; MHFU_CACHE points them at
+another cache, and unpack's --iso defaults to MHFU_DISC.`;
 
 export async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;
   const flags = parseFlags(rest);
+  const cache = cachePaths();
 
   switch (command) {
     case "unpack": {
       const manifest = await runUnpack({
-        iso: requireFlag(flags, "iso"),
-        out: requireFlag(flags, "out"),
+        iso: discPath(flags),
+        out: flagOr(flags, "out", cache.unpacked),
         eboot: flags.eboot,
         skipEboot: flags["skip-eboot"] === "true",
         pspdecryptBin: flags["pspdecrypt-bin"],
@@ -103,7 +118,7 @@ export async function main(argv: string[]): Promise<void> {
       const num = (name: string) => (flags[name] === undefined ? undefined : Number(flags[name]));
       process.stdout.write(
         await runMessages({
-          unpacked: requireFlag(flags, "unpacked"),
+          unpacked: flagOr(flags, "unpacked", cache.unpacked),
           file: Number(requireFlag(flags, "file")),
           grep: flags.grep,
           table: num("table"),
@@ -115,7 +130,7 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "quest-text-scan": {
       const out = await runQuestTextScan({
-        unpacked: requireFlag(flags, "unpacked"),
+        unpacked: flagOr(flags, "unpacked", cache.unpacked),
         questId: Number(requireFlag(flags, "quest")),
         out: flags.out,
       });
@@ -124,7 +139,7 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "quest-probe": {
       const entries = JSON.parse(
-        await readFile(requireFlag(flags, "quests"), "utf8"),
+        await readFile(flagOr(flags, "quests", `${cache.extracted}/raw/quests.json`), "utf8"),
       ) as QuestRawEntry[];
       process.stdout.write(probeQuests(entries));
       if (flags.tsv) {
@@ -135,8 +150,8 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "extract": {
       const manifest = await runExtract({
-        unpacked: requireFlag(flags, "unpacked"),
-        out: requireFlag(flags, "out"),
+        unpacked: flagOr(flags, "unpacked", cache.unpacked),
+        out: flagOr(flags, "out", cache.extracted),
         raw: flags.raw === "true",
         dlc: flags.dlc,
       });
@@ -147,8 +162,8 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "diff": {
       const report = await runDiff({
-        extracted: requireFlag(flags, "extracted"),
-        data: requireFlag(flags, "data"),
+        extracted: flagOr(flags, "extracted", cache.extracted),
+        data: flagOr(flags, "data", defaultDataDir()),
         out: flags.out,
       });
       printDiffSummary(report);
@@ -165,9 +180,9 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "export-site": {
       const manifest = await runExportSite({
-        unpacked: requireFlag(flags, "unpacked"),
-        data: flags.data ?? "../../data",
-        out: flags.out ?? "../../apps/blacksmith/public/models",
+        unpacked: flagOr(flags, "unpacked", cache.unpacked),
+        data: flagOr(flags, "data", defaultDataDir()),
+        out: flagOr(flags, "out", `${sitePublicDir()}/models`),
         lossless: flags.lossless === "true",
       });
       const count = (record: Record<string, Record<string, unknown>>) =>
@@ -179,25 +194,25 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "item-icons": {
       const count = await runItemIcons({
-        unpacked: requireFlag(flags, "unpacked"),
-        out: flags.out ?? "../../apps/blacksmith/public/images",
+        unpacked: flagOr(flags, "unpacked", cache.unpacked),
+        out: flagOr(flags, "out", `${sitePublicDir()}/images`),
       });
       console.log(`Done. Wrote ${count} item icons.`);
       return;
     }
     case "area-maps": {
       const count = await runAreaMaps({
-        unpacked: requireFlag(flags, "unpacked"),
-        data: flags.data ?? "../../data",
-        out: flags.out ?? "../../apps/blacksmith/public/images",
+        unpacked: flagOr(flags, "unpacked", cache.unpacked),
+        data: flagOr(flags, "data", defaultDataDir()),
+        out: flagOr(flags, "out", `${sitePublicDir()}/images`),
       });
       console.log(`Done. Wrote ${count} area maps.`);
       return;
     }
     case "compare": {
       await runCompare({
-        extracted: requireFlag(flags, "extracted"),
-        data: requireFlag(flags, "data"),
+        extracted: flagOr(flags, "extracted", cache.extracted),
+        data: flagOr(flags, "data", defaultDataDir()),
         only: parseCategories(flags.only),
         out: flags.out,
         markdown: flags.markdown,
@@ -207,8 +222,8 @@ export async function main(argv: string[]): Promise<void> {
     case "build-data": {
       const dryRun = flags["dry-run"] === "true";
       const report = await runBuildData({
-        extracted: requireFlag(flags, "extracted"),
-        data: requireFlag(flags, "data"),
+        extracted: flagOr(flags, "extracted", cache.extracted),
+        data: flagOr(flags, "data", defaultDataDir()),
         only: parseTargets(flags.only),
         report: flags.report,
         markdown: flags.markdown,
@@ -218,12 +233,15 @@ export async function main(argv: string[]): Promise<void> {
       return;
     }
     case "quest-flags": {
-      await runQuestFlags({ unpacked: requireFlag(flags, "unpacked"), out: flags.out });
+      await runQuestFlags({
+        unpacked: flagOr(flags, "unpacked", cache.unpacked),
+        out: flags.out,
+      });
       return;
     }
     case "find-names": {
       await runFindNames({
-        unpacked: requireFlag(flags, "unpacked"),
+        unpacked: flagOr(flags, "unpacked", cache.unpacked),
         out: flags.out,
         all: flags.all === "true",
         tables: flags.tables,
@@ -232,8 +250,8 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "locales": {
       await runLocales({
-        unpacked: requireFlag(flags, "unpacked"),
-        data: flags.data ?? "../../data",
+        unpacked: flagOr(flags, "unpacked", cache.unpacked),
+        data: flagOr(flags, "data", defaultDataDir()),
         out: flags.out,
         skipNames: flags["skip-names"] === "true",
         all: flags.all === "true",
