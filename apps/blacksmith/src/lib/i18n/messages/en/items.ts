@@ -177,6 +177,9 @@ export const items = {
     previousGround: "Previous hunting ground",
     nextGround: "Next hunting ground",
     groundOf: (n: number, total: number) => `Hunting ground ${n} of ${total}`,
+    /** The page's list headers: items on every ground's list, and ones only this ground takes. */
+    everyGround: "On every ground",
+    onlyHere: "Only on this ground",
     listNumber: "List No.:",
     heGives: "He gives:",
     pageNote:
@@ -263,7 +266,6 @@ export const items = {
         `only on ${count} ${n === 1 ? "quest" : "quests"}`,
       /** `stars` is "G3★". */
       questReward: (stars: string) => `${stars} reward`,
-      pokkePoints: (amount: string) => `${amount}pts`,
     },
     /** Where to go: a gathering map's rank or board. */
     gatheringIn: (group: string) => `Gathering · ${group}`,

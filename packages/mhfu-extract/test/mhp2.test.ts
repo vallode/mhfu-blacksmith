@@ -332,7 +332,7 @@ test("runExtractMhp2 turns away an EBOOT of the wrong size before reading it", a
   }
 });
 
-test("extract on an MHF2 unpack refuses MHFU-only flags", async () => {
+test("extract on an MHF2 unpack refuses MHFU-only flags and needs --out", async () => {
   const { dir, unpacked } = fixtureUnpack(fixtureEboot());
   try {
     for (const flag of [["--raw"], ["--dlc", "quests"]]) {
@@ -341,6 +341,8 @@ test("extract on an MHF2 unpack refuses MHFU-only flags", async () => {
         new RegExp(`${flag[0]} reads MHFU's quests and tables`),
       );
     }
+    // No default --out: the cache's extracted folder is MHFU's.
+    await assert.rejects(main(["extract", "--unpacked", unpacked]), /MHF2's extract needs --out/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

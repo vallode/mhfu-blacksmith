@@ -11,6 +11,7 @@ typedef unsigned short u16;
 typedef unsigned int u32;
 typedef signed int s32;
 typedef signed short s16;
+typedef signed char s8;
 
 /* rf_init's reason. */
 #define RF_SAVE_LOADED 0
@@ -45,6 +46,30 @@ struct rf_save_data {
   u16 poogie_happy;   /* hunts after Poogie was happy to be petted */
   u16 poogie_tumbles; /* times Poogie knocked the hunter over */
   u8 poogie_counted;  /* which of the pet flags are already counted (poogie.c) */
+  /* Damage numbers (damage.c): 0 for the disc's default, else the mode chosen in game + 1 */
+  u8 damage_numbers;
+  /* Monster health (monster-hp.c): the same, its mode chosen in game + 1 */
+  u8 monster_hp;
+  /* Attack hitboxes (hitboxes.c): the same, off 0 or on 1 + 1 */
+  u8 hitboxes;
+  /* The camera (camera.c): the same, each its choice + 1 */
+  u8 camera_fov;
+  u8 camera_distance;
+  /* The wait after a quest (quest-end.c): the same, its choice + 1 */
+  u8 quest_end;
+  /* The camera's tilt (camera.c): its choice + 1, then the smooth tilt's pitch */
+  u8 camera_tilt;
+  u8 camera_pitched; /* 1 once camera_pitch is set */
+  u8 camera_spare;
+  s16 camera_pitch; /* the sine of the angle the camera looks down at, × 32000 */
+  /* The block smooth tilt last wrote, and its presets as the game had them */
+  u32 camera_block;
+  u32 camera_presets[40];
+  /* Photo mode (photo.c): off 0 or on 1, + 1 */
+  u8 photo_mode;
+  /* The target camera (target-camera.c): its mode chosen in game + 1 */
+  u8 camera_target;
+  u8 camera_mark; /* and its mark on screen: the same */
 };
 
 /* The save's randomfu data, set up by rf_init before any feature's init. */
@@ -132,7 +157,6 @@ struct rf_load {
  *   the printer: the card leaves its layers set.
  */
 #define RF_HOOK_QUEST_CARD 6
-#define RF_HOOKS 7
 
 /*
  * rf_hook5 isn't a callback hook: it replaces the EBOOT's weighted picker,
@@ -145,6 +169,95 @@ struct rf_load {
  * own picker runs.
  */
 #define RF_HOOK_PICK 5
+
+/*
+ * RF_HOOK_HIT: every time a hit lands on a monster, just after the game
+ *   adds its damage to the part's damage for the frame (the monster's
+ *   RF_HIT_PART_DAMAGE, s16 per part, which its next update takes off its
+ *   HP times its defense multiplier). The argument is a struct rf_hit. A
+ *   callback may add to the part's damage. Only in quests (game_sub.ovl).
+ */
+#define RF_HOOK_HIT 7
+/*
+ * RF_HOOK_MENU: the START menus' calls (the quest's and the village's),
+ *   whose last entry the game leaves as a greyed placeholder. The argument
+ *   is a struct rf_menu for one of each menu's four calls, `site`: its
+ *   menu * 4 + RF_MENU_LABEL (the list draw's label getter, for every row),
+ *   RF_MENU_SELECT (× in the list: `select(hud, cursor)`, 0 opens the entry),
+ *   RF_MENU_RUN (each frame an entry runs: `run(hud, cursor, buttons)`, 0
+ *   stays, 0x2000 goes back to the list, 8 closes the menu) or RF_MENU_DRAW
+ *   (the menu's layer draw, `draw(hud)`). A callback that sets `handled`
+ *   gives back `result` instead of the game's call, which it can make itself
+ *   (`game`, with `args`); otherwise the game's call runs as it was. menu.c
+ *   uses it (features add settings to its window, rf_add_setting), and
+ *   send-all.c, with its own call (RF_CALL_REWARD_LABEL).
+ */
+#define RF_HOOK_MENU 8
+#define RF_HOOKS 9
+
+#define RF_MENU_LABEL 0
+#define RF_MENU_SELECT 1
+#define RF_MENU_RUN 2
+#define RF_MENU_DRAW 3
+#define RF_MENU_QUEST 0
+#define RF_MENU_VILLAGE 1
+/*
+ * Other game calls go through the same stub, from site 8 on (menu.c leaves
+ * them alone). RF_CALL_REWARD_LABEL: box() getting a row's label from
+ * game_task's messages (its names 4), `msg(object, id)`, with the row in
+ * `s2` and box()'s list of IDs in args[2] (send-all.c). The target camera's
+ * call (target-camera.c), the follow camera's read of the yaw it turns to,
+ * is known by its `game` instead: its site depends on which calls a disc has.
+ */
+#define RF_CALL_REWARD_LABEL 8
+struct rf_menu {
+  u32 args[4];      /* the call's $a0-$a3 */
+  u8 *s0;           /* RF_MENU_LABEL: the row's colour byte (0xA greys it) */
+  u32 s2;           /* RF_MENU_LABEL in the village: where the row's ID is */
+  u32 site;         /* menu * 4 + RF_MENU_*, or an RF_CALL_* */
+  const void *game; /* the function the game called */
+  u32 handled;
+  s32 result;
+};
+#define RF_BUTTON_START 0x0008
+#define RF_BUTTON_UP 0x0010
+#define RF_BUTTON_RIGHT 0x0020
+#define RF_BUTTON_DOWN 0x0040
+#define RF_BUTTON_LEFT 0x0080
+#define RF_BUTTON_CIRCLE 0x2000 /* back, in the game's menus */
+#define RF_BUTTON_CROSS 0x4000  /* choose */
+
+/*
+ * A setting in randomfu's START menu entry (menu.c): a name, its help
+ * (lines of up to 28 columns, split by '\n', at most 6) and its choices,
+ * which left, right and × step through. `get` and `set` keep the
+ * choice, in the feature's field of rf_save_data so it lasts. A feature
+ * adds its settings from its init; menu.c is only linked in when a disc has
+ * the menu hook, so call it through a weak declaration and check it.
+ */
+struct rf_setting {
+  const char *name; /* up to 20 columns */
+  const char *help;
+  const char *const *choices;
+  u32 count;
+  u32 (*get)(void);
+  void (*set)(u32 choice);
+};
+void rf_add_setting(const struct rf_setting *setting);
+
+struct rf_hit {
+  u8 *monster;
+  u8 *attack; /* the attack record (RF_ATTACK_*) */
+  u8 *hunter; /* who attacked; 0 for none */
+  u8 *hitbox; /* the monster's hitbox that was hit (RF_HITBOX_*) */
+  u8 *zone;   /* its hitzone row: lead, cut, bash, shot, fire, water, ice, thunder, dragon, KO */
+  s32 damage; /* added to the part's damage: raw and element, before defense */
+  u32 element; /* the element's share of it, a float's bits */
+};
+#define RF_HIT_PART_DAMAGE 0x3b8 /* s16[8], by hitbox part & 7 */
+#define RF_HITBOX_JOINT 0x0      /* u16 */
+#define RF_HITBOX_PART 0x6       /* u16 */
+#define RF_ATTACK_QUALITY 0x74   /* u8: melee hitzone x sharpness: 3 >= 1.0, 2 >= 0.45, 1, 0 */
 
 typedef void (*rf_hook_fn)(u8 *arg);
 void rf_on(u32 hook, rf_hook_fn fn);

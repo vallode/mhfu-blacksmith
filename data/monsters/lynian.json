@@ -18,6 +18,7 @@
         }
       },
       "base_hp": 40,
+      "base_scale": 1.2,
       "flinch_thresholds": [
         10
       ],
@@ -52,7 +53,8 @@
           "damage_interval": 150,
           "total_time": 1800
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 23,
@@ -153,6 +155,7 @@
         }
       },
       "base_hp": 50,
+      "base_scale": 1.2,
       "flinch_thresholds": [
         10
       ],
@@ -187,7 +190,8 @@
           "damage_interval": 150,
           "total_time": 1800
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 57,
@@ -446,6 +450,7 @@
         }
       },
       "base_hp": 120,
+      "base_scale": 1,
       "flinch_thresholds": [
         120
       ],
@@ -480,7 +485,8 @@
           "damage_interval": 150,
           "total_time": 1800
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 79,
@@ -658,6 +664,7 @@
         }
       },
       "base_hp": 800,
+      "base_scale": 1,
       "flinch_thresholds": [
         240
       ],

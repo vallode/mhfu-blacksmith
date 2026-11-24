@@ -1,3 +1,4 @@
+import type { SaveLook } from "@/lib/hunter-look";
 import { hunterRankFrom } from "./hunter-rank";
 
 const KEY = "mhfu_save";
@@ -100,6 +101,8 @@ export interface SaveData extends AwardRecords {
   equipment?: EquipSlot[];
   /** Missing on saves stored before these were kept. */
   sex?: string;
+  /** The look picked at character creation. Missing on saves stored before it was read. */
+  look?: SaveLook;
   /** Total play time in seconds. */
   playTime?: number;
   /**
@@ -110,6 +113,8 @@ export interface SaveData extends AwardRecords {
   hunterRank?: number;
   /** 0-based character slot in the save file. Missing on saves stored before it was kept. */
   slot?: number;
+  /** "ppsspp" when read live from the game's memory (src/lib/ppsspp-link.ts): there is no slot. */
+  source?: "ppsspp";
   /** IDs of the quests the hunter has cleared. Missing on saves stored before they were read. */
   clearedQuests?: number[];
   /** Monsters with a record (kills, captures or sizes). Missing on saves stored before they were read. */
@@ -128,6 +133,7 @@ export function saveFromCharacter(
   character: AwardRecords & {
     name: string;
     sex?: string;
+    look?: SaveLook;
     zenny: number;
     playTime?: number;
     itemChest: ItemSlot[];
@@ -151,6 +157,7 @@ export function saveFromCharacter(
     zenny: character.zenny,
     equipment: character.equipBox,
     sex: character.sex,
+    look: character.look,
     playTime: character.playTime,
     slot,
     clearedQuests: character.clearedQuests,

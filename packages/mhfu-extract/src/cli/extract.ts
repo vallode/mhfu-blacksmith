@@ -424,7 +424,8 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.warn(`Warning: region "${manifest.region}" has no monster descriptions.`);
   Object.assign(output, emitQuestsFile(quests, multiplierLookup, sizes ?? undefined));
 
-  // Only the EU disc's map tables are known; elsewhere points get no positions.
+  // Only EU data gets positions: the JP tables (readMapGeometry) are known, but
+  // JP's textures and positions haven't been checked against the site.
   const maps =
     manifest.region === "eu"
       ? await loadMapLayouts(options.unpacked, reader, overlays.gameSub)

@@ -62,6 +62,7 @@ export const quests: Messages["quests"] = {
     minutes: (n: string) => `${n} min`,
     reward: "Recompensa:",
     fee: "Tarifa:",
+    guildPoints: "Puntos del Gremio:",
     requires: "Requiere:",
     monsters: "Monstruos:",
     crowns: "Coronas:",
@@ -96,6 +97,9 @@ export const quests: Messages["quests"] = {
     map: "Mapa",
     previousMap: "Mapa anterior",
     nextMap: "Mapa siguiente",
+    layout: "Disposición",
+    previousLayout: "Disposición anterior",
+    nextLayout: "Disposición siguiente",
     position: (n: number, total: number) => `${n} de ${total}`,
     andMore: (first: string, more: number) => `${first} +${more}`,
     onlyIn: (map: string, quests: ReactNode): ReactNode =>

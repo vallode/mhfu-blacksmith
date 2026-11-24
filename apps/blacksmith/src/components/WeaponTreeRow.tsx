@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useLayoutEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
 import Icon from "./Icon";
 import { cn } from "@/lib/cn";
-import { filterFade, filteredOut } from "@/styles/list";
+import { filterFade, filteredOut, TREE_ROW_HEIGHT } from "@/styles/list";
 import { prefetchBundle } from "@/lib/client-data";
 import { isNodeCollapsed, onNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
+import { useActiveRowBelow, useIsActiveRow } from "@/context/ActiveRowContext";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { useTreeFilterResult, useWeaponTree } from "@/context/TreeFilterContext";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -24,7 +25,6 @@ interface WeaponTreeRowProps {
   basePath: string;
   /** Same key TreeScroll uses for this tree; persists collapse state across navigation. */
   treeKey: string;
-  activeSlug?: string;
   /** The enclosing row's page, if any: the weapon this one is upgraded from. */
   parentHref?: string;
   /** Rendered inside another row's branch (draws the connector lines). */
@@ -51,7 +51,7 @@ interface WeaponTreeRowProps {
 // Rows a tree filter (WeaponTreePanel) rules out fade in place, so the
 // connector lines and indentation never move.
 const rowBase = [
-  "relative flex h-[38px] w-full min-w-max flex-row items-center pr-[0.9rem] text-white",
+  "relative flex w-full min-w-max flex-row items-center pr-[0.9rem] text-white",
   filterFade,
   "before:absolute before:top-0 before:left-[calc(100%-50vw+2.3rem+0.65rem)] before:z-0 before:block before:h-full before:w-[calc(50vw-2.3rem-0.65rem)] before:bg-transparent",
   "mobile:before:left-0 mobile:before:w-full",
@@ -77,8 +77,10 @@ function gameTextKind(basePath: string): GameTextKind {
 function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
   if (basePath.startsWith("/blacksmith/")) return `weapon-${node.type}`;
   if (basePath.startsWith("/armorsmith/")) {
-    // basePath is /armorsmith/<slot>/<rank>/ — the tree stays within one bundle
-    const rank = basePath.split("/")[3];
+    // basePath is /armorsmith/<slot>/<rank>/ — the tree stays within one
+    // bundle — or /armorsmith/<slot>/ in the all-rank views, whose slugs are
+    // <rank>/<slug>.
+    const rank = node.slug.includes("/") ? node.slug.split("/")[0] : basePath.split("/")[3];
     return `armor-${node.type}-${rank}`;
   }
   if (basePath.startsWith("/decorations/")) return "decorations";
@@ -164,18 +166,16 @@ function RowButton({
   );
 }
 
-function hasDescendant(node: WeaponTreeNode, slug: string): boolean {
-  return (node.children ?? []).some(
-    (child) => (child.slug === slug && !child.alias) || hasDescendant(child, slug),
-  );
-}
-
-export default function WeaponTreeRow({
+/**
+ * One row of a tree, and its branch. Memoised, and told which row is open by
+ * the enclosing TreeScroll (ActiveRowContext) rather than a prop, so opening
+ * an item re-renders the rows whose highlight changes, not the whole tree.
+ */
+const WeaponTreeRow = memo(function WeaponTreeRow({
   node,
   sectionType,
   basePath,
   treeKey,
-  activeSlug,
   parentHref,
   nested = false,
   hasNextSibling = false,
@@ -183,20 +183,23 @@ export default function WeaponTreeRow({
   listedAgain = false,
 }: WeaponTreeRowProps) {
   // A branch holding the active row opens, so arriving at a weapon (from the
-  // global search, say) shows it even if its branch was collapsed earlier.
-  const [collapsed, setCollapsed] = useState(() => {
-    if (!isNodeCollapsed(treeKey, node.slug)) return false;
-    if (activeSlug && hasDescendant(node, activeSlug)) {
-      setNodeCollapsed(treeKey, node.slug, false);
-      return false;
-    }
-    return true;
-  });
+  // global search, say) shows it even if its branch was collapsed earlier:
+  // open from the start when it mounts, and stored as open before paint,
+  // whether the row is new or was already on the page.
+  const activeBelow = useActiveRowBelow(node);
+  const [collapsed, setCollapsed] = useState(
+    () => !activeBelow && isNodeCollapsed(treeKey, node.slug),
+  );
+  useLayoutEffect(() => {
+    if (!activeBelow) return;
+    setCollapsed(false);
+    if (isNodeCollapsed(treeKey, node.slug)) setNodeCollapsed(treeKey, node.slug, false);
+  }, [activeBelow, treeKey, node.slug]);
   // Another row (an alias revealing its weapon) can open this branch.
   useEffect(() => onNodeCollapsed(treeKey, node.slug, setCollapsed), [treeKey, node.slug]);
   const tree = useWeaponTree();
 
-  const isActive = activeSlug === node.slug;
+  const isActive = useIsActiveRow(node.slug);
   // Cross-type rows in a weapon tree are weapons too.
   const nameKind = gameTextKind(basePath);
 
@@ -214,7 +217,8 @@ export default function WeaponTreeRow({
   const { href, external: isExternal } = status;
   const owned = markOwned && status.owned;
   const craft = showCraftProgress ? status.craft : null;
-  const dimmed = filtered ? !filtered.match : false;
+  // The page's own row stays bright, whatever the filter.
+  const dimmed = filtered ? !filtered.match : !!node.dimmed && !isActive;
   const showPips = craft != null && craft.status !== "unknown";
   const ready = craft?.status === "ready" ? craft : null;
   // Weapons are forged; jewels are made.
@@ -305,6 +309,7 @@ export default function WeaponTreeRow({
           // id that TreeScroll and the alias marker look up.
           id={node.alias || listedAgain ? undefined : node.slug}
           className={rowClass}
+          style={{ height: TREE_ROW_HEIGHT }}
           href={href}
           scroll={scroll}
           title={
@@ -326,7 +331,11 @@ export default function WeaponTreeRow({
           {inner}
         </Link>
       ) : (
-        <span id={node.alias || listedAgain ? undefined : node.slug} className={rowClass}>
+        <span
+          id={node.alias || listedAgain ? undefined : node.slug}
+          className={rowClass}
+          style={{ height: TREE_ROW_HEIGHT }}
+        >
           {inner}
         </span>
       )}
@@ -340,7 +349,6 @@ export default function WeaponTreeRow({
               sectionType={sectionType}
               basePath={basePath}
               treeKey={treeKey}
-              activeSlug={activeSlug}
               parentHref={href}
               nested
               hasNextSibling={i < node.children!.length - 1}
@@ -351,4 +359,6 @@ export default function WeaponTreeRow({
       )}
     </li>
   );
-}
+});
+
+export default WeaponTreeRow;

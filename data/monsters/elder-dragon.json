@@ -125,6 +125,7 @@
         }
       },
       "base_hp": 3200,
+      "base_scale": 1.8,
       "flinch_thresholds": [
         200
       ],
@@ -239,6 +240,7 @@
         }
       },
       "base_hp": 4800,
+      "base_scale": 0.7,
       "flinch_thresholds": [
         150,
         100,
@@ -374,6 +376,7 @@
         }
       },
       "base_hp": 4800,
+      "base_scale": 0.7,
       "flinch_thresholds": [
         150,
         100,
@@ -739,6 +742,7 @@
         }
       },
       "base_hp": 5600,
+      "base_scale": 0.7,
       "breaks": [
         {
           "name": "horn",
@@ -1065,6 +1069,7 @@
         }
       },
       "base_hp": 4800,
+      "base_scale": 0.8,
       "breaks": [
         {
           "name": "horn",
@@ -1521,6 +1526,7 @@
         }
       },
       "base_hp": 4800,
+      "base_scale": 0.8,
       "breaks": [
         {
           "name": "horn",
@@ -1814,6 +1820,7 @@
         }
       },
       "base_hp": 26666,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "horn",
@@ -1964,6 +1971,7 @@
         }
       },
       "base_hp": 26666,
+      "base_scale": 1,
       "flinch_thresholds": [
         400,
         450,
@@ -2154,6 +2162,7 @@
         }
       },
       "base_hp": 26666,
+      "base_scale": 0.95,
       "breaks": [
         {
           "name": "tentacles",
@@ -2396,6 +2405,7 @@
         }
       },
       "base_hp": 26666,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "eye",
@@ -2707,6 +2717,7 @@
         }
       },
       "base_hp": 20000,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "eye",
@@ -3018,6 +3029,7 @@
         }
       },
       "base_hp": 20000,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "eye",

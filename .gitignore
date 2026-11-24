@@ -15,6 +15,7 @@ apps/blacksmith/content/**/*.md
 /apps/blacksmith/public/workbox-*.js
 /apps/blacksmith/public/swe-worker-*.js
 /apps/blacksmith/public/fallback-*.js
+/apps/blacksmith/public/worker-*.js
 
 # vim temporary files
 **/.*.sw*
@@ -46,7 +47,7 @@ mhef/
 # game data. See packages/mhfu-extract/README.md.
 *.iso
 *.pbp
-packages/mhfu-extract/.cache/
+packages/mhfu-extract/.cache
 packages/mhfu-extract/**/*.iso
 # randomfu web app build output
 apps/randomfu/dist/

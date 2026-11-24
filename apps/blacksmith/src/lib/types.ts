@@ -106,6 +106,16 @@ export interface WeaponTreeNode {
    * nested under it any more (its parent was pruned out of the tree).
    */
   parentHref?: string;
+  /**
+   * Armor only: the piece's version family, shared with its versions at the
+   * other ranks (Rathalos Helm, Rathalos Helm S, Rathalos Helm X).
+   */
+  family?: number;
+  /**
+   * Shown faded: outside the tree's filter, but kept for context (an armor
+   * piece's versions at other ranks under a rank filter).
+   */
+  dimmed?: boolean;
   children?: WeaponTreeNode[];
 }
 
@@ -196,10 +206,18 @@ export interface Monster {
   drops?: Record<string, Record<string, MonsterDrop[]>>;
   /** HP before a quest's multiplier, from the disc */
   base_hp?: number;
-  /** Centimetres at size 100 percent, as the Guild Card shows sizes (from the disc) */
+  /** The size at 100 percent, as the Guild Card shows sizes (from the disc) */
   base_size?: number;
+  /**
+   * The size the game draws the model at, against its own units, at size
+   * 100 (from the disc): the 3D viewer's hunter stands at 1/base_scale
+   * beside it.
+   */
+  base_scale?: number;
   /** Guild Card crown thresholds, in percent of `base_size` (src/lib/crowns.ts) */
   crowns?: Crowns;
+  /** The game's small monsters (the disc's quest multiplier set 0). Only in `data/`. */
+  small?: boolean;
   /**
    * The smallest and largest size, in percent of `base_size`, the monster
    * rolls across its quests (scripts/lib/quest-bundle.ts monsterSizeRanges);
@@ -221,7 +239,7 @@ export interface Monster {
    * are absent; the field is absent without hitboxes or thresholds.
    */
   hitzone_flinch?: Record<string, string>;
-  /** Status tolerances from the disc; null where the monster is immune. Only in `data/` so far. */
+  /** Status tolerances from the disc; null where the monster is immune. */
   tolerances?: MonsterTolerances;
 }
 

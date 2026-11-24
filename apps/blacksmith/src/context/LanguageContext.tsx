@@ -23,11 +23,23 @@ interface LanguageContextValue {
   game: GameText;
   /** A number in this language's format ("1,234" / "1234", "12,345" / "12.345"). */
   formatNumber: (n: number) => string;
+  /** A number to one decimal, always shown ("908.3", "1,122.0" / "908,3"), as the game shows sizes. */
+  formatTenths: (n: number) => string;
 }
 
 function valueFor(locale: Locale, game: GameText): LanguageContextValue {
   const format = new Intl.NumberFormat(LOCALE_TAGS[locale]);
-  return { locale, t: MESSAGES[locale], game, formatNumber: (n) => format.format(n) };
+  const tenths = new Intl.NumberFormat(LOCALE_TAGS[locale], {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+  return {
+    locale,
+    t: MESSAGES[locale],
+    game,
+    formatNumber: (n) => format.format(n),
+    formatTenths: (n) => tenths.format(n),
+  };
 }
 
 const LanguageContext = createContext<LanguageContextValue>(valueFor(DEFAULT_LOCALE, ENGLISH));

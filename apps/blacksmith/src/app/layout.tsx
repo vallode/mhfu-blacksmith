@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { faviconMetadata } from "@/lib/favicon";
+import { LAST_WEAPON_SCRIPT } from "@/lib/last-weapon";
 import { DEFAULT_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, THEME_COLOR } from "@/lib/seo";
 import AppShell from "@/components/AppShell";
 import GlobalSearch from "@/components/GlobalSearch";
@@ -15,6 +16,7 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import { ToastProvider } from "@/context/ToastContext";
 import { OfflineProvider } from "@/context/OfflineContext";
 import { FileSyncProvider } from "@/context/FileSyncContext";
+import { PpssppLinkProvider } from "@/context/PpssppLinkContext";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -48,6 +50,9 @@ export const viewport: Viewport = { themeColor: THEME_COLOR };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: LAST_WEAPON_SCRIPT }} />
+      </head>
       <body>
         <PreloadIcons />
         <PreferencesProvider>
@@ -56,15 +61,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <HunterProgressProvider>
                 <ToastProvider>
                   <OfflineProvider>
-                    <FileSyncProvider>
-                      <AppShell>
-                        <OfflineNavGuard>{children}</OfflineNavGuard>
-                      </AppShell>
-                      <GlobalSearch />
-                      {/* Offline download banner hidden for now.
+                    <PpssppLinkProvider>
+                      <FileSyncProvider>
+                        <AppShell>
+                          <OfflineNavGuard>{children}</OfflineNavGuard>
+                        </AppShell>
+                        <GlobalSearch />
+                        {/* Offline download banner hidden for now.
                     <OfflineDownload /> */}
-                      <SaveSyncReconnect />
-                    </FileSyncProvider>
+                        <SaveSyncReconnect />
+                      </FileSyncProvider>
+                    </PpssppLinkProvider>
                   </OfflineProvider>
                 </ToastProvider>
               </HunterProgressProvider>

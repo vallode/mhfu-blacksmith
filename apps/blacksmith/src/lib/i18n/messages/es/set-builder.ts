@@ -51,8 +51,6 @@ export const setBuilder: Messages["setBuilder"] = {
       badSkills: "habilidades negativas permitidas",
       allQuests: "todas las misiones",
       ownedArmor: "armadura obtenida",
-      alwaysUsed: (n: number) => `${n} ${s(n, "siempre usada", "siempre usadas")}`,
-      neverUsed: (n: number) => `${n} ${s(n, "nunca usada", "nunca usadas")}`,
     },
     allowBadSkills: "Permitir habilidades negativas",
     allowBadSkillsNote:
@@ -72,11 +70,22 @@ export const setBuilder: Messages["setBuilder"] = {
       title: "Siempre usadas",
       note: "Todos los conjuntos las usan, sea cual sea el rango o el progreso de misiones, si el cazador puede llevarlas.",
       remove: (name: string) => `Quitar ${name} de las piezas que siempre se usan`,
+      clear: "Borrar",
+      clearLabel: "Quitar todas las piezas que siempre se usan",
+      cantWear: "Las piezas tachadas no le sirven a este cazador, así que la búsqueda no las usa.",
+      any: "Cualquiera",
+      add: "+ Usar siempre una pieza",
+      slotsNote:
+        "Elige una parte para escoger la pieza que usan todos los conjuntos, si el cazador puede llevarla.",
+      pick: (slot: string, name: string | null) =>
+        `${slot}: ${name ?? "cualquier pieza"}. Elegir la pieza que usan todos los conjuntos`,
     },
     excluded: {
       title: "Nunca usadas",
       note: "La búsqueda nunca las usa.",
       remove: (name: string) => `Quitar ${name} de las piezas que nunca se usan`,
+      clear: "Borrar",
+      clearLabel: "Quitar todas las piezas que nunca se usan",
     },
     search: "Buscar",
     cancel: "Cancelar",
@@ -175,7 +184,6 @@ export const setBuilder: Messages["setBuilder"] = {
     weaponSlots: "Ranuras del arma",
     fewerWeaponSlots: "Menos ranuras del arma",
     moreWeaponSlots: "Más ranuras del arma",
-    weaponSlotCount: (n: number) => `${n} ${s(n, "ranura del arma", "ranuras del arma")}`,
     sets: "Conjuntos",
     previousSet: "Conjunto anterior",
     nextSet: "Conjunto siguiente",
@@ -215,6 +223,14 @@ export const setBuilder: Messages["setBuilder"] = {
     openPage: (name: string) => `Abrir la página de ${name}`,
     addToWishlist: "Añadir conjunto a la lista",
     onWishlist: "En tu lista de deseos",
+    addToWishlistShort: "Añadir a la lista",
+    setCounts: (pieces: number, jewels: number) =>
+      [
+        pieces === 1 ? "1 pieza" : `${pieces} piezas`,
+        jewels > 0 && (jewels === 1 ? "1 adorno" : `${jewels} adornos`),
+      ]
+        .filter(Boolean)
+        .join(", "),
     setAdded: "Has añadido el conjunto a tu lista de deseos.",
     setAddedWithJewels: "Has añadido el conjunto a tu lista de deseos, con sus adornos.",
     // Short: both buttons share one line on a phone.
@@ -224,6 +240,10 @@ export const setBuilder: Messages["setBuilder"] = {
     unlockLabel: (name: string) => `Dejar de usar siempre ${name}`,
     neverUse: "Nunca usar",
     neverUseLabel: (name: string) => `No usar nunca ${name}: excluirla de la búsqueda`,
+    slotsUsed: (used: number, total: number) =>
+      total === 0 ? "Sin ranuras" : `${used} de ${total} ranuras usadas`,
+    otherPiece: (slot: string) => `Otras piezas: ${slot}`,
+    otherPieceNote: "Elige una para usarla en todos los conjuntos: la búsqueda se repite con ella.",
   },
 
   weapons: {
@@ -232,6 +252,12 @@ export const setBuilder: Messages["setBuilder"] = {
     loading: "Cargando armas…",
     none: "Ninguna encaja. Prueba con otro tipo de arma o con menos ranuras.",
     attack: (attack: string) => `ATQ ${attack}`,
+    search: "Buscar entre todas las armas de este tipo",
+    searchPlaceholder: "Buscar armas",
+    matches: (n: number) => (n === 1 ? "1 arma coincide." : `${n} armas coinciden.`),
+    noMatch: "Ninguna arma de este tipo coincide.",
+    fewerSlots: (n: number) => (n === 1 ? "Solo 1 ranura" : `Solo ${n} ranuras`),
+    needs: (tier: string) => `Requiere ${tier}`,
   },
 
   status: {
@@ -296,6 +322,22 @@ export const setBuilder: Messages["setBuilder"] = {
     deleteLabel: (name: string) => `Eliminar ${name}`,
     cantOpen: "No se puede abrir en esta versión.",
     summary: (hunterType: string, defense: string) => `${hunterType}, Defensa ${defense}`,
+  },
+
+  reach: {
+    open: "Habilidades a tu alcance",
+    note: (chosen: boolean) =>
+      chosen
+        ? "Habilidades que puedes añadir a las tuyas, o niveles a los que subir las tuyas: al menos un conjunto sigue activándolas todas, con tus opciones. Elige una y la lista se comprueba de nuevo."
+        : "Todas las habilidades que al menos un conjunto puede activar, con tus opciones. Elige una y la lista comprueba qué más cabe con ella.",
+    checking: (checked: number, total: number) =>
+      total ? `Comprobando habilidades… ${checked}/${total}` : "Comprobando habilidades…",
+    noBase: "Ningún conjunto activa las habilidades que elegiste, así que no se puede añadir nada.",
+    unsureBase: "Comprobar tus habilidades tardó demasiado. Prueba con menos.",
+    nothingMore: "No cabe nada más: ningún conjunto activa otra habilidad junto a las tuyas.",
+    unsure:
+      "Algunas comprobaciones tardaron demasiado: puede que también quepa un nivel más alto de alguna habilidad.",
+    failed: "No se pudieron comprobar las habilidades.",
   },
 
   skillPicker: {

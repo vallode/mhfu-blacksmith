@@ -74,6 +74,7 @@ export const quests = {
     minutes: (n: string) => `${n} min`,
     reward: "Reward:",
     fee: "Contract fee:",
+    guildPoints: "Guild Points:",
     requires: "Requires:",
     monsters: "Monsters:",
     /** The crowns the quest's monsters can be, and a note when they can't at first. */
@@ -118,6 +119,10 @@ export const quests = {
     map: "Map",
     previousMap: "Previous map",
     nextMap: "Next map",
+    /** The Maps page: a map's layouts, which differ in items by rank and board. */
+    layout: "Layout",
+    previousLayout: "Previous layout",
+    nextLayout: "Next layout",
     /** Read for a selector's "2/3" count. */
     position: (n: number, total: number) => `${n} of ${total}`,
     /** A map entry for quests with their own points: "Pokke Farm Tour +2". */

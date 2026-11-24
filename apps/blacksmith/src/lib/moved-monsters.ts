@@ -1,7 +1,8 @@
 /**
  * Monster pages whose slug changed when the monster took the game's own
  * name (the EU disc's, `mhfu-extract` `strings/monster-names.ts`). The old
- * URLs stay up and send visitors to the new ones.
+ * URLs stay up and send visitors to the new ones. So do the slugs people
+ * guess from those names, with the dot left out ("terra-sceanataur").
  */
 import type { MonsterCategory } from "./constants";
 
@@ -11,7 +12,9 @@ export const MOVED_MONSTER_SLUGS: Readonly<
 > = {
   carapaceon: {
     "plum-daimyo-hermitaur": "plum-d-hermitaur",
+    "plum-dhermitaur": "plum-d-hermitaur",
     "terra-shogun-ceanataur": "terra-s-ceanataur",
+    "terra-sceanataur": "terra-s-ceanataur",
   },
   "elder-dragon": {
     "ashen-lao-shan-lung": "ash-lao-shan-lung",

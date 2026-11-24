@@ -1,6 +1,6 @@
 /**
  * Renders social-card.png, the 1200×630 picture link previews (Discord,
- * Bluesky, Slack, …) show for the app; index.html points og:image at it and
+ * Bluesky, Slack, …) show for the app; every page points og:image at it (head.html) and
  * build.mjs copies it into dist/. It's drawn by the built page itself, its
  * background, font, design tokens and teal frame, with the card's markup in
  * place of the app's, so it follows the site's look. Rerun it after changing

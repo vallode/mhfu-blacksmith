@@ -54,6 +54,15 @@ export const QUEST_HUB_SLUGS: readonly QuestHubSlug[] = QUEST_HUBS.map((h) => h.
  */
 export const DOWNLOADED_QUEST_HUBS: ReadonlySet<QuestHubSlug> = new Set(["event", "challenge"]);
 
+/**
+ * The data/ boards (a quest's `hub`) whose `clear_points` are Guild Points:
+ * the Guild's result screen shows them before "Current Guild Points". The
+ * Village's shows Pokke Points, and Training School and Challenge quests
+ * (from the Instructor) Training School points (mhfu-extract's README,
+ * "Clear points").
+ */
+export const GUILD_POINT_HUBS: ReadonlySet<string> = new Set(["guild", "event"]);
+
 /** A quest's rank tier, as data/quests has it. */
 export const QUEST_RANKS = ["low-rank", "high-rank", "g-rank"] as const;
 export type QuestRank = (typeof QUEST_RANKS)[number];
@@ -213,6 +222,7 @@ export type CompactQuest = [
   smallCounts: ([total: number] | [total: number, endless: 1])[], // parallel to smallMonsters
   size: CompactQuestSize | null, // null without large monsters
   rank: number | null, // index into QUEST_RANKS; null without a rank tier
+  guildPoints: number | null, // null off GUILD_POINT_HUBS
 ];
 
 export interface QuestsBundle {
@@ -295,6 +305,8 @@ export interface Quest {
   map: string | null;
   fee: number;
   reward: number;
+  /** Guild Points for a clear; null off the Guild's boards (and in a bundle cached before they were added). */
+  guildPoints: number | null;
   timeLimit: number;
   target: { monster: QuestMonster; amount: number } | null;
   largeMonsters: QuestMonster[];
@@ -366,6 +378,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       sc,
       sz,
       rk,
+      gp,
     ]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
@@ -375,6 +388,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       map: str(map),
       fee,
       reward,
+      guildPoints: gp ?? null,
       timeLimit,
       target: tg ? { monster: monsters[tg[0]]!, amount: tg[1] } : null,
       largeMonsters: lm.map((i) => monsters[i]!),
@@ -475,6 +489,54 @@ export function questsWithMonster(quests: Quest[], name: string): Quest[] {
   return quests
     .filter((q) => q.target?.monster.name === name || q.largeMonsters.some((m) => m.name === name))
     .sort((a, b) => hubOrder(a) - hubOrder(b) || a.stars - b.stars || a.id - b.id);
+}
+
+/**
+ * The star levels a monster is hunted at, lowest first: of the Village's
+ * quests it's in, and of each Guild rank's (stored stars: G Rank's are
+ * ★9-★11, see `questStarLevel`). A board or rank it's never hunted in is
+ * missing.
+ */
+export type HuntStars = Partial<Record<"village" | QuestRank, number[]>>;
+
+/** A data/quests record, as much of it as `huntStarsByMonster` reads. */
+export interface QuestAppearance {
+  id: number;
+  hub: string;
+  rank: string | null;
+  stars: number;
+  goal: string | null;
+  target?: { monster: string } | null;
+  large_monsters: { monster: string }[];
+}
+
+/**
+ * The star levels each monster is hunted at on the Village and Guild boards,
+ * by name. Counts the quests it's a large monster or the target in, but not
+ * the gathering ones: Tigrex passes through the Village ★1 delivery "Sinking
+ * Feeling", but is first hunted at ★5.
+ */
+export function huntStarsByMonster(quests: QuestAppearance[]): Map<string, HuntStars> {
+  const out = new Map<string, HuntStars>();
+  for (const q of quests) {
+    if (isHiddenQuest(q.id) || questType(q.hub, q.goal) === "gathering") continue;
+    const names = new Set(q.large_monsters.map((m) => m.monster));
+    if (q.target) names.add(q.target.monster);
+    const board =
+      q.hub === "village"
+        ? "village"
+        : q.hub === "guild" && QUEST_RANKS.includes(q.rank as QuestRank)
+          ? (q.rank as QuestRank)
+          : null;
+    if (!board) continue;
+    for (const name of names) {
+      const first = out.get(name) ?? {};
+      const levels = new Set([...(first[board] ?? []), q.stars]);
+      first[board] = [...levels].sort((a, b) => a - b);
+      out.set(name, first);
+    }
+  }
+  return out;
 }
 
 /** One star level of a quest board, with the quests that hold the most of a small monster. */

@@ -31,8 +31,15 @@ import { createHash } from "crypto";
 const BUILD_ID = "2026-11-12";
 
 /** @type {import("next").NextConfig} */
+const dev = process.env.NODE_ENV === "development";
+
 const nextConfig = {
-  output: "export",
+  // Next warns that rewrites don't work with an export, so `next dev` (which
+  // needs the share-link rewrite below) doesn't set it.
+  ...(!dev && { output: "export" }),
+  // The workspace root, so Next doesn't guess it from whichever lockfile it
+  // finds first (other worktrees carry their own pnpm-lock.yaml).
+  outputFileTracingRoot: path.join(import.meta.dirname, "../.."),
   trailingSlash: true,
   // The game data's loader (packages/game-data) is TypeScript source, and
   // imports its own modules as "./files.js", as Node's ESM resolution wants.
@@ -48,7 +55,7 @@ const nextConfig = {
   // the set builder's page, served there by the Worker
   // (src/cloudflare/worker.ts). `next dev` has no Worker, so it does the same
   // here. An export can't rewrite, so only in development.
-  ...(process.env.NODE_ENV === "development" && {
+  ...(dev && {
     rewrites: async () => [{ source: "/sets/:path*", destination: "/set-builder/" }],
   }),
 };
@@ -117,6 +124,18 @@ function collectPrecacheEntries() {
 }
 
 const additionalManifestEntries = collectPrecacheEntries();
+
+// How long the service worker waits for the network before it serves a page
+// (HTML or RSC payload) from its cache instead. Without one, NetworkFirst
+// waits as long as the connection does: real-user data (Cloudflare Web
+// Analytics, Nov 2026) had reloads of already-visited pages waiting 24-35 s
+// for their HTML on stalled connections, the slowest loads on desktop. The
+// network fetch carries on and updates the cache when it lands, and a page
+// that isn't cached still waits for the network. Only pages: scripts, workers
+// and other files must match the page that loads them. A new build's service
+// worker clears the page caches (worker/index.ts), so the fallback is never an
+// older build's page, whose chunks are gone.
+const PAGE_NETWORK_TIMEOUT = 4;
 // Version/cacheId from the data manifest hash so data updates invalidate cleanly.
 let cacheId = "mhfu-blacksmith";
 try {
@@ -233,6 +252,18 @@ export default withPWA({
         handler: "NetworkFirst",
         options: {
           cacheName: "pages-rsc",
+          networkTimeoutSeconds: PAGE_NETWORK_TIMEOUT,
+          expiration: { maxEntries: 4000, maxAgeSeconds: 86400 },
+        },
+      },
+      {
+        // Page loads: the same cache as the rule below, with the timeout.
+        urlPattern: ({ request, url: { pathname }, sameOrigin }) =>
+          request.mode === "navigate" && sameOrigin && !pathname.startsWith("/api/"),
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "pages",
+          networkTimeoutSeconds: PAGE_NETWORK_TIMEOUT,
           expiration: { maxEntries: 4000, maxAgeSeconds: 86400 },
         },
       },

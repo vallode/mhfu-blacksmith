@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Stat, StatList } from "@/components/DetailPanel";
+import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
 import MapIcon from "@/components/MapIcon";
 import StepSelector from "@/components/StepSelector";
 import { useLocale, useT } from "@/context/LanguageContext";
 import { AREA_MAP_SIZE, areaMapSrc, nextSelection, type AreaMap as Data } from "@/lib/area-maps";
-import { useAreaMap } from "@/lib/client-data";
+import { useAreaMap, useItems } from "@/lib/client-data";
 import { cn } from "@/lib/cn";
 import type { GatherKind, GatherPlace } from "@/lib/item-places";
 import { gatherPointsLabel, groupLabel } from "@/lib/i18n/place-labels";
@@ -17,14 +18,11 @@ import type { Messages } from "@/lib/i18n/messages";
 import { groupBy, itemHref } from "@/lib/item-sources";
 import { type Quest, questHref } from "@/lib/quests";
 
-/** Each kind of point's marker colour; its name is `t.quests.areaMap.kinds[kind]`. */
-const KINDS: { kind: GatherKind; marker: string }[] = [
-  { kind: "gather", marker: "bg-gem-green" },
-  { kind: "mine", marker: "bg-gem-orange" },
-  { kind: "bug", marker: "bg-gem-yellow" },
-];
-
-const diamond = "block size-[1.1rem] rotate-45 border border-black";
+/** The mining and bug nodes' sprites (public/images/map-points); gathering points use an item icon. */
+const NODE_SPRITES: Partial<Record<GatherKind, string>> = {
+  mine: "/images/map-points/pickaxe.png",
+  bug: "/images/map-points/net.png",
+};
 
 const percent = (pixels: number) => `${(pixels / AREA_MAP_SIZE) * 100}%`;
 
@@ -33,7 +31,13 @@ export default function QuestAreaMap({ questId }: { questId: number }) {
   return <LoadedAreaMap questId={questId} />;
 }
 
-function LoadedAreaMap({ questId, gives }: { questId: number; gives?: (item: string) => boolean }) {
+export function LoadedAreaMap({
+  questId,
+  gives,
+}: {
+  questId: number;
+  gives?: (item: string) => boolean;
+}) {
   const t = useT().quests.areaMap;
   const { map, loading } = useAreaMap(questId);
   if (map) return <AreaMap key={questId} map={map} gives={gives} />;
@@ -167,24 +171,27 @@ export function ItemAreaMap({
 function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean }) {
   const { t: messages, game, formatNumber } = useLocale();
   const t = messages.quests.areaMap;
-  const [hidden, setHidden] = useState<ReadonlySet<GatherKind>>(new Set());
+  const { items } = useItems();
   const [selected, setSelected] = useState<number | null>(null);
+  // The item icon for a name, or the herb's before the items load.
+  const iconOf = (name: string) => {
+    const id = items?.idOf(name);
+    const item = id === undefined ? undefined : items?.get(id);
+    return item?.known ? { type: item.type, color: item.color } : { type: "herb", color: "green" };
+  };
+  /** A gathering point shows its likeliest item. */
+  const nodeItem = (p: Data["points"][number]) =>
+    p.items.reduce((best, it) => (it.chance > best.chance ? it : best), p.items[0]!).item;
   const lit = (p: Data["points"][number]) =>
     !gives || p.items.some(({ item, chance }) => chance > 0 && gives(item));
   const point = selected === null ? undefined : map.points[selected];
-  const shown = point && !hidden.has(point.kind) ? point : undefined;
+  const shown = point;
   const label = (kind: GatherKind) => t.kinds[kind];
   const gatherCount = (fewest: number | null, most: number | null) => {
     if (fewest === null || most === null) return t.neverRunsOut;
     return fewest === most
       ? formatNumber(fewest)
       : t.gatherRange(formatNumber(fewest), formatNumber(most));
-  };
-
-  const toggle = (kind: GatherKind) => {
-    const next = new Set(hidden);
-    if (!next.delete(kind)) next.add(kind);
-    setHidden(next);
   };
 
   const pick = (event: React.MouseEvent<HTMLButtonElement>, i: number) => {
@@ -196,9 +203,7 @@ function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean 
     const button = event.currentTarget.getBoundingClientRect();
     const art = event.currentTarget.parentElement!.getBoundingClientRect();
     const scale = AREA_MAP_SIZE / art.width;
-    const visible = map.points.flatMap(({ kind, x, y }, index) =>
-      hidden.has(kind) ? [] : [{ x, y, index }],
-    );
+    const visible = map.points.map(({ x, y }, index) => ({ x, y, index }));
     setSelected(
       nextSelection(
         visible,
@@ -214,49 +219,39 @@ function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean 
     <div className="flex flex-col gap-4">
       <div className="relative mx-auto aspect-square w-full max-w-[48rem]">
         <img src={areaMapSrc(map.texture)} alt="" className="size-full pixelated" />
-        {map.points.map((p, i) =>
-          hidden.has(p.kind) ? null : (
-            <button
-              key={i}
-              type="button"
-              aria-label={t.pointLabel(t.area(p.area), label(p.kind))}
-              aria-pressed={selected === i}
-              onClick={(event) => pick(event, i)}
-              style={{ left: percent(p.x), top: percent(p.y) }}
+        {map.points.map((p, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={t.pointLabel(t.area(p.area), label(p.kind))}
+            aria-pressed={selected === i}
+            onClick={(event) => pick(event, i)}
+            style={{ left: percent(p.x), top: percent(p.y) }}
+            className={cn(
+              "absolute grid size-[3.2rem] -translate-1/2 cursor-pointer place-items-center border-0 bg-transparent p-0",
+              gives && lit(p) && "z-1",
+              selected === i && "z-10",
+            )}
+          >
+            <span
               className={cn(
-                "absolute grid size-[2rem] -translate-1/2 cursor-pointer place-items-center border-0 bg-transparent p-0",
-                gives && lit(p) && "z-1",
-                selected === i && "z-10",
+                "flex size-[3.2rem] items-center justify-center",
+                !lit(p) && "opacity-35",
+                selected === i && "opacity-100 outline-2 outline-white",
               )}
             >
-              <span
-                className={cn(
-                  diamond,
-                  KINDS.find((k) => k.kind === p.kind)!.marker,
-                  !lit(p) && "opacity-35",
-                  selected === i && "opacity-100 outline-2 outline-white",
-                )}
-              />
-            </button>
-          ),
-        )}
-      </div>
-
-      <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-        {KINDS.filter(({ kind }) => map.points.some((p) => p.kind === kind)).map(
-          ({ kind, marker }) => (
-            <button
-              key={kind}
-              type="button"
-              aria-pressed={!hidden.has(kind)}
-              onClick={() => toggle(kind)}
-              className="flex cursor-pointer items-center gap-2 border-0 bg-transparent p-0 font-[inherit] text-small tracking-game text-white aria-[pressed=false]:opacity-40"
-            >
-              <span className={cn(diamond, marker)} />
-              {label(kind)}
-            </button>
-          ),
-        )}
+              {NODE_SPRITES[p.kind] || p.items.length === 0 ? (
+                <img
+                  src={NODE_SPRITES[p.kind] ?? NODE_SPRITES.mine}
+                  alt=""
+                  className="size-[3.2rem] pixelated"
+                />
+              ) : (
+                <Icon {...iconOf(nodeItem(p))} className="mr-0" />
+              )}
+            </span>
+          </button>
+        ))}
       </div>
 
       {shown ? (
@@ -269,29 +264,40 @@ function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean 
               {gatherCount(shown.gathers, shown.mostGathers)}
             </span>
           </Stat>
+        </StatList>
+      ) : null}
+      {shown && (
+        <div className="flex flex-col gap-y-[13px]">
           {shown.items.map(({ item, chance }) => {
             // The item whose page this is, in the item list's selected green.
             const own = gives?.(item);
+            const icon = iconOf(item);
             return (
-              <Stat
-                key={item}
-                label={
-                  <Link
-                    href={itemHref(item)}
-                    className={cn("underline-offset-4 hover:underline", own && "text-positive")}
-                  >
-                    {game.name("item", item)}
-                  </Link>
-                }
-              >
-                <span className={cn("text-white tabular-nums", own && "text-positive")}>
-                  {t.chance(formatNumber(chance))}
+              <div key={item} className="flex items-center">
+                <Icon {...icon} />
+                <Link
+                  href={itemHref(item)}
+                  className={cn(
+                    "w-cells-16 min-w-0 wrap-anywhere whitespace-normal underline-offset-4 hover:underline mobile:leading-[1.25]",
+                    own ? "text-positive" : "text-white",
+                  )}
+                >
+                  {game.name("item", item)}
+                </Link>
+                <span
+                  className={cn(
+                    "flex-none whitespace-pre text-white tabular-nums mobile:ml-auto",
+                    own && "text-positive",
+                  )}
+                >
+                  {`:${t.chance(formatNumber(chance)).padStart(5, " ")}`}
                 </span>
-              </Stat>
+              </div>
             );
           })}
-        </StatList>
-      ) : (
+        </div>
+      )}
+      {!shown && (
         <p className="text-center text-fine whitespace-normal text-white/60">
           {gives && `${t.litHint} `}
           {t.hint}

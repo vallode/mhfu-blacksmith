@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit -p .",
     "test": "tsx --test test/**/*.test.ts",
     "test:e2e": "tsx e2e.mts",
-    "social-card": "tsx social-card.mts"
+    "social-card": "tsx social-card.mts",
+    "analytics": "tsx analytics/report.mts"
   },
   "dependencies": {
     "game-data": "workspace:*",

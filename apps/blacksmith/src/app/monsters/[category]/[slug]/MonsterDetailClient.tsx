@@ -12,6 +12,7 @@ import MonsterBreaks from "@/components/MonsterBreaks";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
+import MonsterStatus from "@/components/MonsterStatus";
 import SmallMonsterQuests from "@/components/SmallMonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { breakIndex, breakKey } from "@/lib/monster-breaks";
@@ -23,7 +24,7 @@ import {
   questsWithMonster,
   smallMonsterStages,
 } from "@/lib/quests";
-import { crownFor, sizeInCm, type Crown } from "@/lib/crowns";
+import { crownCutoff, crownFor, cardSize, type Crown } from "@/lib/crowns";
 import CrownIcon from "@/components/CrownIcon";
 import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -32,6 +33,7 @@ import {
   useMonsterAttacks,
   useMonsterHitboxes,
   useMonsterModel,
+  useMonsterUnusedMotions,
   type HitboxCapsule,
 } from "@/lib/models";
 import type { Monster, MonsterBreak } from "@/lib/types";
@@ -86,10 +88,8 @@ const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
 };
 
 /**
- * A Guild Card size record (percent) in centimetres, with the crown it earns.
- * A gold crown on the largest or a mini crown on the smallest already says
- * which record it is, so the label is left out then. The crown, label and size
- * stay on one line.
+ * A Guild Card size record (percent) as the card shows it, with the crown it earns
+ * after the size.
  */
 function SizeRecord({
   size,
@@ -102,15 +102,16 @@ function SizeRecord({
 }) {
   const { t, formatNumber } = useLocale();
   const crown = monster.crowns ? crownFor(size, monster.crowns) : null;
-  const implied = crown === (kind === "largest" ? "gold" : "mini");
   return (
-    <span className="whitespace-nowrap">
-      {crown && <CrownIcon crown={crown} className="mr-[0.4rem] align-middle" />}
-      {!implied && <>{t.monsters.detail[kind]} </>}
-      <span className="text-white tabular-nums">
-        {t.monsters.detail.cm(formatNumber(Math.round(sizeInCm(size, monster.base_size ?? 0))))}
+    <p className="flex items-center gap-[0.6rem] whitespace-nowrap">
+      <span>
+        {t.monsters.detail[kind]}{" "}
+        <span className="text-white tabular-nums">
+          {formatNumber(Math.round(cardSize(size, monster.base_size ?? 0)))}
+        </span>
       </span>
-    </span>
+      {crown && <CrownIcon crown={crown} />}
+    </p>
   );
 }
 
@@ -127,8 +128,11 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const hitboxes = useMonsterHitboxes(modelUrl);
   const [showHitzones, setShowHitzones] = useState(false);
   const attacks = useMonsterAttacks(modelUrl);
+  const unusedMotions = useMonsterUnusedMotions(modelUrl);
   const [showAttacks, setShowAttacks] = useState(false);
   const shownAttacks: ModelAttack[] | undefined = (showAttacks && attacks) || undefined;
+  /** The hunter beside the model, to scale. */
+  const [showHunter, setShowHunter] = useState(true);
   // A part or break hovered in the hitzone tab or the legend, and one picked
   // in the legend (which only shows with the hitboxes, so a pick ends with
   // them). Hitzone parts go by name, breaks by `breakKey`.
@@ -183,8 +187,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   }
 
   const name = game.name("monster", monster.name);
-  /** Sizes are stored to two decimals; whole centimetres are enough here. */
-  const formatSize = (cm: number) => formatNumber(Math.round(cm));
+  /** Sizes are stored to two decimals; whole numbers are enough here. */
+  const formatSize = (size: number) => formatNumber(Math.round(size));
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
   // Each hitzone row's flinch threshold, worked out by the data build; no
@@ -294,30 +298,39 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           },
         ]
       : [];
+  const statusTab: Tab[] = monster.tolerances
+    ? [
+        {
+          id: "status",
+          label: t.monsters.detail.tabs.status,
+          content: <MonsterStatus tolerances={monster.tolerances} />,
+        },
+      ]
+    : [];
   // One tab per rank's drop tables
   const dropTabs: Tab[] = Object.entries(monster.drops ?? {}).map(([rank, sources]) => ({
     id: rank,
     label: rankLabel(t, rank),
     content: <MonsterDrops sources={sources} />,
   }));
-  // Crown cutoffs in centimetres.
+  // Crown cutoffs as the Guild Card shows sizes, to a tenth the safe way.
   const crowns =
     monster.crowns && monster.base_size !== undefined
       ? {
-          mini: sizeInCm(monster.crowns.mini, monster.base_size),
-          silver: sizeInCm(monster.crowns.silver, monster.base_size),
-          gold: sizeInCm(monster.crowns.gold, monster.base_size),
+          mini: crownCutoff("mini", monster.crowns, monster.base_size),
+          silver: crownCutoff("silver", monster.crowns, monster.base_size),
+          gold: crownCutoff("gold", monster.crowns, monster.base_size),
         }
       : null;
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];
   // The quests with the best chance of each crown, and that chance.
   const bestCrowns = bestCrownQuests(monsterQuests, monster.name);
-  // The sizes its quests can roll, in centimetres.
+  // The sizes its quests can roll, as the Guild Card shows them.
   const sizeRange =
     monster.size_range && monster.base_size !== undefined
       ? {
-          min: sizeInCm(monster.size_range.min, monster.base_size),
-          max: sizeInCm(monster.size_range.max, monster.base_size),
+          min: cardSize(monster.size_range.min, monster.base_size),
+          max: cardSize(monster.size_range.max, monster.base_size),
         }
       : null;
   const bestChance: Partial<Record<Crown, number>> = {};
@@ -357,7 +370,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // The loaded hunter's Guild Card counts. Captures only for monsters the
   // game gives capture rewards for.
   const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
-  const tabs = [...hitzoneTab, ...dropTabs, ...questTab, ...spawnTab];
+  const tabs = [...hitzoneTab, ...statusTab, ...dropTabs, ...questTab, ...spawnTab];
 
   return (
     <>
@@ -398,42 +411,40 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 <span className="text-white tabular-nums">{formatNumber(monster.base_hp)}</span>
               </p>
             )}
-            {record && (
-              <p className="text-small whitespace-normal text-stat">
-                {t.monsters.detail.hunted}{" "}
-                <span className="text-white tabular-nums">{formatNumber(record.kills)}</span>
+            {record && save && (
+              // The loaded save's records, under the hunter's name so they
+              // read as theirs and not the monster's.
+              <div className="mt-2 flex flex-col gap-[0.2rem] text-small text-stat">
+                <p className="text-gold">{t.monsters.detail.guildCard(save.name)}</p>
+                <p>
+                  {t.monsters.detail.hunted}{" "}
+                  <span className="text-white tabular-nums">{formatNumber(record.kills)}</span>
+                </p>
                 {canCapture(monster) && (
-                  <>
-                    {" · "}
+                  <p>
                     {t.monsters.detail.captured}{" "}
                     <span className="text-white tabular-nums">{formatNumber(record.captures)}</span>
-                  </>
+                  </p>
                 )}
-              </p>
+                {monster.base_size !== undefined && record.largest > 0 && (
+                  <SizeRecord size={record.largest} monster={monster} kind="largest" />
+                )}
+                {monster.base_size !== undefined && record.smallest > 0 && (
+                  <SizeRecord size={record.smallest} monster={monster} kind="smallest" />
+                )}
+              </div>
             )}
-            {record &&
-              monster.base_size !== undefined &&
-              (record.largest > 0 || record.smallest > 0) && (
-                // A record the hunter hasn't set is 0; leave it out.
-                <p className="text-small whitespace-normal text-stat">
-                  {record.largest > 0 && (
-                    <SizeRecord size={record.largest} monster={monster} kind="largest" />
-                  )}
-                  {record.largest > 0 && record.smallest > 0 && " · "}
-                  {record.smallest > 0 && (
-                    <SizeRecord size={record.smallest} monster={monster} kind="smallest" />
-                  )}
-                </p>
-              )}
           </div>
-          <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated mobile:mx-auto">
-            <img
-              className="h-[9rem] w-[9rem] object-contain pixelated"
-              src={`/images/monsters/${slug}.png`}
-              alt={name}
-              decoding="sync"
-              onError={hideBroken}
-            />
+          <div className="flex shrink-0 flex-col items-center gap-[0.8rem] mobile:mx-auto">
+            <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated">
+              <img
+                className="h-[9rem] w-[9rem] object-contain pixelated"
+                src={`/images/monsters/${slug}.png`}
+                alt={name}
+                decoding="sync"
+                onError={hideBroken}
+              />
+            </div>
           </div>
         </div>
 
@@ -448,8 +459,16 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       {modelOpen && (
         <ModelPopover title={name} onClose={() => setOpenModel(null)}>
           <div className="relative h-full w-full">
-            <ModelViewer src={modelUrl} label={name} capsules={capsules} attacks={shownAttacks} />
-            {(hitboxParts.length > 0 || attacks) && (
+            <ModelViewer
+              src={modelUrl}
+              label={name}
+              capsules={capsules}
+              attacks={shownAttacks}
+              unusedMotions={unusedMotions ?? undefined}
+              sizeHunter={monster.base_scale}
+              showSizeHunter={showHunter}
+            />
+            {(hitboxParts.length > 0 || attacks || monster.base_scale) && (
               <HitzoneControls
                 parts={hitboxParts}
                 breaks={breaks
@@ -461,6 +480,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 onPin={setPinnedPart}
                 onHover={setHoveredPart}
                 attacks={attacks ? { show: showAttacks, onShowChange: setShowAttacks } : undefined}
+                hunter={
+                  monster.base_scale ? { show: showHunter, onShowChange: setShowHunter } : undefined
+                }
               />
             )}
           </div>

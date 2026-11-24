@@ -15,6 +15,15 @@
         "pnpm --filter randomfu-web build && exec python3 -m http.server 3458 --bind 127.0.0.1 --directory apps/randomfu/dist"
       ],
       "port": 3458
+    },
+    {
+      "name": "randomfu-worker",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "pnpm --filter randomfu-web build && cd apps/randomfu && exec pnpm dlx wrangler@4.152.0 dev --port 3459 --ip 127.0.0.1"
+      ],
+      "port": 3459
     }
   ]
 }

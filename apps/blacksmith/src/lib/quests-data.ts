@@ -4,7 +4,14 @@
  */
 import fs from "fs";
 import path from "path";
-import { isHiddenQuest, questHubSlug, type QuestHubSlug } from "./quests";
+import {
+  huntStarsByMonster,
+  isHiddenQuest,
+  questHubSlug,
+  type HuntStars,
+  type QuestAppearance,
+  type QuestHubSlug,
+} from "./quests";
 import { DATA_DIR } from "./paths";
 import { readData } from "game-data";
 
@@ -44,4 +51,16 @@ export function getQuestSummaries(): QuestSummary[] {
 
 export function getQuestSummary(hub: string, id: number): QuestSummary | undefined {
   return getQuestSummaries().find((q) => q.hub === hub && q.id === id);
+}
+
+let huntStars: Map<string, HuntStars> | null = null;
+
+/** The star levels a monster (by English name) is hunted at on the Village and Guild boards. */
+export function getHuntStars(name: string): HuntStars {
+  huntStars ??= huntStarsByMonster(
+    ["village.json", "guild.json"].flatMap(
+      (file) => readData<{ quests: QuestAppearance[] }>(DATA_DIR, "quests", file).quests,
+    ),
+  );
+  return huntStars.get(name) ?? {};
 }

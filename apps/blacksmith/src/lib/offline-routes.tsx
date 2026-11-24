@@ -11,7 +11,7 @@ import DecorationDetailClient from "@/app/decorations/[slug]/DecorationDetailCli
 import { ItemShell } from "@/app/items/ItemShell";
 import ItemsListClient from "@/app/items/ItemsListClient";
 import ItemDetailClient from "@/app/items/[slug]/ItemDetailClient";
-import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
+import { DefaultWeaponPage } from "@/app/blacksmith/LastWeaponRedirect";
 import { WeaponShell } from "@/app/blacksmith/WeaponShell";
 import ArmorRedirect from "@/app/armorsmith/ArmorRedirect";
 import { ArmorShell } from "@/app/armorsmith/ArmorShell";
@@ -136,9 +136,8 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
 export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
   switch (match.kind) {
     case "home":
-      return <LastWeaponRedirect />;
     case "weapon-list":
-      return <LastWeaponRedirect />;
+      return <DefaultWeaponPage />;
     case "weapon-tree":
       return (
         <WeaponShell type={match.type}>

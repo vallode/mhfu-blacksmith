@@ -116,7 +116,6 @@ export function DecorationShell({ slug, children }: { slug?: string; children: R
                   sectionType="decoration"
                   basePath={BASE_PATH}
                   treeKey="decorations"
-                  activeSlug={slug}
                   scroll={false}
                 />
               ))}

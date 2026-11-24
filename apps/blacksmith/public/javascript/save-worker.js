@@ -6,6 +6,12 @@ const CHAR_BASES = [0x001000, 0x06c100, 0x0d7200];
 const OFFSETS = {
   HUNTER_NAME: 0x000000, // 24 bytes, UTF-16LE, null-padded (max 12 chars)
   SEX:         0x000013, // uint8: 0 = Male, 1 = Female (0x12 is always 1)
+  // The look picked at character creation (`UserData` in tclamb/mhp2g-decomp's
+  // game_sys.hpp: sexId, voiceId, clothingId, faceId, hairId, then hairColor).
+  CLOTHING:    0x000015, // uint8
+  FACE:        0x000016, // uint8: player/<m|f>/face/<m|f>_faceNNN.pac
+  HAIR:        0x000017, // uint8: player/<m|f>/head/<m|f>_headNNN.pac
+  HAIR_COLOR:  0x00001c, // uint32 LE
   PLAY_TIME:   0x003fc8, // uint32 LE, total seconds
   ZENNY:       0x069250, // uint32 LE
   // No Hunter Rank field: the game works HR out from cleared quests (see
@@ -259,8 +265,8 @@ function parseMonsterRecords(view, base) {
   return records;
 }
 
-function parseCharacter(view, charIndex) {
-  const base = CHAR_BASES[charIndex];
+/** One hunter, read from the character block that starts at `base` in `view`. */
+function parseCharacter(view, base) {
   // Empty slot: first two name bytes are both 0x00
   if (view.getUint8(base) === 0 && view.getUint8(base + 1) === 0) return null;
 
@@ -268,6 +274,12 @@ function parseCharacter(view, charIndex) {
   const sex   = view.getUint8(base + OFFSETS.SEX) === 0 ? "Male" : "Female";
   const zenny = view.getUint32(base + OFFSETS.ZENNY, true);
   const playTime = view.getUint32(base + OFFSETS.PLAY_TIME, true);
+  const look = {
+    clothing: view.getUint8(base + OFFSETS.CLOTHING),
+    face: view.getUint8(base + OFFSETS.FACE),
+    hair: view.getUint8(base + OFFSETS.HAIR),
+    hairColor: view.getUint32(base + OFFSETS.HAIR_COLOR, true),
+  };
 
   // Kept in box order (slot index), skipping empty slots.
   const equipBox = [];
@@ -294,7 +306,7 @@ function parseCharacter(view, charIndex) {
   const awards = parseAwards(view, base);
 
   return {
-    name, sex, zenny, playTime, hunterRank, equipBox, itemChest, itemPouch, clearedQuests, monsters,
+    name, sex, look, zenny, playTime, hunterRank, equipBox, itemChest, itemPouch, clearedQuests, monsters,
     awards, ...parseAwardRecords(view, base),
   };
 }
@@ -324,9 +336,23 @@ async function decryptWith(buffer, region) {
   }
 }
 
-self.onmessage = async ({ data: { buffer, region } }) => {
+// One character block (CHARACTER_SIZE bytes, the save's block at
+// CHAR_BASES[0]) as the game keeps it in RAM: what the PPSSPP link reads.
+const CHARACTER_SIZE = CHAR_BASES[1] - CHAR_BASES[0];
+
+self.onmessage = async ({ data: { buffer, region, block } }) => {
   try {
     region = region ?? "us";
+    if (block) {
+      // A hunter read live from the game's memory: plaintext, and only the
+      // loaded hunter, so there is one "slot".
+      if (buffer.byteLength !== CHARACTER_SIZE) {
+        throw new Error(`Unexpected hunter size (${buffer.byteLength} bytes, expected ${CHARACTER_SIZE}).`);
+      }
+      const character = parseCharacter(new DataView(buffer), 0);
+      self.postMessage({ ok: true, characters: [character], decrypted: false, region });
+      return;
+    }
     const size = buffer.byteLength;
 
     if (size === DECRYPTED_SIZE) {
@@ -368,6 +394,6 @@ self.onmessage = async ({ data: { buffer, region } }) => {
 
 function postCharacters(plaintext, decrypted, region) {
   const view = new DataView(plaintext);
-  const characters = [0, 1, 2].map((i) => parseCharacter(view, i));
+  const characters = CHAR_BASES.map((base) => parseCharacter(view, base));
   self.postMessage({ ok: true, characters, decrypted, region });
 }

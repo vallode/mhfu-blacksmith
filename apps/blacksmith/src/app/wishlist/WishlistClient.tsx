@@ -11,6 +11,7 @@
  */
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useSectionHref } from "@/app/MenuLink";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
@@ -322,6 +323,8 @@ export default function WishlistClient() {
   const questById = useMemo(() => new Map(quests?.map((q) => [q.id, q])), [quests]);
   const { save } = useSave();
   const { showMaterialCounts } = usePreferences().prefs;
+  // The last weapon type viewed, not /blacksmith/, which would show the default type first.
+  const weaponsHref = useSectionHref("weapons");
   const { ids } = useEquipmentIds(!!save);
   const t = useT();
   const tw = t.items.wishlist;
@@ -392,7 +395,7 @@ export default function WishlistClient() {
         <WishCard title={tw.title}>
           <p className={ui.note}>{tw.empty}</p>
           <div className={ui.actions}>
-            <Link href="/blacksmith/" className={ui.button}>
+            <Link href={weaponsHref} className={ui.button}>
               {t.common.sections.weapons}
             </Link>
             <Link href="/armorsmith/" className={ui.button}>
@@ -971,7 +974,7 @@ function WayLine({ way }: { way: Way }) {
       ? way.price === null || way.price === undefined
         ? "—"
         : way.currency === "pokke-points"
-          ? t.items.wishlist.ways.pokkePoints(formatNumber(way.price))
+          ? t.common.points(formatNumber(way.price))
           : zenny(way.price)
       : `${formatNumber(way.chance ?? 0)}%`;
   const meta = [way.group && groupLabel(t, way.group), wayDetail(t, formatNumber, way)]

@@ -127,6 +127,8 @@ web app shows as a tag):
 | `weapons.statRange`               | `near`      | Rarities either side stats stay within (`near` 1, `wide` 3, `any`)                                     |
 | `weapons.sharpness`               | off         | Blademaster weapons of a type and rarity trade sharpness                                               |
 | `weapons.sharpnessMode`           | `shuffle`   | `new`: every bar the weapons use also gets new colors                                                  |
+| `weapons.elementMotion`           | off         | A Blademaster hit's element grows on a curve with its motion value, status in step, past a threshold   |
+| `weapons.elementMotionFrom`       | 26          | The motion value they start growing from (10 to 40; lower is stronger)                                 |
 | `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                                   |
 | `armor.scope`                     | `rarity`    | Which pieces a place can get: the same `rarity`, the same `rank` (Low, High or G), or `any`            |
 | `armor.start`                     | `smithy`    | A new hunter's armor: what the smithy's spots make (`smithy`), any Low Rank piece (`rank`), or `any`   |
@@ -174,19 +176,36 @@ web app shows as a tag):
 | `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                               |
 | `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                        |
 | `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                          |
-| `monsterAi.aggression`            | `off`       | `off`, `more` (attacks twice as likely against other moves) or `relentless` (four times)               |
+| `monsterAi.aggression`            | `off`       | `off`, `more` (attacks ×2, idle ≤ 1 s, recoveries 50% faster) or `relentless` (×4, ⅓ s, recoveries ×2) |
+| `monsterAi.reach`                 | `off`       | `off`, `less` (takeoffs and burrows ÷3, area and lost-hunter times ×2) or `rarely` (÷8, ×4)            |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                            |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                      |
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
-| `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
+| `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU and JP discs)                        |
+| `paint.stays`                     | off         | A painted monster stays on the area map until the quest ends                                           |
+| `mods.buttonIcons`                | `psp`       | `xbox`, `nintendo`, `playstation` or `keyboard` draws that set's icons                                 |
+| `camera.fov`                      | `normal`    | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
+| `camera.distance`                 | `normal`    | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
+| `camera.tilt`                     | `steps`     | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast` (EU disc only)           |
+| `camera.photoMode`                | off         | L+R+START in a quest stops the game and hides the HUD; the camera flies free (caps Guild Cards)        |
+| `camera.target`                   | off         | L turns the camera to a large monster: `tap` (once) or `follow` (keeps it in view)                     |
+| `quest.endWait`                   | `normal`    | The wait after a quest: `short` (20 s for every quest) or `instant` (straight to the rewards)          |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
+| `hud.damageNumbers`               | off         | Numbers at the part each of your hits strikes: `total` or `split` element (caps Guild Cards)           |
+| `hud.attackHitboxes`              | off         | Shade every monster attack that can hit right now, over the scene (caps Guild Cards)                   |
 | `poogie.enabled`                  | on          | A happy pet before a hunt makes its rewards rarer, more so as affection grows (caps Guild Cards)       |
 | `pact.enabled`                    | off         | Hunter's Pact: penalties at each quest's start, each paying a reward (caps Guild Cards)                |
 | `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)                  |
 | `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                              |
 | `quests.unknown`                  | off         | "Unknown Monster?!" quests on Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards) |
 | `quests.keyLabel`                 | off         | A yellow ★ in the quest counter's card's top right corner when it shows a key quest (caps Guild Cards) |
+| `rewards.sendAll`                 | on          | A Send All to Item Box row in the reward screen's menu (caps Guild Cards)                              |
+| `smithy.improvePips`              | on          | A pip on each weapon the smithy's Improve can improve now (caps Guild Cards)                           |
+| `farm.harvestAll`                 | on          | △ at the farm's Item Box sends everything the farm holds to the Item Box (caps Guild Cards)            |
+| `pouch.bulkCombine`               | on          | The pouch's Combine asks how many at "Combine?" and makes them all at once (caps Guild Cards)          |
+| `monsterList.slainCaptured`       | off         | The Monster List's card shows slain and captured counts, from the save, in place of one hunted count   |
+| `boot.skip`                       | `normal`    | A faster start: `title` (no notice, logos or intro movie) or `village` (straight into the last hunter) |
 
 ### Presets
 
@@ -198,11 +217,15 @@ Elder's trades. Turn those on yourself once you've tried them on your disc.
 Armor stats are the exception: the presets turn on all four, though only
 defense has been played. Resistances, slots and rarity have only been run
 over the EU disc's tables, and what the game reads armor rarity for hasn't
-been checked. Monster health, elite monsters, the Unknown Monster quests and the key quest
-label are off in every preset, since they cap Guild Cards.
+been checked. Elite monsters, the Unknown Monster quests and the key quest
+label are off in every preset, since they cap Guild Cards. Monster health,
+attack hitboxes and damage numbers are off too, but their code goes on every disc so they
+can be turned on in game (below), which caps Guild Cards on every disc the
+code loader fits.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                                                   |
 | ------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| QoL only     | Nothing             | Nothing is shuffled or randomized: only extras change the game (Send All, improve pips, photo mode, key quest marks and gathering nodes on the map; Poogie and the bookshelf guides off)                                                                                                                                           |
 | Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                                                                                                                                                                    |
 | Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills and stats (by rarity; rarity within its rank), shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                                              |
 | Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon and armor stats, new armor skills, Low Rank starting armor |
@@ -467,6 +490,64 @@ bar stays as long as before. The spoiler lists each changed bar as color
 widths (`R8 O3 Y11 ...`), as the Blacksmith site shows them. It runs before
 the weapon stats, which read the new amounts for the site's affinity
 bonus. Neither mode has been seen in game yet.
+
+`weapons.elementMotion` (`src/patches/element-motion.ts`) patches
+`game_task` and `game_sub` so a Blademaster hit carries its weapon's
+element times `(mv / t)^1.5`, `t` being `weapons.elementMotionFrom`, and
+its status times `mv / t`, when that's more than 1. In the game, element
+and status never depend on the move: a Dual Blades slash (motion value 7)
+carries as much as a charged Great Sword slash (110), so slow weapons'
+elements barely count. Raw damage already grows in step with the motion
+value, so a straight `mv / t` would put an elemental weapon the same share
+ahead on every hit; the curve puts it ahead on every swing and further on
+the heavy ones. At the default 26, a Great Sword's side slash (36) carries
+1.6 times its element, its draw slash (48) 2.5 times, its level 1 to 3
+charges (65, 80, 110) 4, 5.4 and 8.7 times; the Hammer's golf swing (100)
+7.5 times, a Long Sword or Lance hit up to 1.9 times, and Dual Blades and
+Sword and Shield hits (6 to 25) stay as they were. Against a monster's
+weak element (median over large monsters' best cut part, 410 element
+against a raw weapon with a quarter more attack at rarity 8), that's a
+Great Sword about 15% ahead on a side slash, 21% on a draw and 42% on a
+level 3 charge, where the game has it 13% behind. An element has no cap;
+status is capped at 2550 shown a hit, and still applies only on every third
+swing, as in the game, now with more on a heavy one.
+
+What it found (EU and JP; the patch has the details): each melee swing
+builds an attack in `game_task` that copies the move's row from the motion
+value table (EU 0x09BFBEF8; the motion value at `+0x1E`), then asks an
+EBOOT getter (EU 0x088DA398) for the equipped weapon's fire, water,
+thunder, dragon and ice, and every third swing for poison, paralysis and
+sleep, putting the value in `+0x2A` (u8, a tenth of what's shown) and a
+flag in `+0x28`. Then it rolls affinity, a critical multiplying the motion
+value by 1.25. When the attack hits a monster, game_sub's hit function (EU
+0x09C43458) turns `+0x2A` into a float for the attack's element and
+multiplies it by the hit part's elemental hitzone over 100 (and a factor
+not yet traced), summed into the hit's element damage; no motion value
+enters into it. Status goes to the monster's buildup counters (EU
+0x09C44F08) as it is.
+
+The patch scales an element in game_sub, as the float (`value × f × √f`,
+`f = mv / threshold`, by the motion value before any critical, worked back
+from the critical flags in `+0x2B`, so affinity leaves the element alone as
+in the game, and before the 1.35 the swing builder then applies in one hunter
+state, probably the Long Sword's spirit, which marks the attack `+0x31` 0 and
+`+0x32` 0x12), for a weapon's motion row only (types 0 to 3 at `+0x1F`: the
+hit function deals type 0xB as fixed damage, its `+0x1E` the damage), when the attack's
+owner is a hunter with a Blademaster weapon (`+0x4E9` is 5, the getter's
+own test). It scales status in game_task: it rewrites the affinity code with
+integer maths (the same results for every input) and uses the room it
+frees to scale `+0x2A` first, `min(255, round(value × mv / threshold))` by
+the motion value before any critical, when the attack has no element. Both
+are checked against the game's code in `test/element-motion.test.ts`.
+Element skills multiply first, as before. Kicks, Felyne comrades and Gunner
+shots don't change. Seen in game (EU, the patch written into RAM, a thunder
+220 Great Sword): each hit's element damage was `22 × (mv / 26)^1.5 ×
+hitzone`, as the tests have it (a level 2 charge on a 25% part 29 against
+the game's 5), and the monster lost raw plus element (`+0x2E4`, 145 HP for
+three hits). With every swing made a critical (a test-only change), a
+critical's element was a plain hit's (a level 2 charge on the same 25% part
+29.69 either way) while its raw still grew by 1.25. Negative affinity and
+fixed-damage (type 0xB) attacks are checked only in the tests.
 
 `gathering` changes the pairs (value, item) in the gathering item tables of
 Village and Guild quests. Tables keep their length and the quest file its
@@ -915,10 +996,88 @@ Not yet tried in game.
   least 1. It runs after `monsterAi.branches`, on the rerolled weights.
 - A file is changed only if its choices and their vanilla weights hash to
   what the data was made from; the EU and FUC discs both match.
+- Shorter pauses: every large monster stands in its idle between moves at
+  most 30 frames (`more`, one second) or 10 (`relentless`), as blob code on
+  the code loader (`src/patches/aggression.ts`, `blob/aggression.c`, on the
+  shared monster boosts of `blob/monsters.c`). The idle (action group 0
+  playing motion record 1, every species' looping stand) otherwise runs to
+  the end of its loop before the AI goes on: Tigrex's is three seconds,
+  then it turns to its next move. The blob sets the monster's "think now"
+  flag (`+0x4B5`) once the cap is up, which is what the idle sets when its
+  loop ends. No flag for "has seen a hunter" was found, so a monster that
+  rests while it wanders rests less too. It goes in where `game_task`'s AI
+  gate and AI match the EU code (EU and FUC do); elsewhere the odds still
+  change and the report says the pauses don't.
+- Quicker recoveries and turns: once a large monster's move is past its
+  last hit (or roar, wind or tremor), the rest of it plays 50% faster
+  (`more`) or twice as fast (`relentless`); a turn (a short motion whose
+  only hits are light contact) plays faster all through. The monster
+  update sets its animation speed every frame from a percent bonus at
+  `+0x769` (u8) that some moves set for themselves (Tigrex's charge); the
+  blob raises it for the rest of the move, keeps a move's own bonus where
+  it's faster, and puts the game's back after. Where each move's last hit
+  ends is data from the EU disc (`src/shuffles/monster-motions.ts`, from the
+  attack sweep the site's attack viewer uses), by species and motion
+  record. Moves whose hits the game's code spawns (Tigrex's charge) and
+  walks aren't listed, so they run as they did. It goes in where
+  `game_task`'s speed code matches the EU code; elsewhere the report says
+  so.
 
 Tried in game on the EU disc at four times: Giadrome was clearly more
 aggressive. Species with walking contact and the elder dragons haven't been
-played.
+played. The shorter pauses were played against Tigrex on the EU disc at
+`relentless` (better, but its turns and some recoveries were still slow,
+which the quicker recoveries are for). With the quicker recoveries too,
+Tigrex's turns felt much better.
+
+**Monster reach** (`monsterAi.reach`, `keepMonstersInReach` in
+`src/shuffles/monster-ai.ts`) makes large monsters spend less of the fight
+out of reach: fewer flights and burrows, and less wandering off.
+
+- Which entries take a monster into the air or underground is data
+  (`src/shuffles/monster-reach.ts`), worked out from the EU disc as
+  `docs/monster-ai.md` ("Out of reach") describes, in the same form as the
+  attack data: 534 choices in 5 files that mix taking off or digging in
+  (`L`) with other moves, and 3 of Fatalis's that mix landing (`B`) with
+  staying up. That's Rathian, Rathalos and their kin (306), Diablos and
+  Monoblos and their kin (145), Yian Kut-Ku and Gypceros and their kin
+  (42), Fatalis and its kin (40) and Chameleos (1).
+- `L` entries' weights are divided by 3 (`less`) or 8 (`rarely`) and `B`
+  entries' multiplied, and the choice is scaled back to 32, every possible
+  entry keeping at least 1. On the EU disc that takes Rathalos's chance of
+  taking off, where a choice offers it, from 22% on average to 12% (`less`)
+  or 8% (`rarely`), and Diablos's of digging in from 36% to 17% or 8%. It
+  runs after `monsterAi.branches` and `monsterAi.aggression`, on their
+  weights, so it stacks with both; an entry that is both an attack and a
+  takeoff is leaned both ways.
+- A flight or a burrow, once started, is a fixed sequence in one entry, and
+  no choice a flying monster makes mixes landing with staying up (outside
+  Fatalis's three), so flights and burrows get rarer, not shorter.
+- Every species that's a large monster in some quest (after
+  `questMonsters` changes) fights in each area for longer before it leaves
+  mid-fight. While it's aware of a hunter, its `+0x550` (s16, frames)
+  counts down, and at 0 it leaves the area even while engaged (seen on the
+  EU disc in PPSSPP: a Yian Kut-Ku took off and flew to the next area the
+  moment it ran out, with the hunter right there). Entering an area sets it
+  from the species' area-time list (`emChunk` `+0x1C0`: `{ s16 stage, s16
+frames }` pairs, then `{ -1, default }`), plus 0 to 3 minutes the game
+  picks. Most species stay 5 minutes by default, 1 to 10 in listed areas
+  (Lunastra and Teostra nearly 18 in one of the Tower's). Every value is
+  multiplied by 2 or 4, at most 27,367 frames (about 15 minutes), so the
+  added minutes can't wrap the countdown, and never lowered. The 23 lists
+  sit in `game_task.ovl` or the family's `emNN.ovl` (no other overlay is
+  tried, as they all load at the same addresses); species that share one
+  change together. A stage above 1000 gets none of the added minutes, so
+  its time is capped at 32767 instead.
+- The same monsters keep after a hunter they can't see for longer:
+  its `emChunk`'s `+0x146` (s16, frames) is the time it stays engaged once
+  the hunter is out of sight, after which it decides to walk or fly off to
+  another area. It's 1800 frames (60 s) for most, 900 for the dromes and
+  2700 for Yian Garuga; `less` doubles it and `rarely` quadruples it (at
+  most 32767). Elites change with their species.
+- A file's flights change only if its choices and their vanilla weights
+  hash to what the data was made from; the EU and FUC discs both match. The
+  area times and engagement time change on any disc where they read.
 
 **The bookshelf guides** rewrite runs of the house bookshelf's articles
 (Open Bookshelf, Info Magazine) and make them readable from the start
@@ -1032,11 +1191,37 @@ first, and the spoiler says how many.
 (yellow) node onto the map screen's textures (`cockpit/map<N>.tmh`, 160x160,
 8-bit swizzled, RGBA8888 palette). Positions come from the quests' node
 tables through the map screen's own formula (mhfu-extract README, "Area
-maps"), so they are EU-only and need the EBOOT. A texture is shared by every
+maps"), so they need the EBOOT and the EU or JP disc (JP's table addresses
+were found by searching for the EU tables' contents). A texture is shared by every
 quest on the map, and nodes sit in the same places in all of them, so a
 texture gets the union. The markers use palette entries the art leaves
 unused (every map has over 200), so nothing else recolours and file sizes
 are unchanged. Checked in PPSSPP on the Snowy Mountains map.
+
+**Button icons** (`mods.buttonIcons`, `src/patches/button-icons.ts`)
+redraws the PSP's ○ × △ □ L R START SELECT, wherever the game draws them
+(its text's `~B` icons and the HUD), as another set's. `xbox` is the buttons
+PPSSPP maps them to by default: B A Y X, LB RB, Menu and View. `nintendo` keeps
+the Xbox's places with a Switch's letters (A ○, B ×, X △, Y □) and L R + −.
+`playstation` draws coloured shapes (blue ×, red ○, pink □, green △), L1 R1,
+Options (≡) and a touchpad rectangle. `keyboard` draws outlined keycaps with
+PPSSPP's default keys: X ○, Z ×, S △, A □, Q W, Space (START) and Enter (SELECT); its keys are
+drawn from scratch (outline 1, white top, 200 shade, 148/117 front, letters in
+73 grey) rather than on the painted-out button, and take the nearest palette
+entries too. START and SELECT exist only on the HUD sheet. They are sprites 50-58 of the HUD
+sprite table (EU 0x089391A8, 12-byte rows of u16 u, v, w, h, texture, set),
+all on texture 0x8001: the second image of `system/resides.tmh` (256x256,
+8-bit swizzled, RGBA8888 palette; JP file 18, EU files 30-34, one per
+language). The stick (56) and d-pad (59) stay. `system/demo.tmh`'s fourth
+image (JP 17, EU 25-29) repeats the faces, L and R from (104, 144) in the
+same art; what draws those isn't known, and they're redrawn too. Every
+palette entry of the HUD sheet is in use, so nothing is added: each button
+is the PSP one with its symbol painted out in its own body colour, and the
+letters take the palette's nearest green, red, blue and yellow. A sheet is
+drawn on only if its icons hash to the EU or FUC art (`PSP_ART`). The EU
+file list's best fit for the system files (`filelist-eu.json`) names EU
+33 and 34 `connect` and `demo`, but both hold `resides.tmh`, like 30-32.
+Not yet seen in game.
 
 `supplies` changes what each quest's supply box holds. The box is a list
 of `{ u16 item, u16 amount }` at the header's `SuppliesPTR`, ending at item
@@ -1225,12 +1410,27 @@ looks like the stamina gauge: the same frame, its end cap on both ends (the
 left one mirrored), a 2-pixel fill in the hunter's health red, and
 a yellow trail that drains a pixel a frame after a hit, as the hunter's
 red recoverable health does. It runs as blob code on the code loader
-(below), so it caps Guild Cards at 3.
+(below), so it caps Guild Cards at 3. Its code goes on every disc, off or
+not: the option picks the mode a disc starts in, and the START menu's
+randomfu entry (Damage numbers, below) changes it in game.
 
 - **`painted`** shows a monster's gauge while the map shows its icon: the
   game's own test, so from a Paintball hit until the mark wears off (18000
   frames).
 - **`always`** shows every large monster in the area.
+
+A monster whose size makes a crown gets one over its gauge's right end
+(on the end cap, centred on the bar), whenever the gauge shows: the HUD's
+own gold or silver crown, and for a mini crown the gold one drawn smaller
+(the HUD has no mini crown). It's the crown the Guild Card would record if
+the monster were killed or captured now: its size against its species'
+entry in the crown table, so a subspecies uses its base monster's
+thresholds (mhfu-extract's README, "Monster size"). On a disc where the
+crown code isn't found, the gauges show without crowns.
+
+A captured monster's gauge goes once it's captured, though it lies asleep
+with health left until the quest ends. On a disc where the capture code
+isn't found, it keeps its gauge.
 
 What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
 
@@ -1248,10 +1448,441 @@ What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
   show (not in cutscenes, nor with the HUD hidden). The monster gauges are
   drawn right after it, from a hook on that call, so they show and hide
   with it.
+- A monster's size in percent is a u16 at `+0x274`. `game_task` copies it
+  from the quest's monster record (`+0x30`, where the size roll puts it)
+  when the monster spawns, scales the model by it, and a kill or capture
+  writes it to the quest's largest and smallest records (EBOOT
+  `0x0886AC48`). Read live on EU: a Yian Kut-Ku's record and entity both
+  held 98.
+- The Guild Card's check (EU `0x08853F84`) gives a mini crown at most the
+  entry's `mini`, gold at least `gold`, else silver at least `silver`. The
+  blob finds the crown table through that check and the emID groups
+  through their lookup (`0x0884FC74`); both match once on EU and JP.
+- The quest object (`*0x08A62C7C`) keeps a 60-byte record per spawn, which
+  an EBOOT lookup `(quest, monster)` (`0x0886DD3C`) finds or returns 0. The
+  capture code (`0x0886AD58`, called from 7 places in `game_task`) sets 8
+  in the record's state (`+0x2E`, s16), and the gauge hides a monster
+  whose record has it. The blob finds the lookup through the capture code
+  and the global through `game_task`'s calls to it; both match on EU and
+  JP.
+- The HUD texture (0x8001, in RAM while in a quest) has a silver and a gold
+  crown, 16×12: sprites 31 and 32 of its sprite table. Seen in EU's
+  texture and in game; JP's sprite table has the same records, but its
+  texture wasn't looked at.
 
 Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
 dies or leaves the area, and `painted` shows it once a Paintball hits. Not
-yet tried: JP in game, captures, and two large monsters in one area.
+yet tried: JP in game, the gauge going on a capture, and two large
+monsters in one area.
+
+## Camera
+
+`camera.fov`, `camera.distance`, `camera.tilt` and `camera.target`
+(Modifications → Camera in the web app), and the Field of view, Camera
+distance, Camera tilt and Target camera settings in randomfu's START menu entry (Damage numbers, below). The option picks what a disc starts with;
+the menu changes it in game, and the save keeps it. Like the HUD options,
+the code goes on every disc, so every disc caps received Guild Cards at 3.
+Played on EU at `wider` and `farther` (PPSSPP, 2026-11-21): wider and
+further back in the village and in quests, through area changes and a save
+reload, with no popping at the screen's edges, and both settings changed
+from the START menu. Smooth tilt was played on EU (PPSSPP, 2026-11-21), with
+`wider` and `farther`: smooth while held, as the game's left and right
+turns are. JP builds but hasn't been played.
+
+What the game does:
+
+- Its renderer (EU `*0x089CBBE4`) holds the near and far planes
+  (30, 65000), the aspect ratio and the vertical field of view in radians
+  (+0xC, 50°: 79° across). The camera eases +0xC towards a target, and
+  the projection update (EU 0x08815348, JP 0x08816108) rebuilds the
+  projection (+0xC00) and its inverse (+0xD00, which the frustum comes
+  from) only when +0xC differs from +0x10, the angle it was last built
+  with.
+- The camera follows the hunter with presets from a block the renderer
+  points to (+0x1BC). Each stage file (`stage/*.pac`, 239 on both discs)
+  brings one, in pac entry 4 at +0x50; stages whose data says so use the
+  EBOOT's own (EU 0x08933AE0). A block is the field of view, seven zeros,
+  then five presets of `{?, eye height, distance, 0, look height, 0, ?, 0}`.
+  On EU and JP, 219 stage files' blocks are 50° and 20 are 50° or 51° to a
+  few bits (st012's is 0x3F63DEC4); 23 have no entry 4.
+  The usual quest camera is eye 270, distance 490, looking at 170 (above
+  the ground under the hunter). The camera reads the block's field of view
+  once, when it's set up, and the presets as it follows, so writing them
+  moves the camera at once; an area change loads the block again.
+- The presets are the steps D-pad up and down tilt the camera through
+  (seen live on EU). The renderer keeps the step at +0x14 as a level: 0 is
+  the highest (preset 4: eye 400, distance 220, look 195, 45° down), then
+  presets 0 (36°, only 160 back), 1 (the usual, 11.5°), 2 (a little
+  upwards) and 3 (eye 60, look 210: 18° up). Down moves a level higher, up
+  a level lower, one a press, however long it's held; a level written to
+  +0x14 sticks, and the camera eases towards its preset. The game sometimes
+  uses a camera that isn't in the block (EU 0x08933BE0: eye 280, distance
+  500, look 170), seen for a few seconds walking towards a monster; what
+  picks it isn't known, and randomfu leaves it alone. 258 stage blocks were
+  read: 201 have the EBOOT's presets with preset 2's first word -501.3, 50
+  the EBOOT's with preset 4 200 back, and preset 1 is 270, 490, 170 in all
+  but st227.
+
+How randomfu does it (`src/patches/camera.ts`, `blob/camera.c`):
+
+- **Field of view:** the projection update's first nine words record the
+  angle in +0x10 as the game has it (so it still rebuilds only on a
+  change), multiply it by a float kept in the function's last word, and
+  tail-call the perspective builder. Every view the game builds that way
+  widens the same. The disc sets the float to its option's scale, so it
+  works without the blob too; the blob sets it to the save's choice and
+  zeroes +0x10 to have the projection rebuilt. The code never changes at
+  run time.
+- **Distance:** once a frame, on the pad hook (the village too), the blob
+  checks the block the camera uses. A block it hasn't scaled, or one the
+  game loaded again, is copied, then written back with each preset's
+  distance, and its eye's height above the look height, scaled, so the
+  camera moves back down the same line. A changed setting scales again from
+  the copy, and words the game writes over the block replace the copy's.
+  The blob marks a block it scaled, in the last of the zeros after its
+  field of view, with the choice: it loads again after every save load,
+  knowing nothing, and works the game's values back out from the mark
+  rather than scaling twice. It writes nothing unless the block has a
+  block's shape: an angle between 0.3 and 1.6 radians, the zeros, and
+  distances between 0 and 5000.
+- **Tilt:** smooth tilt writes every preset as one camera: preset 1's
+  distance from what it looks at (times the distance's scale, so the two
+  are one transform of the same copy) and look height, at a pitch the save
+  keeps (`camera_pitch`, the sine × 32000). It puts the game's level back on
+  the middle one each frame, so every step looks the same and the game's
+  own step is the input. A step of one level, in the frame of a press of up
+  or down or the frame after (the game steps after the pad hook), tilts the
+  camera that way: for a frame if the button is already up, and on while
+  it's held and the pad object's input lock (+0x17, shops and dialogues)
+  stays off. A level the game moves by more, or while the button was held
+  all along (an area loading), only goes back to the middle. The game
+  doesn't step while a menu has the D-pad. It turns at 30, 50 or 80° a
+  second, timed by `sceKernelGetSystemTimeLow` (a gap over 0.1 s counts as
+  1/30 s), between 55° down and 20° up, with the eye kept 40 above the
+  ground under the hunter, and starts at the angle of the step the game was
+  on. A tilted block's mark has a second bit, and preset 1's eye height and
+  distance as the game had them go in two more of the zeros after the field
+  of view (words 5 and 6). The save keeps a copy of the block's presets as
+  the game had them, and the block's address (`camera_block`,
+  `camera_presets`): a blob loaded again takes that copy when it's the
+  block's and preset 1 agrees with what the block kept, else preset 1 from
+  the block and the others from the EBOOT's own presets (`game_presets` in
+  `blob/camera.c`), exact again once the game loads the block again; the
+  pitch comes from the save or, if it has none, from the block. Only EU's
+  renderer is known to keep the level at +0x14 (`rf_camera_level`), so
+  other discs keep the game's steps and have no Camera tilt setting.
+
+### Target camera
+
+`camera.target` turns the camera to face a large monster from behind the
+hunter, as the newer games' target camera does. In MH4U and Generations
+Ultimate, with Target Cam on, L turns to the monster and L twice resets
+the camera behind you; Rise locks on with a press of R3 and cycles with the
+next. randomfu keeps the game's own buttons:
+
+- **L** faces the target: the large monster in the hunter's area nearest
+  the middle of the screen (or the one already targeted). With no large
+  monster there (or none standing), L is the game's: behind the hunter.
+- **L twice** within 0.4 s is the game's L, behind the hunter.
+- **Hold L, D-pad left or right:** the next large monster to that side.
+- **D-pad left or right** alone turns the camera as ever and lets go.
+
+`tap` turns until the camera faces the target (within 1.4°, 3 s at most),
+following it as it moves, then leaves the camera; `follow` keeps facing it
+until L twice, a D-pad turn, or the target leaves the area or falls.
+
+While the camera has a target it's marked on screen with a small reticle,
+and for 0.6 s after, fading: four amber corner brackets, 20 pixels square
+at any distance, in the HUD's translucent fill on the HUD hook. It sits
+where the monster stands, raised to its body's height, the middle of its
+joints' heights, eased slowly (4% a frame), so it holds still while the
+monster swings its head and tail. The START menu's Target mark setting
+turns it off (`camera_mark` in randomfu's save data). A monster's joints
+are `+0x190` (0x250 bytes each, the world matrix at +0xD0) and their count
+is the u32 at `+0x1A4` (48 for a Rathalos, 16 for a Velocidrome, in
+savestates). An arrow over the monster and a ring at its middle were tried
+too, and a reticle round the box its joints cover, which wobbled with
+every move.
+
+The code goes on every disc with the START menu entry (`off` starts it off),
+EU and JP. Played on EU (PPSSPP, 2026-11-22): Tap, Follow and the reticle.
+JP builds but hasn't been played; nor has it with photo mode.
+
+What the game does (EU; JP's code is the same words):
+
+- The follow camera (EU 0x08886E50) keeps its yaw in the renderer's
+  +0x150 sub-object: +0x80 the yaw it turns to, +0x82 the yaw it has (s16,
+  the angle of the eye seen from the hunter, atan2(x, z) in 65536ths of a
+  turn: behind a hunter facing f, its u16 at +0x1F4, is f + 0x8000), and
+  +0x84 and +0x86 the buttons it sees, held and pressed (the renderer's
+  +0xA70 and +0xA72, cleared in menus).
+- Each frame whatever turns the camera sets +0x80: L's recentre (the
+  renderer's +0xA81, set from `game_task` by EU 0x08813188) behind the
+  hunter, D-pad left and right ±0x47E a frame, a forced view. Every path
+  then meets one ease (EU 0x08887614, JP 0x08887318) that moves +0x82 a
+  quarter of the way.
+- Monsters are in the manager's 20 slots (`*rf_monsters + 0x1220`); a
+  monster's +4 bit 0 is set while it's active in the hunter's area, +0x29A
+  is its area (the hunter's is at the same place), +0x1E8 its species and
+  +0x2E4 its HP. A species is large when its stat set in `game_task`'s
+  table (+0x14F of its 0x1D0-byte entry) isn't 0.
+
+How randomfu does it (`src/patches/target-camera.ts`,
+`blob/target-camera.c`): the ease's read of +0x80 becomes a call through
+game hook 8's shared stub, which the blob answers with the yaw to the
+target (or lets the game's read go on). The game then turns to the monster
+as smoothly as it turns behind the hunter, and nothing of the game's
+fights it: the recentre and the D-pad still write +0x80, and the blob
+reads the buttons the camera sees. The game's own read is two words in the
+projection update that the field of view patch leaves unreached, so this
+always goes in with the camera's EBOOT patch.
+
+## Photo mode
+
+`camera.photoMode` (Modifications → Camera in the web app), and the Photo
+mode setting in randomfu's START menu entry (Damage numbers, below). In a
+quest, hold L and R and press START: the game stops as it does for its own
+pause, but with no dimming and no PAUSE box, the HUD and randomfu's HUD
+drawing go, and the camera is the player's. The stick turns it round what
+it looks at (left and right orbit, up and down pitch), the D-pad moves it
+along the ground, △ and × raise and lower it, □ and ○ bring it nearer and
+further, L and R narrow and widen the field of view, and SELECT puts it
+back where it started. START again ends it: the camera, its field of view
+and the game go back exactly as they were, and the buttons stay cleared
+until they're all let go, so the START doesn't open the menu. The rain stays
+still round the camera, as everything else does. The camera
+goes through walls and the ground. The option picks what a disc starts
+with; the menu changes it in game, and the save keeps it (`photo_mode`).
+It's blob code, so it caps Guild Cards at 3. It doesn't start in the
+village, online, with a menu open, while the game is paused or the pad is
+locked (shops, dialogues).
+
+Tried on EU in PPSSPP (2026-11-21), with input sent through the debugger:
+entering stops the quest's clock, hides the HUD and doesn't dim; the stick orbits round the hunter as the scene draws again; SELECT
+resets; START ends with the eye back to the bit and the HUD back, and the
+menu stays shut; the game's own pause still dims. Not yet played by hand,
+with a monster in view, mid-attack, or on JP (it builds; its code is found
+by the same signatures).
+
+What the game does (EU addresses):
+
+- The save's byte `+0x6AF1A` is the pause. `isPaused(save)` (EU
+  0x088567B4) is it not being 0; `pause` (EU 0x088567C8) sets it to 1 and
+  stops the sound (single player only: the system's flag at
+  `*0x08A631A0+0xF7A57C`); `unpause` (EU 0x0885683C) sets it to 4 and
+  starts the sound again, and `game_task` clears the 4 the next frame.
+  `noPause(save, mode)` (EU 0x0884FA5C) checks the game mode (`+0x2E`).
+- `game_task`'s frame (EU 0x09A62640) runs the play update (hunters,
+  monsters, and the camera's update, EU 0x08812BD0) only when not paused.
+  Paused, it runs the HUD's update (so hook 0 still runs) and the dimming
+  (EU 0x0885658C: the screen in black at alpha 0xA0), and skips the quest's
+  frame (its clock). The HUD's update skips its layers 9 (the gauges, and
+  hook 1) and 11 (the map, the item bar) when paused; layer 10 is the menu
+  and the PAUSE box. Paused, ×, ○ and START unpause, and START opens the
+  menu.
+- The camera's update copies its eye and target to the renderer's (EU
+  `*0x089CBBE4`) `+0x20`/`+0x30` and `+0xB40`/`+0xB50` and its field of view
+  to `+0xC`; `look(renderer)` (EU 0x08815384) rebuilds the projection if
+  `+0xC` changed and the view (`+0xB80`) from `+0xB40`/`+0xB50`. While
+  paused nothing writes them, and the frozen scene draws from whatever view
+  they hold.
+- The stage's ambient effects have a manager (EU `*0x09A4F060`, set up at
+  EU 0x088C3138) whose update (EU 0x088C33E8, in the play update) runs each
+  effect's (a list at +0xA2E0, next at +0x14, the update at vtable +0x1C).
+  The rain is one (type 0xD, at +0x18): a texture on a mesh at the camera.
+  Its update copies the camera's position to +0x50 and scrolls the
+  texture's layers (+0x7C and +0x88 on, at speeds from a table in its
+  definition), which is the rain falling. Paused, the rain stays where the
+  camera was, so turning away from there leaves none in view. Running its
+  update with the speeds at 0 (tried live) keeps it round the moved camera
+  and still. In a rainy swamp area the list held that and two animated
+  textures (type 0x13, frame counters); the hunters', monsters' and attacks'
+  effects are other managers'.
+
+How randomfu does it (`src/patches/photo.ts`, `blob/photo.c`): on the pad
+hook, the blob calls `pause`, then sets the byte to 2. The dimming's first
+eight words are patched to test the byte for 1 instead of calling
+`isPaused` (the frame set-up rearranged round the test), so 2 pauses
+without dimming; with the byte at 2 the game's own unpause buttons do
+nothing, as the HUD tests for 1. Each frame the blob clears the pad's
+buttons and centres the stick, sets the pad's input lock (`+0x17`), moves
+its own camera from the real buttons and writes the four vectors and the
+field of view before calling `look`, then runs the update of each ambient
+effect of the rain's type and puts its scroll (+0x64 to +0x94) back after,
+so the rain follows the camera without falling; the other ambient effects
+aren't updated. Ending writes back the 16 words and the field of view it
+kept, calls `look`, puts back the camera angles the rain's effects keep
+(+0x60, so the game's next update doesn't scroll them by the photo
+camera's turn), lets the input lock go, and calls `unpause`; the buttons
+stay cleared until every one is up. If the game leaves the pause by itself
+(the byte isn't 2), or the renderer or pad goes, photo mode ends too.
+
+## Quest end
+
+`quest.endWait` (Modifications → Quest end in the web app), and the After a
+quest setting in randomfu's START menu entry (Damage numbers, below): how
+long the game waits once a quest is completed or runs out of time, before
+the reward screen. `normal` is the game's own; `short` waits 20 s after
+every quest, with the game's "Returning to village in 20 secs." message, which is
+time to carve one monster; `instant` goes straight to the rewards, with no
+time to carve. The option picks what a disc starts with; the menu changes it
+in game, and the save keeps it. It is a change to the EBOOT's code that
+works without the blob; with the blob (as for the camera, every disc) it is
+also a setting. Played on EU at `short` and, from the menu, `instant`
+(PPSSPP, 2026-11-21): a hunt completed with carving in the 20 s, a quest
+failed by running out of time, and the reward screen and the trip back to town after each. JP builds
+(the code is found by its signature) but hasn't been played.
+
+What the game does (EU addresses; JP's code is the same, 8 bytes earlier,
+JP 0x0886B31C):
+
+- The quest object (`*0x08A62C7C`; EU 0x09A05DC0 in a quest) runs a state
+  machine once a frame (EU 0x0886B0E0, from `game_task`): byte +0 is the
+  state, +1 the step within it, and +0x710 a countdown in frames (30 a
+  second). +0x10 is the time left (90000 frames for 50 minutes).
+- State 0 is the hunt. A quest that is completed or runs out of time goes
+  to state 1 (seen for both). One failed by fainting (byte +6 set to 6, by
+  the code at EU 0x0886F0F0) doesn't: state 0 returns -1 and the game goes
+  back to town its own way, so randomfu doesn't change it. State 1:
+  - step 0 (EU 0x0886B324) shows the end message and sets the countdown to
+    150: the 5 s "Quest Complete" banner;
+  - step 1 counts it down, then picks the wait from the quest's flags
+    (+0x28): without bit 0x80000, 1800 frames (a minute) and "Returning to
+    village in 1 min."; with it and without bit 0x200000, 600 (20 s) and
+    "Returning to village in 20 secs." (gathering quests); with both, 600
+    or 1800 as EU 0x08872B40 says. The messages are IDs 0x14 and 0x15 from
+    the end messages' ID table (EU 0x089AC5A0). A Treasure Hunting quest
+    (flag 0x10) ends with "Treasure Hunters Quest Time Up!" (ID 0x2E) and
+    has its own message, "Deliveries possible for 20 secs!" (ID 0x1E): its
+    wait is the time to deliver what the hunter carries;
+  - step 2 counts that down, then state 2 waits for every hunter of the
+    party (+0x110, at most 3 minutes; in single player at once) and the
+    reward screen follows.
+- The hunter keeps control through both countdowns: that is the time to
+  carve and gather. Cutting both to a frame live (writing +0x710) went
+  straight to a working reward screen.
+- The start of a quest has nothing like it: from departing to having
+  control in base camp is about 4 s of loading and a fade, with no timer or
+  intro behind it, and the trip back after the reward screen is loading
+  too. randomfu doesn't change them.
+
+How randomfu does it (`src/patches/quest-end.ts`, `blob/quest-end.c`):
+
+- Steps 0 and 1 are rewritten in place. Step 0 loads the message's ID in
+  one word less, which leaves room to load the banner's frames from the low
+  half of a data word. Step 1 takes the wait from the word's high half when
+  it isn't 0 (with the 20-second message; a wait of 1 with none) and
+  otherwise picks as the game does. Treasure Hunting quests always get the
+  game's choice, so their deliveries keep their time. The choice is
+  rewritten in fewer words, so the data word takes the place of a `li`
+  only the old choice reached (EU 0x0886B3FC, JP 0x0886B3F4). Normal is 150 and 0, Short 150 and 600,
+  Instant 1 and 1.
+- The disc sets the word to its option's choice; the blob sets it to the
+  save's at every load and when the setting changes. The code never
+  changes at run time.
+
+## Damage numbers
+
+`hud.damageNumbers` (`total` or `split`), after World's damage numbers:
+each of your hits on a monster, large or small, pops a number at the part
+it struck, in the game's own font, made bold (printed twice, a pixel
+apart, with its glyphs stretched an eighth wider) over a black drop
+shadow. It lands big in a flash (bright yellow, or white for a coloured
+number) for three frames, settles to its size in a few, then rises and
+shrinks away in a little over a second; a weak point's number shakes as
+it lands. Bigger hits get bigger text. The number is the health the hit
+takes: raw and element after the monster's defense multiplier. It's
+white, or orange on a weak point: a melee hit whose hitzone × sharpness
+is 0.45 or more (the test the game itself uses to pick its bigger hit
+sparks), or a shot at a part whose shot hitzone is 45 or more. `split`
+shows the element's share as a second, smaller number beside it, in its
+colour: red fire, blue water, yellow thunder, cyan ice, magenta dragon.
+Other hunters' and Felynes' hits show nothing. The numbers are drawn with the HUD, so they
+hide with it, under the map and the item bar. It runs as blob code on the
+code loader (below), so it caps Guild Cards at 3, and only reads game
+state. Like monster health, its code goes on every disc.
+
+The option picks the mode a disc starts in. START opens the game's menu,
+in a quest or in the village, and its last entry (on its second page, where
+the game keeps a greyed `--------` placeholder) is now **randomfu**: a window of settings
+that can be changed in game, drawn like the game's Options with the
+setting's help to its left: monster health (Off, On map, Always), damage
+numbers (Off, Total, Split), attack hitboxes (Off, On), field of view
+(Normal, Wide, Wider, Widest), camera distance (Normal, Far, Farther,
+Farthest), camera tilt (Steps, Slow, Smooth, Fast), the target camera (Off,
+Tap, Follow), its mark (Off, On), the wait after a quest (Normal, Short,
+Instant) and photo mode (Off, On).
+Up and down pick a setting; left, right and × change it; ○ goes back to the
+menu and START closes it. The choice is kept in randomfu's save data, so it
+lasts across saves and holds over the disc's mode, on discs from other
+seeds too (`monster_hp`, `damage_numbers`, `hitboxes`, `camera_fov`,
+`camera_distance`, `quest_end`, `camera_tilt`, `camera_target`,
+`camera_mark` and `photo_mode` in `struct rf_save_data`). Other
+Modifications can add their settings to the same window
+(`rf_add_setting`, `blob/menu.c`).
+
+What it found (EU, and the same code on JP; `src/patches/damage.ts` and
+`docs/code-loader.md` have the details):
+
+- `game_sub` works out a hit in one function: raw (the attack's power ×
+  motion value × hitzone × sharpness × the hunter's attack multiplier)
+  plus the element's share, added to the monster's damage for the frame at
+  its part (`+0x3B8`, an s16 per part). The monster's update takes that
+  times its defense multiplier (`+0x384`) off its HP. A game hook on the
+  call right after (the status buildup) hands the blob the hit.
+- A melee hit's quality (hitzone × sharpness: 3 at 1.0, 2 at 0.45, then 1
+  and 0) is written to the attack (`+0x74`); the attack's `+0x28` flags
+  say which element it carries.
+- The number goes at the hitbox's joint (a game function gives its world
+  position), put on screen by the game's projection with the camera its
+  name tags use, and printed with the code-aware print at the size set in
+  the printer (`+0x12C`, `+0x12D`).
+
+- The quest and village START menus are EBOOT code on the HUD object (12
+  entries in pages of six, and 14 in pages of seven), the last a placeholder
+  that's always greyed and refused. Game hook 8 takes their label, choose,
+  run and draw calls for randomfu's entry (`docs/code-loader.md`).
+
+Not yet tried in game: any of it. Then, in particular, the text's size and
+spacing at sizes other than the game's 14 pixels, how the bold and the
+black shadow (`~C01`, unused on the HUD by the game) look, the clock's rate
+(numbers age by the quest clock, taken as about 30 ticks a second), and
+the empty help bar the game shows for the placeholder in the list.
+randomfu's menu entry has been played in PPSSPP on EU, in the village.
+
+## Attack hitboxes
+
+`hud.attackHitboxes` shades, in translucent red, every monster attack that
+can hit the hunter right now: each sphere and capsule filled in where it
+falls on screen, with the HUD's translucent fill in strips 2 pixels tall.
+It shows exactly what the game tests against the hunter, frame by frame,
+so an attack's shading appears when it becomes able to hit and goes when
+it stops. (A first version drew opaque red outlines with the HUD's line
+routine; they were too loud.) It runs as blob code on the code
+loader's HUD hook (below), so it caps Guild Cards at 3, and hides with the
+hunter's gauges. Like monster health, its code goes on every disc: the
+option picks whether a disc starts with it on, and randomfu's START menu
+entry (Damage numbers, above) turns it on or off in game.
+
+What it found (EU and JP; `src/patches/hitboxes.ts` has the details):
+
+- Attacks are attack objects in a list behind a `game_task` global. Each
+  frame `game_sub` tests those whose `+0x14` is 2 against the hunters, one
+  shape at a time: the hurtboxes' 0x28-byte records, placed on the owning
+  monster's joint matrices (`*(m + 0x190) + joint × 0x250 + 0xD0`) and
+  scaled by its model scale. Projectiles carry their own two points
+  instead.
+- The camera's view matrix and the 3D projection sit in the renderer, at
+  `+0xB80` and `+0xC00`. The GE itself never sees the view: the game
+  multiplies it into every model's matrix.
+- The HUD has a translucent fill (the Hunter's Pact shades the screen
+  with it), and an opaque line routine next to the gauges' fill.
+
+Projected from savestates of a Yian Kut-Ku fight, the fireball's shape
+sits on the fireball and the monsters' hurtboxes on their bodies. Not
+drawn: shapes the monster's own code places (joint 0x7D), and hunters'
+attacks. The outline version was played on the EU disc in PPSSPP and worked; the
+shading hasn't been played yet, nor JP.
 
 ## Poogie's luck
 
@@ -1322,6 +1953,8 @@ quest. Page 3's fail conditions have room for one more line only.
 | No supply box                        | 1      |
 | Frail: health capped at 50           | 2      |
 | Weary: stamina capped at half        | 1      |
+| Dull blade: a colour lower           | 2      |
+| Brittle blade: twice the wear        | 1      |
 | Deliver 50% more / twice as many     | 2/3    |
 
 Two of the same kind (health +30% and +60%) are never offered together,
@@ -1330,9 +1963,11 @@ loaded quest file: monster penalties need a large monster in the quest,
 delivery ones a delivery whose item isn't in the supply box (they raise
 the delivery's target and its item objective, rounding up; the goal line
 still shows the old number), and half the time isn't offered on the
-gathering quests, which time over wins. So a gathering quest draws from
-one cart, no supply box (which holds its Paw Pass Ticket), frail and
-weary. Each penalty's weight picks its reward:
+gathering quests, which time over wins. The blade pacts (Dull and Brittle
+blade, and Broken blade below) are only for a Blademaster, and never two
+in a window. So a gathering quest draws from one cart, no supply box
+(which holds its Paw Pass Ticket), frail and weary, and the blade pacts.
+Each penalty's weight picks its reward:
 
 | Weight | Rewards                                                                         |
 | ------ | ------------------------------------------------------------------------------- |
@@ -1351,8 +1986,82 @@ the amount:
 | G    | 4000 / 8000 / 15000           |
 
 Items and equipment come up twice as often as the rest. No two pacts in a
-window pay zenny or quest rewards alike, or give the same item or piece. Rewards
-are paid only for a completed quest:
+window pay zenny or quest rewards alike (the jackpot below aside, which pays
+zenny on top of its item), or give the same item or piece.
+
+About one window in 10, on a quest with a large monster, the last pact is
+a jackpot, its penalty in the game's highlight colour, drawn from those that
+fit the quest:
+
+| Jackpot                        | What it does                                                                                                      | Zenny (×, floor) | Rare item | Leaves out      |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------- | ---------------- | --------- | --------------- |
+| Glass: 1 health, a faint fails | health (its red part and maximum too) held at 1, so any hit, heat or poison faints; and one cart                  | 10×, 100%        | ×5        | One cart, Frail |
+| Lost pouch: items to the box   | everything in the pouch goes to the item box when it's sealed (onto its stacks, then free slots), as if left home | 8×, 80%          | ×4        |                 |
+| Bleeding: health drains to 1   | a point of health every two seconds, down to 1 (never a faint); no red health to win back                         | 7×, 70%          | ×4        | Frail           |
+| Capture or nothing: no kills   | killing a large monster loses the jackpot; only where every large monster can be captured                         | 6×, 60%          | ×3        |                 |
+| Exhausted: a quarter stamina   | stamina held at a quarter (Weary, worse)                                                                          | 5×, 50%          | ×3        | Weary           |
+| Broken blade: red sharpness    | sharpness held at the top of red, so most hits bounce; only for a Blademaster                                     | 10×, 100%        | ×5        | Dull, Brittle   |
+
+Each pays an item of the rank's hardest grade, that many times what a hard
+pact gives (Rathalos Plate ×5 rather than ×1 for Glass, at most 99), and
+that many times the quest's zenny, at least its share of 30000 / 100000 /
+200000 (Low / High / G), up to a reward of 999999 (six digits, as much as
+any disc quest shows; another zenny pact taken with it stays within that
+too); only zenny where the rank's pool has no such item. No other pact in
+the window gives its item.
+
+Every jackpot also asks for no faints, and pays for speed (the window says
+so below the controls with the cursor on it, and the quest's details list
+it):
+
+- A faint while the quest is under way loses it whatever one cart does: the
+  item isn't paid and its zenny comes off the reward and the faint's
+  penalty. A faint after the quest is completed (the banner and the wait
+  after it) costs nothing.
+- When the quest ends with time left, it pays its zenny again times the
+  share of the time left since it was sealed: half the clock left, half
+  again. A quest that times out gets none, nor a lost jackpot.
+
+The quest's state (its object's `+0` byte: 0 under way, 1 completed or
+timed out, 2 rewards) tells the two apart. Capture or nothing's monsters are
+those the disc's own quests hunt (`capturableMonsters`; elder dragons,
+Akantor, Ukanlos and the like aren't); a kill is a large monster seen alive
+whose health reaches 0, as a captured one keeps its health. The pouch and
+item box are the save's `+0x43C8` (24 slots) and `+0x3428` (1000 slots,
+item and amount, stacks of 99), the save file's offsets plus 0x4A0.
+
+The blade pacts work on the hunter's sharpness (read from the code on the
+EU and FUC discs):
+
+- `hunter+0x10F2` (s16) is what's left; `hunter+0x60C` (s16) the bar's
+  length, 50 × (SharpnessAmount + 3), 50 more or less with the Handicraft
+  skills, within 150 to 450 (EBOOT EU 0x088DAAA0). The hunter's reset, at
+  the quest's start and after a cart (game_task EU 0x09A65398,
+  0x09A65678), sets the length and fills the bar.
+- A hit's wear goes through game_task's `sharpen(hunter, amount, flag)`
+  (EU 0x09A67E68): Razor Sharp halves it, its opposite doubles it, and
+  the result is kept within 0 and the length.
+- `level(hunter, sharpness)` (EBOOT EU 0x088DAB94, FUC 0x088DD4DC,
+  `SHARPNESS_LEVEL_SIGNATURE`) is the colour: 0 for a gunner
+  (`hunter+0x4E9`, the weapon's box type, isn't 5), else how many of the
+  weapon's cumulative thresholds lie below it (0 red to 6 purple). Every
+  melee hit asks it of the sharpness left, so writing that changes the
+  damage at once.
+
+Dull blade and Broken blade find the top of the colour below the bar's
+best (Dull) or of red (Broken) by asking `level` (a binary search), then
+hold both the length and what's left there every frame: a whetstone
+sharpens up to it, and after a cart the game's refill is cut back. Dull
+blade is only offered where the best colour is at least an eighth of the
+bar (so a sliver of white doesn't make it free), and no blade pact on a
+bar that's all red. A blade pact whose hunter can't be read when it's
+sealed holds, and its penalty starts on the first frame the hunter can be
+read. Brittle blade takes what the hits wore off since the last frame off again (never
+below 0); a whetstone's sharpening isn't touched. Where `level` isn't found
+the blade pacts aren't offered. A colour change the pact makes shows on
+the HUD at the next hit, when `sharpen` next looks.
+
+Rewards are paid only for a completed quest:
 
 - zenny added to the quest's own (a faint costs the same share of the new
   reward as of the old);
@@ -1363,10 +2072,35 @@ are paid only for a completed quest:
 - items in the reward box, after the quest's own, on the reward screen;
 - equipment in the equipment box's first free slot.
 
-The items and equipment come from the quest's rank (Low, High or G), drawn
-per seed: items first found at that rank (after the shuffles), and weapons
-and armor of that rank's rarities (armor both sexes can wear). Up to 16
-items a grade and 32 pieces a rank.
+Items are the quest's own: something its large monsters carve, capture or
+break for at its rank, or that its own reward tables give, as the shuffles
+left them (a Tigrex hunt pays Tigrex parts, not Kirin or Velocidrome ones).
+The blob reads the quest's large monsters and reward tables from the loaded
+file, marks those items (`tie_quest`, from `rf_pact_drops`: each species'
+drops by rank), and offers one of them. The pool (`tiedItems`, whatever
+rank an item is first found at) holds every item any quest at that rank can
+be tied to; the blob picks this quest's own, and only those. Where the
+quest has none for a grade that fits, it offers no item reward at all
+(zenny or more draws, and equipment for a hard pact), never another
+quest's item and never one no quest is tied to. Gathering quests tie only
+their reward tables. On the FUC disc every one of Low Rank Tigrex's parts
+is in the pool, and none of its hunts offers another monster's.
+
+Equipment comes from the quest's rank (Low, High or G), drawn per seed:
+weapons and armor of that rank's rarities (armor both sexes can wear), up
+to 12 pieces a rarity. A piece also has to fit the quest's stars: the
+quest's place among its rank's star levels on the disc is its place among
+the rank's rarities (Low 1-5, High 6-8, G 9-10), and a piece is that
+rarity or the next. On the FUC disc:
+
+| Rank | Stars: rarities                             |
+| ---- | ------------------------------------------- |
+| Low  | 1-2★: 1-2, 3★: 2-3, 4★: 3-4, 5★: 4-5, 6★: 5 |
+| High | 6-7★: 6-7, 8★: 7-8, 9★: 8                   |
+| G    | 9-10★: 9-10, 11★: 10                        |
+
+So a hard penalty on a late quest never pays a starter weapon (Absolute
+Power, Low Rank 5★, once offered Hunter's Dagger+, rarity 1).
 
 An item's grade is what it's worth, by the item table's price (the
 general store's for what it sells, and on the same scale for materials:
@@ -1376,6 +2110,14 @@ and an item is in it if some amount within the grade's range comes within
 something cheap, and a light one never a plate. An item can be in more
 than one grade, in different amounts. Items with no price (supplies,
 Commendations) or that don't stack (eggs) are never rewards.
+
+No item reward, a jackpot's pile included, gives more than a third of what
+every crafting and upgrade recipe on the disc needs of it (after the recipe
+shuffles; at least 1), so a niche material never comes in a pile that
+covers every craft it's for: Lost Umbrella, which seven light bowguns need
+15 of, comes at most 5 at a time (a jackpot once gave 12). An item that
+can't come in enough for its grade within that isn't in the grade. Items no
+recipe needs (they only sell) have no such limit.
 
 | Rank | Value (grade 1/2/3)     | For example                                               |
 | ---- | ----------------------- | --------------------------------------------------------- |
@@ -1429,7 +2171,12 @@ have the details):
   shared `blob/monsters.c` scales them each time, and health once.
 
 Tried in game (EU): the window, its shade, layers and text, its controls
-and the input lock. Not yet: the rewards, the delivery penalties, and JP.
+and the input lock. Not yet: the rewards, the delivery penalties, the
+jackpots (whether health held at 1 shows or plays oddly, whether a faint
+reads as health 0 for a frame, whether the game reads the pouch from the
+save during a quest, whether the reward zenny is read after the quest's
+state turns 1, so the speed bonus is paid), the blade pacts (the bar's
+drawing with a shorter length, the colour change's cue), and JP.
 The pacts in the quest's info were tried in their first place, the fail
 conditions, where they ran out of the box; not yet in the details.
 Some quest starts crashed on the EU disc before the window showed (cause
@@ -1451,6 +2198,13 @@ elite:
 - has half again its health (at most 32767), and hits 30% harder;
 - moves 10% faster: its animations run 10% faster, except during moves
   that set their own speed;
+- pauses less between moves: it stands in its idle at most 20 frames
+  (two thirds of a second) before its next move, where the game would let
+  the idle loop run out (Tigrex's three seconds). Monster aggression's cap
+  applies too, and the shorter one wins;
+- recovers and turns faster: past a move's last hit, and all through a
+  turn, its animations run 50% faster (Monster aggression's, the faster
+  one winning);
 - enrages after 60% of the damage it would otherwise take, and stays
   enraged half again as long (monsters that don't enrage skip this);
 - is 15% bigger than the quest made it (at most 250%), which the Guild
@@ -1541,8 +2295,9 @@ accepted; departing names the monster in the quest's goal. Clearing it
 sets a clear flag the game keeps for that ID, unused on the disc.
 
 It runs as blob code on the code loader (below), so it caps Guild Cards
-at 3. Only the hunter who accepts rolls, so in ad-hoc play the others get a
-different quest: **solo only** for now. How it works:
+at 3. Only the hunter who accepts rolls, so in ad-hoc play the others would
+get a different quest; discs are offline for now anyway (see "No online
+play"). How it works:
 
 - Each board star has a 0-terminated list of quest IDs in the EBOOT,
   reached through one pointer table. After every load the blob copies the
@@ -1598,6 +2353,339 @@ Tried in PPSSPP on EU at the Village Chief with "Key Quest!" in the same
 corner; the star itself hasn't been seen in game yet. Not yet tried: the
 Guild's counters, and JP.
 
+## Send All to Item Box
+
+`rewards.sendAll` adds a row to the reward screen's menu after a quest,
+between "Send to Item Box" and "End": Send All to Item Box sends every
+reward the Item Box can take at once (the comrade's items too), as Send to
+Item Box does one by one, and plays its sound. With nothing left in
+any of the rewards' slots the screen ends, as End does. What doesn't fit, or can't go in the box, stays, with the
+menu, to take or sell as before. Its help bar says so. It's
+blob code (`blob/send-all.c`) on the pad hook and the START menu's hook,
+so it goes in with the START menu entry and caps Guild Cards; a disc whose
+loader only fits without the menu leaves it out.
+
+What it found (EU and JP (FUC), the same EBOOT code but for addresses and
+the confirm button, × on EU and ○ on JP; `src/patches/send-all.ts` has the
+details):
+
+- The reward screen is EBOOT code on the HUD object, an update and a draw
+  each frame of the results step. Its state is a byte (0 the menu), with
+  the menu's row beside it. The rewards are 32 slots of item and amount in
+  the save (16 for the Felyne comrade's items).
+- Town runs the same screen (in `lobby_task`, likely for items it hands
+  over, such as Trenya's or the farm's), telling the update and draw apart
+  by their second argument, with a third list of its own. Town's is left as
+  it is, three rows.
+- The menu is a list window from a template only this screen uses, its
+  labels game message IDs: three and a 0xFFFF a list. Making the quest's
+  four rows (each list writes its rows with its row height, and the
+  update's row count and the row the back button jumps to follow its second
+  argument) and writing End's ID over the 0xFFFF gives a fourth row that
+  reads and works as End; the blob renames the third and takes the confirm
+  button on it. Without the blob, the disc has two End rows, and the last
+  one's help bar shows the game's message for row 3 (row + 4), not End's.
+- Sending an item is three EBOOT calls (can the box take it, add it, which
+  returns what didn't fit, and mark it seen); the blob makes the same ones.
+- The help bar takes the row + 4 as its message, which would give End the
+  wrong text: the blob sets End's on that row and draws its own window for
+  the new one.
+
+The four rows would run into the time left below the window, so the rows
+are 20 pixels high (from 22, and 24 for the comrade's) and the window 14
+higher (town's window moves up with it). randomfu checks on each disc that
+the screen is only called with 0 or 1 for its second argument, from the
+EBOOT and the overlays. Tried in PPSSPP on EU: the row, the layout, sending
+and ending, and a town screen keeping its three rows. Not yet seen in game: the help bar's text on the new row and End,
+and JP, which builds (its code matches) but hasn't been played.
+
+## Improve pips
+
+`smithy.improvePips` marks, in the box the smithy's Improve shows, each
+weapon the hunter can improve right now with a small orange pip (3 × 3) in a dark
+frame in its cell's top left corner. "Can improve" is the game's own test
+for the list Improve opens on a weapon: at least one of the weapons it
+improves into has every material in the pouch and box together, and the
+zenny. It's blob code (`blob/improve-pips.c`) on the START menu's hook (a
+call in `lobby_task`) and the pad hook, so it goes in with the START menu
+entry and caps Guild Cards; a disc whose loader only fits without the menu
+leaves it out.
+
+What it found (`lobby_task.ovl`, from RAM on FUC with the picker open, and
+matched on EU; `src/patches/improve-pips.ts` has the addresses):
+
+- The box picker draws a page with `grid(object, cursor, flags, layout)`,
+  from eight places. Improve's picker passes 0x410: 0x10 the equipment box
+  (`save + 0x548`, 12 bytes a slot: used, type, u16 ID), 0x400 dimming all
+  but weapons (types 5 and 6). The layout is a row of a table of s16s: the
+  first cell's x, y, width, height and the steps to the next column and
+  row (Improve's is 244, 32, 18, 18, 22, 20).
+- The list of what a weapon improves into reads its row of the EBOOT's
+  upgrade table (28 bytes: four materials, then five targets at +16; a
+  melee section and a ranged one, which a ranged weapon only uses when a
+  check says it has a row). A target is greyed out when a material falls
+  short (`has(_, item, amount)`) or the zenny does (`afford(_, cost)`, half
+  its price). The blob calls those same functions.
+
+Which cells get a pip is worked out once a page and kept while the picker
+shows: again for a slot that changes, and for the page when the zenny does
+or the picker's been closed. Not yet seen in game.
+
+## Harvest all
+
+`farm.harvestAll`: standing at Pokke Farm's Item Box, its prompt ("□ :Open
+Item Box") gets a second line, "△ :Harvest All to Item Box", while the farm
+holds anything. △ sends everything every spot holds (the field, the Mining
+Points, Insect Thickets, Mushroom Tree and Bee Hive) to the Item Box, with a
+line in the message log for each kind of item and one saying how many went.
+What doesn't fit stays on the farm, at the front of its spot. Gathering at a
+spot is the game's. It's blob code (`blob/harvest.c`) on one call of the
+START menu's hook in the EBOOT, so it goes in with the START menu entry and
+caps Guild Cards.
+
+What it found (EU and JP (FUC), the same code at other addresses;
+`src/patches/harvest.ts` has the details):
+
+- The farm is in the save at `+0x6A238`: what's built (the field's plots,
+  Mining Points and Insect Thickets as the highest one there, the Mushroom
+  Tree and Bee Hive as a level 1-3), then each spot's stock, which the farm
+  restock rolls after every quest for every table, built or not, writing
+  over whatever was left. A Mining Point or Insect Thicket holds 4 items, a
+  tree 8 and a hive 6 (one list per level); a field plot 12 items with
+  amounts.
+- The prompt at an interaction point switches on the point's type (7 the
+  farm's Item Box, 6 the house's): each prints its button's " :" message and
+  its text, then a shared tail draws the banner and the button's sprite. An
+  NPC with a second choice gets a second banner a line (16) lower. The
+  village's interaction code takes □ for every type, and other buttons only
+  for NPCs, so △ at the box is free.
+
+The blob takes the farm box case's last message lookup (its text again, for
+the banner's width): it makes the game's call, draws its own line under the
+game's as an NPC's second choice is drawn, and on △ (the buttons the Item
+Box's menu reads, nothing while input is locked) sends it all with the
+reward screen's box calls. Not yet seen in game; the finder matches the EU
+and FUC discs.
+
+## Bulk combine
+
+`pouch.bulkCombine`: in the item pouch's Combine (the START menus' second
+entry), "Combine?" gets a "How many?" window beside Yes/No. Left and right
+pick the count, from 1 up to what the ingredients make and what the pouch
+has room for (the room for the result over the most one combine can make,
+so nothing is lost); × on Yes combines that many at once, and the game's
+own result message shows the lot. Each combine still rolls its own chance:
+failures past the first give their Garbage too, and the message log says
+how many failed. With one at most (one ingredient left, or no free slot for
+the result), Combine is the game's, left and right moving the pouch's
+cursor as ever. It's blob code (`blob/combine.c`) on the START menu's hook,
+so it goes in with the START menu entry and caps Guild Cards.
+
+What it found (EU and JP (FUC), the same code at other addresses;
+`src/patches/combine.ts` has the details):
+
+- Both menus run entry 1 with the same `combine_run`, a state machine in
+  the HUD object: two states pick the ingredients (and the recipe), then
+  "Combine?" (Yes/No on up and down, the pouch's cursor on left and right,
+  and what's wrong: the pouch full, an ingredient gone), then the result.
+- × on Yes calls `combine()` once: the recipe's chance, then the result
+  and how many (up to the recipe's quantity class's most), or a failure; it
+  takes one of each ingredient either way and doesn't give the result: the
+  next state does, turning a failure into one Garbage.
+- The Yes/No window is at (248, 200), 80 by 48, on both discs; the count's
+  window goes right of it.
+
+The blob takes the menus' run and draw calls while Combine runs, and the
+combine call: that makes the game's call the count's times and answers with
+the last result and the amounts summed. Not yet seen in game; the finder
+matches the EU and FUC discs.
+
+## Paint
+
+`paint.stays` keeps a Paintball's mark for the rest of the quest: the
+painted monster stays on the area map, where the game drops it after ten
+minutes. It's a one-word patch of `game_task` (`src/patches/paint.ts`), no
+blob, so it doesn't cap Guild Cards.
+
+What it found (`game_task.ovl`, statically on EU and matched on JP):
+
+- A Paintball hit sets the monster's paint flag (`+0x3D0`, u8) to 1 and its
+  timer (`+0x3D2`, s16) to 18000 frames. The map draws a monster's icon
+  while the flag is set (the map's test, EU 0x08844578, see "Monster
+  health").
+- Each frame the monster's update counts the timer down while the flag is
+  set and isn't 0xFF, and clears the flag at 0 (EU 0x09AC74E8, JP
+  0x09AC27B8). That's the only countdown; the flag is otherwise cleared
+  when a monster is set up (spawned, or reset) and by the ad hoc sync, which
+  every randomfu disc turns off ("No online play").
+- A monster that leaves the area stays in the quest's monster list with its
+  fields, paint included, so the mark follows it to the next area. Each
+  monster has its own flag and timer.
+
+The patch turns the countdown's decrement into a `nop`, so the timer is
+written back unchanged. Not yet seen in game: the mark across area changes
+and with two monsters painted are what the code says, not what's been
+played.
+
+## Monster List
+
+`monsterList.slainCaptured` changes the card the Monster List (the menu
+with the Combo List and Comrade Info) shows for a monster: its "No. Hunted"
+line becomes "Slain: n Captured: n".
+Nothing in the save changes; the counts are the ones the game keeps on any
+disc, so hunts from before the patch count, and the save still loads on an
+unmodified disc. It's an EBOOT patch (`src/patches/monster-list.ts`), no
+blob, so it doesn't cap Guild Cards.
+
+What it found (the EBOOT, statically on EU and matched on JP):
+
+- The save keeps slain and captured apart: a u16 per emID of captures at
+  `save + 0x44CC` and of kills at `+0x46E8`, each capped at 9999, beside the
+  record sizes (`+0x4580` largest, `+0x4634` smallest). At a quest's end the
+  quest object's own counts (`+0x29C` slain, `+0x350` captured, counted up
+  by the kill and capture code, see "Monster health") are added to them.
+- A Monster List entry is a crown group, a list of emIDs (variants
+  together). Two functions sum a group's slain and captured counts, and a
+  third adds them, capped at 9999: that's what the card shows, as message
+  90 ("No. Hunted:%d"), and whether it shows the record sizes.
+- The Guild Card's Monster Log stores only the sum, in 14 bits of the card
+  that is traded with other hunters, so it's left as it is.
+
+The patch rewrites the two group sums as one function that returns both, a
+second that prints the line, and the sum in place. The card's line calls
+the new one and keeps the sum where the card reads it. The text is English
+on every disc, like Send All to Item Box's row: the game's message would
+need a second number. The card's window is 35 half-width columns; the line
+is at most 25 characters. Not yet seen in game.
+
+## Faster start
+
+`boot.skip` (Modifications → Boot in the web app): what the game shows from
+power-on. `normal` is the game's own: on EU a language choice, then a
+"Checking for Memory Stick Duo" read that autoloads the options and waits on
+"Auto-loaded Game data.", a health notice, two logos and the intro movie
+before Press START, then the title menu, Load Game's list of saves, "Load
+this character?" and its confirmation.
+
+- `title` goes from the autoload straight to Press START. The EU language
+  choice is taken out (the game keeps the PSP's language), and the autoload's
+  message is confirmed on its first frame.
+- `village` goes on into the village with the hunter in the slot the game
+  saved last (the game records it; else the first slot with a save), on a
+  black screen with no button to press. A cold boot skips the autoload, so
+  the save is read once, by Load Game: in PPSSPP about 1.7 s from the
+  language choice's end to the village loading, against 3.7 s when the boot
+  autoload ran too. Holding START, L or SELECT from power-on (while the save
+  is read) fades in and shows Load Game as normal, to choose another slot or
+  cancel to the title menu; once the list is up it's confirmed at once, so a
+  later press is too late. A
+  message (no save, a broken one) fades in too. Load Game from the title
+  menu always shows the list.
+
+Both are data patches of `demo_task.ovl` and `cont_task.ovl`, with no blob
+and no code loader, so they don't cap Guild Cards. The save loads exactly as
+from the title menu (the same memcpy, which the code loader hooks), so the
+blob and the START menu's settings load as ever. Played on EU in PPSSPP. JP
+(FUC) builds (every address is found by signature, and its code was checked
+against EU's) but hasn't been played.
+
+What the game does (EU addresses; JP's in brackets where they matter):
+
+- A task manager (`*0x08A8B1E8`) runs one task a slot. A task's handler is a
+  pointer to member, `{0, -1, function}`, copied into the task at +4; a
+  handler ends its task by setting byte +0x11 to 1 and +0x18 to the next
+  task's ID. Task 2 is boot and the title screen (`demo_task.ovl`, loaded at
+  EU 0x09A5F200, JP 0x09A5A580), task 3 the title menu, task 5 Load Game
+  (`cont_task.ovl`, at the same address), task 10 the village.
+- Task 2's handlers come from a table (EU 0x09A61B80, JP 0x09A5BD80): the
+  language choice (EU only), two resource loads, the load step (EU
+  0x09A5F670), then the notice (EU only), logos and movie, each followed by
+  Press START (EU 0x09A60258). The second resource load goes on to the load
+  step on a cold boot only (else to Press START), and sets the fade's state
+  (`*0x089CC01C` +0x1C) to 0, keeping the old one, black, at +0x30 for the
+  load step to put back. The load step autoloads with the select object
+  (EU 0x088BE550; "Auto-loaded Game data." is its state 5, a 90-frame
+  countdown or confirm), fades out, and applies the save's options to their
+  working copy (EU 0x088572E8, JP 0x08857210: `save+0x6ADD8` on to
+  `+0x6AF1C`). Task 2's EBOOT code sets the save's byte +0x494; the title
+  menu's EBOOT stub (EU 0x0887F690) puts its cursor on Load Game while it's
+  set, then clears it. Nothing else reads it.
+- Load Game polls the select object (EU `*0x09A44C60`, its function EU
+  0x088BC7F0, JP 0x088BF3F8) once a frame. Its state (+0xC): 0 and 1 read
+  the saves (EU about 0.4 s in PPSSPP), 8 waits for the read to be
+  processed (about 0.5 s) and puts the list's cursor on the slot saved
+  last, 2 opens the list, 3 is the list, 4 "Load this character?" with Yes
+  chosen, 5 its confirmation, 6 and 7 copy the slot into the save, 9 and up
+  messages. States 3 to 5 wait for confirm in the frame's pressed buttons
+  (EU 0x08A62C6C, held 4 bytes before; JP 0x08A5DD3C): × on EU, ○ on JP.
+  Its byte +0x964 is a copy of an option byte (`save+0x6ADDC`, which the
+  autoload reads): set, state 8 skips the list's opening animation and the
+  hunter previews, and state 6 doesn't wait 41 frames. Once loaded, Load
+  Game fades out, then (EU 0x09A5F5B4) runs its post-load step on the save.
+  Its windows draw over the fade.
+
+How randomfu changes it (`src/patches/boot.ts`), new code in the overlays'
+padding:
+
+- Both: the autoload's call goes through 9 words that add confirm to the
+  pressed buttons in its state 5. On EU the language choice's fade-in and
+  fade-out calls and its wait for confirm are taken out. The load step's
+  next handler becomes Press START.
+- `village`: the load step's own table entry gets an 11-word handler that
+  puts the fade's state back and ends task 2 with next = 5. In Load Game:
+  - its fade-in and its fade-out after a load go through 8 words that skip
+    them while +0x494 is set;
+  - its poll goes through 26 words: while +0x494 is set and a flag word of
+    theirs isn't, they set +0x964 and add confirm in states 3 to 5; START, L or SELECT held
+    in those states, or a message, goes to 18 words that set the flag,
+    clear +0x494 and fade in, so the menu is the player's;
+  - its post-load call goes through 5 words that apply the options first.
+- Load Game's padding is 58 words on EU and JP, which these 57 fit.
+- Tested on the CPU in `test/boot.test.ts`, with each state, the held buttons, the title
+  menu's case and JP's ○, and traced in PPSSPP from the task slots, the
+  select object, the fade and the options.
+
+## No online play
+
+Every disc randomfu writes is offline, whatever the settings: a randomized
+disc plays a different game from anyone else's, so for now it doesn't meet
+other hunters ad hoc (the Gathering Hall, the Training School) or reach the
+download servers. It isn't an option. `src/patches/no-online.ts` does it.
+
+What the game does (EU addresses; found statically on the EU and JP discs):
+
+- Before and during network play it reads the WLAN switch with
+  `sceWlanGetSwitchState` (1 is on). The EBOOT polls it (EU 0x088ABE58,
+  keeping `state == 1` at `+0x176`), and `lobby_task`, `game_sub` and
+  `arcade_task` test it before going on, or flag the session to end (EU
+  `*0x09A0B544 + 0x1AFC`) when it's off, as when the switch is flipped
+  mid-session.
+- The network starts with `sceNetInit`, in the EBOOT's net state machine
+  (EU 0x088AC66C, which goes on to `sceNetAdhocInit` or `sceNetInetInit`
+  and their control libraries) and once in `lobby_task`. A negative result
+  puts the state machine in its error state (2).
+
+The patch finds the two imports' stubs by NID and replaces every `jal` to
+them, in the EBOOT and every `overlay/*.ovl`, with the result: the switch
+reads 0 (off), so the game takes its own WLAN-off path, and `sceNetInit`
+returns 0x80410000, so the network can't start even where the switch isn't
+read. The calls' delay slots only set up arguments and still run. That's
+22 calls on EU (5 in the EBOOT) and 19 on FUC (2). Since it changes the
+EBOOT, every disc has the decrypted EBOOT (most did already: Poogie's luck,
+on by default, patches it too).
+
+Not yet played: what the Gathering Hall and the Training School show with
+the switch off, and that single player in them still works, are unchecked.
+
+This covers the disc, not the save. HunterVerse and similar services tunnel
+PPSSPP's ad hoc traffic, so a randomfu disc can't reach them, and the game
+can't tell them from any other network. A hunter saved on a randomfu disc
+still loads on a vanilla disc and can go online from there. Saves are left
+as they are on purpose: the save file is encrypted and never leaves the
+player's machine, so a hidden "made with randomfu" mark is something no
+server could check, and a visible one (on the Guild Card, say) or a separate
+save folder hasn't been done. The FAQ asks players not to.
+
 ## Code loader (prototype)
 
 `?loader-demo` in the web app's address (see `apps/randomfu`) caps received
@@ -1606,7 +2694,8 @@ struct) into room for randomfu's own code and data. Its demo blob adds 1000
 zenny on every save load, so it's seen to run; it does in PPSSPP on EU and
 JP (FUC). It's not for play. `docs/code-loader.md` has the design: the
 address, when it loads, the blob format, game hooks, the C toolchain and
-the PRX alternative. Poogie's luck, monster health, the Hunter's Pact and the key quest label are built on it.
+the PRX alternative. Poogie's luck, monster health, damage numbers, the Hunter's Pact and the
+key quest label are built on it.
 
 - **Room.** The save struct is static (an arena in the EBOOT's BSS), so the
   freed slots are at a fixed address per region: EU `0x099A1820`, JP
@@ -1619,12 +2708,14 @@ the PRX alternative. Poogie's luck, monster health, the Hunter's Pact and the ke
   reads `/PSP_GAME/USRDIR/RANDOMFU.BIN` over the slots with `sceIoOpen` and
   `sceIoRead`, checks its header, syncs the caches and calls the blob's
   `rf_init`.
-- **Game hooks.** Game calls go through stubs in the cave that make the
-  call, then run the blob's `rf_hookN` if a blob is loaded: once a frame in
+- **Game hooks.** Game calls go through a gate in the cave to stubs in the
+  blob that make the call, then run the blob's `rf_hookN` (without a blob,
+  the gate makes the game's call alone): once a frame in
   a quest, after the HUD draws the hunter's gauges, after the pad read gets
   the controller, around the quest loader's calls, and after a completed
-  quest's reward roll (`src/patches/game-hooks.ts`). Blob features register for them with
-  `rf_on` (`blob/runtime.c`). One more replaces the game's weighted
+  quest's reward roll, when a hit lands on a monster, and in the quest
+  START menu's last entry (`src/patches/game-hooks.ts`). Blob features
+  register for them with `rf_on` (`blob/runtime.c`). One more replaces the game's weighted
   picker with the blob's `rf_hook5` (Poogie's luck).
 - **Save data.** The last freed slot is randomfu's own save data, kept out
   of the blob's room in every build so features can remember things across

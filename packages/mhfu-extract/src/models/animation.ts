@@ -3,7 +3,10 @@
  * translation, rotation (quaternion) and scale track sampled at every frame
  * and thinned to the keys that glTF's interpolation (linear, spherical for
  * rotations) can't rebuild within a small tolerance. One clip per motion slot: the body, head and tail
- * motions in the same slot play together (see motion.ts).
+ * motions in the same slot play together (see motion.ts). A slot only some
+ * parts have a motion in (Rathian's 20-28: the head or the tail alone) is one
+ * the game plays on those parts over whatever the rest is playing; its clip
+ * names the bones it covers (`bones`).
  *
  * Rotations are Euler angles applied X, then Y, then Z (q = qz * qy * qx),
  * the same for the skeleton's bind pose; the order isn't confirmed (see
@@ -39,6 +42,12 @@ export interface Clip {
   loop: boolean;
   /** Seconds; where the game restarts a looping motion. */
   loopStart: number;
+  /**
+   * The bones the clip's parts cover, in skeleton order, when they aren't
+   * every part with motions: the game plays it on those parts alone, over
+   * the rest's own motion. Absent for a whole-body clip.
+   */
+  bones?: number[];
   tracks: Track[];
 }
 
@@ -202,16 +211,22 @@ function clipsFromParts(
   const scaleTolerance = options.scaleTolerance ?? 0.001;
   const parts = bonesByPart(bones);
   const slots = Math.max(0, ...byPart.map((m) => m.length));
+  const fits = (motion: Motion | null | undefined, p: number): motion is Motion =>
+    !!motion && motion.bones.length === parts[p]!.length;
+  // Parts with any motion; a part without (Rathian's severable tail tip) is never covered.
+  const moving = byPart.flatMap((list, p) => (list.some((m) => fits(m, p)) ? [p] : []));
 
   const clips: Clip[] = [];
   for (let slot = 0; slot < slots; slot++) {
     // Bone -> its motion channels, from every part with a motion in this slot.
     const animated = new Map<number, Motion["bones"][number]>();
     const motions: Motion[] = [];
+    const covered: number[] = [];
     byPart.forEach((list, p) => {
       const motion = list[slot];
-      if (!motion || motion.bones.length !== parts[p]!.length) return;
+      if (!fits(motion, p)) return;
       motions.push(motion);
+      covered.push(p);
       parts[p]!.forEach((bone, i) => animated.set(bone, motion.bones[i]!));
     });
     if (motions.length === 0) continue;
@@ -268,6 +283,9 @@ function clipsFromParts(
       duration: frames / FRAMES_PER_SECOND,
       loop: lead.loop,
       loopStart: lead.loopStart / FRAMES_PER_SECOND,
+      ...(covered.length < moving.length && {
+        bones: covered.flatMap((p) => parts[p]!).sort((a, b) => a - b),
+      }),
       tracks,
     });
   }

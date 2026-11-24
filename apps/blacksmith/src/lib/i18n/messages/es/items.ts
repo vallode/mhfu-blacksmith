@@ -145,6 +145,8 @@ export const items: Messages["items"] = {
     previousGround: "Zona de caza anterior",
     nextGround: "Zona de caza siguiente",
     groundOf: (n: number, total: number) => `Zona de caza ${n} de ${total}`,
+    everyGround: "En todas las zonas",
+    onlyHere: "Solo en esta zona",
     listNumber: "N.º en lista:",
     heGives: "Te da:",
     pageNote:
@@ -211,7 +213,6 @@ export const items: Messages["items"] = {
       onlyOnQuests: (n: number, count: string) =>
         n === 1 ? `solo en ${count} misión` : `solo en ${count} misiones`,
       questReward: (stars: string) => `recompensa ${stars}`,
-      pokkePoints: (amount: string) => `${amount} ptos.`,
     },
     gatheringIn: (group: string) => `Recolección · ${group}`,
     materialCount: (n: number, count: string) =>

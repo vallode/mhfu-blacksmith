@@ -14,6 +14,7 @@ export const site = {
     decorations: "Decorations",
     quests: "Quests",
     items: "Items",
+    maps: "Maps",
     veggieElder: "Veggie Elder",
     sets: "Sets",
     wishlist: "Wishlist",
@@ -92,6 +93,7 @@ export const site = {
     reset: "Reset to defaults",
   },
   saveSync: {
+    fileTitle: "Save File",
     title: "Save Sync",
     unsupported:
       "Automatic save syncing isn't supported in this browser. You can still upload your save file manually from the Hunter page.",
@@ -127,6 +129,30 @@ export const site = {
           : "Allow access to your save file again to keep your hunter profile in sync.",
       notNow: "Not now",
     },
+  },
+  ppssppLink: {
+    title: "PPSSPP Link",
+    intro:
+      "Playing on PPSSPP? Link the site to it and your hunter comes straight from the game whenever you switch back to this tab, saved or not.",
+    setup:
+      "In PPSSPP, turn on Settings → Tools → Developer tools → Allow remote debugger. The first time, the site finds PPSSPP's port by itself (it asks PPSSPP's own server, report.ppsspp.org, then tries the ports PPSSPP can pick from), which can take a few seconds.",
+    link: "Link to PPSSPP",
+    unlink: "Unlink",
+    syncNow: "Sync now",
+    syncing: "Reading the game…",
+    searching: "Looking for PPSSPP…",
+    linked: (game: string, ago: string) => `Linked to ${game}, synced ${ago}`,
+    notFound: "PPSSPP didn't answer. Is it running, with the remote debugger allowed?",
+    noGame: "PPSSPP is open, but no game is running.",
+    otherGame: (game: string) => `PPSSPP is running another game (${game}).`,
+    noHunter: "Load a hunter in the game, then come back to this tab.",
+    fileSkipped:
+      "While the site is linked to PPSSPP, it takes the hunter from the game, not the save file.",
+    port: "Port",
+    portHint:
+      "If the site still can't find PPSSPP, enter its port: PPSSPP shows it on screen for a few seconds when the debugger starts (“Debugger web server running on port …”), and keeps it as RemoteISOPort in PSP/SYSTEM/ppsspp.ini.",
+    connect: "Connect",
+    liveHunter: "In the game",
   },
   offline: {
     title: "Offline Data",
@@ -200,7 +226,8 @@ export const site = {
       zenny: "Zenny",
       sex: "Sex",
       questsCleared: "Quests cleared",
-      hunted: "Monsters hunted",
+      huntedLarge: "Hunted (large)",
+      huntedSmall: "Hunted (small)",
       captured: "Monsters captured",
       items: "Item kinds",
       equipment: "Equipment",

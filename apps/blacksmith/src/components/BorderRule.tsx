@@ -8,7 +8,7 @@ interface BorderRuleProps {
  * Decorative tiled horizontal divider shown under page headers.
  *
  * It bleeds out to both edges of the page column (AppShell's size container)
- * whatever padding its ancestors have, plus the body's 1.4rem padding: a
+ * whatever padding its ancestors have, plus the body's side padding (the gutter): a
  * 100cqw box re-centred on its container by a percentage margin (percentages
  * resolve against the container width). So it runs from the sidebar to the
  * window's edge, and edge to edge on phones. Without a container, cqw falls
@@ -18,7 +18,7 @@ export default function BorderRule({ className }: BorderRuleProps) {
   return (
     <hr
       className={cn(
-        "mx-[calc(50%-50cqw-1.4rem)] h-[1.6rem] w-[calc(100cqw+2.8rem)] flex-[0_0_auto] border-0 bg-transparent divider-tile",
+        "mx-[calc(50%-50cqw-var(--spacing-gutter))] h-[1.6rem] w-[calc(100cqw+2*var(--spacing-gutter))] flex-[0_0_auto] border-0 bg-transparent divider-tile",
         className,
       )}
     />

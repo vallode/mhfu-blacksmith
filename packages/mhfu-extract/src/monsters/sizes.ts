@@ -19,8 +19,8 @@
  * entry in the crown table (EBOOT `0x08853F84`): at most `mini` is a mini
  * crown, at least `gold` a gold crown, at least `silver` a silver crown.
  * Subspecies share their base monster's entry, and the record compared is
- * the largest (or smallest) across all of them. It shows sizes in
- * centimetres: the percent times the monster's base size, over 100.
+ * the largest (or smallest) across all of them. It shows sizes as
+ * the percent times the monster's base size, over 100.
  *
  * Addresses are virtual; only the EU disc's have been worked out.
  */
@@ -48,7 +48,7 @@ export const CROWN_COUNT = 62;
 export const CROWN_SIZE = 14;
 /** `u8*` by emID: the emIDs (ending 0xff) whose records a crown entry takes. */
 export const CROWN_GROUPS = 0x0899bf40;
-/** `f32` by emID: the size in centimetres at 100 percent. */
+/** `f32` by emID: the Guild Card size at 100 percent. */
 const BASE_SIZES = 0x0899c760;
 /**
  * `{ u16 flag, u16 index, u16 questId }[38]`: quests whose monsters stay at
@@ -84,7 +84,7 @@ export interface SizeTables {
   variation: [number, number][];
   /** Crown entries with thresholds; the monsters in them are the ones that vary in size. */
   crowns: CrownEntry[];
-  /** Centimetres at 100 percent, by emID. */
+  /** The Guild Card size at 100 percent, by emID. */
   baseSizes: number[];
   /**
    * Quests whose monsters are 100 until a save flag is set, by quest ID: the

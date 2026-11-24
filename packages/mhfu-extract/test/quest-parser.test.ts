@@ -19,6 +19,7 @@ test("readQuestHeader decodes every field at its documented byte offset", () => 
   buf.writeUInt32LE(564, 16); // questScriptPtr
   buf.writeUInt32LE(4808, 20); // largeMonPtr
   buf.writeUInt32LE(4656, 24); // smallMonPtr
+  buf.writeUInt32LE(120, 60); // clearPoints (HRPSuccess)
   buf.writeUInt8(0, 68); // rank
   buf.writeUInt8(4, 75); // attackRoll
   buf.writeUInt32LE(4, 76); // questType
@@ -41,6 +42,7 @@ test("readQuestHeader decodes every field at its documented byte offset", () => 
   assert.equal(header.fee, 100);
   assert.equal(header.reward, 1200);
   assert.equal(header.penalty, 400);
+  assert.equal(header.clearPoints, 120);
   assert.equal(header.timeLimit, 90000);
   assert.equal(header.questId, 1);
   assert.equal(header.questStars, 1);

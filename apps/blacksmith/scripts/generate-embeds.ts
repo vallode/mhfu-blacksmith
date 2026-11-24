@@ -4,9 +4,13 @@
  *
  * - icons/<type>-<tint>.png: 180px thumbnails, the site's in-game icon sprite
  *   tinted the way the site tints it (multiply), in the site's blue card frame
- *   and its patterned fill. Monsters get their portrait on the scroll, as on
- *   the monster page (see monsterEmbedIcon()).
- *   See embedIcon() in src/lib/seo.ts.
+ *   and its patterned fill. Monster categories get their icon on the scroll,
+ *   as on the monster page, and monsters their portrait (no longer linked,
+ *   kept for embeds shared before the cards). See embedIcon() in
+ *   src/lib/seo.ts.
+ * - cards/monsters/<slug>.png: each monster page's large preview card, its
+ *   portrait, status thresholds, hitzone table and quest star levels in the site's card frame. See
+ *   src/lib/monster-card.ts.
  * - oembed/<route>.json: each detail page's oEmbed file, which gives Discord
  *   the line above the title ("Rarity 10 Long Sword"). See oembedJson().
  * - set-data.json: every armor piece and decoration a set share code can
@@ -25,6 +29,7 @@ import { getArmorParams, getArmorPieces } from "../src/lib/armor";
 import { WEAPON_TYPES } from "../src/lib/constants";
 import { getDecorations } from "../src/lib/decorations";
 import { getMonsterCategories, getMonsters } from "../src/lib/monsters";
+import { getHuntStars } from "../src/lib/quests-data";
 import {
   EMBED_ICON_TINTS,
   EMBED_ICON_TYPES,
@@ -46,6 +51,19 @@ import {
   type CardSprites,
 } from "../src/lib/set-card";
 import { SET_EMBED_DATA_PATH, setEmbedData } from "../src/lib/set-embed";
+import { CARD_FONT, CARD_FONT_PATH } from "../src/lib/card-tree";
+import {
+  MONSTER_CARD_PORTRAIT_SCALE,
+  MONSTER_CARD_SCROLL_SCALE,
+  MONSTER_CARD_SPRITE_SCALE,
+  MONSTER_CARD_SPRITES,
+  monsterCardPath,
+  monsterCardTree,
+  type MonsterCardSprites,
+} from "../src/lib/monster-card";
+import { initWasm, Resvg } from "@resvg/resvg-wasm";
+import satori from "satori";
+import type { ReactNode } from "react";
 import { getWeapons } from "../src/lib/weapons";
 import { readSetSearchData } from "./lib/set-data";
 
@@ -139,15 +157,20 @@ const PORTRAIT_SCALE = 3;
 
 /** A monster portrait centred on the scroll, like the portrait on the monster page. */
 async function drawOnScroll(name: string, file: string) {
+  await (await scrolled(name, SCROLL_SCALE, PORTRAIT_SCALE)).toFile(file);
+}
+
+/** The portrait `name` on the scroll, the scroll at `scale` and the portrait at `portraitScale`. */
+async function scrolled(name: string, scale: number, portraitScale: number) {
   const scroll = sharp(path.join(publicDir, "images/scroll.png"));
   const { width = 0, height = 0 } = await scroll.metadata();
   const portrait = sharp(path.join(publicDir, "images/monsters", `${name}.png`));
   const size = await portrait.metadata();
-  const w = (size.width ?? 0) * PORTRAIT_SCALE;
-  const h = (size.height ?? 0) * PORTRAIT_SCALE;
-  const W = width * SCROLL_SCALE;
-  const H = height * SCROLL_SCALE;
-  await scroll
+  const w = (size.width ?? 0) * portraitScale;
+  const h = (size.height ?? 0) * portraitScale;
+  const W = width * scale;
+  const H = height * scale;
+  return scroll
     .resize(W, H, { kernel: "nearest" })
     .composite([
       {
@@ -156,8 +179,7 @@ async function drawOnScroll(name: string, file: string) {
         top: Math.floor((H - h) / 2),
       },
     ])
-    .png({ palette: true })
-    .toFile(file);
+    .png({ palette: true });
 }
 
 async function writeIcons() {
@@ -183,8 +205,9 @@ async function writeIcons() {
     }
   }
 
-  // Monsters: their portrait on the scroll, as on the monster page. The
-  // category icon stands in for monsters without a portrait of their own.
+  // Monster categories: their icon on the scroll. Monster pages now use
+  // cards (writeMonsterCards), but their old thumbnails (the portrait on the
+  // scroll) stay, so embeds shared before the cards keep their image.
   for (const category of getMonsterCategories()) {
     await drawOnScroll(category, path.join(dir, `monster-${category}.png`));
     count++;
@@ -314,14 +337,72 @@ function writeSetData() {
   return Object.keys(embedData.pieces).length + Object.keys(embedData.decorations).length;
 }
 
+const dataUri = (png: Buffer) => `data:image/png;base64,${png.toString("base64")}`;
+
+/** Each monster's link-preview card (src/lib/monster-card.ts), drawn as the Worker draws set cards. */
+async function writeMonsterCards() {
+  await initWasm(fs.readFileSync(require.resolve("@resvg/resvg-wasm/index_bg.wasm")));
+  const fonts = [
+    {
+      name: CARD_FONT,
+      data: fs.readFileSync(path.join(publicDir, CARD_FONT_PATH)),
+      weight: 400 as const,
+      style: "normal" as const,
+    },
+  ];
+  const frame = dataUri(await drawFrame(CARD.width, CARD.height));
+  const sprites = {} as MonsterCardSprites;
+  for (const name of MONSTER_CARD_SPRITES) {
+    const file = sharp(path.join(publicDir, "images", `${name}.png`));
+    const { width = 0, height = 0 } = await file.metadata();
+    const scale = name.startsWith("crown") ? 1 : MONSTER_CARD_SPRITE_SCALE;
+    sprites[name] = dataUri(
+      await file
+        .resize(width * scale, height * scale, { kernel: "nearest" })
+        .png()
+        .toBuffer(),
+    );
+  }
+  let count = 0;
+  for (const category of getMonsterCategories()) {
+    for (const m of getMonsters(category)) {
+      const own = fs.existsSync(path.join(publicDir, "images/monsters", `${m.slug}.png`));
+      const portrait = await scrolled(
+        own ? m.slug : category,
+        MONSTER_CARD_SCROLL_SCALE,
+        MONSTER_CARD_PORTRAIT_SCALE,
+      );
+      const tree = monsterCardTree(
+        m,
+        getHuntStars(m.name),
+        frame,
+        dataUri(await portrait.toBuffer()),
+        sprites,
+      );
+      const svg = await satori(tree as unknown as ReactNode, {
+        width: CARD.width,
+        height: CARD.height,
+        fonts,
+      });
+      const file = path.join(publicDir, monsterCardPath(m.slug));
+      fs.mkdirSync(path.dirname(file), { recursive: true });
+      const png = new Resvg(svg).render().asPng();
+      await sharp(png).png({ palette: true }).toFile(file);
+      count++;
+    }
+  }
+  return count;
+}
+
 async function main() {
   fs.rmSync(outDir, { recursive: true, force: true });
   const icons = await writeIcons();
   const oembeds = writeOembeds();
   const setEntries = writeSetData();
   const cardSprites = await writeSetCard();
+  const monsterCards = await writeMonsterCards();
   console.log(
-    `Wrote ${icons} embed icons, ${oembeds} oEmbed files, set data for ${setEntries} pieces and decorations, and the set card with ${cardSprites} sprites to public/embed/`,
+    `Wrote ${icons} embed icons, ${oembeds} oEmbed files, set data for ${setEntries} pieces and decorations, the set card with ${cardSprites} sprites and ${monsterCards} monster cards to public/embed/`,
   );
 }
 

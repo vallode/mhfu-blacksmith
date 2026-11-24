@@ -56,6 +56,11 @@
      bottom (toasts) clear it: bottom-[calc(var(--spacing-tabbar)+1.4rem)]. */
   --spacing-tabbar: 8.1rem;
 
+  /* The body's side padding: the gap between the page and the screen's
+     edges (px-gutter, -mx-gutter). Narrower on phones (base layer below),
+     where every pixel of width counts. */
+  --spacing-gutter: 1.4rem;
+
   /* UI palette */
   --color-accent: #037703;
   --color-hr: #6e905f;
@@ -557,7 +562,7 @@ body {
   height: 100%;
   align-items: stretch;
   margin: 0;
-  padding: 1.4rem 1.4rem 2.5rem;
+  padding: 1.4rem var(--spacing-gutter) 2.5rem;
 
   /* Fixed full-viewport background image */
   &::before {
@@ -636,11 +641,13 @@ img {
 /* Default divider. In the base layer so utilities can adjust it (e.g. the
    search overlay's tighter margins). The tiled page-header divider is the
    BorderRule component. */
-/* text-main is 20px on phones (the @theme block can't hold a media query). */
+/* text-main is 20px on phones, and the gutter narrower (the @theme block
+   can't hold a media query). */
 @layer base {
   @media screen and (max-width: 600px) {
     :root {
       --text-main: 2rem;
+      --spacing-gutter: 0.6rem;
     }
   }
 }

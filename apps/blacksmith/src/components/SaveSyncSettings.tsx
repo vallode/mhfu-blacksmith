@@ -1,12 +1,14 @@
 "use client";
 
+import PpssppLink from "@/components/PpssppLink";
 import SettingsCard from "@/components/SettingsCard";
 import { useFileSync } from "@/context/FileSyncContext";
+import { usePpssppLink } from "@/context/PpssppLinkContext";
 import { useT } from "@/context/LanguageContext";
 import type { Messages } from "@/lib/i18n/messages";
 import * as ui from "@/styles/settings";
 
-function formatTimeAgo(ts: number, ago: Messages["site"]["saveSync"]["ago"]): string {
+export function formatTimeAgo(ts: number, ago: Messages["site"]["saveSync"]["ago"]): string {
   const seconds = Math.max(0, Math.round((Date.now() - ts) / 1000));
   if (seconds < 60) return ago.justNow;
   const minutes = Math.round(seconds / 60);
@@ -16,30 +18,32 @@ function formatTimeAgo(ts: number, ago: Messages["site"]["saveSync"]["ago"]): st
   return ago.days(Math.round(hours / 24));
 }
 
+/** Options → Save Sync: the PPSSPP link, then the save file sync. */
 export default function SaveSyncSettings() {
+  const t = useT().site;
+  const linked = usePpssppLink().status === "linked";
+  return (
+    <SettingsCard title={t.saveSync.title}>
+      <h3 className={ui.subheading}>{t.ppssppLink.title}</h3>
+      <PpssppLink />
+      <h3 className={ui.subheading}>{t.saveSync.fileTitle}</h3>
+      {linked && <p className={ui.note}>{t.ppssppLink.fileSkipped}</p>}
+      <FileSyncSection />
+    </SettingsCard>
+  );
+}
+
+function FileSyncSection() {
   const fileSync = useFileSync();
   const text = useT().site.saveSync;
 
-  if (!fileSync.isSupported) {
-    return (
-      <SettingsCard title={text.title}>
-        <p className={ui.note}>{text.unsupported}</p>
-      </SettingsCard>
-    );
-  }
-
-  if (!fileSync.hasHandle) {
-    return (
-      <SettingsCard title={text.title}>
-        <p className={ui.note}>{text.notConnected}</p>
-      </SettingsCard>
-    );
-  }
+  if (!fileSync.isSupported) return <p className={ui.note}>{text.unsupported}</p>;
+  if (!fileSync.hasHandle) return <p className={ui.note}>{text.notConnected}</p>;
 
   const connected = fileSync.permission === "granted";
 
   return (
-    <SettingsCard title={text.title}>
+    <>
       <p className={ui.note}>{text.connectedNote(fileSync.fileName)}</p>
 
       <div className={ui.status}>
@@ -78,6 +82,6 @@ export default function SaveSyncSettings() {
           {text.forget}
         </button>
       </div>
-    </SettingsCard>
+    </>
   );
 }

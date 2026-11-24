@@ -87,6 +87,7 @@
         }
       },
       "base_hp": 120,
+      "base_scale": 0.35,
       "flinch_thresholds": [
         100
       ],
@@ -121,7 +122,8 @@
           "damage_interval": 150,
           "total_time": 900
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 48,
@@ -584,6 +586,7 @@
         }
       },
       "base_hp": 2400,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "shell",
@@ -825,6 +828,7 @@
         }
       },
       "base_hp": 3150,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "shell",
@@ -984,6 +988,7 @@
         }
       },
       "base_hp": 150,
+      "base_scale": 0.35,
       "flinch_thresholds": [
         130
       ],
@@ -1018,7 +1023,8 @@
           "damage_interval": 150,
           "total_time": 900
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 67,
@@ -1543,6 +1549,7 @@
         }
       },
       "base_hp": 3200,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "shell - gravios skull",
@@ -1791,6 +1798,7 @@
         }
       },
       "base_hp": 3700,
+      "base_scale": 1,
       "breaks": [
         {
           "name": "claw",
@@ -1934,6 +1942,7 @@
         }
       },
       "base_hp": 20000,
+      "base_scale": 1.4,
       "flinch_thresholds": [
         400,
         800,
