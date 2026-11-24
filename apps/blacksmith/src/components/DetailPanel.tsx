@@ -3,6 +3,7 @@
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import MaterialRow from "@/components/MaterialRow";
+import SlotMark from "@/components/SlotMark";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { cn } from "@/lib/cn";
 import type { Material } from "@/lib/types";
@@ -21,9 +22,12 @@ import { useGameText, useT } from "@/context/LanguageContext";
 export function DetailCard({
   children,
   className,
+  bar,
 }: {
   children: React.ReactNode;
   className?: string;
+  /** A `SelectorBar` drawn over the card (the content leaves room for it). */
+  bar?: React.ReactNode;
 }) {
   return (
     // In a CardBox like the tree cards (see CardBox), but z-1 as the card was,
@@ -32,6 +36,7 @@ export function DetailCard({
     // (tree card 530px, this 570px at 1400px).
     <CardBox className={cn("z-1 basis-[4rem] mobile:basis-[0%]", className)}>
       <Card scroll>{children}</Card>
+      {bar}
     </CardBox>
   );
 }
@@ -181,11 +186,25 @@ export function StatArrows({ steps }: { steps: number | null }) {
   );
 }
 
-/** Decoration slots as "OO-": filled for each slot, dashes for the rest. */
+/** Decoration slots as circles: one per slot, dashes for the rest. */
 export function Slots({ count }: { count?: number }) {
+  const label = useT().setBuilder.form.slotCount(count ?? 0);
   return (
-    <span id="weaponSlots" className="text-white opacity-50">
-      {Array.from({ length: 3 }, (_, i) => (i < (count ?? 0) ? "O" : "-")).join("")}
+    <span
+      id="weaponSlots"
+      role="img"
+      aria-label={label}
+      className="inline-flex items-center text-white opacity-50"
+    >
+      {Array.from({ length: 3 }, (_, i) =>
+        i < (count ?? 0) ? (
+          <SlotMark key={i} />
+        ) : (
+          <span key={i} aria-hidden="true" className="inline-flex w-[0.9em] justify-center">
+            -
+          </span>
+        ),
+      )}
     </span>
   );
 }

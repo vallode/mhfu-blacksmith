@@ -24,11 +24,37 @@ their own directory (`mhfu-extract/src/container/image.js`, not
 `../../mhfu-extract/src/…`), and list each other as `workspace:*`
 dependencies.
 
-Checks, from the root: `pnpm lint`, `pnpm typecheck`, `pnpm test`,
-`pnpm format:check`. Run one package's scripts with
+## Datamining: the disc and its cache
+
+`packages/mhfu-extract` reads a disc image into its own `.cache/` directory
+(gitignored, a few GB). The main checkout usually has the only copy; a fresh
+worktree starts without one.
+
+- Cache: `packages/mhfu-extract/.cache/`
+  - `packages/mhfu-extract/.cache/mhfu/`: `unpack` output (`manifest.json`
+    records its disc, plus `data-bin/` and `eboot.bin`).
+  - `packages/mhfu-extract/.cache/mhfu/extracted/`: `extract` output
+    (`quests/<board>.json`, `raw/quests.json`, `EXTRACTION.json`).
+  - `packages/mhfu-extract/.cache/dlc/ULES01213.ini`: downloadable quests for
+    `extract --dlc`.
+- In a worktree, run `pnpm link:cache` once. It finds the main checkout
+  through git and symlinks `.cache` here, so no local path is committed.
+  `MHFU_CACHE` points the CLI at a different `.cache`; `MHFU_DISC` supplies
+  `unpack --iso`.
+- The disc image is not in the repo. If you need it, read `isoPath` from
+  `packages/mhfu-extract/.cache/mhfu/manifest.json` (it records the disc
+  `unpack` used); `unpack --iso` also takes `MHFU_DISC`.
+- Read that manifest and `extracted/` rather than searching the filesystem for
+  datamining inputs.
+
+While iterating, run only the affected package's checks:
 `pnpm --filter <name> <script>` (`blacksmith`, `randomfu-web`,
-`mhfu-extract`, `randomfu`, `game-data`). Never commit a disc image or an unpacked dump
-of one (see `.gitignore`).
+`mhfu-extract`, `randomfu`, `game-data`), for example
+`pnpm --filter blacksmith test`. The root-wide `pnpm lint`,
+`pnpm typecheck`, `pnpm test` and `pnpm format:check` are all-or-nothing;
+`pnpm test` alone takes about 45 seconds, mostly randomfu's property tests.
+Save the full set for before a PR. Never commit a disc image or an unpacked
+dump of one (see `.gitignore`).
 
 Each disc image is close to 1 GB, and nothing clears temp folders or
 session scratchpads for you. Delete every disc you write (randomized

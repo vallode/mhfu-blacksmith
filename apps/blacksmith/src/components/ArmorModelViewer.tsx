@@ -17,18 +17,21 @@ import {
   type LookData,
   type PickedLooks,
 } from "@/lib/hunter-look";
-import type { ArmorModelUrls, ArmorSetModelUrls } from "@/lib/models";
+import { armorModelSlot, type ArmorModelUrls, type ArmorSetModelUrls } from "@/lib/models";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 import { useT } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
 
 interface Props {
-  models: ArmorModelUrls;
-  /** The models of the piece's whole set, once known; with two or more, the viewer offers it. */
+  /** The piece's models. Without them, the viewer shows a whole set (`setModels`). */
+  models?: ArmorModelUrls | null;
+  /** The models of the piece's whole set, or of a custom set. */
   setModels?: ArmorSetModelUrls | null;
   /** The piece's slot, for wearing it on the hunter (a set's pieces go by their files). */
-  slot: HunterSlot;
+  slot?: HunterSlot;
   label: string;
+  /** The sex to show first; a custom set is built for one. */
+  sex?: Sex;
 }
 
 type Sex = "male" | "female";
@@ -165,14 +168,22 @@ function Switch<T extends string>({
 }
 
 /**
- * ModelViewer for an armor piece: the piece or the full set it belongs to,
- * on its own or worn by the hunter, with a male/female switch when there are
- * both models.
+ * ModelViewer for armor: a piece, the full set it belongs to, or a custom
+ * set, on its own or worn by the hunter, with a male/female switch when there
+ * are both models. A custom set has no piece to show, so it shows as a set
+ * from the start.
  */
-export default function ArmorModelViewer({ models, setModels, slot, label }: Props) {
+export default function ArmorModelViewer({
+  models,
+  setModels,
+  slot,
+  label,
+  sex: initialSex,
+}: Props) {
   const tm = useT().equipment.model;
+  const hasPiece = Boolean(models?.male || models?.female);
   const [wholeSet, setWholeSet] = useState(false);
-  const [sex, setSex] = useState<Sex>(models.male ? "male" : "female");
+  const [sex, setSex] = useState<Sex>(initialSex ?? (models?.male ? "male" : "female"));
   const [onHunter, setOnHunter] = useState(lastOnHunter);
   const [lookOpen, setLookOpen] = useState(lastLookOpen);
   /** Looks picked here, by sex; read after mount, as storage isn't there to render with. */
@@ -182,15 +193,16 @@ export default function ArmorModelViewer({ models, setModels, slot, label }: Pro
   const { save } = useSave();
 
   // A sex's set shows only where the piece itself has that sex's model, so
-  // the set on show always wears it.
-  const hasSet = (s: Sex) => Boolean(models[s]) && (setModels?.[s].length ?? 0) > 1;
+  // the set on show always wears it. A custom set has no piece, so one model
+  // is enough to show it.
+  const hasSet = (s: Sex) =>
+    Boolean(!hasPiece || models?.[s]) && (setModels?.[s].length ?? 0) > (hasPiece ? 1 : 0);
   const canShowSet = hasSet("male") || hasSet("female");
-  const showSet = wholeSet && canShowSet;
-  const has = (s: Sex) => (showSet ? hasSet(s) : Boolean(models[s]));
+  const showSet = !hasPiece || (wholeSet && canShowSet);
+  const has = (s: Sex) => (showSet ? hasSet(s) : Boolean(models?.[s]));
   // Keep the chosen sex while it has a model here, else the other.
   const shownSex: Sex = has(sex) ? sex : sex === "male" ? "female" : "male";
   const canWear = useHunterExists(shownSex);
-  const worn = onHunter && canWear === true;
 
   // The look: what was picked for this sex, else the save's hunter's if it's
   // of this sex, else the bare hunter's.
@@ -210,10 +222,25 @@ export default function ArmorModelViewer({ models, setModels, slot, label }: Pro
   // The save's hunter, on its own sex's model where the piece has one.
   const canShowSaveLook = saveLook && saveSex && has(saveSex);
 
-  const urls = showSet ? setModels![shownSex] : [models[shownSex] ?? models.male ?? models.female!];
-  const [src, ...parts] = urls as [string, ...string[]];
-  const name = showSet ? tm.setModel(label) : label;
+  const urls = showSet
+    ? (setModels?.[shownSex] ?? [])
+    : [models?.[shownSex] ?? models?.male ?? models?.female].filter((url): url is string =>
+        Boolean(url),
+      );
+  const src = urls[0];
+  // A set's pieces say their slot in their file name; a piece's own does too.
+  const wearSlot = slot ?? (src ? (armorModelSlot(src) as HunterSlot | undefined) : undefined);
+  const worn = onHunter && canWear === true && Boolean(wearSlot);
+  const name = showSet && hasPiece ? tm.setModel(label) : label;
   const model = shownSex === "male" ? tm.maleModel(name) : tm.femaleModel(name);
+  const showSwitches = (canShowSet && hasPiece) || (has("male") && has("female"));
+
+  if (!src)
+    return (
+      <p className="flex h-full items-center justify-center text-center opacity-70">
+        {tm.unavailable}
+      </p>
+    );
 
   return (
     <div className="relative h-full w-full">
@@ -222,19 +249,19 @@ export default function ArmorModelViewer({ models, setModels, slot, label }: Pro
         <ModelViewer
           key={`${src}|${worn}`}
           src={src}
-          parts={parts.length > 0 ? parts : undefined}
+          parts={urls.length > 1 ? urls.slice(1) : undefined}
           label={worn ? tm.wornModel(model) : model}
-          wear={worn ? { slot, sex: shownSex, look } : undefined}
+          wear={worn && wearSlot ? { slot: wearSlot, sex: shownSex, look } : undefined}
         />
       )}
-      {(canShowSet || (has("male") && has("female"))) && (
+      {showSwitches && (
         <div
           className={cn(
             modelPanel,
             "absolute top-2 left-2 z-10 flex flex-wrap gap-x-[3.2rem] gap-y-[0.4rem]",
           )}
         >
-          {canShowSet && (
+          {canShowSet && hasPiece && (
             <Switch
               label={tm.setSwitchLabel}
               options={[
@@ -258,7 +285,7 @@ export default function ArmorModelViewer({ models, setModels, slot, label }: Pro
           )}
         </div>
       )}
-      {canWear && (
+      {canWear === true && wearSlot && (
         <div className="absolute bottom-2 left-2 z-10 flex flex-col items-start gap-2">
           {worn && lookOpen && lookOptions && (
             <div

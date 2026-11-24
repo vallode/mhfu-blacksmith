@@ -34,6 +34,8 @@ interface Props {
   count?: string;
   /** Screen-reader version of `count`. */
   countLabel?: string;
+  /** Which edge of the card the bar sits on (the card leaves room for it). */
+  edge?: "top" | "bottom";
 }
 
 export default function SelectorBar({
@@ -44,13 +46,17 @@ export default function SelectorBar({
   onStep,
   count,
   countLabel,
+  edge = "bottom",
 }: Props) {
   return (
     <div
       data-filter-bar
       // A flat grey rectangle, as in the game's selector: no border or frame.
       // Side padding clears the arrows, which overlap the bar's ends.
-      className="absolute right-[4px] bottom-[4px] left-[4px] z-2 flex h-[56px] items-center gap-[1.6rem] bg-selector px-[calc(44px-min(1.2rem,var(--spacing-gutter))-4px+0.8rem)] py-0"
+      className={cn(
+        "absolute right-[4px] left-[4px] z-2 flex h-[56px] items-center gap-[1.6rem] bg-selector px-[calc(44px-min(1.2rem,var(--spacing-gutter))-4px+0.8rem)] py-0",
+        edge === "top" ? "top-[4px]" : "bottom-[4px]",
+      )}
       role="group"
       aria-label={groupLabel}
       onKeyDown={(event) => {

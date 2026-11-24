@@ -22,6 +22,7 @@ export const monsters: Messages["monsters"] = {
       spawns: "Dónde abunda",
       attacks: "Ataques",
       status: "Estados",
+      drops: "Materiales",
     },
   },
   attacks: {

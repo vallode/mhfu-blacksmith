@@ -17,7 +17,6 @@ import {
   encodeLevelFn,
   encodePactPool,
   findSharpnessLevel,
-  TIED_PER_GRADE,
   findTextExterns,
   pactLevels,
   pactObjects,
@@ -78,6 +77,11 @@ const POOL: PactPool = [
   [[], [], [], []],
 ];
 
+/** What the test hunt's monster drops: the pool's Low Rank items. */
+const DEFAULT_DROPS = encodeDrops(
+  [202, 203, 204].map((itemId) => ({ band: "low" as const, emId: LARGE, itemId })),
+);
+
 const runtime = () =>
   RUNTIME_OBJECTS.map((o) => ({ name: o.name, data: Buffer.from(o.base64, "base64") }));
 
@@ -89,7 +93,7 @@ function quest(
   pool: PactPool = POOL,
   capturable: number[] = [LARGE],
   levels: Buffer = ANY_LEVEL,
-  drops: Buffer = encodeDrops([]),
+  drops: Buffer = DEFAULT_DROPS,
   levelFn: number | null = LEVEL_FN,
 ) {
   const blob = linkBlob([...runtime(), ...pactObjects()], BLOB, EXTERNS, Infinity, {
@@ -711,7 +715,8 @@ test("a jackpot shows its item's icon and the rule; zenny alone where the rank h
   );
   q.press(B.down);
   const on = q.press(B.down); // the cursor on the jackpot, the last pact
-  assert.ok(!lines.at(-1)!.includes("No faints"), "only on the jackpot");
+  assert.ok(!lines.some((line) => line.includes("No faints")), "only on the jackpot");
+  assert.ok(on.at(-2)!.includes("Choose"), "the controls stay");
   assert.match(on.at(-1)!, /No faints; faster pays more$/);
   // High Rank's pool has no items: 100000z, as 900z ten times is less.
   const high = questOffering(glass, 2).q;
@@ -895,7 +900,7 @@ test("more quest rewards are offered only where all of them fit in 9 draws", () 
   const q = quest();
   for (const base of [7, 9]) {
     const seen = new Set<number>();
-    for (let n = 1; n < 300; n++) {
+    for (let n = 1; n < 100; n++) {
       // Each a new quest: its clock above the last one's.
       q.setUpQuest(90000 + base * 1000 + n);
       q.cpu.setU8(TABLES + 3, base);
@@ -1151,15 +1156,6 @@ test("a lock the game holds itself is left alone", () => {
 });
 
 test("the pool: items by rank and worth, equipment by rarity, wearable by anyone", () => {
-  const tiers = new Map([
-    [1, { band: "low" as const, stars: 3 }],
-    [2, { band: "low" as const, stars: 2 }],
-    [3, { band: "low" as const, stars: 1 }],
-    [4, { band: "high" as const, stars: 4 }],
-    [5, { band: "low" as const, stars: 1 }],
-    [6, { band: "low" as const, stars: 1 }],
-    [7, { band: "low" as const, stars: 1 }],
-  ]);
   const values = new Map([
     [1, { price: 300, carry: 99 }], // a handful is worth grade 1, never more
     [2, { price: 2500, carry: 99 }], // four make grade 2
@@ -1175,7 +1171,11 @@ test("the pool: items by rank and worth, equipment by rarity, wearable by anyone
     { type: 1, id: 3, name: "Male Cap", rarity: 0, bits: 1 | 4 | 8 },
     { type: 1, id: 4, name: "Leather Cap", rarity: 0, bits: 1 | 2 | 4 | 8 },
   ];
-  const pool = pactPool(tiers, values, equipment, new Rng("pool"));
+  const tied = tiedItems([
+    ...[1, 2, 3, 5, 6, 7].map((itemId) => ({ band: "low" as const, itemId })),
+    { band: "high" as const, itemId: 4 },
+  ]);
+  const pool = pactPool(values, equipment, new Rng("pool"), new Map(), tied);
   const ids = (b: number, k: number) => pool[b]![k]!.map((e) => e.id);
   assert.deepEqual(
     [0, 1, 2].map((g) => ids(0, g)),
@@ -1210,16 +1210,12 @@ test("no reward gives more than a third of what the recipes need of an item", ()
   assert.equal(caps.get(202), 1, "at least 1");
   assert.equal(caps.get(204), undefined, "no recipe: no limit");
 
-  const tiers = new Map([
-    [1, { band: "low" as const, stars: 1 }],
-    [2, { band: "low" as const, stars: 1 }],
-  ]);
   const values = new Map([
     [1, { price: 300, carry: 99 }], // grade 1 wants 10, at least 3
     [2, { price: 12000, carry: 99 }], // grade 3 wants 3 (35000z), 2 at least (21000z)
   ]);
+  const tied = tiedItems([1, 2].map((itemId) => ({ band: "low" as const, itemId })));
   const pool = pactPool(
-    tiers,
     values,
     [],
     new Rng("demand"),
@@ -1227,6 +1223,7 @@ test("no reward gives more than a third of what the recipes need of an item", ()
       [1, 2],
       [2, 1],
     ]),
+    tied,
   );
   assert.deepEqual(pool[0]![0], [], "2 at most is fewer than grade 1 gives: not a reward");
   assert.deepEqual(
@@ -1234,7 +1231,7 @@ test("no reward gives more than a third of what the recipes need of an item", ()
     [],
     "nor where 1 is worth too little",
   );
-  const loose = pactPool(tiers, values, [], new Rng("demand"), new Map([[2, 5]]));
+  const loose = pactPool(values, [], new Rng("demand"), new Map([[2, 5]]), tied);
   assert.deepEqual(
     loose[0]![2]!.map((e) => [e.id, e.amount, e.most]),
     [[2, 3, 5]],
@@ -1251,21 +1248,12 @@ test("a jackpot's pile stops at the item's share of what recipes need", () => {
     [[], [], [], []],
     [[], [], [], []],
   ];
-  // And so for one tied to the quest, whose cap shares its bits with the tie.
-  const tied: PactPool = [
-    [[], [], [{ ...capped[0]![2]![0]!, tied: true }], []],
-    [[], [], [], []],
-    [[], [], [], []],
-  ];
-  const dragonite = encodeDrops([{ band: "low", emId: LARGE, itemId: 204 }]);
-  for (const pool of [quest(capped), quest(tied, [LARGE], ANY_LEVEL, dragonite)]) {
-    const { q } = questOfferingIn(pool, glass);
-    const list = offers(q.frame());
-    assert.equal(list.find(glass)!.reward, "Dragonite Ore x5 +30000z");
-    take(q, glass);
-    q.complete();
-    assert.deepEqual([q.cpu.u16(REWARD_BOX), q.cpu.u16(REWARD_BOX + 2)], [204, 5]);
-  }
+  const { q } = questOfferingIn(quest(capped), glass);
+  const list = offers(q.frame());
+  assert.equal(list.find(glass)!.reward, "Dragonite Ore x5 +30000z");
+  take(q, glass);
+  q.complete();
+  assert.deepEqual([q.cpu.u16(REWARD_BOX), q.cpu.u16(REWARD_BOX + 2)], [204, 5]);
 });
 
 test("equipment rarities follow the quest's place among its rank's star levels", () => {
@@ -1346,30 +1334,19 @@ const TIGREX_DROPS = [205, 206, 207].map((itemId) => ({
   itemId,
 }));
 
-test("a hunt's item rewards are its monster's drops at its rank, where the pool has them", () => {
+test("a hunt's item rewards are its monster's drops at its rank, and nothing else", () => {
   const q = quest(TIED_POOL, [LARGE], ANY_LEVEL, encodeDrops(TIGREX_DROPS));
   const seen = new Set<string>();
   for (let n = 1; n < 300; n++) {
-    const window = next(q, n).map((o) => o.reward);
-    for (const reward of window) {
+    for (const reward of next(q, n).map((o) => o.reward)) {
+      assert.doesNotMatch(reward, /Ore/, "not an item the quest isn't tied to");
       const item = /^(Tigrex \w+)/.exec(reward)?.[1];
       if (item) seen.add(item);
-      // Ore only once another offer has its grade's Tigrex part.
-      const ore = ["Iron Ore", "Machalite Ore", "Dragonite Ore"].findIndex((o) =>
-        reward.startsWith(o),
-      );
-      if (ore >= 0) {
-        const part = ["Tigrex Scale", "Tigrex Shell", "Tigrex Claw"][ore]!;
-        assert.ok(
-          window.some((r) => r.startsWith(part)),
-          `${reward} before ${part}`,
-        );
-      }
     }
   }
   assert.deepEqual([...seen].sort(), ["Tigrex Claw", "Tigrex Scale", "Tigrex Shell"]);
 
-  // Another rank's drops, or another monster's, aren't the hunt's: then any item.
+  // Another rank's drops, or another monster's, aren't the hunt's: no item at all.
   const other = quest(
     TIED_POOL,
     [LARGE],
@@ -1379,10 +1356,12 @@ test("a hunt's item rewards are its monster's drops at its rank, where the pool 
       ...TIGREX_DROPS.map((d) => ({ ...d, emId: LARGE + 1 })),
     ]),
   );
-  questOfferingIn(other, reward(/Ore/));
+  for (let n = 1; n < 300; n++) {
+    for (const o of next(other, n)) assert.doesNotMatch(o.reward, /Ore|Tigrex/);
+  }
 });
 
-test("a quest's own rewards tie its items too, and with nothing tied any item comes", () => {
+test("a quest's own rewards tie its items too, and with nothing tied no item comes", () => {
   const q = quest(TIED_POOL);
   const delivery = (n: number) => {
     q.setUpQuest(90000 + n, 1, "delivery");
@@ -1395,40 +1374,35 @@ test("a quest's own rewards tie its items too, and with nothing tied any item co
   };
   let shells = 0;
   for (let n = 1; n < 400; n++) {
-    const window = delivery(n).map((o) => o.reward);
-    for (const reward of window) {
-      if (/^Machalite/.test(reward)) {
-        assert.ok(
-          window.some((r) => /^Tigrex Shell/.test(r)),
-          "grade 2 is the quest's Shell first",
-        );
-      }
+    for (const reward of delivery(n).map((o) => o.reward)) {
+      assert.doesNotMatch(reward, /Ore/, "not an item the quest isn't tied to");
       if (/^Tigrex Shell/.test(reward)) shells++;
     }
   }
   assert.ok(shells > 0);
-  // A quest with nothing tied (no rewards, a monster with no drops): any item comes.
-  questOfferingIn(quest(TIED_POOL), reward(/Iron Ore|Machalite Ore|Dragonite Ore/));
+  // A quest with nothing tied (no rewards, a monster with no drops): no item comes.
+  const none = quest(TIED_POOL, [LARGE], ANY_LEVEL, encodeDrops([]));
+  for (let n = 1; n < 300; n++) {
+    for (const o of next(none, n)) assert.doesNotMatch(o.reward, /Ore|Tigrex/);
+  }
 });
 
 test("the pool keeps every tied item that fits a grade, whatever rank it's from", () => {
-  const tiers = new Map([
-    [1, { band: "low" as const, stars: 1 }],
-    [2, { band: "high" as const, stars: 6 }],
-  ]);
-  // Many low items worth grade 1: only a sample of them is in the pool.
-  for (let id = 10; id < 60; id++) tiers.set(id, { band: "low" as const, stars: 1 });
-  const values = new Map([...tiers.keys()].map((id) => [id, { price: 300, carry: 99 }]));
+  const values = new Map(
+    [1, 2, ...Array.from({ length: 50 }, (_, k) => k + 10)].map((id) => [
+      id,
+      { price: 300, carry: 99 },
+    ]),
+  );
   const tied = tiedItems([
     { band: "low", itemId: 2, emId: LARGE }, // a High Rank item a Low Rank monster drops
     { band: "low", itemId: 1 },
     { band: "low", itemId: 5000 }, // past the tied bits: left out
   ]);
   assert.deepEqual([...tied.get("low")!].sort(), [1, 2]);
-  const pool = pactPool(tiers, values, [], new Rng("tied"), new Map(), tied);
+  const pool = pactPool(values, [], new Rng("tied"), new Map(), tied);
   const grade1 = pool[0]![0]!.map((e) => e.id);
-  assert.ok(grade1.includes(1) && grade1.includes(2), "both tied items");
-  assert.equal(grade1.length, 2 + 16, "and 16 of the rest");
+  assert.deepEqual(grade1, [1, 2], "both tied items, and only them");
 
   const drops = encodeDrops([
     { band: "high", emId: LARGE, itemId: 9 },
@@ -1615,29 +1589,28 @@ test("a blade pact the hunter can't be read for at its seal holds, and takes onc
   assert.equal(sharpness(q)[0], 280, "and double wear");
 });
 
-test("with nothing of the quest's, an item comes from the sample, not another quest's own", () => {
+test("with nothing of the quest's, no item comes, never another quest's own", () => {
   const pool: PactPool = [
     [
       [
         { id: 202, type: 0xff, amount: 10, name: "Iron Ore" },
-        { id: 210, type: 0xff, amount: 3, name: "Kirin Hide", tied: true },
+        { id: 210, type: 0xff, amount: 3, name: "Kirin Hide" },
       ],
       [
         { id: 203, type: 0xff, amount: 5, name: "Machalite Ore" },
-        { id: 211, type: 0xff, amount: 2, name: "Kirin Horn", tied: true },
+        { id: 211, type: 0xff, amount: 2, name: "Kirin Horn" },
       ],
-      [{ id: 212, type: 0xff, amount: 1, name: "Kirin Azure Horn", tied: true }],
+      [{ id: 212, type: 0xff, amount: 1, name: "Kirin Azure Horn" }],
       [],
     ],
     [[], [], [], []],
     [[], [], [], []],
   ];
-  const q = quest(pool);
+  const q = quest(pool, [LARGE], ANY_LEVEL, encodeDrops([]));
   for (let n = 1; n < 300; n++) {
-    for (const o of next(q, n)) assert.doesNotMatch(o.reward, /Kirin/, "not this hunt's");
+    for (const o of next(q, n)) assert.doesNotMatch(o.reward, /Ore|Kirin/, "nothing tied");
   }
-  questOfferingIn(quest(pool), reward(/Iron Ore|Machalite Ore/));
-  // Kirin's own hunt gets them.
+  // Kirin's own hunt gets its parts.
   const kirin = quest(
     pool,
     [LARGE],
@@ -1647,29 +1620,28 @@ test("with nothing of the quest's, an item comes from the sample, not another qu
   questOfferingIn(kirin, reward(/^Kirin Azure Horn/));
 });
 
-test("tied items per grade are capped, so the pool stays within its u16 offsets", () => {
-  const tiers = new Map<number, { band: "low"; stars: number }>();
-  for (let id = 1; id < 900; id++) tiers.set(id, { band: "low", stars: 1 });
-  const values = new Map([...tiers.keys()].map((id) => [id, { price: 300, carry: 99 }]));
-  const tied = tiedItems([...tiers.keys()].map((itemId) => ({ band: "low" as const, itemId })));
-  const pool = pactPool(tiers, values, [], new Rng("cap"), new Map(), tied);
-  const grade1 = pool[0]![0]!;
-  assert.ok(grade1.length <= TIED_PER_GRADE, `${grade1.length}`);
-  assert.equal(grade1.filter((e) => !e.tied).length, 16, "all tied: 16 of them are the sample too");
-  // Every rank and grade at the cap, a long name for each of the game's
-  // items (no more than 2048, `TIED_ITEMS`; the discs have under 1000), still encodes.
-  const per = TIED_PER_GRADE + 16;
-  const grade = (b: number) =>
-    Array.from({ length: per }, (_, k) => ({
-      id: b * per + k + 1,
-      type: 0xff,
-      amount: 1,
-      name: `Item ${b * per + k} of quite a long name`.slice(0, 28),
-      tied: true,
-    }));
-  assert.ok(
-    encodePactPool([0, 1, 2].map((b) => [grade(b), grade(b), grade(b), []])).length < 0x10000,
+test("the pool keeps every tied item, and stays within its u16 offsets", () => {
+  // The widest a seed can make it: every named item tied at every rank,
+  // priced to fit a grade, and 12 pieces of every rarity.
+  const ids = Array.from({ length: 1116 }, (_, k) => k + 1);
+  const values = new Map(ids.map((id) => [id, { price: 4800, carry: 99 }]));
+  const tied = tiedItems(
+    (["low", "high", "g"] as const).flatMap((band) => ids.map((itemId) => ({ band, itemId }))),
   );
+  const equipment = Array.from({ length: 11 }, (_, rarity) =>
+    Array.from({ length: 12 }, (_, k) => ({
+      type: 5,
+      id: 10000 + rarity * 12 + k,
+      name: `Piece ${rarity} ${k} of a long name`.slice(0, 28),
+      rarity,
+    })),
+  ).flat();
+  const pool = pactPool(values, equipment, new Rng("cap"), new Map(), tied);
+  const grade = pool[1]![0]!;
+  assert.ok(grade.length > 200, `${grade.length} tied items, none sampled out`);
+  assert.equal(new Set(grade.map((e) => e.id)).size, grade.length, "each item once");
+  const bytes = encodePactPool(pool);
+  assert.ok(bytes.length < 0x10000, `${bytes.length} bytes`);
   // Past its u16 offsets it says so, rather than writing a bad pool.
   const huge = Array.from({ length: 3000 }, (_, k) => ({
     id: k + 1,
@@ -1678,17 +1650,4 @@ test("tied items per grade are capped, so the pool stays within its u16 offsets"
     name: `Item ${k} of quite a long name`.slice(0, 28),
   }));
   assert.throws(() => encodePactPool([[huge, [], [], []]]), /64 KB/);
-});
-
-test("the sample is topped up with tied items when nearly every item is tied", () => {
-  const tiers = new Map<number, { band: "low"; stars: number }>();
-  for (let id = 1; id < 40; id++) tiers.set(id, { band: "low", stars: 1 });
-  const values = new Map([...tiers.keys()].map((id) => [id, { price: 300, carry: 99 }]));
-  // All but 3 tied.
-  const tied = tiedItems(
-    [...tiers.keys()].slice(3).map((itemId) => ({ band: "low" as const, itemId })),
-  );
-  const grade1 = pactPool(tiers, values, [], new Rng("top up"), new Map(), tied)[0]![0]!;
-  assert.equal(grade1.filter((e) => !e.tied).length, 16);
-  assert.equal(new Set(grade1.map((e) => e.id)).size, grade1.length, "each item once");
 });

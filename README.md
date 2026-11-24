@@ -64,17 +64,20 @@ From the repository root:
 ```sh
 pnpm install
 
-pnpm dev            # the site's dev server on http://localhost:3000
-pnpm build          # regenerate the site's data + static export to apps/blacksmith/out/
-pnpm lint           # ESLint
-pnpm typecheck      # tsc in every package
-pnpm test           # every package's tests
-pnpm format         # Prettier, for the whole repository
-pnpm format:check   # Prettier, check only
-pnpm clean:discs    # delete disc images left in Claude Code scratchpads (--dry-run lists them)
+pnpm dev                    # the site's dev server on http://localhost:3000
+pnpm build                  # regenerate the site's data + static export to apps/blacksmith/out/
+pnpm lint                   # ESLint
+pnpm typecheck              # tsc in every package
+pnpm test                   # every package's tests
+pnpm format                 # Prettier, for the whole repository
+pnpm format:check           # Prettier, check only
+pnpm link:cache             # link this worktree to the main checkout's datamining cache
+pnpm clean:discs            # delete disc images left in Claude Code scratchpads (--dry-run lists them)
+pnpm screenshots:optimize   # oxipng the docs/screenshots captures and check 960x544
 ```
 
 Run any package's own scripts with `pnpm --filter <package> <script>`.
 More: [the site's workflow](apps/blacksmith/README.md) (data, crafting trees,
-3D models), [the game data format](packages/game-data/README.md) and
-[deployment](docs/deploying.md) (Cloudflare).
+3D models), [the game data format](packages/game-data/README.md),
+[deployment](docs/deploying.md) (Cloudflare), and [in-game
+screenshots](docs/screenshots/README.md) kept as design reference.

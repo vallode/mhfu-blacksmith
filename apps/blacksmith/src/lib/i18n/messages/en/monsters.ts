@@ -32,6 +32,8 @@ export const monsters = {
       spawns: "Most plentiful",
       attacks: "Attacks",
       status: "Status",
+      /** The heading the rank drop tables group under. */
+      drops: "Drops",
     },
   },
   /** The Attacks tab: each motion's hits, from the game's attack code. */

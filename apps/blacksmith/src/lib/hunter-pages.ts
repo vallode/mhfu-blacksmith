@@ -28,9 +28,9 @@ export const HUNTER_PAGES: readonly HunterPage[] = [
   { id: "guild-card", icon: "coin", ready: true },
   { id: "awards", icon: "heavenly", ready: true },
   { id: "quests", icon: "ticket", ready: true },
-  { id: "monsters", icon: "claw", ready: false },
-  { id: "crowns", icon: "scale", ready: false },
-  { id: "collection", icon: "great-sword", ready: false },
+  { id: "monsters", icon: "claw", ready: true },
+  { id: "crowns", icon: "scale", ready: true },
+  { id: "collection", icon: "great-sword", ready: true },
 ];
 export const SAVE_PAGE: HunterPage = { id: "save", icon: "note", ready: true };
 

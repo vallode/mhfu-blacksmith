@@ -317,6 +317,105 @@ but its turns and the end of some attacks were still slow.
 Played against Tigrex on the EU disc at `relentless` (2026-11-22): its
 turns felt much better.
 
+## Out of reach
+
+`monsterAi.reach` (README, "Monster reach") is two findings: which choice
+entries start a flight or a burrow, and how a monster decides to leave an
+area. Found on the EU disc; the scripts (`reach.py`, `posture.py`,
+`gen-reach.mts`) are in the notes folder.
+
+### Posture
+
+A monster's posture is `+0x280`: 0 on the ground, 2 in the air, 4
+underground (in sand); 1 is a state not looked into. The scripts test it
+with conditional ops, each `XX 00` (if), `XX 01` (else), `XX 02` (endif):
+`08` is posture 0, `09` posture 2, `1f` posture 1, `51` posture 4. (An `ff`
+inside an if-block doesn't end the script; a dump that stops at the first
+`ff` misses the rest.) Other conditionals used here: `02 00` if `+0x503`
+(engaged with a hunter) is set, `0b 00 N` if `+0x4B9` (awareness) is N.
+
+- Flyers (em01 Rathian/Rathalos, em20 Kut-Ku/Gypceros, em02 Fatalis, em40
+  Garuga, em54 Kushala/Lunastra/Teostra, em59 Chameleos, em82
+  Hypnocatrice) take off with action 2.0 under `08 00` and land with 2.1
+  under `09 00`.
+- em14 (Diablos, Monoblos and their kin) digs in with 2.0 in the else of
+  `51 00`, moves underground with 2.3, 2.4 and 2.27-2.29 and surfaces with
+  2.2.
+- Cephadrome and Cephalos (one `game_task` root) dive with 2.16, mostly
+  outside choices, so nothing is weighted for them.
+
+The classifier walks each choice entry's body, following `81`, `82`, `0F`
+and `17` into sub-scripts with a stack of the posture guards it's under,
+and marks an entry `L` if it reaches the takeoff or dig action outside an
+"already away" guard, in a choice made on the ground; `B` if a choice made
+in the air or underground has an entry that reaches the landing or
+surfacing action. A choice's own posture comes from parsing every entry
+script linearly. Choices that mix `L` with other moves get the weights;
+ones whose every entry leaves (em40, em54, em82 decide flights that way, or
+outside choices) can't be leaned. Some scripts are shared by roots that
+resolve one `82` entry differently (Kut-Ku's root 0x9D386F0); an entry is
+`L` if it takes off under every root that reaches it, entries the game
+never picks (weight 0) count as either, and a choice the roots still
+disagree on is left out (36: 29 in em20, 6 in em01, 1 in em82).
+
+### Leaving an area
+
+Rathalos's state table (`+0x500`, set only by op `07 n`): 0 idle (aware: to
+2; unaware: roam states 6, 7, 1), 1 move to another area (route `16 07`,
+then `18`), 2 decide (engaged: 3, combat; not: 4, walk off, or 9, fly
+off), 3 combat, 4 picks 5 or 8 (walk to an exit), 9 fly off (action 2.16).
+So a monster leaves when no hunter engages it.
+
+Engagement is the hunter's bit in `+0x503`:
+
+- Each frame (0x09AC9B08, called from 0x09AC5F38) a monster that sees a
+  hunter (`+0x513`, set at 0x09ACB368 from raycasts at 0x09C403C0 and the
+  vision cone at 0x09AD40E8) sets the hunter's bit and resets
+  `+0x514[h]` (s16) to its `emChunk`'s `+0x146`. While it can't see them,
+  the timer counts down and the bit clears at 0.
+- Aggro: 0x09AD29F8(monster, add, cap, hunter) adds into `+0x554[h]`, which
+  decays each frame; at 9000 or more, with the hunter in the same area, it
+  sets the bit and resets the timer too. The add and cap pairs come from
+  the table at `emChunk` pointer 22 (`+0x1B0`, 0x09BCDCB0 for most:
+  10000/30000, 3000/30000, 4000/35000, 10/30000, ...).
+- `ff f7` in a script forgets the target hunter (`+0x511`): it clears its
+  bit, timer and aggro.
+
+`emChunk` `+0x146` is 1800 frames (60 s) for most species, 900 for the
+dromes and raptors, 2700 for Yian Garuga. `monsterAi.reach` multiplies it
+for large monsters. Not yet seen in game whether a monster that stays
+engaged with a hunter in another area waits or follows.
+
+### Leaving mid-fight
+
+Engaged or not, a monster leaves an area when its area time runs out.
+Watched live on the EU disc in PPSSPP (Yian Kut-Ku, Forest and Hills, the
+hunter dodging without hitting it):
+
+- The awareness timer `+0x4BE` (s16, set to `emChunk` `+0x148`, 900 for
+  nearly every species) stayed at 899 for 90 s with no hits while engaged.
+  Its countdown at 0x09AC9820 isn't what ends a fight.
+- `+0x550` (s16) counts down once a frame while the monster is aware
+  (`+0x4B9` = 1, 0x09AC650C). At 0 the Kut-Ku's combat state (4) went to
+  2, it took off (2.0), flew (2.8) and reached the next area about 20 s
+  later, still engaged; there `+0x550` was set again (9000).
+- Entering an area sets it (0x09AD0B88) from the list at `emChunk`
+  `+0x1C0`: `{ s16 stage, s16 frames }` pairs, then `{ -1, default }`. A
+  stage above 1000 is the stage plus 1000, and skips the next step.
+  Stages are the global IDs `quest-maps.ts` describes; a night stage seems
+  to match through tables at 0x09CE5008/0x09CE5220 (not decoded).
+- Then 0x09AD0B48 adds 1800 × k frames, k (0 to 3) from the byte table
+  0x09BCF148 by `+0x322 & 0x1F`. 0x09ACE9CC sets it instead from a spawn
+  record's `+0x34` when that's above 0.
+- Rathalos's state 2 also tests it (op `2a`: `+0x550` above 0).
+
+The lists, by family (23 on the EU disc, the same on FUC): most default
+to 9000 (5 min); Gypceros, Hypnocatrice and the Carapaceons 5400; Tigrex's
+family 10800; Cephadrome, Plesioth and Lavasioth 3600; Yama Tsukami 1800.
+Listed areas run from 1800 (Swamp area 6 for several) to 18000 (Forest and
+Hills area 2 for Rathalos and Kushala) and 32000 (Lunastra and Teostra in
+a Tower area). `areatimes.py` in the notes folder dumps them.
+
 ## Other things found on the way
 
 - `emChunk` `+0x60` and `+0x80` (DetectRange, DetectRadius) look like

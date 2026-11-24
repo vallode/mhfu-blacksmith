@@ -17,6 +17,7 @@ import {
   discoverPorts,
   HUNTER_ADDRESSES,
   readLiveHunter,
+  scanPorts,
   type PpssppDebugger,
 } from "@/lib/ppsspp-link";
 
@@ -148,7 +149,7 @@ export function PpssppLinkProvider({ children }: { children: React.ReactNode }) 
       }
     }
     patch({ status: "searching" });
-    const found = await connectFirst(await discoverPorts());
+    const found = (await connectFirst(await discoverPorts())) ?? (await scanPorts());
     if (!found) return null;
     writeStored({ port: found.port });
     patch({ port: found.port });

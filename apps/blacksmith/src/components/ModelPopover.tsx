@@ -186,7 +186,7 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
         type="button"
         onClick={onClose}
         aria-label={t.equipment.model.close}
-        className="absolute top-1 right-2 z-20 cursor-pointer px-2 text-[4.4rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:text-[3.4rem]"
+        className="absolute top-3 right-4 z-20 cursor-pointer px-2 text-[4.4rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:text-[3.4rem]"
       >
         ×
       </button>

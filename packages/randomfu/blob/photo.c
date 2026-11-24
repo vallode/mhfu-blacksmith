@@ -392,7 +392,7 @@ static void pad_hook(u8 *ctrl) {
 __attribute__((weak)) void rf_add_setting(const struct rf_setting *setting);
 
 #define CHOICES 2
-static const char *const names[CHOICES] = {"Off", "On"};
+static const char *const names[CHOICES] = {"OFF", "ON"};
 
 static u32 setting(void) {
   const struct rf_save_data *d = rf_save_data();

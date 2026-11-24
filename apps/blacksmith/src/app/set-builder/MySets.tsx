@@ -16,6 +16,7 @@ import { decodeSet, type CodecTables } from "@/lib/set-codec";
 import type { SearchData } from "@/lib/set-search";
 import * as ui from "@/styles/settings";
 import { PanelTitle } from "./ArmorSetView";
+import SetNameForm from "./SetNameForm";
 
 function Summary({ set, data, tables }: { set: SavedSet; data: SearchData; tables: CodecTables }) {
   const t = useT();
@@ -76,7 +77,6 @@ export default function MySets({
   const t = useT();
   const text = t.setBuilder.mySets;
   const [renaming, setRenaming] = useState<string | null>(null);
-  const [name, setName] = useState("");
 
   return (
     <div className="flex flex-col gap-[1.3rem]">
@@ -92,27 +92,15 @@ export default function MySets({
             )}
           >
             {renaming === s.id ? (
-              <form
-                className="flex gap-[0.8rem]"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (name.trim()) onRename(s.id, name.trim());
+              <SetNameForm
+                initial={s.name}
+                label={text.nameLabel}
+                onSubmit={(name) => {
+                  onRename(s.id, name);
                   setRenaming(null);
                 }}
-              >
-                <input
-                  className={ui.searchInput}
-                  aria-label={text.nameLabel}
-                  value={name}
-                  maxLength={40}
-                  autoFocus
-                  onChange={(e) => setName(e.target.value)}
-                  onKeyDown={(e) => e.key === "Escape" && setRenaming(null)}
-                />
-                <button type="submit" className={ui.button}>
-                  {text.ok}
-                </button>
-              </form>
+                onCancel={() => setRenaming(null)}
+              />
             ) : (
               <span className="flex items-baseline gap-[0.8rem]">
                 <span className="min-w-0 flex-1 truncate text-sub text-white">{s.name}</span>
@@ -133,10 +121,7 @@ export default function MySets({
                 type="button"
                 className={ui.button}
                 aria-label={text.renameLabel(s.name)}
-                onClick={() => {
-                  setName(s.name);
-                  setRenaming(s.id);
-                }}
+                onClick={() => setRenaming(s.id)}
               >
                 {text.rename}
               </button>

@@ -1,6 +1,6 @@
 /** Area maps (lib/area-maps.ts): gathering points by quest. */
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import {
@@ -61,9 +61,59 @@ test("buildAreaMaps gives each position its own point, and skips layouts with no
   );
 });
 
+test("buildAreaMaps gives every quest a map, even without gathering points", () => {
+  const bundle = buildAreaMaps(
+    {
+      layouts: [
+        {
+          map: "Forest and Hills (Day)",
+          texture: "map2",
+          quests: [5],
+          areas: [
+            {
+              area: 0,
+              nodes: [
+                {
+                  kind: "gather",
+                  count: 1,
+                  gathers: 1,
+                  most_gathers: 1,
+                  items,
+                  positions: [[10, 20]],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    [
+      { id: 5, map: "Forest and Hills (Day)" }, // its own points
+      { id: 6, map: "Forest and Hills (Day)" }, // a quest with none there
+      { id: 1, map: "Tower 2" },
+      { id: 2, map: "Arena (Small)" },
+      { id: 3, map: "Tower 1" },
+      { id: 4, map: "Nowhere" },
+    ],
+  );
+  assert.deepEqual(Object.keys(bundle.quests).sort(), ["1", "2", "3", "5", "6"]);
+  assert.deepEqual(decodeAreaMap(bundle, 1), { texture: "map14", points: [] });
+  assert.deepEqual(decodeAreaMap(bundle, 2), { texture: "map10", points: [] });
+  assert.deepEqual(decodeAreaMap(bundle, 3), { texture: "map15", points: [] });
+  assert.deepEqual(decodeAreaMap(bundle, 6), { texture: "map2", points: [] });
+  assert.equal(decodeAreaMap(bundle, 5)!.points.length, 1);
+  assert.equal(decodeAreaMap(bundle, 4), null);
+});
+
 test("every committed position is inside its texture, and the texture exists", () => {
   const file = readData(DATA_DIR, "gathering.json") as GatheringFile;
-  const bundle = buildAreaMaps(file);
+  const quests = readdirSync(path.join(DATA_DIR, "quests"))
+    .filter((name) => name.endsWith(".json"))
+    .flatMap(
+      (name) =>
+        readData<{ quests: { id: number; map: string | null }[] }>(DATA_DIR, "quests", name).quests,
+    );
+  const bundle = buildAreaMaps(file, quests);
   assert.ok(bundle.maps.length > 50);
   for (const [texture, points] of bundle.maps) {
     const png = path.join(process.cwd(), "public", "images", "area-maps", `${texture}.png`);
@@ -74,6 +124,21 @@ test("every committed position is inside its texture, and the texture exists", (
         `${texture} ${x},${y}`,
       );
     }
+  }
+});
+
+test("every quest on a known map gets an area map, with points or not", () => {
+  const file = readData(DATA_DIR, "gathering.json") as GatheringFile;
+  const quests = readdirSync(path.join(DATA_DIR, "quests"))
+    .filter((name) => name.endsWith(".json"))
+    .flatMap(
+      (name) =>
+        readData<{ quests: { id: number; map: string | null }[] }>(DATA_DIR, "quests", name).quests,
+    );
+  const bundle = buildAreaMaps(file, quests);
+  for (const quest of quests) {
+    if (quest.map === null) continue;
+    assert.ok(bundle.quests[quest.id] !== undefined, `quest ${quest.id} (${quest.map}) has no map`);
   }
 });
 
@@ -94,4 +159,15 @@ test("nextSelection steps through overlapping points, nearest first, then to non
 test("areaLabel names the Base Camp", () => {
   assert.equal(areaLabel(0), "Base Camp");
   assert.equal(areaLabel(4), "Area 4");
+});
+
+test("areaNumber gives the number the map art prints, not the stage index", async () => {
+  const { areaNumber } = await import("../src/lib/area-numbers");
+  // The Jungle's 7th stage is drawn as its area 8, and its Base Camp has none.
+  assert.equal(areaNumber("map6", 7), 8);
+  assert.equal(areaNumber("map6", 6), 9);
+  assert.equal(areaNumber("map6", 0), 0);
+  // A map the table doesn't have keeps its index.
+  assert.equal(areaNumber("map999", 3), 3);
+  assert.equal(areaNumber(undefined, 3), 3);
 });

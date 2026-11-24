@@ -98,7 +98,12 @@ import {
   randomizeMonsterStats,
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
-import { makeMonstersAggressive, randomizeMonsterAi, readScripts } from "./shuffles/monster-ai.js";
+import {
+  keepMonstersInReach,
+  makeMonstersAggressive,
+  randomizeMonsterAi,
+  readScripts,
+} from "./shuffles/monster-ai.js";
 import { writeGuides } from "./hints/guides.js";
 import { DEMO_OBJECTS } from "./blob/demo-object.js";
 import { decodeObjects } from "./blob/link.js";
@@ -552,7 +557,8 @@ export function randomize(
   const aggression = settings["monsterAi.aggression"];
   // Its odds are data; its shorter pauses go in with the blob, below, which notes them here.
   let aggressionReport: ShuffleReport | null = null;
-  if (settings["monsterAi.branches"] || aggression !== "off") {
+  const reach = settings["monsterAi.reach"];
+  if (settings["monsterAi.branches"] || aggression !== "off" || reach !== "off") {
     const scripts = readScripts(game.gameTask, loadEmOverlays(game));
     if (settings["monsterAi.branches"]) {
       reports.push(
@@ -569,6 +575,11 @@ export function randomize(
     if (aggression !== "off") {
       aggressionReport = makeMonstersAggressive(aggression, edits, scripts, monsterName);
       reports.push(aggressionReport);
+    }
+    // Last, so it leans the odds the other two left.
+    if (reach !== "off") {
+      const large = questsAfter.flatMap((q) => q.largeMonsters.map((m) => m.monsterId));
+      reports.push(keepMonstersInReach(reach, edits, scripts, game.gameTask, large, monsterName));
     }
   }
 
@@ -1333,20 +1344,19 @@ export function randomize(
             bits: p.bits,
           })),
         ];
-        const tiers = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
         // As the shops left prices and carry limits, so no reward pays past the limit.
         const values = readItemValues(out, table);
         // What every recipe needs, as the recipe shuffles left them: no reward gives a third of it.
         const demand = demandCaps(collectRecipeSlots(out, game.resolver));
         // What each quest is about, as the shuffles left it: its large monsters'
-        // drops at its rank and its own rewards. The blob leans its items to those.
+        // drops at its rank and its own rewards. The blob ties its items to those.
         const drops = readMonsterDrops(game, edits);
         const questRewards = collectQuestRewardSlots(game.quests, (q) => edits.questNow(q)).map(
           (s) => ({ band: s.tier.band, itemId: s.itemId }),
         );
         const tied = tiedItems([...drops, ...questRewards]);
         data.rf_pact_pool = encodePactPool(
-          pactPool(tiers, values, equipment, rng.fork("pact-pool"), demand, tied),
+          pactPool(values, equipment, rng.fork("pact-pool"), demand, tied),
         );
         data.rf_pact_drops = encodeDrops(drops);
         // The blade pacts' colour lookup; without it they aren't offered.

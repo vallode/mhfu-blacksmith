@@ -177,6 +177,7 @@ web app shows as a tag):
 | `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                        |
 | `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                          |
 | `monsterAi.aggression`            | `off`       | `off`, `more` (attacks ×2, idle ≤ 1 s, recoveries 50% faster) or `relentless` (×4, ⅓ s, recoveries ×2) |
+| `monsterAi.reach`                 | `off`       | `off`, `less` (takeoffs and burrows ÷3, area and lost-hunter times ×2) or `rarely` (÷8, ×4)            |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                            |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                      |
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
@@ -1028,6 +1029,55 @@ played. The shorter pauses were played against Tigrex on the EU disc at
 `relentless` (better, but its turns and some recoveries were still slow,
 which the quicker recoveries are for). With the quicker recoveries too,
 Tigrex's turns felt much better.
+
+**Monster reach** (`monsterAi.reach`, `keepMonstersInReach` in
+`src/shuffles/monster-ai.ts`) makes large monsters spend less of the fight
+out of reach: fewer flights and burrows, and less wandering off.
+
+- Which entries take a monster into the air or underground is data
+  (`src/shuffles/monster-reach.ts`), worked out from the EU disc as
+  `docs/monster-ai.md` ("Out of reach") describes, in the same form as the
+  attack data: 534 choices in 5 files that mix taking off or digging in
+  (`L`) with other moves, and 3 of Fatalis's that mix landing (`B`) with
+  staying up. That's Rathian, Rathalos and their kin (306), Diablos and
+  Monoblos and their kin (145), Yian Kut-Ku and Gypceros and their kin
+  (42), Fatalis and its kin (40) and Chameleos (1).
+- `L` entries' weights are divided by 3 (`less`) or 8 (`rarely`) and `B`
+  entries' multiplied, and the choice is scaled back to 32, every possible
+  entry keeping at least 1. On the EU disc that takes Rathalos's chance of
+  taking off, where a choice offers it, from 22% on average to 12% (`less`)
+  or 8% (`rarely`), and Diablos's of digging in from 36% to 17% or 8%. It
+  runs after `monsterAi.branches` and `monsterAi.aggression`, on their
+  weights, so it stacks with both; an entry that is both an attack and a
+  takeoff is leaned both ways.
+- A flight or a burrow, once started, is a fixed sequence in one entry, and
+  no choice a flying monster makes mixes landing with staying up (outside
+  Fatalis's three), so flights and burrows get rarer, not shorter.
+- Every species that's a large monster in some quest (after
+  `questMonsters` changes) fights in each area for longer before it leaves
+  mid-fight. While it's aware of a hunter, its `+0x550` (s16, frames)
+  counts down, and at 0 it leaves the area even while engaged (seen on the
+  EU disc in PPSSPP: a Yian Kut-Ku took off and flew to the next area the
+  moment it ran out, with the hunter right there). Entering an area sets it
+  from the species' area-time list (`emChunk` `+0x1C0`: `{ s16 stage, s16
+frames }` pairs, then `{ -1, default }`), plus 0 to 3 minutes the game
+  picks. Most species stay 5 minutes by default, 1 to 10 in listed areas
+  (Lunastra and Teostra nearly 18 in one of the Tower's). Every value is
+  multiplied by 2 or 4, at most 27,367 frames (about 15 minutes), so the
+  added minutes can't wrap the countdown, and never lowered. The 23 lists
+  sit in `game_task.ovl` or the family's `emNN.ovl` (no other overlay is
+  tried, as they all load at the same addresses); species that share one
+  change together. A stage above 1000 gets none of the added minutes, so
+  its time is capped at 32767 instead.
+- The same monsters keep after a hunter they can't see for longer:
+  its `emChunk`'s `+0x146` (s16, frames) is the time it stays engaged once
+  the hunter is out of sight, after which it decides to walk or fly off to
+  another area. It's 1800 frames (60 s) for most, 900 for the dromes and
+  2700 for Yian Garuga; `less` doubles it and `rarely` quadruples it (at
+  most 32767). Elites change with their species.
+- A file's flights change only if its choices and their vanilla weights
+  hash to what the data was made from; the EU and FUC discs both match. The
+  area times and engagement time change on any disc where they read.
 
 **The bookshelf guides** rewrite runs of the house bookshelf's articles
 (Open Bookshelf, Info Magazine) and make them readable from the start
@@ -1961,7 +2011,8 @@ too); only zenny where the rank's pool has no such item. No other pact in
 the window gives its item.
 
 Every jackpot also asks for no faints, and pays for speed (the window says
-so with the cursor on it, and the quest's details list it):
+so below the controls with the cursor on it, and the quest's details list
+it):
 
 - A faint while the quest is under way loses it whatever one cart does: the
   item isn't paid and its zenny comes off the reward and the faint's
@@ -2021,32 +2072,26 @@ Rewards are paid only for a completed quest:
 - items in the reward box, after the quest's own, on the reward screen;
 - equipment in the equipment box's first free slot.
 
-The items and equipment come from the quest's rank (Low, High or G), drawn
-per seed: items first found at that rank (after the shuffles), and weapons
-and armor of that rank's rarities (armor both sexes can wear). Up to 12
-pieces a rarity.
+Items are the quest's own: something its large monsters carve, capture or
+break for at its rank, or that its own reward tables give, as the shuffles
+left them (a Tigrex hunt pays Tigrex parts, not Kirin or Velocidrome ones).
+The blob reads the quest's large monsters and reward tables from the loaded
+file, marks those items (`tie_quest`, from `rf_pact_drops`: each species'
+drops by rank), and offers one of them. The pool (`tiedItems`, whatever
+rank an item is first found at) holds every item any quest at that rank can
+be tied to; the blob picks this quest's own, and only those. Where the
+quest has none for a grade that fits, it offers no item reward at all
+(zenny or more draws, and equipment for a hard pact), never another
+quest's item and never one no quest is tied to. Gathering quests tie only
+their reward tables. On the FUC disc every one of Low Rank Tigrex's parts
+is in the pool, and none of its hunts offers another monster's.
 
-An item reward is the quest's own where it can be: something its large
-monsters carve, capture or break for at its rank, or that its own reward
-tables give, as the shuffles left them (a Tigrex hunt pays Tigrex parts,
-not Kirin or Velocidrome ones). Every such item that fits a grade is in the
-pool (`tiedItems`, whatever rank it's first found at; up to 200 a grade,
-`TIED_PER_GRADE`, so the pool stays under the 64 KB its u16 offsets
-reach: about 28 KB with every reward randomized anywhere), with 16 more a
-grade drawn from the rest (made up with tied items where fewer than 16 of
-the rest fit; a pool past 64 KB fails the build rather than encoding). The blob reads the quest's large monsters and reward
-tables from the loaded file, marks those items (`tie_quest`, from
-`rf_pact_drops`: each species' drops by rank), and offers one of them; it
-falls back on those 16 only when none is left (another offer has it, or
-nothing of the quest's is worth that grade), never on another quest's own
-(the entry's `TIED_BIT`). Gathering quests
-tie only their reward tables. On the FUC disc every one of Low Rank
-Tigrex's parts is in the pool.
-
-A piece of equipment also has to fit the quest's stars: the quest's place
-among its rank's star levels on the disc is its place among the rank's
-rarities (Low 1-5, High 6-8, G 9-10), and a piece is that rarity or the
-next. On the FUC disc:
+Equipment comes from the quest's rank (Low, High or G), drawn per seed:
+weapons and armor of that rank's rarities (armor both sexes can wear), up
+to 12 pieces a rarity. A piece also has to fit the quest's stars: the
+quest's place among its rank's star levels on the disc is its place among
+the rank's rarities (Low 1-5, High 6-8, G 9-10), and a piece is that
+rarity or the next. On the FUC disc:
 
 | Rank | Stars: rarities                             |
 | ---- | ------------------------------------------- |
