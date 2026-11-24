@@ -52,6 +52,10 @@
             "silver": { "type": "integer", "minimum": 1 },
             "gold":   { "type": "integer", "minimum": 1 }
           }
+        },
+        "small": {
+          "description": "The game's small monsters (the emChunk's quest multiplier set is 0). Absent for large monsters.",
+          "type": "boolean"
         }
       }
     },

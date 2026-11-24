@@ -23,6 +23,7 @@ import {
   type AwardTodo,
 } from "@/lib/awards";
 import { formatPlayTime, questProgress } from "@/lib/hunter-pages";
+import { huntTotals } from "@/lib/monster-ids";
 import type { AwardText } from "@/lib/i18n/game-text";
 import { questHref, questStarLevel } from "@/lib/quests";
 import { useAwardContext } from "./useAwardContext";
@@ -65,7 +66,14 @@ function NoHunter() {
 }
 
 /** The Guild Card: who the hunter is and the totals of their records. */
-export function GuildCardPage({ className }: { className?: string }) {
+export function GuildCardPage({
+  className,
+  smallMonsterIds,
+}: {
+  className?: string;
+  /** The game IDs of the small monsters (lib/monsters' getSmallMonsterIds). */
+  smallMonsterIds: readonly number[];
+}) {
   const { t, formatNumber } = useLocale();
   const text = t.site.hunter;
   const { save } = useSave();
@@ -75,8 +83,7 @@ export function GuildCardPage({ className }: { className?: string }) {
     [quests, save],
   );
   if (!save) return <NoHunter />;
-  const monsters = save.monsters ?? [];
-  const sum = (key: "kills" | "captures") => monsters.reduce((n, m) => n + m[key], 0);
+  const totals = huntTotals(save.monsters ?? [], new Set(smallMonsterIds));
   const of = (done: number, total: number) =>
     text.guildCard.of(formatNumber(done), formatNumber(total));
   return (
@@ -102,8 +109,9 @@ export function GuildCardPage({ className }: { className?: string }) {
           )}
           {save.monsters && (
             <>
-              <Row label={text.guildCard.hunted}>{formatNumber(sum("kills"))}</Row>
-              <Row label={text.guildCard.captured}>{formatNumber(sum("captures"))}</Row>
+              <Row label={text.guildCard.huntedLarge}>{formatNumber(totals.large)}</Row>
+              <Row label={text.guildCard.huntedSmall}>{formatNumber(totals.small)}</Row>
+              <Row label={text.guildCard.captured}>{formatNumber(totals.captured)}</Row>
             </>
           )}
           <Row label={text.guildCard.items}>{formatNumber(save.items.length)}</Row>
@@ -377,7 +385,11 @@ export function SaveFilePage() {
  * file without a hunter. Phones show the list alone, or with the save file
  * under it when there is no hunter to show.
  */
-export function HunterHome() {
+export function HunterHome({ smallMonsterIds }: { smallMonsterIds: readonly number[] }) {
   const { save } = useSave();
-  return save ? <GuildCardPage className="mobile:hidden" /> : <SaveUpload />;
+  return save ? (
+    <GuildCardPage className="mobile:hidden" smallMonsterIds={smallMonsterIds} />
+  ) : (
+    <SaveUpload />
+  );
 }

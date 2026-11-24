@@ -140,10 +140,11 @@ function buildGameTask(): OvlFile {
       emId === 17 ? GRAVIOS.pointer : RATHIAN.pointer,
       base + HITZONE_POINTER_OFFSET,
     );
+    // Aptonoth (12) is a small monster; every other chunk here is large.
+    buf.writeInt8(emId === 12 ? 0 : 1, base + MULTIPLIER_SET_OFFSET);
   }
   put(buf, EU_CHUNKS + MONSTER_CHUNK_SIZE + TOLERANCE_OFFSET, RATHIAN.tolerances);
   buf.writeUInt16LE(4000, EU_CHUNKS + MONSTER_CHUNK_SIZE + BASE_HP_OFFSET); // Rathian's real base HP
-  buf.writeInt8(1, EU_CHUNKS + MONSTER_CHUNK_SIZE + MULTIPLIER_SET_OFFSET); // large-monster set
   return parseOvl(buf);
 }
 
@@ -343,6 +344,9 @@ test("emitMonsters names parts and groups through overlay/monsters.json", () => 
   )!;
   assert.equal(rathian.base_hp, 4000);
   assert.equal(rathian.base_scale, 1);
+  assert.equal(rathian.small, undefined);
+  const aptonoth = output["monsters/herbivore.json"]!.monsters.find((m) => m.name === "Aptonoth")!;
+  assert.equal(aptonoth.small, true);
   assert.deepEqual((rathian.hitzones as Record<string, unknown>).head, {
     cut: 80,
     bash: 70,

@@ -116,7 +116,8 @@
           "damage_interval": 150,
           "total_time": 2700
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 70,
@@ -222,7 +223,8 @@
           "damage_interval": 150,
           "total_time": 2700
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 3,
@@ -340,7 +342,8 @@
           "damage_interval": 150,
           "total_time": 2700
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 4,
@@ -458,7 +461,8 @@
           "damage_interval": 150,
           "total_time": 1800
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 12,
@@ -544,7 +548,8 @@
           "damage_interval": 150,
           "total_time": 2700
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 25,
@@ -661,7 +666,8 @@
           "damage_interval": 150,
           "total_time": 900
         }
-      }
+      },
+      "small": true
     }
   ]
 }
