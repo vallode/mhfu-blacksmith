@@ -17,9 +17,17 @@ shipped with the site.
   scaled to 960×544 (twice the game's 480×272 native resolution), so new
   ones should be too. That keeps the text readable and makes layouts
   comparable across screenshots.
-- **Blank out hunter names and guild cards** before committing.
+- **Keep personal details out.** No real names, friend codes or similar;
+  in-game hunter and Felyne names are fine.
 - Prefer the screen that shows the state you are styling. If two states
   matter (default and selected, for example), keep both.
+
+To prepare a full-window PPSSPP capture:
+
+```sh
+magick capture.png -bordercolor black -fuzz 0% -trim +repage \
+  -filter Lanczos -resize '960x544!' docs/screenshots/<folder>/<name>.png
+```
 
 Captures are copyrighted game content: this folder is for reading and
 comparing while working, not for republishing. Keep the set small — if a
@@ -29,10 +37,10 @@ archiving it.
 ## Optimizing
 
 `pnpm screenshots:optimize` runs every PNG here through
-`oxipng -o max --strip all` and fails on anything that isn't 960×544. It is
+`oxipng -o max --strip safe` and fails on anything that isn't 960×544. It is
 lossless, so the pixels stay as captured. `--dry-run` only checks; pass file
-or directory paths to work on a subset. Install oxipng with
-`brew install oxipng`.
+or directory paths to work on a subset. Install oxipng first (for example,
+with `brew install oxipng`).
 
 ## Folders
 
