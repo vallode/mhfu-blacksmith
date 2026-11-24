@@ -29,7 +29,7 @@ export const HUNTER_PAGES: readonly HunterPage[] = [
   { id: "awards", icon: "heavenly", ready: true },
   { id: "quests", icon: "ticket", ready: true },
   { id: "monsters", icon: "claw", ready: true },
-  { id: "crowns", icon: "scale", ready: false },
+  { id: "crowns", icon: "scale", ready: true },
   { id: "collection", icon: "great-sword", ready: false },
 ];
 export const SAVE_PAGE: HunterPage = { id: "save", icon: "note", ready: true };

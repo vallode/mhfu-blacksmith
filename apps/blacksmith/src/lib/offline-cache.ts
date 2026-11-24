@@ -61,6 +61,7 @@ export function collectStaticPageUrls(): string[] {
     "/hunter/awards/",
     "/hunter/quests/",
     "/hunter/monsters/",
+    "/hunter/crowns/",
     "/hunter/save/",
     "/options/",
   ];
