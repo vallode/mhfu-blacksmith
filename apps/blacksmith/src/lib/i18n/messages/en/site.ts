@@ -14,6 +14,7 @@ export const site = {
     decorations: "Decorations",
     quests: "Quests",
     items: "Items",
+    maps: "Maps",
     veggieElder: "Veggie Elder",
     sets: "Sets",
     wishlist: "Wishlist",
