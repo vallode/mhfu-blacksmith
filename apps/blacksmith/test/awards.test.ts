@@ -13,7 +13,7 @@ import {
   type CrownMonster,
 } from "../src/lib/awards";
 import { ARTISAN_WEAPONS } from "../src/lib/award-weapons";
-import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
+import { MONSTER_GAME_IDS, monsterGameId, type MonsterName } from "../src/lib/monster-ids";
 import { DATA_DIR, GAME } from "../src/lib/paths";
 import { questHubSlug, type Quest } from "../src/lib/quests";
 import type { MonsterRecord, SaveData } from "../src/lib/save-store";
@@ -27,8 +27,8 @@ function save(over: Partial<SaveData>): SaveData {
   return { name: "Gideon", region: "us", items: [], savedAt: 0, ...over };
 }
 
-function record(name: string, over: Partial<MonsterRecord>): MonsterRecord {
-  return { id: MONSTER_GAME_IDS[name]!, kills: 0, captures: 0, largest: 0, smallest: 0, ...over };
+function record(name: MonsterName, over: Partial<MonsterRecord>): MonsterRecord {
+  return { id: MONSTER_GAME_IDS[name], kills: 0, captures: 0, largest: 0, smallest: 0, ...over };
 }
 
 const award = (id: string): Award => AWARDS.find((a) => a.id === id)!;
@@ -61,10 +61,9 @@ describe("AWARDS", () => {
   test("names only monsters the save keeps records for", () => {
     for (const a of AWARDS) {
       if (a.rule.kind === "monsters")
-        for (const m of a.rule.monsters)
-          assert.ok(MONSTER_GAME_IDS[m] !== undefined, `${a.id} ${m}`);
+        for (const m of a.rule.monsters) assert.ok(monsterGameId(m) !== undefined, `${a.id} ${m}`);
     }
-    for (const m of CROWN_GROUPS.flat()) assert.ok(MONSTER_GAME_IDS[m] !== undefined, m);
+    for (const m of CROWN_GROUPS.flat()) assert.ok(monsterGameId(m) !== undefined, m);
   });
 
   test("has the game's monster lists and crown groups", () => {

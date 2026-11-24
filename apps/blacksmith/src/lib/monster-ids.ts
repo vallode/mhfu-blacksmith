@@ -8,7 +8,7 @@ import type { MonsterRecord } from "./save-store";
  * Elder, 18 Cat Cart, 29 Rocks, 32 Poogie, 72 a second Yama Tsukami, 74 Miner
  * Wyverian) are left out.
  */
-export const MONSTER_GAME_IDS: Readonly<Record<string, number>> = {
+const MONSTER_IDS = {
   Akantor: 76,
   Anteka: 69,
   Apceros: 25,
@@ -92,7 +92,53 @@ export const MONSTER_GAME_IDS: Readonly<Record<string, number>> = {
   "Yama Tsukami": 58,
   "Yian Garuga": 78,
   "Yian Kut-Ku": 6,
-};
+} as const;
+
+/** Every monster on the site, as `MONSTER_GAME_IDS` spells it. */
+export type MonsterName = keyof typeof MONSTER_IDS;
+
+/** `MONSTER_IDS`, for lookups by `MonsterName`. */
+export const MONSTER_GAME_IDS: Readonly<Record<MonsterName, number>> = MONSTER_IDS;
+
+/**
+ * The game's monster ID for a name from data or a save, or undefined when
+ * the site has no page for the monster.
+ */
+export function monsterGameId(name: string): number | undefined {
+  return (MONSTER_GAME_IDS as Readonly<Record<string, number>>)[name];
+}
+
+/** What the Guild Card counts: monsters slain by size, and captured. */
+export interface HuntTotals {
+  /** Large monsters slain. */
+  large: number;
+  /** Small monsters slain. */
+  small: number;
+  /** Monsters captured. */
+  captured: number;
+}
+
+/**
+ * The hunter's kills split into small and large monsters, and their
+ * captures. The Guild Card shows them apart: a few thousand Kelbi would
+ * swamp the large monsters' hunts.
+ *
+ * `smallMonsterIds` is the game's own small-monster set (`data/mhfu/monsters`'
+ * `small` flag, src/lib/monsters). IDs the site has no page for count as
+ * large, so a second Yama Tsukami's hunts still show.
+ */
+export function huntTotals(
+  monsters: readonly MonsterRecord[],
+  smallMonsterIds: ReadonlySet<number>,
+): HuntTotals {
+  const totals: HuntTotals = { large: 0, small: 0, captured: 0 };
+  for (const monster of monsters) {
+    if (smallMonsterIds.has(monster.id)) totals.small += monster.kills;
+    else totals.large += monster.kills;
+    totals.captured += monster.captures;
+  }
+  return totals;
+}
 
 /**
  * The loaded hunter's records for a site monster: zeros when the save has
@@ -103,7 +149,7 @@ export function monsterRecordFor(
   monsters: readonly MonsterRecord[] | undefined,
   name: string,
 ): MonsterRecord | null {
-  const id = MONSTER_GAME_IDS[name];
+  const id = monsterGameId(name);
   if (!monsters || id === undefined) return null;
   return (
     monsters.find((m) => m.id === id) ?? { id, kills: 0, captures: 0, largest: 0, smallest: 0 }

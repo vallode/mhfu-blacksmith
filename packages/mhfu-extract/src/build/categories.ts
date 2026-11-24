@@ -116,6 +116,7 @@ const MONSTERS: Category = {
     { field: "tolerances", kind: "scalar" },
     { field: "base_size", kind: "scalar" },
     { field: "crowns", kind: "scalar" },
+    { field: "small", kind: "scalar" },
   ],
   // Reviewed against the EU disc (README "Monster overlays"): of 400
   // mapped hitzone parts 389 agree and the 11 that don't are site errors;
@@ -127,8 +128,11 @@ const MONSTERS: Category = {
   // `base_scale` (chunk +0x40) is new too.
   // `breaks` (monsters/breaks.ts, overlay/breaks.json) and
   // `flinch_thresholds` and `tolerances` (hitzones.ts) are new too, as are
-  // `base_size` and `crowns` (monsters/sizes.ts). `description` replaces
-  // the site's hand-written text with the game's (monsters/bestiary.ts).
+  // `base_size` and `crowns` (monsters/sizes.ts). `small` (the chunk's
+  // multiplier set, multipliers.ts) is the game's small-monster flag, which
+  // the Guild Card uses to keep their hunts apart from large monsters'.
+  // `description` replaces the site's hand-written text with the game's
+  // (monsters/bestiary.ts).
   take: [
     "description",
     "base_hp",
@@ -140,6 +144,7 @@ const MONSTERS: Category = {
     "tolerances",
     "base_size",
     "crowns",
+    "small",
   ],
 };
 

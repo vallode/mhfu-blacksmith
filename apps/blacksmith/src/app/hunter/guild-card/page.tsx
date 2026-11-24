@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getSmallMonsterIds } from "@/lib/monsters";
 import { pageMetadata } from "@/lib/seo";
 import { GuildCardPage } from "../HunterPages";
 
@@ -9,5 +10,5 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function HunterGuildCardPage() {
-  return <GuildCardPage />;
+  return <GuildCardPage smallMonsterIds={getSmallMonsterIds()} />;
 }

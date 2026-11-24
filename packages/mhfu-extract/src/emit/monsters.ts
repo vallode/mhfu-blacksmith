@@ -14,8 +14,10 @@
  * named after its `break …` drop group. `flinch_thresholds` is each body
  * part's flinch threshold (`hitzones.ts` `readFlinchThresholds`).
  * `base_size` and `crowns` are its size at 100 percent and its crown
- * thresholds (`monsters/sizes.ts`). `description` is the game's description
- * of it or of the monster it's a subspecies of (`monsters/bestiary.ts`).
+ * thresholds (`monsters/sizes.ts`). `small` marks the game's small monsters
+ * (the chunk's quest multiplier set, `monsters/multipliers.ts`).
+ * `description` is the game's description of it or of the monster it's a
+ * subspecies of (`monsters/bestiary.ts`).
  *
  * Each monster carries its emID (`id`), which `compare` pairs it by, and its
  * name (the disc's on an EU disc, `strings/monster-names.ts`).
@@ -80,6 +82,8 @@ export interface EmittedMonster {
   base_size?: number;
   /** Crown thresholds in percent of `base_size`, shared with the monster's subspecies. */
   crowns?: Crowns;
+  /** The game's small monsters: the chunk's quest multiplier set is 0 (`multipliers.ts`). */
+  small?: boolean;
 }
 
 /** A status tolerance (`hitzones.ts` `StatusTolerance`) in the site's keys. */
@@ -271,6 +275,7 @@ export function emitMonsters(tables: MonsterTables): EmitOutput {
       base_scale: Math.round(chunk.baseScale * 1e4) / 1e4,
       tolerances: siteTolerances(chunk.tolerances),
     };
+    if (chunk.multiplierSet === 0) monster.small = true;
     if (chunk.flinchThresholds) monster.flinch_thresholds = chunk.flinchThresholds;
     if (tables.sizes) {
       const baseSize = tables.sizes.baseSizes[entry.id] ?? 0;

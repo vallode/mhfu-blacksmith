@@ -14,7 +14,7 @@ import type { CharacterResult, WorkerResult } from "../src/hooks/useSaveWorker";
 import { AWARDS, awardProgress } from "../src/lib/awards";
 import { lookFromSave } from "../src/lib/hunter-look";
 import type { ItemRecord } from "../src/lib/items";
-import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
+import { MONSTER_GAME_IDS, monsterGameId } from "../src/lib/monster-ids";
 import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { HR_URGENT_QUESTS, hunterRankFrom } from "../src/lib/hunter-rank";
 import { AWARD_RECORD_KEYS, getSave, saveFromCharacter, setSave } from "../src/lib/save-store";
@@ -443,7 +443,7 @@ test("every cleared quest is on the site, or one of the disc's unlisted 1-10 / 1
 test("monster records read the Guild Card tables by monster ID", async () => {
   const [gideon, mearo] = ok(await parse("us")).characters as CharacterResult[];
   const byName = (h: CharacterResult, monster: string) =>
-    h.monsters.find((m) => m.id === MONSTER_GAME_IDS[monster]);
+    h.monsters.find((m) => m.id === monsterGameId(monster));
   assert.deepEqual(byName(gideon, "Bullfango"), {
     id: 5,
     kills: 31,

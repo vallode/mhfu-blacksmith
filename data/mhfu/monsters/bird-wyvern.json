@@ -102,7 +102,8 @@
           "damage_interval": 150,
           "total_time": 2700
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 77,
@@ -387,7 +388,8 @@
           "damage_interval": 150,
           "total_time": 2700
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 27,
@@ -668,7 +670,8 @@
           "damage_interval": 150,
           "total_time": 2700
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 28,
@@ -953,7 +956,8 @@
           "damage_interval": 150,
           "total_time": 900
         }
-      }
+      },
+      "small": true
     },
     {
       "id": 31,
