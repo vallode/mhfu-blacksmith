@@ -41,6 +41,8 @@ export default function Tabs({
   const list = useRef<HTMLDivElement>(null);
   const sizer = useRef<HTMLSpanElement>(null);
   const [columns, setColumns] = useState<number>();
+  // The narrowest column the longest label fits in, on one line.
+  const longest = tabs.length > 0 ? Math.max(...tabs.map((t) => t.label.length)) : 0;
   useLayoutEffect(() => {
     const el = list.current;
     const min = sizer.current;
@@ -54,8 +56,10 @@ export default function Tabs({
     fit();
     const observer = new ResizeObserver(fit);
     observer.observe(el);
+    // The measuring span changes width with the font and the labels, not the strip.
+    observer.observe(min);
     return () => observer.disconnect();
-  }, [tabs.length]);
+  }, [tabs.length, longest]);
   const [uncontrolled, setUncontrolled] = useState(tabs[0]?.id);
   const active = controlled ?? uncontrolled;
   const setActive = (id: string) => {
@@ -64,8 +68,6 @@ export default function Tabs({
   };
   const current = tabs.find((t) => t.id === active) ?? tabs[0];
   if (!current) return null;
-  // The narrowest column the longest label fits in, on one line.
-  const longest = Math.max(...tabs.map((t) => t.label.length));
   const columnStyle = {
     "--tab-min": `calc(${longest} * var(--cell) + 0.4rem)`,
     ...(columns && { "--tab-cols": columns }),
