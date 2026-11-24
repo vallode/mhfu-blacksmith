@@ -6,9 +6,9 @@ in `apps/blacksmith/public/models/monsters/emNN.attacks.json`
 (`monsters/attacks.ts`); the mechanics were read from `game_task.ovl` and
 `game_sub.ovl`.
 
-The game's own name for the status is Faint: its skill tree is
-`data/strings/en.json`'s `Faint` (4), with Faint Negated at +15, Faint Prob
-Halved at +10 and Faint Duration (x2) at -10.
+The English skill tree for the status is `data/strings/en.json`'s `Faint`
+(4), with Faint Negated at +15, Faint Prob Halved at +10 and Faint
+Duration(x2) at -10.
 
 ## The gauge
 
@@ -23,14 +23,14 @@ drain, one point per update.
 
 The dizzy check is `+0x440 >= 50` at `0x09A6C4EC`. Reaching 50 plays the
 hunter's dizzy action (19 or 27). The 150 is the hold before the gauge
-starts draining, not the dizzy threshold; `monster-ai.md`'s "checks
-against 150" describes that timer.
+starts draining, not the dizzy threshold; the old `monster-ai.md` wording
+"checks against 150" described that timer.
 
 The hold and the drain share the same update. A 2/sec drain would make the
-150-tick hold 75 seconds, so the "2 per second" in the one community guide
-found does not fit; the code and the 5-second hold point to the per-frame
-update (30 points/sec at 30 Hz). No clean in-game measurement of the drain
-has been made yet.
+150-tick hold 75 seconds, so the "2 per second" in the GameFAQs monster
+attack guide does not fit; the code and the 5-second hold point to the
+per-frame update (30 points/sec at 30 Hz). No clean in-game measurement of
+the drain has been made yet.
 
 The Faint skill works on this gauge:
 
@@ -143,8 +143,7 @@ Roars are in the same motion records. They appear in the attack files as
 `power: 0` effect objects with very large capsules, usually a sphere on
 the head or body:
 
-- Rathian/Rathalos motion 54: radius 2000 on the body/root, reaction 22,
-  stun 0.
+- Rathian/Rathalos family motion 54: radius 2000 on the body/root, stun 0.
 - Fatalis motion 32: radius 1000 on the body/root, reaction 27, stun 0.
 - Tigrex/Nargacuga motion 47: radius 400 on the body/root, reaction 5,
   stun 0.
@@ -162,11 +161,11 @@ The Blos row is the roar (radius 2000 on the head), and community reports
 that Blos roar-spam builds faint; the data agrees. The Rajang row is a
 zero-damage 10-stun object.
 
-The files hold 59 `power: 0` rows in total. Six of them carry stun 10 (the
-two groups above); the rest have stun 0. So:
+The attack files hold 59 `power: 0` rows in total. Six of them carry stun
+10 (the two groups above); the rest have stun 0. So:
 
-- `stun > 0` is everything that can dizzy: 1,255 windows, including the six
-  zero-power rows.
+- `stun > 0` is everything these files find that can dizzy: 1,255 windows,
+  including the six zero-power rows.
 - `stun > 0 && power > 0` is damaging attacks only: 1,249 windows.
 
 randomfu's attack classification still treats `power: 0` rows as **no
@@ -178,8 +177,10 @@ anyway, since the export keeps every row with capsules.
 - The attack sweep only records objects made by the swept spawner/factories
   (`monsters/attacks.ts`, "Monster attacks" in the README). A roar or other
   effect made directly by action code, like Bulldrome's attacks, is missing.
-- Small monsters have attacks but top out at stun 2-5. Kirin and Lao-Shan
-  Lung also only have stun 2 contact rows, so they have no real dizzy attack.
+- Most small monsters top out at stun 2-5, but Cephalos (40), Hermitaur and
+  Ceanataur (30), Blango (25) and Conga (10) are exceptions. Kirin and
+  Lao-Shan Lung only have stun 2 contact rows, so they have no real dizzy
+  attack.
 - The dizzy duration was not traced. The gauge drain's update rate was not
   measured in game either; this note records the static code (50 threshold,
   150-tick hold, one point per update after it, i.e. 30 points/sec if the
