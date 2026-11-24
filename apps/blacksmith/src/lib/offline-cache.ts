@@ -60,6 +60,7 @@ export function collectStaticPageUrls(): string[] {
     "/hunter/guild-card/",
     "/hunter/awards/",
     "/hunter/quests/",
+    "/hunter/monsters/",
     "/hunter/save/",
     "/options/",
   ];
