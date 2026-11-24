@@ -258,12 +258,9 @@ typedef struct {
   u8 type;   /* 0xFF an item; else the equipment box's type (0-4 armor, 5 melee, 6 ranged) */
   u8 amount; /* items */
   u16 name;  /* offset from the pool's start */
-  u16 extra; /* an item's most in one reward (0: no limit), TIED_BIT; a piece's rarity */
+  u16 extra; /* an item's most in one reward (0: no limit); a piece's rarity */
 } rf_entry;
 #define ITEM 0xff
-/* An item in the pool for being tied to some quest, not in the sample of the rest (pactPool). */
-#define TIED_BIT 0x8000
-#define most_of(e) ((e)->extra & ~TIED_BIT)
 static const rf_span *span(u32 band, u32 kind) {
   return (const rf_span *)rf_pact_pool + band * POOL_KINDS + kind;
 }
@@ -546,28 +543,32 @@ static int pieces_fit(void) {
 #define NONE 0xffffffffu
 /*
  * From `start` on (wrapping), the first entry of `s` no other offer gives:
- * a piece that fits the quest's stars; an item tied to this quest if `want`
- * says so, else one of the sample (not another quest's own). NONE if
- * there's none.
+ * a piece that fits the quest's stars, or an item tied to this quest. NONE
+ * if there's none: never another quest's item, nor one no quest is tied to.
  */
-static u32 find(u32 k, const rf_span *s, u32 start, int want) {
+static u32 find(u32 k, const rf_span *s, u32 start) {
   for (u32 j = 0; j < s->count; j++) {
     const u32 v = s->first + (start + j) % s->count;
     const rf_entry *e = entry(v);
-    if (e->type == ITEM ? (want ? !is_tied(e->id) : (e->extra & TIED_BIT) != 0) : !fits_level(e)) {
-      continue;
-    }
+    if (e->type == ITEM ? !is_tied(e->id) : !fits_level(e)) continue;
     if (!offered(k, v)) return v;
   }
   return NONE;
 }
 
-/* An entry of `s` from a random place: one tied to the quest, if any is left. */
+/* An entry of `s` from a random place: an item tied to the quest, or a piece that fits. */
 static u32 choose(u32 k, const rf_span *s) {
-  if (!s->count) return NONE;
-  const u32 start = random(s->count);
-  const u32 v = find(k, s, start, 1);
-  return v != NONE ? v : find(k, s, start, 0);
+  return s->count ? find(k, s, random(s->count)) : NONE;
+}
+
+/* Whether the quest has an item in `grade` that no other offer gives. */
+static int items_fit(u32 k, u32 grade) {
+  const rf_span *s = span(band, grade);
+  for (u32 j = 0; j < s->count; j++) {
+    const u32 v = s->first + j;
+    if (is_tied(entry(v)->id) && !offered(k, v)) return 1;
+  }
+  return 0;
 }
 
 static rf_offer pick(u32 k, u32 p, u32 *used) {
@@ -576,11 +577,11 @@ static rf_offer pick(u32 k, u32 p, u32 *used) {
   if (!(*used & (1u << R_ZENNY))) options[n++] = R_ZENNY;
   /* Draws only where all of them fit, so the offer pays what it says. */
   if (weight <= room && !(*used & (1u << R_DRAWS))) options[n++] = R_DRAWS;
-  const int pieces = weight == 3 && pieces_fit();
-  if (span(b, weight - 1)->count) options[n++] = R_ITEM;
+  const int items = items_fit(k, weight - 1), pieces = weight == 3 && pieces_fit();
+  if (items) options[n++] = R_ITEM;
   if (pieces) options[n++] = R_EQUIPMENT;
   /* Things to get come up twice as often as bonuses. */
-  if (span(b, weight - 1)->count) options[n++] = R_ITEM;
+  if (items) options[n++] = R_ITEM;
   if (pieces) options[n++] = R_EQUIPMENT;
   rf_offer o = {(u8)p, REWARDS, 0};
   while (n) {
@@ -736,7 +737,7 @@ static void put_number(u32 n) {
 static u32 jackpot_amount(const rf_offer *o, const rf_entry *e) {
   u32 n = e->amount * jackpots[o->penalty - FIRST_JACKPOT].amount;
   /* No more than its share of what the recipes need (pactPool's demand). */
-  const u32 most = most_of(e);
+  const u32 most = e->extra;
   if (most && n > most) n = most > e->amount ? most : e->amount;
   return n > STACK ? STACK : n;
 }
@@ -1177,7 +1178,7 @@ typedef struct {
 #define ROW 16
 #define OFFER_H (2 * ROW + 4)
 #define WW 368
-#define WH (10 + 22 + OFFERS * OFFER_H + 2 + 22 + ROW + 8)
+#define WH (10 + 22 + OFFERS * OFFER_H + 2 + 22 + 2 * ROW + 8)
 #define WX ((SCREEN_W - WW) / 2)
 #define WY ((SCREEN_H - WH) / 2)
 #define LEFT (WX + 14)
@@ -1260,12 +1261,14 @@ static void draw(u8 *q) {
   }
   put(taken ? C_TITLE "Seal the pact" : C_WHITE "Hunt without a pact");
   text(BOX, SEAL_Y);
-  /* On a jackpot: what it asks besides its penalty, in Choose's room. */
-  const int rule = cursor < OFFERS && offer[cursor].reward == R_JACKPOT;
-  put(rule ? C_DIM "~B00 " : C_DIM "~B09 Choose   ~B00 ");
+  put(C_DIM "~B09 Choose   ~B00 ");
   put(cursor < OFFERS ? "Take" : taken ? "Seal" : "Hunt");
-  if (rule) put("   " JACKPOT_RULE);
   text(LEFT, HINT_Y);
+  /* On a jackpot: what it asks besides its penalty, below the controls. */
+  if (cursor < OFFERS && offer[cursor].reward == R_JACKPOT) {
+    put(C_DIM JACKPOT_RULE);
+    text(LEFT, HINT_Y + ROW);
+  }
 
   q[HUD_LAYER] = hud_layer;
   printer[PRINTER_LAYER] = text_layer;
