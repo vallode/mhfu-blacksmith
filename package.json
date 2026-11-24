@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "link:cache": "node scripts/link-cache.mjs",
-    "clean:discs": "node scripts/clean-discs.mjs"
+    "clean:discs": "node scripts/clean-discs.mjs",
+    "screenshots:optimize": "node scripts/optimize-screenshots.mjs"
   },
   "devDependencies": {
     "prettier": "^3.9.10",
