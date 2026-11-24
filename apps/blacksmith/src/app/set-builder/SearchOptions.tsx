@@ -2,9 +2,9 @@
 
 /**
  * The set search's form and its options: the hunter, rank and weapon slots,
- * the sort and the toggles (SearchOptions, shown in a sheet), and all of it
- * as one line (OptionsSummary). The locked and excluded pieces show under
- * the skills (PieceChips).
+ * the sort, the toggles and the owned armor choice (SearchOptions, shown in a
+ * sheet), and all of it as one line (OptionsSummary). The locked and excluded
+ * pieces show under the skills (PieceChips).
  */
 import Link from "next/link";
 import Icon from "@/components/Icon";
@@ -13,7 +13,9 @@ import {
   ChoiceRow,
   IconChoiceRow,
   IconChoices,
+  SelectorRow,
   ToggleRow,
+  type Choice,
   type IconChoice,
 } from "@/components/SettingRows";
 import { useT } from "@/context/LanguageContext";
@@ -26,6 +28,9 @@ import type { SearchQuery, SortKey } from "@/lib/set-search";
 import { chip, chipOff, chipOn } from "@/styles/set-builder";
 import * as ui from "@/styles/settings";
 
+/** How the search treats armor the hunter has in their equipment box. */
+export type OwnedArmorMode = "off" | "prefer" | "only";
+
 export interface Form {
   skills: string[];
   hunterType: SearchQuery["hunterType"];
@@ -35,7 +40,7 @@ export interface Form {
   /** The weapon class the result's weapon suggestions show; null for the last browsed. */
   weaponClass: WeaponType | null;
   allowBadSkills: boolean;
-  ownedOnly: boolean;
+  ownedArmor: OwnedArmorMode;
   /** Search armor beyond the quest progress set on the Options page. */
   ignoreQuestProgress: boolean;
   sort: SortKey;
@@ -53,7 +58,7 @@ export const DEFAULT_FORM: Form = {
   weaponSlots: 0,
   weaponClass: null,
   allowBadSkills: false,
-  ownedOnly: false,
+  ownedArmor: "off",
   ignoreQuestProgress: false,
   sort: "defence",
   locked: [],
@@ -114,6 +119,16 @@ function choicesFor(t: Messages) {
   return { hunterTypes, sexes, ranks, slots };
 }
 
+/** The owned armor choices, labelled in the site's language. */
+export function ownedArmorChoices(t: Messages): Choice<OwnedArmorMode>[] {
+  const text = t.setBuilder.form.ownedModes;
+  return [
+    { value: "off", label: text.off },
+    { value: "prefer", label: text.prefer },
+    { value: "only", label: text.only },
+  ];
+}
+
 /** The weapon's slots as circles, dashes for the missing ones; the surrounding text colours them. */
 function SlotMarks({ count, className }: { count: number; className?: string }) {
   return (
@@ -134,14 +149,14 @@ export function SearchOptions({
   form,
   update,
   questProgress,
-  canOwnedOnly,
+  canUseOwned,
 }: {
   form: Form;
   update: Update;
   /** The quest progress set on the Options page, if any. */
   questProgress: Tier | null;
-  /** A hunter's save is loaded, so "Owned armor only" can apply. */
-  canOwnedOnly: boolean;
+  /** A hunter's save is loaded, so owned armor can apply. */
+  canUseOwned: boolean;
 }) {
   const t = useT();
   const text = t.setBuilder.form;
@@ -204,12 +219,13 @@ export function SearchOptions({
           onChange={(v) => update("ignoreQuestProgress", v)}
         />
       )}
-      {canOwnedOnly && (
-        <ToggleRow
-          label={text.ownedOnly}
-          note={text.ownedOnlyNote}
-          value={form.ownedOnly}
-          onChange={(v) => update("ownedOnly", v)}
+      {canUseOwned && (
+        <SelectorRow
+          label={text.ownedArmor}
+          note={text.ownedArmorNote}
+          choices={ownedArmorChoices(t)}
+          value={form.ownedArmor}
+          onChange={(v) => update("ownedArmor", v)}
         />
       )}
     </div>
@@ -241,13 +257,14 @@ function SortChips({ value, onChange }: { value: SortKey; onChange: (v: SortKey)
 }
 
 /** The options in a line or two: class and sex, rank, weapon slots, sort, then the rest. */
-export function OptionsSummary({ form, ownedOnly }: { form: Form; ownedOnly: boolean }) {
+export function OptionsSummary({ form, ownedArmor }: { form: Form; ownedArmor: OwnedArmorMode }) {
   const text = useT().setBuilder;
   const summary = text.form.summary;
   const extras = [
     form.allowBadSkills && summary.badSkills,
     form.ignoreQuestProgress && summary.allQuests,
-    ownedOnly && summary.ownedArmor,
+    ownedArmor === "prefer" && summary.ownedArmorPreferred,
+    ownedArmor === "only" && summary.ownedArmorOnly,
   ].filter(Boolean);
   const sort = SORTS.find((x) => x.value === form.sort);
   const item = "flex items-center gap-[0.4rem] text-white";

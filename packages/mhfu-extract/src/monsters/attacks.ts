@@ -417,6 +417,7 @@ export interface SiteAttack {
   power: number;
   /** How the hunter reacts (row byte 3; its values aren't mapped yet). */
   reaction: number;
+  /** The hunter's dizzy (faint) build-up (row byte 0x14); the gauge dizzies at 50. */
   stun: number;
   /** Guard knockback. */
   guard: number;

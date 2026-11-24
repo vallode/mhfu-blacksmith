@@ -36,7 +36,7 @@ It has the layout of the player's `PlayerMotVal`:
 | `0x0A`         |                   | shape list index                                                                                |
 | `0x0C`, `0x0D` | EffectonHit1, 2   | status bits: `0x0C` 1 sleep, 2 poison, 4 paralysis; `0x0D` 2 snowman, 4 soiled, 16 defense down |
 | `0x0E`         | StatusDuration    | the status's buildup (Rathian's Backflip: poison 25)                                            |
-| `0x14`         | KO                | stun                                                                                            |
+| `0x14`         | KO                | stun: the hunter's dizzy buildup (`dizzy.md`)                                                   |
 
 The guard, element and status meanings were found by searching the EU disc
 for the Monster Hunter Wiki's MHFU numbers per attack (damage, stun, guard

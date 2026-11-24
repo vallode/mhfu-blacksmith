@@ -229,6 +229,7 @@ export interface MonsterAttack {
   to: number;
   power: number;
   reaction: number;
+  /** The hunter's dizzy (faint) build-up; the gauge dizzies at 50. */
   stun: number;
   /** Guard knockback (absent in files exported before it was added). */
   guard?: number;

@@ -50,7 +50,7 @@ export const monsters = {
     /** Column headers' hover text. */
     titles: {
       hits: "Hits in the motion with these numbers",
-      stun: "Stun buildup",
+      stun: "Stun (dizziness) buildup on the hunter",
       guard: "Guard knockback",
     },
     /** How many of the motion's hits have these numbers: "×3". */

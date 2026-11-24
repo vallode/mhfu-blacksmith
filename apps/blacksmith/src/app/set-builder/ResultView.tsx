@@ -30,6 +30,7 @@ import { weaponTypesFor } from "@/lib/weapon-suggest";
 import SetModel from "./SetModel";
 import SetWishlistButton from "./SetWishlistButton";
 import Sheet from "./Sheet";
+import type { OwnedArmorMode } from "./SearchOptions";
 import WeaponSuggestions from "./WeaponSuggestions";
 
 /** Search actions on a result's pieces: use one in every set, or leave it out. */
@@ -93,7 +94,7 @@ export default function ResultView({
   progress,
   pieces,
   wantedTrees,
-  ownedOnly,
+  ownedArmor,
   isOwned,
   weaponClass,
   onWeaponClass,
@@ -118,7 +119,7 @@ export default function ResultView({
   pieces: Piece[];
   /** The wanted skill trees, which the piece lists sort by. */
   wantedTrees: string[];
-  ownedOnly: boolean;
+  ownedArmor: OwnedArmorMode;
   /** Only with a save loaded. */
   isOwned?: (p: Piece) => boolean;
   /** The weapon class chosen for the suggestions (kept with the form), if any. */
@@ -187,7 +188,7 @@ export default function ResultView({
               rank={rank}
               wanted={wantedTrees}
               questLimit={progress}
-              ownedOnly={ownedOnly}
+              ownedArmor={ownedArmor}
               isOwned={isOwned}
               onPick={(p) => {
                 if (p && p.id !== picked.piece.id) actions.onUse(p);
