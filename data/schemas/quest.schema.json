@@ -75,6 +75,11 @@
         "alias":    { "type": "integer", "minimum": 0, "description": "Named by the monster's n-th English alias (the game's own spelling), as the site showed it" },
         "quantity": { "type": "integer", "minimum": 0 },
         "power":    { "type": "integer", "minimum": 0 },
+        "spawns": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/spawn_point" },
+          "$comment": "Where each record of this spawn starts on the quest's map. Absent without the map tables, or where the map doesn't draw the stage."
+        },
         "crown_chances": {
           "type": "object",
           "required": ["mini", "silver", "gold"],
@@ -109,7 +114,34 @@
         "alias":    { "type": "integer", "minimum": 0, "description": "Named by the monster's n-th English alias (the game's own spelling), as the site showed it" },
         "max_quantity":   { "type": "integer", "minimum": 0, "$comment": "The most of this species in any single zone." },
         "total_quantity": { "type": "integer", "minimum": 0, "$comment": "All of this species across the quest's zones; zone tables that share an address are counted once." },
-        "endless":        { "const": true, "$comment": "A spawn of this species is marked 99, the game's value for one that keeps coming; those spawns are not in the counts." }
+        "endless":        { "const": true, "$comment": "A spawn of this species is marked 99, the game's value for one that keeps coming; those spawns are not in the counts." },
+        "spawns": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/small_spawn_point" },
+          "$comment": "Each of the species' records on the quest's map. Absent without the map tables, or where the map doesn't draw the stage."
+        }
+      }
+    },
+    "spawn_point": {
+      "type": "object",
+      "required": ["area", "x", "y"],
+      "additionalProperties": false,
+      "properties": {
+        "area": { "type": "integer", "minimum": 0, "$comment": "0 is the Base Camp, then the map's numbered areas." },
+        "x":    { "type": "number", "minimum": 0, "maximum": 160, "$comment": "Pixels on the quest's 160-step area-map texture." },
+        "y":    { "type": "number", "minimum": 0, "maximum": 160 }
+      }
+    },
+    "small_spawn_point": {
+      "type": "object",
+      "required": ["area", "x", "y", "quantity"],
+      "additionalProperties": false,
+      "properties": {
+        "area":     { "type": "integer", "minimum": 0, "$comment": "0 is the Base Camp, then the map's numbered areas." },
+        "x":        { "type": "number", "minimum": 0, "maximum": 160, "$comment": "Pixels on the quest's 160-step area-map texture." },
+        "y":        { "type": "number", "minimum": 0, "maximum": 160 },
+        "quantity": { "type": "integer", "minimum": 0, "$comment": "How many the record spawns there; 99 means the species keeps coming." },
+        "endless":  { "const": true, "$comment": "The record's quantity is 99: the species keeps coming." }
       }
     },
     "target": {

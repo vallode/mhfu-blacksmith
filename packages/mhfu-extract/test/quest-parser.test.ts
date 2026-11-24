@@ -125,12 +125,14 @@ test("readLargeMonsters flattens every LargeMonTable's monster data", () => {
   buf.writeUInt8(1, 68); // quantity
   buf.writeUInt8(4, 69); // power
   buf.writeUInt16LE(97, 72); // stage
+  buf.writeFloatLE(10018, 64 + 32); // x
+  buf.writeFloatLE(11722, 64 + 40); // z
   // Terminator (signed -1) at the next 60-byte slot.
   buf.writeInt16LE(-1, 64 + 60);
 
   const monsters = readLargeMonsters(reader, header);
   assert.deepEqual(monsters, [
-    { monsterId: 77, quantity: 1, power: 4, attr1: 0, attr2: 0, stage: 97 },
+    { monsterId: 77, quantity: 1, power: 4, attr1: 0, attr2: 0, stage: 97, x: 10018, z: 11722 },
   ]);
 });
 
@@ -153,6 +155,8 @@ test("readSmallMonsters walks the index -> table -> data pointer chain", () => {
   buf.writeUInt16LE(35, 128); // Giaprey
   buf.writeUInt8(3, 132); // quantity
   buf.writeUInt8(1, 133); // power
+  buf.writeFloatLE(10781, 128 + 32); // x
+  buf.writeFloatLE(5201, 128 + 40); // z
   // Terminator.
   buf.writeUInt16LE(0xffff, 128 + 60);
 
@@ -160,7 +164,9 @@ test("readSmallMonsters walks the index -> table -> data pointer chain", () => {
   assert.equal(tables.length, 1);
   assert.equal(tables[0]!.stageId, 93);
   assert.equal(tables[0]!.dataPtr, 128);
-  assert.deepEqual(tables[0]!.monsters, [{ monsterId: 35, quantity: 3, power: 1 }]);
+  assert.deepEqual(tables[0]!.monsters, [
+    { monsterId: 35, quantity: 3, power: 1, x: 10781, z: 5201 },
+  ]);
 });
 
 test("readSmallMonsters returns [] when smallMonPtr is 0", () => {

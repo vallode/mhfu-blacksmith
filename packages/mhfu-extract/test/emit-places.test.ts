@@ -176,7 +176,13 @@ test("emitGathering writes each set of points once, with the quests that use it"
 });
 
 test("projectToMap adds the stage's origin and scales by the map's size and zoom", () => {
-  const map = { width: 1500, depth: 3000, zoom: 1, origins: [[100, 200]] as [number, number][] };
+  const map = {
+    width: 1500,
+    depth: 3000,
+    zoom: 1,
+    stages: [1],
+    origins: [[100, 200]] as [number, number][],
+  };
   assert.deepEqual(projectToMap(map, 0, 50, 100), [15, 15]);
   const [u, v] = projectToMap({ ...map, zoom: 0.9 }, 0, 50, 100)!;
   assert.ok(Math.abs(u - 21.1) < 1e-9);
@@ -272,6 +278,7 @@ test("emitGathering places points on the map, and drops areas the map doesn't dr
         width: 1500,
         depth: 1500,
         zoom: 1,
+        stages: [1, 2, 3],
         origins: [
           [0, 0],
           [0, 0],

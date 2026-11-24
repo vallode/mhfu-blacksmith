@@ -285,7 +285,11 @@ export default function QuestDetailClient({ hub, id }: Props) {
   }
 
   if (quest.hasAreaMap) {
-    tabs.push({ id: "map", label: d.tabs.map, content: <QuestAreaMap questId={id} /> });
+    tabs.push({
+      id: "map",
+      label: d.tabs.map,
+      content: <QuestAreaMap questId={id} spawns={quest.spawns} />,
+    });
   }
 
   return (
