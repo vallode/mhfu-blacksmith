@@ -71,6 +71,7 @@ import PieceChips from "./PieceChips";
 import ResultView, { type PieceActions } from "./ResultView";
 import SearchBar from "./SearchBar";
 import SetModel from "./SetModel";
+import SetNameForm from "./SetNameForm";
 import { LockNote, LockRows, withLock } from "./LockedArmor";
 import { PiecePicker } from "./Pickers";
 import { DEFAULT_FORM, OptionsSummary, SearchOptions, type Form } from "./SearchOptions";
@@ -317,6 +318,8 @@ export default function SetBuilderClient() {
 
   /** The saved set the editor holds, if it was opened from (or saved to) "My sets". */
   const [savedId, setSavedId] = useState<string | null>(null);
+  /** Whether the editor's title is the set's name field. */
+  const [renaming, setRenaming] = useState(false);
   /** Where the editor's set came from, for its title. */
   const [origin, setOrigin] = useState<Origin>("new");
   /** The name a shared link gave its set, for the editor's title and saving it. */
@@ -334,6 +337,7 @@ export default function SetBuilderClient() {
       setBuild(next);
       setForm((f) => ({ ...f, hunterType: next.hunterType, sex: next.sex }));
       setSavedId(from.savedId ?? null);
+      setRenaming(false);
       setOrigin(from.origin ?? "new");
       setLinkName(from.name ?? null);
       setOpenWarnings(from.warnings ?? []);
@@ -475,7 +479,10 @@ export default function SetBuilderClient() {
     const gone = savedSets.find((s) => s.id === id);
     const before = savedSets;
     storeSets(deleteSet(savedSets, id));
-    if (id === savedId) setSavedId(null);
+    if (id === savedId) {
+      setSavedId(null);
+      setRenaming(false);
+    }
     if (gone) {
       toast({
         id: "set-builder-deleted",
@@ -488,9 +495,37 @@ export default function SetBuilderClient() {
   const editorLabel = savedSet ? savedSet.name : (linkName ?? text.editor.origins[origin]);
   const editorTitle = (
     <div className="flex flex-wrap items-center gap-[0.8rem]">
-      <span className="min-w-0 flex-[1_1_20rem] truncate">
-        <PanelTitle>{editorLabel}</PanelTitle>
-      </span>
+      <div className="flex min-w-0 flex-[1_1_20rem] items-center gap-[0.8rem]">
+        {renaming && (savedSet || linkName !== null) ? (
+          <SetNameForm
+            className="flex-1"
+            initial={savedSet?.name ?? linkName ?? ""}
+            label={text.editor.nameLabel}
+            onSubmit={(name) => {
+              if (savedSet) storeSets(updateSet(savedSets, savedSet.id, { name }));
+              else setLinkName(name);
+              setRenaming(false);
+            }}
+            onCancel={() => setRenaming(false)}
+          />
+        ) : (
+          <>
+            <span className="min-w-0 truncate">
+              <PanelTitle>{editorLabel}</PanelTitle>
+            </span>
+            {(savedSet || linkName !== null) && (
+              <button
+                type="button"
+                className={textButton}
+                aria-label={text.editor.renameLabel(savedSet?.name ?? linkName ?? "")}
+                onClick={() => setRenaming(true)}
+              >
+                {text.editor.rename}
+              </button>
+            )}
+          </>
+        )}
+      </div>
       <div className={ui.actions}>
         <SetModel
           pieces={build.pieces}

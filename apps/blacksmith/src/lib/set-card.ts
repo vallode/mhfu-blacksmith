@@ -20,12 +20,12 @@ import {
   text,
   type CardNode,
 } from "./card-tree";
-import { EMBED_ICON_TINTS, slotGlyphs, tally, tintFor } from "./embed-format";
+import { EMBED_ICON_TINTS, tally, tintFor } from "./embed-format";
 import { binSlots, evaluateBuild, type BuildSet } from "./set-build";
 import type { DecoBin, Piece, SkillTreeData } from "./set-search";
 
 /** Bump when the card's look changes, so caches and link previews pick it up. */
-export const SET_CARD_VERSION = 4;
+export const SET_CARD_VERSION = 5;
 
 export { CARD, type CardNode };
 
@@ -37,6 +37,8 @@ export const SET_CARD_FONT = CARD_FONT;
 /** Sprites are drawn at this many times their size (the 16px mini icons at 32px). */
 export const SPRITE_SCALE = 2;
 export const SPRITE_SIZE = 16 * SPRITE_SCALE;
+/** A slot circle, about the cap height of the row's name. */
+const SLOT_SIZE = 24;
 
 /** The sprites the card uses, by name (see spriteName): data: URIs. */
 export type CardSprites = Record<string, string>;
@@ -81,6 +83,7 @@ export function cardSpriteSources(): { name: string; file: string; tint?: string
     })),
     ...Object.values(ICONS.weapons).map((w) => ({ name: `${w}-plain`, file: `${w}-mini.png` })),
     ...ICONS.elements.map((e) => ({ name: `${e}-plain`, file: `${e}.png` })),
+    { name: "slot-empty", file: "slot-empty.png" },
   ];
 }
 
@@ -138,7 +141,24 @@ function decoLine(set: BuildSet, bin: DecoBin, sprites: CardSprites): CardNode {
   );
 }
 
-function equipRow(icon: CardNode | null, name: CardNode, slots: number, decos: CardNode): CardNode {
+/** A row's slots as empty circles, dashes for the missing ones. */
+function slotMarks(sprites: CardSprites, count: number): CardNode {
+  const missing = Math.max(0, 3 - count);
+  return h(
+    "div",
+    { style: { display: "flex", alignItems: "center", gap: 4, whiteSpace: "nowrap" } },
+    ...Array.from({ length: Math.min(count, 3) }, () => img(sprites, "slot-empty", SLOT_SIZE)),
+    missing > 0 && text({ color: COLOR.faint, fontSize: SLOT_SIZE }, "-".repeat(missing)),
+  );
+}
+
+function equipRow(
+  icon: CardNode | null,
+  name: CardNode,
+  slots: number,
+  decos: CardNode,
+  sprites: CardSprites,
+): CardNode {
   return h(
     "div",
     { style: { display: "flex", flexDirection: "column", gap: 2 } },
@@ -148,7 +168,7 @@ function equipRow(icon: CardNode | null, name: CardNode, slots: number, decos: C
       h("div", { style: { display: "flex", width: SPRITE_SIZE, marginRight: 8 } }, icon),
       text({ color: COLOR.stat, fontSize: 32, width: 28 }, ":"),
       h("div", { style: { display: "flex", flexGrow: 1, alignItems: "baseline", gap: 12 } }, name),
-      text({ color: COLOR.faint, fontSize: 24 }, slotGlyphs(slots, "O", "-")),
+      slotMarks(sprites, slots),
     ),
     decos,
   );
@@ -187,6 +207,7 @@ export function setCardTree(
         text({ color: "rgba(255,255,255,0.6)", fontSize: 32 }, "Weapon"),
         set.weaponSlots,
         decoLine(set, "weapon", sprites),
+        sprites,
       ),
     ...ARMOR_SLOTS.map((slot, i) => {
       const p = set.pieces[i];
@@ -195,6 +216,7 @@ export function setCardTree(
         pieceName(p),
         binSlots(set, slot),
         decoLine(set, slot, sprites),
+        sprites,
       );
     }),
   ];

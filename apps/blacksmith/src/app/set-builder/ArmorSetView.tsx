@@ -166,7 +166,7 @@ function EquipRow({
   );
 }
 
-/** The weapon row's slot count: "◀ OO- ▶" when editing. */
+/** The weapon row's slot count: the circles between the arrows when editing. */
 function WeaponSlots({
   count,
   decorations,
