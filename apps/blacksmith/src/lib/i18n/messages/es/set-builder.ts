@@ -50,7 +50,8 @@ export const setBuilder: Messages["setBuilder"] = {
       weapon: "Arma",
       badSkills: "habilidades negativas permitidas",
       allQuests: "todas las misiones",
-      ownedArmor: "armadura obtenida",
+      ownedArmorPreferred: "armadura obtenida preferida",
+      ownedArmorOnly: "solo armadura obtenida",
     },
     allowBadSkills: "Permitir habilidades negativas",
     allowBadSkillsNote:
@@ -64,8 +65,14 @@ export const setBuilder: Messages["setBuilder"] = {
         options,
         ") deja fuera las armaduras y adornos que necesitan materiales de misiones posteriores. Actívalo para buscar entre todos.",
       ),
-    ownedOnly: "Solo armadura obtenida",
-    ownedOnlyNote: "Usar solo la armadura de la caja de equipo de tu cazador.",
+    ownedArmor: "Armadura obtenida",
+    ownedArmorNote:
+      "Buscar toda la armadura, poner primero los conjuntos con armadura de la caja de equipo de tu cazador, o usar solo esa armadura.",
+    ownedModes: {
+      off: "Cualquiera",
+      prefer: "Preferir obtenida",
+      only: "Solo obtenida",
+    },
     locked: {
       title: "Siempre usadas",
       note: "Todos los conjuntos las usan, sea cual sea el rango o el progreso de misiones, si el cazador puede llevarlas.",
@@ -110,7 +117,7 @@ export const setBuilder: Messages["setBuilder"] = {
     intro:
       "Añade las habilidades que quieras y busca: todos los conjuntos de armadura con adornos que las activan. Los mejores conjuntos aparecen primero: por defensa o por el orden que elijas.",
     addSkills: "Añadir habilidades",
-    noSets: (progress: boolean, locked: boolean, excluded: boolean) => {
+    noSets: (progress: boolean, locked: boolean, excluded: boolean, ownedOnly: boolean) => {
       const tips = [
         "menos habilidades",
         "un rango más alto",
@@ -118,6 +125,7 @@ export const setBuilder: Messages["setBuilder"] = {
         "permitir habilidades negativas",
         ...(locked ? ["liberar piezas que siempre se usan"] : []),
         ...(excluded ? ["quitar piezas excluidas"] : []),
+        ...(ownedOnly ? ["usar armadura que no tienes"] : []),
         ...(progress ? ["ignorar tu progreso de misiones"] : []),
       ];
       const last = tips.pop();
