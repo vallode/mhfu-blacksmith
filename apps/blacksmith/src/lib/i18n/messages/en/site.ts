@@ -261,6 +261,27 @@ export const site = {
       level: (level: string, done: number, total: number) =>
         `${level}: ${done} of ${total} cleared`,
     },
+    collection: {
+      note: "Your equipment box against the Guild Card's equipment awards: what each weapon class and armor slot still needs. Any eligible piece counts, and each box slot counts.",
+      weapons: "Weapons",
+      armor: "Armor",
+      allAwards: "All Guild Card awards",
+      ownedOf: (owned: string, needed: string) => `${owned}/${needed}`,
+      awardProgress: (done: string, total: string) => `${done}/${total}`,
+      awardLabel: (title: string, done: number, total: number) =>
+        `${title}: ${done} of ${total} complete`,
+      groupProgress: (label: string, owned: number, needed: number) =>
+        `${label}: ${owned} of ${needed} pieces`,
+      need: (n: number) => (n === 1 ? "1 more needed" : `${n} more needed`),
+      complete: "Complete",
+      missing: (n: number) => `Eligible pieces you don't own (${n})`,
+      noEquipment:
+        "This save doesn't include the equipment box, so there's no collection to show. Load a save from this version of the game to see it.",
+      loading: "Reading your equipment box…",
+      failed: "The equipment list couldn't be loaded.",
+      pieces: (n: string) => `${n} pieces`,
+      piecesLabel: (n: number) => `${n} pieces of equipment`,
+    },
   },
   search: {
     label: "Search",

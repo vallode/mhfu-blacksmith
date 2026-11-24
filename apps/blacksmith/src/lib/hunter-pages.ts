@@ -30,7 +30,7 @@ export const HUNTER_PAGES: readonly HunterPage[] = [
   { id: "quests", icon: "ticket", ready: true },
   { id: "monsters", icon: "claw", ready: false },
   { id: "crowns", icon: "scale", ready: false },
-  { id: "collection", icon: "great-sword", ready: false },
+  { id: "collection", icon: "great-sword", ready: true },
 ];
 export const SAVE_PAGE: HunterPage = { id: "save", icon: "note", ready: true };
 
