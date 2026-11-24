@@ -230,20 +230,23 @@ export const site: Messages["site"] = {
       of: (done: string, total: string) => `${done}/${total}`,
     },
     monsterLog: {
-      note: "Todos los monstruos con un registro en tu partida, con las cacerías, capturas y tallas que guarda la Tarjeta del Gremio.",
+      note: "Todos los monstruos con un registro en tu partida, con las veces que los has abatido y capturado y los tamaños que guarda la Tarjeta del Gremio.",
       large: "Monstruos grandes",
       small: "Monstruos pequeños",
       monster: "Monstruo",
-      hunted: "Cazados",
+      slain: "Abatidos",
       captured: "Capturados",
+      sizes: "Tamaños",
       largest: "Mayor",
       smallest: "Menor",
       logged: (n: number, count: string) => (n === 1 ? "1 monstruo" : `${count} monstruos`),
-      totals: (hunted: string, captured: string) => `Cazados: ${hunted} · Capturados: ${captured}`,
-      huntedTotal: (hunted: string) => `Cazados: ${hunted}`,
+      totals: (slain: string, captured: string) => `Abatidos: ${slain} · Capturados: ${captured}`,
+      slainTotal: (slain: string) => `Abatidos: ${slain}`,
       untracked:
         "Esta partida se guardó antes de leer los registros de monstruos. Vuelve a cargar la partida para verlos.",
       empty: "Aún no has cazado ningún monstruo.",
+      noListed:
+        "Los registros de monstruos de tu partida no son de monstruos que aparezcan en este sitio.",
     },
     awards: {
       note: "Conseguido significa que tu partida muestra que cumples el requisito. El resto aún no se puede leer de una partida.",

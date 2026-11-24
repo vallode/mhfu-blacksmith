@@ -49,10 +49,10 @@ test("monsterLog keeps the monsters with a record, large first, in the data's or
     monster("Velociprey", { small: true }),
   ];
   const groups = monsterLog(monsters, [
-    record(1, 5, 2, 120, 90),
-    record(3, 41),
-    record(11, 1),
     record(16, 7),
+    record(11, 1),
+    record(3, 41),
+    record(1, 5, 2, 120, 90),
   ]);
   assert.deepEqual(names(groups), [
     ["Rathian", "Rathalos"],
@@ -75,6 +75,32 @@ test("monsterLog keeps the monsters with a record, large first, in the data's or
     [
       [5, 2, 120, 90],
       [1, 0, 0, 0],
+    ],
+  );
+});
+
+test("a size-only record still makes a row", () => {
+  const monsters = [
+    monster("Rathian", {
+      baseSize: 1000,
+      crowns: { mini: 90, silver: 110, gold: 120 },
+    }),
+    monster("Kelbi", { category: "herbivore", small: true }),
+  ];
+  const groups = monsterLog(monsters, [record(1, 0, 0, 130)]);
+  assert.deepEqual(names(groups), [["Rathian"], []]);
+  assert.deepEqual(groups[0]!.rows[0], {
+    monster: monsters[0],
+    kills: 0,
+    captures: 0,
+    largest: 130,
+    smallest: 0,
+  });
+  assert.deepEqual(
+    groups.map(({ kills, captures }) => [kills, captures]),
+    [
+      [0, 0],
+      [0, 0],
     ],
   );
 });

@@ -13,12 +13,7 @@ import {
 import { useGameText, useLocale } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
 import { cardSize, crownFor } from "@/lib/crowns";
-import {
-  loggedMonsterCount,
-  monsterLog,
-  type MonsterLogGroup,
-  type MonsterLogMonster,
-} from "@/lib/monster-log";
+import { monsterLog, type MonsterLogGroup, type MonsterLogMonster } from "@/lib/monster-log";
 import { monsterLogTable } from "@/styles/tables";
 import { NoHunter } from "./HunterPages";
 
@@ -81,9 +76,9 @@ function MonsterName({ monster }: { monster: MonsterLogMonster }) {
 }
 
 /**
- * One group of the log as a table: the monster left, then its hunts and
- * captures, and (large monsters) its largest and smallest above each other.
- * The small monsters' log has no captures or sizes to show.
+ * One group of the log as a table: the monster left, then its slain and
+ * captured counts, and (large monsters) its largest and smallest above each
+ * other. The small monsters' log has no captures or sizes to show.
  */
 function LogTable({ group }: { group: MonsterLogGroup }) {
   const { t, formatNumber } = useLocale();
@@ -93,13 +88,18 @@ function LogTable({ group }: { group: MonsterLogGroup }) {
     <table className={monsterLogTable}>
       <thead>
         <tr>
-          <th>{text.monster}</th>
-          <th>{text.hunted}</th>
-          {large && <th>{text.captured}</th>}
+          <th scope="col">{text.monster}</th>
+          <th scope="col">{text.slain}</th>
+          {large && <th scope="col">{text.captured}</th>}
           {large && (
-            <th>
-              <span className="block leading-[1.2]">{text.largest}</span>
-              <span className="block leading-[1.2]">{text.smallest}</span>
+            <th scope="col">
+              <span className="sr-only">{text.sizes}</span>
+              <span aria-hidden="true" className="block leading-[1.2]">
+                {text.largest}
+              </span>
+              <span aria-hidden="true" className="block leading-[1.2]">
+                {text.smallest}
+              </span>
             </th>
           )}
         </tr>
@@ -107,9 +107,9 @@ function LogTable({ group }: { group: MonsterLogGroup }) {
       <tbody>
         {group.rows.map((row) => (
           <tr key={row.monster.slug}>
-            <td>
+            <th scope="row">
               <MonsterName monster={row.monster} />
-            </td>
+            </th>
             <td>{formatNumber(row.kills)}</td>
             {large && <td>{formatNumber(row.captures)}</td>}
             {large && (
@@ -143,8 +143,8 @@ export default function MonsterLogPage({
   const { save } = useSave();
   const groups = useMemo(() => monsterLog(monsters, save?.monsters), [monsters, save]);
   if (!save) return <NoHunter />;
-  const logged = loggedMonsterCount(save.monsters);
   const shown = groups.filter((group) => group.rows.length > 0);
+  const logged = shown.reduce((n, group) => n + group.rows.length, 0);
   return (
     <DetailCard>
       <DetailHeader>
@@ -160,7 +160,9 @@ export default function MonsterLogPage({
         {save.monsters === undefined ? (
           <div className="text-small text-white/60">{log.untracked}</div>
         ) : shown.length === 0 ? (
-          <div className="text-small text-white/60">{log.empty}</div>
+          <div className="text-small text-white/60">
+            {save.monsters.length === 0 ? log.empty : log.noListed}
+          </div>
         ) : (
           shown.map((group) => (
             <section key={String(group.small)} className="flex flex-col gap-[0.8rem]">
@@ -171,7 +173,7 @@ export default function MonsterLogPage({
                 </h3>
                 <span className="ml-auto text-small whitespace-nowrap text-white/70 tabular-nums">
                   {group.small
-                    ? log.huntedTotal(formatNumber(group.kills))
+                    ? log.slainTotal(formatNumber(group.kills))
                     : log.totals(formatNumber(group.kills), formatNumber(group.captures))}
                 </span>
               </div>

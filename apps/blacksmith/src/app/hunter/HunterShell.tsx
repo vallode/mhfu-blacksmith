@@ -122,7 +122,7 @@ function HunterList({ page }: { page: HunterPageId | null }) {
     quests: progress
       ? t.site.hunter.guildCard.of(formatNumber(progress.done), formatNumber(progress.total))
       : undefined,
-    monsters: monsters ? formatNumber(monsters) : undefined,
+    monsters: monsters !== null ? formatNumber(monsters) : undefined,
   };
   // The page /hunter/ shows beside the list on wider screens.
   const fallback: HunterPageId = save ? "guild-card" : "save";
