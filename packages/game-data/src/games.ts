@@ -54,6 +54,8 @@ export interface GameSections {
   monsters: boolean;
   quests: boolean;
   items: boolean;
+  /** The maps, with their gathering points. */
+  maps: boolean;
   /** Decorations, and slots on equipment. */
   decorations: boolean;
   /** The Veggie Elder's trades. */
@@ -160,6 +162,7 @@ const MHFU = {
     monsters: true,
     quests: true,
     items: true,
+    maps: true,
     decorations: true,
     veggieElder: true,
     pokkeFarm: true,

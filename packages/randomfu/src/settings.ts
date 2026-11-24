@@ -117,6 +117,7 @@ export interface Settings {
   "monsterAi.branches": boolean;
   "monsterAi.branchSpread": number;
   "monsterAi.aggression": "off" | "more" | "relentless";
+  "monsterAi.reach": "off" | "less" | "rarely";
   "weaknesses.elements": boolean;
   "weaknesses.parts": boolean;
   "hints.bookshelf": boolean;
@@ -1748,6 +1749,33 @@ export const OPTIONS: readonly OptionDef[] = [
           value: "relentless",
           label: "Relentless",
           help: "Each attack is four times as likely as before against the other moves, and a monster stands idle at most a third of a second between moves and recovers from its moves and turns twice as fast.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "monsterAi.reach",
+    section: "Monster stats",
+    label: "Time out of reach",
+    help: "Large monsters spend less of the fight where you can't hit them. Rathian and Rathalos and their kin, Yian Kut-Ku and Gypceros, Fatalis and Chameleos take off less often, Diablos and Monoblos dig in less often, and every large monster fights in each area for longer before it leaves mid-fight, and keeps after a hunter it lost sight of for longer before it gives up and wanders off. A flight or a burrow, once started, lasts as long as before, and every move stays possible.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "off",
+          label: "Unchanged",
+          help: "Monsters fly, dig and leave as often as they always did.",
+        },
+        {
+          value: "less",
+          label: "Less",
+          help: "Taking off and digging in are a third as likely as before against the other moves, and a monster fights in each area twice as long before it leaves (10 minutes instead of 5 for most) and keeps after a hunter it can't see twice as long.",
+        },
+        {
+          value: "rarely",
+          label: "Rarely",
+          help: "Taking off and digging in are an eighth as likely as before against the other moves, and a monster fights in each area four times as long before it leaves (up to about a quarter of an hour) and keeps after a hunter it can't see four times as long.",
         },
       ],
     },

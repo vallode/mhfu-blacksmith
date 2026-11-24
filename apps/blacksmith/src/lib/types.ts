@@ -237,7 +237,7 @@ export interface Monster {
    * are absent; the field is absent without hitboxes or thresholds.
    */
   hitzone_flinch?: Record<string, string>;
-  /** Status tolerances from the disc; null where the monster is immune. Only in `data/` so far. */
+  /** Status tolerances from the disc; null where the monster is immune. */
   tolerances?: MonsterTolerances;
 }
 

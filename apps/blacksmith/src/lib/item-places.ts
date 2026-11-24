@@ -5,6 +5,7 @@
  * scripts/generate-data.ts writes it into public/data/item-places.json and
  * the tests build it from data/.
  */
+import { areaNumber } from "./area-numbers";
 import { formatRank } from "./monster-drops";
 import { DOWNLOADED_QUEST_HUBS, isHiddenQuest, questHubLabel, questHubSlug } from "./quests";
 
@@ -138,7 +139,8 @@ function pointsIn(layout: Layout, itemId: (name: string) => number | undefined) 
     number,
     { kinds: Map<GatherKind, Set<number>>; chance: number; drawn: boolean }
   >();
-  for (const { area, nodes } of layout.areas) {
+  for (const { area: index, nodes } of layout.areas) {
+    const area = areaNumber(layout.texture, index);
     for (const node of nodes) {
       for (const { item, chance } of node.items) {
         const id = itemId(item);

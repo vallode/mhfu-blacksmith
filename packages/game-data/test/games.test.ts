@@ -23,6 +23,7 @@ test("every game with a config has its data, and its config matches it", () => {
     assert.equal(existsSync(path.join(dir, "decorations.json")), game.sections.decorations);
     assert.equal(existsSync(path.join(dir, "veggie-trades.json")), game.sections.veggieElder);
     assert.equal(existsSync(path.join(dir, "farm.json")), game.sections.pokkeFarm);
+    assert.equal(existsSync(path.join(dir, "gathering.json")), game.sections.maps);
   }
 });
 

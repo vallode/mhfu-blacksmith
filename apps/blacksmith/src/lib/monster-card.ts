@@ -1,8 +1,9 @@
 /**
  * The image in a monster page's link embed: its portrait on the scroll with
- * its HP, gold and mini crown sizes and breakable parts under it, and beside them its name
- * and hitzone table, given most of the room, the best part in each column in green as on the page,
- * and under the table the star levels it's hunted at on the Village board and each Guild rank.
+ * its HP, gold and mini crown sizes and breakable parts under it, and beside them its name,
+ * its type with the buildup each status first takes (or "Immune"), and its hitzone table,
+ * given most of the room, the best part in each column in green as on the page, and under
+ * the table the star levels it's hunted at on the Village board and each Guild rank.
  *
  * scripts/generate-embeds.ts draws one per monster at build time (with satori
  * and resvg, like the set card the Worker draws) to monsterCardPath(). It
@@ -14,11 +15,12 @@
 import { CARD, cardShell, COLOR, h, text, type CardNode } from "./card-tree";
 import { crownCutoff, type Crown } from "./crowns";
 import { titleCase } from "./embed-format";
+import { STATUS_ORDER, type MonsterStatus } from "./monster-status";
 import { questStarLevel, type HuntStars } from "./quests";
 import type { Monster } from "./types";
 
 /** Bump when the card's look changes, so link previews pick up the new image. */
-export const MONSTER_CARD_VERSION = 3;
+export const MONSTER_CARD_VERSION = 4;
 
 /** Where the build writes a monster's card, under public/. */
 export const monsterCardPath = (slug: string) => `/embed/cards/monsters/${slug}.png`;
@@ -30,7 +32,18 @@ export const monsterCardPath = (slug: string) => `/embed/cards/monsters/${slug}.
  */
 export function monsterCardUrl(monster: Monster, hunts: HuntStars): string {
   const { name, type, hitzones, base_hp, base_size, crowns, breaks } = monster;
-  const shown = JSON.stringify({ name, type, hitzones, base_hp, base_size, crowns, breaks, hunts });
+  const status = statusThresholds(monster);
+  const shown = JSON.stringify({
+    name,
+    type,
+    hitzones,
+    base_hp,
+    base_size,
+    crowns,
+    breaks,
+    hunts,
+    status,
+  });
   // FNV-1a, 32-bit.
   let hash = 0x811c9dc5;
   for (let i = 0; i < shown.length; i++) {
@@ -65,6 +78,7 @@ export const MONSTER_CARD_SPRITES = [
   "crown-gold",
   "crown-mini",
   "star",
+  ...STATUS_ORDER,
 ] as const;
 export type MonsterCardSprites = Record<(typeof MONSTER_CARD_SPRITES)[number], string>;
 
@@ -109,6 +123,101 @@ const breakLabels = (monster: Monster) => [
   ...new Set((monster.breaks ?? []).map((b) => breakLabel(b.name))),
 ];
 
+/** Each status's first threshold, null where the monster is immune; absent without tolerances. */
+function statusThresholds(monster: Monster): [MonsterStatus, number | null][] | undefined {
+  const t = monster.tolerances;
+  return t && STATUS_ORDER.map((s) => [s, t[s]?.initial ?? null]);
+}
+
+const STATUS_NAMES: Record<MonsterStatus, string> = {
+  poison: "Poison",
+  paralysis: "Paralysis",
+  sleep: "Sleep",
+  ko: "KO",
+};
+/** The status row's figures, its icons, and the gaps beside each icon and between statuses. */
+const STATUS_TEXT = 22;
+const STATUS_GAP = 6;
+const STATUS_SPACING = 18;
+
+/** An immune status's icon, faded. */
+const IMMUNE_ICON_OPACITY = 0.4;
+const IMMUNE = "Immune";
+
+/**
+ * The status row as groups of icons and their figure: each status with its
+ * first threshold, or "Immune" (its icon faded); a monster immune to all four
+ * gets their four faded icons and one "Immune", which fits where four
+ * wouldn't.
+ */
+function statusGroups(
+  status: [MonsterStatus, number | null][],
+): { icons: MonsterStatus[]; label: string; immune: boolean }[] {
+  if (status.every(([, n]) => n === null)) {
+    return [{ icons: status.map(([s]) => s), label: IMMUNE, immune: true }];
+  }
+  return status.map(([s, n]) => ({
+    icons: [s],
+    label: n === null ? IMMUNE : String(n),
+    immune: n === null,
+  }));
+}
+
+/** The status row's width, as the layout draws it. */
+function statusRowWidth(status: [MonsterStatus, number | null][]): number {
+  const groups = statusGroups(status);
+  return (
+    groups.reduce(
+      (w, g) => w + g.icons.length * (SPRITE + STATUS_GAP) + textWidth(g.label.length, STATUS_TEXT),
+      0,
+    ) +
+    STATUS_SPACING * (groups.length - 1)
+  );
+}
+
+/** The type's line: the type left, each status's icon and first threshold right. */
+function typeLine(monster: Monster, sprites: MonsterCardSprites): CardNode {
+  const status = statusThresholds(monster);
+  return h(
+    "div",
+    {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        height: typeLineHeight(monster),
+      },
+    },
+    text({ color: COLOR.parchment, fontSize: 22 }, titleCase(monster.type)),
+    status
+      ? h(
+          "div",
+          { style: { display: "flex", alignItems: "center", gap: STATUS_SPACING } },
+          ...statusGroups(status).map(({ icons, label, immune }) =>
+            h(
+              "div",
+              { style: { display: "flex", alignItems: "center", gap: STATUS_GAP } },
+              ...icons.map((s) =>
+                h("img", {
+                  src: sprites[s],
+                  style: {
+                    width: SPRITE,
+                    height: SPRITE,
+                    ...(immune && { opacity: IMMUNE_ICON_OPACITY }),
+                  },
+                }),
+              ),
+              text(
+                { color: immune ? COLOR.unavailable : COLOR.white, fontSize: STATUS_TEXT },
+                label,
+              ),
+            ),
+          ),
+        )
+      : null,
+  );
+}
+
 const PART_WIDTH = 215;
 const COLUMN_WIDTH = 56;
 /** The table's row height, unless its rows need less to fit; never below the least. */
@@ -128,6 +237,9 @@ const INNER = {
 
 /** A line of text at `fontSize`, about 1.2em high. */
 const lineHeight = (fontSize: number) => Math.ceil(fontSize * 1.2);
+/** The type's line: as tall as the status icons beside it, where it has them. */
+const typeLineHeight = (monster: Monster) =>
+  monster.tolerances ? Math.max(lineHeight(22), SPRITE) : lineHeight(22);
 
 /**
  * The hitzone table's row height: ROW_HEIGHT, or less where the header and
@@ -136,7 +248,7 @@ const lineHeight = (fontSize: number) => Math.ceil(fontSize * 1.2);
  */
 function rowHeight(monster: Monster, hunts: HuntStars): number {
   const rows = Object.keys(monster.hitzones ?? {}).length;
-  const name = lineHeight(NAME_TEXT) + 4 + lineHeight(22);
+  const name = lineHeight(NAME_TEXT) + 4 + typeLineHeight(monster);
   const lines = boardRows(hunts).length;
   const foot = lines ? RIGHT_GAP + lines * HUNT_ROW : 0;
   const room = INNER.height - name - RIGHT_GAP - foot;
@@ -248,9 +360,13 @@ const HUNT_ROW = 34;
 const QUESTS_LABEL = "Quests";
 const QUESTS_LABEL_WIDTH = Math.ceil(QUESTS_LABEL.length * TABLE_TEXT * 0.64) + 20;
 
-const boardText = (b: HuntBoard) => b.stars.join(", ");
+/** The comma between star levels: a narrow box, so the monospace font's wide cell doesn't space them out. */
+const COMMA_WIDTH = Math.round(TABLE_TEXT * 0.34);
+const COMMA_GAP = 3;
+const starDigits = (b: HuntBoard) => b.stars.reduce((n, s) => n + String(s).length, 0);
 const boardWidth = (b: HuntBoard) =>
-  textWidth(b.short.length + boardText(b).length, TABLE_TEXT) +
+  textWidth(b.short.length + starDigits(b), TABLE_TEXT) +
+  (b.stars.length - 1) * (COMMA_WIDTH + 2 * COMMA_GAP) +
   BOARD_NAME_GAP +
   BOARD_INNER_GAP +
   STAR.width;
@@ -308,7 +424,26 @@ function huntStarsRows(hunts: HuntStars, sprites: MonsterCardSprites): CardNode 
                 },
                 b.short,
               ),
-              text({ color: COLOR.white, fontSize: TABLE_TEXT }, boardText(b)),
+              h(
+                "div",
+                { style: { display: "flex", alignItems: "center", gap: COMMA_GAP } },
+                ...b.stars.flatMap((star, k) => [
+                  ...(k > 0
+                    ? [
+                        text(
+                          {
+                            color: COLOR.white,
+                            fontSize: TABLE_TEXT,
+                            width: COMMA_WIDTH,
+                            justifyContent: "center",
+                          },
+                          ",",
+                        ),
+                      ]
+                    : []),
+                  text({ color: COLOR.white, fontSize: TABLE_TEXT }, star),
+                ]),
+              ),
               h("img", { src: sprites.star, style: STAR }),
             ),
           ),
@@ -406,7 +541,7 @@ export function monsterCardTree(
       "div",
       { style: { display: "flex", flexDirection: "column", gap: 4 } },
       text({ color: COLOR.white, fontSize: NAME_TEXT }, monster.name),
-      text({ color: COLOR.parchment, fontSize: 22 }, titleCase(monster.type)),
+      typeLine(monster, sprites),
     ),
     hitzoneTable(monster, rowHeight(monster, hunts), sprites),
     huntStarsRows(hunts, sprites),
@@ -444,12 +579,18 @@ export function monsterCardAlt(monster: Monster, hunts: HuntStars): string {
     })
     .filter(Boolean);
   const boards = huntBoards(hunts);
+  const status = statusThresholds(monster);
   return [
     `${monster.name}, ${titleCase(monster.type)}.`,
     boards.length
       ? `Hunted in ${boards.map((b) => `${b.name} ${b.stars.join(", ")}★`).join("; ")}.`
       : "",
     monster.base_hp ? `Base HP ${monster.base_hp}.` : "",
+    status
+      ? `Status buildup: ${status
+          .map(([s, n]) => `${STATUS_NAMES[s]} ${n === null ? "immune" : n}`)
+          .join(", ")}.`
+      : "",
     best.length ? `Best hitzones: ${best.join(", ")}.` : "",
     monster.breaks?.length ? `Breaks: ${breakLabels(monster).join(", ")}.` : "",
   ]
@@ -472,6 +613,13 @@ export function monsterCardOverflow(monster: Monster, hunts: HuntStars): string[
   const right = inner.width - LEFT_WIDTH - 36;
   const problems: string[] = [];
   if (textWidth(monster.name.length, NAME_TEXT) > right) problems.push(`name "${monster.name}"`);
+  // The type and, right of it, the status row.
+  const status = statusThresholds(monster);
+  if (status) {
+    const row = statusRowWidth(status);
+    const type = textWidth(titleCase(monster.type).length, 22);
+    if (type + 24 + row > right) problems.push(`status row beside "${titleCase(monster.type)}"`);
+  }
   const rows = Object.keys(monster.hitzones ?? {});
   if (rowHeight(monster, hunts) < MIN_ROW_HEIGHT) problems.push(`${rows.length} hitzone rows`);
   for (const part of rows) {

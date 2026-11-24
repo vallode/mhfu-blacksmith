@@ -94,6 +94,18 @@ describe("monster card", () => {
     const ukanlos = monsterCardAlt(getMonster("flying-wyvern", "ukanlos")!, {});
     assert.match(ukanlos, /Breaks: [^.]*\bChest\b/);
     assert.doesNotMatch(ukanlos, /Hunted in/);
+    assert.match(alt, /Status buildup: Poison 110, Paralysis 100, Sleep 150, KO 160\./);
+    assert.match(
+      monsterCardAlt(getMonster("elder-dragon", "kirin")!, {}),
+      /Status buildup: Poison 200, Paralysis immune, Sleep 200, KO immune\./,
+    );
+  });
+
+  it("gives a monster with a changed status threshold a new card URL", () => {
+    const rathalos = getMonster("flying-wyvern", "rathalos")!;
+    const t = rathalos.tolerances!;
+    const changed = { ...rathalos, tolerances: { ...t, sleep: { ...t.sleep!, initial: 1 } } };
+    assert.notEqual(monsterCardUrl(changed, {}), monsterCardUrl(rathalos, {}));
   });
 
   it("finds the star levels monsters are hunted at", () => {

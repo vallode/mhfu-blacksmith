@@ -31,8 +31,15 @@ import { createHash } from "crypto";
 const BUILD_ID = "2026-11-12";
 
 /** @type {import("next").NextConfig} */
+const dev = process.env.NODE_ENV === "development";
+
 const nextConfig = {
-  output: "export",
+  // Next warns that rewrites don't work with an export, so `next dev` (which
+  // needs the share-link rewrite below) doesn't set it.
+  ...(!dev && { output: "export" }),
+  // The workspace root, so Next doesn't guess it from whichever lockfile it
+  // finds first (other worktrees carry their own pnpm-lock.yaml).
+  outputFileTracingRoot: path.join(import.meta.dirname, "../.."),
   trailingSlash: true,
   // The game data's loader (packages/game-data) is TypeScript source, and
   // imports its own modules as "./files.js", as Node's ESM resolution wants.
@@ -48,7 +55,7 @@ const nextConfig = {
   // the set builder's page, served there by the Worker
   // (src/cloudflare/worker.ts). `next dev` has no Worker, so it does the same
   // here. An export can't rewrite, so only in development.
-  ...(process.env.NODE_ENV === "development" && {
+  ...(dev && {
     rewrites: async () => [{ source: "/sets/:path*", destination: "/set-builder/" }],
   }),
 };

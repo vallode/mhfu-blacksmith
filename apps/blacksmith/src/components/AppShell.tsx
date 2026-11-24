@@ -84,6 +84,7 @@ const ALL_NAV_GROUPS: NavItem[][] = [
       needs: "quests",
     },
     { label: "items", icon: "fluid", match: "/items/", href: "/items/", needs: "items" },
+    { label: "maps", icon: "item-29", match: "/maps/", href: "/maps/", needs: "maps" },
     {
       label: "veggieElder",
       icon: "mushroom",

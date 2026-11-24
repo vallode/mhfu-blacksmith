@@ -34,7 +34,7 @@ extractor share.
 | `ranks`             | low, high and G rank                                                                                              |
 | `monsterCategories` | the 9 categories, in the site's order                                                                             |
 | `questHubs`         | Village, the three Guild ranks, Training School, Treasure Hunting, then the downloaded Event and Challenge boards |
-| `sections`          | which parts of the site the game has: decorations, Veggie Elder, Pokke Farm, the hunter save import, …            |
+| `sections`          | which parts of the site the game has: decorations, maps, Veggie Elder, Pokke Farm, the hunter save import, …      |
 | `save`              | the save file (`MHP2NDG.BIN`) and which parser reads it                                                           |
 
 A game lists only what it has, and turns off the sections it lacks (MHF1,
