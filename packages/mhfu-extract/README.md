@@ -439,6 +439,8 @@ against the EU disc, then reviewed:
 
 Emitted monsters carry their emID, which pairs them with `data/`'s.
 `base_hp` is written to `data/monsters` and shown on the monster page.
+`small` marks the game's small monsters (multiplier set 0 above), so the
+Guild Card can keep their hunts apart from large monsters'.
 `tolerances` is written to `data/monsters` too (`siteTolerances`):
 paralysis, sleep, KO and poison in snake_case keys, `null` where `initial`
 is 0xFFFF (immune). The fourth status is left out until it is identified

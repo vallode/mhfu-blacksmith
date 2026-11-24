@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "./constants";
+import { monsterGameId } from "./monster-ids";
 import { slugify } from "./slug";
 import type { Monster } from "./types";
 import { DATA_DIR } from "./paths";
@@ -33,4 +34,18 @@ function loadMonsters(category: MonsterCategory): Monster[] {
 
 export function getMonster(category: MonsterCategory, slug: string): Monster | undefined {
   return getMonsters(category).find((m) => m.slug === slug);
+}
+
+/**
+ * The game IDs of the small monsters, from `data/monsters`' `small` flag.
+ * The Guild Card keeps their kills apart from the large monsters': a few
+ * thousand Kelbi would swamp the hunts that matter.
+ */
+export function getSmallMonsterIds(): number[] {
+  return MONSTER_CATEGORIES.flatMap((category) =>
+    getMonsters(category).flatMap((m) => {
+      const id = m.small ? monsterGameId(m.name) : undefined;
+      return id === undefined ? [] : [id];
+    }),
+  ).sort((a, b) => a - b);
 }

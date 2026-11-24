@@ -216,6 +216,8 @@ export interface Monster {
   base_scale?: number;
   /** Guild Card crown thresholds, in percent of `base_size` (src/lib/crowns.ts) */
   crowns?: Crowns;
+  /** The game's small monsters (the disc's quest multiplier set 0). Only in `data/`. */
+  small?: boolean;
   /**
    * The smallest and largest size, in percent of `base_size`, the monster
    * rolls across its quests (scripts/lib/quest-bundle.ts monsterSizeRanges);
