@@ -1,12 +1,14 @@
 /** The equipment collection awards (lib/collection.ts). */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
+import { AWARDS } from "../src/lib/awards";
 import {
-  armorCollectionAward,
-  weaponCollectionAward,
   ARTISAN_HAMMER_AWARD,
   ARTISAN_MITTEN_AWARD,
-} from "../src/lib/collection";
+  ARTISAN_WEAPON_CATEGORIES,
+} from "../src/lib/award-collection";
+import { ARTISAN_WEAPONS } from "../src/lib/award-weapons";
+import { armorCollectionAward, weaponCollectionAward } from "../src/lib/collection";
 import type { EquipSlot } from "../src/lib/save-store";
 import type { EquipRef, EquipmentIds } from "../src/lib/schema";
 
@@ -55,7 +57,10 @@ const ranged = table(
 );
 
 const ids: EquipmentIds = [
-  table(10, { 0: [0, "Legs", 9, "legs"] }), // leggings
+  table(10, {
+    0: [0, "Legs", 9, "legs"],
+    1: [0, "Legs Two", 9, "legs-two"],
+  }), // leggings
   table(10, {
     0: [0, "Helm A", 9, "helm-a"],
     1: [0, "Helm B", 10, "helm-b"],
@@ -72,6 +77,8 @@ const ids: EquipmentIds = [
 // A second and third Great Sword from the Artisan's list, for the missing list.
 melee[675] = [0, "GS Two", 9, "gs-two"];
 melee[668] = [0, "GS Three", 8, "gs-three"];
+// An unowned listed Sword and Shield: the group is complete, so it stays out.
+melee[937] = [2, "SnS Two", 9, "sns-two"];
 
 const slots: EquipSlot[] = [
   // Great Sword: three box slots, two of the same weapon.
@@ -135,9 +142,9 @@ describe("weaponCollectionAward", () => {
       ],
       [4, 4, 0],
     );
+    // SnS Two is listed and unowned, but the group is already complete.
     assert.equal(group("sword-and-shield").missingPieces.length, 0);
     assert.equal(award.done, 1);
-    assert.equal(award.pieces, 7);
   });
 
   test("lists eligible pieces not in the box, rarest first", () => {
@@ -169,8 +176,9 @@ describe("armorCollectionAward", () => {
       [3, 5, 2],
     );
     assert.deepEqual([group("leggings").owned, group("leggings").missing], [5, 0]);
+    // Legs Two is rarity 9 and unowned, but the slot is already complete.
+    assert.equal(group("leggings").missingPieces.length, 0);
     assert.equal(award.done, 1);
-    assert.equal(award.pieces, 8);
   });
 
   test("lists rarity 9+ pieces not in the box", () => {
@@ -179,5 +187,28 @@ describe("armorCollectionAward", () => {
       [["Helm D", 9]],
     );
     assert.equal(group("helmet").missingPieces[0]!.href, "/armorsmith/helmet/low-rank/helm-d/");
+  });
+});
+
+describe("collection award rules", () => {
+  test("the award indexes and categories match the shared data", () => {
+    assert.equal(AWARDS[ARTISAN_HAMMER_AWARD]?.id, "artisans-hammer");
+    assert.equal(AWARDS[ARTISAN_MITTEN_AWARD]?.id, "artisans-mitten");
+    assert.equal(ARTISAN_WEAPON_CATEGORIES.length, ARTISAN_WEAPONS.length);
+    assert.equal(new Set(ARTISAN_WEAPON_CATEGORIES).size, ARTISAN_WEAPON_CATEGORIES.length);
+  });
+
+  test("keeps every weapon class when the ID tables have no pages", () => {
+    const empty: EquipmentIds = [[], [], [], [], [], [], []];
+    const award = weaponCollectionAward([], empty);
+    assert.equal(award.total, 11);
+    assert.ok(award.groups.every((g) => g.owned === 0 && g.missing === 4));
+    assert.ok(award.groups.every((g) => g.missingPieces.length === 0));
+  });
+
+  test("keeps every armor slot with an empty box and tables", () => {
+    const award = armorCollectionAward([], [[], [], [], [], [], [], []]);
+    assert.equal(award.total, 5);
+    assert.ok(award.groups.every((g) => g.owned === 0 && g.missing === 5));
   });
 });

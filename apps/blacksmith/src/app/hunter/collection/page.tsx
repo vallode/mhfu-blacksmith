@@ -5,7 +5,7 @@ import CollectionPage from "../CollectionPage";
 export const metadata: Metadata = pageMetadata({
   title: "Collection",
   description:
-    "The weapons and armor in your Monster Hunter Freedom Unite equipment box, by type, with how many kinds of each you own.",
+    "Track the Monster Hunter Freedom Unite equipment collection awards from your save: what each weapon class and armor slot still needs for the Artisan's Hammer and Mitten.",
   path: "/hunter/collection/",
 });
 

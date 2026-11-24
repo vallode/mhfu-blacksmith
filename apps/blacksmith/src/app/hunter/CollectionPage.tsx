@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import {
   DetailBody,
@@ -22,6 +22,7 @@ import {
 } from "@/lib/collection";
 import type { ArmorSlot, WeaponType } from "@/lib/constants";
 import { useEquipmentIds } from "@/lib/equipment";
+import type { SaveData } from "@/lib/save-store";
 import { progressBar } from "@/styles/progress";
 import { NoHunter } from "./HunterPages";
 
@@ -44,31 +45,42 @@ function CollectionNote({ children }: { children: React.ReactNode }) {
 function MissingPieces({ group }: { group: CollectionAwardGroup }) {
   const { t, game } = useLocale();
   const text = t.site.hunter.collection;
+  // Closed lists keep their links out of the document until opened.
+  const [open, setOpen] = useState(false);
   if (group.missing === 0 || group.missingPieces.length === 0) return null;
   return (
-    <details className="text-small">
+    <details className="text-small" onToggle={(event) => setOpen(event.currentTarget.open)}>
       <summary className="cursor-pointer text-stat hover:text-white">
         {text.missing(group.missingPieces.length)}
       </summary>
-      <ul className="m-0 mt-[0.4rem] flex list-none flex-col gap-[0.4rem] p-0">
-        {group.missingPieces.map((piece) => (
-          <li key={piece.key}>
-            <Link
-              href={piece.href}
-              className="flex min-w-0 items-center gap-[0.6rem] text-white hover:text-stat"
-            >
-              <Icon type={group.category} rarity={piece.rarity} size="mini" />
-              <span className="min-w-0 truncate">{game.name(group.kind, piece.name)}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {open && (
+        <ul className="m-0 mt-[0.4rem] flex list-none flex-col gap-[0.4rem] p-0">
+          {group.missingPieces.map((piece) => (
+            <li key={piece.key}>
+              <Link
+                href={piece.href}
+                className="flex min-w-0 items-center gap-[0.6rem] text-white hover:text-stat"
+              >
+                <Icon type={group.category} rarity={piece.rarity} size="mini" />
+                <span className="min-w-0 truncate">{game.name(group.kind, piece.name)}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </details>
   );
 }
 
 /** One weapon class or armor slot: its count towards the award and what's left. */
-function CollectionGroupRow({ group }: { group: CollectionAwardGroup }) {
+function CollectionGroupRow({
+  group,
+  earned,
+}: {
+  group: CollectionAwardGroup;
+  /** The game has already given the award, whatever the box holds now. */
+  earned: boolean;
+}) {
   const { t, formatNumber } = useLocale();
   const text = t.site.hunter.collection;
   const label =
@@ -88,19 +100,26 @@ function CollectionGroupRow({ group }: { group: CollectionAwardGroup }) {
             group.missing === 0 ? "text-positive" : "text-stat",
           )}
         >
-          {text.ownedOf(formatNumber(group.owned), formatNumber(group.needed))}
+          {text.ownedOf(
+            formatNumber(Math.min(group.owned, group.needed)),
+            formatNumber(group.needed),
+          )}
         </span>
       </div>
       <progress
         className={progressBar}
         value={Math.min(group.owned, group.needed)}
         max={group.needed}
-        aria-label={text.groupProgress(label, group.owned, group.needed)}
+        aria-label={text.groupProgress(label, Math.min(group.owned, group.needed), group.needed)}
       />
-      <span className={cn("text-small", group.missing === 0 ? "text-positive" : "text-stat")}>
-        {group.missing === 0 ? text.complete : text.need(group.missing)}
-      </span>
-      <MissingPieces group={group} />
+      {!earned && (
+        <>
+          <span className={cn("text-small", group.missing === 0 ? "text-positive" : "text-stat")}>
+            {group.missing === 0 ? text.complete : text.need(group.missing)}
+          </span>
+          <MissingPieces group={group} />
+        </>
+      )}
     </li>
   );
 }
@@ -110,14 +129,19 @@ function AwardSection({
   award,
   title,
   description,
+  earned,
 }: {
   award: CollectionAward;
   title: string;
   description?: string;
+  /** The game's award flag: the award is permanent, even if the box has changed. */
+  earned: boolean;
 }) {
   const { t, formatNumber } = useLocale();
-  const text = t.site.hunter.collection;
-  const complete = award.done === award.total;
+  const pageText = t.site.hunter;
+  const text = pageText.collection;
+  const complete = earned || award.done === award.total;
+  const done = earned ? award.total : award.done;
   return (
     <section className="flex flex-col gap-[1.2rem]">
       <DetailRule />
@@ -129,19 +153,21 @@ function AwardSection({
             complete ? "text-positive" : "text-stat",
           )}
         >
-          {text.awardProgress(formatNumber(award.done), formatNumber(award.total))}
+          {earned
+            ? pageText.awards.done
+            : text.awardProgress(formatNumber(done), formatNumber(award.total))}
         </span>
       </div>
       {description && <p className="m-0 text-small text-white/60">{description}</p>}
       <progress
         className={progressBar}
-        value={award.done}
+        value={done}
         max={award.total}
-        aria-label={text.awardLabel(title, award.done, award.total)}
+        aria-label={text.awardLabel(title, done, award.total)}
       />
       <ul className="m-0 flex list-none flex-col gap-[1.2rem] p-0">
         {award.groups.map((group) => (
-          <CollectionGroupRow key={group.category} group={group} />
+          <CollectionGroupRow key={group.category} group={group} earned={earned} />
         ))}
       </ul>
     </section>
@@ -154,21 +180,31 @@ function AwardSection({
  * armor slots, with their counts and the pieces still to find.
  */
 export default function CollectionPage() {
-  const { t, formatNumber, game } = useLocale();
+  const { t } = useLocale();
   const text = t.site.hunter;
   const { save } = useSave();
-  const hasEquipment = save?.equipment !== undefined;
-  const { ids, error } = useEquipmentIds(hasEquipment);
+  if (!save) return <NoHunter />;
+  if (!save.equipment) return <CollectionNote>{text.collection.noEquipment}</CollectionNote>;
+  return <CollectionBody save={save} equipment={save.equipment} />;
+}
+
+/** The loaded hunter's awards; only mounted once there is a box to read. */
+function CollectionBody({
+  save,
+  equipment,
+}: {
+  save: SaveData;
+  equipment: NonNullable<SaveData["equipment"]>;
+}) {
+  const { t, formatNumber, game } = useLocale();
+  const text = t.site.hunter;
+  const { ids, error } = useEquipmentIds(true);
   const { awards: awardText } = useAwardText();
   const awards = useMemo(
     () =>
-      save?.equipment && ids
-        ? [weaponCollectionAward(save.equipment, ids), armorCollectionAward(save.equipment, ids)]
-        : null,
-    [save, ids],
+      ids ? [weaponCollectionAward(equipment, ids), armorCollectionAward(equipment, ids)] : null,
+    [equipment, ids],
   );
-  if (!save) return <NoHunter />;
-  if (!save.equipment) return <CollectionNote>{text.collection.noEquipment}</CollectionNote>;
   if (!awards) {
     return (
       <CollectionNote>{error ? text.collection.failed : text.collection.loading}</CollectionNote>
@@ -190,9 +226,9 @@ export default function CollectionPage() {
         <DetailName>{text.pages.collection}</DetailName>
         <span
           className="ml-auto text-white tabular-nums"
-          aria-label={text.collection.piecesLabel(save.equipment.length)}
+          aria-label={text.collection.piecesLabel(equipment.length)}
         >
-          {text.collection.pieces(formatNumber(save.equipment.length))}
+          {text.collection.pieces(formatNumber(equipment.length))}
         </span>
       </DetailHeader>
       <DetailBody>
@@ -203,6 +239,7 @@ export default function CollectionPage() {
           description={
             hammerText && game.award(hammer.index, "description", hammerText.description)
           }
+          earned={save.awards?.includes(hammer.index) ?? false}
         />
         <AwardSection
           award={mitten}
@@ -210,6 +247,7 @@ export default function CollectionPage() {
           description={
             mittenText && game.award(mitten.index, "description", mittenText.description)
           }
+          earned={save.awards?.includes(mitten.index) ?? false}
         />
         <DetailRule />
         <Link href="/hunter/awards/" className="text-white underline hover:text-stat">

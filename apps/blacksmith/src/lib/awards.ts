@@ -17,7 +17,12 @@
  * the rules only show how far along the rest are. Saves stored before the
  * flags were read fall back to the rules alone.
  */
-import { ARTISAN_WEAPONS } from "./award-weapons";
+import {
+  ARTISAN_HAMMER_NEEDED,
+  ARTISAN_MITTEN_NEEDED,
+  artisanHammerCounts,
+  artisanMittenCounts,
+} from "./award-collection";
 import { crownFor, type Crown, type Crowns } from "./crowns";
 import { monsterRecordFor } from "./monster-ids";
 import { questsOnHub, type Quest, type QuestHubSlug } from "./quests";
@@ -236,13 +241,6 @@ function questTodos(all: Quest[], hubs: readonly QuestHubSlug[], ids: number[]):
 /** The weapon sets each Training School quest has (`trainingSets` has a bit for each). */
 const WEAPON_SETS = 5;
 
-/** The Artisan's Hammer's weapon class of each listed weapon, by `type:id`. */
-const ARTISAN_CLASS = new Map(
-  ARTISAN_WEAPONS.flatMap(([type, ids], weaponClass) =>
-    ids.map((id) => [`${type}:${id}`, weaponClass] as const),
-  ),
-);
-
 /**
  * Training quests `from` to `to`, each cleared with every one of its weapon
  * sets (EU `0x08857058` reads the bits).
@@ -377,12 +375,11 @@ export const AWARDS: readonly Award[] = [
     group: "collection",
     rule: records(({ equipment }) => {
       if (!equipment) return null;
-      const held = ARTISAN_WEAPONS.map(() => 0);
-      for (const s of equipment) {
-        const weaponClass = ARTISAN_CLASS.get(`${s.type}:${s.id}`);
-        if (weaponClass !== undefined) held[weaponClass]!++;
-      }
-      return { done: held.filter((n) => n >= 4).length, total: ARTISAN_WEAPONS.length };
+      const held = artisanHammerCounts(equipment);
+      return {
+        done: held.filter((n) => n >= ARTISAN_HAMMER_NEEDED).length,
+        total: held.length,
+      };
     }),
   },
   // The game's code hunts each of Chameleos, Teostra, Lunastra, Shen Gaoren,
@@ -542,12 +539,11 @@ export const AWARDS: readonly Award[] = [
       if (!equipment) return null;
       const ids = ctx.equipmentIds;
       if (!ids) return ctx.equipmentIdsFailed ? null : "loading";
-      const done = ARMOR_TYPES.filter(
-        (type) =>
-          equipment.filter((s) => s.type === type && (ids[type]?.[s.id]?.[2] ?? 0) >= 9).length >=
-          5,
-      ).length;
-      return { done, total: ARMOR_TYPES.length };
+      const held = artisanMittenCounts(equipment, ids);
+      return {
+        done: held.filter((n) => n >= ARTISAN_MITTEN_NEEDED).length,
+        total: held.length,
+      };
     }),
   },
   // 20 quests each in the Great Forest and the four Old maps, and the
@@ -568,9 +564,6 @@ export const AWARDS: readonly Award[] = [
 
 /** The Hunter's Progress's index, which the Hunter's Miracle needs. */
 const HUNTERS_PROGRESS = 23;
-
-/** The armor equip types (leggings, helmet, plate, gauntlets, waist). */
-const ARMOR_TYPES = [0, 1, 2, 3, 4];
 
 /** A monster for the crown awards: its name, type and crown sizes. */
 export interface CrownMonster {
