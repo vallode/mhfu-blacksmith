@@ -1,7 +1,8 @@
 /**
  * Hunter's Pact (`pact.enabled`): when a quest starts, a window offers three
  * pacts drawn at random, each a penalty paired with its reward: more zenny,
- * more quest reward draws, items or equipment of the quest's rank. Rewards are paid only if
+ * more quest reward draws, items from the quest's own rewards and monsters,
+ * or equipment of its rank. Rewards are paid only if
  * the quest is completed. Taking none changes nothing. The blob code is
  * `blob/pact.c`, on the code loader's pad, quest frame, HUD and rewards hooks
  * (`game-hooks.ts`); this finds the game's addresses it uses, per disc, and
@@ -249,16 +250,7 @@ const SPAN_BYTES = 4;
 const ENTRY_BYTES = 8;
 /** An item reward's entry type; equipment has the equipment box's. */
 const ITEM_TYPE = 0xff;
-/** Items per grade, and equipment pieces per rarity, at most. */
-const ITEMS_PER_GRADE = 16;
-/**
- * Tied items per grade, at most (a sample where more fit): the pool's
- * names and entries are addressed by u16 offsets, so it must stay under
- * 64 KB however widely the rewards are randomized.
- */
-export const TIED_PER_GRADE = 200;
-/** `extra`'s top bit on an item that's in the pool for being tied to some quest, not sampled. */
-const TIED_BIT = 0x8000;
+/** Equipment pieces per rarity, at most. */
 const EQUIPMENT_PER_RARITY = 12;
 /**
  * At most this share of what every recipe needs of an item, in one reward
@@ -378,8 +370,6 @@ export interface PactPoolEntry {
   most?: number;
   /** A piece's rarity, as shown (`displayRarity`). */
   rarity?: number;
-  /** An item in for being tied to some quest (`tiedItems`), not in the sample of the rest. */
-  tied?: boolean;
 }
 
 /** The reward pool, by band and kind (items of grade 1 to 3, then equipment). */
@@ -401,22 +391,17 @@ const ascii = (name: string) =>
     .slice(0, NAME_BYTES);
 
 /**
- * The pact's rewards for each rank: items first found at that rank (after the
- * shuffles), in three grades by what they're worth (`GRADE_VALUES`, in the
- * amounts `GRADE_AMOUNTS` allows, and no more than `demand` lets one reward
- * give), and equipment of that rank's rarities, some of each rarity, by
- * rarity (the blob offers those that fit the quest's stars, `pactLevels`).
- * An item can be in more than one grade, in different amounts.
- *
- * `tied` is each rank's items some quest can be tied to (`tiedItems`): every
- * one of them that fits a grade is in it, whatever rank it was first found
- * at (up to `TIED_PER_GRADE`), so the blob can offer a quest's own
- * (`blob/pact.c`, `tie_quest`); a sample of the rest is there for quests
- * with none that fit, and only it (`tied` unset) is drawn from then. Where
- * too few untied items fit, tied ones make up the sample, unflagged.
+ * The pact's rewards for each rank: the items some quest at that rank can be
+ * tied to (`tiedItems`), in three grades by what they're worth
+ * (`GRADE_VALUES`, in the amounts `GRADE_AMOUNTS` allows, and no more than
+ * `demand` lets one reward give), and equipment of that rank's rarities,
+ * some of each rarity, by rarity (the blob offers those that fit the quest's
+ * stars, `pactLevels`). An item can be in more than one grade, in different
+ * amounts. The blob offers only the current quest's own tied items
+ * (`blob/pact.c`, `tie_quest`), never another quest's nor one no quest is
+ * tied to.
  */
 export function pactPool(
-  itemTiers: ReadonlyMap<number, Tier>,
   itemValues: ReadonlyMap<number, ItemValue>,
   equipment: readonly PoolEquipment[],
   rng: Rng,
@@ -427,48 +412,24 @@ export function pactPool(
   const drawable = (id: number) =>
     id > 0 && id < TIED_ITEMS && !isNeverDrawn(id) && itemName(id) !== `Item ${id}`;
   return POOL_BANDS.map((band) => {
-    const ties = tied.get(band) ?? new Set<number>();
-    const items = [
-      ...new Set([
-        ...[...itemTiers].filter(([, tier]) => tier.band === band).map(([id]) => id),
-        ...ties,
-      ]),
-    ]
-      .filter(drawable)
-      .sort((a, b) => a - b);
-    const grades = GRADE_VALUES[band].map((value, g) => {
-      const fits = items.flatMap((id) => {
-        const item = itemValues.get(id);
-        const most = demand.get(id);
-        const amount = item && rewardAmount({ ...item, most }, value, g);
-        return amount ? [{ id, amount, most: most ?? 0 }] : [];
-      });
-      const rest = sample(
-        fits.filter((f) => !ties.has(f.id)),
-        ITEMS_PER_GRADE,
-        rng,
-      );
-      // Too few untied items for a sample: some tied ones go in it unflagged
-      // (the blob ties by its own bitmap, so they're still a quest's own).
-      const short = ITEMS_PER_GRADE - rest.length;
-      return [
-        ...sample(
-          fits.filter((f) => ties.has(f.id)),
-          TIED_PER_GRADE,
-          rng,
-        ).map((f, i) => ({ ...f, tied: i >= short })),
-        ...rest.map((f) => ({ ...f, tied: false })),
-      ]
+    const items = [...(tied.get(band) ?? [])].filter(drawable).sort((a, b) => a - b);
+    const grades = GRADE_VALUES[band].map((value, g) =>
+      items
+        .flatMap((id) => {
+          const item = itemValues.get(id);
+          const most = demand.get(id);
+          const amount = item && rewardAmount({ ...item, most }, value, g);
+          return amount ? [{ id, amount, most: most ?? 0 }] : [];
+        })
         .sort((a, b) => a.id - b.id)
-        .map(({ id, amount, most, tied }) => ({
+        .map(({ id, amount, most }) => ({
           id,
           type: ITEM_TYPE,
           amount,
           name: ascii(itemName(id)),
           most,
-          tied,
-        }));
-    });
+        })),
+    );
     const gear = equipment.filter(
       (e) =>
         rankFromRarity(displayRarity(e.rarity)) === `${band}-rank` &&
@@ -611,10 +572,7 @@ export function encodePactPool(pool: PactPool): Buffer {
         out.writeUInt8(e.type, at + 2);
         out.writeUInt8(e.amount, at + 3);
         out.writeUInt16LE(names.get(e.name)!, at + 4);
-        out.writeUInt16LE(
-          e.type === ITEM_TYPE ? (e.most ?? 0) | (e.tied ? TIED_BIT : 0) : (e.rarity ?? 0),
-          at + 6,
-        );
+        out.writeUInt16LE(e.type === ITEM_TYPE ? (e.most ?? 0) : (e.rarity ?? 0), at + 6);
       }
     }),
   );

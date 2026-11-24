@@ -2011,7 +2011,8 @@ too); only zenny where the rank's pool has no such item. No other pact in
 the window gives its item.
 
 Every jackpot also asks for no faints, and pays for speed (the window says
-so with the cursor on it, and the quest's details list it):
+so below the controls with the cursor on it, and the quest's details list
+it):
 
 - A faint while the quest is under way loses it whatever one cart does: the
   item isn't paid and its zenny comes off the reward and the faint's
@@ -2071,32 +2072,26 @@ Rewards are paid only for a completed quest:
 - items in the reward box, after the quest's own, on the reward screen;
 - equipment in the equipment box's first free slot.
 
-The items and equipment come from the quest's rank (Low, High or G), drawn
-per seed: items first found at that rank (after the shuffles), and weapons
-and armor of that rank's rarities (armor both sexes can wear). Up to 12
-pieces a rarity.
+Items are the quest's own: something its large monsters carve, capture or
+break for at its rank, or that its own reward tables give, as the shuffles
+left them (a Tigrex hunt pays Tigrex parts, not Kirin or Velocidrome ones).
+The blob reads the quest's large monsters and reward tables from the loaded
+file, marks those items (`tie_quest`, from `rf_pact_drops`: each species'
+drops by rank), and offers one of them. The pool (`tiedItems`, whatever
+rank an item is first found at) holds every item any quest at that rank can
+be tied to; the blob picks this quest's own, and only those. Where the
+quest has none for a grade that fits, it offers no item reward at all
+(zenny or more draws, and equipment for a hard pact), never another
+quest's item and never one no quest is tied to. Gathering quests tie only
+their reward tables. On the FUC disc every one of Low Rank Tigrex's parts
+is in the pool, and none of its hunts offers another monster's.
 
-An item reward is the quest's own where it can be: something its large
-monsters carve, capture or break for at its rank, or that its own reward
-tables give, as the shuffles left them (a Tigrex hunt pays Tigrex parts,
-not Kirin or Velocidrome ones). Every such item that fits a grade is in the
-pool (`tiedItems`, whatever rank it's first found at; up to 200 a grade,
-`TIED_PER_GRADE`, so the pool stays under the 64 KB its u16 offsets
-reach: about 28 KB with every reward randomized anywhere), with 16 more a
-grade drawn from the rest (made up with tied items where fewer than 16 of
-the rest fit; a pool past 64 KB fails the build rather than encoding). The blob reads the quest's large monsters and reward
-tables from the loaded file, marks those items (`tie_quest`, from
-`rf_pact_drops`: each species' drops by rank), and offers one of them; it
-falls back on those 16 only when none is left (another offer has it, or
-nothing of the quest's is worth that grade), never on another quest's own
-(the entry's `TIED_BIT`). Gathering quests
-tie only their reward tables. On the FUC disc every one of Low Rank
-Tigrex's parts is in the pool.
-
-A piece of equipment also has to fit the quest's stars: the quest's place
-among its rank's star levels on the disc is its place among the rank's
-rarities (Low 1-5, High 6-8, G 9-10), and a piece is that rarity or the
-next. On the FUC disc:
+Equipment comes from the quest's rank (Low, High or G), drawn per seed:
+weapons and armor of that rank's rarities (armor both sexes can wear), up
+to 12 pieces a rarity. A piece also has to fit the quest's stars: the
+quest's place among its rank's star levels on the disc is its place among
+the rank's rarities (Low 1-5, High 6-8, G 9-10), and a piece is that
+rarity or the next. On the FUC disc:
 
 | Rank | Stars: rarities                             |
 | ---- | ------------------------------------------- |

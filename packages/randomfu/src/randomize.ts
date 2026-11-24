@@ -1344,20 +1344,19 @@ export function randomize(
             bits: p.bits,
           })),
         ];
-        const tiers = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
         // As the shops left prices and carry limits, so no reward pays past the limit.
         const values = readItemValues(out, table);
         // What every recipe needs, as the recipe shuffles left them: no reward gives a third of it.
         const demand = demandCaps(collectRecipeSlots(out, game.resolver));
         // What each quest is about, as the shuffles left it: its large monsters'
-        // drops at its rank and its own rewards. The blob leans its items to those.
+        // drops at its rank and its own rewards. The blob ties its items to those.
         const drops = readMonsterDrops(game, edits);
         const questRewards = collectQuestRewardSlots(game.quests, (q) => edits.questNow(q)).map(
           (s) => ({ band: s.tier.band, itemId: s.itemId }),
         );
         const tied = tiedItems([...drops, ...questRewards]);
         data.rf_pact_pool = encodePactPool(
-          pactPool(tiers, values, equipment, rng.fork("pact-pool"), demand, tied),
+          pactPool(values, equipment, rng.fork("pact-pool"), demand, tied),
         );
         data.rf_pact_drops = encodeDrops(drops);
         // The blade pacts' colour lookup; without it they aren't offered.
