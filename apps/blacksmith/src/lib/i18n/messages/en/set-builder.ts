@@ -60,7 +60,7 @@ export const setBuilder = {
     /** The options in one line, under the skills. */
     summary: {
       rank: "Rank",
-      /** Beside the weapon's slots ("OO-"). */
+      /** Beside the weapon's slot circles. */
       weapon: "Wpn",
       badSkills: "bad skills allowed",
       allQuests: "all quests",
@@ -172,11 +172,15 @@ export const setBuilder = {
     saveAsNew: "Save as new",
     share: "Share",
     new: "New",
+    rename: "Rename",
+    renameLabel: (name: string) => `Rename ${name}`,
+    /** The rename field's aria-label. */
+    nameLabel: "Set name",
     /** The default name of a newly saved set. */
     setName: (n: number) => `Set ${n}`,
     copyName: (name: string) => `${name} (copy)`,
     saved: (name: string) => `Saved ${name}.`,
-    savedAs: (name: string) => `Saved as ${name}. Rename it in My sets.`,
+    savedAs: (name: string) => `Saved as ${name}.`,
     saveFailedTitle: "Couldn't save",
     saveFailed:
       "Your browser's storage is full or blocked. Sets are kept until you leave the page.",

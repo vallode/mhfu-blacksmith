@@ -120,9 +120,8 @@ export const element = (name: string): string =>
   ELEMENT_EMOJI[name] ? `${ELEMENT_EMOJI[name]} ${name}` : name;
 
 /**
- * Slots as the game draws them: a circle per slot, dashes for the rest
- * ("○○—"). The set card passes "O" and "-", as the site's Slots does, since
- * its font has no ○.
+ * Slots as text for embeds and meta descriptions: a circle per slot, dashes
+ * for the rest ("○○—"). Images can't be used there.
  */
 export const slotGlyphs = (count = 0, slot = "○", none = "—"): string =>
   Array.from({ length: 3 }, (_, i) => (i < count ? slot : none)).join("");
