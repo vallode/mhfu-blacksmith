@@ -229,6 +229,7 @@ export interface MonsterAttack {
   to: number;
   power: number;
   reaction: number;
+  /** The hunter's dizzy (faint) build-up; the gauge dizzies at 50. */
   stun: number;
   /** Its shapes, each on a joint (the model's `bone_<joint>`), placed in the bind pose. */
   capsules: {
