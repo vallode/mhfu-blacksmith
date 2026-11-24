@@ -8,6 +8,7 @@
  */
 import Link from "next/link";
 import Icon from "@/components/Icon";
+import SlotMark from "@/components/SlotMark";
 import {
   ChoiceRow,
   IconChoiceRow,
@@ -107,13 +108,24 @@ function choicesFor(t: Messages) {
   const slots: IconChoice<number>[] = Array.from({ length: MAX_WEAPON_SLOTS + 1 }, (_, n) => ({
     value: n,
     label: text.form.slotCount(n),
-    icon: choiceText(n === 0 ? "-" : "O".repeat(n), "text-sub"),
+    icon:
+      n === 0 ? choiceText("-", "text-sub") : () => <SlotMarks count={n} className="text-sub" />,
   }));
   return { hunterTypes, sexes, ranks, slots };
 }
 
-/** "OO-": the weapon's slots, as the game writes them. */
-const slotsText = (n: number) => "O".repeat(n) + "-".repeat(MAX_WEAPON_SLOTS - n);
+/** The weapon's slots as circles, dashes for the missing ones; the surrounding text colours them. */
+function SlotMarks({ count, className }: { count: number; className?: string }) {
+  return (
+    <span aria-hidden="true" className={cn("inline-flex items-center", className)}>
+      {Array.from({ length: MAX_WEAPON_SLOTS }, (_, i) => (
+        <span key={i} className="inline-flex w-[0.9em] justify-center">
+          {i < count ? <SlotMark /> : "-"}
+        </span>
+      ))}
+    </span>
+  );
+}
 
 type Update = <K extends keyof Form>(key: K, value: Form[K]) => void;
 
@@ -255,7 +267,7 @@ export function OptionsSummary({ form, ownedOnly }: { form: Form; ownedOnly: boo
         <span className={item}>
           <span className={key}>{summary.weapon}</span>
           <span aria-label={text.form.slotCount(form.weaponSlots)}>
-            {slotsText(form.weaponSlots)}
+            <SlotMarks count={form.weaponSlots} />
           </span>
         </span>
         <span className={item}>

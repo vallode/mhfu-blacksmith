@@ -143,11 +143,13 @@ export const setBuilder: Messages["setBuilder"] = {
     saveAsNew: "Guardar como nuevo",
     share: "Compartir",
     new: "Nuevo",
+    rename: "Renombrar",
+    renameLabel: (name: string) => `Renombrar ${name}`,
+    nameLabel: "Nombre del conjunto",
     setName: (n: number) => `Conjunto ${n}`,
     copyName: (name: string) => `${name} (copia)`,
     saved: (name: string) => `Guardado: ${name}.`,
-    savedAs: (name: string) =>
-      `Guardado como ${name}. Puedes cambiarle el nombre en Mis conjuntos.`,
+    savedAs: (name: string) => `Guardado como ${name}.`,
     saveFailedTitle: "No se pudo guardar",
     saveFailed:
       "El almacenamiento del navegador está lleno o bloqueado. Los conjuntos se conservan hasta que salgas de la página.",

@@ -2,9 +2,10 @@
 
 /**
  * A piece's or weapon's slots with the jewels in them, as the game shows
- * them: "O" for a free slot, the O filled in for one a jewel takes, "-" for
- * none. A jewel two slots big fills two.
+ * them: a circle for a free slot, the circle filled in for one a jewel
+ * takes, "-" for none. A jewel two slots big fills two.
  */
+import SlotMark from "@/components/SlotMark";
 import { useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import type { DecoBin, PlacedDeco } from "@/lib/set-search";
@@ -39,16 +40,11 @@ export default function SlotPips({
           key={i}
           aria-hidden="true"
           className={cn(
-            "relative inline-flex w-cells-1 justify-center",
+            "inline-flex w-[0.9em] justify-center",
             over ? "text-negative" : i < total ? "text-white" : "text-white/40",
           )}
         >
-          {i < total ? "O" : "-"}
-          {/* The O's inside, filled: an oval over BIZ UDGothic's O (0.44em
-              wide, from 0.8em above the baseline to just under it). */}
-          {i < Math.min(used, total) && (
-            <span className="absolute top-[0.16em] left-[0.03em] h-[0.8em] w-[0.44em] rounded-[50%] bg-current" />
-          )}
+          {i < total ? <SlotMark filled={i < Math.min(used, total)} /> : "-"}
         </span>
       ))}
     </span>

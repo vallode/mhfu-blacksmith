@@ -74,12 +74,92 @@
           "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 16,
+              "y": 122.6,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 20.7,
+              "y": 122,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 19.4,
+              "y": 126.6,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 73.2,
+              "y": 110.7,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 77.6,
+              "y": 112.4,
+              "quantity": 3
+            },
+            {
+              "area": 7,
+              "x": 79.7,
+              "y": 114.9,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 74.8,
+              "y": 114.9,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 78.4,
+              "y": 119.6,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 29,
           "max_quantity": 1,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 17.4,
+              "y": 114.7,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 72.3,
+              "y": 103,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -207,12 +287,92 @@
           "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 16,
+              "y": 122.6,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 20.7,
+              "y": 122,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 19.4,
+              "y": 126.6,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 73.2,
+              "y": 110.7,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 77.6,
+              "y": 112.4,
+              "quantity": 3
+            },
+            {
+              "area": 7,
+              "x": 79.7,
+              "y": 114.9,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 74.8,
+              "y": 114.9,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 78.4,
+              "y": 119.6,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 29,
           "max_quantity": 1,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 17.4,
+              "y": 114.7,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 72.3,
+              "y": 103,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -340,23 +500,149 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 121.7,
+              "y": 89.7,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 70.3,
+              "y": 64.5,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 65.5,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 69.4,
+              "y": 64.1,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 36.1,
+              "y": 104.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 35,
           "max_quantity": 2,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 16,
+              "y": 122.6,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 20.7,
+              "y": 122,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 19.4,
+              "y": 126.6,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 73.2,
+              "y": 110.7,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 77.6,
+              "y": 112.4,
+              "quantity": 3
+            },
+            {
+              "area": 7,
+              "x": 79.7,
+              "y": 114.9,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 75.3,
+              "y": 113.6,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 78.4,
+              "y": 119.6,
+              "quantity": 2
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -479,23 +765,149 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 121.7,
+              "y": 89.7,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 70.3,
+              "y": 64.5,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 65.5,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 69.4,
+              "y": 64.1,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 36.1,
+              "y": 104.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 35,
           "max_quantity": 2,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 16,
+              "y": 122.6,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 20.7,
+              "y": 122,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 19.4,
+              "y": 126.6,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 73.2,
+              "y": 110.7,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 77.6,
+              "y": 112.4,
+              "quantity": 3
+            },
+            {
+              "area": 7,
+              "x": 79.7,
+              "y": 114.9,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 75.3,
+              "y": 113.6,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 78.4,
+              "y": 119.6,
+              "quantity": 2
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -623,23 +1035,149 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 121.7,
+              "y": 89.7,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 70.3,
+              "y": 64.5,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 65.5,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 69.4,
+              "y": 64.1,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 36.1,
+              "y": 104.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 35,
           "max_quantity": 2,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 16,
+              "y": 122.6,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 20.7,
+              "y": 122,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 19.4,
+              "y": 126.6,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 73.2,
+              "y": 110.7,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 77.6,
+              "y": 112.4,
+              "quantity": 3
+            },
+            {
+              "area": 7,
+              "x": 79.7,
+              "y": 114.9,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 75.3,
+              "y": 113.6,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 78.4,
+              "y": 119.6,
+              "quantity": 2
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -759,23 +1297,155 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 121.7,
+              "y": 90.9,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 70.3,
+              "y": 64.5,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 65.5,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 69.4,
+              "y": 64.1,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 21.5,
+              "y": 111.1,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 4,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 106,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 35,
           "max_quantity": 2,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 79.9,
+              "y": 118,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 16,
+              "y": 122.6,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 4,
+              "x": 20.7,
+              "y": 122,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 19.4,
+              "y": 126.6,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 73.2,
+              "y": 110.7,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 77.6,
+              "y": 112.4,
+              "quantity": 3
+            },
+            {
+              "area": 7,
+              "x": 79.7,
+              "y": 114.9,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 74.8,
+              "y": 114.9,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 78.4,
+              "y": 119.6,
+              "quantity": 2
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -955,7 +1625,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 6,
+              "x": 80.5,
+              "y": 25.7
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -967,24 +1644,149 @@
         {
           "monster": 35,
           "max_quantity": 2,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
           "total_quantity": 19,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            },
+            {
+              "area": 7,
+              "x": 73.2,
+              "y": 110.7,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 77.6,
+              "y": 112.4,
+              "quantity": 3
+            },
+            {
+              "area": 7,
+              "x": 79.7,
+              "y": 114.9,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 7,
+              "x": 74.8,
+              "y": 114.9,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 78.4,
+              "y": 119.6,
+              "quantity": 2
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -1105,23 +1907,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -1242,23 +2155,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -1379,23 +2403,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -1516,23 +2651,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -1653,23 +2899,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -1790,23 +3147,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -1927,23 +3395,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -2064,23 +3643,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -2213,23 +3903,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -2362,23 +4163,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -2499,23 +4411,134 @@
         {
           "monster": 35,
           "max_quantity": 3,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 77.8,
+              "y": 62.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 76.2,
+              "y": 62,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 50.2,
+              "y": 87.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 74.1,
+              "y": 112.1,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 78.3,
+              "y": 115.9,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 71.4,
+              "y": 84,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 3
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 4
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 22.2,
+              "y": 124.2,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 109.5,
+              "y": 48.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 112.6,
+              "y": 47,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 111.3,
+              "y": 51.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 12,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 39.6,
+              "y": 49.7,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 40.8,
+              "y": 53.1,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 44.7,
+              "y": 41.6,
+              "quantity": 4
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -2619,7 +4642,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 61.3,
+              "y": 46.8
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -2631,7 +4661,15 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 42,
+              "y": 55.7,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -2963,7 +5001,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 73.6,
+              "y": 53.1
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -2975,7 +5020,15 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 42,
+              "y": 55.7,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -3340,7 +5393,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 73.6,
+              "y": 53.1
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -3352,7 +5412,15 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 42,
+              "y": 55.7,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -3702,7 +5770,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 63,
+              "y": 42.8
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -3714,7 +5789,15 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 42,
+              "y": 55.7,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -4054,7 +6137,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 66.5,
+              "y": 56.8
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -4066,7 +6156,15 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 42,
+              "y": 55.7,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -4452,7 +6550,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 61.2,
+              "y": 46.8
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -4464,7 +6569,15 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 42,
+              "y": 55.7,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -4836,7 +6949,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 74.7,
+              "y": 48.6
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -4848,7 +6968,15 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 42,
+              "y": 55.7,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -5241,7 +7369,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 74.7,
+              "y": 48.6
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -5253,7 +7388,15 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 42,
+              "y": 55.7,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -5673,7 +7816,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 58.8,
+              "y": 59.4
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -5685,7 +7835,15 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 42,
+              "y": 55.7,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -6077,7 +8235,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 56.2,
+              "y": 56
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -6089,7 +8254,15 @@
         {
           "monster": 29,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 42,
+              "y": 55.7,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -6491,7 +8664,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 109.1,
+              "y": 49.6
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -6503,37 +8683,189 @@
         {
           "monster": 34,
           "max_quantity": 4,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 114.9,
+              "y": 67.2,
+              "quantity": 2
+            },
+            {
+              "area": 1,
+              "x": 109.6,
+              "y": 54.6,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 49.9,
+              "y": 57,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 13,
           "max_quantity": 6,
-          "total_quantity": 14
+          "total_quantity": 14,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 75,
+              "y": 30.2,
+              "quantity": 2
+            },
+            {
+              "area": 3,
+              "x": 81,
+              "y": 32,
+              "quantity": 2
+            },
+            {
+              "area": 5,
+              "x": 64,
+              "y": 118.3,
+              "quantity": 2
+            },
+            {
+              "area": 5,
+              "x": 68.3,
+              "y": 119.1,
+              "quantity": 2
+            },
+            {
+              "area": 5,
+              "x": 72.4,
+              "y": 111.6,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 93.3,
+              "y": 96.2,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 96.9,
+              "y": 94.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 5,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 76,
+              "y": 34.6,
+              "quantity": 5
+            },
+            {
+              "area": 9,
+              "x": 26.4,
+              "y": 73.4,
+              "quantity": 5
+            }
+          ]
         },
         {
           "monster": 66,
           "max_quantity": 4,
-          "total_quantity": 8
+          "total_quantity": 8,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 69.7,
+              "y": 85.8,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 68.7,
+              "y": 80.2,
+              "quantity": 2
+            },
+            {
+              "area": 10,
+              "x": 25,
+              "y": 110.4,
+              "quantity": 2
+            },
+            {
+              "area": 10,
+              "x": 30.9,
+              "y": 108.4,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 25,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 125.9,
+              "y": 102.3,
+              "quantity": 2
+            },
+            {
+              "area": 6,
+              "x": 125.2,
+              "y": 107.2,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 9,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 20.3,
+              "y": 50.5,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 23,
           "max_quantity": 4,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 19,
+              "y": 52.6,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 23,
+              "y": 53.7,
+              "quantity": 1
+            },
+            {
+              "area": 9,
+              "x": 33.5,
+              "y": 84.1,
+              "quantity": 2
+            },
+            {
+              "area": 9,
+              "x": 27.5,
+              "y": 82.4,
+              "quantity": 2
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -6899,53 +9231,236 @@
         {
           "monster": 12,
           "max_quantity": 9,
-          "total_quantity": 9
+          "total_quantity": 9,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 110.5,
+              "y": 119.4,
+              "quantity": 3
+            },
+            {
+              "area": 1,
+              "x": 110.3,
+              "y": 122,
+              "quantity": 3
+            },
+            {
+              "area": 1,
+              "x": 112.2,
+              "y": 123.1,
+              "quantity": 3
+            }
+          ]
         },
         {
           "monster": 3,
           "max_quantity": 5,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 126.3,
+              "y": 63.3,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 123.3,
+              "y": 56.7,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 124.3,
+              "y": 56.8,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 127.6,
+              "y": 58.7,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 127.3,
+              "y": 58,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 15,
           "total_quantity": 15,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 78.1,
+              "y": 51.6,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 8,
+              "x": 48.5,
+              "y": 90.3,
+              "quantity": 5
+            },
+            {
+              "area": 8,
+              "x": 54.7,
+              "y": 93.5,
+              "quantity": 5
+            }
+          ]
         },
         {
           "monster": 5,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 82.4,
+              "y": 49.5,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 74.7,
+              "y": 45.8,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 16,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 25,
+              "y": 71.3,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 26.5,
+              "y": 74.7,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 4,
           "max_quantity": 9,
-          "total_quantity": 9
+          "total_quantity": 9,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 72.4,
+              "y": 118.4,
+              "quantity": 3
+            },
+            {
+              "area": 5,
+              "x": 61.8,
+              "y": 120.1,
+              "quantity": 3
+            },
+            {
+              "area": 5,
+              "x": 75.4,
+              "y": 118.4,
+              "quantity": 3
+            }
+          ]
         },
         {
           "monster": 66,
           "max_quantity": 6,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 97,
+              "y": 88.4,
+              "quantity": 3
+            },
+            {
+              "area": 6,
+              "x": 102.2,
+              "y": 84.6,
+              "quantity": 3
+            }
+          ]
         },
         {
           "monster": 23,
           "max_quantity": 6,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 74.3,
+              "y": 65.3,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 72.8,
+              "y": 67.8,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 75.4,
+              "y": 68,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 24,
           "max_quantity": 9,
-          "total_quantity": 9
+          "total_quantity": 9,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 48.5,
+              "y": 87.9,
+              "quantity": 5
+            },
+            {
+              "area": 8,
+              "x": 52.4,
+              "y": 90.9,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 62,
           "max_quantity": 6,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 9,
+              "x": 78,
+              "y": 97.2,
+              "quantity": 3
+            },
+            {
+              "area": 9,
+              "x": 83.3,
+              "y": 95.9,
+              "quantity": 3
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -7339,7 +9854,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 4,
+              "x": 114.2,
+              "y": 43.7
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -7351,47 +9873,245 @@
         {
           "monster": 12,
           "max_quantity": 6,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 65.1,
+              "y": 123.5,
+              "quantity": 2
+            },
+            {
+              "area": 1,
+              "x": 62.6,
+              "y": 130.4,
+              "quantity": 2
+            },
+            {
+              "area": 1,
+              "x": 65.8,
+              "y": 126.6,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 24,
           "max_quantity": 6,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 119.3,
+              "y": 110,
+              "quantity": 3
+            },
+            {
+              "area": 2,
+              "x": 110.8,
+              "y": 115.7,
+              "quantity": 3
+            }
+          ]
         },
         {
           "monster": 56,
           "max_quantity": 9,
-          "total_quantity": 9
+          "total_quantity": 9,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 114.4,
+              "y": 112.4,
+              "quantity": 3
+            },
+            {
+              "area": 2,
+              "x": 107.7,
+              "y": 112.4,
+              "quantity": 3
+            },
+            {
+              "area": 2,
+              "x": 120.7,
+              "y": 115.1,
+              "quantity": 3
+            }
+          ]
         },
         {
           "monster": 23,
           "max_quantity": 9,
-          "total_quantity": 9
+          "total_quantity": 9,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 133.5,
+              "y": 69.5,
+              "quantity": 3
+            },
+            {
+              "area": 3,
+              "x": 127.8,
+              "y": 68.8,
+              "quantity": 3
+            },
+            {
+              "area": 3,
+              "x": 127.6,
+              "y": 73.9,
+              "quantity": 3
+            }
+          ]
         },
         {
           "monster": 62,
           "max_quantity": 6,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 113.5,
+              "y": 45,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 118.8,
+              "y": 41.7,
+              "quantity": 1
+            },
+            {
+              "area": 5,
+              "x": 64.2,
+              "y": 18.3,
+              "quantity": 2
+            },
+            {
+              "area": 5,
+              "x": 77.9,
+              "y": 16.4,
+              "quantity": 2
+            },
+            {
+              "area": 5,
+              "x": 86.9,
+              "y": 24.8,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 30.3,
+              "y": 94.3,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 25.4,
+              "y": 87.7,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 4,
           "max_quantity": 6,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 32.8,
+              "y": 52.5,
+              "quantity": 2
+            },
+            {
+              "area": 6,
+              "x": 38.7,
+              "y": 49.1,
+              "quantity": 2
+            },
+            {
+              "area": 6,
+              "x": 42.2,
+              "y": 49,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 5,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 32.1,
+              "y": 85.6,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 30,
           "max_quantity": 6,
-          "total_quantity": 9
+          "total_quantity": 9,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 72.6,
+              "y": 59.7,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 76.8,
+              "y": 52.7,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 80.3,
+              "y": 53,
+              "quantity": 1
+            },
+            {
+              "area": 9,
+              "x": 81.6,
+              "y": 84.2,
+              "quantity": 3
+            },
+            {
+              "area": 9,
+              "x": 81,
+              "y": 90.2,
+              "quantity": 3
+            }
+          ]
         },
         {
           "monster": 13,
           "max_quantity": 6,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 79.3,
+              "y": 60.1,
+              "quantity": 1
+            },
+            {
+              "area": 9,
+              "x": 74.4,
+              "y": 86.1,
+              "quantity": 4
+            },
+            {
+              "area": 9,
+              "x": 76.3,
+              "y": 84.5,
+              "quantity": 2
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -7813,7 +10533,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 5,
+              "x": 86.5,
+              "y": 92.8
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -7825,48 +10552,265 @@
         {
           "monster": 4,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 86.3,
+              "y": 116.4,
+              "quantity": 1
+            },
+            {
+              "area": 6,
+              "x": 78,
+              "y": 111.2,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 12,
           "max_quantity": 4,
-          "total_quantity": 8
+          "total_quantity": 8,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 119.4,
+              "y": 41,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 121.1,
+              "y": 41.6,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 116.2,
+              "y": 37,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 130.2,
+              "y": 51.3,
+              "quantity": 1
+            },
+            {
+              "area": 1,
+              "x": 92,
+              "y": 130.9,
+              "quantity": 1
+            },
+            {
+              "area": 1,
+              "x": 95.3,
+              "y": 129.3,
+              "quantity": 1
+            },
+            {
+              "area": 1,
+              "x": 99.5,
+              "y": 129.9,
+              "quantity": 1
+            },
+            {
+              "area": 1,
+              "x": 98,
+              "y": 132.5,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 9,
           "max_quantity": 3,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 10,
+              "x": 50.8,
+              "y": 48.7,
+              "quantity": 1
+            },
+            {
+              "area": 10,
+              "x": 45.7,
+              "y": 52.2,
+              "quantity": 1
+            },
+            {
+              "area": 10,
+              "x": 48.4,
+              "y": 50.8,
+              "quantity": 1
+            },
+            {
+              "area": 12,
+              "x": 48,
+              "y": 31.4,
+              "quantity": 1
+            },
+            {
+              "area": 12,
+              "x": 45.1,
+              "y": 30.7,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 16,
           "max_quantity": 6,
-          "total_quantity": 9
+          "total_quantity": 9,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 46.7,
+              "y": 100.6,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 58.8,
+              "y": 104.5,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 57.1,
+              "y": 95.5,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 118.5,
+              "y": 104.5,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 117,
+              "y": 95,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 120.1,
+              "y": 95.1,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 23,
           "max_quantity": 4,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 9,
+              "x": 67.7,
+              "y": 66.4,
+              "quantity": 1
+            },
+            {
+              "area": 9,
+              "x": 65.6,
+              "y": 65.2,
+              "quantity": 1
+            },
+            {
+              "area": 9,
+              "x": 67.8,
+              "y": 62.5,
+              "quantity": 1
+            },
+            {
+              "area": 9,
+              "x": 66.6,
+              "y": 70.1,
+              "quantity": 1
+            },
+            {
+              "area": 12,
+              "x": 42.4,
+              "y": 31.5,
+              "quantity": 1
+            },
+            {
+              "area": 12,
+              "x": 45.1,
+              "y": 34,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 3,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 93.8,
+              "y": 62.5,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 94.3,
+              "y": 63.5,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 92.9,
+              "y": 65.1,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 0,
           "total_quantity": 0,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 108.1,
+              "y": 107.4,
+              "quantity": 99,
+              "endless": true
+            }
+          ]
         },
         {
           "monster": 57,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 97.6,
+              "y": 83.8,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 5,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 11,
+              "x": 31.1,
+              "y": 35.8,
+              "quantity": 2
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -8274,7 +11218,14 @@
             "mini": 1,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 6,
+              "x": 83.8,
+              "y": 19.7
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -8286,28 +11237,123 @@
         {
           "monster": 5,
           "max_quantity": 2,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 76.1,
+              "y": 70.2,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 68.4,
+              "y": 74.7,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 30.3,
+              "y": 109.5,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 35,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 48.6,
+              "y": 85,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 46.1,
+              "y": 88.5,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 52,
+              "y": 86.5,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 51.5,
+              "y": 83.3,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 0,
           "total_quantity": 0,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 75,
+              "y": 107.6,
+              "quantity": 99,
+              "endless": true
+            }
+          ]
         },
         {
           "monster": 69,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 16.7,
+              "y": 124,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 18,
+              "y": 121.2,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 20.3,
+              "y": 122.5,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 70,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 77.6,
+              "y": 117,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 77.2,
+              "y": 118.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 80.4,
+              "y": 116.1,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -8749,7 +11795,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 4,
+              "x": 74.1,
+              "y": 7.5
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -8761,33 +11814,130 @@
         {
           "monster": 5,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 31.8,
+              "y": 107.1,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 2,
           "total_quantity": 2,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 56.1,
+              "y": 55.9,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 58.6,
+              "y": 50.1,
+              "quantity": 1
+            },
+            {
+              "area": 6,
+              "x": 72.1,
+              "y": 96.6,
+              "quantity": 99,
+              "endless": true
+            }
+          ]
         },
         {
           "monster": 62,
           "max_quantity": 2,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 77.4,
+              "y": 15,
+              "quantity": 1
+            },
+            {
+              "area": 4,
+              "x": 68.3,
+              "y": 11.6,
+              "quantity": 1
+            },
+            {
+              "area": 5,
+              "x": 117.4,
+              "y": 36.7,
+              "quantity": 1
+            },
+            {
+              "area": 5,
+              "x": 119,
+              "y": 48.8,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 12,
           "max_quantity": 5,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 83.2,
+              "y": 100.6,
+              "quantity": 3
+            },
+            {
+              "area": 6,
+              "x": 83.7,
+              "y": 92.3,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 3,
           "max_quantity": 5,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 87.7,
+              "y": 49.5,
+              "quantity": 3
+            },
+            {
+              "area": 7,
+              "x": 84,
+              "y": 53.1,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 57,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 58.9,
+              "y": 80,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 63.3,
+              "y": 77.8,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -9168,7 +12318,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 6,
+              "x": 37.8,
+              "y": 133.8
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -9180,33 +12337,124 @@
         {
           "monster": 62,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 53.2,
+              "y": 83.3,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 47.4,
+              "y": 87.1,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 16,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 22.7,
+              "y": 52.7,
+              "quantity": 1
+            },
+            {
+              "area": 1,
+              "x": 29.7,
+              "y": 62.7,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 2,
           "total_quantity": 2,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 59.3,
+              "y": 109,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 9,
+              "x": 94.8,
+              "y": 103.2,
+              "quantity": 1
+            },
+            {
+              "area": 9,
+              "x": 98.4,
+              "y": 106.6,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 66,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 67.8,
+              "y": 113.8,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 72.7,
+              "y": 99.6,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 63,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 32.5,
+              "y": 128.5,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 12,
           "max_quantity": 9,
-          "total_quantity": 9
+          "total_quantity": 9,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 53.5,
+              "y": 62.1,
+              "quantity": 3
+            },
+            {
+              "area": 2,
+              "x": 48.1,
+              "y": 55,
+              "quantity": 3
+            },
+            {
+              "area": 2,
+              "x": 43.2,
+              "y": 60.7,
+              "quantity": 3
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -9646,7 +12894,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 7,
+              "x": 61.2,
+              "y": 60.8
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -9658,48 +12913,201 @@
         {
           "monster": 13,
           "max_quantity": 3,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 99.1,
+              "y": 100.4,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 110.5,
+              "y": 115.4,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 91.4,
+              "y": 124,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 88.8,
+              "y": 68.4,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 92.2,
+              "y": 72,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 9,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 78,
+              "y": 138.4,
+              "quantity": 1
+            },
+            {
+              "area": 6,
+              "x": 73.6,
+              "y": 138.7,
+              "quantity": 1
+            },
+            {
+              "area": 6,
+              "x": 72.1,
+              "y": 146,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 23,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 23.5,
+              "y": 83.6,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 21.6,
+              "y": 82.9,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 24.3,
+              "y": 76.6,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 0,
           "total_quantity": 0,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 144,
+              "y": 93.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 10,
+              "x": 41.8,
+              "y": 14.8,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 10,
+              "x": 38.1,
+              "y": 24.8,
+              "quantity": 99,
+              "endless": true
+            }
+          ]
         },
         {
           "monster": 25,
           "max_quantity": 5,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 138.1,
+              "y": 89.9,
+              "quantity": 4
+            },
+            {
+              "area": 1,
+              "x": 140.8,
+              "y": 87.4,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 63,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 107.1,
+              "y": 22.4,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 66,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 106.2,
+              "y": 33.2,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 56,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 69.9,
+              "y": 25.9,
+              "quantity": 2
+            },
+            {
+              "area": 5,
+              "x": 71.9,
+              "y": 27.8,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 34,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 53.3,
+              "y": 82.6,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 68.7,
+              "y": 81.3,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -10119,7 +13527,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 5,
+              "x": 121.8,
+              "y": 43.8
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -10131,33 +13546,130 @@
         {
           "monster": 5,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 31.8,
+              "y": 107.1,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 30,
           "max_quantity": 2,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 25.7,
+              "y": 72.4,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 19.9,
+              "y": 58.1,
+              "quantity": 1
+            },
+            {
+              "area": 5,
+              "x": 117.4,
+              "y": 36.7,
+              "quantity": 1
+            },
+            {
+              "area": 5,
+              "x": 119,
+              "y": 48.8,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 2,
           "total_quantity": 2,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 56.1,
+              "y": 55.9,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 58.6,
+              "y": 50.1,
+              "quantity": 1
+            },
+            {
+              "area": 6,
+              "x": 72.1,
+              "y": 96.6,
+              "quantity": 99,
+              "endless": true
+            }
+          ]
         },
         {
           "monster": 12,
           "max_quantity": 5,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 83.2,
+              "y": 100.6,
+              "quantity": 3
+            },
+            {
+              "area": 6,
+              "x": 83.7,
+              "y": 92.3,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 3,
           "max_quantity": 5,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 87.7,
+              "y": 49.5,
+              "quantity": 3
+            },
+            {
+              "area": 7,
+              "x": 84,
+              "y": 53.1,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 57,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 58.9,
+              "y": 80,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 63.3,
+              "y": 77.8,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -10589,7 +14101,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 4,
+              "x": 112.9,
+              "y": 22
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -10601,48 +14120,201 @@
         {
           "monster": 13,
           "max_quantity": 3,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 99.1,
+              "y": 100.4,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 110.5,
+              "y": 115.4,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 91.4,
+              "y": 124,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 88.8,
+              "y": 68.4,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 92.2,
+              "y": 72,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 9,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 78,
+              "y": 138.4,
+              "quantity": 1
+            },
+            {
+              "area": 6,
+              "x": 73.6,
+              "y": 138.7,
+              "quantity": 1
+            },
+            {
+              "area": 6,
+              "x": 72.1,
+              "y": 146,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 23,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 23.5,
+              "y": 83.6,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 21.6,
+              "y": 82.9,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 24.3,
+              "y": 76.6,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 0,
           "total_quantity": 0,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 144,
+              "y": 93.5,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 10,
+              "x": 41.8,
+              "y": 14.8,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 10,
+              "x": 38.1,
+              "y": 24.8,
+              "quantity": 99,
+              "endless": true
+            }
+          ]
         },
         {
           "monster": 25,
           "max_quantity": 5,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 138.1,
+              "y": 89.9,
+              "quantity": 4
+            },
+            {
+              "area": 1,
+              "x": 140.8,
+              "y": 87.4,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 63,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 107.1,
+              "y": 22.4,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 66,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 106.2,
+              "y": 33.2,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 56,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 69.9,
+              "y": 25.9,
+              "quantity": 2
+            },
+            {
+              "area": 5,
+              "x": 71.9,
+              "y": 27.8,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 34,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 53.3,
+              "y": 82.6,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 68.7,
+              "y": 81.3,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -11072,32 +14744,128 @@
         {
           "monster": 30,
           "max_quantity": 2,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 27.8,
+              "y": 109.3,
+              "quantity": 1
+            },
+            {
+              "area": 1,
+              "x": 33.1,
+              "y": 111.5,
+              "quantity": 1
+            },
+            {
+              "area": 5,
+              "x": 64.4,
+              "y": 85.6,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 69,
+              "y": 37.3,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 73.8,
+              "y": 34.5,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 25,
           "max_quantity": 5,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 79.6,
+              "y": 116.5,
+              "quantity": 3
+            },
+            {
+              "area": 3,
+              "x": 75.6,
+              "y": 123.5,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 5,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 99.9,
+              "y": 96.2,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 63,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 98.7,
+              "y": 34.3,
+              "quantity": 1
+            },
+            {
+              "area": 6,
+              "x": 110.8,
+              "y": 53.3,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 21,
-          "total_quantity": 21
+          "total_quantity": 21,
+          "spawns": [
+            {
+              "area": 10,
+              "x": 120.4,
+              "y": 84.9,
+              "quantity": 20
+            },
+            {
+              "area": 10,
+              "x": 121.4,
+              "y": 78.4,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 73,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 11,
+              "x": 132.4,
+              "y": 117.5,
+              "quantity": 1
+            },
+            {
+              "area": 11,
+              "x": 126.8,
+              "y": 109.3,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -11548,7 +15316,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 9,
+              "x": 46.9,
+              "y": 103.3
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -11560,47 +15335,185 @@
         {
           "monster": 16,
           "max_quantity": 6,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 90.2,
+              "y": 49.5,
+              "quantity": 2
+            },
+            {
+              "area": 3,
+              "x": 85.9,
+              "y": 49.4,
+              "quantity": 2
+            },
+            {
+              "area": 3,
+              "x": 91.8,
+              "y": 47.2,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 5,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 5,
+              "x": 80.8,
+              "y": 76.3,
+              "quantity": 1
+            },
+            {
+              "area": 5,
+              "x": 73,
+              "y": 84.5,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 3,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 94.4,
+              "y": 108.4,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 86.7,
+              "y": 108.2,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 12,
           "max_quantity": 9,
-          "total_quantity": 9
+          "total_quantity": 9,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 110.4,
+              "y": 81,
+              "quantity": 4
+            },
+            {
+              "area": 2,
+              "x": 114.2,
+              "y": 80.4,
+              "quantity": 3
+            },
+            {
+              "area": 2,
+              "x": 116.5,
+              "y": 80.4,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 23,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 9,
+              "x": 43.9,
+              "y": 102.3,
+              "quantity": 1
+            },
+            {
+              "area": 9,
+              "x": 45.6,
+              "y": 109,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 73,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 10,
+              "x": 45.5,
+              "y": 77.4,
+              "quantity": 1
+            },
+            {
+              "area": 10,
+              "x": 46,
+              "y": 82.8,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 4,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 51.5,
+              "y": 47.2,
+              "quantity": 2
+            },
+            {
+              "area": 6,
+              "x": 58.3,
+              "y": 40.4,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 7,
-          "total_quantity": 7
+          "total_quantity": 7,
+          "spawns": [
+            {
+              "area": 11,
+              "x": 30.7,
+              "y": 51.3,
+              "quantity": 4
+            },
+            {
+              "area": 11,
+              "x": 29.8,
+              "y": 52.6,
+              "quantity": 3
+            }
+          ]
         },
         {
           "monster": 24,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 7,
+              "x": 70.5,
+              "y": 16.5,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 71.8,
+              "y": 21.8,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -12042,7 +15955,14 @@
             "mini": 1,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 7,
+              "x": 67.5,
+              "y": 37
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -12054,22 +15974,78 @@
         {
           "monster": 19,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 63.7,
+              "y": 123.8,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 63.9,
+              "y": 120.6,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 5,
           "max_quantity": 1,
-          "total_quantity": 1
+          "total_quantity": 1,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 58.8,
+              "y": 10.6,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 25,
           "max_quantity": 4,
-          "total_quantity": 4
+          "total_quantity": 4,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 118.4,
+              "y": 118,
+              "quantity": 2
+            },
+            {
+              "area": 1,
+              "x": 116.9,
+              "y": 116.2,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 23,
           "max_quantity": 3,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 132.6,
+              "y": 94.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 120.5,
+              "y": 90.2,
+              "quantity": 1
+            },
+            {
+              "area": 3,
+              "x": 131.8,
+              "y": 92.3,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -12544,7 +16520,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 61.3,
+              "y": 46.8
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -12993,7 +16976,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 109.1,
+              "y": 49.6
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -13006,32 +16996,207 @@
           "monster": 34,
           "max_quantity": 5,
           "total_quantity": 15,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 114.9,
+              "y": 67.2,
+              "quantity": 5
+            },
+            {
+              "area": 5,
+              "x": 64,
+              "y": 118.3,
+              "quantity": 5
+            },
+            {
+              "area": 1,
+              "x": 113.8,
+              "y": 63.6,
+              "quantity": 1
+            },
+            {
+              "area": 6,
+              "x": 124.5,
+              "y": 99.9,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 6,
+              "x": 125,
+              "y": 107.7,
+              "quantity": 4
+            }
+          ]
         },
         {
           "monster": 25,
           "max_quantity": 7,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 55.7,
+              "y": 56.2,
+              "quantity": 2
+            },
+            {
+              "area": 2,
+              "x": 55.7,
+              "y": 52.7,
+              "quantity": 1
+            },
+            {
+              "area": 2,
+              "x": 39.1,
+              "y": 52.4,
+              "quantity": 4
+            },
+            {
+              "area": 9,
+              "x": 34.4,
+              "y": 79.5,
+              "quantity": 2
+            },
+            {
+              "area": 9,
+              "x": 33.5,
+              "y": 84.1,
+              "quantity": 1
+            },
+            {
+              "area": 9,
+              "x": 27.5,
+              "y": 82.4,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 12,
-          "total_quantity": 42
+          "total_quantity": 42,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 77.7,
+              "y": 28.7,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 58.8,
+              "y": 85.9,
+              "quantity": 10
+            },
+            {
+              "area": 9,
+              "x": 26.4,
+              "y": 73.4,
+              "quantity": 10
+            },
+            {
+              "area": 10,
+              "x": 21.4,
+              "y": 104.8,
+              "quantity": 10
+            }
+          ]
         },
         {
           "monster": 13,
           "max_quantity": 6,
-          "total_quantity": 10
+          "total_quantity": 10,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 69.7,
+              "y": 85.8,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 68.7,
+              "y": 80.2,
+              "quantity": 2
+            },
+            {
+              "area": 7,
+              "x": 94.1,
+              "y": 97,
+              "quantity": 1
+            },
+            {
+              "area": 7,
+              "x": 96.9,
+              "y": 94.5,
+              "quantity": 3
+            },
+            {
+              "area": 7,
+              "x": 92.5,
+              "y": 93.3,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 23,
           "max_quantity": 4,
-          "total_quantity": 6
+          "total_quantity": 6,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 126.4,
+              "y": 103.8,
+              "quantity": 2
+            },
+            {
+              "area": 6,
+              "x": 127,
+              "y": 99.9,
+              "quantity": 2
+            },
+            {
+              "area": 8,
+              "x": 19,
+              "y": 52.6,
+              "quantity": 1
+            },
+            {
+              "area": 8,
+              "x": 23,
+              "y": 53.7,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 9,
           "max_quantity": 3,
-          "total_quantity": 5
+          "total_quantity": 5,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 126.4,
+              "y": 102.4,
+              "quantity": 1
+            },
+            {
+              "area": 6,
+              "x": 127.3,
+              "y": 105.5,
+              "quantity": 2
+            },
+            {
+              "area": 8,
+              "x": 20.3,
+              "y": 50.5,
+              "quantity": 1
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -13487,7 +17652,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 3,
+              "x": 77.8,
+              "y": 43.2
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -13500,37 +17672,215 @@
           "monster": 12,
           "max_quantity": 2,
           "total_quantity": 2,
-          "endless": true
+          "endless": true,
+          "spawns": [
+            {
+              "area": 1,
+              "x": 110.5,
+              "y": 119.4,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 1,
+              "x": 110.3,
+              "y": 122,
+              "quantity": 99,
+              "endless": true
+            },
+            {
+              "area": 1,
+              "x": 112.2,
+              "y": 123.1,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 3,
           "max_quantity": 14,
-          "total_quantity": 14
+          "total_quantity": 14,
+          "spawns": [
+            {
+              "area": 2,
+              "x": 125.7,
+              "y": 68.5,
+              "quantity": 3
+            },
+            {
+              "area": 2,
+              "x": 124.3,
+              "y": 55.5,
+              "quantity": 3
+            },
+            {
+              "area": 2,
+              "x": 130,
+              "y": 67.7,
+              "quantity": 5
+            },
+            {
+              "area": 2,
+              "x": 125.1,
+              "y": 54.4,
+              "quantity": 3
+            }
+          ]
         },
         {
           "monster": 19,
           "max_quantity": 6,
-          "total_quantity": 20
+          "total_quantity": 20,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 75.5,
+              "y": 49.4,
+              "quantity": 6
+            },
+            {
+              "area": 6,
+              "x": 98,
+              "y": 61.3,
+              "quantity": 4
+            },
+            {
+              "area": 7,
+              "x": 77.8,
+              "y": 61.8,
+              "quantity": 6
+            }
+          ]
         },
         {
           "monster": 66,
           "max_quantity": 2,
-          "total_quantity": 3
+          "total_quantity": 3,
+          "spawns": [
+            {
+              "area": 3,
+              "x": 86.9,
+              "y": 43.5,
+              "quantity": 2
+            },
+            {
+              "area": 10,
+              "x": 99.2,
+              "y": 19.8,
+              "quantity": 1
+            }
+          ]
         },
         {
           "monster": 4,
           "max_quantity": 12,
-          "total_quantity": 20
+          "total_quantity": 20,
+          "spawns": [
+            {
+              "area": 4,
+              "x": 26.3,
+              "y": 82.9,
+              "quantity": 2
+            },
+            {
+              "area": 4,
+              "x": 27.8,
+              "y": 72.7,
+              "quantity": 2
+            },
+            {
+              "area": 5,
+              "x": 72.4,
+              "y": 118.4,
+              "quantity": 4
+            },
+            {
+              "area": 5,
+              "x": 61.8,
+              "y": 120.1,
+              "quantity": 3
+            },
+            {
+              "area": 5,
+              "x": 75.4,
+              "y": 118.4,
+              "quantity": 3
+            },
+            {
+              "area": 5,
+              "x": 58.5,
+              "y": 122.6,
+              "quantity": 2
+            },
+            {
+              "area": 6,
+              "x": 98.7,
+              "y": 67.7,
+              "quantity": 2
+            },
+            {
+              "area": 6,
+              "x": 99.8,
+              "y": 86.9,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 5,
           "max_quantity": 2,
-          "total_quantity": 2
+          "total_quantity": 2,
+          "spawns": [
+            {
+              "area": 6,
+              "x": 97.4,
+              "y": 78,
+              "quantity": 2
+            }
+          ]
         },
         {
           "monster": 16,
           "max_quantity": 7,
-          "total_quantity": 12
+          "total_quantity": 12,
+          "spawns": [
+            {
+              "area": 8,
+              "x": 43.4,
+              "y": 84.5,
+              "quantity": 2
+            },
+            {
+              "area": 8,
+              "x": 47.3,
+              "y": 87,
+              "quantity": 3
+            },
+            {
+              "area": 8,
+              "x": 47.3,
+              "y": 92.1,
+              "quantity": 2
+            },
+            {
+              "area": 9,
+              "x": 84.2,
+              "y": 97.9,
+              "quantity": 2
+            },
+            {
+              "area": 9,
+              "x": 77.9,
+              "y": 94.1,
+              "quantity": 1
+            },
+            {
+              "area": 9,
+              "x": 78.7,
+              "y": 98.1,
+              "quantity": 2
+            }
+          ]
         }
       ],
       "arena_sets": [
@@ -13992,7 +18342,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 73.6,
+              "y": 53.1
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -14449,7 +18806,19 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 63,
+              "y": 42.8
+            },
+            {
+              "area": 1,
+              "x": 58.8,
+              "y": 59.4
+            }
+          ]
         }
       ],
       "monster_size": {
@@ -14973,7 +19342,14 @@
             "mini": 0,
             "silver": 0,
             "gold": 0
-          }
+          },
+          "spawns": [
+            {
+              "area": 1,
+              "x": 74.7,
+              "y": 48.6
+            }
+          ]
         }
       ],
       "monster_size": {

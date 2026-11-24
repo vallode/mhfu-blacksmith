@@ -233,6 +233,26 @@ export const site = {
       equipment: "Equipment",
       of: (done: string, total: string) => `${done}/${total}`,
     },
+    monsterLog: {
+      note: "Every monster your save has a record for, with the counts you've slain and captured and the size records the Guild Card keeps.",
+      large: "Large monsters",
+      small: "Small monsters",
+      monster: "Monster",
+      slain: "Slain",
+      captured: "Captured",
+      sizes: "Size records",
+      largest: "Largest",
+      smallest: "Smallest",
+      /** The header's count: "18 monsters". */
+      logged: (n: number, count: string) => (n === 1 ? "1 monster" : `${count} monsters`),
+      /** A group's totals, labelled so the counts need no plural. */
+      totals: (slain: string, captured: string) => `Slain: ${slain} · Captured: ${captured}`,
+      slainTotal: (slain: string) => `Slain: ${slain}`,
+      untracked:
+        "This save was stored before monster records were read. Load the save file again to see them.",
+      empty: "No monsters hunted yet.",
+      noListed: "Your save's monster records aren't for monsters this site lists.",
+    },
     awards: {
       note: "Earned means you meet the award's requirement from what your save shows. The rest can't be read from a save yet.",
       noteGiven:
