@@ -154,9 +154,10 @@ that mattered:
   most attacks of Yian Kut-Ku, Gypceros and Hypnocatrice.
 - Row byte 3 is the hunter's reaction (the hit code branches on it), byte
   20 is stun: `game_sub` adds it to the hunter's `+0x394`; `game_task` folds
-  it into a gauge (`+0x440`) that dizzies at 50, after a 150-tick hold before
-  it drains. The Faint skill modifies it. The full code path and the attacks
-  that carry stun are in `packages/mhfu-extract/docs/dizzy.md`.
+  it into a gauge (`+0x440`) that dizzies at 50, and the gauge only starts
+  draining after a 150-tick hold. The Faint skill works on the gauge. The
+  full code path and the attacks that carry stun are in
+  `packages/mhfu-extract/docs/dizzy.md`.
 - The row index is usually the third argument of the factory, but the
   shared effect factory 0x09B63C58 takes a position there and the row
   fourth; 0x09B65030 makes kind 6 itself (row 7); 0x09AF1990 forwards its

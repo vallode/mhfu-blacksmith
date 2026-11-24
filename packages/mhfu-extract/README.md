@@ -599,8 +599,9 @@ reads 0):
 - **Stun**: the row's stun byte is the hunter's dizzy build-up, not the
   monster's KO value. The hunter dizzies when the gauge reaches 50; the
   150-tick value is the delay before the gauge drains, and the Faint skill
-  modifies it (`docs/dizzy.md`). Roars are `power: 0` rows in the same
-  files; most have stun 0, but the Blos roar and Rajang's motion 52 carry 10.
+  works on the gauge (`docs/dizzy.md`). Roars are `power: 0` rows in the
+  same files; most have stun 0, but the Blos roar and Rajang's motion 52
+  carry 10.
 
 Gaps, logged by `export-site`: shapes on joints 0x7D-0x7F are placed by code
 (a sweep between two frames, or the object's own position) and are skipped;

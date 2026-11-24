@@ -3,8 +3,8 @@
 How a monster hit builds the hunter's dizzy status, and which attacks feed
 it. Found on the EU disc (ULES01213). The attack values are the `stun` field
 in `apps/blacksmith/public/models/monsters/emNN.attacks.json`
-(`monsters/attacks.ts`); the mechanics were read from `game_task.ovl` and
-`game_sub.ovl`.
+(`src/monsters/attacks.ts`); the mechanics were read from `game_task.ovl`
+and `game_sub.ovl`.
 
 The English skill tree for the status is `data/strings/en.json`'s `Faint`
 (4), with Faint Negated at +15, Faint Prob Halved at +10 and Faint
@@ -26,11 +26,12 @@ hunter's dizzy action (19 or 27). The 150 is the hold before the gauge
 starts draining, not the dizzy threshold; the old `monster-ai.md` wording
 "checks against 150" described that timer.
 
-The hold and the drain share the same update. A 2/sec drain would make the
-150-tick hold 75 seconds, so the "2 per second" in the GameFAQs monster
-attack guide does not fit; the code and the 5-second hold point to the
-per-frame update (30 points/sec at 30 Hz). No clean in-game measurement of
-the drain has been made yet.
+The code subtracts one point per status update, not one point per second.
+At the game's 30 Hz frame that is 30 points/sec and the 150-call hold is 5
+seconds; a 2/sec drain would imply a 2 Hz update, which would make the same
+hold 75 seconds. The GameFAQs guide's "2 per second" therefore does not fit
+this code path. No clean in-game measurement of the update rate has been
+made yet.
 
 The Faint skill works on this gauge:
 
@@ -38,8 +39,8 @@ The Faint skill works on this gauge:
   (`0x09A6B778`).
 - +15 (Faint Negated): the pending stun is cleared before it is folded in
   (`0x09A6B700`).
-- -10 (Faint Duration (x2)): doubles the dizzy duration, per the skill
-  data; this note did not trace the duration timer itself.
+- -10: Faint Duration(x2) doubles the dizzy duration, per the skill data;
+  this note did not trace the duration timer itself.
 
 On a clean gauge, with no Faint skill:
 
@@ -61,7 +62,8 @@ updates 45-51, `to` not included). The row's delay and duration are 60 fps
 frames on the disc and the loader halves them into 30 Hz ticks;
 `export-site` doubles them back.
 
-The 150 hold is 150 game ticks, i.e. 5 seconds at 30 Hz.
+The 150 hold is 150 game ticks, i.e. 5 seconds if the update runs on the
+30 Hz frame.
 
 ## How common it is
 
@@ -100,19 +102,19 @@ Plesioth/Cephadrome skeletons).
 
 ### Stun 40: two hits
 
-| Monster                          | Motion | Frames  | Power | Capsule |
-| -------------------------------- | -----: | ------- | ----: | ------- |
-| Rathian/Rathalos family          |     92 | 108-140 |    75 | tail    |
-| Yian Garuga, Scarred Yian Garuga |     41 | 108-140 |    75 | tail    |
-| Hypnocatrice                     |    111 | 26-46   |    40 | feet    |
-| Cephadrome                       |    119 | 0-198   |    40 | body    |
-| Cephadrome                       |    136 | 60-70   |    50 | body    |
-| Cephalos                         |    119 | 0-198   |    10 | body    |
-| Cephalos                         |    136 | 60-70   |    30 | body    |
-| Plesioth, Green Plesioth         |    119 | 50-248  |    60 | body    |
-| Plesioth, Green Plesioth         |    136 | 54-64   |    50 | body    |
-| Lavasioth                        |    119 | 50-248  |    80 | body    |
-| Lavasioth                        |    136 | 54-64   |    70 | body    |
+| Monster                          | Motion | Frames          | Power | Capsule |
+| -------------------------------- | -----: | --------------- | ----: | ------- |
+| Rathian/Rathalos family          |     92 | 108-140         |    75 | tail    |
+| Yian Garuga, Scarred Yian Garuga |     41 | 108-140         |    75 | tail    |
+| Hypnocatrice                     |    111 | 26-36 and 38-46 |    40 | feet    |
+| Cephadrome                       |    119 | 0-198           |    40 | body    |
+| Cephadrome                       |    136 | 60-70           |    50 | body    |
+| Cephalos                         |    119 | 0-198           |    10 | body    |
+| Cephalos                         |    136 | 60-70           |    30 | body    |
+| Plesioth, Green Plesioth         |    119 | 50-248          |    60 | body    |
+| Plesioth, Green Plesioth         |    136 | 54-64           |    50 | body    |
+| Lavasioth                        |    119 | 50-248          |    80 | body    |
+| Lavasioth                        |    136 | 54-64           |    70 | body    |
 
 ### Stun 30: also two hits
 
@@ -135,7 +137,7 @@ Most other large monsters have at least one. Common ones:
 - Teostra, Lunastra: motions 33, 42.
 - Khezu, Red Khezu: motion 43.
 - Gravios, Basarios, Black Gravios: motions 17, 42, 43.
-- Tigrex, Nargacuga: motions 43, 45, 47, 102-104.
+- Tigrex, Nargacuga: motions 41, 43, 45, 47, 102-104.
 
 ## Roars
 
@@ -175,11 +177,12 @@ anyway, since the export keeps every row with capsules.
 ## Gaps
 
 - The attack sweep only records objects made by the swept spawner/factories
-  (`monsters/attacks.ts`, "Monster attacks" in the README). A roar or other
-  effect made directly by action code, like Bulldrome's attacks, is missing.
+  (`src/monsters/attacks.ts`, "Monster attacks" in the README). A roar or
+  other effect made directly by action code, like Bulldrome's attacks, is
+  missing.
 - Most small monsters top out at stun 2-5, but Cephalos (40), Hermitaur and
   Ceanataur (30), Blango (25) and Conga (10) are exceptions. Kirin and
-  Lao-Shan Lung only have stun 2 contact rows, so they have no real dizzy
+  Lao-Shan Lung only have attacks with stun 2, so they have no real dizzy
   attack.
 - The dizzy duration was not traced. The gauge drain's update rate was not
   measured in game either; this note records the static code (50 threshold,
