@@ -410,7 +410,7 @@ function AreaMap({
                   </Link>
                   <span
                     className={cn(
-                      "flex-none whitespace-pre text-white tabular-nums mobile:ml-auto",
+                      "flex-none whitespace-pre text-white tabular-nums",
                       own && "text-positive",
                     )}
                   >
