@@ -71,6 +71,7 @@ pnpm typecheck      # tsc in every package
 pnpm test           # every package's tests
 pnpm format         # Prettier, for the whole repository
 pnpm format:check   # Prettier, check only
+pnpm link:cache     # link this worktree to the main checkout's datamining cache
 pnpm clean:discs    # delete disc images left in Claude Code scratchpads (--dry-run lists them)
 ```
 

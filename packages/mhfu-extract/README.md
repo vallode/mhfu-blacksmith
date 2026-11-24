@@ -14,6 +14,44 @@ you supply yourself.
 **Never commit a game ISO to this repository.** `.gitignore` at the repo
 root excludes common disc image extensions; double check before committing.
 
+## Where the disc and cache live
+
+The commands default to this package's `.cache/` directory
+(`packages/mhfu-extract/.cache`, gitignored, a few GB):
+
+| Path                       | What                                                       |
+| -------------------------- | ---------------------------------------------------------- |
+| `.cache/mhfu/`             | `unpack` output: `data-bin/`, `eboot.bin`, `manifest.json` |
+| `.cache/mhfu/extracted/`   | `extract` output: `quests/`, `raw/`, `EXTRACTION.json`     |
+| `.cache/dlc/ULES01213.ini` | downloadable quests, for `extract --dlc`                   |
+
+`manifest.json` records the region, disc ID, file list version and the exact
+ISO an unpack came from. Read it (and `extracted/`) instead of searching the
+filesystem for datamining inputs.
+
+A worktree does not get the cache. Link it once to the main checkout's copy:
+
+```bash
+pnpm link:cache
+```
+
+Writes through the link land in the main checkout's cache; pass `--out` when
+you need a separate copy.
+
+Or point `MHFU_CACHE` at another `.cache` directory; every path default
+follows it. `MHFU_DISC` supplies `unpack --iso`:
+
+```bash
+export MHFU_CACHE=/path/to/another/checkout/packages/mhfu-extract/.cache
+export MHFU_DISC=/path/to/mhfu.iso
+pnpm --filter mhfu-extract unpack
+pnpm --filter mhfu-extract extract --dlc "$MHFU_CACHE/dlc/ULES01213.ini"
+```
+
+The disc image is not tracked. `manifest.json`'s `isoPath` records the one an
+unpack used (with its region and disc ID), and `unpack --iso` takes
+`MHFU_DISC`; read either rather than searching for a disc.
+
 ## Why this works
 
 Nearly all equipment data (weapons, armor, items, decorations, crafting
@@ -31,6 +69,11 @@ Equipment-side gaps of this kind
 come from hand-authored files under `src/overlay/` — see "Overlay data".
 
 ## Usage
+
+Most path flags default to the cache described above (`--unpacked`,
+`--extracted`, `--out` for `unpack`/`extract`, `--data`, `--quests`), so the
+examples spell out paths they could leave out. From a worktree, run
+`pnpm link:cache` first, or set `MHFU_CACHE`.
 
 `--data` is the repository's `data/` directory. The pipeline reads MHFU
 (`src/game.ts`), and works on that game's part of it, `data/mhfu/`; the
