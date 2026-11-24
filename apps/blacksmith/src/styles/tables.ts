@@ -78,3 +78,19 @@ export const statusTable = [
   "mobile:[&_td]:pl-[0.8rem] mobile:[&_th]:pl-[0.8rem]",
   "[&_td:first-of-type]:pl-0 [&_td:first-of-type]:text-left",
 ].join(" ");
+
+/**
+ * The hunter's monster log: the monster (portrait and link) left, its hunts
+ * and captures, and its largest and smallest stacked in the last column.
+ * A phone, or a compact screen's narrower detail pane, steps down a size and
+ * closes the columns' gaps; the rows drop the portraits there.
+ */
+export const monsterLogTable = [
+  "h-min w-full border-collapse text-small leading-[1.25] tabular-nums mobile:text-fine compact:text-fine",
+  "[&_th]:pr-[1rem] [&_th]:pb-[0.4rem] [&_th]:text-right [&_th]:align-bottom [&_th]:font-normal [&_th]:whitespace-nowrap [&_th]:text-warm",
+  "[&_th:first-of-type]:w-full [&_th:first-of-type]:text-left [&_th:first-of-type]:text-gold",
+  "[&_td]:py-[0.3rem] [&_td]:pr-[1rem] [&_td]:text-right [&_td]:align-middle [&_td]:whitespace-nowrap",
+  "[&_td:first-of-type]:text-left [&_td:first-of-type]:whitespace-normal",
+  "[&_th:last-of-type]:pr-0 [&_td:last-of-type]:pr-0",
+  "mobile:[&_th]:pr-[0.6rem] mobile:[&_td]:pr-[0.6rem] compact:[&_th]:pr-[0.8rem] compact:[&_td]:pr-[0.8rem]",
+].join(" ");

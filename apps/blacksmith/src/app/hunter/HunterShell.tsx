@@ -23,6 +23,7 @@ import {
   type HunterPage,
   type HunterPageId,
 } from "@/lib/hunter-pages";
+import { loggedMonsterCount } from "@/lib/monster-log";
 import { useAwardContext } from "./useAwardContext";
 
 const activeRow = "bg-(image:--gradient-hover-glow)";
@@ -115,11 +116,13 @@ function HunterList({ page }: { page: HunterPageId | null }) {
   );
   const awardCtx = useAwardContext();
   const awards = useMemo(() => (save ? awardTotals(awardCtx) : null), [save, awardCtx]);
+  const monsters = loggedMonsterCount(save?.monsters);
   const counts: Partial<Record<HunterPageId, string>> = {
     awards: awards ? t.site.hunter.awards.earned(awards.earned, awards.tracked) : undefined,
     quests: progress
       ? t.site.hunter.guildCard.of(formatNumber(progress.done), formatNumber(progress.total))
       : undefined,
+    monsters: monsters ? formatNumber(monsters) : undefined,
   };
   // The page /hunter/ shows beside the list on wider screens.
   const fallback: HunterPageId = save ? "guild-card" : "save";
