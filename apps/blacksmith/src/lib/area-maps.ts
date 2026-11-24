@@ -3,6 +3,7 @@
  * positions, by quest ID. Pure, so scripts/generate-data.ts writes it into
  * public/data/area-maps.json and the tests build it from data/.
  */
+import { areaNumber } from "./area-numbers";
 import type { GatherKind, GatheringFile } from "./item-places";
 
 /** The textures' width and height, in the pixels `x` and `y` count. */
@@ -70,7 +71,7 @@ export function buildAreaMaps(gathering: GatheringFile): AreaMapsBundle {
     const points = layout.areas.flatMap(({ area, nodes }) =>
       nodes.flatMap((node) =>
         (node.positions ?? []).map(([x, y]): EncodedPoint => [
-          area,
+          areaNumber(layout.texture, area),
           KINDS.indexOf(node.kind),
           x,
           y,

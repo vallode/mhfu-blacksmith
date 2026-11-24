@@ -21,9 +21,12 @@ import { useGameText, useT } from "@/context/LanguageContext";
 export function DetailCard({
   children,
   className,
+  bar,
 }: {
   children: React.ReactNode;
   className?: string;
+  /** A `SelectorBar` drawn over the card (the content leaves room for it). */
+  bar?: React.ReactNode;
 }) {
   return (
     // In a CardBox like the tree cards (see CardBox), but z-1 as the card was,
@@ -32,6 +35,7 @@ export function DetailCard({
     // (tree card 530px, this 570px at 1400px).
     <CardBox className={cn("z-1 basis-[4rem] mobile:basis-[0%]", className)}>
       <Card scroll>{children}</Card>
+      {bar}
     </CardBox>
   );
 }

@@ -10,6 +10,7 @@ export const site: Messages["site"] = {
     decorations: "Adornos",
     quests: "Misiones",
     items: "Objetos",
+    maps: "Mapas",
     veggieElder: "Anciano Vegetal",
     sets: "Conjuntos",
     wishlist: "Lista de deseos",

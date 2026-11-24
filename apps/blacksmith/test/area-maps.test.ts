@@ -95,3 +95,14 @@ test("areaLabel names the Base Camp", () => {
   assert.equal(areaLabel(0), "Base Camp");
   assert.equal(areaLabel(4), "Area 4");
 });
+
+test("areaNumber gives the number the map art prints, not the stage index", async () => {
+  const { areaNumber } = await import("../src/lib/area-numbers");
+  // The Jungle's 7th stage is drawn as its area 8, and its Base Camp has none.
+  assert.equal(areaNumber("map6", 7), 8);
+  assert.equal(areaNumber("map6", 6), 9);
+  assert.equal(areaNumber("map6", 0), 0);
+  // A map the table doesn't have keeps its index.
+  assert.equal(areaNumber("map999", 3), 3);
+  assert.equal(areaNumber(undefined, 3), 3);
+});
