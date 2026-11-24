@@ -25,6 +25,7 @@ import {
 import type { DecoBin, Piece, SearchData } from "@/lib/set-search";
 import ArmorSetView, { PanelTitle, SetStatus } from "./ArmorSetView";
 import { DecorationPicker, PiecePicker } from "./Pickers";
+import type { OwnedArmorMode } from "./SearchOptions";
 import SetWishlistButton from "./SetWishlistButton";
 
 type Picking = { kind: "piece"; slot: ArmorSlot } | { kind: "decoration"; bin: DecoBin } | null;
@@ -36,7 +37,7 @@ export default function SetEditor({
   wanted,
   rank,
   questLimit,
-  ownedOnly,
+  ownedArmor,
   isOwned,
   weaponIcon,
   title,
@@ -49,7 +50,7 @@ export default function SetEditor({
   wanted: string[];
   rank: ArmorRank;
   questLimit: Tier | null;
-  ownedOnly: boolean;
+  ownedArmor: OwnedArmorMode;
   isOwned?: (p: Piece) => boolean;
   weaponIcon: string;
   /** Above the set: its name and actions. */
@@ -80,7 +81,7 @@ export default function SetEditor({
         rank={rank}
         wanted={wanted}
         questLimit={questLimit}
-        ownedOnly={ownedOnly}
+        ownedArmor={ownedArmor}
         isOwned={isOwned}
         onPick={(p) => {
           onChange(withPiece(set, picking.slot, p));

@@ -64,7 +64,8 @@ export const setBuilder = {
       weapon: "Wpn",
       badSkills: "bad skills allowed",
       allQuests: "all quests",
-      ownedArmor: "owned armor",
+      ownedArmorPreferred: "owned armor preferred",
+      ownedArmorOnly: "owned armor only",
     },
     allowBadSkills: "Allow bad skills",
     allowBadSkillsNote: "Keep sets that also activate a negative skill, such as Defense -20.",
@@ -78,8 +79,14 @@ export const setBuilder = {
         options,
         " page) leaves out armor and decorations that need materials from later quests. Turn on to search all of them.",
       ),
-    ownedOnly: "Owned armor only",
-    ownedOnlyNote: "Only use armor in your hunter's equipment box.",
+    ownedArmor: "Owned armor",
+    ownedArmorNote:
+      "Search all armor, put sets that use armor in your hunter's equipment box first, or only use that armor.",
+    ownedModes: {
+      off: "Any armor",
+      prefer: "Prefer owned",
+      only: "Owned only",
+    },
     /**
      * The locked pieces, under the skills; `remove` labels each one's ×.
      * `add` opens the lock sheet, a row per slot under `slotsNote`; `pick`
@@ -137,7 +144,7 @@ export const setBuilder = {
      * `progress`: the search was limited by quest progress; `locked` and
      * `excluded`: it had always used or never used pieces.
      */
-    noSets: (progress: boolean, locked: boolean, excluded: boolean): string => {
+    noSets: (progress: boolean, locked: boolean, excluded: boolean, ownedOnly: boolean): string => {
       const tips = [
         "fewer skills",
         "a higher rank",
@@ -145,6 +152,7 @@ export const setBuilder = {
         "allowing bad skills",
         ...(locked ? ["unlocking pieces"] : []),
         ...(excluded ? ["removing excluded pieces"] : []),
+        ...(ownedOnly ? ["using armor you don't own"] : []),
         ...(progress ? ["ignoring your quest progress"] : []),
       ];
       const last = tips.pop();
