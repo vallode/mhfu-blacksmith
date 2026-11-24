@@ -128,6 +128,7 @@ function HunterList({ page }: { page: HunterPageId | null }) {
     quests: progress
       ? t.site.hunter.guildCard.of(formatNumber(progress.done), formatNumber(progress.total))
       : undefined,
+    collection: save?.equipment ? formatNumber(save.equipment.length) : undefined,
     monsters: monsters !== null ? formatNumber(monsters) : undefined,
     crowns: crowns
       ? t.site.hunter.guildCard.of(
