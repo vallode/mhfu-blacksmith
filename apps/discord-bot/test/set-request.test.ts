@@ -1,11 +1,13 @@
 /**
  * The set search's translation step: the schema a model answers in, what
- * the bot makes of an answer, and the Claude call (with a stand-in client,
- * so the tests never reach the API).
+ * the bot makes of an answer, and the DeepSeek and Claude calls (with
+ * stand-in clients, so the tests never reach an API).
  */
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+import { modelFor } from "../src/bot.js";
 import { claudeTranslator, TranslateError } from "../src/claude.js";
+import { deepseekTranslator } from "../src/deepseek.js";
 import {
   armorWordList,
   keywordTranslator,
@@ -173,5 +175,73 @@ describe("claudeTranslator", () => {
       claudeTranslator(index, { apiKey: "t", client: cut.client })("x"),
       TranslateError,
     );
+  });
+});
+
+describe("deepseekTranslator", () => {
+  function fakeFetch(reply: { content: string | null; finish_reason?: string; status?: number }) {
+    const calls: { url: string; init: RequestInit }[] = [];
+    const fetcher = (async (url: string, init: RequestInit) => {
+      calls.push({ url, init });
+      return new Response(
+        JSON.stringify({
+          model: "deepseek-v4.1-flash-1017",
+          choices: [
+            { finish_reason: reply.finish_reason ?? "stop", message: { content: reply.content } },
+          ],
+        }),
+        { status: reply.status ?? 200 },
+      );
+    }) as typeof fetch;
+    return { calls, fetcher };
+  }
+
+  it("asks Flash for JSON, with the schema in the prompt", async () => {
+    const answer: SetRequest = { ...empty, skills: ["Evade +2"], hunterType: "Gunner" };
+    const { calls, fetcher } = fakeFetch({ content: JSON.stringify(answer) });
+    const translate = deepseekTranslator(index, { apiKey: "test", fetcher });
+    assert.deepEqual(await translate("gunner, evasion +2"), answer);
+    const { url, init } = calls[0]!;
+    assert.equal(url, "https://api.deepseek.com/chat/completions");
+    assert.equal((init.headers as Record<string, string>).authorization, "Bearer test");
+    const body = JSON.parse(init.body as string);
+    assert.equal(body.model, "deepseek-flash");
+    assert.deepEqual(body.response_format, { type: "json_object" });
+    assert.ok(body.messages[0].content.includes(JSON.stringify(setRequestSchema(index))));
+    assert.deepEqual(body.messages[1], { role: "user", content: "gunner, evasion +2" });
+  });
+
+  it("goes to another host when given one", async () => {
+    const { calls, fetcher } = fakeFetch({ content: JSON.stringify(empty) });
+    await deepseekTranslator(index, { apiKey: "t", baseUrl: "https://example.test/v1/", fetcher })(
+      "x",
+    );
+    assert.equal(calls[0]!.url, "https://example.test/v1/chat/completions");
+  });
+
+  it("fails clearly on a blank, cut-off or failed answer", async () => {
+    for (const reply of [
+      { content: "   " },
+      { content: '{"rank":', finish_reason: "length" },
+      { content: "not json" },
+      { content: null, status: 500 },
+    ]) {
+      const { fetcher } = fakeFetch(reply);
+      await assert.rejects(
+        deepseekTranslator(index, { apiKey: "t", fetcher })("x"),
+        TranslateError,
+      );
+    }
+  });
+});
+
+describe("modelFor", () => {
+  it("uses DeepSeek Flash by default, Claude when named, keywords without a key", () => {
+    const key = { DISCORD_PUBLIC_KEY: "" };
+    assert.equal(modelFor(index, { ...key, DEEPSEEK_API_KEY: "k" }).how, "Read by DeepSeek");
+    assert.equal(modelFor(index, key).how, "Matched by name");
+    const claude = { ...key, NL_MODEL: "claude-haiku-5-5", DEEPSEEK_API_KEY: "k" };
+    assert.equal(modelFor(index, claude).how, "Matched by name");
+    assert.equal(modelFor(index, { ...claude, ANTHROPIC_API_KEY: "a" }).how, "Read by Claude");
   });
 });

@@ -13,12 +13,13 @@
   "vars": {
     "SITE_URL": "https://mhfu.vallode.com",
     "RANDOMFU_URL": "https://randomfu.vallode.com",
-    // The set search's model (src/claude.ts). claude-haiku-5-5 costs about
-    // a fortieth as much per search.
-    "NL_MODEL": "claude-opus-5-5",
+    // The set search's model: deepseek-flash (src/deepseek.ts), or a claude-*
+    // model (src/claude.ts). See eval/README.md for how they compare.
+    "NL_MODEL": "deepseek-flash",
   },
-  // Secrets, set with `wrangler secret put`: DISCORD_PUBLIC_KEY and
-  // ANTHROPIC_API_KEY (without it /sets only matches names as written).
+  // Secrets, set with `wrangler secret put`: DISCORD_PUBLIC_KEY and the
+  // model's key, DEEPSEEK_API_KEY (or ANTHROPIC_API_KEY for Claude). Without
+  // it /sets only matches names as written.
   //
   // /sets per Discord user, per Cloudflare location (approximate): a guard
   // on the model's bill. The namespace_id must be unique on the account

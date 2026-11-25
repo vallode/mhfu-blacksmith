@@ -146,6 +146,24 @@ export function setRequestPrompt(index: BotIndex): string {
   ].join("\n");
 }
 
+/**
+ * The instructions for a model without structured outputs (DeepSeek): the
+ * same, with the schema written out and the JSON asked for alone. The bot
+ * checks every name in the answer again, so one the model makes up is
+ * dropped, never searched for.
+ */
+export function setRequestJsonPrompt(index: BotIndex): string {
+  return [
+    setRequestPrompt(index),
+    "",
+    "Reply with one JSON object and nothing else: no prose, no code fence. It must follow this JSON schema, whose enums are the only names allowed:",
+    JSON.stringify(setRequestSchema(index)),
+  ].join("\n");
+}
+
+/** Why a model gave no SetRequest, in words for the reply. */
+export class TranslateError extends Error {}
+
 /** Turns a request into a SetRequest: a model, or the keyword stub. */
 export type Translator = (request: string) => Promise<SetRequest>;
 

@@ -11,9 +11,12 @@ import Anthropic from "@anthropic-ai/sdk";
 import {
   setRequestPrompt,
   setRequestSchema,
+  TranslateError,
   type SetRequest,
   type Translator,
 } from "./set-request.js";
+
+export { TranslateError };
 import type { BotIndex } from "./types.js";
 
 export const DEFAULT_MODEL = "claude-opus-5-5";
@@ -24,8 +27,6 @@ export interface ClaudeOptions {
   /** For tests: the client to call instead of the API's. */
   client?: Pick<Anthropic, "beta">;
 }
-
-export class TranslateError extends Error {}
 
 /**
  * The Messages API request for one /sets translation, without the request

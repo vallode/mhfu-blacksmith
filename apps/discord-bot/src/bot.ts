@@ -9,7 +9,8 @@
  *   longer than the 3 seconds Discord waits, edited into the answer once
  *   the request is translated. Each user gets a few per minute (SET_LIMITER).
  */
-import { claudeTranslator, TranslateError } from "./claude.js";
+import { claudeTranslator } from "./claude.js";
+import { DEEPSEEK_MODEL, deepseekTranslator } from "./deepseek.js";
 import {
   editOriginal,
   EPHEMERAL,
@@ -28,6 +29,7 @@ import { autocomplete, EMBED_COLOR, lookupReply, type LookupKind } from "./looku
 import {
   keywordTranslator,
   resolveSetRequest,
+  TranslateError,
   type ResolvedRequest,
   type Translator,
 } from "./set-request.js";
@@ -37,9 +39,16 @@ import type { BotIndex } from "./types.js";
 export interface Env {
   /** The application's public key (Developer Portal > General Information), hex. */
   DISCORD_PUBLIC_KEY: string;
-  /** Secret. Without it /sets matches names as written (keywordTranslator). */
-  ANTHROPIC_API_KEY?: string;
+  /**
+   * The /sets model: deepseek-flash (the default) or a claude-* model. Its
+   * key is a secret; without it /sets matches names as written
+   * (keywordTranslator).
+   */
   NL_MODEL?: string;
+  DEEPSEEK_API_KEY?: string;
+  /** Another host serving the DeepSeek model through the same API. */
+  DEEPSEEK_URL?: string;
+  ANTHROPIC_API_KEY?: string;
   SITE_URL?: string;
   RANDOMFU_URL?: string;
   /** Workers rate limiting binding (wrangler.jsonc), keyed by Discord user. */
@@ -104,25 +113,39 @@ export function setsMessage(
   return { embeds: [embed], allowed_mentions: { parse: [] } };
 }
 
+/** The /sets translator NL_MODEL names, if its key is set; keywords if not. */
+export function modelFor(
+  index: BotIndex,
+  env: Env,
+  fetcher?: typeof fetch,
+): { translate: Translator; how: string } {
+  const model = env.NL_MODEL || DEEPSEEK_MODEL;
+  if (model.startsWith("claude-") && env.ANTHROPIC_API_KEY)
+    return {
+      translate: claudeTranslator(index, { apiKey: env.ANTHROPIC_API_KEY, model }),
+      how: "Read by Claude",
+    };
+  if (!model.startsWith("claude-") && env.DEEPSEEK_API_KEY)
+    return {
+      translate: deepseekTranslator(index, {
+        apiKey: env.DEEPSEEK_API_KEY,
+        model,
+        baseUrl: env.DEEPSEEK_URL,
+        fetcher,
+      }),
+      how: "Read by DeepSeek",
+    };
+  return { translate: keywordTranslator(index), how: "Matched by name" };
+}
+
 export interface BotOptions {
-  /** The translator for an Env; by default Claude with a key, keywords without. */
+  /** The translator for an Env; by default the NL_MODEL with its key, keywords without. */
   translator?: (env: Env) => { translate: Translator; how: string };
   fetcher?: typeof fetch;
 }
 
 export function createBot(index: BotIndex, options: BotOptions = {}) {
-  const translatorFor =
-    options.translator ??
-    ((env: Env) =>
-      env.ANTHROPIC_API_KEY
-        ? {
-            translate: claudeTranslator(index, {
-              apiKey: env.ANTHROPIC_API_KEY,
-              model: env.NL_MODEL,
-            }),
-            how: "Read by Claude",
-          }
-        : { translate: keywordTranslator(index), how: "Matched by name" });
+  const translatorFor = options.translator ?? ((env: Env) => modelFor(index, env, options.fetcher));
 
   async function answerSets(interaction: Interaction, request: string, env: Env): Promise<void> {
     const siteUrl = env.SITE_URL ?? SITE_URL;

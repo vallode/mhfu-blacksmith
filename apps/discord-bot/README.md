@@ -26,15 +26,16 @@ Japanese name.
 - `src/bot.ts` checks each request's Ed25519 signature against the
   application's public key, then answers it. `/settings` decodes with
   randomfu's own settings module.
-- `/sets` defers its reply and translates the request with Claude
-  (`src/claude.ts`): one call with structured outputs, whose JSON schema
-  (`src/set-request.ts`) lists the skills, armor words and monsters from
-  `data/`, so the answer can't name gear that doesn't exist. The bot checks
-  every name again, then replies with a search link
-  (`apps/blacksmith/src/lib/search-link.ts`). The set builder reads it,
-  fills in the search and runs it in the visitor's browser, as it always
-  does. Without an API key, `/sets` matches names as written
-  (`keywordTranslator`).
+- `/sets` defers its reply and translates the request with a model: by
+  default DeepSeek Flash (`src/deepseek.ts`), or Claude (`src/claude.ts`)
+  when `NL_MODEL` names one. The prompt lists the skills, armor words and
+  monsters from `data/` (`src/set-request.ts`), and the bot checks every name
+  in the answer again, so a search never names gear that doesn't exist. It
+  replies with a search link (`apps/blacksmith/src/lib/search-link.ts`). The
+  set builder reads it, fills in the search and runs it in the visitor's
+  browser, as it always does. Without the model's key, `/sets` matches names
+  as written (`keywordTranslator`). `eval/` compares the models on 36
+  requests.
 - Each Discord user gets four `/sets` a minute (`SET_LIMITER` in
   `wrangler.jsonc`).
 
@@ -46,12 +47,13 @@ way, the model choice and what it costs.
 1. In the [Discord Developer Portal](https://discord.com/developers/applications),
    make an application with a bot. Note its application ID and public key
    (General Information) and the bot token (Bot).
-2. Deploy the Worker and give it its secrets, from this directory:
+2. Make a DeepSeek API key at https://platform.deepseek.com (API keys).
+   Deploy the Worker and give it its secrets, from this directory:
 
    ```sh
    npx wrangler deploy
    npx wrangler secret put DISCORD_PUBLIC_KEY
-   npx wrangler secret put ANTHROPIC_API_KEY
+   npx wrangler secret put DEEPSEEK_API_KEY
    ```
 
 3. Set the Worker's URL (`https://mhfu-discord-bot.<account>.workers.dev/`)

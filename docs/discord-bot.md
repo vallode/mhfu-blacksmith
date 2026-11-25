@@ -6,13 +6,14 @@ is why it's built the way it is.
 
 ## Recommendation
 
-- **Model: Claude, with structured outputs.** One Messages API call per
-  `/sets` request. The JSON schema's enums list every skill activation, armor
-  word and large monster from `data/`, so the answer always parses and never
-  names gear that doesn't exist. The bot's default is `claude-opus-5-5` at
-  low effort. `claude-haiku-5-5` costs about a fortieth as much. Which one to
-  run is a cost decision: try both on a few dozen real requests before
-  launch, then set `NL_MODEL`.
+- **Model: DeepSeek Flash.** One chat completion per `/sets` request, in
+  JSON mode, with the JSON schema in the prompt. The schema's enums list
+  every skill activation, armor word and large monster from `data/`, and the
+  bot checks every name in the answer again, so a search never names gear
+  that doesn't exist. In the eval it got the most requests fully right, at
+  about a twentieth of Opus's cost (see _How the models compare_).
+  `NL_MODEL` can name a `claude-*` model instead, which runs with
+  structured outputs.
 - **Not Jev, for this.** Jev is good at a single choice or a yes/no question.
   A set request is a list of skills, armor to leave out, a slot count and a
   rank, and Jev can't return a list.
@@ -68,17 +69,17 @@ the part that has to know "Evasion +2" means Evade +2.
 Jev would fit a single-choice job well, such as routing a free-text question
 to the right command.
 
-## Claude for the translation
+## The translation
 
-**MHFU vocabulary.** The prompt gives the model what the schema can't hold:
+**MHFU vocabulary.** The prompt gives the model the names it must answer in:
 
 - each skill tree with its activations, and the data's other spellings
   ("Defence");
-- the community's monster nicknames (`src/nicknames.ts`).
+- the community's monster nicknames (`src/nicknames.ts`);
+- the JSON schema, whose enums are the skills, armor words and monsters.
 
-The model already knows Monster Hunter's community terms and Japanese names.
-The point is to map the player's words onto the data's names, which the
-schema then enforces:
+The models already know Monster Hunter's community terms and Japanese names.
+The point is to map the player's words onto the data's names:
 
 - "Evasion +2" becomes Evade +2 (the EU name);
 - "Auto-Reload" becomes Auto Reload;
@@ -88,35 +89,42 @@ schema then enforces:
 Armor is named by the words in piece names rather than by set, because the
 game truncates names (`Wht Fatalis Mail`, `RdGuildGuardTricorne`). "No
 Fatalis gear" becomes `never: ["Fatalis"]`, which the set builder expands to
-every Fatalis, Crimson, White and "Wht" Fatalis piece the hunter can wear.
+every Fatalis and White Fatalis piece the hunter can wear.
 
-**Hosting.** It's an HTTPS call from the Worker through the official SDK. The
-key is a Worker secret (`ANTHROPIC_API_KEY`). The system prompt is marked for
-caching, so a burst of requests pays for it once every five minutes.
+**Hosting.** It's an HTTPS call from the Worker to DeepSeek's
+OpenAI-compatible API (`src/deepseek.ts`). The key is a Worker secret
+(`DEEPSEEK_API_KEY`); `DEEPSEEK_URL` can point the call at another host
+serving the same model. A blank, cut-off or broken answer becomes a short
+"try again" reply with the set builder's link.
 
-**Settings.**
+## How the models compare
 
-- Effort is `low`.
-- A refused request falls back to another model on the server (Opus only;
-  Haiku has no server-side fallback).
-- A refusal or a cut-off answer becomes a short "try again" reply with the
-  set builder's link.
+`apps/discord-bot/eval/` runs 36 requests through each model and grades what
+the set builder would get: skills, rank, hunter type, slots, the pieces left
+out and locked, and the monster. The requests cover other names for skills,
+Japanese, nicknames, armor named differently from its monster (Ukanlos's is
+Ucamulbas), cut-short names, locks and slots. One run of each, November
+2026:
+
+| Model                         | All correct | Cost per request | Median time |
+| ----------------------------- | ----------- | ---------------- | ----------- |
+| DeepSeek V4.1 Flash           | 97%         | $0.0006          | 3.3 s       |
+| `claude-opus-5-5`, low effort | 94%         | $0.012           | 1.6 s       |
+| GPT-6 Luna                    | 94%         | $0.0007          | 2.6 s       |
+| GLM 5.3 Flash                 | 92%         | $0.0006          | 2.8 s       |
+| MiMo v2.6 Flash               | 91%         | $0.0002          | 5.2 s       |
+| Qwen 3.8 Flash                | 75%         | $0.0006          | 5.9 s       |
+| `claude-haiku-5-5`            | 69%         | $0.0003          | 1.6 s       |
+| Keyword matching (no model)   | 17%         | free             | instant     |
+
+The models other than Claude ran through opencode, whose start-up is in
+their times. The top four are a case or two apart, within what one run can
+tell apart. Haiku was cheap but often added skills nobody asked for.
 
 ## Costs
 
-The prompt and schema together are about 4,500 input tokens, the same for
-every request. The answer is about 150 tokens of JSON, plus whatever the
-model thinks at low effort. Estimates per `/sets` request:
-
-| Model                         | Uncached         | Prompt cached     | 1,000 requests |
-| ----------------------------- | ---------------- | ----------------- | -------------- |
-| `claude-opus-5-5`, low effort | about $0.02–0.03 | about $0.005–0.01 | about $10–30   |
-| `claude-haiku-5-5`            | under $0.001     | under $0.001      | under $1       |
-| Jev (about 400 questions)     | about $0.0004    | n/a               | under $0.50    |
-
-These are estimates from list prices: Opus $4/$20 per million input/output
-tokens and $0.20 for cache reads, Haiku $0.10/$0.50. They haven't been
-measured; nothing has called a paid API yet.
+At DeepSeek Flash's price, 1,000 `/sets` requests cost about $0.60 (see
+_How the models compare_ for the others).
 
 Cloudflare costs:
 
@@ -126,8 +134,8 @@ Cloudflare costs:
 - **The script** is about 220 KB gzipped, against a 3 MB limit on the free
   plan.
 - **The rate limit** (four `/sets` per user a minute, per Cloudflare
-  location) caps what one user can spend. The Anthropic console's spend
-  limit is the hard cap.
+  location) caps what one user can spend. The DeepSeek account's balance is
+  the hard cap: its API is prepaid.
 
 ## Why the search runs on the site
 
