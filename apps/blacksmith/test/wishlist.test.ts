@@ -87,11 +87,16 @@ describe("entries", () => {
     const d = { kind: "decoration", slug: "attack-jewel" } as const;
     assert.equal(entryKey(d), "decoration/attack-jewel");
     assert.equal(entryHref(d), "/decorations/attack-jewel/");
+    const i = { kind: "item", slug: "potion" } as const;
+    assert.equal(entryKey(i), "item/potion");
+    assert.equal(entryHref(i), "/items/potion/");
   });
 
-  test("a decoration wants one unless counted", () => {
+  test("a decoration or item wants one unless counted", () => {
     assert.equal(entryCount({ kind: "decoration", slug: "a", addedAt: 1 }), 1);
     assert.equal(entryCount({ kind: "decoration", slug: "a", addedAt: 1, count: 4 }), 4);
+    assert.equal(entryCount({ kind: "item", slug: "potion", addedAt: 1 }), 1);
+    assert.equal(entryCount({ kind: "item", slug: "potion", addedAt: 1, count: 10 }), 10);
     assert.equal(
       entryCount({ kind: "armor", slot: "leggings", rank: "g-rank", slug: "a", addedAt: 1 }),
       1,
@@ -106,6 +111,15 @@ describe("entries", () => {
     const [removed, off] = toggleEntry(added, ref);
     assert.equal(off, false);
     assert.deepEqual(removed, []);
+
+    const item = { kind: "item", slug: "potion" } as const;
+    const [withItem, itemOn] = toggleEntry([], item);
+    assert.equal(itemOn, true);
+    assert.equal(withItem.length, 1);
+    assert.equal(withItem[0]?.kind, "item");
+    assert.equal(withItem[0]?.slug, "potion");
+    assert.equal(typeof withItem[0]?.addedAt, "number");
+    assert.equal(toggleEntry(withItem, item)[1], false);
   });
 
   test("parse drops malformed and repeated entries", () => {
@@ -123,12 +137,23 @@ describe("entries", () => {
       { kind: "decoration", slug: "d", addedAt: 1, count: 3 },
       { kind: "decoration", slug: "e", addedAt: 1 },
       { kind: "decoration", slug: "e", addedAt: 1, count: 2 },
+      { kind: "item", slug: "p", addedAt: 1, count: 0 },
+      { kind: "item", slug: "p", addedAt: 1, count: 100 },
+      { kind: "item", slug: "p", addedAt: 1, count: 1.5 },
+      { kind: "item", slug: "p", addedAt: 1, count: 5 },
+      { kind: "item", slug: "p", addedAt: 1, count: 6 },
+      { kind: "item", slug: "q", addedAt: 1 },
       null,
     ]);
+    const parsed = parseWishlist(raw);
     assert.deepEqual(
-      parseWishlist(raw).map((e) => e.slug),
-      ["a", "g", "c", "d", "e"],
+      parsed.map((e) => e.slug),
+      ["a", "g", "c", "d", "e", "p", "q"],
     );
+    assert.deepEqual(parsed.slice(-2), [
+      { kind: "item", slug: "p", addedAt: 1, count: 5 },
+      { kind: "item", slug: "q", addedAt: 1 },
+    ]);
     assert.deepEqual(parseWishlist("not json"), []);
   });
 
@@ -381,6 +406,31 @@ describe("adding a set", () => {
   });
 });
 
+describe("items", () => {
+  test("adds an item count and raises it without ever lowering it", () => {
+    const [added, changed] = addEntries([], [{ kind: "item", slug: "potion", count: 5 }], 1);
+    assert.equal(changed, 1);
+    assert.deepEqual(added, [{ kind: "item", slug: "potion", count: 5, addedAt: 1 }]);
+    assert.equal(hasAll(added, [{ kind: "item", slug: "potion", count: 5 }]), true);
+    assert.equal(hasAll(added, [{ kind: "item", slug: "potion", count: 6 }]), false);
+
+    const [raised, raisedCount] = addEntries(
+      added,
+      [
+        { kind: "item", slug: "potion", count: 8 },
+        { kind: "item", slug: "potion", count: 3 },
+      ],
+      2,
+    );
+    assert.equal(raisedCount, 1);
+    assert.deepEqual(raised, [{ kind: "item", slug: "potion", count: 8, addedAt: 1 }]);
+    assert.deepEqual(addEntries(raised, [{ kind: "item", slug: "potion", count: 2 }], 3), [
+      raised,
+      0,
+    ]);
+  });
+});
+
 describe("tree parents", () => {
   test("from the trees, across types, preferring the row a branch hangs from", () => {
     const node = (name: string, extra: Partial<WeaponTreeNode> = {}): WeaponTreeNode => ({
@@ -422,6 +472,47 @@ describe("materials", () => {
       ],
     );
     assert.equal(totalCost(crafts), 200 + 400 + 800 + 900);
+  });
+
+  test("an item wanted for itself is a material, with its own icon and page", () => {
+    assert.deepEqual(
+      totalMaterials([], idOf, [
+        { id: 20, name: "Potion", type: "liquid", color: "green", amount: 5 },
+      ]),
+      [
+        {
+          name: "Potion",
+          itemId: 20,
+          href: "/items/potion/",
+          type: "liquid",
+          color: "green",
+          amount: 5,
+          for: [],
+        },
+      ],
+    );
+  });
+
+  test("an explicit item and a recipe's needs share one total by item ID", () => {
+    const crafts = [
+      { gear: "Huge Bone", steps: weaponSteps(hugeBone, "improve", "bone", byName) },
+      { gear: "Big Bone", steps: weaponSteps(bigBone, "create", undefined, byName) },
+    ];
+    const needs = totalMaterials(crafts, idOf, [
+      { id: 11, name: "Monster Bone", type: "bone", color: "yellow", amount: 5 },
+    ]);
+    assert.equal(needs.length, 2);
+    assert.deepEqual(
+      needs.map((n) => [n.name, n.itemId, n.amount, n.for]),
+      [
+        ["Bone", 10, 4, ["Huge Bone"]],
+        ["Monster Bone", 11, 12, ["Huge Bone", "Big Bone"]],
+      ],
+    );
+    // Inventory comes off the combined requirement once, not off each part separately.
+    assert.equal(Math.max(0, needs[1]!.amount - 10), 2);
+    assert.equal(needs[1]!.type, "bone");
+    assert.equal(needs[1]!.color, "yellow");
   });
 });
 

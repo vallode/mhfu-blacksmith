@@ -167,7 +167,7 @@ export const items: Messages["items"] = {
     materials: "Materiales",
     whereToGo: "Adónde ir",
     empty:
-      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma, pieza de armadura o adorno para añadirlo, o añade un conjunto entero desde el Creador de conjuntos, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
+      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma, pieza de armadura, adorno u objeto para añadirlo, o añade un conjunto entero desde el Creador de conjuntos, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
     loadError: "No se pudo cargar el equipo de la lista de deseos.",
     retry: "Reintentar",
     whereToGoNote: "Los monstruos y mapas que dan más de los materiales que aún te faltan.",
@@ -179,6 +179,7 @@ export const items: Messages["items"] = {
     enoughNote: (have: string) =>
       `Tu cazador ya tiene ${have} en la caja de objetos, así que sus materiales no se cuentan.`,
     countLabel: (name: string) => `Cuántos ${name} tener`,
+    itemNote: "Se suma a Materiales junto con lo que necesite tu equipo.",
     countValue: (count: string) => `×${count}`,
     oneFewer: "Uno menos",
     oneMore: "Uno más",
@@ -201,7 +202,7 @@ export const items: Messages["items"] = {
     materialsCount: "Materiales:",
     stillToGet: (n: number, missing: string, total: string) =>
       n === 1 ? `falta ${missing} de ${total}` : `faltan ${missing} de ${total}`,
-    nothingLeft: "No queda nada por crear.",
+    nothingLeft: "No queda nada por crear ni conseguir.",
     loadSave: "Carga una partida en el Perfil de cazador para contar lo que ya tienes.",
     forGear: (names: string) => `Para ${names}`,
     more: (_n: number, count: string) => `${count} más…`,
