@@ -12,12 +12,15 @@ import { LoadedAreaMap } from "@/components/AreaMap";
 import { DetailBody, DetailCard, DetailName } from "@/components/DetailPanel";
 import MapIcon from "@/components/MapIcon";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
+import StarMarks from "@/components/StarMarks";
 import StepSelector from "@/components/StepSelector";
 import TreeScroll from "@/components/TreeScroll";
 import { useLocale } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { useQuests } from "@/lib/client-data";
+import { groundName } from "../items/source-labels";
 import type { MapEntry } from "@/lib/maps-data";
+import { questStarLevel } from "@/lib/quests";
 
 export default function MapsClient({ maps }: { maps: MapEntry[] }) {
   const { t: messages, game } = useLocale();
@@ -34,12 +37,15 @@ export default function MapsClient({ maps }: { maps: MapEntry[] }) {
   const questIndex = Math.min(choice.quest, questCount - 1);
   const questId = layout.questIds[questIndex]!;
   const quest = quests?.find((q) => q.id === questId);
+  const level = quest && questStarLevel(quest.hub, quest.stars);
   const questTitle = (id: number) => {
     const selected = quests?.find((q) => q.id === id);
     return selected
       ? game.quest(selected.id, "title", selected.title)
       : messages.items.detail.unknownQuest(id);
   };
+  const mapName = (m: MapEntry) =>
+    m.bothTimes ? groundName(game, m.map) : game.name("map", m.map);
   // A layout of one quest is named for it; a shared one for the boards its
   // quests are on, with its first quest where two layouts have the same boards.
   const boardsOf = (l: MapEntry["layouts"][number]) =>
@@ -70,8 +76,8 @@ export default function MapsClient({ maps }: { maps: MapEntry[] }) {
                       active ? "bg-(image:--gradient-hover-glow)" : "bg-transparent",
                     )}
                   >
-                    <MapIcon map={m.map} className="mx-2 size-[3rem]" />
-                    <p className="min-w-0 flex-1 truncate">{game.name("map", m.map)}</p>
+                    <MapIcon map={m.map} title={mapName(m)} className="mx-2 size-[3rem]" />
+                    <p className="min-w-0 flex-1 truncate">{mapName(m)}</p>
                   </button>
                 );
               })}
@@ -107,8 +113,8 @@ export default function MapsClient({ maps }: { maps: MapEntry[] }) {
           <div className="flex-none" style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
         )}
         <div className="flex items-center justify-center">
-          <MapIcon map={entry.map} className="size-[3.6rem]" />
-          <DetailName>{game.name("map", entry.map)}</DetailName>
+          <MapIcon map={entry.map} title={mapName(entry)} className="size-[3.6rem]" />
+          <DetailName>{mapName(entry)}</DetailName>
         </div>
         <DetailBody>
           {questCount > 1 && (
@@ -123,6 +129,25 @@ export default function MapsClient({ maps }: { maps: MapEntry[] }) {
                 countLabel={t.position(questIndex + 1, questCount)}
                 onChange={(next) => setChoice({ ...choice, quest: next })}
               />
+              {/* Quests can share a title, and a board too. Always present, so
+                  screen readers hear it change. */}
+              <p
+                aria-live="polite"
+                aria-atomic="true"
+                className="mt-2 mb-0 flex items-center justify-center gap-2 text-fine text-white/60"
+              >
+                {quest && level && (
+                  <>
+                    {messages.quests.hubs[quest.hub]}
+                    <span aria-hidden="true" className="inline-flex">
+                      <StarMarks {...level} />
+                    </span>
+                    <span className="sr-only">
+                      {messages.equipment.stars(level.stars, level.g)}
+                    </span>
+                  </>
+                )}
+              </p>
             </div>
           )}
           <LoadedAreaMap questId={questId} spawns={quest?.spawns} />
