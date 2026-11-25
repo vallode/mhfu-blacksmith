@@ -35,6 +35,7 @@ export function regionForGame(id: string): "us" | "jp" {
 const NAME_UNITS = 9; // the Guild Card compares 18 bytes of name
 const SEX = 0x13;
 const EQUIP_BOX = 0xa8;
+const EQUIP_SLOTS = 1000;
 const ITEM_CHEST = 0x2f88;
 const ZENNY = 0x69250;
 
@@ -57,7 +58,7 @@ export function looksLikeHunter(bytes: Uint8Array, offset = 0): boolean {
   if (units === 0) return false;
   for (let i = units; i < NAME_UNITS; i++) if (view.getUint16(i * 2, true) !== 0) return false;
   let equipment = 0;
-  for (let i = 0; i < 400; i++) {
+  for (let i = 0; i < EQUIP_SLOTS; i++) {
     const slot = offset + EQUIP_BOX + i * 12;
     if (bytes[slot] === 0 && bytes[slot + 1] === 0) continue;
     if (bytes[slot] !== 1 || bytes[slot + 1] > 6) return false;
