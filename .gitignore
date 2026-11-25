@@ -51,3 +51,6 @@ packages/mhfu-extract/.cache
 packages/mhfu-extract/**/*.iso
 # randomfu web app build output
 apps/randomfu/dist/
+
+# Eval runs (apps/discord-bot/eval)
+.claude/hillclimb/

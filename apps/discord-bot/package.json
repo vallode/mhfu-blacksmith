@@ -10,7 +10,8 @@
     "register": "tsx scripts/register-commands.ts",
     "bundle-size": "tsx scripts/build-index.ts && esbuild src/worker.ts --bundle --format=esm --platform=neutral --conditions=workerd,worker,browser --main-fields=module,main --external:node:* --minify --outfile=dist/worker.js --metafile=dist/meta.json && gzip -c dist/worker.js | wc -c",
     "typecheck": "tsx scripts/build-index.ts && tsc --noEmit -p .",
-    "test": "tsx scripts/build-index.ts && tsx --test test/**/*.test.ts"
+    "test": "tsx scripts/build-index.ts && tsx --test test/**/*.test.ts",
+    "eval:check": "pnpm index && tsx eval/check.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.14.0",
