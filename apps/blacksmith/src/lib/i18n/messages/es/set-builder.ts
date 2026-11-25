@@ -334,6 +334,24 @@ export const setBuilder: Messages["setBuilder"] = {
     summary: (hunterType: string, defense: string) => `${hunterType}, Defensa ${defense}`,
   },
 
+  /** Los conjuntos de la partida, en la pestaña Mis conjuntos y en solo lectura. */
+  saveSets: {
+    /** La etiqueta de un conjunto de la partida en Mis conjuntos. */
+    badge: "Partida",
+    readOnly: "Solo lectura",
+    /** El botón del detalle de solo lectura en Mis conjuntos. */
+    view: "Ver",
+    stale:
+      "Esta partida se leyó antes de que el creador de conjuntos guardara los conjuntos de equipo.",
+    reload: "Volver a cargar la partida",
+    loadingWeapon: "Cargando el arma…",
+    unknown: (list: string) =>
+      `Parte del equipo no existe en esta versión del sitio, así que no se cuenta: ${list}.`,
+    unknownWeapon: (id: number) => `arma (ID ${id})`,
+    unknownPiece: (slot: string, id: number) => `${slot} (ID ${id})`,
+    unknownDecoration: (itemId: number) => `adorno (objeto ${itemId})`,
+  },
+
   reach: {
     open: "Habilidades a tu alcance",
     note: (chosen: boolean) =>

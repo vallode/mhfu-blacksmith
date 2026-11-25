@@ -174,6 +174,38 @@ export function useWeapon(type: string, slug: string): DetailState<Weapon> {
   });
 }
 
+/**
+ * `useWeapon` for a caller that may not have a weapon (a save set with an
+ * empty weapon slot): no fetch and `loading: false` when either is null.
+ */
+export function useWeaponOrNull(type: string | null, slug: string | null): DetailState<Weapon> {
+  const file = type && slug ? `weapon-${type}` : null;
+  const [, forceUpdate] = useState(0);
+
+  useEffect(() => {
+    if (!file || (bundleCache.has(file) && dictionariesCache)) return;
+    let cancelled = false;
+    Promise.all([getBundle(file), getDictionaries()]).then(() => {
+      if (!cancelled) forceUpdate((n) => n + 1);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [file]);
+
+  if (!file || !slug) return { item: null, tree: null, loading: false };
+  return (
+    resolveFromCache<Weapon>(file, (bundle, dict) => {
+      const b = bundle as WeaponBundle;
+      const cw = b.items.find((w) => w.s === slug);
+      return {
+        item: cw ? decodeWeapon(dict, cw, b.type) : null,
+        tree: decodeTree(b.tree, b.type),
+      };
+    }) ?? { item: null, tree: null, loading: true }
+  );
+}
+
 /** A weapon bundle's weapons, decoded once per bundle. */
 const decodedWeapons = new WeakMap<WeaponBundle, Weapon[]>();
 

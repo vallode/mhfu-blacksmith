@@ -388,6 +388,25 @@ export const setBuilder = {
     summary: (hunterType: string, defense: string) => `${hunterType}, Defense ${defense}`,
   },
 
+  /** The save-file sets, shown read-only in the My sets tab. */
+  saveSets: {
+    /** The badge on a save-file set in the My sets list. */
+    badge: "Save file",
+    readOnly: "Read-only",
+    /** The read-only detail's button in My sets. */
+    view: "View",
+    stale: "This save was read before the set builder kept equipment sets.",
+    reload: "Load the save again",
+    loadingWeapon: "Loading the weapon…",
+    /** `list` is unknownWeapon/unknownPiece/unknownDecoration, joined. */
+    unknown: (list: string) =>
+      `Some equipment isn't in this version of the site, so it isn't counted: ${list}.`,
+    unknownWeapon: (id: number) => `weapon (ID ${id})`,
+    /** `slot` is the translated slot name. */
+    unknownPiece: (slot: string, id: number) => `${slot} (ID ${id})`,
+    unknownDecoration: (itemId: number) => `decoration (item ${itemId})`,
+  },
+
   /** The wanted skills' chips and the skills sheet (SkillPicker). */
   /**
    * The "Skills within reach" sheet (SkillReach): skills that can be added to

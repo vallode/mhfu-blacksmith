@@ -830,7 +830,11 @@ export default function SetBuilderClient() {
                   content: (
                     <MySets
                       sets={savedSets}
+                      saveSets={save?.equipmentSets}
+                      saveSex={save?.sex === "Female" ? "Female" : "Male"}
+                      saveStale={!!save && save.equipmentSets === undefined}
                       data={data}
+                      ids={ids}
                       tables={tables}
                       openId={savedId}
                       onOpen={(saved) => openCode(saved.code, { savedId: saved.id })}
