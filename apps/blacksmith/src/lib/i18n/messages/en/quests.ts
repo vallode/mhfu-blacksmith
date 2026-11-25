@@ -123,6 +123,10 @@ export const quests = {
     layout: "Layout",
     previousLayout: "Previous layout",
     nextLayout: "Next layout",
+    /** The Maps page: which quest's points and monster spawns to show. */
+    quest: "Quest",
+    previousQuest: "Previous quest",
+    nextQuest: "Next quest",
     /** Read for a selector's "2/3" count. */
     position: (n: number, total: number) => `${n} of ${total}`,
     /** A map entry for quests with their own points: "Pokke Farm Tour +2". */

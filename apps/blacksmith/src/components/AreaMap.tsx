@@ -19,21 +19,31 @@ import { groupBy, itemHref } from "@/lib/item-sources";
 import { type Quest, type QuestSpawn, questHref } from "@/lib/quests";
 import { leadSpawn, spawnAreas, type SpawnArea } from "@/lib/quest-spawns";
 
-/** The mining and bug nodes' sprites (public/images/map-points); gathering points use an item icon. */
-const NODE_SPRITES: Partial<Record<GatherKind, string>> = {
+/**
+ * Each gathering kind's marker: one generic glyph for gathering points, and
+ * the mining and bug-catching tools. The selected point's details still show
+ * each item's own icon.
+ */
+const NODE_SPRITES: Record<GatherKind, string> = {
+  gather: "/images/herb.png",
   mine: "/images/map-points/pickaxe.png",
   bug: "/images/map-points/net.png",
+  fish: "/images/fish.png",
 };
 
 const percent = (pixels: number) => `${(pixels / AREA_MAP_SIZE) * 100}%`;
 
-/** A monster's 36px sprite, from the slug of its monster page. */
+/** A monster's sprite, from the slug of its monster page. */
 function monsterSprite(href: string | null): string | null {
   const slug = href?.split("/").filter(Boolean).at(-1);
   return slug ? `/images/monsters/${slug}.png` : null;
 }
 
-/** An area's monsters as one marker: its lead monster's sprite. */
+/**
+ * An area's monsters as one marker: its lead monster's sprite. Kept larger
+ * than the 8px gathering glyphs so the monster stays recognisable; the
+ * selected marker's details carry each species and quantity.
+ */
 function MonsterAreaMarker({ area, selected }: { area: SpawnArea; selected: boolean }) {
   const spawn = leadSpawn(area.spawns);
   const src = monsterSprite(spawn.monster.href);
@@ -47,23 +57,18 @@ function MonsterAreaMarker({ area, selected }: { area: SpawnArea; selected: bool
           decoding="sync"
           className={cn(
             "object-contain drop-shadow-[0_0_2px_rgba(0,0,0,0.9)] pixelated",
-            large ? "size-[3.2rem]" : "size-[2.6rem]",
+            large ? "size-[2.4rem]" : "size-[2rem]",
             selected && "outline-2 outline-white",
           )}
         />
       ) : (
         <span
           className={cn(
-            "block size-[1.1rem] rotate-45 border border-black",
+            "block size-[0.8rem] rotate-45 border border-black",
             large ? "bg-gem-red" : "bg-gem-gray",
             selected && "outline-2 outline-white",
           )}
         />
-      )}
-      {area.monsters.length > 1 && (
-        <span className="absolute -top-[0.4rem] -right-[0.4rem] grid h-[1.6rem] min-w-[1.8rem] place-items-center bg-black/80 px-[0.2rem] text-fine leading-none text-gem-yellow">
-          ×{area.monsters.length}
-        </span>
       )}
     </span>
   );
@@ -265,9 +270,6 @@ function AreaMap({
     const item = id === undefined ? undefined : items?.get(id);
     return item?.known ? { type: item.type, color: item.color } : { type: "herb", color: "green" };
   };
-  /** A gathering point shows its likeliest item. */
-  const nodeItem = (p: Data["points"][number]) =>
-    p.items.reduce((best, it) => (it.chance > best.chance ? it : best), p.items[0]!).item;
   const lit = (m: Marker) =>
     !m.point || !gives || m.point.items.some(({ item, chance }) => chance > 0 && gives(item));
   const marker = selected === null ? undefined : markers[selected];
@@ -318,7 +320,9 @@ function AreaMap({
             onClick={(event) => pick(event, i)}
             style={{ left: percent(m.x), top: percent(m.y) }}
             className={cn(
-              "absolute grid size-[3.2rem] -translate-1/2 cursor-pointer place-items-center border-0 bg-transparent p-0",
+              // 8px art in a 44px touch target on phones (32px elsewhere,
+              // where overlapping points are easier to aim at).
+              "absolute grid size-[3.2rem] -translate-1/2 cursor-pointer place-items-center border-0 bg-transparent p-0 mobile:size-[4.4rem]",
               m.point && gives && lit(m) && "z-1",
               selected === i && "z-10",
             )}
@@ -328,20 +332,12 @@ function AreaMap({
             ) : (
               <span
                 className={cn(
-                  "flex size-[3.2rem] items-center justify-center",
+                  "flex size-[0.8rem] items-center justify-center",
                   !lit(m) && "opacity-35",
                   selected === i && "opacity-100 outline-2 outline-white",
                 )}
               >
-                {NODE_SPRITES[m.point!.kind] || m.point!.items.length === 0 ? (
-                  <img
-                    src={NODE_SPRITES[m.point!.kind] ?? NODE_SPRITES.mine}
-                    alt=""
-                    className="size-[3.2rem] pixelated"
-                  />
-                ) : (
-                  <Icon {...iconOf(nodeItem(m.point!))} className="mr-0" />
-                )}
+                <img src={NODE_SPRITES[m.point!.kind]} alt="" className="size-[0.8rem] pixelated" />
               </span>
             )}
           </button>

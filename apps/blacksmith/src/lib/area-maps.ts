@@ -21,6 +21,18 @@ const UNGATHERED_TEXTURES: Record<string, string> = {
   "Tower 1": "map15",
 };
 
+/** Every map that has a texture, from its gathering layouts and `UNGATHERED_TEXTURES`. */
+export function mapTextures(gathering: GatheringFile): Map<string, string> {
+  const out = new Map<string, string>();
+  for (const layout of gathering.layouts) {
+    if (layout.texture && !out.has(layout.map)) out.set(layout.map, layout.texture);
+  }
+  for (const [map, texture] of Object.entries(UNGATHERED_TEXTURES)) {
+    if (!out.has(map)) out.set(map, texture);
+  }
+  return out;
+}
+
 export interface AreaMapPoint {
   /** 0 is the Base Camp, then the map's numbered areas. */
   area: number;
@@ -83,13 +95,7 @@ export function buildAreaMaps(
     return i;
   };
   /** A map name -> its texture, from the layouts (and the maps they don't cover). */
-  const textures = new Map<string, string>();
-  for (const layout of gathering.layouts) {
-    if (layout.texture && !textures.has(layout.map)) textures.set(layout.map, layout.texture);
-  }
-  for (const [map, texture] of Object.entries(UNGATHERED_TEXTURES)) {
-    if (!textures.has(map)) textures.set(map, texture);
-  }
+  const textures = mapTextures(gathering);
   for (const layout of gathering.layouts) {
     if (!layout.texture) continue;
     const points = layout.areas.flatMap(({ area, nodes }) =>
