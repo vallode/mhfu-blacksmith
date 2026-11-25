@@ -142,8 +142,9 @@ import {
   demandCaps,
   encodeCapturable,
   encodeDrops,
-  encodeLevelFn,
+  encodeOptionalFn,
   encodePactPool,
+  findFreeSlot,
   findPactExterns,
   findSharpnessLevel,
   pactObjects,
@@ -1362,12 +1363,15 @@ export function randomize(
         // The blade pacts' colour lookup; without it they aren't offered.
         const level =
           typeof sites === "string" ? null : findSharpnessLevel(game.eboot!, sites.segment);
-        data.rf_pact_level_fn = encodeLevelFn(level);
+        data.rf_pact_level_fn = encodeOptionalFn(level);
         if (level === null) {
           reports.push(
             notApplied("Hunter's Pact blade pacts", "this EBOOT's sharpness code doesn't match"),
           );
         }
+        const freeSlot =
+          typeof sites === "string" ? null : findFreeSlot(game.eboot!, sites.segment);
+        data.rf_pact_free_slot_fn = encodeOptionalFn(freeSlot);
         // Equipment that fits each quest's stars.
         data.rf_pact_levels = pactLevels(
           game.quests.flatMap((q) => {

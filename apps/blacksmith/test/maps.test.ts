@@ -3,13 +3,20 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
+import { groundName } from "../src/app/items/source-labels";
+import { buildAreaMaps, decodeAreaMap } from "../src/lib/area-maps";
+import { ENGLISH } from "../src/lib/i18n/game-text";
+import type { GatheringFile } from "../src/lib/item-places";
 import { mapIconSrc } from "../src/lib/maps";
-import { getMapEntries } from "../src/lib/maps-data";
+import { getMapEntries, type MapEntry } from "../src/lib/maps-data";
 import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
-
+import { isHiddenQuest } from "../src/lib/quests";
 import { readData } from "game-data";
 
 const readJson = (file: string) => readData(DATA_DIR, GAME, file);
+/** The name the Maps page lists a map by, in English. */
+const shownName = (entry: MapEntry) =>
+  entry.bothTimes ? groundName(ENGLISH, entry.map) : entry.map;
 
 test("day, night, size and floor variants share their map's icon", () => {
   assert.equal(mapIconSrc("Jungle (Night)"), "/images/maps/jungle.png");
@@ -28,13 +35,59 @@ test("every layout lists its quests, including maps that only have monster spawn
       assert.ok(layout.questIds.length > 0, `${entry.map} has an empty layout`);
     }
   }
-  // Arena (Small) has no gathering layout; its quests are spawn-only. It
-  // keeps its place in the game's map order.
-  const names = entries.map((entry) => entry.map);
-  const large = names.indexOf("Arena (Large)");
-  const small = names.indexOf("Arena (Small)");
-  assert.ok(large >= 0 && small === large + 1);
-  assert.ok(small < names.indexOf("Snowy Mountains (Day)"));
+  // Arena (Small) has no gathering layout; its quests are spawn-only.
+  assert.ok(entries.some((entry) => entry.map === "Arena (Small)"));
+});
+
+test("the identical Gathering copies give way to the quest they copy", () => {
+  const ids = getMapEntries().flatMap((entry) => entry.layouts.flatMap((l) => l.questIds));
+  assert.deepEqual(ids.filter(isHiddenQuest), []);
+  assert.ok(ids.includes(1001));
+});
+
+test("maps are listed in the order the game introduces them", () => {
+  const names = getMapEntries().map(shownName);
+  assert.deepEqual(names.slice(0, 5), [
+    "Snowy Mountains",
+    "Jungle (Day)",
+    "Desert (Day)",
+    "Jungle (Night)",
+    "Swamp",
+  ]);
+  // The maps only the Guild visits come after all the Village's.
+  assert.deepEqual(names.slice(-3), ["Castle Schrade", "Moat Arena", "Snowy Mountains Peak"]);
+});
+
+test("a day and night drawn alike are one map, with each layout listed once", () => {
+  const entries = getMapEntries();
+  const names = entries.map(shownName);
+  for (const map of ["Snowy Mountains", "Forest and Hills", "Swamp", "Great Forest"]) {
+    assert.ok(names.includes(map), map);
+    assert.ok(!names.includes(`${map} (Day)`) && !names.includes(`${map} (Night)`), map);
+  }
+  // These nights have their own art.
+  for (const map of ["Jungle", "Desert", "Volcano"]) {
+    assert.ok(names.includes(`${map} (Day)`) && names.includes(`${map} (Night)`), map);
+  }
+  const gathering = readData<GatheringFile>(DATA_DIR, GAME, "gathering.json");
+  const listed = new Set(entries.flatMap((entry) => entry.layouts.flatMap((l) => l.questIds)));
+  // The page leaves out a layout it has no points to draw.
+  const missing = gathering.layouts
+    .filter((l) => l.texture && l.areas.some((a) => a.nodes.some((n) => n.positions?.length)))
+    .flatMap((l) => l.quests)
+    .filter((id) => !isHiddenQuest(id) && !listed.has(id));
+  assert.deepEqual(missing, []);
+  const bundle = buildAreaMaps(gathering);
+  for (const { map, layouts } of entries) {
+    const shown = layouts.map((l) => JSON.stringify(decodeAreaMap(bundle, l.questId)));
+    assert.equal(new Set(shown).size, shown.length, `${map} repeats a layout`);
+    // Every quest of a layout shows what its first one does.
+    for (const [i, layout] of layouts.entries()) {
+      for (const id of layout.questIds) {
+        assert.equal(JSON.stringify(decodeAreaMap(bundle, id)), shown[i], `${map} quest ${id}`);
+      }
+    }
+  }
 });
 
 test("every map in data/ has an icon that exists", () => {

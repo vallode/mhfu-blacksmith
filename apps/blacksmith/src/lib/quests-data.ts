@@ -18,6 +18,8 @@ import { readData } from "game-data";
 export interface QuestSummary {
   id: number;
   hub: QuestHubSlug;
+  /** The star level the quest is listed at on its board. */
+  stars: number;
   title: string;
   goal: string | null;
   /** The quest's map, as data/mhfu/quests names it. */
@@ -39,6 +41,7 @@ export function getQuestSummaries(): QuestSummary[] {
         id: number;
         hub: string;
         rank: string | null;
+        stars: number;
         title: string | null;
         goal: string | null;
         map: string | null;
@@ -55,6 +58,7 @@ export function getQuestSummaries(): QuestSummary[] {
         out.push({
           id: q.id,
           hub,
+          stars: q.stars,
           title: q.title ?? `Quest ${q.id}`,
           goal: q.goal,
           map: q.map,

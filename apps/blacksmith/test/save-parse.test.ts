@@ -271,6 +271,27 @@ test("equipment IDs line up: a starter kit, and whole armor sets across all five
   }
 });
 
+test("every page of the equipment box is read, to its 1000th slot", async () => {
+  // An otherwise empty, already-decrypted save with one hunter.
+  const buffer = new ArrayBuffer(0x16a0e8);
+  const view = new DataView(buffer);
+  const base = 0x1000;
+  view.setUint16(base, "A".charCodeAt(0), true);
+  const slots = [0, 399, 400, 999];
+  for (const [i, slot] of slots.entries()) {
+    const at = base + 0xa8 + slot * 12;
+    view.setUint16(at, 0x0105, false);
+    view.setUint16(at + 2, i + 1, true);
+  }
+  lastMessage = null;
+  await onmessage({ data: { buffer, region: "us" } });
+  const [hunter] = ok(message()).characters as CharacterResult[];
+  assert.deepEqual(
+    hunter.equipBox.map((s) => s.id),
+    [1, 2, 3, 4],
+  );
+});
+
 // Decorations: bytes 6–11 of each equipment slot hold up to three jewel item IDs.
 const decorationSlots = new Map(
   (
