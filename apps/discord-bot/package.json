@@ -1,0 +1,27 @@
+{
+  "name": "discord-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Discord bot for the MHFU Blacksmith site's data: a Cloudflare Worker on Discord's HTTP interactions endpoint.",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "index": "tsx scripts/build-index.ts",
+    "register": "tsx scripts/register-commands.ts",
+    "bundle-size": "tsx scripts/build-index.ts && esbuild src/worker.ts --bundle --format=esm --platform=neutral --conditions=workerd,worker,browser --main-fields=module,main --external:node:* --minify --outfile=dist/worker.js --metafile=dist/meta.json && gzip -c dist/worker.js | wc -c",
+    "typecheck": "tsx scripts/build-index.ts && tsc --noEmit -p .",
+    "test": "tsx scripts/build-index.ts && tsx --test test/**/*.test.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.14.0",
+    "blacksmith": "workspace:*",
+    "game-data": "workspace:*",
+    "randomfu": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "esbuild": "0.25.10",
+    "tsx": "^4.22.4",
+    "typescript": "^5"
+  }
+}
