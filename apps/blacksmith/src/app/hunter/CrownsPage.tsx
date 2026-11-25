@@ -13,6 +13,7 @@ import {
 import { useGameText, useLocale } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
+import type { Crown } from "@/lib/crowns";
 import {
   crownProgress,
   type CrownGroupMonster,
@@ -24,7 +25,7 @@ import { NoHunter } from "./HunterPages";
 function GroupNames({ group }: { group: CrownGroupProgress }) {
   const game = useGameText();
   return (
-    <div className="min-w-0 text-small leading-[1.35]">
+    <div className="min-w-0 flex-1">
       {group.names.map((name, i) => {
         const monster = group.monsters.find((m) => m.name === name);
         const label = game.name("monster", name);
@@ -48,21 +49,22 @@ function GroupNames({ group }: { group: CrownGroupProgress }) {
   );
 }
 
-/** A group's count of hunts, or that it hasn't been hunted. */
-function GroupHunts({ group }: { group: CrownGroupProgress }) {
-  const { t, formatNumber } = useLocale();
-  const c = t.site.hunter.crowns;
+/**
+ * A crown sprite in a slot as wide as the big crown, so the columns after it
+ * line up whichever crown (or none) a row shows.
+ */
+function CrownSlot({ crown, dim }: { crown: Crown | null; dim?: boolean }) {
   return (
-    <span className="flex-none text-fine text-white/50">
-      {group.hunts > 0 ? c.hunted(formatNumber(group.hunts)) : c.notHunted}
+    <span className={cn("flex w-[21px] flex-none justify-center", dim && "opacity-30")}>
+      {crown && <CrownIcon crown={crown} />}
     </span>
   );
 }
 
 /**
- * The crowns a group is still missing, as the Awards page shows what's left:
- * a short label, then the missing crowns' sprites dimmed beside it. A complete
- * group just says so.
+ * Whether a group has both of its crowns, or which it is still missing: a
+ * short label, then the missing crowns' sprites dimmed beside it, as the
+ * Awards page shows what's left.
  */
 function CrownStatus({ group }: { group: CrownGroupProgress }) {
   const { t } = useLocale();
@@ -70,89 +72,91 @@ function CrownStatus({ group }: { group: CrownGroupProgress }) {
   const missingGold = group.largestCrown !== "gold";
   const missingMini = group.smallestCrown !== "mini";
   if (!missingGold && !missingMini) {
-    return <span className="text-positive">{c.complete}</span>;
+    return <span className="flex-none text-positive">{c.complete}</span>;
   }
   const label =
     missingGold && missingMini ? c.missingBoth : missingGold ? c.missingGold : c.missingMini;
   return (
-    <span className="flex items-center gap-[0.4rem]">
+    <span className="flex flex-none items-center gap-[0.4rem]">
       <span className="sr-only">{label}</span>
-      <span aria-hidden="true" className="flex items-center gap-[0.4rem]">
-        <span className="text-stat">{c.missing}</span>
-        {missingGold && (
-          <span className="opacity-30">
-            <CrownIcon crown="gold" />
-          </span>
-        )}
-        {missingMini && (
-          <span className="opacity-30">
-            <CrownIcon crown="mini" />
-          </span>
-        )}
+      <span className="text-stat" aria-hidden="true">
+        {c.missing}
       </span>
+      {missingGold && (
+        <span aria-hidden="true" className="opacity-30">
+          <CrownIcon crown="gold" />
+        </span>
+      )}
+      {missingMini && (
+        <span aria-hidden="true" className="opacity-30">
+          <CrownIcon crown="mini" />
+        </span>
+      )}
     </span>
   );
 }
 
 /**
- * One size record, inline in the group's detail row: its name, the size as the
- * Guild Card shows it, the crown it earns, then the size that would (gold or
- * mini).
+ * One line of a group's records, on the list's shared columns: the label, the
+ * value right-aligned, the crown it earns, then the size that would earn the
+ * gold or mini crown.
  */
-function SizeRecord({
+function RecordLine({
   label,
-  size,
-  crown,
+  value,
+  crown = null,
   cutoff,
 }: {
   label: string;
-  size: number | null;
-  crown: CrownGroupProgress["largestCrown"];
+  /** The value as shown, or null for none yet. */
+  value: string | null;
+  crown?: Crown | null;
   /** The cutoff as the card shows it, already labelled (gold or mini). */
-  cutoff: string | null;
+  cutoff?: string | null;
 }) {
-  const { formatNumber } = useLocale();
   return (
-    <span className="flex flex-wrap items-baseline gap-x-[0.6rem]">
-      <span className="text-stat">{label}</span>
-      <span className={cn("text-white tabular-nums", size === null && "text-unavailable")}>
-        {size === null ? "—" : formatNumber(Math.round(size))}
+    <div className="col-span-full grid grid-cols-subgrid items-center">
+      <span className="text-white/60">{label}</span>
+      <span
+        className={cn(
+          "text-right tabular-nums",
+          value === null ? "text-unavailable" : "text-white",
+        )}
+      >
+        {value ?? "—"}
       </span>
-      {crown && <CrownIcon crown={crown} />}
-      {cutoff && <span className="text-fine text-white/50">{cutoff}</span>}
-    </span>
+      <CrownSlot crown={crown} />
+      <span className="text-white/50 tabular-nums">{cutoff}</span>
+    </div>
   );
 }
 
-/** One crown group: its monsters and status, then the size records and cutoffs. */
+/** One crown group: its monsters and status, then its hunts and size records. */
 function CrownGroupRow({ group }: { group: CrownGroupProgress }) {
-  const { t, formatTenths } = useLocale();
+  const { t, formatNumber, formatTenths } = useLocale();
   const c = t.site.hunter.crowns;
+  const size = (value: number | null) => (value === null ? null : formatNumber(Math.round(value)));
   return (
-    <li className="flex flex-col gap-[0.4rem]">
-      <div className="flex items-baseline gap-x-[1.6rem]">
-        <div className="min-w-0 flex-1">
-          <GroupNames group={group} />
-        </div>
-        <span className="flex-none text-small">
+    <li className="col-span-full grid grid-cols-subgrid gap-y-[0.2rem]">
+      <div className="col-span-full mb-[0.2rem] flex items-baseline gap-x-[1.6rem] text-sub mobile:text-small compact:text-small">
+        <GroupNames group={group} />
+        <span className="text-small">
           <CrownStatus group={group} />
         </span>
       </div>
-      <div className="flex flex-wrap items-baseline gap-x-[2.4rem] gap-y-[0.4rem] text-small mobile:text-fine compact:text-fine">
-        <GroupHunts group={group} />
-        <SizeRecord
-          label={c.largest}
-          size={group.largestSize}
-          crown={group.largestCrown}
-          cutoff={group.cutoffs ? c.goldCutoff(formatTenths(group.cutoffs.gold)) : null}
-        />
-        <SizeRecord
-          label={c.smallest}
-          size={group.smallestSize}
-          crown={group.smallestCrown}
-          cutoff={group.cutoffs ? c.miniCutoff(formatTenths(group.cutoffs.mini)) : null}
-        />
-      </div>
+      <RecordLine label={c.hunted} value={group.hunts > 0 ? formatNumber(group.hunts) : null} />
+      <RecordLine
+        label={c.largest}
+        value={size(group.largestSize)}
+        crown={group.largestCrown}
+        cutoff={group.cutoffs ? c.goldCutoff(formatTenths(group.cutoffs.gold)) : null}
+      />
+      <RecordLine
+        label={c.smallest}
+        value={size(group.smallestSize)}
+        crown={group.smallestCrown}
+        cutoff={group.cutoffs ? c.miniCutoff(formatTenths(group.cutoffs.mini)) : null}
+      />
     </li>
   );
 }
@@ -203,7 +207,7 @@ export default function CrownsPage({ monsters }: { monsters: readonly CrownGroup
         {progress ? (
           <>
             <DetailRule />
-            <ul className="m-0 flex list-none flex-col gap-[1.6rem] p-0">
+            <ul className="m-0 grid list-none grid-cols-[auto_auto_auto_1fr] gap-x-[1.2rem] gap-y-[2rem] p-0 text-small mobile:text-fine compact:text-fine">
               {progress.groups.map((group) => (
                 <CrownGroupRow key={group.names[0]} group={group} />
               ))}
