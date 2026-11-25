@@ -64,7 +64,7 @@ export const items: Messages["items"] = {
     unknownQuest: (id: number) => `Misión ${id}`,
   },
   gathering: {
-    kinds: { gather: "Recolección", mine: "Minería", bug: "Bichos" },
+    kinds: { gather: "Recolección", mine: "Minería", bug: "Bichos", fish: "Pesca" },
     baseCamp: "Campamento base",
     areas: (areas: number[]) =>
       areas.length === 1 ? `zona ${areas[0]}` : `zonas ${areas.join(", ")}`,
@@ -72,7 +72,13 @@ export const items: Messages["items"] = {
   },
   farm: {
     title: "Granja Pokke",
-    spots: { mining: "Minería", insects: "Bichos", mushrooms: "Setas", honey: "Miel" },
+    spots: {
+      mining: "Minería",
+      insects: "Bichos",
+      mushrooms: "Setas",
+      honey: "Miel",
+      fishing: "Pesca",
+    },
     perQuest: (spot: string, count: string) => `${spot} · ${count} por misión`,
     points: {
       "Mining Point": "Punto de minería",
@@ -81,6 +87,8 @@ export const items: Messages["items"] = {
       "Prototype Bee Hive": "Colmena prototipo",
       "Production Bee Hive": "Colmena de producción",
       "Modified Bee Hive": "Colmena modificada",
+      "Fishing Pier": "Muelle de pesca",
+      "Casting Machine": "Máquina de pesca",
     },
     restocks: "La granja se repone tras cada misión.",
     upgradesStack:
@@ -209,7 +217,7 @@ export const items: Messages["items"] = {
       },
       shop: "Tienda",
       stageStock: (stage: number) => `En la fase ${stage}`,
-      gatherKinds: { gather: "Recolección", mine: "Minería", bug: "Bichos" },
+      gatherKinds: { gather: "Recolección", mine: "Minería", bug: "Bichos", fish: "Pesca" },
       onlyOnQuests: (n: number, count: string) =>
         n === 1 ? `solo en ${count} misión` : `solo en ${count} misiones`,
       questReward: (stars: string) => `recompensa ${stars}`,

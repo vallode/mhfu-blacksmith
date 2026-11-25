@@ -368,6 +368,7 @@ function GatherPlaces({
           rows={farm.map((p) => ({
             name: farmPointName(t, p.point),
             detail: farmLabel(t, p),
+            amount: amountLabel(p.amount),
             value: `${formatNumber(p.chance)}%`,
           }))}
         />

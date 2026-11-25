@@ -59,7 +59,7 @@ export interface AreaMapsBundle {
   quests: Record<string, number>;
 }
 
-const KINDS: GatherKind[] = ["gather", "mine", "bug"];
+const KINDS: GatherKind[] = ["gather", "mine", "bug", "fish"];
 
 /** Each layout with positions, and which quests use it; maps without points get an empty entry. */
 export function buildAreaMaps(

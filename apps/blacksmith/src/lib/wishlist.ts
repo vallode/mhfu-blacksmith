@@ -584,7 +584,12 @@ function dropDetail({ title, count, note }: DropSource): string {
 /** A map without its time of day: its day and night gathering are one place to go. */
 export const mapArea = (map: string) => map.replace(/ \((Day|Night)\)$/, "");
 
-const GATHER_VERBS = { gather: "Gathering", mine: "Mining", bug: "Bug catching" } as const;
+const GATHER_VERBS = {
+  gather: "Gathering",
+  mine: "Mining",
+  bug: "Bug catching",
+  fish: "Fishing",
+} as const;
 
 /** What the ways need from the item lookup, for combinations' names. */
 export interface WayItems {
@@ -684,7 +689,7 @@ export function itemWays(
       farm: p,
       chance: p.chance,
       tier: 3,
-      yield: p.chance / 100,
+      yield: (p.chance / 100) * p.amount,
     });
   }
   for (const s of sources?.quests ?? []) {

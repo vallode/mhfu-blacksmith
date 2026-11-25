@@ -1,14 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Pokke Farm file",
-  "description": "Pokke Farm's gathering points, read from the EBOOT: each Mining Point, Insect Thicket, Mushroom Tree and Bee Hive, with what it gives. The farm restocks after every quest, drawing each point's items that many times.",
+  "description": "Pokke Farm's gathering points, read from the EBOOT, the farm stage and game_sub: each Mining Point, Insect Thicket, Mushroom Tree, Bee Hive, Fishing Pier level and the Casting Machine, with what each gives. The farm restocks after every quest.",
   "type": "object",
   "required": ["points"],
   "additionalProperties": false,
   "properties": {
     "points": {
       "type": "array",
-      "description": "In the EBOOT's order: the mining points, insect thickets, mushroom trees, then bee hives, each spot's from its first level up",
+      "description": "In the EBOOT's order the mining points, insect thickets, mushroom trees and bee hives (each spot's from its first level up), then the Fishing Pier's three levels and the Casting Machine",
       "items": { "$ref": "#/definitions/point" }
     }
   },
@@ -19,9 +19,9 @@
       "additionalProperties": false,
       "$comment": "The farm upgrade's name, as the game names it (\"Mining Point +2\", \"Production Bee Hive\"), is in data/strings under 'farm', keyed by the point's index in this list.",
       "properties": {
-        "spot": { "enum": ["mining", "insects", "mushrooms", "honey"] },
-        "gathers": { "type": "integer", "minimum": 1, "description": "How many items the restock draws from it, at least" },
-        "most_gathers": { "type": "integer", "minimum": 1, "description": "How many items the restock draws from it, at most" },
+        "spot": { "enum": ["mining", "insects", "mushrooms", "honey", "fishing"] },
+        "gathers": { "type": ["integer", "null"], "minimum": 1, "description": "How many items the restock draws from it, at least; null where the count isn't known" },
+        "most_gathers": { "type": ["integer", "null"], "minimum": 1, "description": "How many items the restock draws from it, at most; null where the count isn't known" },
         "items": {
           "type": "array",
           "minItems": 1,
@@ -32,7 +32,8 @@
             "additionalProperties": false,
             "properties": {
               "item": { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json)" },
-              "chance": { "type": "integer", "minimum": 0, "maximum": 100, "description": "In percent, per draw" }
+              "chance": { "type": "integer", "minimum": 0, "maximum": 100, "description": "In percent, per draw" },
+              "amount": { "type": "integer", "minimum": 1, "description": "How many each draw gives; absent for one" }
             }
           }
         }

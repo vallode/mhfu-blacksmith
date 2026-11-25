@@ -75,7 +75,7 @@ export const items = {
   },
   gathering: {
     /** Gathering point kinds, by lib/item-places GatherKind. */
-    kinds: { gather: "Gathering", mine: "Mining", bug: "Bugs" },
+    kinds: { gather: "Gathering", mine: "Mining", bug: "Bugs", fish: "Fishing" },
     baseCamp: "Base Camp",
     /** A map's numbered areas: "area 3", "areas 2, 5". */
     areas: (areas: number[]) =>
@@ -86,7 +86,13 @@ export const items = {
   /** Pokke Farm's gathering points (lib/item-places FarmPlace). */
   farm: {
     title: "Pokke Farm",
-    spots: { mining: "Mining", insects: "Bugs", mushrooms: "Mushrooms", honey: "Honey" },
+    spots: {
+      mining: "Mining",
+      insects: "Bugs",
+      mushrooms: "Mushrooms",
+      honey: "Honey",
+      fishing: "Fishing",
+    },
     /** "Mining · 3-4 per quest" */
     perQuest: (spot: string, count: string) => `${spot} · ${count} per quest`,
     // The farm's upgrades, by their English name without the "+N" level.
@@ -97,6 +103,8 @@ export const items = {
       "Prototype Bee Hive": "Prototype Bee Hive",
       "Production Bee Hive": "Production Bee Hive",
       "Modified Bee Hive": "Modified Bee Hive",
+      "Fishing Pier": "Fishing Pier",
+      "Casting Machine": "Casting Machine",
     } as Record<string, string>,
     restocks: "The farm restocks after every quest.",
     upgradesStack:
@@ -261,7 +269,7 @@ export const items = {
       shop: "Shop",
       stageStock: (stage: number) => `Stage ${stage} stock`,
       /** By lib/item-places GatherKind. */
-      gatherKinds: { gather: "Gathering", mine: "Mining", bug: "Bug catching" },
+      gatherKinds: { gather: "Gathering", mine: "Mining", bug: "Bug catching", fish: "Fishing" },
       onlyOnQuests: (n: number, count: string) =>
         `only on ${count} ${n === 1 ? "quest" : "quests"}`,
       /** `stars` is "G3★". */

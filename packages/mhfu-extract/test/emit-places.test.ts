@@ -6,6 +6,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { emitGathering } from "../src/emit/gathering.js";
 import { emitShops } from "../src/emit/shops.js";
+import type { FishTables, FishingTables } from "../src/quests/fishing.js";
 import type { ParsedQuest } from "../src/quests/parser.js";
 import type { ShopData } from "../src/shops/shops.js";
 import { BinaryReader } from "../src/binary/reader.js";
@@ -86,7 +87,7 @@ function payload(tables: [number, number][][], areas: Record<number, Node[]>): B
 
 /** Only the fields the gathering emit reads. */
 function quest(questId: number, title = "A quest"): ParsedQuest {
-  return { header: { questId, map: TOWN }, strings: { title } } as unknown as ParsedQuest;
+  return { header: { questId, map: TOWN, rank: 0 }, strings: { title } } as unknown as ParsedQuest;
 }
 
 test("emitGathering writes each set of points once, with the quests that use it", () => {
@@ -171,6 +172,41 @@ test("emitGathering writes each set of points once, with the quests that use it"
           ],
         },
       ],
+    },
+  ]);
+});
+
+test("emitGathering adds the rank's fish table as the area's fishing point", () => {
+  const fishTables: FishTables = [
+    [{ itemId: 240, chance: 25 }],
+    [],
+    [],
+    [],
+    [],
+    [{ itemId: 242, chance: 5 }],
+  ];
+  const fishing: FishingTables = new Map([[TOWN, new Map([[1, fishTables]])]]);
+  const points = payload([[[100, POTION]]], { 1: [{ type: 0, table: 0 }] });
+  const { layouts, problems } = emitGathering(
+    [{ parsed: quest(1001), payload: points }],
+    undefined,
+    fishing,
+  );
+  assert.deepEqual(problems, []);
+  assert.deepEqual(layouts[0]!.areas[0]!.nodes, [
+    {
+      kind: "gather",
+      count: 1,
+      gathers: 3,
+      most_gathers: 6,
+      items: [{ item: "Potion", chance: 100 }],
+    },
+    {
+      kind: "fish",
+      count: 1,
+      gathers: null,
+      most_gathers: null,
+      items: [{ item: "Small Goldenfish", chance: 25 }],
     },
   ]);
 });

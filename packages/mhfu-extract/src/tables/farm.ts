@@ -28,6 +28,9 @@
 import type { BinaryReader } from "../binary/reader.js";
 import { ITEM_COUNT } from "../shops/shops.js";
 
+/** The farm's stage ID: its overlay holds the Fishing Pier's three fish tables. */
+export const FARM_STAGE_ID = 46;
+
 /** EU file offset of the first mining table. */
 export const FARM_TABLES_EU = 0x19aad0;
 export const FARM_ROW_SIZE = 4;
@@ -36,7 +39,7 @@ export const HONEY_COUNTS_AFTER = 0x6e0;
 /** No count should come near this; a bigger one isn't the counts. */
 const MAX_HONEY_COUNT = 20;
 
-export type FarmSpot = "mining" | "insects" | "mushrooms" | "honey";
+export type FarmSpot = "mining" | "insects" | "mushrooms" | "honey" | "fishing";
 
 export interface FarmSpotLayout {
   spot: FarmSpot;
@@ -90,13 +93,52 @@ export interface FarmTable {
   gathers: number;
   mostGathers: number;
   /** The rows with an item, in the table's order; a chance can be 0. */
-  items: { item: number; chance: number }[];
+  items: { item: number; chance: number; amount?: number }[];
 }
 
 export interface FarmTables {
   /** File offset of the first table. */
   offset: number;
   tables: FarmTable[];
+}
+
+/** One row of the Casting Machine's rewards. */
+export interface FishCasterItem {
+  item: number;
+  chance: number;
+  /** How many each draw gives. */
+  amount: number;
+}
+
+/** The Casting Machine's table has 19 rows. */
+export const FISH_CASTER_ROWS = 19;
+const FISH_CASTER_SIZE = FISH_CASTER_ROWS * 4;
+
+/**
+ * The Casting Machine's rewards in `game_sub.ovl`: `{ u16 item, u8 chance,
+ * u8 amount }` rows whose chances add up to 100. The table's address moves
+ * between regions, so it's found by shape; no other 19-row run in the overlay
+ * fits. (EU file offset `0xB82A8`.)
+ */
+export function readFishCaster(reader: BinaryReader): FishCasterItem[] | null {
+  for (let at = 0; at + FISH_CASTER_SIZE <= reader.length; at += 2) {
+    const items: FishCasterItem[] = [];
+    let total = 0;
+    for (let row = 0; row < FISH_CASTER_ROWS; row++) {
+      const offset = at + row * 4;
+      const item = reader.u16(offset);
+      const chance = reader.u8(offset + 2);
+      const amount = reader.u8(offset + 3);
+      if (item < 1 || item >= ITEM_COUNT || chance > 100 || amount < 1 || amount > 3) {
+        total = -1;
+        break;
+      }
+      items.push({ item, chance, amount });
+      total += chance;
+    }
+    if (total === 100) return items;
+  }
+  return null;
 }
 
 /** The table at `offset`, or null unless its chances add up to 100 over real items and zero padding. */

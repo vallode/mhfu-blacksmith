@@ -521,8 +521,22 @@ describe("ways and destinations", () => {
       {
         gathering: [],
         farm: [
-          { point: "Mining Point", spot: "mining", chance: 7, gathers: 3, mostGathers: 4 },
-          { point: "Mining Point +2", spot: "mining", chance: 23, gathers: 3, mostGathers: 4 },
+          {
+            point: "Mining Point",
+            spot: "mining",
+            chance: 7,
+            amount: 1,
+            gathers: 3,
+            mostGathers: 4,
+          },
+          {
+            point: "Mining Point +2",
+            spot: "mining",
+            chance: 23,
+            amount: 1,
+            gathers: 3,
+            mostGathers: 4,
+          },
         ],
         shops: [],
       },

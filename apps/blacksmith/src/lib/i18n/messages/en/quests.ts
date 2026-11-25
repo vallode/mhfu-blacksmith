@@ -139,6 +139,7 @@ export const quests = {
       gather: "Gathering",
       mine: "Mining",
       bug: "Bug catching",
+      fish: "Fishing",
     },
     /** Monster spawns on the map, aggregated by area. */
     monsters: "Monsters",

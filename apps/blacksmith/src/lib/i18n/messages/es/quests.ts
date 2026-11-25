@@ -110,6 +110,7 @@ export const quests: Messages["quests"] = {
       gather: "Recolección",
       mine: "Minería",
       bug: "Insectos",
+      fish: "Pesca",
     },
     monsters: "Monstruos",
     area: (area: number) => (area === 0 ? "Campamento base" : `Zona ${area}`),

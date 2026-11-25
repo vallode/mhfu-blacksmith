@@ -1317,9 +1317,10 @@ picks from (see "Arena sets" below). `QuestScript` isn't emitted (see
 ### Gathering points
 
 `src/quests/gathering.ts` reads a quest's mining, gathering and bug
-catching points, and `src/emit/gathering.ts` writes them to
-`data/gathering.json` (schema: `data/schemas/gathering.schema.json`).
-randomfu's `gathering` shuffle edits the same tables.
+catching points, and `src/emit/gathering.ts` writes them, with the
+fishing points below, to `data/gathering.json` (schema:
+`data/schemas/gathering.schema.json`). randomfu's `gathering` shuffle edits
+the same tables.
 
 - **Layout** (`quest.hexpat`): the header's `GatheringLocTblPTR` (`+28`)
   points at one u32 per area of the map (the count depends on the map,
@@ -1348,6 +1349,34 @@ u16 table, u16 most gathers, u16 type, u16 fewest gathers`), ending at
   quest there and a few gathering quests' own (Great Ore Discovery, A
   Mushroom Goldrush!, Mountain Herb Picking). Within an area, identical
   points are one entry with a `count`.
+
+### Fishing points
+
+`src/quests/fishing.ts` reads each stage's fishing tables from its
+`overlay/stageNNN.ovl`, and `emit/gathering.ts` adds them as `fish` nodes
+under the area whose stage the map's stage list names.
+
+- **Layout**: six tables of `{ s8 weight, u8 fish }` pairs end at weight
+  -1, and the stage's pointer list points at each in `MissionRankId` order:
+  EASY, LOW, HIGH, TREASURE, TRAINING, G. Fish weights add up to 100, so
+  they're the chance per catch. `FishId` maps to the item IDs in
+  `data/items.json`; fish 0 (nothing) isn't written.
+- **Finding it**: the pointer list moves between stages, so it's found by
+  shape: six pointers into the overlay, then a zero word, each to a table
+  whose weights add up to 100. A stage with no fishing has no such list.
+- **Areas**: the stage ID list `readMapGeometry` reads is the map's area
+  order, so the same fishing spot is listed on every quest on that map and
+  rank, as part of their shared points. Fishing points are always unlimited
+  (`gathers` and `most_gathers` null).
+- **Maps**: fishing interactables' positions aren't decoded, so fish nodes
+  have no `positions` and don't draw on the area maps. Their item pages
+  still list the map, area, rank and chance.
+- **Pokke Farm**: the farm stage (`stage046.ovl`) has the same six-table
+  pointer list, but its first three are the Fishing Pier's levels. The
+  Casting Machine is a 19-row `{ u16 item, u8 chance, u8 amount }` table
+  in `game_sub.ovl`, found by its shape and 100 total. `emit/farm.ts`
+  writes both to `data/farm.json` as `fishing` points; their per-restock
+  counts aren't known, so those are null.
 
 ### Area maps
 
