@@ -775,7 +775,7 @@ export default function SetBuilderClient() {
                         action={
                           <button
                             type="button"
-                            className={cn(secondaryButton, "gap-[0.8rem]")}
+                            className={cn(secondaryButton, "grow gap-[0.8rem]")}
                             aria-label={r.editThis}
                             title={r.editThis}
                             onClick={() =>
