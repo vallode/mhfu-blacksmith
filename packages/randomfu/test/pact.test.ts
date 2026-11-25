@@ -1039,6 +1039,33 @@ test("equipment is offered only while the box has room for it", () => {
   }
 });
 
+test("one free slot makes room for one piece in a window, two for two", () => {
+  const kris = POOL[0]![3]![0]!;
+  const two: PactPool = [
+    [...POOL[0]!.slice(0, 3), [kris, { ...kris, id: 41, name: "Bone Axe" }]],
+    POOL[1]!,
+    POOL[2]!,
+  ];
+  /** Each window's count of pieces, up to the `last`, with `free` slots at the box's end. */
+  function* pieces(free: number, last: number) {
+    const q = quest(two);
+    fillBox(q, 800 - free);
+    for (let n = 1; n <= last; n++) {
+      yield { n, count: next(q, n).filter(reward(/^Bone (Kris|Axe)$/)).length };
+    }
+  }
+  let both = 0;
+  for (const { n, count } of pieces(2, 2000)) {
+    if (count === 2) {
+      both = n;
+      break;
+    }
+  }
+  assert.ok(both, "two free slots: a window offers both");
+  // The same draws with one slot free, that window's among them.
+  for (const { count } of pieces(1, both)) assert.ok(count <= 1);
+});
+
 test("an item reward goes past the quest's own 16 reward slots when they're full", () => {
   const { q } = questOffering(reward(/x\d+$/));
   for (let s = 0; s < 16; s++) q.cpu.setU32(REWARD_BOX + s * 4, 0x0001_00c8);
@@ -1064,6 +1091,8 @@ test("the free-slot routine is found by its code, on EU and FUC alike", () => {
   assert.equal(findFreeSlot(eboot([0x40, FREE_SLOT_EU], [0x200, fuc]), segment), null, "two");
   const elsewhere = FREE_SLOT_EU.map((w, k) => (k === 10 ? 0x904200b8 : w));
   assert.equal(findFreeSlot(eboot([0x100, elsewhere]), segment), null, "another box");
+  const otherFull = FREE_SLOT_EU.map((w, k) => (k === 19 ? 0x34027fff : w));
+  assert.equal(findFreeSlot(eboot([0x100, otherFull]), segment), null, "another full value");
 });
 
 test("a failed quest pays nothing: the next quest forgets the pact", () => {

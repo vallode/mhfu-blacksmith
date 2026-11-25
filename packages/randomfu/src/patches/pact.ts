@@ -149,6 +149,8 @@ export const EQUIPMENT_ICON_SIGNATURE = [
   0x93a70040, 0x02203021, 0x304500ff, 0x0c000000, 0x02c02021, 0x02003021, 0xafa20000, 0x02c02021,
 ];
 
+const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
+
 /**
  * The EBOOT's `freeSlot(save)` (EU 0x088506A4, FUC 0x088505E8), whole: the
  * index of the first equipment box slot (`save+0x548`, 12 bytes each) whose
@@ -160,12 +162,16 @@ export const FREE_SLOT_SIGNATURE = [
   0x00a3102a, 0x1440fff7, 0x2484000c, 0x3402ffff, 0x8fbf000c, 0x8fb00008, 0x03e00008, 0x27bd0010,
 ];
 
+/** `ori v0, zero, 0xffff`, which the signature masks: the full box's value `blob/pact.c` tests for. */
+const FREE_SLOT_FULL: readonly [number, number] = [0x4c, 0x3402ffff];
+
 /** `freeSlot`'s address, as `blob/pact.c` reads it (`rf_pact_free_slot_fn`), or null. */
 export function findFreeSlot(vanillaEboot: Buffer, segment: Segment): number | null {
-  return findUnique(vanillaEboot, segment, [FREE_SLOT_SIGNATURE.map(maskWord)])[0] ?? null;
+  const [found] = findUnique(vanillaEboot, segment, [FREE_SLOT_SIGNATURE.map(maskWord)]);
+  if (found == null) return null;
+  const [at, full] = FREE_SLOT_FULL;
+  return word(vanillaEboot, segment.offset + (found - segment.vaddr) + at) === full ? found : null;
 }
-
-const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
 
 /** The text externs, or why they can't be found. */
 export function findTextExterns(
