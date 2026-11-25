@@ -6,6 +6,7 @@ import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
 import { codeSegment } from "../src/patches/mips.js";
 import {
   EQUIPMENT_ICON_SIGNATURE,
+  findFreeSlot,
   FILL_SIGNATURE,
   ITEM_ICON_SIGNATURE,
   ITEM_ICON_SIGNATURE_AT,
@@ -53,10 +54,19 @@ const EXTERNS = {
   rf_fill: 0x0882d8dc,
   rf_item_icon: 0x0882e2c0,
   rf_equipment_icon: 0x08831338,
+  rf_equipment_free_slot: 0x088506a4,
   rf_pad: 0x08a62c64,
   rf_printer: 0x08a631a8,
   rf_print: 0x088920a8,
 };
+/** The EBOOT's box size, pages × 100, which `freeSlot` calls. */
+const BOX_SLOTS_FN = 0x08850ec4;
+/** freeSlot(save) as the EU EBOOT has it (EU 0x088506A4, FUC 0x088505E8). */
+const FREE_SLOT_EU = [
+  0x27bdfff0, 0xafbf000c, 0xafb00008, 0x0e2143b1, 0x249004a0, 0x7c021e20, 0x1860000c, 0x00002821,
+  0x00002021, 0x02041021, 0x904200a8, 0x54400003, 0x24a20001, 0x10000006, 0x30a2ffff, 0x7c022e20,
+  0x00a3102a, 0x1440fff7, 0x2484000c, 0x3402ffff, 0x8fbf000c, 0x8fb00008, 0x03e00008, 0x27bd0010,
+];
 const LARGE = 77;
 /** The EBOOT's sharpness level function, and the test weapon's bar: red to 50, orange to 100 ... white to 400. */
 const LEVEL_FN = 0x088dab94;
@@ -95,6 +105,7 @@ function quest(
   levels: Buffer = ANY_LEVEL,
   drops: Buffer = DEFAULT_DROPS,
   levelFn: number | null = LEVEL_FN,
+  boxSlots = 800,
 ) {
   const blob = linkBlob([...runtime(), ...pactObjects()], BLOB, EXTERNS, Infinity, {
     rf_pact_pool: encodePactPool(pool),
@@ -112,6 +123,9 @@ function quest(
     { hook: HOOK.rewards, target: REWARD_ROLL },
   ]);
   cpu.load(HOOKS, hooks.code);
+  // The game's own free-slot routine, over a box of `boxSlots`.
+  cpu.load(EXTERNS.rf_equipment_free_slot, FREE_SLOT_EU);
+  cpu.native.set(BOX_SLOTS_FN, () => boxSlots);
   const arg = (k: number) => cpu.reg[4 + k]! >>> 0;
 
   let lines: string[] = [];
@@ -424,8 +438,8 @@ function questOffering(
   wanted: (o: { penalty: string; reward: string }) => boolean,
   rank = 1,
   kind: Kind = "hunt",
+  q = quest(),
 ) {
-  const q = quest();
   for (let n = 1; n < 2000; n++) {
     if (next(q, n, rank, kind).some(wanted)) return { q, time: 90000 + n };
   }
@@ -963,6 +977,46 @@ test("item and equipment rewards are paid when the quest is completed", () => {
   );
   q.complete();
   assert.equal(q.cpu.u32(EQUIPMENT_BOX + 36), 0, "paid once");
+});
+
+/** Takes the Bone Kris and completes the quest with the box's first `full` slots taken. */
+function payKris(full: number, boxSlots = 800) {
+  const box = quest(POOL, [LARGE], ANY_LEVEL, DEFAULT_DROPS, LEVEL_FN, boxSlots);
+  const { q } = questOffering(reward(/^Bone Kris$/), 1, "hunt", box);
+  for (let s = 0; s < full; s++) q.cpu.setU32(EQUIPMENT_BOX + s * 12, 0x00030501);
+  take(q, reward(/^Bone Kris$/));
+  q.complete();
+  return (s: number) => [...q.cpu.bytes(EQUIPMENT_BOX + s * 12, 4)];
+}
+
+test("an equipment reward goes past slot 400, as far as the hunter's box does", () => {
+  const kris = [1, 5, 40, 0];
+  assert.deepEqual(payKris(400)(400), kris);
+  assert.deepEqual(payKris(799)(799), kris);
+  assert.deepEqual(payKris(999, 1000)(999), kris);
+});
+
+test("with the box full, an equipment reward isn't paid and nothing is overwritten", () => {
+  const slot = payKris(800);
+  assert.deepEqual(slot(799), [1, 5, 3, 0]);
+  assert.deepEqual(slot(800), [0, 0, 0, 0]);
+});
+
+test("the free-slot routine is found by its code, on EU and FUC alike", () => {
+  const segment = { offset: 0, vaddr: 0x08804000, size: 0x400 };
+  const eboot = (...copies: [number, number[]][]) => {
+    const buf = Buffer.alloc(segment.size);
+    for (const [at, words] of copies)
+      words.forEach((w, k) => buf.writeUInt32LE(w >>> 0, at + k * 4));
+    return buf;
+  };
+  // FUC's differs only in where the box size's routine is.
+  const fuc = FREE_SLOT_EU.map((w, k) => (k === 3 ? 0x0e214382 : w));
+  assert.equal(findFreeSlot(eboot([0x100, FREE_SLOT_EU]), segment), 0x08804100);
+  assert.equal(findFreeSlot(eboot([0x40, fuc]), segment), 0x08804040);
+  assert.equal(findFreeSlot(eboot([0x40, FREE_SLOT_EU], [0x200, fuc]), segment), null, "two");
+  const elsewhere = FREE_SLOT_EU.map((w, k) => (k === 10 ? 0x904200b8 : w));
+  assert.equal(findFreeSlot(eboot([0x100, elsewhere]), segment), null, "another box");
 });
 
 test("a failed quest pays nothing: the next quest forgets the pact", () => {

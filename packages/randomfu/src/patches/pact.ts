@@ -28,7 +28,10 @@
  *   most 9, then gives each slot past those a chance (the Luck skills raise
  *   it). It fills the save's reward box (`+0x390`, 16 slots of item and
  *   amount) and sorts it; the reward screen shows the box.
- * - The equipment box is the save's `+0x548`: 12 bytes a slot, `01`, the
+ * - The equipment box is the save's `+0x548`, 800 to 1000 slots (8 to 10
+ *   pages of 100, by quest flags 829 and 830). `freeSlot(save)` (EU
+ *   0x088506A4, FUC 0x088505E8) gives the first slot whose byte 0 is 0, or
+ *   0xFFFF when the box is full; the pact asks it. 12 bytes a slot: `01`, the
  *   type (0-4 armor: legs, head, chest, arms, waist; 5 melee, 6 ranged), the
  *   ID (u16), then the armor's level and three decorations (as the site's
  *   save reader has it, `apps/blacksmith/public/javascript/save-worker.js`,
@@ -142,6 +145,22 @@ export const EQUIPMENT_ICON_SIGNATURE = [
   0x93a70040, 0x02203021, 0x304500ff, 0x0c000000, 0x02c02021, 0x02003021, 0xafa20000, 0x02c02021,
 ];
 
+/**
+ * The EBOOT's `freeSlot(save)` (EU 0x088506A4, FUC 0x088505E8), whole: the
+ * index of the first equipment box slot (`save+0x548`, 12 bytes each) whose
+ * byte 0 is 0, among the box's pages of 100, or 0xFFFF.
+ */
+export const FREE_SLOT_SIGNATURE = [
+  0x27bdfff0, 0xafbf000c, 0xafb00008, 0x0c000000, 0x249004a0, 0x7c021e20, 0x1860000c, 0x00002821,
+  0x00002021, 0x02041021, 0x904200a8, 0x54400003, 0x24a20001, 0x10000006, 0x30a2ffff, 0x7c022e20,
+  0x00a3102a, 0x1440fff7, 0x2484000c, 0x3402ffff, 0x8fbf000c, 0x8fb00008, 0x03e00008, 0x27bd0010,
+];
+
+/** `freeSlot`'s address, as `blob/pact.c` calls it (`rf_equipment_free_slot`), or null. */
+export function findFreeSlot(vanillaEboot: Buffer, segment: Segment): number | null {
+  return findUnique(vanillaEboot, segment, [FREE_SLOT_SIGNATURE.map(maskWord)])[0]!;
+}
+
 const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
 
 /** The text externs, or why they can't be found. */
@@ -232,9 +251,11 @@ export function findPactExterns(
 ): Record<string, number> | string {
   const text = findTextExterns(vanillaEboot, sites);
   if (typeof text === "string") return text;
+  const freeSlot = findFreeSlot(vanillaEboot, sites.segment);
+  if (freeSlot == null) return "this EBOOT's equipment box code doesn't match";
   const monsters = findMonsterExterns(gameTask, ovl);
   if (typeof monsters === "string") return monsters;
-  return { ...text, ...monsters };
+  return { ...text, rf_equipment_free_slot: freeSlot, ...monsters };
 }
 
 /** The pact's objects, with the monster boosts (`blob/monsters.c`) it registers with. */

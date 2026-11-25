@@ -378,9 +378,11 @@ per seed (`pactPool` in `src/patches/pact.ts`), linked in as
   the reward roll.
 - **Payout.** Hook 4, once a completed quest: items go in the reward box's
   first free slots (save `+0x390`), equipment in the equipment box's first
-  free slot (save `+0x548`, 400 slots of 12 bytes: `01`, type, u16 ID, the
-  rest 0). A quest left unfinished never reaches the hook, and the next
-  quest forgets the pact.
+  free slot (save `+0x548`, 12 bytes a slot: `01`, type, u16 ID, the rest
+  0). The game's own routine finds that slot (`freeSlot(save)`, EU
+  0x088506A4, FUC 0x088505E8) in the 800 to 1000 slots the hunter's box has;
+  with no slot free in either box, that reward isn't paid. A quest left
+  unfinished never reaches the hook, and the next quest forgets the pact.
 
 `test/pact.test.ts` runs it in the interpreter against a fake quest, HUD,
 hunter, pad, printer and save.

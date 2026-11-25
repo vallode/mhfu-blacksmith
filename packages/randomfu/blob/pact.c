@@ -26,6 +26,11 @@ extern const u8 rf_fill[];      /* fill(hud, x, y, w, h, r, g, b, alpha) */
 extern const u8 rf_item_icon[];
 /* equipment_icon(hud, type, id, x, y, w, h, alpha, dim): a piece's icon in its rarity's colour */
 extern const u8 rf_equipment_icon[];
+/*
+ * The EBOOT's free equipment box slot (src/patches/pact.ts, findFreeSlot):
+ * the first of as many as the hunter's box has, or 0xFFFF when all are full.
+ */
+u32 rf_equipment_free_slot(u8 *save);
 extern u8 *const rf_pad[];      /* the global holding the game's pad object */
 extern u8 *const rf_printer[];  /* the global holding the text printer */
 extern const u8 rf_print[];     /* print(printer, x, y, format, ...): reads ~C and ~B codes */
@@ -101,8 +106,8 @@ extern const u8 rf_pact_levels[];
 #define SAVE_REWARDS 0x390
 #define REWARD_SLOTS 16
 #define SAVE_EQUIPMENT 0x548
-#define EQUIPMENT_SLOTS 400
 #define EQUIPMENT_SLOT 12
+#define NO_SLOT 0xffff
 /* The item box and the pouch: { u16 item, u16 amount } a slot (the save file's offsets + 0x4A0). */
 #define SAVE_BOX 0x3428
 #define BOX_SLOTS 1000
@@ -995,16 +1000,14 @@ static void rewards(u8 *arg) {
         break;
       }
     } else {
-      u8 *box = save + SAVE_EQUIPMENT;
-      for (u32 s = 0; s < EQUIPMENT_SLOTS; s++, box += EQUIPMENT_SLOT) {
-        if (box[0] || box[1]) continue;
-        for (u32 b = 0; b < EQUIPMENT_SLOT; b++) box[b] = 0;
-        box[0] = 1;
-        box[1] = e->type;
-        box[2] = (u8)e->id;
-        box[3] = (u8)(e->id >> 8);
-        break;
-      }
+      const u32 s = rf_equipment_free_slot(save);
+      if (s == NO_SLOT) continue;
+      u8 *box = save + SAVE_EQUIPMENT + s * EQUIPMENT_SLOT;
+      for (u32 b = 0; b < EQUIPMENT_SLOT; b++) box[b] = 0;
+      box[0] = 1;
+      box[1] = e->type;
+      box[2] = (u8)e->id;
+      box[3] = (u8)(e->id >> 8);
     }
   }
   paying = 0;
