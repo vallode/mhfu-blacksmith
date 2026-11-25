@@ -17,7 +17,7 @@ const OFFSETS = {
   // No Hunter Rank field: the game works HR out from cleared quests (see
   // HR_URGENT_QUESTS). 0x0672d8, once read as HR, is the Guild Card's quest
   // counts: 7 × uint16 LE, one per category (see "Guild Card quest counts").
-  EQUIP_CHEST: 0x0000a8, // 400 slots × 12 bytes (see parseEquipSlot)
+  EQUIP_CHEST: 0x0000a8, // 1000 slots × 12 bytes (see parseEquipSlot)
   // The equipment sets registered at the smithy: 20 × 0x20 bytes. Each starts
   // with six uint16 LE indexes into the equipment box (0xffff = empty), in the
   // order the game lists them: weapon, legs, head, chest, arms, waist. The
@@ -122,10 +122,9 @@ const AWARD_COUNT = 48;
 // 1 slot each) sit in each of six 2-slot pieces, and every other slot is 0.
 const EQUIP_SLOT_SIZE = 12;
 const DECORATION_OFFSETS = [6, 8, 10];
-const EQUIP_SLOT_COUNT = 400;
-// The equipment box's full length, up to ITEM_CHEST: set registrations can
-// reference any of its slots, though the stored box only reads the first 400.
-const EQUIP_BOX_SIZE = 1000;
+// The whole box, which ends where ITEM_CHEST starts: ten pages of 100. The
+// game shows eight until two later unlocks (EU EBOOT 0x08850e58, 0x08850ec4).
+const EQUIP_SLOT_COUNT = 1000;
 const EQUIP_SET_COUNT = 20;
 const EQUIP_SET_SIZE = 0x20;
 // A registration's indexes, in the game's order. Armor is stored legs first.
@@ -149,7 +148,7 @@ function parseEquipSlot(view, offset) {
 
 /** The equipment box slot at `index` (0xffff is empty), or null when it's empty or out of range. */
 function parseEquipAt(view, base, index) {
-  if (index === 0xffff || index >= EQUIP_BOX_SIZE) return null;
+  if (index === 0xffff || index >= EQUIP_SLOT_COUNT) return null;
   return parseEquipSlot(view, base + OFFSETS.EQUIP_CHEST + index * EQUIP_SLOT_SIZE);
 }
 
