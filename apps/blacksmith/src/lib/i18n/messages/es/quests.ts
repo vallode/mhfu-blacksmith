@@ -100,6 +100,9 @@ export const quests: Messages["quests"] = {
     layout: "Disposición",
     previousLayout: "Disposición anterior",
     nextLayout: "Disposición siguiente",
+    quest: "Misión",
+    previousQuest: "Misión anterior",
+    nextQuest: "Misión siguiente",
     position: (n: number, total: number) => `${n} de ${total}`,
     andMore: (first: string, more: number) => `${first} +${more}`,
     onlyIn: (map: string, quests: ReactNode): ReactNode =>

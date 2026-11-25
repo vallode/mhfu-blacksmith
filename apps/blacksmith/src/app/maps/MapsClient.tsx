@@ -12,6 +12,7 @@ import { LoadedAreaMap } from "@/components/AreaMap";
 import { DetailBody, DetailCard, DetailName } from "@/components/DetailPanel";
 import MapIcon from "@/components/MapIcon";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
+import StepSelector from "@/components/StepSelector";
 import TreeScroll from "@/components/TreeScroll";
 import { useLocale } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
@@ -22,17 +23,21 @@ export default function MapsClient({ maps }: { maps: MapEntry[] }) {
   const { t: messages, game } = useLocale();
   const t = messages.quests.areaMap;
   const { quests } = useQuests();
-  const [choice, setChoice] = useState({ map: 0, layout: 0 });
+  const [choice, setChoice] = useState({ map: 0, layout: 0, quest: 0 });
   const listRef = useRef<HTMLDivElement>(null);
   const entry = maps[Math.min(choice.map, maps.length - 1)];
   if (!entry) return null;
   const layoutCount = entry.layouts.length;
   const layoutIndex = Math.min(choice.layout, layoutCount - 1);
   const layout = entry.layouts[layoutIndex]!;
+  const questCount = layout.questIds.length;
+  const questIndex = Math.min(choice.quest, questCount - 1);
+  const questId = layout.questIds[questIndex]!;
+  const quest = quests?.find((q) => q.id === questId);
   const questTitle = (id: number) => {
-    const quest = quests?.find((q) => q.id === id);
-    return quest
-      ? game.quest(quest.id, "title", quest.title)
+    const selected = quests?.find((q) => q.id === id);
+    return selected
+      ? game.quest(selected.id, "title", selected.title)
       : messages.items.detail.unknownQuest(id);
   };
   // A layout of one quest is named for it; a shared one for the boards its
@@ -59,7 +64,7 @@ export default function MapsClient({ maps }: { maps: MapEntry[] }) {
                     key={m.map}
                     type="button"
                     aria-pressed={active}
-                    onClick={() => setChoice({ map: i, layout: 0 })}
+                    onClick={() => setChoice({ map: i, layout: 0, quest: 0 })}
                     className={cn(
                       "list-row w-full cursor-pointer border-0 text-left font-[inherit] text-white",
                       active ? "bg-(image:--gradient-hover-glow)" : "bg-transparent",
@@ -88,6 +93,7 @@ export default function MapsClient({ maps }: { maps: MapEntry[] }) {
                 setChoice({
                   map: choice.map,
                   layout: (layoutIndex + by + layoutCount) % layoutCount,
+                  quest: 0,
                 })
               }
               count={`${layoutIndex + 1}/${layoutCount}`}
@@ -105,7 +111,21 @@ export default function MapsClient({ maps }: { maps: MapEntry[] }) {
           <DetailName>{game.name("map", entry.map)}</DetailName>
         </div>
         <DetailBody>
-          <LoadedAreaMap questId={layout.questId} />
+          {questCount > 1 && (
+            <div className="mx-auto w-full max-w-[48rem]">
+              <StepSelector
+                groupLabel={t.quest}
+                previousLabel={t.previousQuest}
+                nextLabel={t.nextQuest}
+                label={<span className="truncate">{questTitle(questId)}</span>}
+                index={questIndex}
+                count={questCount}
+                countLabel={t.position(questIndex + 1, questCount)}
+                onChange={(next) => setChoice({ ...choice, quest: next })}
+              />
+            </div>
+          )}
+          <LoadedAreaMap questId={questId} spawns={quest?.spawns} />
         </DetailBody>
       </DetailCard>
     </div>

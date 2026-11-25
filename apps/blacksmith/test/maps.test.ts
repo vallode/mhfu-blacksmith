@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { mapIconSrc } from "../src/lib/maps";
+import { getMapEntries } from "../src/lib/maps-data";
 import { DATA_DIR } from "../src/lib/paths";
 import { readData } from "game-data";
 
@@ -15,6 +16,24 @@ test("day, night, size and floor variants share their map's icon", () => {
   assert.equal(mapIconSrc("Tower 3"), "/images/maps/tower.png");
   assert.equal(mapIconSrc("Old Jungle"), "/images/maps/old-jungle.png");
   assert.equal(mapIconSrc("Nowhere"), null);
+});
+
+test("every layout lists its quests, including maps that only have monster spawns", () => {
+  const entries = getMapEntries();
+  for (const entry of entries) {
+    for (const layout of entry.layouts) {
+      assert.equal(layout.questId, layout.questIds[0]);
+      assert.equal(layout.quests, layout.questIds.length);
+      assert.ok(layout.questIds.length > 0, `${entry.map} has an empty layout`);
+    }
+  }
+  // Arena (Small) has no gathering layout; its quests are spawn-only. It
+  // keeps its place in the game's map order.
+  const names = entries.map((entry) => entry.map);
+  const large = names.indexOf("Arena (Large)");
+  const small = names.indexOf("Arena (Small)");
+  assert.ok(large >= 0 && small === large + 1);
+  assert.ok(small < names.indexOf("Snowy Mountains (Day)"));
 });
 
 test("every map in data/ has an icon that exists", () => {
