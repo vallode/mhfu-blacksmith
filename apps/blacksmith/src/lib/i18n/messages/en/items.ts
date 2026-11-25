@@ -195,14 +195,14 @@ export const items = {
     pickItem:
       "Pick an item to see what the Veggie Elder gives for it. Each hunting ground has its own list.",
   },
-  /** /wishlist/: the gear and decorations the player starred and the materials they need. */
+  /** /wishlist/: the gear, decorations and items the player starred and the materials they need. */
   wishlist: {
     /** Card titles. */
     title: "Wishlist",
     materials: "Materials",
     whereToGo: "Where to go",
     empty:
-      "Nothing on your wishlist yet. Press the star beside a weapon, armor piece or decoration's name to add it, or add a whole set from the Set builder, and its materials add up here with where to get them. The wishlist is kept in this browser.",
+      "Nothing on your wishlist yet. Press the star beside a weapon, armor piece, decoration or item to add it, or add a whole set from the Set builder, and its materials add up here with where to get them. The wishlist is kept in this browser.",
     loadError: "Couldn't load the wishlist's gear.",
     retry: "Try again",
     whereToGoNote: "The monsters and maps that give the most of the materials you still need.",
@@ -215,8 +215,10 @@ export const items = {
     /** A decoration the loaded hunter has enough of, free in their item box and pouch. */
     enoughNote: (have: string) =>
       `Your hunter has ${have} in their item box already, so its materials are left out.`,
-    /** A decoration's count: how many jewels to have. */
+    /** A decoration's or item's count: how many to have or get. */
     countLabel: (name: string) => `How many ${name} to have`,
+    /** An explicit item also appears in the material totals, including any gear needs. */
+    itemNote: "Added to Materials with anything your gear needs.",
     /** The count between − and +: "×3". */
     countValue: (count: string) => `×${count}`,
     oneFewer: "One fewer",
@@ -248,7 +250,7 @@ export const items = {
     materialsCount: "Materials:",
     stillToGet: (_n: number, missing: string, total: string) =>
       `${missing} of ${total} still to get`,
-    nothingLeft: "Nothing left to make.",
+    nothingLeft: "Nothing left to make or get.",
     loadSave: "Load a save on the Hunter page to count what you already have.",
     /** A material's tooltip: the gear it's for. */
     forGear: (names: string) => `For ${names}`,

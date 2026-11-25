@@ -16,6 +16,7 @@ import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
 import { DropGrid } from "@/components/MonsterDrops";
 import Tabs, { type Tab } from "@/components/Tabs";
+import WishlistButton from "@/components/WishlistButton";
 import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
@@ -196,6 +197,11 @@ export default function ItemDetailClient({ slug }: Props) {
       <DetailHeader>
         <Icon type={item.type} color={item.color} size="large" alt="" />
         <DetailName>{game.name("item", item.name)}</DetailName>
+        <WishlistButton
+          gear={{ kind: "item", slug }}
+          name={game.name("item", item.name)}
+          className="ml-[0.4rem]"
+        />
       </DetailHeader>
 
       <DetailBody>

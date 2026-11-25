@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 
-/** The game's star sprite that marks gear on the wishlist: grey until it's listed. */
+/** The game's star sprite that marks an entry on the wishlist: grey until it's listed. */
 export default function WishlistStar({ lit, className }: { lit: boolean; className?: string }) {
   return (
     <img

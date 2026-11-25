@@ -1,9 +1,9 @@
 "use client";
 
 /**
- * The wishlist page: the weapons, armor and decorations the player starred,
- * each with the recipe to make it by (for an upgrade, the weapon to start
- * from; for a decoration, how many to have); every
+ * The wishlist page: the weapons, armor, decorations and items the player
+ * starred, each piece of gear with the recipe to make it by (for an upgrade,
+ * the weapon to start from; for a decoration or item, how many to have); every
  * material they add up to, with what the loaded hunter already has and the
  * best ways to get the rest; and the monsters and maps that give the most of
  * what's missing. The list lives in localStorage (wishlist-store.ts); the
@@ -32,6 +32,7 @@ import {
   useQuests,
   decodeWeaponBundle,
   type ItemLookup,
+  type ResolvedItem,
 } from "@/lib/client-data";
 import { cn } from "@/lib/cn";
 import { WEAPON_TYPES } from "@/lib/constants";
@@ -60,7 +61,7 @@ import {
   entryHref,
   entryKey,
   itemWays,
-  MAX_DECORATION_COUNT,
+  MAX_ENTRY_COUNT,
   stepsDone,
   untickedMade,
   recipesOf,
@@ -73,10 +74,11 @@ import {
   type CraftStep,
   type Destination,
   type Gear,
+  type GearEntry,
+  type ItemEntry,
   type MaterialNeed,
   type Recipe,
   type Way,
-  type WishlistEntry,
 } from "@/lib/wishlist";
 import { useWishlist, type Wishlist } from "@/lib/wishlist-store";
 import * as ui from "@/styles/settings";
@@ -92,7 +94,7 @@ import {
 // Loading the gear
 // ---------------------------------------------------------------------------
 
-const bundleFile = (e: WishlistEntry) =>
+const bundleFile = (e: GearEntry) =>
   e.kind === "weapon"
     ? `weapon-${e.type}`
     : e.kind === "armor"
@@ -161,7 +163,7 @@ function loadedGear(filesKey: string, weapons: boolean): LoadedGear | null {
   return { bundles, byName: weapons ? weaponsByName(dict) : new Map() };
 }
 
-function useGearBundles(entries: WishlistEntry[]): {
+function useGearBundles(entries: GearEntry[]): {
   gear: LoadedGear | null;
   error: boolean;
   retry: () => void;
@@ -206,7 +208,8 @@ function useGearBundles(entries: WishlistEntry[]): {
 // ---------------------------------------------------------------------------
 
 interface GearRow {
-  entry: WishlistEntry;
+  kind: "gear";
+  entry: GearEntry;
   key: string;
   href: string;
   /** null when the data no longer has it */
@@ -230,8 +233,20 @@ interface GearRow {
   owned: boolean;
 }
 
+interface ItemRow {
+  kind: "item";
+  entry: ItemEntry;
+  key: string;
+  href: string;
+  /** null when the item data is unavailable or no longer has it */
+  item: ResolvedItem | null;
+  count: number;
+}
+
+type WishlistRow = GearRow | ItemRow;
+
 function resolveRows(
-  entries: WishlistEntry[],
+  entries: GearEntry[],
   { bundles, byName }: LoadedGear,
   owned: Set<string> | null,
   /** The loaded hunter's item box and pouch, by item ID */
@@ -245,6 +260,7 @@ function resolveRows(
     // A weapon as `byName` has it: with its tree parent.
     const found = (listed && entry.kind === "weapon" && byName.get(listed.name)) || listed;
     const row: GearRow = {
+      kind: "gear",
       entry,
       key,
       href,
@@ -314,7 +330,11 @@ function resolveRows(
 export default function WishlistClient() {
   const wishlist = useWishlist();
   const entries = wishlist.entries;
-  const { gear, error: gearError, retry } = useGearBundles(entries ?? []);
+  const gearEntries = useMemo(
+    () => (entries ?? []).filter((e): e is GearEntry => e.kind !== "item"),
+    [entries],
+  );
+  const { gear, error: gearError, retry } = useGearBundles(gearEntries);
   const { items, error: itemsError } = useItems();
   const { sources } = useItemSources();
   const { places } = useItemPlaces();
@@ -337,17 +357,36 @@ export default function WishlistClient() {
   const ownedGear = useMemo(() => (ids && save ? ownedHrefs(ids, save) : null), [ids, save]);
 
   // Jewels are items: counted from the item box only when material counts are on.
-  const rows = useMemo(
-    () => (entries && gear ? resolveRows(entries, gear, ownedGear, owned) : null),
-    [entries, gear, ownedGear, owned],
+  const gearRows = useMemo(
+    () => (gear ? resolveRows(gearEntries, gear, ownedGear, owned) : null),
+    [gearEntries, gear, ownedGear, owned],
   );
+  const rows = useMemo((): WishlistRow[] | null => {
+    if (!entries || !gearRows) return null;
+    const byKey = new Map(gearRows.map((r) => [r.key, r]));
+    return entries.map((entry) => {
+      if (entry.kind !== "item") return byKey.get(entryKey(entry))!;
+      return {
+        kind: "item",
+        entry,
+        key: entryKey(entry),
+        href: entryHref(entry),
+        item: items?.bySlug(entry.slug) ?? null,
+        count: entryCount(entry),
+      };
+    });
+  }, [entries, gearRows, items]);
 
   const plan = useMemo(() => {
     if (!rows || !items) return null;
     const crafts = rows
+      .filter((r): r is GearRow => r.kind === "gear")
       .filter((r) => r.gear && !r.owned && r.steps.length > 0)
       .map((r) => ({ gear: r.gear!.name, steps: r.steps.slice(r.done) }));
-    const needs = totalMaterials(crafts, items.idOf).map((need) => {
+    const wantedItems = rows.flatMap((r) =>
+      r.kind === "item" && r.item ? [{ ...r.item, amount: r.count }] : [],
+    );
+    const needs = totalMaterials(crafts, items.idOf, wantedItems).map((need) => {
       const id = need.itemId;
       const ways =
         id === undefined
@@ -379,7 +418,9 @@ export default function WishlistClient() {
     () =>
       new Map(
         (rows ?? []).flatMap((r) =>
-          r.gear ? [[r.gear.name, game.name(r.entry.kind, r.gear.name)] as const] : [],
+          r.kind === "gear" && r.gear
+            ? [[r.gear.name, game.name(r.entry.kind, r.gear.name)] as const]
+            : [],
         ),
       ),
     [rows, game],
@@ -387,7 +428,10 @@ export default function WishlistClient() {
 
   return (
     <div className="flex w-full max-w-[120rem] flex-col gap-[1.3rem]">
-      {entries === null || (entries.length > 0 && !rows && !gearError) ? (
+      {entries === null ||
+      (entries.length > 0 &&
+        (!rows || (entries.some((e) => e.kind === "item") && !items && !itemsError)) &&
+        !gearError) ? (
         <WishCard title={tw.title}>
           <Loading>{t.common.loading}</Loading>
         </WishCard>
@@ -403,6 +447,9 @@ export default function WishlistClient() {
             </Link>
             <Link href="/decorations/" className={ui.button}>
               {t.common.sections.decorations}
+            </Link>
+            <Link href="/items/" className={ui.button}>
+              {t.site.nav.items}
             </Link>
           </div>
         </WishCard>
@@ -420,7 +467,12 @@ export default function WishlistClient() {
         // column (gear, materials, where to go) where the page is narrow.
         <div className="grid grid-cols-[minmax(0,5fr)_minmax(0,6fr)] grid-rows-[auto_1fr] items-start gap-[1.3rem] mobile:grid-cols-1 mobile:grid-rows-none compact:grid-cols-1 compact:grid-rows-none">
           <WishCard title={tw.title}>
-            <GearList rows={rows!} wishlist={wishlist} ownedGear={ownedGear} />
+            <EntryList
+              rows={rows!}
+              wishlist={wishlist}
+              ownedGear={ownedGear}
+              itemsError={itemsError}
+            />
           </WishCard>
           <WishCard
             title={tw.materials}
@@ -495,25 +547,35 @@ function useZenny(): (n: number) => string {
   return (n) => t.common.zenny(formatNumber(n));
 }
 
-function GearList({
+function entryName(row: WishlistRow, game: GameText): string {
+  if (row.kind === "item") {
+    return row.item ? game.name("item", row.item.name) : row.entry.slug;
+  }
+  return row.gear ? game.name(row.entry.kind, row.gear.name) : row.entry.slug;
+}
+
+function EntryList({
   rows,
   wishlist,
   ownedGear,
+  itemsError,
 }: {
-  rows: GearRow[];
+  rows: WishlistRow[];
   wishlist: Wishlist;
   /** Hrefs of the gear the loaded hunter owns */
   ownedGear: Set<string> | null;
+  itemsError: boolean;
 }) {
-  const tw = useT().items.wishlist;
+  const t = useT();
+  const tw = t.items.wishlist;
   const game = useGameText();
   const { formatNumber } = useLocale();
   return (
     <ul className="m-0 flex list-none flex-col p-0">
       {rows.map((r) => {
-        const name = r.gear ? game.name(r.entry.kind, r.gear.name) : r.entry.slug;
-        const counter = r.entry.kind === "decoration" && (
-          <DecorationCount row={r} wishlist={wishlist} />
+        const name = entryName(r, game);
+        const counter = (r.entry.kind === "decoration" || r.entry.kind === "item") && (
+          <EntryCount row={r} wishlist={wishlist} />
         );
         return (
           <li
@@ -521,14 +583,16 @@ function GearList({
             className="flex flex-col gap-[0.6rem] border-b border-white/15 py-[0.8rem] last:border-b-0"
           >
             <div className="flex min-w-0 items-center gap-[0.6rem]">
-              <GearIcon row={r} />
+              <EntryIcon row={r} />
               <Link
                 href={r.href}
                 className="min-w-0 flex-1 truncate text-sub text-white underline-offset-4 hover:underline"
               >
                 {name}
               </Link>
-              {r.owned && <span className="flex-none text-fine text-positive">{tw.owned}</span>}
+              {r.kind === "gear" && r.owned && (
+                <span className="flex-none text-fine text-positive">{tw.owned}</span>
+              )}
               <button
                 type="button"
                 aria-label={tw.removeLabel(name)}
@@ -540,7 +604,16 @@ function GearList({
               </button>
             </div>
 
-            {!r.gear ? (
+            {r.kind === "item" ? (
+              !r.item ? (
+                <p className={ui.error}>{itemsError ? t.items.list.loadError : tw.missingGear}</p>
+              ) : (
+                <div className="flex flex-wrap items-center gap-x-[1.2rem] gap-y-[0.6rem]">
+                  {counter}
+                  <p className={ui.note}>{tw.itemNote}</p>
+                </div>
+              )
+            ) : !r.gear ? (
               <p className={ui.error}>{tw.missingGear}</p>
             ) : r.owned ? (
               <>
@@ -562,8 +635,8 @@ function GearList({
 const stepButton =
   "size-[2.6rem] flex-none cursor-pointer border border-hr bg-black/45 p-0 font-[inherit] text-sub leading-none text-white hover:hover-glow focus-visible:hover-glow disabled:cursor-default disabled:opacity-40";
 
-/** How many of a decoration to have: − 3 +. */
-function DecorationCount({ row, wishlist }: { row: GearRow; wishlist: Wishlist }) {
+/** How many of a decoration or item to have: − 3 +. */
+function EntryCount({ row, wishlist }: { row: WishlistRow; wishlist: Wishlist }) {
   const tw = useT().items.wishlist;
   const game = useGameText();
   const { formatNumber } = useLocale();
@@ -572,7 +645,7 @@ function DecorationCount({ row, wishlist }: { row: GearRow; wishlist: Wishlist }
   return (
     <div
       role="group"
-      aria-label={tw.countLabel(game.name("decoration", row.gear?.name ?? row.entry.slug))}
+      aria-label={tw.countLabel(entryName(row, game))}
       className="flex flex-none items-center gap-[0.4rem]"
     >
       <button
@@ -593,7 +666,7 @@ function DecorationCount({ row, wishlist }: { row: GearRow; wishlist: Wishlist }
         aria-label={tw.oneMore}
         title={tw.oneMore}
         className={stepButton}
-        disabled={count >= MAX_DECORATION_COUNT}
+        disabled={count >= MAX_ENTRY_COUNT}
         onClick={() => set(count + 1)}
       >
         +
@@ -602,7 +675,10 @@ function DecorationCount({ row, wishlist }: { row: GearRow; wishlist: Wishlist }
   );
 }
 
-function GearIcon({ row }: { row: GearRow }) {
+function EntryIcon({ row }: { row: WishlistRow }) {
+  if (row.kind === "item") {
+    return <Icon type={row.item?.type ?? "ukwn"} color={row.item?.color} alt="" />;
+  }
   const g = row.gear;
   if (row.entry.kind === "decoration") {
     return <Icon type="decoration" color={(g as Decoration | null)?.color} alt="" />;
@@ -861,7 +937,11 @@ function MaterialItem({
     >
       <div
         className="flex min-w-0 items-center"
-        title={tw.forGear(need.for.map((g) => gearNames.get(g) ?? g).join(", "))}
+        title={
+          need.for.length > 0
+            ? tw.forGear(need.for.map((g) => gearNames.get(g) ?? g).join(", "))
+            : undefined
+        }
       >
         <Icon type={need.type} color={need.color} />
         <Link
