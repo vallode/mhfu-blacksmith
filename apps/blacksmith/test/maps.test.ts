@@ -27,13 +27,21 @@ test("every layout lists its quests, including maps that only have monster spawn
       assert.ok(layout.questIds.length > 0, `${entry.map} has an empty layout`);
     }
   }
-  // Arena (Small) has no gathering layout; its quests are spawn-only. It
-  // keeps its place in the game's map order.
-  const names = entries.map((entry) => entry.map);
-  const large = names.indexOf("Arena (Large)");
-  const small = names.indexOf("Arena (Small)");
-  assert.ok(large >= 0 && small === large + 1);
-  assert.ok(small < names.indexOf("Snowy Mountains (Day)"));
+  // Arena (Small) has no gathering layout; its quests are spawn-only.
+  assert.ok(entries.some((entry) => entry.map === "Arena (Small)"));
+});
+
+test("maps are listed in the order the game introduces them", () => {
+  const names = getMapEntries().map((entry) => entry.map);
+  assert.deepEqual(names.slice(0, 5), [
+    "Snowy Mountains (Day)",
+    "Snowy Mountains (Night)",
+    "Jungle (Day)",
+    "Desert (Day)",
+    "Jungle (Night)",
+  ]);
+  // The maps only the Guild visits come after all the Village's.
+  assert.deepEqual(names.slice(-3), ["Castle Schrade", "Moat Arena", "Snowy Mountains Peak"]);
 });
 
 test("every map in data/ has an icon that exists", () => {

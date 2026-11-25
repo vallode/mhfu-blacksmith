@@ -8,7 +8,7 @@ import { readData } from "game-data";
 import type { GatheringFile } from "./item-places";
 import { mapTextures } from "./area-maps";
 import { DOWNLOADED_QUEST_HUBS, QUEST_HUBS, type QuestHubSlug } from "./quests";
-import { getQuestSummaries } from "./quests-data";
+import { getQuestSummaries, type QuestSummary } from "./quests-data";
 
 export interface MapEntry {
   /** The map's name as data/ spells it: "Snowy Mountains (Day)". */
@@ -19,6 +19,27 @@ export interface MapEntry {
    * are on. Downloaded quests are left out of the boards.
    */
   layouts: { questId: number; questIds: number[]; quests: number; hubs: QuestHubSlug[] }[];
+}
+
+/** The boards a hunter meets the maps on, in the order they play them. */
+const CAMPAIGN_HUBS: QuestHubSlug[] = ["village", "low-rank", "high-rank", "g-rank"];
+
+/**
+ * The maps in the order the game introduces them: by each map's first quest,
+ * taking the Village's star levels and then the Guild's (rank by rank) for the
+ * maps the Village never visits.
+ */
+function appearanceOrder(summaries: QuestSummary[]): string[] {
+  const order = summaries
+    .filter((q) => CAMPAIGN_HUBS.includes(q.hub))
+    .sort(
+      (a, b) =>
+        CAMPAIGN_HUBS.indexOf(a.hub) - CAMPAIGN_HUBS.indexOf(b.hub) ||
+        a.stars - b.stars ||
+        a.id - b.id,
+    )
+    .flatMap((q) => q.map ?? []);
+  return [...new Set(order)];
 }
 
 let cache: MapEntry[] | null = null;
@@ -55,8 +76,6 @@ export function getMapEntries(): MapEntry[] {
       hubs: boardsOf(layout.quests),
     });
   }
-  // The game's map order, as the gathering layouts already list it.
-  const mapOrder = [...byMap.keys()];
   // Quests with monster spawns but no gathering layout (Arena (Small), say)
   // get one layout per map, so their spawns have a map to show.
   const spawnOnly = new Map<string, number[]>();
@@ -76,14 +95,9 @@ export function getMapEntries(): MapEntry[] {
       hubs: boardsOf(ids),
     });
   }
-  // Put each spawn-only map where its texture number belongs, keeping the
-  // existing list's order (day maps, then the rest) untouched.
-  const textureOrder = (map: string) => Number(textures.get(map)?.replace(/\D/g, "")) || 0;
-  for (const map of spawnOnly.keys()) {
-    const at = mapOrder.findIndex((other) => textureOrder(other) > textureOrder(map));
-    if (at < 0) mapOrder.push(map);
-    else mapOrder.splice(at, 0, map);
-  }
-  cache = mapOrder.map((map) => byMap.get(map)!);
+  const order = appearanceOrder(summaries);
+  // A map no campaign quest visits goes last.
+  const rank = (map: string) => (order.includes(map) ? order.indexOf(map) : order.length);
+  cache = [...byMap.values()].sort((a, b) => rank(a.map) - rank(b.map));
   return cache;
 }
