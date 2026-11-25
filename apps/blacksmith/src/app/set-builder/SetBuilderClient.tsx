@@ -49,6 +49,12 @@ import {
   type DecodeError,
   type DroppedRef,
 } from "@/lib/set-codec";
+import {
+  hasArmorWord,
+  hasSearchLinkParams,
+  parseSearchLink,
+  withoutSearchLink,
+} from "@/lib/search-link";
 import { codeFromPath, sharePath } from "@/lib/set-link";
 import {
   cantWear,
@@ -271,6 +277,48 @@ export default function SetBuilderClient() {
       }),
   };
 
+  // Whether the address's search link has been read, and whether it ran a
+  // search (which the draft then doesn't take the page from).
+  const linkRead = useRef(false);
+  const linkSearched = useRef(false);
+  // A search link (lib/search-link.ts, from the Discord bot) fills in the
+  // search it asks for over the restored form and runs it, once the data is
+  // in. Its parameters then leave the address, so a reload keeps the
+  // visitor's edits.
+  useEffect(() => {
+    if (linkRead.current || !restored || !data) return;
+    linkRead.current = true;
+    const search = window.location.search;
+    if (!hasSearchLinkParams(search)) return;
+    const url = new URL(window.location.href);
+    url.search = withoutSearchLink(search);
+    window.history.replaceState(window.history.state, "", url);
+    const link = parseSearchLink(search);
+    if (!link) return;
+    const hunter = { hunterType: link.hunterType ?? form.hunterType, sex: form.sex };
+    // Pieces named by a word, only those the hunter could wear: the rest
+    // would only crowd the never-used list.
+    const named = data.pieces
+      .filter((p) => !cantWear(p, hunter) && hasArmorWord(p.name, link.never))
+      .map((p) => p.href);
+    const next: Form = {
+      ...form,
+      ...hunter,
+      skills: link.skills,
+      rank: link.rank ?? form.rank,
+      weaponSlots: link.weaponSlots ?? 0,
+      locked: link.lock.filter((h) => byHref.has(h)),
+      excluded: [...new Set([...link.exclude.filter((h) => byHref.has(h)), ...named])].filter(
+        (h) => !link.lock.includes(h),
+      ),
+    };
+    linkSearched.current = true;
+    setForm(next);
+    runSearch(next);
+    // Only once, with the form as restored.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [restored, data]);
+
   const sets = result?.sets ?? [];
   const set = sets[Math.min(index, sets.length - 1)] ?? null;
   const step = (by: 1 | -1) => setIndex((index + by + sets.length) % sets.length);
@@ -398,7 +446,10 @@ export default function SetBuilderClient() {
       setSavedId(draft.savedId ?? null);
       setOrigin(draft.origin ?? "new");
       setLinkName(typeof draft.name === "string" ? draft.name : null);
-      if (r.set.pieces.some(Boolean) || r.set.decorations.length > 0) setView("editor");
+      const linked = linkSearched.current || hasSearchLinkParams(window.location.search);
+      if (!linked && (r.set.pieces.some(Boolean) || r.set.decorations.length > 0)) {
+        setView("editor");
+      }
     }
   }, [tables, idsError, restored, openCode]);
 
