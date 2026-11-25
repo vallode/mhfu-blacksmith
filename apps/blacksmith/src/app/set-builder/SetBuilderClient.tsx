@@ -53,6 +53,7 @@ import { codeFromPath, sharePath } from "@/lib/set-link";
 import {
   cantWear,
   resolveWanted,
+  sameQuery,
   selectableSkills,
   type Piece,
   type SearchQuery,
@@ -120,31 +121,15 @@ function searchErrorText(t: Messages, e: SetSearchError): string {
   return text.crashed;
 }
 
-/** The query fields a search's results depend on, to tell whether the form has changed since. */
-const QUERY_KEYS = [
-  "skills",
-  "hunterType",
-  "sex",
-  "rank",
-  "weaponSlots",
-  "allowBadSkills",
-  "sort",
-  "progress",
-  "lockPieces",
-  "excludePieces",
-] as const;
-
-function sameQuery(a: SearchQuery, b: SearchQuery): boolean {
-  return (
-    QUERY_KEYS.every((k) => JSON.stringify(a[k] ?? null) === JSON.stringify(b[k] ?? null)) &&
-    !a.onlyPieces === !b.onlyPieces
-  );
-}
-
 function readForm(): Form {
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "null") as Partial<Form> | null;
-    return { ...DEFAULT_FORM, ...saved };
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "null") as
+      (Partial<Form> & { ownedOnly?: boolean }) | null;
+    const { ownedOnly, ...rest } = saved ?? {};
+    const form = { ...DEFAULT_FORM, ...rest };
+    // The form used to have an "Owned armor only" switch.
+    if (ownedOnly && !rest.ownedArmor) form.ownedArmor = "only";
+    return form;
   } catch {
     return DEFAULT_FORM;
   }
@@ -198,7 +183,7 @@ export default function SetBuilderClient() {
   const update = <K extends keyof Form>(key: K, value: Form[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
 
-  const ownedOnly = form.ownedOnly && progress.active;
+  const ownedArmor = progress.active ? form.ownedArmor : "off";
   const { questProgress } = usePreferences().prefs;
   const questLimit = form.ignoreQuestProgress ? null : questProgress;
   const byHref = useMemo(() => new Map(data?.pieces.map((p) => [p.href, p]) ?? []), [data]);
@@ -232,6 +217,11 @@ export default function SetBuilderClient() {
    */
   const queryFor = (f: Form, noSkills = false): SearchQuery | null => {
     if (!data || (f.skills.length === 0 && !noSkills)) return null;
+    const ownedArmor = progress.active ? f.ownedArmor : "off";
+    const owned =
+      ownedArmor === "off"
+        ? undefined
+        : data.pieces.filter((p) => progress.isOwned(p.href)).map((p) => p.id);
     return {
       sort: f.sort,
       lockPieces: lockIds(f.locked, f),
@@ -243,10 +233,8 @@ export default function SetBuilderClient() {
       weaponSlots: f.weaponSlots,
       allowBadSkills: f.allowBadSkills,
       progress: f.ignoreQuestProgress ? null : questProgress,
-      onlyPieces:
-        f.ownedOnly && progress.active
-          ? data.pieces.filter((p) => progress.isOwned(p.href)).map((p) => p.id)
-          : undefined,
+      onlyPieces: ownedArmor === "only" ? owned : undefined,
+      preferPieces: ownedArmor === "prefer" ? owned : undefined,
     };
   };
   const runSearch = (f: Form = form) => {
@@ -639,6 +627,7 @@ export default function SetBuilderClient() {
           !!searched?.progress,
           !!searched?.lockPieces?.length,
           !!searched?.excludePieces?.length,
+          !!searched?.onlyPieces,
         )}
       </p>
     );
@@ -735,7 +724,7 @@ export default function SetBuilderClient() {
                 aria-haspopup="dialog"
                 onClick={() => setSheet("options")}
               >
-                <OptionsSummary form={form} ownedOnly={ownedOnly} />
+                <OptionsSummary form={form} ownedArmor={ownedArmor} />
                 <span className="flex-none text-white/50" aria-hidden="true">
                   {text.form.options}
                 </span>
@@ -768,7 +757,15 @@ export default function SetBuilderClient() {
                         progress={searched ? (searched.progress ?? null) : questLimit}
                         pieces={data?.pieces ?? []}
                         wantedTrees={searchedWanted}
-                        ownedOnly={searched ? !!searched.onlyPieces : ownedOnly}
+                        ownedArmor={
+                          searched
+                            ? searched.onlyPieces
+                              ? "only"
+                              : searched.preferPieces
+                                ? "prefer"
+                                : "off"
+                            : ownedArmor
+                        }
                         isOwned={isOwned}
                         weaponClass={form.weaponClass}
                         onWeaponClass={(t) => update("weaponClass", t)}
@@ -778,7 +775,7 @@ export default function SetBuilderClient() {
                         action={
                           <button
                             type="button"
-                            className={cn(secondaryButton, "gap-[0.8rem]")}
+                            className={cn(secondaryButton, "grow gap-[0.8rem]")}
                             aria-label={r.editThis}
                             title={r.editThis}
                             onClick={() =>
@@ -815,7 +812,7 @@ export default function SetBuilderClient() {
                           wanted={wanted}
                           rank={form.rank}
                           questLimit={questLimit}
-                          ownedOnly={ownedOnly}
+                          ownedArmor={ownedArmor}
                           isOwned={isOwned}
                           weaponIcon={editorWeaponIcon}
                           extraWarnings={openWarnings.map((w) => openWarningText(t, w))}
@@ -833,7 +830,11 @@ export default function SetBuilderClient() {
                   content: (
                     <MySets
                       sets={savedSets}
+                      saveSets={save?.equipmentSets}
+                      saveSex={save?.sex === "Female" ? "Female" : "Male"}
+                      saveStale={!!save && save.equipmentSets === undefined}
                       data={data}
+                      ids={ids}
                       tables={tables}
                       openId={savedId}
                       onOpen={(saved) => openCode(saved.code, { savedId: saved.id })}
@@ -903,7 +904,7 @@ export default function SetBuilderClient() {
             rank={form.rank}
             wanted={wanted}
             questLimit={questLimit}
-            ownedOnly={ownedOnly}
+            ownedArmor={ownedArmor}
             isOwned={isOwned}
             onPick={(p) => {
               lockPiece(lockSlot, p);
@@ -929,7 +930,7 @@ export default function SetBuilderClient() {
           form={form}
           update={update}
           questProgress={questProgress}
-          canOwnedOnly={progress.active}
+          canUseOwned={progress.active}
         />
       </Sheet>
     </>

@@ -7,7 +7,7 @@ interface IconProps {
   color?: string | null;
   element?: string | null;
   rank?: string | null;
-  size?: "default" | "large" | "mini";
+  size?: "default" | "large" | "mini" | "small";
   nav?: boolean;
   active?: boolean;
   monster?: boolean;

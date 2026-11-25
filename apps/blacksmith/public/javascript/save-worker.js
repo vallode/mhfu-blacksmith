@@ -18,6 +18,11 @@ const OFFSETS = {
   // HR_URGENT_QUESTS). 0x0672d8, once read as HR, is the Guild Card's quest
   // counts: 7 × uint16 LE, one per category (see "Guild Card quest counts").
   EQUIP_CHEST: 0x0000a8, // 400 slots × 12 bytes (see parseEquipSlot)
+  // The equipment sets registered at the smithy: 20 × 0x20 bytes. Each starts
+  // with six uint16 LE indexes into the equipment box (0xffff = empty), in the
+  // order the game lists them: weapon, legs, head, chest, arms, waist. The
+  // rest is the armor colours.
+  EQUIP_SETS:  0x004334,
   ITEM_CHEST:  0x002f88, // 1000 slots × 4 bytes
   ITEM_POUCH:  0x003f28, // 24 slots × 4 bytes
   CLEARED:     0x003f88, // 64 bytes: one "cleared" bit per quest (see QUEST_FLAG_RUNS)
@@ -118,6 +123,13 @@ const AWARD_COUNT = 48;
 const EQUIP_SLOT_SIZE = 12;
 const DECORATION_OFFSETS = [6, 8, 10];
 const EQUIP_SLOT_COUNT = 400;
+// The equipment box's full length, up to ITEM_CHEST: set registrations can
+// reference any of its slots, though the stored box only reads the first 400.
+const EQUIP_BOX_SIZE = 1000;
+const EQUIP_SET_COUNT = 20;
+const EQUIP_SET_SIZE = 0x20;
+// A registration's indexes, in the game's order. Armor is stored legs first.
+const EQUIP_SET_SLOTS = ["weapon", "leggings", "helmet", "plate", "gauntlets", "waist"];
 
 function readName(view, base) {
   const bytes = new Uint8Array(view.buffer, base + OFFSETS.HUNTER_NAME, 24);
@@ -133,6 +145,32 @@ function parseEquipSlot(view, offset) {
   const id   = view.getUint16(offset + 2, true);
   const decorations = DECORATION_OFFSETS.map((d) => view.getUint16(offset + d, true)).filter((d) => d !== 0);
   return { type, id, decorations };
+}
+
+/** The equipment box slot at `index` (0xffff is empty), or null when it's empty or out of range. */
+function parseEquipAt(view, base, index) {
+  if (index === 0xffff || index >= EQUIP_BOX_SIZE) return null;
+  return parseEquipSlot(view, base + OFFSETS.EQUIP_CHEST + index * EQUIP_SLOT_SIZE);
+}
+
+/**
+ * The equipment sets registered at the smithy, in their in-game slots. Empty
+ * registrations are left out; the rest keep their number, so a deleted set
+ * leaves a gap rather than renumbering the others.
+ */
+function parseEquipmentSets(view, base) {
+  const sets = [];
+  for (let i = 0; i < EQUIP_SET_COUNT; i++) {
+    const at = base + OFFSETS.EQUIP_SETS + i * EQUIP_SET_SIZE;
+    const indexes = EQUIP_SET_SLOTS.map((_, j) => view.getUint16(at + j * 2, true));
+    if (indexes.every((index) => index === 0xffff)) continue;
+    const [weapon, leggings, helmet, plate, gauntlets, waist] = indexes.map((index) =>
+      parseEquipAt(view, base, index),
+    );
+    // Armor in ARMOR_SLOTS order (helmet, plate, gauntlets, waist, leggings).
+    sets.push({ number: i + 1, weapon, armor: [helmet, plate, gauntlets, waist, leggings] });
+  }
+  return sets;
 }
 
 function parseItemSlot(view, offset) {
@@ -306,8 +344,8 @@ function parseCharacter(view, base) {
   const awards = parseAwards(view, base);
 
   return {
-    name, sex, look, zenny, playTime, hunterRank, equipBox, itemChest, itemPouch, clearedQuests, monsters,
-    awards, ...parseAwardRecords(view, base),
+    name, sex, look, zenny, playTime, hunterRank, equipBox, equipmentSets: parseEquipmentSets(view, base),
+    itemChest, itemPouch, clearedQuests, monsters, awards, ...parseAwardRecords(view, base),
   };
 }
 

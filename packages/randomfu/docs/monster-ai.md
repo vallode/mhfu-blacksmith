@@ -136,7 +136,9 @@ from the motions it plays:
   the live log, are reaction 1 with stun 5, so they count as attacks.
 - **No attack** (`-`): nothing with power. Roars, wind pressure and
   tremors are rows of the shared effect table (types 5, 6, 7, 0x13, 0x1D)
-  with power 0.
+  with power 0. A few still carry stun (the Blos roar, Rajang's motion 52);
+  they stay **No attack** here because they do no damage, but they can
+  dizzy the hunter (`packages/mhfu-extract/docs/dizzy.md`).
 - em54's own object 0x09D1A2E0 (kind 0x1D), spawned by actions 1.7 and
   1.18 of Kushala Daora, Lunastra and Teostra, counts as an attack although
   it has no row: it is most likely the aura (wind, or fire for Teostra and
@@ -151,8 +153,11 @@ that mattered:
   motion − 1001 in others (em20, em82 and more); missing the second hid
   most attacks of Yian Kut-Ku, Gypceros and Hypnocatrice.
 - Row byte 3 is the hunter's reaction (the hit code branches on it), byte
-  20 is stun: `game_sub` adds it to the hunter's `+0x394`, which `game_task`
-  checks against 150 and clears with the stun-negating skill.
+  20 is stun: `game_sub` adds it to the hunter's `+0x394`; `game_task` folds
+  it into a gauge (`+0x440`) that dizzies at 50, and the gauge only starts
+  draining after a 150-tick hold. The Faint skill works on the gauge. The
+  full code path and the attacks that carry stun are in
+  `packages/mhfu-extract/docs/dizzy.md`.
 - The row index is usually the third argument of the factory, but the
   shared effect factory 0x09B63C58 takes a position there and the row
   fourth; 0x09B65030 makes kind 6 itself (row 7); 0x09AF1990 forwards its

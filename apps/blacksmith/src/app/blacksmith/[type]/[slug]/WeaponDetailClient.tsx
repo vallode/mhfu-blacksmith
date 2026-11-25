@@ -31,7 +31,7 @@ import {
 } from "@/styles/tables";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
-import ModelViewer from "@/components/ModelViewer";
+import WeaponModelViewer from "@/components/WeaponModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useWeaponModel } from "@/lib/models";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -536,7 +536,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
       </DetailCard>
       {modelOpen && (
         <ModelPopover title={name} onClose={() => setOpenModel(null)}>
-          <ModelViewer src={modelUrl} label={name} hunter={type} pair={type === "dual-blades"} />
+          <WeaponModelViewer
+            src={modelUrl}
+            label={name}
+            type={type}
+            pair={type === "dual-blades"}
+          />
         </ModelPopover>
       )}
     </>

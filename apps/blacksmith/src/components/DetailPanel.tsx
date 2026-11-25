@@ -189,12 +189,14 @@ export function StatArrows({ steps }: { steps: number | null }) {
 /** Decoration slots as circles: one per slot, dashes for the rest. */
 export function Slots({ count }: { count?: number }) {
   const label = useT().setBuilder.form.slotCount(count ?? 0);
+  // One line tall: an armor row stretched by a second max-defence line would
+  // otherwise centre the circles below the label's line.
   return (
     <span
       id="weaponSlots"
       role="img"
       aria-label={label}
-      className="inline-flex items-center text-white opacity-50"
+      className="inline-flex h-[1lh] items-center text-white opacity-50"
     >
       {Array.from({ length: 3 }, (_, i) =>
         i < (count ?? 0) ? (

@@ -23,7 +23,7 @@ import { readData } from "game-data";
 const ITEM_IDS: Record<string, number> = { "Iron Ore": 1, Potion: 2, "Mountain Herbs": 3 };
 const itemId = (name: string) => ITEM_IDS[name];
 
-const node = (kind: "gather" | "mine" | "bug", items: [string, number][]) => ({
+const node = (kind: "gather" | "mine" | "bug" | "fish", items: [string, number][]) => ({
   kind,
   count: 1,
   items: items.map(([item, chance]) => ({ item, chance })),
@@ -183,10 +183,17 @@ describe("item places", () => {
 
   test("lists Pokke Farm's points apart from the quests' gathering", () => {
     assert.deepEqual(places.get(1)!.farm, [
-      { point: "Mining Point", spot: "mining", chance: 24, gathers: 3, mostGathers: 4 },
+      { point: "Mining Point", spot: "mining", chance: 24, amount: 1, gathers: 3, mostGathers: 4 },
     ]);
     assert.deepEqual(places.get(2)!.farm, [
-      { point: "Modified Bee Hive", spot: "honey", chance: 100, gathers: 5, mostGathers: 6 },
+      {
+        point: "Modified Bee Hive",
+        spot: "honey",
+        chance: 100,
+        amount: 1,
+        gathers: 5,
+        mostGathers: 6,
+      },
     ]);
     assert.deepEqual(places.get(3)!.farm, []);
     assert.equal(farmPlaceLabel(places.get(1)!.farm[0]!), "Mining · 3-4 per quest");
@@ -225,6 +232,39 @@ describe("item places", () => {
     assert.deepEqual(encoded.unmapped, ["2:1", "2:2", "3:0"]);
     const bundle = JSON.parse(JSON.stringify(encoded));
     assert.deepEqual(decodeItemPlaces(bundle), places);
+  });
+
+  test("shares a fishing place between the fish it gives", () => {
+    const fish: GatheringFile = {
+      layouts: [
+        {
+          map: "Snowy Mountains (Day)",
+          quests: [1001],
+          areas: [
+            {
+              area: 0,
+              nodes: [
+                node("fish", [
+                  ["Goldenfish", 50],
+                  ["Silverfish", 50],
+                ]),
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    const fishPlaces = buildItemPlaces(
+      fish,
+      { shops: [] },
+      { points: [] },
+      quests,
+      (name) => (({ Goldenfish: 241, Silverfish: 242 }) as Record<string, number>)[name],
+    );
+    const encoded = encodeItemPlaces(fishPlaces);
+    assert.equal(encoded.fishPoints, "0");
+    assert.deepEqual(encoded.fishing, [[0, [[0, [1714, 1842]]]]]);
+    assert.deepEqual(decodeItemPlaces(encoded), fishPlaces);
   });
 
   test("labels", () => {
@@ -284,6 +324,20 @@ describe("item places", () => {
     );
     // Iron Ore is mined on many maps, and the general store sells Potions from the start.
     assert.ok(real.get(index.get(normalizeItemName("Iron Ore"))!)!.gathering.length > 10);
+    // The fish account items come from fishing points (data/mhfu/gathering.json's fish nodes).
+    const fishing = (name: string) =>
+      real
+        .get(index.get(normalizeItemName(name))!)!
+        .gathering.filter((p) => p.points.every((point) => point.kind === "fish"));
+    assert.equal(
+      fishing("Goldenfish").find((p) => p.group === "G Rank" && p.map === "Forest and Hills (Day)")
+        ?.chance,
+      15,
+    );
+    assert.equal(
+      fishing("Silverfish").find((p) => p.group === "G Rank" && p.map === "Old Swamp")?.chance,
+      15,
+    );
     assert.equal(
       shopStagesLabel(real.get(index.get(normalizeItemName("Potion"))!)!.shops[0]!),
       "From the start",
@@ -292,6 +346,23 @@ describe("item places", () => {
     // only the last one gives Purecrystal.
     const farmed = (name: string) =>
       real.get(index.get(normalizeItemName(name))!)!.farm.map((p) => [p.point, p.chance]);
+    const farmedFish = (name: string) =>
+      real
+        .get(index.get(normalizeItemName(name))!)!
+        .farm.filter((p) => p.spot === "fishing")
+        .map((p) => [p.point, p.chance, p.amount]);
+    assert.deepEqual(farmedFish("Springnight Carp"), [
+      ["Fishing Pier", 2, 1],
+      ["Fishing Pier +1", 5, 1],
+      ["Fishing Pier +2", 3, 1],
+      ["Casting Machine", 5, 1],
+    ]);
+    assert.deepEqual(farmedFish("Tailed Frog"), [["Casting Machine", 5, 1]]);
+    assert.deepEqual(farmedFish("Knife Mackerel"), [
+      ["Fishing Pier", 28, 1],
+      ["Casting Machine", 3, 3],
+      ["Casting Machine", 5, 1],
+    ]);
     assert.deepEqual(farmed("Armor Stone"), [["Mining Point", 1]]);
     assert.deepEqual(farmed("Purecrystal"), [["Mining Point +4", 4]]);
     assert.deepEqual(farmed("Machalite Ore"), [

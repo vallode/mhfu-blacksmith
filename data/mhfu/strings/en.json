@@ -5405,7 +5405,11 @@
     "12": "Mushroom Tree +2",
     "13": "Prototype Bee Hive",
     "14": "Production Bee Hive",
-    "15": "Modified Bee Hive"
+    "15": "Modified Bee Hive",
+    "16": "Fishing Pier",
+    "17": "Fishing Pier +1",
+    "18": "Fishing Pier +2",
+    "19": "Casting Machine"
   },
   "award": {
     "0": "Village Chief's Glove",

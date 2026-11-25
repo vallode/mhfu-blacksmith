@@ -21,6 +21,7 @@ export const monsters: Messages["monsters"] = {
       quests: "Misiones",
       spawns: "Dónde abunda",
       status: "Estados",
+      drops: "Materiales",
     },
   },
   status: {

@@ -1,8 +1,9 @@
 /**
- * The wishlist: weapons, armor and decorations the player wants to make, the materials
- * they add up to, and where each material is best found. Pure, so the
- * wishlist page builds it from the bundles it loads and the tests build it
- * from data/. The list itself is kept in localStorage (wishlist-store.ts).
+ * The wishlist: weapons, armor and decorations the player wants to make, items
+ * they want to get, the materials they add up to, and where each is best
+ * found. Pure, so the wishlist page builds it from the bundles it loads and
+ * the tests build it from data/. The list itself is kept in localStorage
+ * (wishlist-store.ts).
  */
 import { ARMOR_SLOTS, type ArmorRank, type ArmorSlot, type WeaponType } from "./constants";
 import { weaponHref } from "./equipment-ref";
@@ -63,10 +64,17 @@ export interface DecorationEntry extends EntryBase {
   count?: number;
 }
 
-export type WishlistEntry = WeaponEntry | ArmorEntry | DecorationEntry;
+export interface ItemEntry extends EntryBase {
+  kind: "item";
+  /** How many of the item to get, in addition to any materials gear needs. Unset: one. */
+  count?: number;
+}
 
-/** The most of one decoration an entry can ask for: a full set's slots, and then some. */
-export const MAX_DECORATION_COUNT = 99;
+export type GearEntry = WeaponEntry | ArmorEntry | DecorationEntry;
+export type WishlistEntry = GearEntry | ItemEntry;
+
+/** The most of one decoration or item an entry can ask for. */
+export const MAX_ENTRY_COUNT = 99;
 
 /** The gear an entry is for, without its choices: what `entryKey` reads. */
 export type GearRef =
@@ -74,11 +82,14 @@ export type GearRef =
   | Pick<ArmorEntry, "kind" | "slot" | "rank" | "slug">
   | Pick<DecorationEntry, "kind" | "slug">;
 
+export type ItemRef = Pick<ItemEntry, "kind" | "slug">;
+export type WishlistRef = GearRef | ItemRef;
+
 /**
  * An entry's identity, which is also its page: "weapon/<type>/<slug>",
- * "armor/<slot>/<rank>/<slug>", "decoration/<slug>".
+ * "armor/<slot>/<rank>/<slug>", "decoration/<slug>", "item/<slug>".
  */
-export function entryKey(ref: GearRef): string {
+export function entryKey(ref: WishlistRef): string {
   switch (ref.kind) {
     case "weapon":
       return `weapon/${ref.type}/${ref.slug}`;
@@ -86,10 +97,12 @@ export function entryKey(ref: GearRef): string {
       return `armor/${ref.slot}/${ref.rank}/${ref.slug}`;
     case "decoration":
       return `decoration/${ref.slug}`;
+    case "item":
+      return `item/${ref.slug}`;
   }
 }
 
-export function entryHref(ref: GearRef): string {
+export function entryHref(ref: WishlistRef): string {
   switch (ref.kind) {
     case "weapon":
       return weaponHref(ref.type, ref.slug);
@@ -97,20 +110,24 @@ export function entryHref(ref: GearRef): string {
       return `/armorsmith/${ref.slot}/${ref.rank}/${ref.slug}/`;
     case "decoration":
       return `/decorations/${ref.slug}/`;
+    case "item":
+      return `/items/${ref.slug}/`;
   }
 }
 
-/** How many of the gear an entry wants: a decoration's count, else one. */
+/** How many an entry wants: a decoration's or item's count, else one. */
 export function entryCount(entry: WishlistEntry): number {
-  return entry.kind === "decoration" ? (entry.count ?? 1) : 1;
+  return entry.kind === "decoration" || entry.kind === "item" ? (entry.count ?? 1) : 1;
 }
 
-/** Gear to add to the wishlist; a decoration with how many (1 if unset). */
+/** Gear to add from a set; a decoration with how many (1 if unset). */
 export type GearWant = GearRef & { count?: number };
+/** Anything to add to the wishlist; a decoration or item with how many (1 if unset). */
+export type WishlistWant = WishlistRef & { count?: number };
 
-/** A decoration count kept to 1…MAX_DECORATION_COUNT. */
+/** A decoration or item count kept to 1…MAX_ENTRY_COUNT. */
 const clampCount = (n: number) =>
-  Math.min(MAX_DECORATION_COUNT, Math.max(1, Math.floor(Number.isFinite(n) ? n : 1)));
+  Math.min(MAX_ENTRY_COUNT, Math.max(1, Math.floor(Number.isFinite(n) ? n : 1)));
 
 /**
  * What an armor set needs made: each piece, head to legs, then each jewel
@@ -132,23 +149,24 @@ export function setWants(set: {
   ];
 }
 
-/** How many of the gear a want asks for: a decoration's count, clamped, else one. */
-const wantCount = (w: GearWant) => (w.kind === "decoration" ? clampCount(w.count ?? 1) : 1);
+/** How many a want asks for: a decoration's or item's count, clamped, else one. */
+const wantCount = (w: WishlistWant) =>
+  w.kind === "decoration" || w.kind === "item" ? clampCount(w.count ?? 1) : 1;
 
 /**
- * Adds every wanted gear the list doesn't have, first and in the order given;
- * a decoration already listed is raised to the count wanted (never lowered),
- * so adding the same set twice changes nothing. Gear wanted more than once
- * takes the largest count. Returns the list and how many entries were added
- * or raised.
+ * Adds everything wanted that the list doesn't have, first and in the order
+ * given; a decoration or item already listed is raised to the count wanted
+ * (never lowered), so adding the same set twice changes nothing. Anything
+ * wanted more than once takes the largest count. Returns the list and how
+ * many entries were added or raised.
  */
 export function addEntries(
   entries: readonly WishlistEntry[],
-  wants: readonly GearWant[],
+  wants: readonly WishlistWant[],
   now = Date.now(),
 ): [WishlistEntry[], number] {
-  // Each gear once, in the order first wanted, with the most of it wanted.
-  const merged = new Map<string, { ref: GearRef; n: number }>();
+  // Each entry once, in the order first wanted, with the most of it wanted.
+  const merged = new Map<string, { ref: WishlistRef; n: number }>();
   for (const { count, ...ref } of wants) {
     const key = entryKey(ref);
     const n = wantCount({ ...ref, count });
@@ -164,7 +182,7 @@ export function addEntries(
       added.push(
         (n > 1 ? { ...ref, count: n, addedAt: now } : { ...ref, addedAt: now }) as WishlistEntry,
       );
-    } else if (had.kind === "decoration" && n > entryCount(had)) {
+    } else if ((had.kind === "decoration" || had.kind === "item") && n > entryCount(had)) {
       raised.set(key, n);
     }
   }
@@ -176,8 +194,8 @@ export function addEntries(
   return [[...added, ...kept], added.length + raised.size];
 }
 
-/** Whether the list has every wanted gear, each decoration at least as many times. */
-export function hasAll(entries: readonly WishlistEntry[], wants: readonly GearWant[]): boolean {
+/** Whether the list has every want, each decoration or item at least as many times. */
+export function hasAll(entries: readonly WishlistEntry[], wants: readonly WishlistWant[]): boolean {
   const listed = new Map(entries.map((e) => [entryKey(e), e]));
   return wants.every((w) => {
     const e = listed.get(entryKey(w));
@@ -445,14 +463,25 @@ export interface MaterialNeed {
   for: string[];
 }
 
+/** An item wanted for itself, in addition to whatever the crafts need. */
+export interface ItemRequirement {
+  id: number;
+  name: string;
+  type: string;
+  color: string;
+  amount: number;
+}
+
 /**
- * Every material the crafts need, summed by item (a material spelt two ways
- * is one item), in the order they're first needed. Each craft is tagged with
- * the gear it's for.
+ * Every material the crafts and explicit item entries need, summed by item
+ * (a material spelt two ways is one item), in the order they're first needed.
+ * Each craft is tagged with the gear it's for; an item wanted for itself adds
+ * to the same total rather than making a second row.
  */
 export function totalMaterials(
   crafts: { gear: string; steps: CraftStep[] }[],
   idOf: (name: string) => number | undefined,
+  wantedItems: readonly ItemRequirement[] = [],
 ): MaterialNeed[] {
   const needs = new Map<string, MaterialNeed>();
   for (const { gear, steps } of crafts) {
@@ -479,6 +508,31 @@ export function totalMaterials(
         if (!need.for.includes(gear)) need.for.push(gear);
       }
     }
+  }
+  for (const item of wantedItems) {
+    const amount = Number(item.amount);
+    if (!Number.isFinite(amount) || amount <= 0) continue;
+    const key = `#${item.id}`;
+    let need = needs.get(key);
+    if (!need) {
+      need = {
+        name: item.name,
+        itemId: item.id,
+        href: itemHref(item.name),
+        type: item.type,
+        color: item.color,
+        amount: 0,
+        for: [],
+      };
+      needs.set(key, need);
+    } else {
+      // An explicitly listed item has the canonical name, link and icon.
+      need.name = item.name;
+      need.href = itemHref(item.name);
+      need.type = item.type;
+      need.color = item.color;
+    }
+    need.amount += amount;
   }
   return [...needs.values()];
 }
@@ -584,7 +638,12 @@ function dropDetail({ title, count, note }: DropSource): string {
 /** A map without its time of day: its day and night gathering are one place to go. */
 export const mapArea = (map: string) => map.replace(/ \((Day|Night)\)$/, "");
 
-const GATHER_VERBS = { gather: "Gathering", mine: "Mining", bug: "Bug catching" } as const;
+const GATHER_VERBS = {
+  gather: "Gathering",
+  mine: "Mining",
+  bug: "Bug catching",
+  fish: "Fishing",
+} as const;
 
 /** What the ways need from the item lookup, for combinations' names. */
 export interface WayItems {
@@ -684,7 +743,7 @@ export function itemWays(
       farm: p,
       chance: p.chance,
       tier: 3,
-      yield: p.chance / 100,
+      yield: (p.chance / 100) * p.amount,
     });
   }
   for (const s of sources?.quests ?? []) {

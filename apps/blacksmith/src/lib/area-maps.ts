@@ -21,6 +21,18 @@ const UNGATHERED_TEXTURES: Record<string, string> = {
   "Tower 1": "map15",
 };
 
+/** Every map that has a texture, from its gathering layouts and `UNGATHERED_TEXTURES`. */
+export function mapTextures(gathering: GatheringFile): Map<string, string> {
+  const out = new Map<string, string>();
+  for (const layout of gathering.layouts) {
+    if (layout.texture && !out.has(layout.map)) out.set(layout.map, layout.texture);
+  }
+  for (const [map, texture] of Object.entries(UNGATHERED_TEXTURES)) {
+    if (!out.has(map)) out.set(map, texture);
+  }
+  return out;
+}
+
 export interface AreaMapPoint {
   /** 0 is the Base Camp, then the map's numbered areas. */
   area: number;
@@ -59,7 +71,7 @@ export interface AreaMapsBundle {
   quests: Record<string, number>;
 }
 
-const KINDS: GatherKind[] = ["gather", "mine", "bug"];
+const KINDS: GatherKind[] = ["gather", "mine", "bug", "fish"];
 
 /** Each layout with positions, and which quests use it; maps without points get an empty entry. */
 export function buildAreaMaps(
@@ -83,19 +95,15 @@ export function buildAreaMaps(
     return i;
   };
   /** A map name -> its texture, from the layouts (and the maps they don't cover). */
-  const textures = new Map<string, string>();
+  const textures = mapTextures(gathering);
   for (const layout of gathering.layouts) {
-    if (layout.texture && !textures.has(layout.map)) textures.set(layout.map, layout.texture);
-  }
-  for (const [map, texture] of Object.entries(UNGATHERED_TEXTURES)) {
-    if (!textures.has(map)) textures.set(map, texture);
-  }
-  for (const layout of gathering.layouts) {
-    if (!layout.texture) continue;
-    const points = layout.areas.flatMap(({ area, nodes }) =>
-      nodes.flatMap((node) =>
+    const texture = layout.texture;
+    if (!texture) continue;
+    const points: EncodedPoint[] = [];
+    for (const { area, nodes } of layout.areas) {
+      const areaPoints = nodes.flatMap((node) =>
         (node.positions ?? []).map(([x, y]): EncodedPoint => [
-          areaNumber(layout.texture, area),
+          areaNumber(texture, area),
           KINDS.indexOf(node.kind),
           x,
           y,
@@ -103,10 +111,25 @@ export function buildAreaMaps(
           node.most_gathers ?? null,
           list(node.items),
         ]),
-      ),
-    );
+      );
+      points.push(...areaPoints);
+      // Fishing is known by area, not by point. Anchor it on a real placed
+      // point in the same area so the area can show what it yields.
+      const fish = nodes.find((node) => node.kind === "fish");
+      const anchor = areaPoints[0];
+      if (!fish || !anchor) continue;
+      points.push([
+        areaNumber(texture, area),
+        KINDS.indexOf("fish"),
+        anchor[2],
+        anchor[3],
+        null,
+        null,
+        list(fish.items),
+      ]);
+    }
     if (points.length === 0) continue;
-    const index = bundle.maps.push([layout.texture, points]) - 1;
+    const index = bundle.maps.push([texture, points]) - 1;
     for (const quest of layout.quests) bundle.quests[quest] = index;
   }
 
@@ -152,7 +175,8 @@ export function decodeAreaMap(bundle: AreaMapsBundle, questId: number): AreaMap 
 /**
  * What a click at (x, y) selects among the points within `reach` of it,
  * nearest first: each press moves on to the next, then to none, so points
- * that overlap can all be reached.
+ * that overlap can all be reached. On an exact tie the later marker wins,
+ * which is the one drawn on top.
  */
 export function nextSelection(
   points: readonly { x: number; y: number; index: number }[],
@@ -164,7 +188,7 @@ export function nextSelection(
   const distance = (p: { x: number; y: number }) => Math.hypot(p.x - x, p.y - y);
   const under = points
     .filter((p) => Math.abs(p.x - x) <= reach && Math.abs(p.y - y) <= reach)
-    .sort((a, b) => distance(a) - distance(b) || a.index - b.index)
+    .sort((a, b) => distance(a) - distance(b) || b.index - a.index)
     .map((p) => p.index);
   return under[(selected === null ? -1 : under.indexOf(selected)) + 1] ?? null;
 }

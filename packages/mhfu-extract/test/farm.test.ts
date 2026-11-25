@@ -2,13 +2,16 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { BinaryReader } from "../src/binary/reader.js";
 import { emitFarm } from "../src/emit/farm.js";
+import type { FishTables } from "../src/quests/fishing.js";
 import {
   FARM_LAYOUT,
   FARM_ROW_SIZE,
   FARM_TABLES_EU,
   FARM_TABLES_SIZE,
+  FISH_CASTER_ROWS,
   HONEY_COUNTS_AFTER,
   readFarmTables,
+  readFishCaster,
 } from "../src/tables/farm.js";
 
 type Rows = [item: number, chance: number][];
@@ -167,4 +170,65 @@ test("emitted with item names", () => {
       { item: "Purecrystal", chance: 50 },
     ],
   });
+});
+
+test("the Casting Machine's rewards are found by their 19-row shape", () => {
+  const buf = Buffer.alloc(0x200);
+  const rows: [number, number, number][] = [
+    [229, 60, 3],
+    [243, 40, 2],
+    ...Array.from({ length: FISH_CASTER_ROWS - 2 }, (_, i): [number, number, number] => [
+      230 + i,
+      0,
+      1,
+    ]),
+  ];
+  rows.forEach(([item, chance, amount], i) => {
+    buf.writeUInt16LE(item, 0x80 + i * 4);
+    buf.writeUInt8(chance, 0x80 + i * 4 + 2);
+    buf.writeUInt8(amount, 0x80 + i * 4 + 3);
+  });
+  assert.deepEqual(readFishCaster(new BinaryReader(buf))?.slice(0, 2), [
+    { item: 229, chance: 60, amount: 3 },
+    { item: 243, chance: 40, amount: 2 },
+  ]);
+});
+
+test("emitted with the Fishing Pier's levels and the Casting Machine", () => {
+  const tables = TABLES.map((rows, t): Rows =>
+    t === 4
+      ? [
+          [222, 50],
+          [217, 50],
+        ]
+      : rows,
+  );
+  const pier: FishTables = [
+    [{ itemId: 229, chance: 100 }],
+    [{ itemId: 231, chance: 100 }],
+    [{ itemId: 234, chance: 100 }],
+    [],
+    [],
+    [],
+  ];
+  const out = emitFarm(readFarmTables(eboot(tables, 0))!, {
+    pier,
+    caster: [
+      { item: 243, chance: 60, amount: 2 },
+      { item: 245, chance: 40, amount: 1 },
+    ],
+  });
+  assert.deepEqual(
+    out.points.slice(-4).map((p) => [p.name, p.spot, p.gathers, p.most_gathers]),
+    [
+      ["Fishing Pier", "fishing", null, null],
+      ["Fishing Pier +1", "fishing", null, null],
+      ["Fishing Pier +2", "fishing", null, null],
+      ["Casting Machine", "fishing", null, null],
+    ],
+  );
+  assert.deepEqual(out.points.at(-1)!.items, [
+    { item: "Ancient Fish", chance: 60, amount: 2 },
+    { item: "Tailed Frog", chance: 40 },
+  ]);
 });

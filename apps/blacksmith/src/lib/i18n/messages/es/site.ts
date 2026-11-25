@@ -25,6 +25,7 @@ export const site: Messages["site"] = {
     menu: "Menú",
     loadHunter: "Cargar cazador",
   },
+  discord: "Discord",
   language: {
     heading: "Idioma",
     label: "Idioma",

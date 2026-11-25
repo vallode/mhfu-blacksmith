@@ -17,54 +17,32 @@ import type { GameText } from "@/lib/i18n/game-text";
 import type { Messages } from "@/lib/i18n/messages";
 import { groupBy, itemHref } from "@/lib/item-sources";
 import { type Quest, type QuestSpawn, questHref } from "@/lib/quests";
-import { leadSpawn, spawnAreas, type SpawnArea } from "@/lib/quest-spawns";
+import { spawnAreas, type SpawnArea } from "@/lib/quest-spawns";
 
-/** The mining and bug nodes' sprites (public/images/map-points); gathering points use an item icon. */
+/** The mining and bug nodes' tools; other points show their likeliest item's icon. */
 const NODE_SPRITES: Partial<Record<GatherKind, string>> = {
   mine: "/images/map-points/pickaxe.png",
   bug: "/images/map-points/net.png",
 };
 
+/** The monster-spawn marker: one claw for all of an area's monsters. */
+const SPAWN_SPRITE = "/images/claw.png";
+
 const percent = (pixels: number) => `${(pixels / AREA_MAP_SIZE) * 100}%`;
 
-/** A monster's 36px sprite, from the slug of its monster page. */
-function monsterSprite(href: string | null): string | null {
-  const slug = href?.split("/").filter(Boolean).at(-1);
-  return slug ? `/images/monsters/${slug}.png` : null;
-}
-
-/** An area's monsters as one marker: its lead monster's sprite. */
-function MonsterAreaMarker({ area, selected }: { area: SpawnArea; selected: boolean }) {
-  const spawn = leadSpawn(area.spawns);
-  const src = monsterSprite(spawn.monster.href);
-  const large = spawn.kind === "large";
+/**
+ * An area's monsters as one marker: the white claw. The selected marker's
+ * details carry each species and quantity.
+ */
+function MonsterAreaMarker({ selected }: { selected: boolean }) {
   return (
-    <span className="relative grid size-full place-items-center">
-      {src ? (
-        <img
-          src={src}
-          alt=""
-          decoding="sync"
-          className={cn(
-            "object-contain drop-shadow-[0_0_2px_rgba(0,0,0,0.9)] pixelated",
-            large ? "size-[3.2rem]" : "size-[2.6rem]",
-            selected && "outline-2 outline-white",
-          )}
-        />
-      ) : (
-        <span
-          className={cn(
-            "block size-[1.1rem] rotate-45 border border-black",
-            large ? "bg-gem-red" : "bg-gem-gray",
-            selected && "outline-2 outline-white",
-          )}
-        />
-      )}
-      {area.monsters.length > 1 && (
-        <span className="absolute -top-[0.4rem] -right-[0.4rem] grid h-[1.6rem] min-w-[1.8rem] place-items-center bg-black/80 px-[0.2rem] text-fine leading-none text-gem-yellow">
-          ×{area.monsters.length}
-        </span>
-      )}
+    <span className="grid size-full place-items-center">
+      <img
+        src={SPAWN_SPRITE}
+        alt=""
+        decoding="sync"
+        className={cn("size-[2rem] pixelated", selected && "outline-2 outline-white")}
+      />
     </span>
   );
 }
@@ -318,17 +296,19 @@ function AreaMap({
             onClick={(event) => pick(event, i)}
             style={{ left: percent(m.x), top: percent(m.y) }}
             className={cn(
-              "absolute grid size-[3.2rem] -translate-1/2 cursor-pointer place-items-center border-0 bg-transparent p-0",
+              // 20px art in a 44px touch target on phones (32px elsewhere,
+              // where overlapping points are easier to aim at).
+              "absolute grid size-[3.2rem] -translate-1/2 cursor-pointer place-items-center border-0 bg-transparent p-0 mobile:size-[4.4rem]",
               m.point && gives && lit(m) && "z-1",
               selected === i && "z-10",
             )}
           >
             {m.monsterArea ? (
-              <MonsterAreaMarker area={m.monsterArea} selected={selected === i} />
+              <MonsterAreaMarker selected={selected === i} />
             ) : (
               <span
                 className={cn(
-                  "flex size-[3.2rem] items-center justify-center",
+                  "flex size-[2rem] items-center justify-center",
                   !lit(m) && "opacity-35",
                   selected === i && "opacity-100 outline-2 outline-white",
                 )}
@@ -337,10 +317,10 @@ function AreaMap({
                   <img
                     src={NODE_SPRITES[m.point!.kind] ?? NODE_SPRITES.mine}
                     alt=""
-                    className="size-[3.2rem] pixelated"
+                    className="size-[2rem] pixelated"
                   />
                 ) : (
-                  <Icon {...iconOf(nodeItem(m.point!))} className="mr-0" />
+                  <Icon {...iconOf(nodeItem(m.point!))} size="small" className="mr-0" />
                 )}
               </span>
             )}
@@ -385,11 +365,14 @@ function AreaMap({
             <Stat label={t.areaHeading(t.area(shown.area))}>
               <span className="whitespace-normal text-white">{label(shown.point.kind)}</span>
             </Stat>
-            <Stat label={t.gathers}>
-              <span className="text-white tabular-nums">
-                {gatherCount(shown.point.gathers, shown.point.mostGathers)}
-              </span>
-            </Stat>
+            {/* Fishing is per area, not a node with a gather count. */}
+            {shown.point.kind !== "fish" && (
+              <Stat label={t.gathers}>
+                <span className="text-white tabular-nums">
+                  {gatherCount(shown.point.gathers, shown.point.mostGathers)}
+                </span>
+              </Stat>
+            )}
           </StatList>
           <div className="flex flex-col gap-y-[13px]">
             {shown.point.items.map(({ item, chance }) => {

@@ -50,7 +50,8 @@ export const setBuilder: Messages["setBuilder"] = {
       weapon: "Arma",
       badSkills: "habilidades negativas permitidas",
       allQuests: "todas las misiones",
-      ownedArmor: "armadura obtenida",
+      ownedArmorPreferred: "armadura obtenida preferida",
+      ownedArmorOnly: "solo armadura obtenida",
     },
     allowBadSkills: "Permitir habilidades negativas",
     allowBadSkillsNote:
@@ -64,8 +65,14 @@ export const setBuilder: Messages["setBuilder"] = {
         options,
         ") deja fuera las armaduras y adornos que necesitan materiales de misiones posteriores. Actívalo para buscar entre todos.",
       ),
-    ownedOnly: "Solo armadura obtenida",
-    ownedOnlyNote: "Usar solo la armadura de la caja de equipo de tu cazador.",
+    ownedArmor: "Armadura obtenida",
+    ownedArmorNote:
+      "Buscar toda la armadura, poner primero los conjuntos con armadura de la caja de equipo de tu cazador, o usar solo esa armadura.",
+    ownedModes: {
+      off: "Cualquiera",
+      prefer: "Preferir obtenida",
+      only: "Solo obtenida",
+    },
     locked: {
       title: "Siempre usadas",
       note: "Todos los conjuntos las usan, sea cual sea el rango o el progreso de misiones, si el cazador puede llevarlas.",
@@ -110,7 +117,7 @@ export const setBuilder: Messages["setBuilder"] = {
     intro:
       "Añade las habilidades que quieras y busca: todos los conjuntos de armadura con adornos que las activan. Los mejores conjuntos aparecen primero: por defensa o por el orden que elijas.",
     addSkills: "Añadir habilidades",
-    noSets: (progress: boolean, locked: boolean, excluded: boolean) => {
+    noSets: (progress: boolean, locked: boolean, excluded: boolean, ownedOnly: boolean) => {
       const tips = [
         "menos habilidades",
         "un rango más alto",
@@ -118,6 +125,7 @@ export const setBuilder: Messages["setBuilder"] = {
         "permitir habilidades negativas",
         ...(locked ? ["liberar piezas que siempre se usan"] : []),
         ...(excluded ? ["quitar piezas excluidas"] : []),
+        ...(ownedOnly ? ["usar armadura que no tienes"] : []),
         ...(progress ? ["ignorar tu progreso de misiones"] : []),
       ];
       const last = tips.pop();
@@ -324,6 +332,24 @@ export const setBuilder: Messages["setBuilder"] = {
     deleteLabel: (name: string) => `Eliminar ${name}`,
     cantOpen: "No se puede abrir en esta versión.",
     summary: (hunterType: string, defense: string) => `${hunterType}, Defensa ${defense}`,
+  },
+
+  /** Los conjuntos de la partida, en la pestaña Mis conjuntos y en solo lectura. */
+  saveSets: {
+    /** La etiqueta de un conjunto de la partida en Mis conjuntos. */
+    badge: "Partida",
+    readOnly: "Solo lectura",
+    /** El botón del detalle de solo lectura en Mis conjuntos. */
+    view: "Ver",
+    stale:
+      "Esta partida se leyó antes de que el creador de conjuntos guardara los conjuntos de equipo.",
+    reload: "Volver a cargar la partida",
+    loadingWeapon: "Cargando el arma…",
+    unknown: (list: string) =>
+      `Parte del equipo no existe en esta versión del sitio, así que no se cuenta: ${list}.`,
+    unknownWeapon: (id: number) => `arma (ID ${id})`,
+    unknownPiece: (slot: string, id: number) => `${slot} (ID ${id})`,
+    unknownDecoration: (itemId: number) => `adorno (objeto ${itemId})`,
   },
 
   reach: {

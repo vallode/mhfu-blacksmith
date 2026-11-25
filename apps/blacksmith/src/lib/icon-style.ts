@@ -108,8 +108,8 @@ export interface IconStyleOptions {
   color?: string | null;
   element?: string | null;
   rank?: string | null;
-  /** Size of the mask image; "mini" uses the -mini.png mask. */
-  size?: "default" | "large" | "mini";
+  /** Size of the mask image; "mini" uses the -mini.png mask, "small" is 20px. */
+  size?: "default" | "large" | "mini" | "small";
   nav?: boolean;
   /** Highlights the icon with the rarity-4 green (used by nav icons). */
   active?: boolean;
@@ -163,6 +163,7 @@ export function iconStyle(opts: IconStyleOptions): { className: string; style: C
     className: cn(
       "relative mr-[6px] flex h-[32px] w-[32px] flex-[0_0_3.2rem]",
       // flex-basis must grow with the box or the row squashes it horizontally
+      size === "small" && "h-[2rem] w-[2rem] flex-[0_0_2rem]",
       size === "large" && "h-[52px] w-[52px] flex-[0_0_52px]",
       // Large monster type icons (36px sprites) are drawn at their own size,
       // so their pixels scale by whole numbers at every screen density, and
@@ -193,6 +194,7 @@ export function iconImgClass({
 }: Pick<IconStyleOptions, "size" | "monster">): string {
   return cn(
     "relative h-[32px] w-[32px] pixelated",
+    size === "small" && "h-[2rem] w-[2rem]",
     size === "large" && (monster ? "h-[36px] w-[36px]" : "h-[52px] w-[52px]"),
     monster && size !== "large" && "p-[4px]",
   );

@@ -17,6 +17,23 @@ export interface EquipSlot {
 }
 
 /**
+ * One of the equipment sets registered at the smithy's Equipment Box, as a
+ * save file holds it. The game numbers them 1-20; deleted registrations leave
+ * gaps, so the numbers aren't consecutive.
+ */
+export interface SaveEquipmentSet {
+  /** The in-game registration number, 1-20. */
+  number: number;
+  /** The registered weapon, or null if its slot is empty. */
+  weapon: EquipSlot | null;
+  /**
+   * The five armor pieces, in ARMOR_SLOTS order (helmet, plate, gauntlets,
+   * waist, leggings), or null where the set has none.
+   */
+  armor: (EquipSlot | null)[];
+}
+
+/**
  * One monster's records from the hunter's Guild Card tables, by the game's
  * monster ID (src/lib/monster-ids.ts). `largest`/`smallest` are the size
  * records, in percent of the monster's base size (src/lib/crowns.ts).
@@ -99,6 +116,8 @@ export interface SaveData extends AwardRecords {
   zenny?: number;
   /** Missing on saves stored before the equipment box was read. */
   equipment?: EquipSlot[];
+  /** Missing on saves stored before the registered equipment sets were read. */
+  equipmentSets?: SaveEquipmentSet[];
   /** Missing on saves stored before these were kept. */
   sex?: string;
   /** The look picked at character creation. Missing on saves stored before it was read. */
@@ -139,6 +158,7 @@ export function saveFromCharacter(
     itemChest: ItemSlot[];
     itemPouch: ItemSlot[];
     equipBox: EquipSlot[];
+    equipmentSets?: SaveEquipmentSet[];
     clearedQuests?: number[];
     monsters?: MonsterRecord[];
     awards?: number[];
@@ -156,6 +176,7 @@ export function saveFromCharacter(
     items: [...character.itemChest, ...character.itemPouch],
     zenny: character.zenny,
     equipment: character.equipBox,
+    equipmentSets: character.equipmentSets,
     sex: character.sex,
     look: character.look,
     playTime: character.playTime,

@@ -7,10 +7,10 @@
  * (src/workers/set-search.worker.ts) and in the tests.
  *
  * The search is exact: unless it runs out of time, it returns the `limit`
- * best sets (by defence, or the query's sort key), and a set it leaves out
- * is never better than the ones it returns. Sets that differ only in pieces
- * with the same points and slots are one set, the other pieces being its
- * alternatives. How:
+ * best sets (by the query's sort key, after the preferred pieces), and a set
+ * it leaves out is never better than the ones it returns. Sets that differ
+ * only in pieces with the same points and slots are one set, the other
+ * pieces being its alternatives. How:
  * 1. Each wanted skill becomes a skill tree and a points threshold
  *    ("Attack Up (Large)" -> Attack >= 20). Without bad skills, every other
  *    tree must also stay above its negative skill (Defense > -10).
@@ -252,6 +252,12 @@ export interface SearchQuery {
   /** Only use these pieces (e.g. the hunter's equipment box). */
   onlyPieces?: number[];
   /**
+   * Prefer sets that use these pieces (e.g. the hunter's equipment box):
+   * sets with more of them rank first, whatever the sort key, and the sort
+   * (with defence as its tie-break) orders the sets that use as many.
+   */
+  preferPieces?: number[];
+  /**
    * The hunter's quest progress: leave out pieces and decorations that need
    * materials from later quests. Null or omitted uses all of them.
    */
@@ -264,7 +270,7 @@ export interface SearchQuery {
    * pieces say, as long as the hunter can wear it.
    */
   lockPieces?: number[];
-  /** What "best" means: highest defence by default (see SortKey). */
+  /** What "best" means among sets using as many preferred pieces: highest defence by default. */
   sort?: SortKey;
   /** Return the best this many sets. */
   limit?: number;
@@ -278,6 +284,29 @@ export interface SearchQuery {
  * higher defence.
  */
 export type SortKey = "defence" | "fire" | "water" | "thunder" | "ice" | "dragon" | "slots";
+
+/** The query fields a search's results depend on, to tell whether a search is out of date. */
+const SAME_QUERY_KEYS = [
+  "skills",
+  "hunterType",
+  "sex",
+  "rank",
+  "weaponSlots",
+  "allowBadSkills",
+  "sort",
+  "progress",
+  "lockPieces",
+  "excludePieces",
+  "onlyPieces",
+  "preferPieces",
+] as const;
+
+/** Whether two queries ask for the same sets: their options and piece lists are equal. */
+export function sameQuery(a: SearchQuery, b: SearchQuery): boolean {
+  return SAME_QUERY_KEYS.every(
+    (k) => JSON.stringify(a[k] ?? null) === JSON.stringify(b[k] ?? null),
+  );
+}
 
 /** Index into `res` for the resistance sort keys. */
 const RES_INDEX: Partial<Record<SortKey, number>> = {
@@ -294,14 +323,23 @@ const RES_INDEX: Partial<Record<SortKey, number>> = {
  */
 const SCORE_SCALE = 10_000;
 
-/** A set's score: the higher, the better it ranks (see SortKey). */
+/**
+ * What one preferred piece adds to a score: more than any set's other score
+ * can differ by, so sets with more preferred pieces always rank first.
+ */
+const PREFERRED_SCALE = 1_000_000_000;
+
+/**
+ * A set's score: the higher, the better it ranks (see SortKey, and
+ * SearchQuery.preferPieces). A set's `preferred` is how many of its pieces
+ * the query preferred.
+ */
 export function setScore(
-  set: Pick<ArmorSet, "defence" | "res" | "freeSlots">,
+  set: Pick<ArmorSet, "defence" | "res" | "freeSlots"> & { preferred?: number },
   sort: SortKey = "defence",
 ): number {
-  if (sort === "defence") return set.defence;
-  const key = sort === "slots" ? set.freeSlots : set.res[RES_INDEX[sort]!];
-  return key * SCORE_SCALE + set.defence;
+  const key = sort === "defence" ? 0 : sort === "slots" ? set.freeSlots : set.res[RES_INDEX[sort]!];
+  return (set.preferred ?? 0) * PREFERRED_SCALE + key * SCORE_SCALE + set.defence;
 }
 
 /**
@@ -309,10 +347,9 @@ export function setScore(
  * add up to the set's score (setScore), except for free slots, where a
  * piece's part is the most it can give, its slots before any decorations.
  */
-function pieceScore(p: Piece, sort: SortKey): number {
-  if (sort === "defence") return p.defence;
-  const key = sort === "slots" ? p.slots : p.res[RES_INDEX[sort]!];
-  return key * SCORE_SCALE + p.defence;
+function pieceScore(p: Piece, sort: SortKey, preferred?: ReadonlySet<number>): number {
+  const key = sort === "defence" ? 0 : sort === "slots" ? p.slots : p.res[RES_INDEX[sort]!];
+  return (preferred?.has(p.id) ? PREFERRED_SCALE : 0) + key * SCORE_SCALE + p.defence;
 }
 
 export type DecoBin = "weapon" | ArmorSlot;
@@ -349,10 +386,12 @@ export interface ArmorSet {
   skills: ActiveSkill[];
   /** Weapon and armor slots left empty. */
   freeSlots: number;
+  /** How many of the pieces the search preferred (SearchQuery.preferPieces). */
+  preferred?: number;
 }
 
 export interface SearchResult {
-  /** The `limit` best sets, best first (see SortKey). */
+  /** The `limit` best sets, best first (see setScore). */
   sets: ArmorSet[];
   /**
    * Hit `timeLimitMs` before searching everything: better sets than these may
@@ -536,8 +575,8 @@ function riskyTrees(
 }
 
 /** A slot's pieces, best score first (then defence, then ID). */
-function byScore(pieces: Piece[], sort: SortKey): Piece[] {
-  const score = new Map(pieces.map((p) => [p, pieceScore(p, sort)]));
+function byScore(pieces: Piece[], sort: SortKey, preferred?: ReadonlySet<number>): Piece[] {
+  const score = new Map(pieces.map((p) => [p, pieceScore(p, sort, preferred)]));
   return [...pieces].sort(
     (a, b) => score.get(b)! - score.get(a)! || b.defence - a.defence || a.id - b.id,
   );
@@ -554,10 +593,11 @@ function dominantPieces(
   wanted: string[],
   risky: { tree: string; cap: number }[],
   sort: SortKey,
+  preferred?: ReadonlySet<number>,
 ): Set<Piece> {
   const vecOf = (p: Piece) =>
     p.torsoUp ? wanted.map(() => 0) : wanted.map((t) => p.points[t] ?? 0);
-  const score = (p: Piece) => pieceScore(p, sort);
+  const score = (p: Piece) => pieceScore(p, sort, preferred);
 
   // Compare each distinct profile once.
   interface Profile {
@@ -615,6 +655,7 @@ function pieceClasses(
   wanted: string[],
   kept: Set<Piece>,
   sort: SortKey,
+  preferred?: ReadonlySet<number>,
 ): PieceClass[] {
   const classes = new Map<string, PieceClass>();
   for (const p of sorted) {
@@ -631,7 +672,7 @@ function pieceClasses(
   // Best first, so good sets turn up early and raise the bar for the rest.
   return [...classes.values()]
     .filter((c) => c.members.length > 0)
-    .map((c) => ({ ...c, best: pieceScore(c.members[0], sort) }))
+    .map((c) => ({ ...c, best: pieceScore(c.members[0], sort, preferred) }))
     .sort((a, b) => b.best - a.best);
 }
 
@@ -655,6 +696,7 @@ function slotDominance(
   wanted: string[],
   risky: { tree: string; cap: number }[],
   sort: SortKey,
+  preferred?: ReadonlySet<number>,
 ): SlotDominance {
   const n = sorted.length;
   const m = wanted.length + risky.length;
@@ -663,7 +705,7 @@ function slotDominance(
   const profile = new Int32Array(n);
   const ids = new Map<string, number>();
   sorted.forEach((p, i) => {
-    score[i] = pieceScore(p, sort);
+    score[i] = pieceScore(p, sort, preferred);
     if (!p.torsoUp) {
       wanted.forEach((t, j) => (vecs[i * m + j] = p.points[t] ?? 0));
       risky.forEach(
@@ -724,11 +766,14 @@ export function searchBase(data: SearchData, query: SearchQuery): SearchBase {
     ? []
     : riskyTrees(bySlot, decorations, badSkillLimits(data.trees), query.weaponSlots);
   const sort = query.sort ?? "defence";
+  const preferred = new Set(query.preferPieces ?? []);
   // A wanted tree isn't risky: its points count in full.
   const own = risky.filter((r) => !trees.includes(r.tree));
   return {
     trees: new Set(trees),
-    bySlot: bySlot.map((ps) => slotDominance(byScore(ps, sort), trees, own, sort)),
+    bySlot: bySlot.map((ps) =>
+      slotDominance(byScore(ps, sort, preferred), trees, own, sort, preferred),
+    ),
     decorations,
     pointList: data.pieces.map((p) =>
       Object.entries(p.points).filter(([t]) => t !== TORSO_UP_TREE),
@@ -851,6 +896,8 @@ interface Found extends Ranked {
   pieces: Piece[];
   classes: PieceClass[];
   decorations: PlacedDeco[];
+  /** How many of the pieces the query preferred. */
+  preferred: number;
 }
 
 export interface SearchOptions {
@@ -893,7 +940,7 @@ export interface PreparedSearch {
 const FLOOR_STEPS = [8, 16, 32, 64, 128];
 export const SEARCH_ROUNDS = FLOOR_STEPS.length + 1;
 
-/** Results order: best first (see SortKey), then most free slots. */
+/** Results order: best first (see setScore), then most free slots. */
 export function compareSets(a: ArmorSet, b: ArmorSet, sort: SortKey = "defence"): number {
   const ranked = (x: ArmorSet): Ranked => ({ score: setScore(x, sort), freeSlots: x.freeSlots });
   return outranks(ranked(b), ranked(a));
@@ -970,6 +1017,7 @@ export function prepareSearch(
   if (k === 0) return nothing;
 
   const sort = query.sort ?? "defence";
+  const preferred = new Set(query.preferPieces ?? []);
   const limits = badSkillLimits(data.trees);
   for (const t of trees) limits.delete(t);
   let decorations: Deco[];
@@ -980,7 +1028,7 @@ export function prepareSearch(
     decorations = base.decorations;
     pointList = base.pointList;
     classes = base.bySlot.map((slot) =>
-      pieceClasses(slot.sorted, trees, keptFromBase(slot, extra), sort),
+      pieceClasses(slot.sorted, trees, keptFromBase(slot, extra), sort, preferred),
     );
   } else {
     const eligible = eligiblePieces(data, query);
@@ -988,6 +1036,7 @@ export function prepareSearch(
       byScore(
         eligible.filter((p) => p.slot === slot),
         sort,
+        preferred,
       ),
     );
     decorations = data.decorations.filter((d) => isAvailable(d.minRank, query.progress ?? null));
@@ -995,7 +1044,7 @@ export function prepareSearch(
       ? []
       : riskyTrees(bySlot, decorations, limits, query.weaponSlots);
     classes = bySlot.map((ps) =>
-      pieceClasses(ps, trees, dominantPieces(ps, trees, risky, sort), sort),
+      pieceClasses(ps, trees, dominantPieces(ps, trees, risky, sort, preferred), sort, preferred),
     );
     pointList = data.pieces.map((p) =>
       Object.entries(p.points).filter(([t]) => t !== TORSO_UP_TREE),
@@ -1219,9 +1268,11 @@ export function prepareSearch(
         const freeSlots = bins.reduce((n, b) => n + b.size, 0) - used;
         const defence = pieces.reduce((n, p) => n + p.defence, 0);
         const res = [0, 1, 2, 3, 4].map((i) => pieces.reduce((n, p) => n + p.res[i], 0));
+        const preferredCount = pieces.filter((p) => preferred.has(p.id)).length;
         const f: Found = {
-          score: setScore({ defence, res, freeSlots }, sort),
+          score: setScore({ defence, res, freeSlots, preferred: preferredCount }, sort),
           freeSlots,
+          preferred: preferredCount,
           pieces: [...pieces],
           classes: [...chosen],
           decorations: placed.map((x) => ({ deco: x.deco, bin: bins[x.bin].slot })),
@@ -1232,7 +1283,7 @@ export function prepareSearch(
         return;
       }
       for (const p of chosen[d].members) {
-        const own = pieceScore(p, sort);
+        const own = pieceScore(p, sort, preferred);
         const most = score + own + left[d + 1];
         // Members are best first: once one can't win, none after it can.
         // (An equal score can still win on free slots.)
@@ -1289,7 +1340,8 @@ export function prepareSearch(
     const ordered = ARMOR_SLOTS.map((slot) => SEARCH_ORDER.indexOf(slot));
     const pieces = ordered.map((d) => f.pieces[d]);
     const set = evaluateSet(data, pieces, f.decorations, query.weaponSlots, trees);
-    if (!withAlternatives) return { ...set, alternatives: pieces.map(() => []) };
+    const preferred = f.preferred;
+    if (!withAlternatives) return { ...set, preferred, alternatives: pieces.map(() => []) };
     const torsoMult = 1 + pieces.filter((p) => p.torsoUp && p.slot !== "plate").length;
     // Swapping `p` in for `old` keeps every wanted skill and adds no bad one.
     const swaps = (old: Piece, p: Piece) => {
@@ -1308,7 +1360,7 @@ export function prepareSearch(
     const alternatives = ordered.map((d, i) =>
       f.classes[d].all.filter((p) => p !== pieces[i] && swaps(pieces[i], p)),
     );
-    return { ...set, alternatives };
+    return { ...set, preferred, alternatives };
   };
 
   return {

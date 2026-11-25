@@ -9,7 +9,7 @@ import { areaNumber } from "./area-numbers";
 import { formatRank } from "./monster-drops";
 import { DOWNLOADED_QUEST_HUBS, isHiddenQuest, questHubLabel, questHubSlug } from "./quests";
 
-export type GatherKind = "gather" | "mine" | "bug";
+export type GatherKind = "gather" | "mine" | "bug" | "fish";
 
 /** data/mhfu/gathering.json (data/schemas/gathering.schema.json). */
 export interface GatheringFile {
@@ -40,16 +40,17 @@ export interface ShopsFile {
   }[];
 }
 
-export type FarmSpot = "mining" | "insects" | "mushrooms" | "honey";
+export type FarmSpot = "mining" | "insects" | "mushrooms" | "honey" | "fishing";
 
 /** data/mhfu/farm.json (data/schemas/farm.schema.json). */
 export interface FarmFile {
   points: {
     name: string;
     spot: FarmSpot;
-    gathers: number;
-    most_gathers: number;
-    items: { item: string; chance: number }[];
+    /** Null where the game's count isn't known (the fishing points). */
+    gathers: number | null;
+    most_gathers: number | null;
+    items: { item: string; chance: number; amount?: number }[];
   }[];
 }
 
@@ -97,9 +98,11 @@ export interface FarmPlace {
   spot: FarmSpot;
   /** Chance per gather, in percent */
   chance: number;
+  /** How many each success gives (the Casting Machine's rows differ). */
+  amount: number;
   /** How many times it can be gathered after each quest, at least and at most */
-  gathers: number;
-  mostGathers: number;
+  gathers: number | null;
+  mostGathers: number | null;
 }
 
 export interface ItemPlaces {
@@ -126,7 +129,7 @@ const groupOrder = (group: string) => {
   const i = GROUP_ORDER.indexOf(group);
   return i === -1 ? GROUP_ORDER.length : i;
 };
-const KIND_ORDER: GatherKind[] = ["gather", "mine", "bug"];
+const KIND_ORDER: GatherKind[] = ["gather", "mine", "bug", "fish"];
 
 type Layout = GatheringFile["layouts"][number];
 
@@ -225,13 +228,14 @@ export function buildItemPlaces(
   }
 
   for (const point of farm.points) {
-    for (const { item, chance } of point.items) {
-      const id = itemId(item);
+    for (const { item: name, chance, amount = 1 } of point.items) {
+      const id = itemId(name);
       if (id === undefined || chance <= 0) continue;
       entry(id).farm.push({
         point: point.name,
         spot: point.spot,
         chance,
+        amount,
         gathers: point.gathers,
         mostGathers: point.most_gathers,
       });
@@ -254,17 +258,20 @@ export function buildItemPlaces(
     }
   }
 
-  for (const e of out.values()) {
-    e.gathering.sort(
-      (a, b) =>
-        groupOrder(a.group) - groupOrder(b.group) ||
-        a.group.localeCompare(b.group) ||
-        Number(!!a.quests) - Number(!!b.quests) ||
-        b.chance - a.chance ||
-        a.map.localeCompare(b.map),
-    );
-  }
+  for (const e of out.values()) sortGatherPlaces(e.gathering);
   return out;
+}
+
+/** The order item pages list gathering places in, and the bundle stores them. */
+function sortGatherPlaces(gathering: GatherPlace[]): void {
+  gathering.sort(
+    (a, b) =>
+      groupOrder(a.group) - groupOrder(b.group) ||
+      a.group.localeCompare(b.group) ||
+      Number(!!a.quests) - Number(!!b.quests) ||
+      b.chance - a.chance ||
+      a.map.localeCompare(b.map),
+  );
 }
 
 /** "from the start", "from stage 4 of 8", "stages 1, 3 and 5 of 5" */
@@ -283,6 +290,7 @@ const KIND_LABELS: Record<GatherKind, string> = {
   gather: "Gathering",
   mine: "Mining",
   bug: "Bugs",
+  fish: "Fishing",
 };
 
 const FARM_SPOT_LABELS: Record<FarmSpot, string> = {
@@ -290,10 +298,12 @@ const FARM_SPOT_LABELS: Record<FarmSpot, string> = {
   insects: "Bugs",
   mushrooms: "Mushrooms",
   honey: "Honey",
+  fishing: "Fishing",
 };
 
-/** "Mining · 3-4 per quest" */
+/** "Mining · 3-4 per quest", or just "Fishing" where the count isn't known. */
 export function farmPlaceLabel({ spot, gathers, mostGathers }: FarmPlace): string {
+  if (gathers === null || mostGathers === null) return FARM_SPOT_LABELS[spot];
   const count = gathers === mostGathers ? `${gathers}` : `${gathers}-${mostGathers}`;
   return `${FARM_SPOT_LABELS[spot]} · ${count} per quest`;
 }
@@ -320,10 +330,12 @@ export function gatherPointsLabel(points: GatherPlace["points"]): string {
 
 /** [group, map, chance, points ("g1,7|m0,3": kind letter, then areas), quests?] */
 type GatherTuple = [number, number, number, string, number[]?];
+/** [group * 32 + map, [[point, [packed fish, ...]], ...]] */
+type FishTuple = [number, [number, number[]][]];
 /** [shop, price, stages] */
 type ShopTuple = [number, number | null, number[]];
-/** [farm point, chance] */
-type FarmTuple = [number, number];
+/** [farm point, chance, amount (omitted for one)] */
+type FarmTuple = [number, number, number?];
 
 export interface ItemPlacesBundle {
   kind: "item-places";
@@ -331,9 +343,20 @@ export interface ItemPlacesBundle {
   maps: string[];
   shops: { name: string; currency: ShopPlace["currency"]; stages: number }[];
   /** Pokke Farm's points: [name, spot, gathers, most gathers] */
-  farm: [string, FarmSpot, number, number][];
+  farm: [string, FarmSpot, number | null, number | null][];
   /** item ID -> [gathering, shops, farm (where it has any)] */
   items: Record<string, [GatherTuple[], ShopTuple[], FarmTuple[]?]>;
+  /**
+   * The fishing points' areas, "|"-separated. Each fish item has the same
+   * point with its own chance, so the bundle keeps the point once.
+   */
+  fishPoints: string;
+  /**
+   * Fishing points by group and map: [group * 32 + map, [[point, fish]]],
+   * where each fish is its `FishId * 128 + chance`. Kept apart from `items`
+   * because every fish at a point would repeat the point.
+   */
+  fishing: FishTuple[];
   /**
    * Each place's `mapQuest`, kept off the rows: a quest's own points use
    * their first quest, and a map's usual points the quest here, by
@@ -344,10 +367,25 @@ export interface ItemPlacesBundle {
   unmapped: string[];
 }
 
-const KIND_LETTERS: Record<GatherKind, string> = { gather: "g", mine: "m", bug: "b" };
+const KIND_LETTERS: Record<GatherKind, string> = { gather: "g", mine: "m", bug: "b", fish: "f" };
 const LETTER_KINDS = Object.fromEntries(
   Object.entries(KIND_LETTERS).map(([k, l]) => [l, k as GatherKind]),
 );
+
+/**
+ * `FishId` (0 NONE, then every fish) as item IDs. The bundle packs the fish's
+ * index rather than its longer item ID, and the fish ID is also what the game
+ * itself calls a fish.
+ */
+const FISH_ITEM_IDS: readonly number[] = [
+  0, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 1208, 1209,
+  1210, 1211, 1212, 1213, 1215, 1216, 1217, 1218, 1219, 1220, 1225, 1226, 1227, 1224, 1223, 1222,
+  1214, 1221,
+];
+const FISH_ID = new Map<number, number>(FISH_ITEM_IDS.map((item, fish) => [item, fish]));
+const CHANCE_STRIDE = 128;
+/** Group and map are packed into one number; no map table has 32 entries. */
+const MAP_STRIDE = 32;
 
 export function encodeItemPlaces(places: Map<number, ItemPlaces>): ItemPlacesBundle {
   const intern = (list: string[], index: Map<string, number>, value: string) => {
@@ -368,17 +406,30 @@ export function encodeItemPlaces(places: Map<number, ItemPlaces>): ItemPlacesBun
   const farmIndex = new Map<string, number>();
   const items: ItemPlacesBundle["items"] = {};
   const mapQuests: ItemPlacesBundle["mapQuests"] = {};
+  const fishPoints: string[] = [];
+  const fishPointIndex = new Map<string, number>();
+  const fishGroups = new Map<number, Map<number, number[]>>();
   for (const [id, { gathering, farm: farmed, shops: sold }] of [...places].sort(
     (a, b) => a[0] - b[0],
   )) {
-    const g = gathering.map((p): GatherTuple => {
+    const g: GatherTuple[] = [];
+    for (const p of gathering) {
       const points = p.points.map((pt) => KIND_LETTERS[pt.kind] + pt.areas.join(",")).join("|");
-      const t: GatherTuple = [
-        intern(groups, groupIndex, p.group),
-        intern(maps, mapIndex, p.map),
-        p.chance,
-        points,
-      ];
+      const group = intern(groups, groupIndex, p.group);
+      const map = intern(maps, mapIndex, p.map);
+      if (isSharedFish(p)) {
+        const fish = FISH_ID.get(id);
+        if (fish === undefined) throw new Error(`item-places: ${id} isn't a fish`);
+        const point = intern(fishPoints, fishPointIndex, p.points[0]!.areas.join(","));
+        const groupMap = group * MAP_STRIDE + map;
+        const tables = fishGroups.get(groupMap) ?? new Map<number, number[]>();
+        fishGroups.set(groupMap, tables);
+        const entries = tables.get(point) ?? [];
+        tables.set(point, entries);
+        entries.push(fish * CHANCE_STRIDE + p.chance);
+        continue;
+      }
+      const t: GatherTuple = [group, map, p.chance, points];
       if (p.quests) t.push(p.quests);
       if (!p.quests && p.mapQuest !== undefined) {
         const key = `${t[0]},${t[1]}`;
@@ -389,8 +440,8 @@ export function encodeItemPlaces(places: Map<number, ItemPlaces>): ItemPlacesBun
       if (p.quests && p.mapQuest !== undefined && p.mapQuest !== p.quests[0]) {
         throw new Error(`item-places: quest ${p.quests[0]}'s points use another quest's map`);
       }
-      return t;
-    });
+      g.push(t);
+    }
     const s = sold.map((p): ShopTuple => {
       let i = shopIndex.get(p.shop);
       if (i === undefined) {
@@ -405,44 +456,95 @@ export function encodeItemPlaces(places: Map<number, ItemPlaces>): ItemPlacesBun
         i = farm.push([p.point, p.spot, p.gathers, p.mostGathers]) - 1;
         farmIndex.set(p.point, i);
       }
-      return [i, p.chance];
+      return p.amount === 1 ? [i, p.chance] : [i, p.chance, p.amount];
     });
     items[id] = f.length > 0 ? [g, s, f] : [g, s];
   }
   // Only once every usual map is known: the places their quest doesn't draw.
   const unmapped = [...places].flatMap(([id, { gathering }]) =>
-    gathering.flatMap((p, row) => {
-      const derived = p.quests ?? mapQuests[`${groupIndex.get(p.group)},${mapIndex.get(p.map)}`];
-      return derived !== undefined && p.mapQuest === undefined ? [`${id}:${row}`] : [];
-    }),
+    gathering
+      .filter((p) => !isSharedFish(p))
+      .flatMap((p, row) => {
+        const derived = p.quests ?? mapQuests[`${groupIndex.get(p.group)},${mapIndex.get(p.map)}`];
+        return derived !== undefined && p.mapQuest === undefined ? [`${id}:${row}`] : [];
+      }),
   );
-  return { kind: "item-places", groups, maps, shops, farm, items, mapQuests, unmapped };
+  const fishing: FishTuple[] = [...fishGroups]
+    .sort(([a], [b]) => a - b)
+    .map(([groupMap, tables]) => [
+      groupMap,
+      [...tables].sort(([a], [b]) => a - b) as [number, number[]][],
+    ]);
+  return {
+    kind: "item-places",
+    groups,
+    maps,
+    shops,
+    farm,
+    items,
+    fishPoints: fishPoints.join("|"),
+    fishing,
+    mapQuests,
+    unmapped,
+  };
+}
+
+/** A fishing point all fish at it share, rather than a row repeated per fish. */
+function isSharedFish(p: GatherPlace): boolean {
+  return p.points.length === 1 && p.points[0]!.kind === "fish" && !p.quests && !p.mapQuest;
 }
 
 export function decodeItemPlaces(bundle: ItemPlacesBundle): Map<number, ItemPlaces> {
   const unmapped = new Set(bundle.unmapped);
+  const pointsOf = (points: string): GatherPlace["points"] =>
+    points.split("|").map((pt) => ({
+      kind: LETTER_KINDS[pt[0]!]!,
+      areas: pt.slice(1).split(",").map(Number),
+    }));
+  const fishPointAreas = (bundle.fishPoints ?? "").split("|");
+  const fishByItem = new Map<number, GatherPlace[]>();
+  for (const [groupMap, tables] of bundle.fishing ?? []) {
+    const group = Math.floor(groupMap / MAP_STRIDE);
+    const map = groupMap % MAP_STRIDE;
+    for (const [point, entries] of tables) {
+      const place = {
+        group: bundle.groups[group]!,
+        map: bundle.maps[map]!,
+        points: [{ kind: "fish" as const, areas: fishPointAreas[point]!.split(",").map(Number) }],
+      };
+      for (const entry of entries) {
+        const fishId = Math.floor(entry / CHANCE_STRIDE);
+        const itemId = FISH_ITEM_IDS[fishId];
+        if (itemId === undefined) throw new Error(`item-places: unknown fish ${fishId}`);
+        const fish = fishByItem.get(itemId) ?? [];
+        fishByItem.set(itemId, fish);
+        fish.push({ ...place, chance: entry % CHANCE_STRIDE });
+      }
+    }
+  }
   const out = new Map<number, ItemPlaces>();
   for (const [id, [g, s, f = []]] of Object.entries(bundle.items)) {
-    out.set(Number(id), {
-      gathering: g.map(([group, map, chance, points, quests], row) => {
-        const mapQuest = unmapped.has(`${id}:${row}`)
-          ? undefined
-          : (quests?.[0] ?? bundle.mapQuests[`${group},${map}`]);
-        return {
-          group: bundle.groups[group]!,
-          map: bundle.maps[map]!,
-          points: points.split("|").map((pt) => ({
-            kind: LETTER_KINDS[pt[0]!]!,
-            areas: pt.slice(1).split(",").map(Number),
-          })),
-          chance,
-          ...(quests && { quests }),
-          ...(mapQuest !== undefined && { mapQuest }),
-        };
-      }),
-      farm: f.map(([point, chance]) => {
+    const number = Number(id);
+    const gathering = g.map(([group, map, chance, points, quests], row) => {
+      const mapQuest = unmapped.has(`${id}:${row}`)
+        ? undefined
+        : (quests?.[0] ?? bundle.mapQuests[`${group},${map}`]);
+      return {
+        group: bundle.groups[group]!,
+        map: bundle.maps[map]!,
+        points: pointsOf(points),
+        chance,
+        ...(quests && { quests }),
+        ...(mapQuest !== undefined && { mapQuest }),
+      };
+    });
+    gathering.push(...(fishByItem.get(number) ?? []));
+    sortGatherPlaces(gathering);
+    out.set(number, {
+      gathering,
+      farm: f.map(([point, chance, amount = 1]) => {
         const [name, spot, gathers, mostGathers] = bundle.farm[point]!;
-        return { point: name, spot, chance, gathers, mostGathers };
+        return { point: name, spot, chance, amount, gathers, mostGathers };
       }),
       shops: s.map(([shop, price, stages]) => ({
         shop: bundle.shops[shop]!.name,

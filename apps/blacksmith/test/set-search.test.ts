@@ -15,6 +15,7 @@ import {
   parseDecorationSkill,
   prepareSearch,
   prepareSearchData,
+  sameQuery,
   SEARCH_ROUNDS,
   searchSets,
   setScore,
@@ -179,6 +180,24 @@ const query = (skills: string[], extra: Partial<SearchQuery> = {}): SearchQuery 
   ...extra,
 });
 
+describe("sameQuery", () => {
+  test("tells apart the queries whose results differ", () => {
+    const base = query(["Attack Up (Small)"], { preferPieces: [1, 2] });
+    assert.equal(sameQuery(base, { ...base }), true);
+    assert.equal(sameQuery(base, { ...base, sort: "fire" }), false);
+    // A different equipment box means different results.
+    assert.equal(sameQuery(base, { ...base, preferPieces: [1, 3] }), false);
+    // Preferring and only using pieces are different searches.
+    assert.equal(sameQuery(base, { ...base, preferPieces: undefined, onlyPieces: [1, 2] }), false);
+    // An empty list is kept apart from no list (for only pieces, it finds nothing).
+    assert.equal(
+      sameQuery({ ...base, preferPieces: [] }, { ...base, preferPieces: undefined }),
+      false,
+    );
+    assert.equal(sameQuery({ ...base, onlyPieces: [] }, { ...base, onlyPieces: undefined }), false);
+  });
+});
+
 describe("searchSets (hand-made)", () => {
   test("fills slots with decorations, largest piece slots first", () => {
     const data = prepareSearchData(tiny, filler(3), [
@@ -309,6 +328,55 @@ describe("searchSets (hand-made)", () => {
     assert.deepEqual(
       result.sets.map((s) => s.pieces[0].name),
       ["Sturdy Helm", "Sharp Helm"],
+    );
+  });
+
+  test("prefers owned pieces, without requiring them", () => {
+    const armor = [
+      ...filler(0).filter((p) => p.slot !== "helmet"),
+      piece("helmet", "Owned Helm", {
+        defence: 1,
+        skills: [{ name: "Attack", amount: 11 }],
+      }),
+      piece("helmet", "Strong Helm", {
+        defence: 50,
+        skills: [{ name: "Attack", amount: 10 }],
+      }),
+      piece("helmet", "Owned Guard Helm", {
+        defence: 99,
+        skills: [{ name: "Guard", amount: 10 }],
+      }),
+    ];
+    const data = prepareSearchData(tiny, armor, []);
+    const id = (name: string) => data.pieces.find((p) => p.name === name)!.id;
+    const helms = (extra: Partial<SearchQuery>) =>
+      searchSets(data, query(["Attack Up (Small)"], extra)).sets.map((s) => s.pieces[0].name);
+    // Best first without a preference.
+    assert.deepEqual(helms({}), ["Strong Helm", "Owned Helm"]);
+    // An owned piece ranks its set first, even with less defence.
+    const preferred = searchSets(
+      data,
+      query(["Attack Up (Small)"], { preferPieces: [id("Owned Helm")] }),
+    );
+    assert.deepEqual(
+      preferred.sets.map((s) => s.pieces[0].name),
+      ["Owned Helm", "Strong Helm"],
+    );
+    assert.equal(preferred.sets[0].preferred, 1);
+    // Only the owned pieces, when asked for.
+    const plain = data.pieces.filter((p) => p.name.startsWith("Plain ")).map((p) => p.id);
+    assert.deepEqual(helms({ onlyPieces: [id("Owned Helm"), ...plain] }), ["Owned Helm"]);
+    // A preferred piece that can't help doesn't keep the set from being found.
+    assert.deepEqual(helms({ preferPieces: [id("Owned Guard Helm")] }), [
+      "Strong Helm",
+      "Owned Helm",
+    ]);
+    // Merged shards keep the preference's order.
+    const q = query(["Attack Up (Small)"], { preferPieces: [id("Owned Helm")], limit: 3 });
+    const shards = [0, 1, 2].map((index) => searchSets(data, q, { shard: { index, count: 3 } }));
+    assert.deepEqual(
+      mergeResults(shards, 3, q.sort).sets.map((s) => s.pieces[0].name),
+      searchSets(data, q).sets.map((s) => s.pieces[0].name),
     );
   });
 
@@ -499,6 +567,7 @@ function bruteForce(data: SearchData, q: SearchQuery): number {
   const trees = q.allowBadSkills ? [...need.keys()] : RANDOM_TREES;
   const ok = (tree: string, points: number) =>
     need.has(tree) ? points >= need.get(tree)! : points > -10;
+  const preferred = new Set(q.preferPieces ?? []);
   type P = (typeof data.pieces)[number];
   const score = (combo: P[], freeSlots: number) =>
     setScore(
@@ -506,6 +575,7 @@ function bruteForce(data: SearchData, q: SearchQuery): number {
         defence: combo.reduce((n, p) => n + p.defence, 0),
         res: [0, 1, 2, 3, 4].map((i) => combo.reduce((n, p) => n + p.res[i], 0)),
         freeSlots,
+        preferred: combo.filter((p) => preferred.has(p.id)).length,
       },
       q.sort,
     );
@@ -608,10 +678,13 @@ describe("searchSets (brute force)", () => {
     if (skills.length === 0) continue;
     const weaponSlots = int(0, 3);
     const sort = (["defence", "fire", "slots"] as const)[trial % 3];
+    // Some of the hunter's pieces: preference must not change which sets work,
+    // only their order.
+    const preferPieces = data.pieces.filter(() => random() < 0.4).map((p) => p.id);
     const best = (r: SearchResult) => (r.sets[0] ? setScore(r.sets[0], sort) : -Infinity);
 
     for (const allowBadSkills of [true, false]) {
-      const q = query(skills, { weaponSlots, allowBadSkills, sort });
+      const q = query(skills, { weaponSlots, allowBadSkills, sort, preferPieces });
       const name = `trial ${trial}: ${skills.join(" + ")} by ${sort}`;
       test(`${name}${allowBadSkills ? "" : ", no bad skills"}`, () => {
         const expected = bruteForce(data, q);

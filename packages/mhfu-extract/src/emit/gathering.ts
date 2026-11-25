@@ -16,6 +16,7 @@ import {
   readGatheringItems,
   type GatheringNode,
 } from "../quests/gathering.js";
+import type { FishingTables } from "../quests/fishing.js";
 import { getNameResolver } from "../strings/names.js";
 import { projectToMap, type MapLayouts } from "../tables/map-layout.js";
 import { resolveMapName } from "../tables/quest-maps.js";
@@ -30,7 +31,7 @@ export interface EmittedGatheringItem {
 }
 
 export interface EmittedGatheringNode {
-  kind: "gather" | "mine" | "bug";
+  kind: "gather" | "mine" | "bug" | "fish";
   /** How many such nodes the area has. */
   count: number;
   /** Fewest gathers before it runs out, or null if it never does. */
@@ -78,6 +79,7 @@ const tenth = (n: number) => Math.round(n * 10) / 10;
 export function emitGathering(
   quests: GatheringQuestInput[],
   maps?: MapLayouts,
+  fishing?: FishingTables,
 ): GatheringEmitResult {
   const names = getNameResolver();
   const problems: GatheringEmitResult["problems"] = [];
@@ -130,6 +132,20 @@ export function emitGathering(
         items: tableItems(node.table),
         ...(map && { positions: position }),
       });
+    }
+
+    // Fishing points come from the stage, not the quest: one per area, with
+    // the table for the quest's rank. Their interactable positions aren't
+    // decoded, so they have none and stay off the area maps.
+    for (const [areaIndex, tables] of fishing?.get(mapId) ?? []) {
+      const items = (tables[parsed.header.rank] ?? []).map(({ itemId, chance }) => ({
+        item: names.resolve("ItemID", itemId) ?? `Item ${itemId}`,
+        chance,
+      }));
+      if (items.length === 0) continue;
+      const area = areas.get(areaIndex) ?? new Map<string, EmittedGatheringNode>();
+      areas.set(areaIndex, area);
+      area.set("fish", { kind: "fish", count: 1, gathers: null, most_gathers: null, items });
     }
 
     // Some areas aren't drawn on the map (Desert's 11th, say): their points

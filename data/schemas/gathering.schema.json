@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Gathering points file",
-  "description": "Each distinct set of mining, gathering and bug catching points, read from the quest files. Quests on one map and rank usually share one set.",
+  "description": "Each distinct set of mining, gathering, bug catching and fishing points, read from the quest and stage files. Quests on one map and rank usually share one set.",
   "type": "object",
   "required": ["layouts"],
   "additionalProperties": false,
@@ -26,7 +26,7 @@
       "required": ["kind", "count", "gathers", "most_gathers", "items"],
       "additionalProperties": false,
       "properties": {
-        "kind":         { "enum": ["gather", "mine", "bug"] },
+        "kind":         { "enum": ["gather", "mine", "bug", "fish"] },
         "count":        { "type": "integer", "minimum": 1, "description": "How many such points the area has" },
         "gathers":      { "type": ["integer", "null"], "minimum": 0, "description": "Fewest gathers before the point runs out; null if it never does" },
         "most_gathers": { "type": ["integer", "null"], "minimum": 0, "description": "Most gathers before the point runs out; null if it never does" },

@@ -108,16 +108,17 @@ export function readMapGeometry(
     for (let map = 1; map < MAP_COUNT; map++) {
       const count = sub.u32(lists + map * 8);
       if (count === 0) continue;
-      const stages = gameSub.vaddrToOffset(sub.u32(lists + map * 8 + 4));
+      const stageList = gameSub.vaddrToOffset(sub.u32(lists + map * 8 + 4));
+      const stages = Array.from({ length: count }, (_, i) => sub.u16(stageList + i * 2));
       out.set(map, {
         width: eboot.f32(sizes + map * 8),
         depth: eboot.f32(sizes + map * 8 + 4),
         zoom: eboot.f32(zooms + map * 4),
-        stages: Array.from({ length: count }, (_, i) => sub.u16(stages + i * 2)),
-        origins: Array.from({ length: count }, (_, i) => {
-          const at = origins + sub.u16(stages + i * 2) * STAGE_ORIGIN_SIZE;
+        origins: stages.map((stage) => {
+          const at = origins + stage * STAGE_ORIGIN_SIZE;
           return [sub.f32(at), sub.f32(at + 4)] as [number, number];
         }),
+        stages,
       });
     }
   } catch (error) {
