@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { SaveLook } from "@/lib/hunter-look";
-import type { AwardRecords, EquipSlot, MonsterRecord } from "@/lib/save-store";
+import type { AwardRecords, EquipSlot, MonsterRecord, SaveEquipmentSet } from "@/lib/save-store";
 
 /** One hunter, as the worker parses it; it always reads the award records (`AwardRecords`). */
 export interface CharacterResult extends Required<AwardRecords> {
@@ -16,6 +16,8 @@ export interface CharacterResult extends Required<AwardRecords> {
   hunterRank: number;
   /** Used equipment box slots, in box order. */
   equipBox: EquipSlot[];
+  /** Equipment sets registered at the smithy, in their in-game slots. */
+  equipmentSets: SaveEquipmentSet[];
   itemChest: { id: number; qty: number }[];
   itemPouch: { id: number; qty: number }[];
   /** IDs of the quests the hunter has cleared. */

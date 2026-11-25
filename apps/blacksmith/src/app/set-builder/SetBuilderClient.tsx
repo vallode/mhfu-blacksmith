@@ -80,10 +80,11 @@ import SetEditor from "./SetEditor";
 import Sheet from "./Sheet";
 import { SkillBrowser, SkillChips } from "./SkillPicker";
 import SkillReach from "./SkillReach";
+import SaveFileSets from "./SaveFileSets";
 
 const STORAGE_KEY = "set-builder";
 
-type View = "results" | "editor" | "sets";
+type View = "results" | "editor" | "sets" | "save";
 
 type Origin = "new" | "result" | "link";
 
@@ -839,6 +840,19 @@ export default function SetBuilderClient() {
                         storeSets(duplicateSet(savedSets, id, text.editor.copyName))
                       }
                       onDelete={deleteSaved}
+                    />
+                  ),
+                },
+                {
+                  id: "save",
+                  label: text.tabs.saveFile,
+                  content: (
+                    <SaveFileSets
+                      data={data}
+                      ids={ids}
+                      tables={tables}
+                      loadError={loadError}
+                      idsError={idsError}
                     />
                   ),
                 },

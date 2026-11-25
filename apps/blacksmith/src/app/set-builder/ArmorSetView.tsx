@@ -68,6 +68,15 @@ export interface SetEditing {
   isOwned?: (piece: Piece) => boolean;
 }
 
+/** A specific weapon to show in the weapon row (a save set's, not a search's slots). */
+export interface SetWeapon {
+  name: string;
+  /** Weapon type, for its icon. */
+  icon: string;
+  href: string;
+  rarity?: number | null;
+}
+
 const smallButton =
   "cursor-pointer border-none bg-transparent p-0 font-[inherit] text-fine text-white/50 hover:text-white focus-visible:text-white";
 
@@ -213,12 +222,15 @@ export function SetHeader({
   count,
   onStep,
   action,
+  number,
 }: {
   index: number;
   count: number;
   onStep: (by: 1 | -1) => void;
   /** A button shown beside the set number. */
   action?: React.ReactNode;
+  /** The set's own number, when it isn't its place in the list (a save's gaps). */
+  number?: number;
 }) {
   const text = useT().setBuilder.setView;
   return (
@@ -243,7 +255,7 @@ export function SetHeader({
         )}
         aria-live="polite"
       >
-        {text.setNumber(index + 1)}
+        {text.setNumber(number ?? index + 1)}
       </span>
       {action}
       <span className={cn("text-main text-white text-shadow-[0.15rem_0.15rem_black]")}>
@@ -304,6 +316,7 @@ export default function ArmorSetView({
   set,
   weaponSlots,
   weaponIcon,
+  weapon,
   status,
   edit,
 }: {
@@ -311,6 +324,8 @@ export default function ArmorSetView({
     Partial<Pick<ArmorSet, "alternatives">>;
   weaponSlots: number;
   weaponIcon: string;
+  /** The actual weapon, when the set has one (a save's registered set). */
+  weapon?: SetWeapon | null;
   /** The Status panel, beside [Activate Skill]. */
   status: React.ReactNode;
   edit?: SetEditing;
@@ -334,8 +349,18 @@ export default function ArmorSetView({
       <ul className="m-0 list-none px-[0.8rem] py-0">
         <EquipRow
           bin="weapon"
-          icon={<Icon type={weaponIcon} size="mini" alt="" />}
-          name={<span className="text-white/60">{text.weapon}</span>}
+          icon={
+            <Icon type={weapon?.icon ?? weaponIcon} rarity={weapon?.rarity} size="mini" alt="" />
+          }
+          name={
+            weapon ? (
+              <Link href={weapon.href} className="hover:text-gold">
+                {game.name("weapon", weapon.name)}
+              </Link>
+            ) : (
+              <span className="text-white/60">{text.weapon}</span>
+            )
+          }
           slots={<WeaponSlots count={weaponSlots} decorations={set.decorations} edit={edit} />}
           decos={decosIn("weapon")}
           edit={edit}

@@ -129,6 +129,7 @@ export const setBuilder = {
     results: "Results",
     editor: "Editor",
     sets: "My sets",
+    saveFile: "Save file",
   },
 
   /** The Results tab and the search's status messages. */
@@ -386,6 +387,24 @@ export const setBuilder = {
     cantOpen: "Can't be opened in this version.",
     /** `hunterType` is translated; `defense` is formatted. */
     summary: (hunterType: string, defense: string) => `${hunterType}, Defense ${defense}`,
+  },
+
+  /** The Save file tab: the equipment sets the loaded hunter registered. */
+  saveSets: {
+    noSave: "Load a save file to see the equipment sets your hunter registered.",
+    loadSave: "Load a save file",
+    stale:
+      "This save was read before the set builder kept equipment sets. Load the save again to see them.",
+    reload: "Load the save again",
+    empty: "No equipment sets are registered in this save.",
+    loadingWeapon: "Loading the weapon…",
+    /** `list` is unknownWeapon/unknownPiece/unknownDecoration, joined. */
+    unknown: (list: string) =>
+      `Some equipment isn't in this version of the site, so it isn't counted: ${list}.`,
+    unknownWeapon: (id: number) => `weapon (ID ${id})`,
+    /** `slot` is the translated slot name. */
+    unknownPiece: (slot: string, id: number) => `${slot} (ID ${id})`,
+    unknownDecoration: (itemId: number) => `decoration (item ${itemId})`,
   },
 
   /** The wanted skills' chips and the skills sheet (SkillPicker). */
