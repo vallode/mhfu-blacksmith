@@ -54,7 +54,10 @@ function isActiveHunter(save: SaveData | null, c: CharacterResult): boolean {
   const items = hunterItems(c);
   return (
     save.items.length === items.length &&
-    save.items.every((s, i) => s.id === items[i].id && s.qty === items[i].qty)
+    save.items.every((s, i) => s.id === items[i].id && s.qty === items[i].qty) &&
+    // A box that differs, such as one stored when only part of it was read, is
+    // loaded again by picking its slot.
+    JSON.stringify(save.equipment) === JSON.stringify(c.equipBox)
   );
 }
 

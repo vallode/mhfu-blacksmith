@@ -60,7 +60,7 @@ export function looksLikeHunter(bytes: Uint8Array, offset = 0): boolean {
   let equipment = 0;
   for (let i = 0; i < EQUIP_SLOTS; i++) {
     const slot = offset + EQUIP_BOX + i * 12;
-    if (bytes[slot] === 0 && bytes[slot + 1] === 0) continue;
+    if (bytes[slot] === 0) continue; // empty to the game, whatever follows
     if (bytes[slot] !== 1 || bytes[slot + 1] > 6) return false;
     equipment++;
   }

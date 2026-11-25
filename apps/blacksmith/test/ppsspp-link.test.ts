@@ -58,6 +58,16 @@ test("a save's hunter block looks like a hunter; an empty one doesn't", () => {
   assert.equal(looksLikeHunter(renamed), false);
 });
 
+test("the hunter check covers all 1000 equipment box slots", () => {
+  const block = hunterBlock();
+  const last = 0xa8 + 999 * 12;
+  block.set([0x01, 0x05], last);
+  block.set([0x00, 0x05], 0xa8 + 699 * 12); // empty: its first byte is 0
+  assert.equal(looksLikeHunter(block), true);
+  block[last + 1] = 7; // no such equip type
+  assert.equal(looksLikeHunter(block), false);
+});
+
 test("findHunters finds the block in a stretch of memory", () => {
   const memory = new Uint8Array(0x200000);
   for (let i = 0; i < memory.length; i += 97) memory[i] = i & 0xff;
