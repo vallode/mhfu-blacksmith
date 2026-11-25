@@ -29,6 +29,8 @@ export const site = {
     menu: "Menu",
     loadHunter: "Load hunter",
   },
+  /** The sidebar's link to the community Discord server. */
+  discord: "Discord",
   language: {
     heading: "Language",
     label: "Language",
