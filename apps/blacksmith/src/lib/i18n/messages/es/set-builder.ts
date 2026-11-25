@@ -108,7 +108,6 @@ export const setBuilder: Messages["setBuilder"] = {
     results: "Resultados",
     editor: "Editor",
     sets: "Mis conjuntos",
-    saveFile: "Partida",
   },
 
   results: {
@@ -335,14 +334,16 @@ export const setBuilder: Messages["setBuilder"] = {
     summary: (hunterType: string, defense: string) => `${hunterType}, Defensa ${defense}`,
   },
 
-  /** La pestaña Partida: los conjuntos que registró el cazador cargado. */
+  /** Los conjuntos de la partida, en la pestaña Mis conjuntos y en solo lectura. */
   saveSets: {
-    noSave: "Carga una partida para ver los conjuntos de equipo que registró tu cazador.",
-    loadSave: "Cargar una partida",
+    /** La etiqueta de un conjunto de la partida en Mis conjuntos. */
+    badge: "Partida",
+    readOnly: "Solo lectura",
+    /** El botón del detalle de solo lectura en Mis conjuntos. */
+    view: "Ver",
     stale:
-      "Esta partida se leyó antes de que el creador de conjuntos guardara los conjuntos de equipo. Vuelve a cargarla para verlos.",
+      "Esta partida se leyó antes de que el creador de conjuntos guardara los conjuntos de equipo.",
     reload: "Volver a cargar la partida",
-    empty: "Esta partida no tiene ningún conjunto de equipo registrado.",
     loadingWeapon: "Cargando el arma…",
     unknown: (list: string) =>
       `Parte del equipo no existe en esta versión del sitio, así que no se cuenta: ${list}.`,

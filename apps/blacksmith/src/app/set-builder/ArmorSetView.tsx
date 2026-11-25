@@ -222,15 +222,12 @@ export function SetHeader({
   count,
   onStep,
   action,
-  number,
 }: {
   index: number;
   count: number;
   onStep: (by: 1 | -1) => void;
   /** A button shown beside the set number. */
   action?: React.ReactNode;
-  /** The set's own number, when it isn't its place in the list (a save's gaps). */
-  number?: number;
 }) {
   const text = useT().setBuilder.setView;
   return (
@@ -255,7 +252,7 @@ export function SetHeader({
         )}
         aria-live="polite"
       >
-        {text.setNumber(number ?? index + 1)}
+        {text.setNumber(index + 1)}
       </span>
       {action}
       <span className={cn("text-main text-white text-shadow-[0.15rem_0.15rem_black]")}>
