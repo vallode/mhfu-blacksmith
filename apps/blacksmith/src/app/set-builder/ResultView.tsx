@@ -162,14 +162,19 @@ export default function ResultView({
           <SkillLine set={set} wanted={wanted} />
         </div>
       </div>
-      <div className="flex gap-[0.8rem]">
-        <SetWishlistButton set={set} main />
-        <SetModel
-          pieces={set.pieces}
-          sex={sex === "Female" ? "female" : "male"}
-          label={text.setView.setNumber(index + 1)}
-        />
-        {action}
+      {/* Inline when they fit; otherwise the wishlist keeps its label on its own
+          line and the other two share a full second row. */}
+      <div className="flex flex-wrap gap-[0.8rem]">
+        <SetWishlistButton set={set} main className="min-w-min" />
+        <div className="flex min-w-fit flex-1 gap-[0.8rem]">
+          {action}
+          <SetModel
+            variant="button"
+            pieces={set.pieces}
+            sex={sex === "Female" ? "female" : "male"}
+            label={text.setView.setNumber(index + 1)}
+          />
+        </div>
       </div>
       <PieceSheet
         piece={picked?.piece ?? null}
