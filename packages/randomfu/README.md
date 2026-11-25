@@ -2151,7 +2151,7 @@ have the details):
   through the pointer at its `+0x5C` (the elites' quest state is the same
   object), drawing the main table as many times as its byte `+3` says. It's
   called once, when a quest is completed, and fills the save's reward box
-  (16 slots), which the reward screen shows; the pact adds its items after
+  (32 slots), which the reward screen shows; the pact adds its items after
   it (a new game hook). The equipment box is the save's `+0x548`, 12 bytes
   a slot.
 - The HUD draws in layers 9 to 14, in order: its shapes in the layer in

@@ -186,7 +186,7 @@ them (exactly one in the EBOOT, two in `game_task`); hook 2's is
 `poogie-luck.ts` finds (its start: the nearest `addiu $sp, $sp, -n` before
 it), called from one place, the quest results step (EU 0x08874C58) that
 `game_task` runs before the reward screen; it passes that step's object.
-The roll has filled the save's reward box (`+0x390`, 16 slots) and sorted
+The roll has filled the save's reward box (`+0x390`, 32 slots) and sorted
 it by then. The main loop's `jal padRead` (the one between `lui` and
 `lw $a0`, its delay slot loading the pad object's global, and followed by
 the printer's reset) gives the pad and printer globals.
@@ -377,10 +377,17 @@ per seed (`pactPool` in `src/patches/pact.ts`), linked in as
   game pays only on completion; luck goes in the hunter's skill ids for
   the reward roll.
 - **Payout.** Hook 4, once a completed quest: items go in the reward box's
-  first free slots (save `+0x390`), equipment in the equipment box's first
-  free slot (save `+0x548`, 400 slots of 12 bytes: `01`, type, u16 ID, the
-  rest 0). A quest left unfinished never reaches the hook, and the next
-  quest forgets the pact.
+  first free slots (save `+0x390`, 32 of them; the quest's own rewards fill
+  the first 16, captures' and breaks' the rest), equipment in the equipment
+  box's first free slot (save `+0x548`, 12 bytes a slot: `01`, type, u16 ID,
+  the rest 0). The game's own routine finds that slot (`freeSlot(save)`, EU
+  0x088506A4, FUC 0x088505E8) in the 800 to 1000 slots the hunter's box has;
+  where it isn't found, the blob searches the first 800. Equipment is offered
+  only while the box has room for it, beside the other offers' pieces. A
+  reward with no free slot in its box isn't paid; for items, that takes both
+  halves of the reward box, which the roll caps at 16 each, being full. A
+  quest left unfinished never reaches the hook, and the next quest forgets
+  the pact.
 
 `test/pact.test.ts` runs it in the interpreter against a fake quest, HUD,
 hunter, pad, printer and save.
