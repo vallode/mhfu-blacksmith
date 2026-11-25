@@ -26,12 +26,16 @@
  *   the elites' quest state, `elite.ts`, is the same object). It draws from
  *   the main table (kind `0x8000`) as many times as its byte `+3` says, at
  *   most 9, then gives each slot past those a chance (the Luck skills raise
- *   it). It fills the save's reward box (`+0x390`, 16 slots of item and
- *   amount) and sorts it; the reward screen shows the box.
+ *   it). It fills the save's reward box (`+0x390`, 32 slots of item and
+ *   amount: its own in the first 16, captures' and breaks' in the rest) and
+ *   sorts each half; the reward screen shows the box. The pact adds its items
+ *   to the first free slots.
  * - The equipment box is the save's `+0x548`, 800 to 1000 slots (8 to 10
  *   pages of 100, by quest flags 829 and 830). `freeSlot(save)` (EU
  *   0x088506A4, FUC 0x088505E8) gives the first slot whose byte 0 is 0, or
- *   0xFFFF when the box is full; the pact asks it. 12 bytes a slot: `01`, the
+ *   0xFFFF when the box is full; the pact asks it (and searches the first 800
+ *   itself where it isn't found), and offers only the pieces there's room
+ *   for. 12 bytes a slot: `01`, the
  *   type (0-4 armor: legs, head, chest, arms, waist; 5 melee, 6 ranged), the
  *   ID (u16), then the armor's level and three decorations (as the site's
  *   save reader has it, `apps/blacksmith/public/javascript/save-worker.js`,
@@ -156,9 +160,9 @@ export const FREE_SLOT_SIGNATURE = [
   0x00a3102a, 0x1440fff7, 0x2484000c, 0x3402ffff, 0x8fbf000c, 0x8fb00008, 0x03e00008, 0x27bd0010,
 ];
 
-/** `freeSlot`'s address, as `blob/pact.c` calls it (`rf_equipment_free_slot`), or null. */
+/** `freeSlot`'s address, as `blob/pact.c` reads it (`rf_pact_free_slot_fn`), or null. */
 export function findFreeSlot(vanillaEboot: Buffer, segment: Segment): number | null {
-  return findUnique(vanillaEboot, segment, [FREE_SLOT_SIGNATURE.map(maskWord)])[0]!;
+  return findUnique(vanillaEboot, segment, [FREE_SLOT_SIGNATURE.map(maskWord)])[0] ?? null;
 }
 
 const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
@@ -235,8 +239,11 @@ export function findSharpnessLevel(vanillaEboot: Buffer, segment: Segment): numb
   return SHARPNESS_LEVEL_FIELDS.every(([k, w]) => at(found + k) === w) ? found : null;
 }
 
-/** `rf_pact_level_fn`: the level function's address, 0 for none (no blade pacts). */
-export function encodeLevelFn(address: number | null): Buffer {
+/**
+ * `rf_pact_level_fn` and `rf_pact_free_slot_fn`: a game function's address, 0
+ * for none (no blade pacts; the blob's own search for a free slot).
+ */
+export function encodeOptionalFn(address: number | null): Buffer {
   const out = Buffer.alloc(4);
   out.writeUInt32LE(address ?? 0);
   return out;
@@ -251,11 +258,9 @@ export function findPactExterns(
 ): Record<string, number> | string {
   const text = findTextExterns(vanillaEboot, sites);
   if (typeof text === "string") return text;
-  const freeSlot = findFreeSlot(vanillaEboot, sites.segment);
-  if (freeSlot == null) return "this EBOOT's equipment box code doesn't match";
   const monsters = findMonsterExterns(gameTask, ovl);
   if (typeof monsters === "string") return monsters;
-  return { ...text, rf_equipment_free_slot: freeSlot, ...monsters };
+  return { ...text, ...monsters };
 }
 
 /** The pact's objects, with the monster boosts (`blob/monsters.c`) it registers with. */

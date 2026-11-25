@@ -15,7 +15,7 @@ import {
   demandCaps,
   encodeCapturable,
   encodeDrops,
-  encodeLevelFn,
+  encodeOptionalFn,
   encodePactPool,
   findSharpnessLevel,
   findTextExterns,
@@ -54,11 +54,11 @@ const EXTERNS = {
   rf_fill: 0x0882d8dc,
   rf_item_icon: 0x0882e2c0,
   rf_equipment_icon: 0x08831338,
-  rf_equipment_free_slot: 0x088506a4,
   rf_pad: 0x08a62c64,
   rf_printer: 0x08a631a8,
   rf_print: 0x088920a8,
 };
+const FREE_SLOT_FN = 0x088506a4;
 /** The EBOOT's box size, pages × 100, which `freeSlot` calls. */
 const BOX_SLOTS_FN = 0x08850ec4;
 /** freeSlot(save) as the EU EBOOT has it (EU 0x088506A4, FUC 0x088505E8). */
@@ -106,13 +106,15 @@ function quest(
   drops: Buffer = DEFAULT_DROPS,
   levelFn: number | null = LEVEL_FN,
   boxSlots = 800,
+  freeSlotFn: number | null = FREE_SLOT_FN,
 ) {
   const blob = linkBlob([...runtime(), ...pactObjects()], BLOB, EXTERNS, Infinity, {
     rf_pact_pool: encodePactPool(pool),
     rf_pact_capturable: encodeCapturable(capturable),
     rf_pact_levels: levels,
     rf_pact_drops: drops,
-    rf_pact_level_fn: encodeLevelFn(levelFn),
+    rf_pact_level_fn: encodeOptionalFn(levelFn),
+    rf_pact_free_slot_fn: encodeOptionalFn(freeSlotFn),
   });
   const cpu = new Cpu();
   cpu.write(BLOB, blob.image);
@@ -124,7 +126,7 @@ function quest(
   ]);
   cpu.load(HOOKS, hooks.code);
   // The game's own free-slot routine, over a box of `boxSlots`.
-  cpu.load(EXTERNS.rf_equipment_free_slot, FREE_SLOT_EU);
+  cpu.load(FREE_SLOT_FN, FREE_SLOT_EU);
   cpu.native.set(BOX_SLOTS_FN, () => boxSlots);
   const arg = (k: number) => cpu.reg[4 + k]! >>> 0;
 
@@ -979,27 +981,72 @@ test("item and equipment rewards are paid when the quest is completed", () => {
   assert.equal(q.cpu.u32(EQUIPMENT_BOX + 36), 0, "paid once");
 });
 
-/** Takes the Bone Kris and completes the quest with the box's first `full` slots taken. */
-function payKris(full: number, boxSlots = 800) {
-  const box = quest(POOL, [LARGE], ANY_LEVEL, DEFAULT_DROPS, LEVEL_FN, boxSlots);
-  const { q } = questOffering(reward(/^Bone Kris$/), 1, "hunt", box);
+/** A quest over a box of `boxSlots`, searched by the game's routine, or by the blob where it's null. */
+const boxQuest = (boxSlots = 800, freeSlotFn: number | null = FREE_SLOT_FN) =>
+  quest(POOL, [LARGE], ANY_LEVEL, DEFAULT_DROPS, LEVEL_FN, boxSlots, freeSlotFn);
+const fillBox = (q: Quest, full: number) => {
   for (let s = 0; s < full; s++) q.cpu.setU32(EQUIPMENT_BOX + s * 12, 0x00030501);
+};
+
+/**
+ * Takes the Bone Kris, then completes the quest with the box's first `full`
+ * slots taken (after the offers, which a full box wouldn't make).
+ */
+function payKris(full: number, box = boxQuest()) {
+  const { q } = questOffering(reward(/^Bone Kris$/), 1, "hunt", box);
+  fillBox(q, full);
   take(q, reward(/^Bone Kris$/));
+  // The whole of the largest box, and the item box's first bytes past it.
+  const bytes = () => [...q.cpu.bytes(EQUIPMENT_BOX, 1000 * 12 + 24)];
+  const before = bytes();
   q.complete();
-  return (s: number) => [...q.cpu.bytes(EQUIPMENT_BOX + s * 12, 4)];
+  return { before, after: bytes(), slot: (s: number) => bytes().slice(s * 12, s * 12 + 4) };
 }
 
 test("an equipment reward goes past slot 400, as far as the hunter's box does", () => {
   const kris = [1, 5, 40, 0];
-  assert.deepEqual(payKris(400)(400), kris);
-  assert.deepEqual(payKris(799)(799), kris);
-  assert.deepEqual(payKris(999, 1000)(999), kris);
+  assert.deepEqual(payKris(400).slot(400), kris);
+  assert.deepEqual(payKris(799).slot(799), kris);
+  assert.deepEqual(payKris(999, boxQuest(1000)).slot(999), kris);
 });
 
 test("with the box full, an equipment reward isn't paid and nothing is overwritten", () => {
-  const slot = payKris(800);
-  assert.deepEqual(slot(799), [1, 5, 3, 0]);
-  assert.deepEqual(slot(800), [0, 0, 0, 0]);
+  const { before, after } = payKris(800);
+  assert.deepEqual(after, before);
+});
+
+test("where the game's routine isn't found, the first 800 slots are searched", () => {
+  assert.deepEqual(payKris(400, boxQuest(1000, null)).slot(400), [1, 5, 40, 0]);
+  const { before, after } = payKris(800, boxQuest(1000, null));
+  assert.deepEqual(after, before);
+});
+
+test("equipment is offered only while the box has room for it", () => {
+  for (const freeSlotFn of [FREE_SLOT_FN, null]) {
+    const q = boxQuest(800, freeSlotFn);
+    fillBox(q, 800);
+    const before = [...q.cpu.bytes(EQUIPMENT_BOX, 800 * 12)];
+    for (let n = 1; n < 300; n++) {
+      for (const o of next(q, n)) assert.doesNotMatch(o.reward, /^Bone Kris$/);
+    }
+    // One slot free: offered again, and looking for room leaves the box as it was.
+    q.cpu.setU32(EQUIPMENT_BOX + 799 * 12, 0);
+    let offered = false;
+    for (let n = 300; n < 2000 && !offered; n++) offered = next(q, n).some(reward(/^Bone Kris$/));
+    assert.ok(offered);
+    assert.deepEqual([...q.cpu.bytes(EQUIPMENT_BOX, 799 * 12)], before.slice(0, 799 * 12));
+    assert.equal(q.cpu.u32(EQUIPMENT_BOX + 799 * 12), 0);
+  }
+});
+
+test("an item reward goes past the quest's own 16 reward slots when they're full", () => {
+  const { q } = questOffering(reward(/x\d+$/));
+  for (let s = 0; s < 16; s++) q.cpu.setU32(REWARD_BOX + s * 4, 0x0001_00c8);
+  const list = take(q, reward(/x\d+$/));
+  q.complete();
+  const amount = Number(list.find(reward(/x\d+$/))!.reward.match(/x(\d+)$/)![1]);
+  assert.equal(q.cpu.u16(REWARD_BOX + 16 * 4 + 2), amount);
+  assert.notEqual(q.cpu.u16(REWARD_BOX + 16 * 4), 0);
 });
 
 test("the free-slot routine is found by its code, on EU and FUC alike", () => {

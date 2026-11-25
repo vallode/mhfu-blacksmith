@@ -146,7 +146,7 @@ struct rf_load {
 
 /*
  * RF_HOOK_REWARDS: once a completed quest, just after its rewards are rolled
- *   into the save's reward box (save +0x390: 16 slots of item and amount,
+ *   into the save's reward box (save +0x390: 32 slots of item and amount,
  *   u16 each) and before the reward screen shows them.
  */
 #define RF_HOOK_REWARDS 4

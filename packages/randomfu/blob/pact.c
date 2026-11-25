@@ -26,11 +26,6 @@ extern const u8 rf_fill[];      /* fill(hud, x, y, w, h, r, g, b, alpha) */
 extern const u8 rf_item_icon[];
 /* equipment_icon(hud, type, id, x, y, w, h, alpha, dim): a piece's icon in its rarity's colour */
 extern const u8 rf_equipment_icon[];
-/*
- * The EBOOT's free equipment box slot (src/patches/pact.ts, findFreeSlot):
- * the first of as many as the hunter's box has, or 0xFFFF when all are full.
- */
-u32 rf_equipment_free_slot(u8 *save);
 extern u8 *const rf_pad[];      /* the global holding the game's pad object */
 extern u8 *const rf_printer[];  /* the global holding the text printer */
 extern const u8 rf_print[];     /* print(printer, x, y, format, ...): reads ~C and ~B codes */
@@ -51,6 +46,12 @@ extern const u8 rf_pact_drops[];
  * found (then no blade pacts).
  */
 extern const u32 rf_pact_level_fn[];
+/*
+ * Made per disc (src/patches/pact.ts, findFreeSlot): the EBOOT's
+ * freeSlot(save), the first free slot of as many as the hunter's equipment
+ * box has, or 0xFFFF; 0 where it wasn't found (free_slot() then searches).
+ */
+extern const u32 rf_pact_free_slot_fn[];
 /*
  * Made per disc (src/patches/pact.ts, pactLevels): by rank and stars, the
  * rarities a piece of equipment may have, the lowest in the low nibble.
@@ -102,12 +103,17 @@ extern const u8 rf_pact_levels[];
 #define PRINTER_LAYER 0x12f
 #define TOP_TEXT_LAYER 5
 
-/* The save: reward box (16 slots of item and amount, u16 each) and equipment box. */
+/*
+ * The save: reward box (32 slots of item and amount, u16 each; the quest's
+ * own go in the first 16, captures' and breaks' in the rest) and equipment box.
+ */
 #define SAVE_REWARDS 0x390
-#define REWARD_SLOTS 16
+#define REWARD_SLOTS 32
 #define SAVE_EQUIPMENT 0x548
 #define EQUIPMENT_SLOT 12
 #define NO_SLOT 0xffff
+/* The fewest slots a hunter's box has. */
+#define SAFE_SLOTS 800
 /* The item box and the pouch: { u16 item, u16 amount } a slot (the save file's offsets + 0x4A0). */
 #define SAVE_BOX 0x3428
 #define BOX_SLOTS 1000
@@ -536,6 +542,33 @@ static int offered(u32 k, u32 value) {
 /* Whether a piece of equipment fits the quest's stars. */
 static int fits_level(const rf_entry *e) { return e->extra >= (level & 15) && e->extra <= (level >> 4); }
 
+/* The first free slot of the equipment box, or NO_SLOT. */
+static u32 free_slot(void) {
+  if (rf_pact_free_slot_fn[0]) return ((u32(*)(u8 *))rf_pact_free_slot_fn[0])(save);
+  for (u32 s = 0; s < SAFE_SLOTS; s++) {
+    if (!save[SAVE_EQUIPMENT + s * EQUIPMENT_SLOT]) return s;
+  }
+  return NO_SLOT;
+}
+
+/*
+ * Whether the box has room for another piece besides those the first `k`
+ * offers give: fills free slots to find the next, then empties them again.
+ */
+static int box_room(u32 k) {
+  u32 pieces = 0, found[OFFERS], n = 0;
+  for (u32 j = 0; j < k; j++) pieces += offer[j].reward == R_EQUIPMENT;
+  while (n <= pieces) {
+    const u32 s = free_slot();
+    if (s == NO_SLOT) break;
+    save[SAVE_EQUIPMENT + s * EQUIPMENT_SLOT] = 1;
+    found[n++] = s;
+  }
+  const int room_left = n > pieces;
+  while (n) save[SAVE_EQUIPMENT + found[--n] * EQUIPMENT_SLOT] = 0;
+  return room_left;
+}
+
 /* Whether the rank has a piece that fits the quest's stars. */
 static int pieces_fit(void) {
   const rf_span *s = span(band, EQUIPMENT_KIND);
@@ -582,7 +615,7 @@ static rf_offer pick(u32 k, u32 p, u32 *used) {
   if (!(*used & (1u << R_ZENNY))) options[n++] = R_ZENNY;
   /* Draws only where all of them fit, so the offer pays what it says. */
   if (weight <= room && !(*used & (1u << R_DRAWS))) options[n++] = R_DRAWS;
-  const int items = items_fit(k, weight - 1), pieces = weight == 3 && pieces_fit();
+  const int items = items_fit(k, weight - 1), pieces = weight == 3 && pieces_fit() && box_room(k);
   if (items) options[n++] = R_ITEM;
   if (pieces) options[n++] = R_EQUIPMENT;
   /* Things to get come up twice as often as bonuses. */
@@ -1000,7 +1033,7 @@ static void rewards(u8 *arg) {
         break;
       }
     } else {
-      const u32 s = rf_equipment_free_slot(save);
+      const u32 s = free_slot();
       if (s == NO_SLOT) continue;
       u8 *box = save + SAVE_EQUIPMENT + s * EQUIPMENT_SLOT;
       for (u32 b = 0; b < EQUIPMENT_SLOT; b++) box[b] = 0;
