@@ -13,6 +13,7 @@ interface Row {
   status: string;
   latency_s: number;
   usage?: Record<string, number>;
+  cost_usd?: number;
   grade: Record<string, number>;
 }
 
@@ -64,7 +65,9 @@ for (const v of variants) {
       ? `${Math.round((100 * ok.reduce((s, r) => s + (r.grade[id] ?? 0), 0)) / ok.length)}%`
       : "-";
   const lat = ok.map((r) => r.latency_s).sort((a, b) => a - b);
-  const costs = [...rows, ...errors].map((r) => (r.model ? cost(r.model, r.usage) : 0));
+  const costs = [...rows, ...errors].map(
+    (r) => r.cost_usd ?? (r.model ? cost(r.model, r.usage) : 0),
+  );
   const priced = costs.every((c) => c !== null);
   const spent = costs.reduce<number>((s, c) => s + (c ?? 0), 0);
   const models = [...new Set(rows.map((r) => r.model))].join(", ");

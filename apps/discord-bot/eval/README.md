@@ -12,12 +12,19 @@ Both the expected answer and the model's go through the bot's own
 get: skills, rank, hunter type, weapon slots, the pieces left out, the
 pieces locked and the monster. "All correct" is all seven.
 
-| `--model`          | What runs                                                     |
-| ------------------ | ------------------------------------------------------------- |
-| `keyword`          | The bot's keyword matching, the floor a model has to beat     |
-| `claude-haiku-5-5` | The bot's own Claude request (`src/claude.ts`)                |
-| `claude-opus-5-5`  | The same, on Opus                                             |
-| `deepseek-flash`   | DeepSeek's API, same prompt and schema, as a strict tool call |
+| `--model`                   | What runs                                                   |
+| --------------------------- | ----------------------------------------------------------- |
+| `keyword`                   | The bot's keyword matching, the floor a model has to beat   |
+| `claude-haiku-5-5`          | The bot's own Claude request, with structured outputs       |
+| `claude-opus-5-5`           | The same, on Opus                                           |
+| `opencode:<provider/model>` | Any model opencode can reach, with the schema in the prompt |
+
+Through opencode, a model gets the bot's instructions and the JSON schema
+in its prompt and is asked for the JSON alone, since opencode has no
+structured outputs. Each call is a headless `opencode run` with an agent
+that has no tools, in a directory of its own under the system temp folder.
+An answer that isn't JSON scores zero; a name the model made up is dropped,
+as the bot drops it.
 
 ## Running it
 
@@ -34,10 +41,15 @@ RUN="$TSX apps/discord-bot/eval/run-eval.mjs --flow .claude/hillclimb/sets-trans
 $RUN --variant baseline --model keyword
 ANTHROPIC_API_KEY=… $RUN --variant v1 --model claude-haiku-5-5
 ANTHROPIC_API_KEY=… $RUN --variant v2 --model claude-opus-5-5
-DEEPSEEK_API_KEY=… $RUN --variant v3 --model deepseek-flash
+$RUN --variant v3 --model opencode:opencode-go/deepseek-v4.1-flash
+$RUN --variant v4 --model opencode:opencode-go/qwen3.8-flash
+$RUN --variant v5 --model opencode:opencode-go/glm-5.3-flash
+$RUN --variant v6 --model opencode:opencode-go/mimo-v2.6-flash
+$RUN --variant v7 --model opencode:opencode-go/gpt-6-luna
 $TSX apps/discord-bot/eval/summary.ts .claude/hillclimb/sets-translation
 ```
 
-`summary.ts` prints each variant's scores, median latency and cost.
+`summary.ts` prints each variant's scores, median latency and cost
+(opencode's own figure for its calls, list prices for Claude).
 `--reps 2` runs every case twice. A finished case isn't run again, so a run
 can be stopped and resumed.

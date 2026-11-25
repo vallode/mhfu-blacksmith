@@ -196,14 +196,9 @@ async function runCase(input, ctx) {
 async function gradeCase(input, run) {
   return sets.gradeCase(input, run);
 }
-function perfFrom() {
-  return {};
+function perfFrom(run) {
+  return run.cost_usd != null ? { cost_usd: run.cost_usd } : {};
 }
-
-// DeepSeek serves `deepseek-flash` from a dated model (DeepSeek-V4.1-Flash-1017):
-// its documented alias, so the served name may differ in that way only.
-const servedAs = (requested, served) =>
-  /^deepseek-flash$/.test(requested) && /^deepseek-(v[\d.]+-)?flash(-\d+)?$/i.test(served);
 
 // --- harness (you usually won't need to touch below this line) --------------
 
@@ -602,12 +597,7 @@ async function main() {
             // hide snapshot drift across rounds) - fails the attempt. Non-Anthropic
             // id schemes (e.g. Bedrock's 'anthropic.claude-...-v1:0') need their own
             // rule here.
-            if (
-              ctx.model &&
-              run.model &&
-              run.model !== ctx.model &&
-              !servedAs(ctx.model, run.model)
-            ) {
+            if (ctx.model && run.model && run.model !== ctx.model) {
               const base = ctx.model.replace(/-latest$|-0$/, "");
               const rest = String(run.model).startsWith(base)
                 ? String(run.model).slice(base.length)

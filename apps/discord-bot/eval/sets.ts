@@ -13,10 +13,13 @@
  * - `keyword`: the bot's keyword stub, the floor a model has to beat;
  * - `oracle`: the expected answer itself, to check the grader (all 1s);
  * - `claude-*`: the bot's own Messages API request (src/claude.ts);
- * - `deepseek-*`: DeepSeek's chat API with the same prompt and schema, as a
- *   strict function call, thinking off.
+ * - `opencode:<provider>/<model>`: any model opencode can reach (DeepSeek
+ *   Flash and the other cheap ones), with the schema in the prompt.
  */
-import { readFileSync } from "node:fs";
+import { spawn } from "node:child_process";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import Anthropic from "@anthropic-ai/sdk";
 import { hasArmorWord } from "blacksmith/src/lib/search-link.js";
 import { buildIndex } from "../scripts/index-data.js";
@@ -80,6 +83,8 @@ interface Run {
   usage: Record<string, number>;
   stop_reason: string | null;
   status?: string;
+  /** What the provider billed, when it says (opencode does). */
+  cost_usd?: number;
 }
 
 const system = setRequestPrompt(index);
@@ -112,7 +117,7 @@ export async function runCase(c: Case, ctx: { model?: string }): Promise<Run> {
     };
   }
   if (model.startsWith("claude-")) return runClaude(c, model);
-  if (model.startsWith("deepseek-")) return runDeepSeek(c, model);
+  if (model.startsWith("opencode:")) return runOpencode(c, model.slice("opencode:".length));
   throw new Error(`no runner for model ${model}`);
 }
 
@@ -146,79 +151,138 @@ async function runClaude(c: Case, model: string): Promise<Run> {
   return { ...base, output, transcript: transcript(c.request, output) };
 }
 
-/** DeepSeek's strict mode wants every property required, as ours are. */
-async function runDeepSeek(c: Case, model: string): Promise<Run> {
-  const key = process.env.DEEPSEEK_API_KEY;
-  if (!key)
-    throw Object.assign(new Error("DEEPSEEK_API_KEY is not set"), { failure_class: "config" });
-  const res = await fetch("https://api.deepseek.com/beta/chat/completions", {
-    method: "POST",
-    headers: { "content-type": "application/json", authorization: `Bearer ${key}` },
-    body: JSON.stringify({
-      model,
-      max_tokens: 2000,
-      thinking: { type: "disabled" },
-      messages: [
-        { role: "system", content: system },
-        { role: "user", content: c.request },
-      ],
-      tools: [
-        {
-          type: "function",
-          function: {
-            name: "set_request",
-            description: "The set builder search for the player's request.",
-            strict: true,
-            parameters: schema,
-          },
+/**
+ * A model through opencode (`opencode:<provider>/<model>`), for the models
+ * the bot has no SDK for. opencode has no structured outputs, so the prompt
+ * carries the schema and asks for the JSON alone; the resolver then drops any
+ * name the model made up, as it would in the bot.
+ *
+ * Each call is a headless `opencode run` with an agent that has every tool
+ * removed, in a directory of its own outside the repo.
+ */
+const OPENCODE_DIR = join(tmpdir(), "mhfu-sets-eval-opencode");
+
+function opencodeDir(): string {
+  mkdirSync(OPENCODE_DIR, { recursive: true });
+  writeFileSync(join(OPENCODE_DIR, "prompt.md"), jsonPrompt());
+  writeFileSync(
+    join(OPENCODE_DIR, "opencode.json"),
+    JSON.stringify({
+      $schema: "https://opencode.ai/config.json",
+      agent: {
+        translate: {
+          description: "Answers with one JSON object. No tools.",
+          mode: "primary",
+          prompt: "{file:./prompt.md}",
+          tools: { "*": false },
         },
-      ],
-      tool_choice: { type: "function", function: { name: "set_request" } },
+      },
     }),
-    signal: AbortSignal.timeout(60_000),
-  });
-  if (!res.ok) {
-    const text = await res.text();
-    throw Object.assign(new Error(`DeepSeek ${res.status}: ${text.slice(0, 300)}`), {
-      status: res.status,
+  );
+  return OPENCODE_DIR;
+}
+
+/** The prompt for a model without structured outputs: the schema, in words. */
+export function jsonPrompt(): string {
+  return [
+    system,
+    "",
+    "Reply with one JSON object and nothing else: no prose, no code fence. It must follow this JSON schema, whose enums are the only names allowed:",
+    JSON.stringify(schema),
+  ].join("\n");
+}
+
+let opencodeReady: string | undefined;
+
+async function runOpencode(c: Case, model: string): Promise<Run> {
+  opencodeReady ??= opencodeDir();
+  const dir = opencodeReady;
+  const lines = await new Promise<string[]>((resolve, reject) => {
+    const child = spawn(
+      "opencode",
+      ["run", "--pure", "--dir", dir, "--title", `sets-eval ${c.id}`, "-m", model].concat([
+        "--agent",
+        "translate",
+        "--format",
+        "json",
+        c.request,
+      ]),
+      { cwd: dir, stdio: ["ignore", "pipe", "ignore"] },
+    );
+    let out = "";
+    child.stdout.on("data", (d: Buffer) => (out += d));
+    // opencode can wait forever on a provider error (an expired key, a spent
+    // free tier), so the call gets a ceiling of its own and is killed.
+    const timer = setTimeout(() => {
+      child.kill();
+      reject(
+        Object.assign(new Error("opencode gave no answer in 90 s"), { failure_class: "timeout" }),
+      );
+    }, 90_000);
+    child.on("error", reject);
+    child.on("close", () => {
+      clearTimeout(timer);
+      resolve(out.split("\n").filter((l) => l.trim()));
     });
-  }
-  const body = (await res.json()) as {
-    model: string;
-    choices: {
-      finish_reason: string;
-      message: { tool_calls?: { function: { arguments: string } }[] };
-    }[];
-    usage: {
-      prompt_cache_hit_tokens?: number;
-      prompt_cache_miss_tokens?: number;
-      completion_tokens: number;
+  });
+  let text = "";
+  let input = 0;
+  let output = 0;
+  let cacheRead = 0;
+  let cost = 0;
+  let reason: string | null = null;
+  for (const line of lines) {
+    const e = JSON.parse(line) as {
+      type: string;
+      error?: { data?: { message?: string; statusCode?: number } };
+      part?: {
+        text?: string;
+        reason?: string;
+        cost?: number;
+        tokens?: { input: number; output: number; reasoning?: number; cache?: { read: number } };
+      };
     };
-  };
-  const choice = body.choices[0];
+    if (e.type === "error") {
+      const data = e.error?.data;
+      throw Object.assign(new Error(`opencode: ${data?.message ?? "error"}`.slice(0, 300)), {
+        status: data?.statusCode,
+        failure_class: "provider",
+      });
+    }
+    if (e.type === "text") text += e.part?.text ?? "";
+    if (e.type === "step_finish" && e.part) {
+      const t = e.part.tokens;
+      input += t?.input ?? 0;
+      output += (t?.output ?? 0) + (t?.reasoning ?? 0);
+      cacheRead += t?.cache?.read ?? 0;
+      cost += e.part.cost ?? 0;
+      reason = e.part.reason ?? reason;
+    }
+  }
   const base = {
-    model: body.model,
+    // opencode doesn't say which model served the call; it's the one asked for.
+    model: `opencode:${model}`,
     usage: {
-      input_tokens: body.usage.prompt_cache_miss_tokens ?? 0,
-      output_tokens: body.usage.completion_tokens,
-      cache_read_input_tokens: body.usage.prompt_cache_hit_tokens ?? 0,
+      input_tokens: input,
+      output_tokens: output,
+      cache_read_input_tokens: cacheRead,
       cache_creation_input_tokens: 0,
     },
-    stop_reason:
-      choice?.finish_reason === "length" ? "max_tokens" : (choice?.finish_reason ?? null),
+    cost_usd: cost,
+    stop_reason: reason === "length" ? "max_tokens" : reason,
   };
   if (base.stop_reason === "max_tokens")
-    return {
-      ...base,
-      output: EMPTY,
-      status: "truncated",
-      transcript: transcript(c.request, choice),
-    };
-  const args = choice?.message.tool_calls?.[0]?.function.arguments;
-  if (!args)
-    throw Object.assign(new Error("DeepSeek made no tool call"), { failure_class: "no_answer" });
-  const output = JSON.parse(args) as SetRequest;
-  return { ...base, output, transcript: transcript(c.request, output) };
+    return { ...base, output: EMPTY, status: "truncated", transcript: transcript(c.request, text) };
+  const json = text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1);
+  let parsed: SetRequest;
+  try {
+    parsed = JSON.parse(json) as SetRequest;
+  } catch {
+    // Not JSON is the model's failure, not the harness's: score it, as the
+    // bot would have had nothing to search with.
+    return { ...base, output: EMPTY, transcript: transcript(c.request, text) };
+  }
+  return { ...base, output: parsed, transcript: transcript(c.request, parsed) };
 }
 
 // ---------------------------------------------------------------------------
