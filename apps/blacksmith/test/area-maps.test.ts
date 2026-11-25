@@ -61,6 +61,54 @@ test("buildAreaMaps gives each position its own point, and skips layouts with no
   );
 });
 
+test("a fishing area gets a fish point at a real point in the area", () => {
+  const fish = [
+    { item: "Knife Mackerel", chance: 60 },
+    { item: "Sushifish", chance: 40 },
+  ];
+  const bundle = buildAreaMaps({
+    layouts: [
+      {
+        map: "Forest and Hills (Day)",
+        texture: "map2",
+        quests: [2],
+        areas: [
+          {
+            area: 3,
+            nodes: [
+              {
+                kind: "gather",
+                count: 1,
+                items,
+                positions: [
+                  [10, 20],
+                  [30, 40],
+                ],
+              },
+              { kind: "fish", count: 1, items: fish },
+            ],
+          },
+          {
+            area: 5,
+            // No placed point in this area, so there is nothing to anchor on.
+            nodes: [{ kind: "fish", count: 1, items: fish }],
+          },
+        ],
+      },
+    ],
+  });
+  const points = decodeAreaMap(bundle, 2)!.points;
+  assert.deepEqual(
+    points.map((p) => [p.kind, p.x, p.y]),
+    [
+      ["gather", 10, 20],
+      ["gather", 30, 40],
+      ["fish", 10, 20],
+    ],
+  );
+  assert.deepEqual(points[2]!.items, fish);
+});
+
 test("buildAreaMaps gives every quest a map, even without gathering points", () => {
   const bundle = buildAreaMaps(
     {
@@ -154,6 +202,14 @@ test("nextSelection steps through overlapping points, nearest first, then to non
   assert.equal(nextSelection(points, 11.5, 10, 5, 2), 1); // the selection is elsewhere
   assert.equal(nextSelection(points, 40, 40, 5, null), 2);
   assert.equal(nextSelection(points, 40, 40, 5, 2), null);
+  // At the same point, the marker drawn on top (the later one) wins first.
+  const tied = [
+    { x: 10, y: 10, index: 0 },
+    { x: 10, y: 10, index: 1 },
+  ];
+  assert.equal(nextSelection(tied, 10, 10, 5, null), 1);
+  assert.equal(nextSelection(tied, 10, 10, 5, 1), 0);
+  assert.equal(nextSelection(tied, 10, 10, 5, 0), null);
 });
 
 test("areaLabel names the Base Camp", () => {
