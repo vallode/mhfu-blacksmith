@@ -17,7 +17,7 @@ import type { GameText } from "@/lib/i18n/game-text";
 import type { Messages } from "@/lib/i18n/messages";
 import { groupBy, itemHref } from "@/lib/item-sources";
 import { type Quest, type QuestSpawn, questHref } from "@/lib/quests";
-import { leadSpawn, spawnAreas, type SpawnArea } from "@/lib/quest-spawns";
+import { spawnAreas, type SpawnArea } from "@/lib/quest-spawns";
 
 /**
  * Each gathering kind's marker: one generic glyph for gathering points, and
@@ -31,45 +31,29 @@ const NODE_SPRITES: Record<GatherKind, string> = {
   fish: "/images/fish.png",
 };
 
+/** The monster-spawn marker: one claw for all of an area's monsters. */
+const SPAWN_SPRITE = "/images/claw.png";
+
 const percent = (pixels: number) => `${(pixels / AREA_MAP_SIZE) * 100}%`;
 
-/** A monster's sprite, from the slug of its monster page. */
-function monsterSprite(href: string | null): string | null {
-  const slug = href?.split("/").filter(Boolean).at(-1);
-  return slug ? `/images/monsters/${slug}.png` : null;
-}
-
 /**
- * An area's monsters as one marker: its lead monster's sprite. Kept larger
- * than the 8px gathering glyphs so the monster stays recognisable; the
- * selected marker's details carry each species and quantity.
+ * An area's monsters as one marker: the claw, tinted so it reads apart from
+ * the gathering glyphs. The selected marker's details carry each species
+ * and quantity.
  */
-function MonsterAreaMarker({ area, selected }: { area: SpawnArea; selected: boolean }) {
-  const spawn = leadSpawn(area.spawns);
-  const src = monsterSprite(spawn.monster.href);
-  const large = spawn.kind === "large";
+function MonsterAreaMarker({ selected }: { selected: boolean }) {
   return (
-    <span className="relative grid size-full place-items-center">
-      {src ? (
-        <img
-          src={src}
-          alt=""
-          decoding="sync"
-          className={cn(
-            "object-contain drop-shadow-[0_0_2px_rgba(0,0,0,0.9)] pixelated",
-            large ? "size-[2.4rem]" : "size-[2rem]",
-            selected && "outline-2 outline-white",
-          )}
-        />
-      ) : (
-        <span
-          className={cn(
-            "block size-[0.8rem] rotate-45 border border-black",
-            large ? "bg-gem-red" : "bg-gem-gray",
-            selected && "outline-2 outline-white",
-          )}
-        />
-      )}
+    <span className="grid size-full place-items-center">
+      <span
+        aria-hidden="true"
+        className={cn("block size-[1.6rem] bg-negative", selected && "outline-2 outline-white")}
+        style={{
+          maskImage: `url(${SPAWN_SPRITE})`,
+          maskSize: "100% 100%",
+          WebkitMaskImage: `url(${SPAWN_SPRITE})`,
+          WebkitMaskSize: "100% 100%",
+        }}
+      />
     </span>
   );
 }
@@ -320,7 +304,7 @@ function AreaMap({
             onClick={(event) => pick(event, i)}
             style={{ left: percent(m.x), top: percent(m.y) }}
             className={cn(
-              // 8px art in a 44px touch target on phones (32px elsewhere,
+              // 16px art in a 44px touch target on phones (32px elsewhere,
               // where overlapping points are easier to aim at).
               "absolute grid size-[3.2rem] -translate-1/2 cursor-pointer place-items-center border-0 bg-transparent p-0 mobile:size-[4.4rem]",
               m.point && gives && lit(m) && "z-1",
@@ -328,16 +312,16 @@ function AreaMap({
             )}
           >
             {m.monsterArea ? (
-              <MonsterAreaMarker area={m.monsterArea} selected={selected === i} />
+              <MonsterAreaMarker selected={selected === i} />
             ) : (
               <span
                 className={cn(
-                  "flex size-[0.8rem] items-center justify-center",
+                  "flex size-[1.6rem] items-center justify-center",
                   !lit(m) && "opacity-35",
                   selected === i && "opacity-100 outline-2 outline-white",
                 )}
               >
-                <img src={NODE_SPRITES[m.point!.kind]} alt="" className="size-[0.8rem] pixelated" />
+                <img src={NODE_SPRITES[m.point!.kind]} alt="" className="size-[1.6rem] pixelated" />
               </span>
             )}
           </button>
