@@ -17,6 +17,9 @@
  *   name, which the Cloudflare Worker reads to give shared sets their own
  *   embeds. See src/lib/set-embed.ts. Needs the /data bundles, so this runs
  *   after scripts/generate-data.ts.
+ * - presence/: the pictures apps/rich-presence shows in Discord statuses
+ *   (src/lib/presence-icons.ts): weapon minis by class and tint, monster
+ *   portraits and the Herb, square and unframed. See writePresenceIcons().
  * - set-card.json: what the Worker draws a shared set's card image with
  *   (src/lib/set-card.ts): the site's card frame at the card's size
  *   (scripts/lib/card-frame.png, tiled) and the icons it uses, tinted and
@@ -64,7 +67,16 @@ import {
 import { initWasm, Resvg } from "@resvg/resvg-wasm";
 import satori from "satori";
 import type { ReactNode } from "react";
+import { RARITY_COLORS } from "../src/lib/embed-format";
 import { getWeapons } from "../src/lib/weapons";
+import {
+  HERB_COLOR,
+  HERB_SPRITE,
+  PRESENCE_HERB_ICON,
+  PRESENCE_ICON_SIZE,
+  presenceMonsterIcon,
+  presenceWeaponIcon,
+} from "../src/lib/presence-icons";
 import { readSetSearchData } from "./lib/set-data";
 
 const publicDir = path.join(process.cwd(), "public");
@@ -218,6 +230,68 @@ async function writeIcons() {
     }
   }
   return count;
+}
+
+/**
+ * One presence picture: `sprite` at the largest whole scale that fits
+ * PRESENCE_ICON_SIZE (less `margin` on each side), centred on transparency
+ * and multiplied by `tint`.
+ */
+async function drawPresenceIcon(sprite: Sprite, tint: number[], margin: number, file: string) {
+  const SIZE = PRESENCE_ICON_SIZE;
+  const room = SIZE - margin * 2;
+  const scale = Math.floor(room / Math.max(sprite.width, sprite.height));
+  if (scale < 1) throw new Error(`${file}: the sprite is bigger than ${room}px`);
+  const left = Math.floor((SIZE - sprite.width * scale) / 2);
+  const top = Math.floor((SIZE - sprite.height * scale) / 2);
+  const out = Buffer.alloc(SIZE * SIZE * 4);
+  for (let y = 0; y < sprite.height * scale; y++) {
+    for (let x = 0; x < sprite.width * scale; x++) {
+      const i = (Math.floor(y / scale) * sprite.width + Math.floor(x / scale)) * 4;
+      const o = ((top + y) * SIZE + left + x) * 4;
+      for (let c = 0; c < 3; c++) out[o + c] = Math.round((sprite.data[i + c] * tint[c]) / 255);
+      out[o + 3] = sprite.data[i + 3];
+    }
+  }
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  await sharp(out, { raw: { width: SIZE, height: SIZE, channels: 4 } })
+    .png({ palette: true })
+    .toFile(file);
+}
+
+/** The public/ file for one of src/lib/presence-icons.ts's URLs. */
+const publicFile = (url: string) => path.join(publicDir, url);
+
+/** apps/rich-presence's pictures (src/lib/presence-icons.ts). */
+async function writePresenceIcons() {
+  let count = 0;
+  const white = [255, 255, 255];
+  for (const type of WEAPON_TYPES) {
+    const sprite = await loadSprite(path.join(publicDir, "images", `${type}-mini.png`));
+    for (const rarity of [null, ...Object.keys(RARITY_COLORS).map(Number)]) {
+      const tint = rarity ? hexToRgb(RARITY_COLORS[rarity]) : white;
+      await drawPresenceIcon(sprite, tint, 16, publicFile(presenceWeaponIcon(type, rarity)));
+      count++;
+    }
+  }
+  for (const category of getMonsterCategories()) {
+    for (const m of getMonsters(category)) {
+      const own = path.join(publicDir, "images/monsters", `${m.slug}.png`);
+      const file = fs.existsSync(own)
+        ? own
+        : path.join(publicDir, "images/monsters", `${category}.png`);
+      await drawPresenceIcon(
+        await loadSprite(file),
+        white,
+        8,
+        publicFile(presenceMonsterIcon(m.slug)),
+      );
+      count++;
+    }
+  }
+  const herb = await loadSprite(path.join(publicDir, "images", `${HERB_SPRITE}.png`));
+  await drawPresenceIcon(herb, hexToRgb(HERB_COLOR), 16, publicFile(PRESENCE_HERB_ICON));
+  return count + 1;
 }
 
 function writeOembed(route: string, author: EmbedAuthor) {
@@ -401,8 +475,9 @@ async function main() {
   const setEntries = writeSetData();
   const cardSprites = await writeSetCard();
   const monsterCards = await writeMonsterCards();
+  const presence = await writePresenceIcons();
   console.log(
-    `Wrote ${icons} embed icons, ${oembeds} oEmbed files, set data for ${setEntries} pieces and decorations, the set card with ${cardSprites} sprites and ${monsterCards} monster cards to public/embed/`,
+    `Wrote ${icons} embed icons, ${oembeds} oEmbed files, set data for ${setEntries} pieces and decorations, the set card with ${cardSprites} sprites, ${monsterCards} monster cards and ${presence} presence pictures to public/embed/`,
   );
 }
 

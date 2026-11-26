@@ -51,3 +51,4 @@ packages/mhfu-extract/.cache
 packages/mhfu-extract/**/*.iso
 # randomfu web app build output
 apps/randomfu/dist/
+apps/rich-presence/dist/

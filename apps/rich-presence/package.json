@@ -1,0 +1,23 @@
+{
+  "name": "rich-presence",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Discord Rich Presence for MHFU as a PPSSPP Lua plugin, built from data/.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "plugin": "tsx src/plugin.ts",
+    "test": "tsx --test test/**/*.test.ts",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "blacksmith": "workspace:*",
+    "game-data": "workspace:*",
+    "tsx": "^4.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "typescript": "^5",
+    "wasmoon": "1.16.0"
+  }
+}
