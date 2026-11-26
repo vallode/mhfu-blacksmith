@@ -125,14 +125,16 @@ their times. The top four are a case or two apart, within what one run can
 tell apart. Haiku was cheap but often added skills nobody asked for.
 
 The bot's own call (`src/deepseek.ts`, through OpenCode's pay-as-you-go
-API) got the same 97%, with a median of 2.1 s.
+API) got 97% and 94% in two runs, with a median of 2.1 s.
 
 ## Costs
 
 OpenCode's pay-as-you-go price for DeepSeek V4.1 Flash is $0.12 per million
-input tokens and $0.48 per million output tokens, about $0.25 for 1,000
-`/sets` requests. The eval's figures above are OpenCode Go's list price for
-the same model.
+input tokens, $0.0024 per million cached and $0.48 per million output. Each
+request sends about 5,500 tokens, all but about 110 of them cached after the
+first, and gets about 270 back: about $0.00015 a request, or $0.15 for 1,000
+(measured in the eval). A request after the cache has expired costs about
+$0.0008. The other models' figures above are OpenCode Go's list prices.
 
 Cloudflare costs:
 
