@@ -119,6 +119,13 @@ describe("/monster, /item, /weapon", () => {
     );
   });
 
+  it("takes the images from ASSET_URL, the links still from the site", async () => {
+    const env = { ASSET_URL: "https://test.example" };
+    const embed = messageOf(await call(command("item", "name", "Rathalos Scale"), env)).embeds?.[0];
+    assert.equal(embed?.thumbnail?.url, "https://test.example/embed/icons/item-23-1.png");
+    assert.match(embed?.url ?? "", /^https:\/\/mhfu\.vallode\.com\//);
+  });
+
   it("takes an autocomplete choice's key", async () => {
     const it = messageOf(await call(command("item", "name", "i:1")));
     assert.equal(it.embeds?.[0]?.url, "https://mhfu.vallode.com/items/book-of-combos-1/");

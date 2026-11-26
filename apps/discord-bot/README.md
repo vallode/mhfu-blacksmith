@@ -73,3 +73,20 @@ way, the model choice and what it costs.
 `pnpm --filter discord-bot register --dry-run` prints the commands without
 sending them, and `pnpm --filter discord-bot bundle-size` bundles the Worker
 and prints its gzipped size.
+
+## Testing on your own server
+
+Run the Worker locally behind a tunnel and point a test application's
+Interactions Endpoint URL at the tunnel. Secrets go in `.dev.vars`
+(`DISCORD_PUBLIC_KEY=…`, `OPENCODE_API_KEY=…`). `pnpm --filter blacksmith
+generate-embeds` draws the embed images into the site's `public/`. The Worker
+serves them itself, so `ASSET_URL` takes thumbnails from the tunnel and links
+still go to the live site:
+
+```sh
+cloudflared tunnel --url http://localhost:8787
+npx wrangler dev --assets ../blacksmith/public --var ASSET_URL:https://<tunnel>.trycloudflare.com
+```
+
+Wrangler reloads on code changes. Rerun `pnpm index` after changing
+`scripts/index-data.ts`.

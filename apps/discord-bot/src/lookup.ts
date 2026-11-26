@@ -165,6 +165,8 @@ export function lookupReply(
   kind: LookupKind,
   value: string,
   siteUrl: string,
+  /** Where the embed's images are served; the site by default. */
+  assetUrl = siteUrl,
 ): { content: string; embeds: Embed[] } | null {
   const k = KINDS[kind] as Kind<unknown>;
   const entry = find(index, kind, value);
@@ -172,7 +174,7 @@ export function lookupReply(
   const url = `${siteUrl}${k.path(entry)}`;
   const embed = k.embed(entry, url);
   const icon = k.icon?.(entry);
-  if (icon) embed.thumbnail = { url: `${siteUrl}${icon}` };
+  if (icon) embed.thumbnail = { url: `${assetUrl}${icon}` };
   // A large monster's page has its own large preview card, which Discord
   // draws from a link in the text; the embed keeps to the quick facts.
   const content = kind === "monster" && !(entry as MonsterEntry).small ? url : "";

@@ -53,6 +53,8 @@ export interface Env {
   NL_API_URL?: string;
   ANTHROPIC_API_KEY?: string;
   SITE_URL?: string;
+  /** Where embed images come from, if not SITE_URL: a local test's tunnel. */
+  ASSET_URL?: string;
   RANDOMFU_URL?: string;
   /** Workers rate limiting binding (wrangler.jsonc), keyed by Discord user. */
   SET_LIMITER?: { limit(options: { key: string }): Promise<{ success: boolean }> };
@@ -213,7 +215,8 @@ export function createBot(index: BotIndex, options: BotOptions = {}) {
     const kind = LOOKUPS.find((k) => k === name);
     if (kind) {
       const value = optionValue(interaction, "name") ?? "";
-      const reply = lookupReply(index, kind, value, env.SITE_URL ?? SITE_URL);
+      const siteUrl = env.SITE_URL ?? SITE_URL;
+      const reply = lookupReply(index, kind, value, siteUrl, env.ASSET_URL ?? siteUrl);
       return reply ? message(reply) : onlyYou(`No ${kind} matches “${value}”.`);
     }
 
