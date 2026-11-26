@@ -113,10 +113,10 @@ describe("/monster, /item, /weapon", () => {
     assert.equal(fields[0]?.name, "Monster drops");
     // One line per monster and ranks, its ways in it; carve counts left out.
     const [lr, early] = (fields[0]?.value ?? "").split("\n");
-    assert.match(lr ?? "", /^\*\*Rathalos\*\* LR: break head \*\*\d+%\*\*, tail carves /);
+    assert.match(lr ?? "", /^\*\*Rathalos\*\* LR: break head \d+%, tail carves /);
     assert.match(early ?? "", /^\*\*Rathalos\*\* LR ★1-2: /);
     assert.doesNotMatch(fields[0]?.value ?? "", /×3/);
-    assert.match(fields[1]?.value ?? "", / · Guild LR ★\d\n/);
+    assert.match(fields[1]?.value ?? "", /^\*\*[^*]+\*\* (Guild LR|Village) ★\d: \d+%/);
     assert.ok(fields.every((f) => f.name !== "Japanese" && f.name !== "Rarity"));
     // Rarity and price under the title, the stripe in the rarity's colour.
     assert.equal(m.embeds?.[0]?.description, "-# Rarity 4 · Sells for 4,900z");

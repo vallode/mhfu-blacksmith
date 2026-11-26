@@ -50,7 +50,7 @@ export interface ItemEntry {
 }
 
 /** How many of an item's drops and rewards the index keeps. */
-export const ITEM_SOURCES = 5;
+export const ITEM_SOURCES = 3;
 
 /** One monster's drops of an item, at the ranks those drops share. */
 export interface ItemDrop {

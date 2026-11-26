@@ -84,7 +84,7 @@ const item: Kind<ItemEntry> = {
         (d) =>
           `**${d.monster}** ${d.ranks}: ` +
           d.ways
-            .map((w) => `${lower(w.how)} **${w.chance}%**${w.quantity ? ` ×${w.quantity}` : ""}`)
+            .map((w) => `${lower(w.how)} ${w.chance}%${w.quantity ? ` ×${w.quantity}` : ""}`)
             .join(", "),
       );
       fields.push({
@@ -94,7 +94,7 @@ const item: Kind<ItemEntry> = {
     }
     if (it.rewards.length) {
       const lines = it.rewards.map(
-        (r) => `**${r.chance}%**${r.amount ? ` ×${r.amount}` : ""} ${r.quest} · ${r.where}`,
+        (r) => `**${r.quest}** ${r.where}: ${r.chance}%${r.amount ? ` ×${r.amount}` : ""}`,
       );
       fields.push({
         name: "Quest rewards",
