@@ -9,6 +9,8 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 interface Row {
+  prompt_id: string;
+  rep: number;
   model: string;
   status: string;
   latency_s: number;
@@ -58,7 +60,11 @@ const head = [
 console.log(`| ${head.join(" | ")} |\n|${head.map(() => " --- ").join("|")}|`);
 for (const v of variants) {
   const rows = jsonl(join(flow, v, "results.jsonl")) as Row[];
+  // An error a later attempt replaced still cost what it cost, but isn't
+  // an open error.
+  const done = new Set(rows.map((r) => `${r.prompt_id}\0${r.rep}`));
   const errors = jsonl(join(flow, v, "errors.jsonl")) as Partial<Row>[];
+  const open = new Set(errors.map((e) => `${e.prompt_id}\0${e.rep}`).filter((k) => !done.has(k)));
   const ok = rows.filter((r) => r.status === "ok");
   const pct = (id: string) =>
     ok.length
@@ -76,7 +82,7 @@ for (const v of variants) {
       v,
       models,
       rows.length,
-      errors.length,
+      open.size,
       ...state.metrics.map((m) => pct(m.id)),
       lat.length ? lat[Math.floor(lat.length / 2)]!.toFixed(2) : "-",
       priced && rows.length ? `$${(spent / rows.length).toFixed(4)}` : "-",

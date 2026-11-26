@@ -39,7 +39,10 @@ export function deepseekRequest(index: BotIndex, model: string = DEEPSEEK_MODEL)
 export interface DeepSeekResponse {
   model: string;
   choices: { finish_reason: string; message: { content: string | null } }[];
+  /** OpenAI's fields (OpenCode); DeepSeek's own API adds its cache split. */
   usage?: {
+    prompt_tokens?: number;
+    prompt_tokens_details?: { cached_tokens?: number };
     prompt_cache_hit_tokens?: number;
     prompt_cache_miss_tokens?: number;
     completion_tokens?: number;

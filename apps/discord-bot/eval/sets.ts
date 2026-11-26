@@ -182,13 +182,18 @@ async function runDeepSeek(c: Case, model: string): Promise<Run> {
     });
   const body = (await res.json()) as DeepSeekResponse;
   const finish = body.choices[0]?.finish_reason;
+  const u = body.usage ?? {};
+  const cached = u.prompt_cache_hit_tokens ?? u.prompt_tokens_details?.cached_tokens ?? 0;
+  const input = u.prompt_cache_miss_tokens ?? (u.prompt_tokens ?? 0) - cached;
+  if (!input && !cached)
+    throw Object.assign(new Error("no token counts in the response"), { failure_class: "usage" });
   const run = {
-    // Asked for by alias; DeepSeek answers with the dated model it ran.
+    // Asked for by alias; the host may answer with a dated name.
     model,
     usage: {
-      input_tokens: body.usage?.prompt_cache_miss_tokens ?? 0,
-      output_tokens: body.usage?.completion_tokens ?? 0,
-      cache_read_input_tokens: body.usage?.prompt_cache_hit_tokens ?? 0,
+      input_tokens: input,
+      output_tokens: u.completion_tokens ?? 0,
+      cache_read_input_tokens: cached,
       cache_creation_input_tokens: 0,
     },
     stop_reason: finish === "length" ? "max_tokens" : (finish ?? null),

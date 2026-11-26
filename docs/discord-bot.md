@@ -124,6 +124,9 @@ The models other than Claude ran through opencode, whose start-up is in
 their times. The top four are a case or two apart, within what one run can
 tell apart. Haiku was cheap but often added skills nobody asked for.
 
+The bot's own call (`src/deepseek.ts`, through OpenCode's pay-as-you-go
+API) got the same 97%, with a median of 2.1 s.
+
 ## Costs
 
 OpenCode's pay-as-you-go price for DeepSeek V4.1 Flash is $0.12 per million
