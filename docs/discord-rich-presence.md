@@ -51,10 +51,10 @@ both releases.
   textures) maps list places to printed numbers and agrees with all three,
   so the presence uses it.
 
-The addresses were checked live on EU (village, home, kitchen, farm, Gathering Hall, Training
-School, a Snowy Mountains quest through areas 1-3) and on FUC (village, a
-Snowy Mountains quest's Base Camp and area 1), and against the savestates
-of both.
+The addresses were checked live on EU (village, home, kitchen, farm,
+Gathering Hall, Training School, a Snowy Mountains quest through areas 1-3)
+and on FUC (village, a Snowy Mountains quest's Base Camp and area 1), and
+against the savestates of both.
 
 ## The plugin
 
@@ -82,14 +82,14 @@ above, and picks from them.
 ## Pictures
 
 Discord fetches a presence's pictures itself, by asset key or by URL, and
-PPSSPP's Discord application has no art for games, so the pictures are
-files on the Blacksmith site.
-The site's embed build writes them to `public/embed/presence/`
-(`src/lib/presence-icons.ts`, `writePresenceIcons` in
-`scripts/generate-embeds.ts`): each weapon class's mini icon in each rarity
-tint (multiplied, as the site tints icons), each monster's portrait (its
-category's icon where it has none) and the Herb (item icon 15 in its colour
-2). They are 160px squares on transparency, the sprites scaled by whole
-numbers, since Discord shows the large picture at about 80px and the small
-one at about 30px. The felyne icon (`/images/favicons/felyne-icon-512.png`)
-stands for the game in town and in the menus.
+PPSSPP's Discord application has no art for games, so the pictures are files
+on the Blacksmith site. The site's embed build writes them to
+`public/embed/presence/` (`src/lib/presence-icons.ts`, `writePresenceIcons`
+in `scripts/generate-embeds.ts`): each weapon class's mini icon in each
+rarity tint (multiplied, as the site tints icons), each monster's portrait
+(its category's icon where it has none) and the Herb (item icon 15 in its
+colour 2). They are 160px squares on transparency, the sprites scaled by
+whole numbers, since Discord shows the large picture at about 80px and the
+small one at about 30px. The felyne icon
+(`/images/favicons/felyne-icon-512.png`) stands for the game in town and in
+the menus.

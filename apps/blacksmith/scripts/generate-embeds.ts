@@ -241,6 +241,7 @@ async function drawPresenceIcon(sprite: Sprite, tint: number[], margin: number, 
   const SIZE = PRESENCE_ICON_SIZE;
   const room = SIZE - margin * 2;
   const scale = Math.floor(room / Math.max(sprite.width, sprite.height));
+  if (scale < 1) throw new Error(`${file}: the sprite is bigger than ${room}px`);
   const left = Math.floor((SIZE - sprite.width * scale) / 2);
   const top = Math.floor((SIZE - sprite.height * scale) / 2);
   const out = Buffer.alloc(SIZE * SIZE * 4);

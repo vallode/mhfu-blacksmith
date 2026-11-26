@@ -28,9 +28,9 @@ pnpm --filter rich-presence plugin --out <memory stick>/PSP/PLUGINS
 
 That writes `mhfu-presence/` (`plugin.ini` and `presence.lua`). The memory
 stick is PPSSPP's `memstick` folder: `~/.config/ppsspp` on macOS and Linux,
-`Documents\PPSSPP` on Windows. In PPSSPP, turn on "Enable plugins" and
-"Send Discord Presence information" (Settings → Networking), then start the
-game.
+`Documents\PPSSPP` on Windows. In PPSSPP, turn on "Enable plugins" (Settings
+→ System) and "Send Discord Presence information" (Settings → Networking,
+off by default), then start the game.
 
 Discord shows "Playing PPSSPP" with the game below it, since the plugin
 speaks through PPSSPP's own Discord application. In town the timer counts

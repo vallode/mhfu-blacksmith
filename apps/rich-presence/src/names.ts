@@ -80,6 +80,13 @@ export function loadNames(dataDir = DATA_DIR, lang = "en"): Catalog {
       types.set(`${table}:${w.id}`, { type: w.type, rarity: w.rarity ?? null });
     }
   }
+  // The site's monsters (data/monsters), which the presence pictures are drawn for.
+  const monsters: number[] = [];
+  for (const file of files(dataDir, "monsters")) {
+    for (const m of readRawData<{ monsters: NamedRecord[] }>(dataDir, "monsters", file).monsters) {
+      monsters.push(m.id);
+    }
+  }
   const strings = StringTable.read(dataDir, lang);
   const weapon = (table: "melee" | "ranged", id: number): WeaponName | undefined => {
     const name = strings.find(table, id);
@@ -93,7 +100,7 @@ export function loadNames(dataDir = DATA_DIR, lang = "en"): Catalog {
   return {
     ids: {
       quests: [...quests.keys()],
-      monsters: keys(strings.doc.monster),
+      monsters,
       weapons: [...types.keys()].map((key) => {
         const [table, id] = key.split(":");
         return { table: table === "ranged" ? 6 : 5, id: Number(id) };

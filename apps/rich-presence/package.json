@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@types/node": "^22",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wasmoon": "1.16.0"
   }
 }
