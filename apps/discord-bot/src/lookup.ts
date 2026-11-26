@@ -22,6 +22,8 @@ interface Kind<T> {
   entries: (index: BotIndex) => readonly T[];
   /** The autocomplete choice's value: stable, short (at most 100 characters). */
   key: (e: T) => string;
+  /** The site's thumbnail for it, a path on the site. */
+  icon?: (e: T) => string | undefined;
   /** Spellings to match, the name first. */
   spellings: (e: T) => readonly string[];
   /** The autocomplete choice's label. */
@@ -66,6 +68,7 @@ const item: Kind<ItemEntry> = {
   entries: (i) => i.items,
   key: (it) => `i:${it.id}`,
   spellings: (it) => [it.name, ...it.aliases],
+  icon: (it) => it.icon,
   label: (it) => it.name,
   path: (it) => `/items/${it.slug}/`,
   embed: (it, url) => {
@@ -167,8 +170,11 @@ export function lookupReply(
   const entry = find(index, kind, value);
   if (!entry) return null;
   const url = `${siteUrl}${k.path(entry)}`;
+  const embed = k.embed(entry, url);
+  const icon = k.icon?.(entry);
+  if (icon) embed.thumbnail = { url: `${siteUrl}${icon}` };
   // A large monster's page has its own large preview card, which Discord
   // draws from a link in the text; the embed keeps to the quick facts.
   const content = kind === "monster" && !(entry as MonsterEntry).small ? url : "";
-  return { content, embeds: [k.embed(entry, url)] };
+  return { content, embeds: [embed] };
 }

@@ -7,7 +7,9 @@
  *   and its patterned fill. Monster categories get their icon on the scroll,
  *   as on the monster page, and monsters their portrait (no longer linked,
  *   kept for embeds shared before the cards). See embedIcon() in
- *   src/lib/seo.ts.
+ *   src/lib/seo.ts. Items get icons/item-<icon>-<color>.png, one per icon and
+ *   colour an item uses (itemEmbedIcon()), which the Discord bot's /item
+ *   replies show too.
  * - cards/monsters/<slug>.png: each monster page's large preview card, its
  *   portrait, status thresholds, hitzone table and quest star levels in the site's card frame. See
  *   src/lib/monster-card.ts.
@@ -65,6 +67,8 @@ import { initWasm, Resvg } from "@resvg/resvg-wasm";
 import satori from "satori";
 import type { ReactNode } from "react";
 import { getWeapons } from "../src/lib/weapons";
+import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 import { readSetSearchData } from "./lib/set-data";
 
 const publicDir = path.join(process.cwd(), "public");
@@ -124,8 +128,14 @@ async function loadSprite(file: string): Promise<Sprite> {
  * the frame, multiplied by `tint` (the site's mix-blend-mode: multiply; white
  * leaves full-colour sprites as they are).
  */
-async function drawIcon(frame: Buffer, sprite: Sprite, tint: number[], file: string) {
-  const scale = Math.min(MAX_SCALE, Math.floor(INNER / Math.max(sprite.width, sprite.height)));
+async function drawIcon(
+  frame: Buffer,
+  sprite: Sprite,
+  tint: number[],
+  file: string,
+  maxScale = MAX_SCALE,
+) {
+  const scale = Math.min(maxScale, Math.floor(INNER / Math.max(sprite.width, sprite.height)));
   const left = Math.floor((SIZE - sprite.width * scale) / 2);
   const top = Math.floor((SIZE - sprite.height * scale) / 2);
   const out = Buffer.alloc(SIZE * SIZE * 4);
@@ -203,6 +213,32 @@ async function writeIcons() {
       await drawIcon(frame, sprite, tint, path.join(dir, `${type}-${name}.png`));
       count++;
     }
+  }
+
+  // Items: each icon in each colour an item uses (item-<icon>-<color>.png),
+  // the 16px sprites at 8x. The Discord bot's /item replies show them too.
+  const { colors, items } = readData<{
+    colors: string[];
+    items: { icon?: number; color?: number; placeholder?: boolean }[];
+  }>(DATA_DIR, "items.json");
+  const combos = new Set(
+    items.flatMap((i) =>
+      !i.placeholder && i.icon !== undefined && i.color !== undefined
+        ? [`${i.icon}-${i.color}`]
+        : [],
+    ),
+  );
+  for (const combo of combos) {
+    const [icon, color] = combo.split("-").map(Number);
+    const sprite = await loadSprite(path.join(publicDir, "images", `item-${icon}.png`));
+    await drawIcon(
+      frame,
+      sprite,
+      hexToRgb(colors[color!] ?? "#ffffff"),
+      path.join(dir, `item-${combo}.png`),
+      8,
+    );
+    count++;
   }
 
   // Monster categories: their icon on the scroll. Monster pages now use

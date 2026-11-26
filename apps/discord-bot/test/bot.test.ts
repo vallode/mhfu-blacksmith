@@ -113,6 +113,10 @@ describe("/monster, /item, /weapon", () => {
     assert.equal(fields[0]?.name, "Monster drops");
     assert.match(fields[0]?.value ?? "", /^\*\*\d+%\*\* Rathalos · /);
     assert.ok(fields.every((f) => f.name !== "Japanese"));
+    assert.equal(
+      m.embeds?.[0]?.thumbnail?.url,
+      "https://mhfu.vallode.com/embed/icons/item-23-1.png",
+    );
   });
 
   it("takes an autocomplete choice's key", async () => {

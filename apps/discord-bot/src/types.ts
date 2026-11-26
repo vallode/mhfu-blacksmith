@@ -35,6 +35,8 @@ export interface ItemEntry {
   rarity?: number;
   price?: number;
   slug: string;
+  /** Its icon, tinted, on the site (blacksmith's itemEmbedIcon): `/embed/icons/…png`. */
+  icon?: string;
   /** The best monster drops for it, highest chance first (at most ITEM_SOURCES). */
   drops: ItemDrop[];
   /** How many monster drops give it in all. */
