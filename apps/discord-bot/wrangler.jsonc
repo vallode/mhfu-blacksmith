@@ -13,12 +13,13 @@
   "vars": {
     "SITE_URL": "https://mhfu.vallode.com",
     "RANDOMFU_URL": "https://randomfu.vallode.com",
-    // The set search's model: deepseek-flash (src/deepseek.ts), or a claude-*
+    // The set search's model: deepseek-v4.1-flash through OpenCode's API
+    // (src/deepseek.ts), or a claude-*
     // model (src/claude.ts). See eval/README.md for how they compare.
-    "NL_MODEL": "deepseek-flash",
+    "NL_MODEL": "deepseek-v4.1-flash",
   },
   // Secrets, set with `wrangler secret put`: DISCORD_PUBLIC_KEY and the
-  // model's key, DEEPSEEK_API_KEY (or ANTHROPIC_API_KEY for Claude). Without
+  // model's key, OPENCODE_API_KEY (or ANTHROPIC_API_KEY for Claude). Without
   // it /sets only matches names as written.
   //
   // /sets per Discord user, per Cloudflare location (approximate): a guard

@@ -40,14 +40,15 @@ export interface Env {
   /** The application's public key (Developer Portal > General Information), hex. */
   DISCORD_PUBLIC_KEY: string;
   /**
-   * The /sets model: deepseek-flash (the default) or a claude-* model. Its
+   * The /sets model: deepseek-v4.1-flash (the default) or a claude-* model. Its
    * key is a secret; without it /sets matches names as written
    * (keywordTranslator).
    */
   NL_MODEL?: string;
-  DEEPSEEK_API_KEY?: string;
+  /** OpenCode pay-as-you-go API key, for the DeepSeek model. */
+  OPENCODE_API_KEY?: string;
   /** Another host serving the DeepSeek model through the same API. */
-  DEEPSEEK_URL?: string;
+  NL_API_URL?: string;
   ANTHROPIC_API_KEY?: string;
   SITE_URL?: string;
   RANDOMFU_URL?: string;
@@ -125,12 +126,12 @@ export function modelFor(
       translate: claudeTranslator(index, { apiKey: env.ANTHROPIC_API_KEY, model }),
       how: "Read by Claude",
     };
-  if (!model.startsWith("claude-") && env.DEEPSEEK_API_KEY)
+  if (!model.startsWith("claude-") && env.OPENCODE_API_KEY)
     return {
       translate: deepseekTranslator(index, {
-        apiKey: env.DEEPSEEK_API_KEY,
+        apiKey: env.OPENCODE_API_KEY,
         model,
-        baseUrl: env.DEEPSEEK_URL,
+        baseUrl: env.NL_API_URL,
         fetcher,
       }),
       how: "Read by DeepSeek",

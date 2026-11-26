@@ -27,7 +27,7 @@ Japanese name.
   application's public key, then answers it. `/settings` decodes with
   randomfu's own settings module.
 - `/sets` defers its reply and translates the request with a model: by
-  default DeepSeek Flash (`src/deepseek.ts`), or Claude (`src/claude.ts`)
+  default DeepSeek V4.1 Flash through OpenCode's API (`src/deepseek.ts`), or Claude (`src/claude.ts`)
   when `NL_MODEL` names one. The prompt lists the skills, armor words and
   monsters from `data/` (`src/set-request.ts`), and the bot checks every name
   in the answer again, so a search never names gear that doesn't exist. It
@@ -47,13 +47,14 @@ way, the model choice and what it costs.
 1. In the [Discord Developer Portal](https://discord.com/developers/applications),
    make an application with a bot. Note its application ID and public key
    (General Information) and the bot token (Bot).
-2. Make a DeepSeek API key at https://platform.deepseek.com (API keys).
-   Deploy the Worker and give it its secrets, from this directory:
+2. Add credits and make an API key in the OpenCode console
+   (https://opencode.ai/console), for its pay-as-you-go models; an OpenCode
+   Go key doesn't work outside opencode. Deploy the Worker and give it its secrets, from this directory:
 
    ```sh
    npx wrangler deploy
    npx wrangler secret put DISCORD_PUBLIC_KEY
-   npx wrangler secret put DEEPSEEK_API_KEY
+   npx wrangler secret put OPENCODE_API_KEY
    ```
 
 3. Set the Worker's URL (`https://mhfu-discord-bot.<account>.workers.dev/`)

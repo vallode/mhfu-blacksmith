@@ -1,12 +1,12 @@
 /**
- * The set search's translator on DeepSeek Flash, the bot's default: one
- * chat completion in JSON mode. DeepSeek has no schema-checked output for
+ * The set search's translator on DeepSeek V4.1 Flash, the bot's default: one
+ * chat completion in JSON mode, through OpenCode's pay-as-you-go API. DeepSeek has no schema-checked output for
  * plain answers, so the prompt carries the schema (setRequestJsonPrompt) and
  * resolveSetRequest checks every name in the answer.
  *
  * It scored best in the /sets eval (eval/README.md) at a twentieth of Opus's
- * cost. The API is OpenAI-compatible: DEEPSEEK_URL can point it at another
- * host serving the same model. The key is a Worker secret (DEEPSEEK_API_KEY).
+ * cost. The API is OpenAI-compatible: NL_API_URL can point it at another
+ * host serving the same model. The key is a Worker secret (OPENCODE_API_KEY).
  */
 import {
   setRequestJsonPrompt,
@@ -16,8 +16,8 @@ import {
 } from "./set-request.js";
 import type { BotIndex } from "./types.js";
 
-export const DEEPSEEK_MODEL = "deepseek-flash";
-export const DEEPSEEK_URL = "https://api.deepseek.com";
+export const DEEPSEEK_MODEL = "deepseek-v4.1-flash";
+export const API_URL = "https://opencode.ai/inference/openai/v1";
 
 export interface DeepSeekOptions {
   apiKey: string;
@@ -62,7 +62,7 @@ export function parseDeepSeekAnswer(body: DeepSeekResponse): SetRequest {
 }
 
 export function deepseekTranslator(index: BotIndex, options: DeepSeekOptions): Translator {
-  const url = `${(options.baseUrl || DEEPSEEK_URL).replace(/\/+$/, "")}/chat/completions`;
+  const url = `${(options.baseUrl || API_URL).replace(/\/+$/, "")}/chat/completions`;
   const base = deepseekRequest(index, options.model || DEEPSEEK_MODEL);
   const fetcher = options.fetcher ?? fetch;
   return async (request) => {

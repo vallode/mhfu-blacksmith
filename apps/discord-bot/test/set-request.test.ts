@@ -202,10 +202,10 @@ describe("deepseekTranslator", () => {
     const translate = deepseekTranslator(index, { apiKey: "test", fetcher });
     assert.deepEqual(await translate("gunner, evasion +2"), answer);
     const { url, init } = calls[0]!;
-    assert.equal(url, "https://api.deepseek.com/chat/completions");
+    assert.equal(url, "https://opencode.ai/inference/openai/v1/chat/completions");
     assert.equal((init.headers as Record<string, string>).authorization, "Bearer test");
     const body = JSON.parse(init.body as string);
-    assert.equal(body.model, "deepseek-flash");
+    assert.equal(body.model, "deepseek-v4.1-flash");
     assert.deepEqual(body.response_format, { type: "json_object" });
     assert.ok(body.messages[0].content.includes(JSON.stringify(setRequestSchema(index))));
     assert.deepEqual(body.messages[1], { role: "user", content: "gunner, evasion +2" });
@@ -238,9 +238,9 @@ describe("deepseekTranslator", () => {
 describe("modelFor", () => {
   it("uses DeepSeek Flash by default, Claude when named, keywords without a key", () => {
     const key = { DISCORD_PUBLIC_KEY: "" };
-    assert.equal(modelFor(index, { ...key, DEEPSEEK_API_KEY: "k" }).how, "Read by DeepSeek");
+    assert.equal(modelFor(index, { ...key, OPENCODE_API_KEY: "k" }).how, "Read by DeepSeek");
     assert.equal(modelFor(index, key).how, "Matched by name");
-    const claude = { ...key, NL_MODEL: "claude-haiku-5-5", DEEPSEEK_API_KEY: "k" };
+    const claude = { ...key, NL_MODEL: "claude-haiku-5-5", OPENCODE_API_KEY: "k" };
     assert.equal(modelFor(index, claude).how, "Matched by name");
     assert.equal(modelFor(index, { ...claude, ANTHROPIC_API_KEY: "a" }).how, "Read by Claude");
   });

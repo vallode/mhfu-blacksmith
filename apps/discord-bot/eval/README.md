@@ -17,7 +17,7 @@ pieces locked and the monster. "All correct" is all seven.
 | `keyword`                   | The bot's keyword matching, the floor a model has to beat   |
 | `claude-haiku-5-5`          | The bot's own Claude request, with structured outputs       |
 | `claude-opus-5-5`           | The same, on Opus                                           |
-| `deepseek-flash`            | The bot's own DeepSeek request (its default model)          |
+| `deepseek-v4.1-flash`       | The bot's own DeepSeek request (its default model)          |
 | `opencode:<provider/model>` | Any model opencode can reach, with the schema in the prompt |
 
 DeepSeek and the models through opencode get the bot's instructions and the
@@ -47,7 +47,7 @@ run --variant v4 --model opencode:opencode-go/qwen3.8-flash
 run --variant v5 --model opencode:opencode-go/glm-5.3-flash
 run --variant v6 --model opencode:opencode-go/mimo-v2.6-flash
 run --variant v7 --model opencode:opencode-go/gpt-6-luna
-DEEPSEEK_API_KEY=… run --variant v8 --model deepseek-flash
+OPENCODE_API_KEY=… run --variant v8 --model deepseek-v4.1-flash
 $TSX apps/discord-bot/eval/summary.ts .claude/hillclimb/sets-translation
 ```
 

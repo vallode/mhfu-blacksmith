@@ -13,7 +13,7 @@
  * - `keyword`: the bot's keyword stub, the floor a model has to beat;
  * - `oracle`: the expected answer itself, to check the grader (all 1s);
  * - `claude-*`: the bot's own Messages API request (src/claude.ts);
- * - `deepseek-flash`: the bot's own DeepSeek call (src/deepseek.ts);
+ * - `deepseek-v4.1-flash`: the bot's own DeepSeek call (src/deepseek.ts);
  * - `opencode:<provider>/<model>`: any model opencode can reach (DeepSeek
  *   Flash and the other cheap ones), with the schema in the prompt.
  */
@@ -26,7 +26,7 @@ import { hasArmorWord } from "blacksmith/src/lib/search-link.js";
 import { buildIndex } from "../scripts/index-data.js";
 import { claudeRequest, parseClaudeAnswer } from "../src/claude.js";
 import {
-  DEEPSEEK_URL,
+  API_URL,
   deepseekRequest,
   parseDeepSeekAnswer,
   type DeepSeekResponse,
@@ -159,14 +159,14 @@ async function runClaude(c: Case, model: string): Promise<Run> {
 
 /**
  * The bot's own DeepSeek call (src/deepseek.ts), as the Worker makes it.
- * Needs DEEPSEEK_API_KEY; DEEPSEEK_URL as in the Worker.
+ * Needs OPENCODE_API_KEY; NL_API_URL as in the Worker.
  */
 async function runDeepSeek(c: Case, model: string): Promise<Run> {
-  const key = process.env.DEEPSEEK_API_KEY;
+  const key = process.env.OPENCODE_API_KEY;
   if (!key)
-    throw Object.assign(new Error("DEEPSEEK_API_KEY is not set"), { failure_class: "config" });
+    throw Object.assign(new Error("OPENCODE_API_KEY is not set"), { failure_class: "config" });
   const base = deepseekRequest(index, model);
-  const url = `${(process.env.DEEPSEEK_URL || DEEPSEEK_URL).replace(/\/+$/, "")}/chat/completions`;
+  const url = `${(process.env.NL_API_URL || API_URL).replace(/\/+$/, "")}/chat/completions`;
   const res = await fetch(url, {
     method: "POST",
     headers: { "content-type": "application/json", authorization: `Bearer ${key}` },

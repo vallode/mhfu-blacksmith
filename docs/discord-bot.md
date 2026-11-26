@@ -6,11 +6,11 @@ is why it's built the way it is.
 
 ## Recommendation
 
-- **Model: DeepSeek Flash.** One chat completion per `/sets` request, in
-  JSON mode, with the JSON schema in the prompt. The schema's enums list
-  every skill activation, armor word and large monster from `data/`, and the
-  bot checks every name in the answer again, so a search never names gear
-  that doesn't exist. In the eval it got the most requests fully right, at
+- **Model: DeepSeek V4.1 Flash, through OpenCode.** One chat completion per
+  `/sets` request, on OpenCode's pay-as-you-go API, in JSON mode, with the
+  JSON schema in the prompt. The schema's enums list every skill activation,
+  armor word and large monster from `data/`, and the bot checks every name
+  in the answer again, so a search never names gear that doesn't exist. In the eval it got the most requests fully right, at
   about a twentieth of Opus's cost (see _How the models compare_).
   `NL_MODEL` can name a `claude-*` model instead, which runs with
   structured outputs.
@@ -91,11 +91,14 @@ game truncates names (`Wht Fatalis Mail`, `RdGuildGuardTricorne`). "No
 Fatalis gear" becomes `never: ["Fatalis"]`, which the set builder expands to
 every Fatalis and White Fatalis piece the hunter can wear.
 
-**Hosting.** It's an HTTPS call from the Worker to DeepSeek's
-OpenAI-compatible API (`src/deepseek.ts`). The key is a Worker secret
-(`DEEPSEEK_API_KEY`); `DEEPSEEK_URL` can point the call at another host
-serving the same model. A blank, cut-off or broken answer becomes a short
-"try again" reply with the set builder's link.
+**Hosting.** It's an HTTPS call from the Worker to OpenCode's pay-as-you-go
+API, which serves DeepSeek V4.1 Flash with an OpenAI-compatible endpoint
+(`src/deepseek.ts`). It costs less there than on DeepSeek's own API. The key
+is a Worker secret (`OPENCODE_API_KEY`), paid from the account's credits; an
+OpenCode Go key only works from opencode. `NL_API_URL` can point the call at
+another host serving the same model, such as DeepSeek's
+(`https://api.deepseek.com`, model `deepseek-flash`). A blank, cut-off or
+broken answer becomes a short "try again" reply with the set builder's link.
 
 ## How the models compare
 
@@ -123,8 +126,10 @@ tell apart. Haiku was cheap but often added skills nobody asked for.
 
 ## Costs
 
-At DeepSeek Flash's price, 1,000 `/sets` requests cost about $0.60 (see
-_How the models compare_ for the others).
+OpenCode's pay-as-you-go price for DeepSeek V4.1 Flash is $0.12 per million
+input tokens and $0.48 per million output tokens, about $0.25 for 1,000
+`/sets` requests. The eval's figures above are OpenCode Go's list price for
+the same model.
 
 Cloudflare costs:
 
@@ -134,8 +139,8 @@ Cloudflare costs:
 - **The script** is about 220 KB gzipped, against a 3 MB limit on the free
   plan.
 - **The rate limit** (four `/sets` per user a minute, per Cloudflare
-  location) caps what one user can spend. The DeepSeek account's balance is
-  the hard cap: its API is prepaid.
+  location) caps what one user can spend. The OpenCode account's credits are
+  the hard cap: the API is prepaid.
 
 ## Why the search runs on the site
 
