@@ -22,7 +22,7 @@ before small ones that match as well.
 - `scripts/index-data.ts` builds the search index from `data/` with
   game-data's `readData`, and the site's own slug functions, so every link is
   a page's address. It's generated (`pnpm index`) and bundled into the
-  Worker; the whole script is about 220 KB gzipped.
+  Worker; the whole script is about 240 KB gzipped.
 - `src/bot.ts` checks each request's Ed25519 signature against the
   application's public key, then answers it. `/settings` decodes with
   randomfu's own settings module.

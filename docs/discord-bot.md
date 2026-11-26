@@ -141,7 +141,7 @@ Cloudflare costs:
 - **Lookups and autocomplete** run in the bot's own Worker with no model.
   Each autocomplete keystroke is one Worker request taking about 2 ms of CPU,
   inside the free plan's 10 ms.
-- **The script** is about 220 KB gzipped, against a 3 MB limit on the free
+- **The script** is about 240 KB gzipped, against a 3 MB limit on the free
   plan.
 - **The rate limit** (four `/sets` per user a minute, per Cloudflare
   location) caps what one user can spend. The OpenCode account's credits are
