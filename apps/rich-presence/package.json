@@ -1,0 +1,22 @@
+{
+  "name": "rich-presence",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A desktop companion that shows a player's MHFU game, read live from PPSSPP, as their Discord Rich Presence.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "test": "tsx --test test/**/*.test.ts",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "blacksmith": "workspace:*",
+    "game-data": "workspace:*",
+    "tsx": "^4.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "typescript": "^5"
+  }
+}
