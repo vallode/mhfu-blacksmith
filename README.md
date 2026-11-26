@@ -44,7 +44,7 @@ This is a [pnpm workspace](https://pnpm.io/workspaces):
 | ----------------------- | --------------- | ----------------------------------------------------------------------------------------------- |
 | `apps/blacksmith`       | `blacksmith`    | The MHFU Blacksmith website, a statically exported [Next.js](https://nextjs.org/) app           |
 | `apps/randomfu`         | `randomfu-web`  | The randomizer as a static web app that runs in the browser, at randomfu.vallode.com            |
-| `apps/rich-presence`    | `rich-presence` | A desktop companion showing a game running in PPSSPP as Discord Rich Presence                   |
+| `apps/rich-presence`    | `rich-presence` | A PPSSPP Lua plugin showing the game as Discord Rich Presence                                   |
 | `packages/mhfu-extract` | `mhfu-extract`  | Datamining pipeline: reads a disc image and emits `data/` and the site's 3D models              |
 | `packages/randomfu`     | `randomfu`      | The seeded randomizer behind `apps/randomfu`: options, shuffles, disc patching, spoiler log     |
 | `packages/game-data`    | `game-data`     | The one way into `data/`: `readData` for everything that reads it, `writeData` for writing      |

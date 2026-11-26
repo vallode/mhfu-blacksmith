@@ -7,9 +7,8 @@ workspace:
   Its own `CLAUDE.md` covers styling.
 - `apps/randomfu`: randomfu's static web app (esbuild). Borrows the site's
   design tokens and sprites at build time (`build.mjs`).
-- `apps/rich-presence`: a Node companion that reads the game from PPSSPP's
-  remote debugger and sets Discord Rich Presence over Discord's local IPC
-  (`docs/discord-rich-presence.md`).
+- `apps/rich-presence`: builds a PPSSPP Lua plugin that shows the game as
+  Discord Rich Presence (`docs/discord-rich-presence.md`).
 - `packages/mhfu-extract`: datamining pipeline from a disc image to `data/`
   and the site's `public/models/`.
 - `packages/randomfu`: the randomizer, a library with no front end of its

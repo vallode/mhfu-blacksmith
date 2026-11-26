@@ -1,11 +1,11 @@
 /**
- * The same presence as a PPSSPP Lua plugin (docs/lua-plugins.md in PPSSPP),
- * for builds that have them: PPSSPP runs it in the game and sends the
- * presence itself, so nothing else needs to run.
+ * The presence as a PPSSPP Lua plugin (docs/lua-plugins.md in PPSSPP), for
+ * builds that have them: PPSSPP runs it in the game and sends the presence
+ * to Discord itself.
  *
- * Everything that comes from data/ is worked out here, with the companion's
- * own labels and pictures (presence.ts), and written into the script as
- * tables; the Lua only reads the game and picks from them.
+ * Everything that comes from data/ is worked out here, with the labels and
+ * pictures in presence.ts, and written into the script as tables; the Lua
+ * only reads the game and picks from them.
  *
  *   pnpm --filter rich-presence plugin [--out <dir>]
  */
@@ -18,14 +18,27 @@ import {
   presenceMonsterIcon,
   presenceWeaponIcon,
 } from "blacksmith/src/lib/presence-icons";
-import { FPS, QUEST_OFFSET, RELEASES, STAGE_OFFSET, TOWN_STAGES, WEAPON_OFFSET } from "./layout";
+import {
+  FPS,
+  QUEST_OFFSET,
+  RELEASES,
+  STAGE_OFFSET,
+  TOWN_STAGES,
+  WEAPON_OFFSET,
+  mapTexture,
+} from "./layout";
 import { loadNames, type Catalog } from "./names";
-import { SITE, TOWN_PLACES, WEAPON_CLASSES, placeLabel, starLabel } from "./presence";
-import { mapTexture } from "./read";
+import {
+  GAME_IMAGE,
+  GAME_NAME,
+  SITE,
+  TOWN_PLACES,
+  WEAPON_CLASSES,
+  placeLabel,
+  starLabel,
+} from "./presence";
 
 export const PLUGIN_DIR = "mhfu-presence";
-const GAME_IMAGE = `${SITE}/images/favicons/felyne-icon-512.png`;
-const GAME_NAME = "Monster Hunter Freedom Unite";
 
 /** A Lua string literal. */
 export function luaString(text: string): string {

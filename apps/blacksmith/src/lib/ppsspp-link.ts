@@ -365,7 +365,7 @@ async function scanForHunter(dbg: PpssppDebugger) {
  * Runs `fn` with the emulated CPU stopped, unless it already was (the
  * debugger or the user paused it): then it is left as it was.
  */
-export async function withPause<T>(dbg: PpssppDebugger, fn: () => Promise<T>): Promise<T> {
+async function withPause<T>(dbg: PpssppDebugger, fn: () => Promise<T>): Promise<T> {
   const cpu = await dbg.call("cpu.status");
   const stopped = Boolean(cpu.stepping) || Boolean(cpu.paused);
   if (!stopped) await dbg.broadcast("cpu.stepping");

@@ -1,16 +1,17 @@
 # Discord Rich Presence
 
-`apps/rich-presence` shows a player's MHFU game as their Discord status. A
-web page can't set Discord presence, so it's a local app: it reads the game
-from PPSSPP's remote debugger, as the site's PPSSPP link does
-(`apps/blacksmith/src/lib/ppsspp-link.ts`), and talks to the Discord
-desktop app over its local IPC socket.
+`apps/rich-presence` builds a PPSSPP Lua plugin that shows a player's MHFU
+game as their Discord status. PPSSPP already talks to the Discord desktop
+app; with Lua plugins (proposed upstream on hrydgard/ppsspp#20851, documented
+in PPSSPP's `docs/lua-plugins.md` on that branch) a game's script reads its
+memory on a vblank timer, read-only, and PPSSPP sends what the script asks
+for as the game's presence.
 
 ## Where the game keeps it
 
 Everything is at a fixed distance from the loaded hunter's character block
 (EU 0x0999A100, JP 0x09995E40, the site's `HUNTER_ADDRESSES`), the same on
-both releases, so one read from block − 0x4A4 to block + 0x6BD10 covers it.
+both releases.
 
 | What                       | Where                   | EU         | JP / FUC   |
 | -------------------------- | ----------------------- | ---------- | ---------- |
@@ -50,57 +51,39 @@ both releases, so one read from block − 0x4A4 to block + 0x6BD10 covers it.
   textures) maps list places to printed numbers and agrees with all three,
   so the presence uses it.
 
-Checked live on EU (village, home, kitchen, farm, Gathering Hall, Training
+The addresses were checked live on EU (village, home, kitchen, farm, Gathering Hall, Training
 School, a Snowy Mountains quest through areas 1-3) and on FUC (village, a
 Snowy Mountains quest's Base Camp and area 1), and against the savestates
 of both.
 
-## IPC, not the Social SDK
+## The plugin
 
-Discord offers two ways for a game to set presence:
-
-- **The local RPC over IPC**: a Unix socket (`discord-ipc-0` in the temp
-  directory) or named pipe (`\\?\pipe\discord-ipc-0`) the desktop client
-  listens on. A handshake with the application ID, then `SET_ACTIVITY`
-  frames of JSON. About 150 lines of Node with no dependencies
-  (`src/discord.ts`), no Discord login of its own, and the activity accepts
-  image URLs, so no art has to be uploaded.
-- **The Discord Social SDK**: a native C++ library for account linking,
-  lobbies, invites and voice. Node would need native bindings built per
-  platform, and the app an OAuth flow, for what the IPC route does with one
-  message.
-
-For presence alone IPC is the simpler route, so the prototype uses it. The
-IPC protocol also carries the older join flow (`party`, `secrets.join`,
-`ACTIVITY_JOIN` events), so Gathering Hall invites could start there; the
-Social SDK is the route if invites need its lobbies. Only unmodified discs
-could use them: RandomFU discs keep networking off on purpose.
-
-## As a PPSSPP Lua plugin
-
-A PPSSPP with Lua plugins (proposed upstream on hrydgard/ppsspp#20851, and
-in PPSSPP's `docs/lua-plugins.md` on that branch) runs a game's script on a
-vblank timer, with read-only memory access, and sends what the script asks
-for as the game's Discord presence. `src/plugin.ts` builds that script:
-everything from `data/` (names, star labels, area numbers, picture URLs) is
-worked out in TypeScript with the companion's own functions and written
-into the script as tables, and the Lua only reads the game's memory, at the
-addresses above, and picks from them.
+`src/plugin.ts` writes `mhfu-presence/` (`plugin.ini` and `presence.lua`).
+Everything from `data/` (quest, monster, weapon and map names, star labels,
+area numbers, picture URLs) is worked out in TypeScript and written into the
+script as tables; the Lua only reads the game's memory, at the addresses
+above, and picks from them.
 
 - The hunter's name is read as UTF-16 units with `r16` (`rstr` stops at the
-  first zero byte), and the block counts as loaded on the same name and sex
-  byte checks as `looksLikeHunter`, without its box scans.
+  first zero byte). The block counts as loaded on the name and sex byte
+  checks of the site's `looksLikeHunter`, without its box scans; before that
+  the presence says "In the menus".
 - It runs every 60 vblanks. PPSSPP compares the presence once a second and
   sends it at most every 4 seconds; the quest's `elapsed` is recomputed each
   time, and moves of 2 seconds or less aren't resent.
-- In PPSSPPHeadless with the EU and FUC savestates, the plugin's presence
-  matches the companion's for each one (the companion reading the same
-  savestates' RAM).
+- The quest timer is the game's own (time limit − time left), so it stops
+  when the emulator does. In town the timer counts from when the game
+  started.
+- Discord shows "Playing PPSSPP" above the presence, since PPSSPP's own
+  Discord application sends it.
+- Checked in PPSSPPHeadless against five EU and four FUC savestates (the
+  village, the farm and quests in three maps).
 
 ## Pictures
 
-Discord takes image URLs in an activity's assets, so the pictures are files
-on the Blacksmith site rather than art uploaded to the Discord application.
+Discord fetches a presence's pictures itself, by asset key or by URL, and
+PPSSPP's Discord application has no art for games, so the pictures are
+files on the Blacksmith site.
 The site's embed build writes them to `public/embed/presence/`
 (`src/lib/presence-icons.ts`, `writePresenceIcons` in
 `scripts/generate-embeds.ts`): each weapon class's mini icon in each rarity
@@ -110,21 +93,3 @@ category's icon where it has none) and the Herb (item icon 15 in its colour
 numbers, since Discord shows the large picture at about 80px and the small
 one at about 30px. The felyne icon (`/images/favicons/felyne-icon-512.png`)
 stands for the game in town and in the menus.
-
-## Behaviour
-
-- Reads every 5 s (`--interval`). Each read pauses the CPU for a few
-  milliseconds, the way the site's link does: reading while the game runs
-  makes PPSSPP pause around every call, which has crashed it.
-- Sends `SET_ACTIVITY` only when what Discord would show changes; the quest
-  timer's start is recomputed every read but resent only when it moves by
-  more than 5 s (a paused emulator). Discord allows 5 updates per 20 s.
-- Clears the presence when no game or another game is running, when PPSSPP
-  goes away, and on Ctrl+C. Quitting waits for a read in progress, so a
-  pause it started is always resumed.
-- One debugger client at a time: while two companions were swapped, both
-  pausing and resuming, PPSSPP's debugger stopped answering (even
-  `version`) until PPSSPP restarted, the game running on.
-- The quest timer is the game's own (time limit − time left), so it stops
-  when the emulator does. In town the timer counts from when the companion
-  first saw the game.

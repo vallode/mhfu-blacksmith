@@ -27,7 +27,7 @@ const tiny: Catalog = {
   map: () => "Jungle (Day)",
 };
 
-test("the tables carry the companion's names, labels and pictures", () => {
+test("the tables carry the names, labels and pictures", () => {
   const lua = buildScript(tiny);
   assert.ok(lua.includes('[3201] = "The \\"Tigrex\\" Tamer",'));
   assert.ok(lua.includes('[3201] = "guild/g-rank",'));
