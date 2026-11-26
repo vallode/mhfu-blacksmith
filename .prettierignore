@@ -8,3 +8,4 @@ next-env.d.ts
 pnpm-lock.yaml
 packages/mhfu-extract/vendor
 dist
+apps/discord-bot/src/generated

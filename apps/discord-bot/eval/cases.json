@@ -1,0 +1,331 @@
+[
+  {
+    "id": "example",
+    "tags": ["mixed", "alt-name", "nickname"],
+    "request": "G rank gunner set with Evasion +2 and Auto-Reload for Rajang, no Fatalis gear",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Gunner",
+      "skills": ["Evade +2", "Auto Reload"],
+      "never": ["Fatalis"],
+      "monster": "Rajang"
+    }
+  },
+  {
+    "id": "exact-names",
+    "tags": ["exact"],
+    "request": "G rank gunner set with Evade +2 and Auto Reload",
+    "expect": { "rank": "g-rank", "hunterType": "Gunner", "skills": ["Evade +2", "Auto Reload"] }
+  },
+  {
+    "id": "razor-crit-draw",
+    "tags": ["alt-name"],
+    "request": "HR blademaster set with Razor Sharp and Critical Draw",
+    "expect": {
+      "rank": "high-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Sharp Sword", "Art of Unsheathing"]
+    }
+  },
+  {
+    "id": "minds-eye-ls",
+    "tags": ["alt-name", "weapon-type"],
+    "request": "Mind's Eye, Sharpness +1 and Attack Up Large for my G rank long sword",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Blademaster",
+      "skills": ["ESP", "Sharpness +1", "Attack Up (Large)"]
+    }
+  },
+  {
+    "id": "bow-status",
+    "tags": ["alt-name", "weapon-type"],
+    "request": "bow set: Normal Up, Status Attack Up, Evasion +1, G rank",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Gunner",
+      "skills": ["NormalS/RapidBow Up", "Abnormal Sts Atk Up", "Evade +1"]
+    }
+  },
+  {
+    "id": "lance-guard",
+    "tags": ["alt-name", "weapon-type"],
+    "request": "lance set with Guard +2, Guard Up and HG Earplugs, high rank",
+    "expect": {
+      "rank": "high-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Guard +2", "Guard Inc", "High Grade Earplug"]
+    }
+  },
+  {
+    "id": "hammer-stun",
+    "tags": ["alt-name", "weapon-type"],
+    "request": "hammer set with Speed Sharpening, Focus and Stun Negated",
+    "expect": {
+      "hunterType": "Blademaster",
+      "skills": ["Sharpening Skl Inc", "Focus", "Faint Negated"]
+    }
+  },
+  {
+    "id": "hbg-recoil",
+    "tags": ["alt-name", "weapon-type"],
+    "request": "HBG build: Recoil Down +2, Reload Speed +3, Pierce Up",
+    "expect": {
+      "hunterType": "Gunner",
+      "skills": ["Recoil Reduction +2", "Reloading Speed +3", "PierceS/PierceBow Up"]
+    }
+  },
+  {
+    "id": "ds-element",
+    "tags": ["alt-name", "weapon-type"],
+    "request": "dual swords with Elemental Up, Sharpness +1 and Evasion +2 in G rank",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Element Attack Up", "Sharpness +1", "Evade +2"]
+    }
+  },
+  {
+    "id": "trees-gunner",
+    "tags": ["tree-only"],
+    "request": "G rank gunner, Reload and Recoil",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Gunner",
+      "skills": ["Reloading Speed +3", "Recoil Reduction +2"]
+    }
+  },
+  {
+    "id": "trees-blade",
+    "tags": ["tree-only"],
+    "request": "Attack and Health for a HR blademaster",
+    "expect": {
+      "rank": "high-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Attack Up (Large)", "Health +50"]
+    }
+  },
+  {
+    "id": "jp-gunner",
+    "tags": ["japanese"],
+    "request": "G級 ガンナー 回避性能+2 自動装填",
+    "expect": { "rank": "g-rank", "hunterType": "Gunner", "skills": ["Evade +2", "Auto Reload"] }
+  },
+  {
+    "id": "jp-blade",
+    "tags": ["japanese"],
+    "request": "見切り+3と業物の剣士装備",
+    "expect": { "hunterType": "Blademaster", "skills": ["Reckless Abandon +3", "Sharp Sword"] }
+  },
+  {
+    "id": "narga",
+    "tags": ["nickname"],
+    "request": "Narga hunt in G rank, blademaster, Earplugs and Evade +2",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Earplug", "Evade +2"],
+      "monster": "Nargacuga"
+    }
+  },
+  {
+    "id": "raja",
+    "tags": ["nickname"],
+    "request": "set for Raja, gunner, Attack Up Large and Reload Speed +2",
+    "expect": {
+      "hunterType": "Gunner",
+      "skills": ["Attack Up (Large)", "Reloading Speed +2"],
+      "monster": "Rajang"
+    }
+  },
+  {
+    "id": "kush-wind",
+    "tags": ["nickname", "alt-name"],
+    "request": "something for Kush with Anti-Daora and Wind Res (Hi)",
+    "expect": { "skills": ["Frosty Protection", "High Wind Res"], "monster": "Kushala Daora" }
+  },
+  {
+    "id": "tiggy-lance",
+    "tags": ["nickname", "weapon-type"],
+    "request": "Tiggy in HR, I need HG Earplugs and Guard +1 for my lance",
+    "expect": {
+      "rank": "high-rank",
+      "hunterType": "Blademaster",
+      "skills": ["High Grade Earplug", "Guard +1"],
+      "monster": "Tigrex"
+    }
+  },
+  {
+    "id": "never-rathalos",
+    "tags": ["never", "truncated-names"],
+    "request": "No Rathalos gear please. G rank blademaster with Attack Up (Large)",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Attack Up (Large)"],
+      "never": ["Rathalos", "Rthalos", "Rthlos"]
+    }
+  },
+  {
+    "id": "never-ukanlos",
+    "tags": ["never", "armor-name"],
+    "request": "G rank blademaster, Evade +2 and Sharpness +1, no Ukanlos armor",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Evade +2", "Sharpness +1"],
+      "never": ["Ucamulbas"]
+    }
+  },
+  {
+    "id": "never-narga-luna",
+    "tags": ["never", "armor-name"],
+    "request": "gunner, Auto Reload, without Nargacuga or Lunastra gear",
+    "expect": { "hunterType": "Gunner", "skills": ["Auto Reload"], "never": ["Naruga", "Empress"] }
+  },
+  {
+    "id": "never-white-fatalis",
+    "tags": ["never", "truncated-names"],
+    "request": "G rank, Health +50 and Divine Protection, but no White Fatalis armor",
+    "expect": {
+      "rank": "g-rank",
+      "skills": ["Health +50", "Divine Protection"],
+      "never": ["White", "Wht"]
+    }
+  },
+  {
+    "id": "lock-kirin",
+    "tags": ["lock"],
+    "request": "G rank gunner with Evade +2 and Auto Reload, keep the Kirin helmet",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Gunner",
+      "skills": ["Evade +2", "Auto Reload"],
+      "always": [{ "slot": "helmet", "word": "Kirin" }]
+    }
+  },
+  {
+    "id": "lock-tigrex",
+    "tags": ["lock"],
+    "request": "HR blademaster, lock Tigrex legs and Tigrex chest, Attack Up Large",
+    "expect": {
+      "rank": "high-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Attack Up (Large)"],
+      "always": [
+        { "slot": "leggings", "word": "Tigrex" },
+        { "slot": "plate", "word": "Tigrex" }
+      ]
+    }
+  },
+  {
+    "id": "lock-hypnoc",
+    "tags": ["lock"],
+    "request": "always wear the Hypnoc waist, gunner, Evade +1",
+    "expect": {
+      "hunterType": "Gunner",
+      "skills": ["Evade +1"],
+      "always": [{ "slot": "waist", "word": "Hypnoc" }]
+    }
+  },
+  {
+    "id": "slots-3",
+    "tags": ["slots"],
+    "request": "G rank blademaster, 3 slot weapon, Sharpness +1 and ESP",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Sharpness +1", "ESP"],
+      "weaponSlots": 3
+    }
+  },
+  {
+    "id": "slots-1",
+    "tags": ["slots", "alt-name"],
+    "request": "my weapon has one slot. Gunner HR, Recoil +2 and Reload +3",
+    "expect": {
+      "rank": "high-rank",
+      "hunterType": "Gunner",
+      "skills": ["Recoil Reduction +2", "Reloading Speed +3"],
+      "weaponSlots": 1
+    }
+  },
+  {
+    "id": "slots-0",
+    "tags": ["slots", "weapon-type"],
+    "request": "slotless weapon, G rank lance, Guard +2 and Earplug",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Guard +2", "Earplug"],
+      "weaponSlots": 0
+    }
+  },
+  {
+    "id": "monster-only",
+    "tags": ["no-skills"],
+    "request": "what should I wear for Akantor?",
+    "expect": { "monster": "Akantor" }
+  },
+  {
+    "id": "skills-not-in-fu",
+    "tags": ["no-skills"],
+    "request": "Weakness Exploit and Critical Boost, G rank",
+    "expect": { "rank": "g-rank" }
+  },
+  {
+    "id": "best-set",
+    "tags": ["no-skills"],
+    "request": "gimme the best set",
+    "expect": {}
+  },
+  {
+    "id": "lr-kutku",
+    "tags": ["mixed", "nickname"],
+    "request": "LR gunner for Kut-Ku, Evade+1 and Normal Up, 2 slots, no Garuga gear",
+    "expect": {
+      "rank": "low-rank",
+      "hunterType": "Gunner",
+      "skills": ["Evade +1", "NormalS/RapidBow Up"],
+      "weaponSlots": 2,
+      "never": ["Garuga"],
+      "monster": "Yian Kut-Ku"
+    }
+  },
+  {
+    "id": "crimson-sns",
+    "tags": ["mixed", "nickname", "lock"],
+    "request": "G rank SnS for Crimson Fatty: Attack Up (Large), Sharpness +1 and Guts, keep my Kushala chest",
+    "expect": {
+      "rank": "g-rank",
+      "hunterType": "Blademaster",
+      "skills": ["Attack Up (Large)", "Sharpness +1", "Guts"],
+      "always": [{ "slot": "plate", "word": "Kushala" }],
+      "monster": "Crimson Fatalis"
+    }
+  },
+  {
+    "id": "typos",
+    "tags": ["typo"],
+    "request": "evaison +2, autoreload, g rank bowgun",
+    "expect": { "rank": "g-rank", "hunterType": "Gunner", "skills": ["Evade +2", "Auto Reload"] }
+  },
+  {
+    "id": "utility",
+    "tags": ["alt-name"],
+    "request": "HR set with Autotracker, Marathon Runner and Trap Master",
+    "expect": { "rank": "high-rank", "skills": ["Autotracker", "Runner", "Trap Master"] }
+  },
+  {
+    "id": "bow-load-up",
+    "tags": ["alt-name", "weapon-type"],
+    "request": "Load Up and Pierce Up for a bow",
+    "expect": { "hunterType": "Gunner", "skills": ["Capacity Up", "PierceS/PierceBow Up"] }
+  },
+  {
+    "id": "defence-spelling",
+    "tags": ["alt-name"],
+    "request": "Defence +40 and All Resistance +10, high rank",
+    "expect": { "rank": "high-rank", "skills": ["Defense +40", "All Res +10"] }
+  }
+]

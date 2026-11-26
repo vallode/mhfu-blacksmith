@@ -40,14 +40,15 @@ The skill activation table (`data/skills.json`, used by the set builder on `/set
 
 This is a [pnpm workspace](https://pnpm.io/workspaces):
 
-| Path                    | Package        | What it is                                                                                      |
-| ----------------------- | -------------- | ----------------------------------------------------------------------------------------------- |
-| `apps/blacksmith`       | `blacksmith`   | The MHFU Blacksmith website, a statically exported [Next.js](https://nextjs.org/) app           |
-| `apps/randomfu`         | `randomfu-web` | The randomizer as a static web app that runs in the browser, at randomfu.vallode.com            |
-| `packages/mhfu-extract` | `mhfu-extract` | Datamining pipeline: reads a disc image and emits `data/` and the site's 3D models              |
-| `packages/randomfu`     | `randomfu`     | The seeded randomizer behind `apps/randomfu`: options, shuffles, disc patching, spoiler log     |
-| `packages/game-data`    | `game-data`    | The one way into `data/`: `readData` for everything that reads it, `writeData` for writing      |
-| `data`                  |                | The game data the site is built from (JSON, validated by `data/schemas/`), shared by everything |
+| Path                    | Package        | What it is                                                                                         |
+| ----------------------- | -------------- | -------------------------------------------------------------------------------------------------- |
+| `apps/blacksmith`       | `blacksmith`   | The MHFU Blacksmith website, a statically exported [Next.js](https://nextjs.org/) app              |
+| `apps/randomfu`         | `randomfu-web` | The randomizer as a static web app that runs in the browser, at randomfu.vallode.com               |
+| `apps/discord-bot`      | `discord-bot`  | A Discord bot (Cloudflare Worker) answering from the site's data, with natural-language set search |
+| `packages/mhfu-extract` | `mhfu-extract` | Datamining pipeline: reads a disc image and emits `data/` and the site's 3D models                 |
+| `packages/randomfu`     | `randomfu`     | The seeded randomizer behind `apps/randomfu`: options, shuffles, disc patching, spoiler log        |
+| `packages/game-data`    | `game-data`    | The one way into `data/`: `readData` for everything that reads it, `writeData` for writing         |
+| `data`                  |                | The game data the site is built from (JSON, validated by `data/schemas/`), shared by everything    |
 
 Packages import each other by name (`import … from "mhfu-extract/src/container/image.js"`),
 declared as `workspace:*` dependencies.
