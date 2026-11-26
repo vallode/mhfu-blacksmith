@@ -6,6 +6,12 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { readData, readRawData } from "game-data";
+import {
+  formatRank,
+  parseDropSource,
+  splitDropQuantity,
+} from "blacksmith/src/lib/monster-drops.js";
+import { isHiddenQuest, questHubLabel, questHubSlug } from "blacksmith/src/lib/quests.js";
 import { armorSlugs, slugify } from "blacksmith/src/lib/slug.js";
 import { MONSTER_NICKNAMES } from "../src/nicknames.js";
 import type {
@@ -14,11 +20,14 @@ import type {
   ArmorSlot,
   BotIndex,
   HunterType,
+  ItemDrop,
   ItemEntry,
+  ItemReward,
   MonsterEntry,
   SkillEntry,
   WeaponEntry,
 } from "../src/types.js";
+import { ITEM_SOURCES } from "../src/types.js";
 
 export const DATA_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../data");
 
@@ -123,13 +132,98 @@ function monsters(strings: Strings): MonsterEntry[] {
   });
 }
 
+const QUEST_FILES = [
+  "village",
+  "guild",
+  "training-school",
+  "treasure-hunting",
+  "event",
+  "challenge",
+];
+
+/** Every monster drop and quest reward, by item name, best (highest chance) first. */
+function itemSources(): Map<string, { drops: ItemDrop[]; rewards: ItemReward[] }> {
+  const out = new Map<string, { drops: ItemDrop[]; rewards: ItemReward[] }>();
+  const of = (name: string) => {
+    let e = out.get(name);
+    if (!e) out.set(name, (e = { drops: [], rewards: [] }));
+    return e;
+  };
+  for (const category of MONSTER_CATEGORIES) {
+    const { monsters } = readData<{
+      monsters: {
+        name: string;
+        drops?: Record<
+          string,
+          Record<string, { name: string; chance: string; quantity?: number }[]>
+        >;
+      }[];
+    }>(DATA_DIR, "monsters", `${category}.json`);
+    for (const m of monsters)
+      for (const [rank, tables] of Object.entries(m.drops ?? {}))
+        for (const [source, drops] of Object.entries(tables)) {
+          const { title, count } = parseDropSource(source);
+          for (const d of drops) {
+            const [name, inName] = splitDropQuantity(d.name);
+            const quantity = d.quantity ?? inName ?? 1;
+            of(name).drops.push({
+              monster: m.name,
+              rank: formatRank(rank),
+              how: count !== undefined ? `${title} ×${count}` : title,
+              chance: parseFloat(d.chance) || 0,
+              ...(quantity > 1 && { quantity }),
+            });
+          }
+        }
+  }
+  for (const file of QUEST_FILES) {
+    const { quests } = readData<{
+      quests: {
+        id: number;
+        hub: string;
+        rank: string | null;
+        stars: number;
+        title?: string;
+        reward_tables: { items: { item: string; chance: number; amount: number }[] }[];
+      }[];
+    }>(DATA_DIR, "quests", `${file}.json`);
+    for (const q of quests) {
+      if (isHiddenQuest(q.id) || !q.title) continue;
+      const hub = questHubSlug(q.hub, q.rank);
+      const where = `${hub ? questHubLabel(hub) : q.hub} ★${q.stars}`;
+      for (const table of q.reward_tables)
+        for (const r of table.items)
+          of(r.item).rewards.push({
+            quest: q.title,
+            where,
+            chance: r.chance,
+            ...(r.amount > 1 && { amount: r.amount }),
+          });
+    }
+  }
+  for (const e of out.values()) {
+    // The same drop at several ranks is one row, its ranks joined.
+    const merged = new Map<string, ItemDrop>();
+    for (const d of e.drops) {
+      const key = `${d.monster}|${d.how}|${d.chance}|${d.quantity ?? 1}`;
+      const seen = merged.get(key);
+      if (seen) seen.rank += `, ${d.rank}`;
+      else merged.set(key, { ...d });
+    }
+    e.drops = [...merged.values()];
+    e.drops.sort((a, b) => b.chance - a.chance);
+    e.rewards.sort((a, b) => b.chance - a.chance);
+  }
+  return out;
+}
+
 function items(strings: Strings): ItemEntry[] {
   const aliases = strings.aliases.item ?? {};
+  const sources = itemSources();
   const { items } = readData<{
     items: {
       id: number;
       name: string;
-      name_jp?: string;
       rarity?: number;
       price?: number;
       placeholder?: boolean;
@@ -137,15 +231,21 @@ function items(strings: Strings): ItemEntry[] {
   }>(DATA_DIR, "items.json");
   return items
     .filter((i) => !i.placeholder)
-    .map((i) => ({
-      id: i.id,
-      name: i.name,
-      aliases: aliases[i.id] ?? [],
-      ...(i.name_jp && { jp: i.name_jp }),
-      ...(i.rarity !== undefined && { rarity: i.rarity }),
-      ...(i.price !== undefined && { price: i.price }),
-      slug: slugify(i.name),
-    }));
+    .map((i) => {
+      const { drops = [], rewards = [] } = sources.get(i.name) ?? {};
+      return {
+        id: i.id,
+        name: i.name,
+        aliases: aliases[i.id] ?? [],
+        ...(i.rarity !== undefined && { rarity: i.rarity }),
+        ...(i.price !== undefined && { price: i.price }),
+        slug: slugify(i.name),
+        drops: drops.slice(0, ITEM_SOURCES),
+        dropCount: drops.length,
+        rewards: rewards.slice(0, ITEM_SOURCES),
+        rewardCount: rewards.length,
+      };
+    });
 }
 
 function weapons(): WeaponEntry[] {

@@ -71,9 +71,10 @@ describe("autocomplete", () => {
     assert.equal((await choices("monster", "One-Ear"))[0]?.name, "Scarred Yian Garuga");
   });
 
-  it("finds items by their Japanese names", async () => {
-    const [first] = await choices("item", "調合書①");
-    assert.equal(first?.value, "i:1");
+  it("lists large monsters before small ones that match as well", async () => {
+    const names = (await choices("monster", "veloci")).map((c) => c.name);
+    assert.deepEqual(names.slice(0, 2), ["Velocidrome", "Velociprey"]);
+    assert.ok(names.every((n) => !n.includes("(")));
   });
 
   it("offers at most 25 choices, short enough for Discord", async () => {
@@ -90,6 +91,14 @@ describe("/monster, /item, /weapon", () => {
     const embed = m.embeds?.[0];
     assert.equal(embed?.title, "Rathalos");
     assert.ok(embed?.fields?.some((f) => f.name === "Weak to" && f.value.includes("Ice")));
+  });
+
+  it("leads an item's embed with where it drops and the chances", async () => {
+    const m = messageOf(await call(command("item", "name", "Rathalos Scale")));
+    const fields = m.embeds?.[0]?.fields ?? [];
+    assert.equal(fields[0]?.name, "Monster drops");
+    assert.match(fields[0]?.value ?? "", /^\*\*\d+%\*\* Rathalos · /);
+    assert.ok(fields.every((f) => f.name !== "Japanese"));
   });
 
   it("takes an autocomplete choice's key", async () => {

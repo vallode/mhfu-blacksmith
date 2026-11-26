@@ -32,11 +32,43 @@ export interface ItemEntry {
   id: number;
   name: string;
   aliases: string[];
-  /** The Japanese name, from the disc. */
-  jp?: string;
   rarity?: number;
   price?: number;
   slug: string;
+  /** The best monster drops for it, highest chance first (at most ITEM_SOURCES). */
+  drops: ItemDrop[];
+  /** How many monster drops give it in all. */
+  dropCount: number;
+  /** The best quest rewards for it, highest chance first (at most ITEM_SOURCES). */
+  rewards: ItemReward[];
+  /** How many quest reward tables give it in all. */
+  rewardCount: number;
+}
+
+/** How many of an item's drops and rewards the index keeps. */
+export const ITEM_SOURCES = 5;
+
+export interface ItemDrop {
+  monster: string;
+  /** "Low Rank", "G Rank", "1-2 Star" (the drop table's rank). */
+  rank: string;
+  /** "Body carves ×3", "Break head", "Capture". */
+  how: string;
+  /** Percent per attempt. */
+  chance: number;
+  /** How many each success gives, when more than one. */
+  quantity?: number;
+}
+
+export interface ItemReward {
+  /** The quest's title. */
+  quest: string;
+  /** "Guild G Rank ★3", "Village ★5". */
+  where: string;
+  /** Percent per draw. */
+  chance: number;
+  /** How many each draw gives, when more than one. */
+  amount?: number;
 }
 
 export interface WeaponEntry {

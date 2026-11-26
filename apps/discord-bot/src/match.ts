@@ -45,21 +45,32 @@ export function score(query: string, spelling: string): number {
 
 /**
  * The entries that match `query` best, best first: by their best spelling,
- * then the shorter name, then the order given. An empty query lists them in
- * order.
+ * then `group` (lower first), then the shorter name, then the order given.
+ * An empty query lists them by group, then in order.
  */
 export function bestMatches<T>(
   entries: readonly T[],
   query: string,
   spellings: (entry: T) => readonly string[],
   limit: number,
+  group: (entry: T) => number = () => 0,
 ): T[] {
-  const scored: { entry: T; score: number; length: number; order: number }[] = [];
+  const scored: { entry: T; score: number; group: number; length: number; order: number }[] = [];
   entries.forEach((entry, order) => {
     const names = spellings(entry);
     const best = Math.max(0, ...names.map((n) => score(query, n)));
-    if (best > 0) scored.push({ entry, score: best, length: names[0]?.length ?? 0, order });
+    if (best > 0) {
+      scored.push({
+        entry,
+        score: best,
+        group: group(entry),
+        length: names[0]?.length ?? 0,
+        order,
+      });
+    }
   });
-  scored.sort((a, b) => b.score - a.score || a.length - b.length || a.order - b.order);
+  scored.sort(
+    (a, b) => b.score - a.score || a.group - b.group || a.length - b.length || a.order - b.order,
+  );
   return scored.slice(0, limit).map((s) => s.entry);
 }

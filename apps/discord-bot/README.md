@@ -8,14 +8,14 @@ the response as the reply, so there's no gateway process to keep running.
 | Command             | Reply                                                                                    |
 | ------------------- | ---------------------------------------------------------------------------------------- |
 | `/monster name:`    | Type, base HP, weaknesses, breakable parts and crowns, and the page link (which unfurls) |
-| `/item name:`       | Japanese name, rarity and price, and the page link                                       |
+| `/item name:`       | The best monster drops and quest rewards with their chances, rarity, price and the page  |
 | `/weapon name:`     | Attack, affinity, element, slots and rarity, and the page link                           |
 | `/settings string:` | A RandomFU settings string's seed, preset and every option it changes                    |
 | `/sets request:`    | A plain-English request as a set builder search: a link that opens with it filled in     |
 
-`name` autocompletes: by name, the data's other spellings, the community's
-nicknames (`src/nicknames.ts`: "Raja", "Kush", "Fatty") and, for items, the
-Japanese name.
+`name` autocompletes: by name, the data's other spellings and the community's
+nicknames (`src/nicknames.ts`: "Raja", "Kush", "Fatty"). Large monsters come
+before small ones that match as well.
 
 ## How it works
 

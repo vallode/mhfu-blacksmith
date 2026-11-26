@@ -26,6 +26,8 @@ interface Kind<T> {
   spellings: (e: T) => readonly string[];
   /** The autocomplete choice's label. */
   label: (e: T) => string;
+  /** Lower comes first among equally good matches (large monsters before small ones). */
+  group?: (e: T) => number;
   path: (e: T) => string;
   embed: (e: T, url: string) => Embed;
 }
@@ -34,7 +36,8 @@ const monster: Kind<MonsterEntry> = {
   entries: (i) => i.monsters,
   key: (m) => `m:${m.id}`,
   spellings: (m) => [m.name, ...m.aliases],
-  label: (m) => (m.small ? `${m.name} (small)` : m.name),
+  label: (m) => m.name,
+  group: (m) => (m.small ? 1 : 0),
   path: (m) => `/monsters/${m.category}/${m.slug}/`,
   embed: (m, url) => {
     const fields: Embed["fields"] = [{ name: "Type", value: titleCase(m.category), inline: true }];
@@ -62,12 +65,39 @@ const monster: Kind<MonsterEntry> = {
 const item: Kind<ItemEntry> = {
   entries: (i) => i.items,
   key: (it) => `i:${it.id}`,
-  spellings: (it) => [it.name, ...it.aliases, ...(it.jp ? [it.jp] : [])],
-  label: (it) => (it.jp ? `${it.name} (${it.jp})` : it.name),
+  spellings: (it) => [it.name, ...it.aliases],
+  label: (it) => it.name,
   path: (it) => `/items/${it.slug}/`,
   embed: (it, url) => {
     const fields: Embed["fields"] = [];
-    if (it.jp) fields.push({ name: "Japanese", value: it.jp, inline: true });
+    // Where it comes from first: that's what a player looks an item up for.
+    const more = (shown: number, all: number) =>
+      all > shown ? `\n[…and ${all - shown} more](${url})` : "";
+    if (it.drops.length) {
+      const lines = it.drops.map(
+        (d) =>
+          `**${d.chance}%** ${d.monster} · ${d.rank} · ${d.how}${d.quantity ? ` (×${d.quantity})` : ""}`,
+      );
+      fields.push({
+        name: "Monster drops",
+        value: clip(lines.join("\n") + more(it.drops.length, it.dropCount), LIMITS.fieldValue),
+      });
+    }
+    if (it.rewards.length) {
+      const lines = it.rewards.map(
+        (r) => `**${r.chance}%** ${r.quest} · ${r.where}${r.amount ? ` (×${r.amount})` : ""}`,
+      );
+      fields.push({
+        name: "Quest rewards",
+        value: clip(lines.join("\n") + more(it.rewards.length, it.rewardCount), LIMITS.fieldValue),
+      });
+    }
+    if (!it.drops.length && !it.rewards.length) {
+      fields.push({
+        name: "Where to get it",
+        value: `Gathering, shops and more: [its page](${url})`,
+      });
+    }
     if (it.rarity !== undefined)
       fields.push({ name: "Rarity", value: String(it.rarity), inline: true });
     if (it.price !== undefined)
@@ -107,7 +137,7 @@ export function autocomplete(
   typed: string,
 ): { name: string; value: string }[] {
   const k = KINDS[kind] as Kind<unknown>;
-  return bestMatches(k.entries(index), typed, k.spellings, LIMITS.choices).map((e) => ({
+  return bestMatches(k.entries(index), typed, k.spellings, LIMITS.choices, k.group).map((e) => ({
     name: clip(k.label(e), LIMITS.choiceName),
     value: k.key(e),
   }));
@@ -120,7 +150,10 @@ export function autocomplete(
 export function find(index: BotIndex, kind: LookupKind, value: string): unknown {
   const k = KINDS[kind] as Kind<unknown>;
   const entries = k.entries(index);
-  return entries.find((e) => k.key(e) === value) ?? bestMatches(entries, value, k.spellings, 1)[0];
+  return (
+    entries.find((e) => k.key(e) === value) ??
+    bestMatches(entries, value, k.spellings, 1, k.group)[0]
+  );
 }
 
 /** The reply to a lookup: the page link (for Discord's preview) and the embed. */
