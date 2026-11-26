@@ -59,6 +59,29 @@ PPSSPP's port is read from its ppsspp.ini (`RemoteISOPort`: in
 on Windows), and otherwise looked up in PPSSPP's own discovery list, as the
 site's PPSSPP link does.
 
+## As a PPSSPP plugin
+
+PPSSPP builds with Lua plugins (`type = lua` in a plugin's `plugin.ini`) can
+show the same presence themselves, with nothing else running. Build the
+plugin from `data/`:
+
+```sh
+pnpm --filter rich-presence plugin --out <memory stick>/PSP/PLUGINS
+```
+
+That writes `mhfu-presence/` (`plugin.ini` and `presence.lua`); with
+"Enable plugins" and "Send Discord Presence information" on, PPSSPP sends
+the presence while the game runs. The memory stick is PPSSPP's
+`memstick` folder: `~/.config/ppsspp` on macOS and Linux,
+`Documents\PPSSPP` on Windows. Discord then shows "Playing PPSSPP", with the
+game below it, since the plugin speaks through PPSSPP's own Discord
+application. In town the timer counts from when the game started.
+
+`src/plugin.ts` writes every quest, monster, weapon and map name, the star
+labels, area numbers and picture URLs into the script as tables, made with
+the same code as the companion's presence; the Lua reads the same addresses
+as `src/layout.ts` and picks from them.
+
 ## The Discord application
 
 The name Discord shows after "Playing" is the Discord application's name. To
@@ -86,6 +109,7 @@ found are in [docs/discord-rich-presence.md](../../docs/discord-rich-presence.md
 | `src/discord.ts`  | Discord's local RPC over its IPC socket                |
 | `src/ppsspp.ts`   | Finding PPSSPP's debugger port                         |
 | `src/main.ts`     | The loop: read, build, send when something changed     |
+| `src/plugin.ts`   | The same presence as a PPSSPP Lua plugin               |
 
 The PPSSPP debugger client, the hunter block's address and checks, the star
 levels and the map's area numbers are the Blacksmith site's

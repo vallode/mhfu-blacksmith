@@ -46,7 +46,7 @@ export const WEAPON_CLASSES: Readonly<Record<string, string>> = {
   bow: "Bow",
 };
 
-const TOWN_PLACES: Readonly<Record<TownPlace, string>> = {
+export const TOWN_PLACES: Readonly<Record<TownPlace, string>> = {
   village: "In Pokke Village",
   house: "At home",
   kitchen: "In the Felyne Kitchen",

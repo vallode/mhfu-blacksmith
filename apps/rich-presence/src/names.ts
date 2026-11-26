@@ -42,6 +42,16 @@ export interface Names {
   map(id: number): string | undefined;
 }
 
+/** Names, and every ID they cover (for the PPSSPP plugin, which carries them all). */
+export interface Catalog extends Names {
+  ids: {
+    quests: number[];
+    monsters: number[];
+    weapons: { table: 5 | 6; id: number }[];
+    maps: number[];
+  };
+}
+
 interface NamedRecord {
   id: number;
   name?: string;
@@ -55,7 +65,7 @@ interface NamedRecord {
 const files = (dataDir: string, dir: string) =>
   readdirSync(path.join(dataDir, dir)).filter((f) => f.endsWith(".json"));
 
-export function loadNames(dataDir = DATA_DIR, lang = "en"): Names {
+export function loadNames(dataDir = DATA_DIR, lang = "en"): Catalog {
   const quests = new Map<number, QuestName>();
   for (const file of files(dataDir, "quests")) {
     for (const q of readData<{ quests: NamedRecord[] }>(dataDir, "quests", file).quests) {
@@ -76,7 +86,20 @@ export function loadNames(dataDir = DATA_DIR, lang = "en"): Names {
     const record = types.get(`${table}:${id}`);
     return name && record ? { name, ...record } : undefined;
   };
+  const keys = (section: Record<string, unknown> | undefined) =>
+    Object.keys(section ?? {})
+      .map(Number)
+      .filter(Number.isInteger);
   return {
+    ids: {
+      quests: [...quests.keys()],
+      monsters: keys(strings.doc.monster),
+      weapons: [...types.keys()].map((key) => {
+        const [table, id] = key.split(":");
+        return { table: table === "ranged" ? 6 : 5, id: Number(id) };
+      }),
+      maps: keys(strings.doc.map),
+    },
     quest: (id) => quests.get(id),
     monster: (id) => {
       // English names make the slugs, whatever language the names are in.

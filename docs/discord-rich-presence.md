@@ -76,6 +76,27 @@ IPC protocol also carries the older join flow (`party`, `secrets.join`,
 Social SDK is the route if invites need its lobbies. Only unmodified discs
 could use them: RandomFU discs keep networking off on purpose.
 
+## As a PPSSPP Lua plugin
+
+A PPSSPP with Lua plugins (proposed upstream on hrydgard/ppsspp#20851, and
+in PPSSPP's `docs/lua-plugins.md` on that branch) runs a game's script on a
+vblank timer, with read-only memory access, and sends what the script asks
+for as the game's Discord presence. `src/plugin.ts` builds that script:
+everything from `data/` (names, star labels, area numbers, picture URLs) is
+worked out in TypeScript with the companion's own functions and written
+into the script as tables, and the Lua only reads the game's memory, at the
+addresses above, and picks from them.
+
+- The hunter's name is read as UTF-16 units with `r16` (`rstr` stops at the
+  first zero byte), and the block counts as loaded on the same name and sex
+  byte checks as `looksLikeHunter`, without its box scans.
+- It runs every 60 vblanks. PPSSPP compares the presence once a second and
+  sends it at most every 4 seconds; the quest's `elapsed` is recomputed each
+  time, and moves of 2 seconds or less aren't resent.
+- In PPSSPPHeadless with the EU and FUC savestates, the plugin's presence
+  matches the companion's for each one (the companion reading the same
+  savestates' RAM).
+
 ## Pictures
 
 Discord takes image URLs in an activity's assets, so the pictures are files
