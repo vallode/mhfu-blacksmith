@@ -111,8 +111,27 @@ describe("/monster, /item, /weapon", () => {
     const m = messageOf(await call(command("item", "name", "Rathalos Scale")));
     const fields = m.embeds?.[0]?.fields ?? [];
     assert.equal(fields[0]?.name, "Monster drops");
-    assert.match(fields[0]?.value ?? "", /^\*\*\d+%\*\* Rathalos · /);
-    assert.ok(fields.every((f) => f.name !== "Japanese"));
+    // One line per monster and ranks, its ways in it; carve counts left out.
+    const [lr, early] = (fields[0]?.value ?? "").split("\n");
+    assert.match(lr ?? "", /^\*\*Rathalos\*\* LR: break head \d+%, tail carves /);
+    assert.match(early ?? "", /^\*\*Rathalos\*\* LR ★1-2: /);
+    assert.doesNotMatch(fields[0]?.value ?? "", /×3/);
+    assert.match(fields[1]?.value ?? "", /^\*\*[^*]+\*\* (Guild LR|Village) ★\d: \d+%/);
+    assert.ok(fields.every((f) => f.name !== "Japanese" && f.name !== "Rarity"));
+    // Rarity and price under the title, the stripe in the rarity's colour.
+    assert.equal(m.embeds?.[0]?.description, "-# Rarity 4 · Sells for 4,900z");
+    assert.equal(m.embeds?.[0]?.color, 0x52f152);
+    assert.equal(
+      m.embeds?.[0]?.thumbnail?.url,
+      "https://mhfu.vallode.com/embed/icons/item-23-1.png",
+    );
+  });
+
+  it("takes the images from ASSET_URL, the links still from the site", async () => {
+    const env = { ASSET_URL: "https://test.example" };
+    const embed = messageOf(await call(command("item", "name", "Rathalos Scale"), env)).embeds?.[0];
+    assert.equal(embed?.thumbnail?.url, "https://test.example/embed/icons/item-23-1.png");
+    assert.match(embed?.url ?? "", /^https:\/\/mhfu\.vallode\.com\//);
   });
 
   it("takes an autocomplete choice's key", async () => {

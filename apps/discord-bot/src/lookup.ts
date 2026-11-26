@@ -18,10 +18,15 @@ const titleCase = (slug: string) =>
     .map((w) => (w === "and" ? w : w[0]!.toUpperCase() + w.slice(1)))
     .join(" ");
 
+/** "Body carves" -> "body carves", inside a line. */
+const lower = (s: string) => s[0]!.toLowerCase() + s.slice(1);
+
 interface Kind<T> {
   entries: (index: BotIndex) => readonly T[];
   /** The autocomplete choice's value: stable, short (at most 100 characters). */
   key: (e: T) => string;
+  /** The site's thumbnail for it, a path on the site. */
+  icon?: (e: T) => string | undefined;
   /** Spellings to match, the name first. */
   spellings: (e: T) => readonly string[];
   /** The autocomplete choice's label. */
@@ -66,6 +71,7 @@ const item: Kind<ItemEntry> = {
   entries: (i) => i.items,
   key: (it) => `i:${it.id}`,
   spellings: (it) => [it.name, ...it.aliases],
+  icon: (it) => it.icon,
   label: (it) => it.name,
   path: (it) => `/items/${it.slug}/`,
   embed: (it, url) => {
@@ -76,7 +82,10 @@ const item: Kind<ItemEntry> = {
     if (it.drops.length) {
       const lines = it.drops.map(
         (d) =>
-          `**${d.chance}%** ${d.monster} · ${d.rank} · ${d.how}${d.quantity ? ` (×${d.quantity})` : ""}`,
+          `**${d.monster}** ${d.ranks}: ` +
+          d.ways
+            .map((w) => `${lower(w.how)} ${w.chance}%${w.quantity ? ` ×${w.quantity}` : ""}`)
+            .join(", "),
       );
       fields.push({
         name: "Monster drops",
@@ -85,7 +94,7 @@ const item: Kind<ItemEntry> = {
     }
     if (it.rewards.length) {
       const lines = it.rewards.map(
-        (r) => `**${r.chance}%** ${r.quest} · ${r.where}${r.amount ? ` (×${r.amount})` : ""}`,
+        (r) => `**${r.quest}** ${r.where}: ${r.chance}%${r.amount ? ` ×${r.amount}` : ""}`,
       );
       fields.push({
         name: "Quest rewards",
@@ -98,11 +107,18 @@ const item: Kind<ItemEntry> = {
         value: `Gathering, shops and more: [its page](${url})`,
       });
     }
-    if (it.rarity !== undefined)
-      fields.push({ name: "Rarity", value: String(it.rarity), inline: true });
-    if (it.price !== undefined)
-      fields.push({ name: "Sells for", value: `${it.price}z`, inline: true });
-    return { title: it.name, url, color: EMBED_COLOR, fields };
+    // Rarity and price in small text under the title, the fields kept for sources.
+    const facts = [
+      it.rarity !== undefined && `Rarity ${it.rarity}`,
+      it.price !== undefined && `Sells for ${it.price.toLocaleString("en-US")}z`,
+    ].filter(Boolean);
+    return {
+      title: it.name,
+      url,
+      color: it.color ?? EMBED_COLOR,
+      ...(facts.length && { description: `-# ${facts.join(" · ")}` }),
+      fields,
+    };
   },
 };
 
@@ -162,13 +178,18 @@ export function lookupReply(
   kind: LookupKind,
   value: string,
   siteUrl: string,
+  /** Where the embed's images are served; the site by default. */
+  assetUrl = siteUrl,
 ): { content: string; embeds: Embed[] } | null {
   const k = KINDS[kind] as Kind<unknown>;
   const entry = find(index, kind, value);
   if (!entry) return null;
   const url = `${siteUrl}${k.path(entry)}`;
+  const embed = k.embed(entry, url);
+  const icon = k.icon?.(entry);
+  if (icon) embed.thumbnail = { url: `${assetUrl}${icon}` };
   // A large monster's page has its own large preview card, which Discord
   // draws from a link in the text; the embed keeps to the quick facts.
   const content = kind === "monster" && !(entry as MonsterEntry).small ? url : "";
-  return { content, embeds: [k.embed(entry, url)] };
+  return { content, embeds: [embed] };
 }

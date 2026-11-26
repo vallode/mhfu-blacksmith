@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getItemSummaries, getItemSummary } from "@/lib/items-data";
-import { itemDescription, pageMetadata } from "@/lib/seo";
+import { itemDescription, itemEmbedIcon, pageMetadata } from "@/lib/seo";
 import ItemDetailClient from "./ItemDetailClient";
 
 interface Props {
@@ -20,6 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: item.name,
     description: itemDescription(item.name),
     path: `/items/${slug}/`,
+    ...(item.icon !== undefined &&
+      item.color !== undefined && { image: itemEmbedIcon(item.icon, item.color) }),
   });
 }
 

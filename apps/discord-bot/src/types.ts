@@ -35,9 +35,13 @@ export interface ItemEntry {
   rarity?: number;
   price?: number;
   slug: string;
-  /** The best monster drops for it, highest chance first (at most ITEM_SOURCES). */
+  /** Its icon, tinted, on the site (blacksmith's itemEmbedIcon): `/embed/icons/…png`. */
+  icon?: string;
+  /** The embed's colour: the site's rarity colour, from rarity 4. */
+  color?: number;
+  /** The monsters that drop it, best chance first (at most ITEM_SOURCES). */
   drops: ItemDrop[];
-  /** How many monster drops give it in all. */
+  /** How many monsters (at a set of ranks) drop it in all. */
   dropCount: number;
   /** The best quest rewards for it, highest chance first (at most ITEM_SOURCES). */
   rewards: ItemReward[];
@@ -46,13 +50,19 @@ export interface ItemEntry {
 }
 
 /** How many of an item's drops and rewards the index keeps. */
-export const ITEM_SOURCES = 5;
+export const ITEM_SOURCES = 3;
 
+/** One monster's drops of an item, at the ranks those drops share. */
 export interface ItemDrop {
   monster: string;
-  /** "Low Rank", "G Rank", "1-2 Star" (the drop table's rank). */
-  rank: string;
-  /** "Body carves ×3", "Break head", "Capture". */
+  /** Short drop table ranks: "LR ★1-2", "LR, HR", "G". */
+  ranks: string;
+  /** How it drops there, highest chance first. */
+  ways: ItemDropWay[];
+}
+
+export interface ItemDropWay {
+  /** "Body carves", "Break head", "Capture". */
   how: string;
   /** Percent per attempt. */
   chance: number;
@@ -63,7 +73,7 @@ export interface ItemDrop {
 export interface ItemReward {
   /** The quest's title. */
   quest: string;
-  /** "Guild G Rank ★3", "Village ★5". */
+  /** "Guild G★3", "Guild LR ★5", "Village ★5". */
   where: string;
   /** Percent per draw. */
   chance: number;
