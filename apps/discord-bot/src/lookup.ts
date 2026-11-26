@@ -18,6 +18,9 @@ const titleCase = (slug: string) =>
     .map((w) => (w === "and" ? w : w[0]!.toUpperCase() + w.slice(1)))
     .join(" ");
 
+/** "Body carves" -> "body carves", inside a line. */
+const lower = (s: string) => s[0]!.toLowerCase() + s.slice(1);
+
 interface Kind<T> {
   entries: (index: BotIndex) => readonly T[];
   /** The autocomplete choice's value: stable, short (at most 100 characters). */
@@ -79,7 +82,10 @@ const item: Kind<ItemEntry> = {
     if (it.drops.length) {
       const lines = it.drops.map(
         (d) =>
-          `**${d.chance}%** ${d.monster} · ${d.rank} · ${d.how}${d.quantity ? ` (×${d.quantity})` : ""}`,
+          `**${d.monster}** ${d.ranks}: ` +
+          d.ways
+            .map((w) => `${lower(w.how)} **${w.chance}%**${w.quantity ? ` ×${w.quantity}` : ""}`)
+            .join(", "),
       );
       fields.push({
         name: "Monster drops",
@@ -88,7 +94,7 @@ const item: Kind<ItemEntry> = {
     }
     if (it.rewards.length) {
       const lines = it.rewards.map(
-        (r) => `**${r.chance}%** ${r.quest} · ${r.where}${r.amount ? ` (×${r.amount})` : ""}`,
+        (r) => `**${r.chance}%**${r.amount ? ` ×${r.amount}` : ""} ${r.quest} · ${r.where}`,
       );
       fields.push({
         name: "Quest rewards",
@@ -101,11 +107,18 @@ const item: Kind<ItemEntry> = {
         value: `Gathering, shops and more: [its page](${url})`,
       });
     }
-    if (it.rarity !== undefined)
-      fields.push({ name: "Rarity", value: String(it.rarity), inline: true });
-    if (it.price !== undefined)
-      fields.push({ name: "Sells for", value: `${it.price}z`, inline: true });
-    return { title: it.name, url, color: EMBED_COLOR, fields };
+    // Rarity and price in small text under the title, the fields kept for sources.
+    const facts = [
+      it.rarity !== undefined && `Rarity ${it.rarity}`,
+      it.price !== undefined && `Sells for ${it.price.toLocaleString("en-US")}z`,
+    ].filter(Boolean);
+    return {
+      title: it.name,
+      url,
+      color: it.color ?? EMBED_COLOR,
+      ...(facts.length && { description: `-# ${facts.join(" · ")}` }),
+      fields,
+    };
   },
 };
 

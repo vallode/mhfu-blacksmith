@@ -11,8 +11,13 @@ import {
   parseDropSource,
   splitDropQuantity,
 } from "blacksmith/src/lib/monster-drops.js";
-import { isHiddenQuest, questHubLabel, questHubSlug } from "blacksmith/src/lib/quests.js";
-import { itemEmbedIcon } from "blacksmith/src/lib/embed-format.js";
+import {
+  isHiddenQuest,
+  questHubLabel,
+  questHubSlug,
+  questStarLevel,
+} from "blacksmith/src/lib/quests.js";
+import { itemEmbedIcon, tintFor } from "blacksmith/src/lib/embed-format.js";
 import { armorSlugs, slugify } from "blacksmith/src/lib/slug.js";
 import { MONSTER_NICKNAMES } from "../src/nicknames.js";
 import type {
@@ -22,6 +27,7 @@ import type {
   BotIndex,
   HunterType,
   ItemDrop,
+  ItemDropWay,
   ItemEntry,
   ItemReward,
   MonsterEntry,
@@ -144,10 +150,10 @@ const QUEST_FILES = [
 
 /** Every monster drop and quest reward, by item name, best (highest chance) first. */
 function itemSources(): Map<string, { drops: ItemDrop[]; rewards: ItemReward[] }> {
-  const out = new Map<string, { drops: ItemDrop[]; rewards: ItemReward[] }>();
+  const raw = new Map<string, { drops: RawDrop[]; rewards: ItemReward[] }>();
   const of = (name: string) => {
-    let e = out.get(name);
-    if (!e) out.set(name, (e = { drops: [], rewards: [] }));
+    let e = raw.get(name);
+    if (!e) raw.set(name, (e = { drops: [], rewards: [] }));
     return e;
   };
   for (const category of MONSTER_CATEGORIES) {
@@ -163,14 +169,15 @@ function itemSources(): Map<string, { drops: ItemDrop[]; rewards: ItemReward[] }
     for (const m of monsters)
       for (const [rank, tables] of Object.entries(m.drops ?? {}))
         for (const [source, drops] of Object.entries(tables)) {
-          const { title, count } = parseDropSource(source);
+          // The carve count is the monster's, not the item's: left out.
+          const { title } = parseDropSource(source);
           for (const d of drops) {
             const [name, inName] = splitDropQuantity(d.name);
             const quantity = d.quantity ?? inName ?? 1;
             of(name).drops.push({
               monster: m.name,
-              rank: formatRank(rank),
-              how: count !== undefined ? `${title} ×${count}` : title,
+              rank: shortRank(rank),
+              how: title,
               chance: parseFloat(d.chance) || 0,
               ...(quantity > 1 && { quantity }),
             });
@@ -190,8 +197,7 @@ function itemSources(): Map<string, { drops: ItemDrop[]; rewards: ItemReward[] }
     }>(DATA_DIR, "quests", `${file}.json`);
     for (const q of quests) {
       if (isHiddenQuest(q.id) || !q.title) continue;
-      const hub = questHubSlug(q.hub, q.rank);
-      const where = `${hub ? questHubLabel(hub) : q.hub} ★${q.stars}`;
+      const where = questWhere(q.hub, q.rank, q.stars);
       for (const table of q.reward_tables)
         for (const r of table.items)
           of(r.item).rewards.push({
@@ -202,20 +208,83 @@ function itemSources(): Map<string, { drops: ItemDrop[]; rewards: ItemReward[] }
           });
     }
   }
-  for (const e of out.values()) {
-    // The same drop at several ranks is one row, its ranks joined.
-    const merged = new Map<string, ItemDrop>();
-    for (const d of e.drops) {
-      const key = `${d.monster}|${d.how}|${d.chance}|${d.quantity ?? 1}`;
-      const seen = merged.get(key);
-      if (seen) seen.rank += `, ${d.rank}`;
-      else merged.set(key, { ...d });
-    }
-    e.drops = [...merged.values()];
-    e.drops.sort((a, b) => b.chance - a.chance);
+  const out = new Map<string, { drops: ItemDrop[]; rewards: ItemReward[] }>();
+  for (const [name, e] of raw) {
     e.rewards.sort((a, b) => b.chance - a.chance);
+    out.set(name, { drops: groupDrops(e.drops), rewards: e.rewards });
   }
   return out;
+}
+
+interface RawDrop extends ItemDropWay {
+  monster: string;
+  rank: string;
+}
+
+/** Drop table ranks, short and in order. The bestiary heads the first tables
+ *  three ways ("1-2 star", "1-2 star rank", "1-2 star guild"): all ★1-2. */
+const RANKS = ["LR ★1-2", "LR", "HR", "G"];
+function shortRank(heading: string): string {
+  const h = heading.toLowerCase().replace(/-/g, " ");
+  if (h.startsWith("1 2 star")) return "LR ★1-2";
+  if (h.startsWith("low rank")) return "LR";
+  if (h.startsWith("high rank")) return "HR";
+  if (h.startsWith("g rank")) return "G";
+  return formatRank(heading);
+}
+const rankOrder = (r: string) => (RANKS.includes(r) ? RANKS.indexOf(r) : RANKS.length);
+
+/** "Guild LR ★5", "Guild G★2", "Village ★7". */
+function questWhere(hub: string, rank: string | null, stars: number): string {
+  const slug = questHubSlug(hub, rank);
+  if (!slug) return `${hub} ★${stars}`;
+  const label = questHubLabel(slug)
+    .replace(/ Low Rank$/, " LR")
+    .replace(/ High Rank$/, " HR")
+    .replace(/ G Rank$/, "");
+  const level = questStarLevel(slug, stars);
+  return `${label} ${level.g ? "G" : ""}★${level.stars}`;
+}
+
+/**
+ * One row per monster and set of ranks: the same drop at several ranks is
+ * one way (its ranks joined), and a monster's ways at the same ranks share
+ * a row. Monsters with the best chance first.
+ */
+function groupDrops(drops: RawDrop[]): ItemDrop[] {
+  const ways = new Map<string, { way: ItemDropWay; monster: string; ranks: Set<string> }>();
+  for (const d of drops) {
+    const key = `${d.monster}|${d.how}|${d.chance}|${d.quantity ?? 1}`;
+    const seen = ways.get(key);
+    if (seen) seen.ranks.add(d.rank);
+    else {
+      const { monster, rank, ...way } = d;
+      ways.set(key, { way, monster, ranks: new Set([rank]) });
+    }
+  }
+  const rows = new Map<string, ItemDrop>();
+  for (const { way, monster, ranks } of ways.values()) {
+    // ★1-2 is part of Low Rank: a drop at both is a Low Rank one.
+    if (ranks.has("LR")) ranks.delete("LR ★1-2");
+    const label = [...ranks].sort((a, b) => rankOrder(a) - rankOrder(b)).join(", ");
+    const key = `${monster}|${label}`;
+    const row = rows.get(key) ?? { monster, ranks: label, ways: [] };
+    row.ways.push(way);
+    rows.set(key, row);
+  }
+  const best = (r: ItemDrop) => Math.max(...r.ways.map((w) => w.chance));
+  const monsterBest = new Map<string, number>();
+  for (const r of rows.values()) {
+    r.ways.sort((a, b) => b.chance - a.chance);
+    monsterBest.set(r.monster, Math.max(monsterBest.get(r.monster) ?? 0, best(r)));
+  }
+  // A monster's rows stay together, under its best chance.
+  return [...rows.values()].sort(
+    (a, b) =>
+      monsterBest.get(b.monster)! - monsterBest.get(a.monster)! ||
+      a.monster.localeCompare(b.monster) ||
+      best(b) - best(a),
+  );
 }
 
 function items(strings: Strings): ItemEntry[] {
@@ -245,6 +314,7 @@ function items(strings: Strings): ItemEntry[] {
         slug: slugify(i.name),
         ...(i.icon !== undefined &&
           i.color !== undefined && { icon: itemEmbedIcon(i.icon, i.color).url }),
+        ...(tintFor(i.rarity) && { color: parseInt(tintFor(i.rarity)!.slice(1), 16) }),
         drops: drops.slice(0, ITEM_SOURCES),
         dropCount: drops.length,
         rewards: rewards.slice(0, ITEM_SOURCES),
