@@ -83,6 +83,8 @@ export const LIMITS = {
   embedDescription: 4096,
   fieldValue: 1024,
   fields: 25,
+  /** Every title, description, field and footer of an embed together. */
+  embedTotal: 6000,
 } as const;
 
 /** `s` cut to `max` characters, with an ellipsis if it was longer. */

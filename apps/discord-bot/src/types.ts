@@ -99,6 +99,7 @@ export interface ArmorEntry {
   name: string;
   slug: string;
   hunterType: HunterType | "Both";
+  sex: "Male" | "Female" | "Both";
 }
 
 export interface BotIndex {

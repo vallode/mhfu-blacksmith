@@ -12,8 +12,10 @@
 import { claudeTranslator } from "./claude.js";
 import { DEEPSEEK_MODEL, deepseekTranslator } from "./deepseek.js";
 import {
+  clip,
   editOriginal,
   EPHEMERAL,
+  LIMITS,
   focusedOption,
   InteractionType,
   optionValue,
@@ -63,6 +65,9 @@ export interface ExecutionContext {
 const SITE_URL = "https://mhfu.vallode.com";
 const RANDOMFU_URL = "https://randomfu.vallode.com";
 
+/** How far a request's signed timestamp may be from now, in seconds. */
+const MAX_AGE_S = 5 * 60;
+
 const LOOKUPS: readonly LookupKind[] = ["monster", "item", "weapon"];
 
 const RANK_LABEL = {
@@ -88,26 +93,32 @@ export function setsMessage(
   siteUrl: string,
   how: string,
 ): MessageData {
+  // The request and the model's words are the user's length, not ours.
+  const unmatched = clip(r.unmatched.join(", "), 300);
   if (r.link.skills.length === 0) {
-    const missed = r.unmatched.length ? ` (couldn't match: ${r.unmatched.join(", ")})` : "";
+    const missed = unmatched ? ` (couldn't match: ${unmatched})` : "";
     return {
-      content: `I couldn't find a skill to search for in “${request}”${missed}. Name at least one, like Evade +2 or Attack Up (Large).`,
+      content: `I couldn't find a skill to search for in “${clip(request, 300)}”${missed}. Name at least one, like Evade +2 or Attack Up (Large).`,
     };
   }
   const lines = [`**Skills:** ${r.link.skills.join(", ")}`];
   if (r.link.hunterType) lines.push(`**Hunter:** ${r.link.hunterType}`);
   if (r.link.rank) lines.push(`**Armor up to:** ${RANK_LABEL[r.link.rank]}`);
   if (r.link.weaponSlots) lines.push(`**Weapon slots:** ${r.link.weaponSlots}`);
-  if (r.locked.length) lines.push(`**Always:** ${r.locked.map((p) => p.name).join(", ")}`);
+  if (r.locked.length) {
+    const name = (p: ResolvedRequest["locked"][number]) =>
+      p.sex === "Both" ? p.name : `${p.name} (${p.sex.toLowerCase()})`;
+    lines.push(`**Always:** ${r.locked.map(name).join(", ")}`);
+  }
   if (r.link.never.length) {
     lines.push(`**Leaving out:** ${r.link.never.join(", ")} armor (${r.excluded.length} pieces)`);
   }
   if (r.monster) lines.push(`**For:** [${r.monster.name}](${siteUrl}${r.monster.path})`);
-  if (r.unmatched.length) lines.push(`**Couldn't match:** ${r.unmatched.join(", ")}`);
+  if (unmatched) lines.push(`**Couldn't match:** ${unmatched}`);
   const embed: Embed = {
     title: "Open this search in the set builder",
     url: `${siteUrl}${r.path}`,
-    description: lines.join("\n"),
+    description: clip(lines.join("\n"), LIMITS.embedDescription),
     color: EMBED_COLOR,
     footer: { text: `${how} · The search runs in your browser` },
   };
@@ -165,7 +176,18 @@ export function createBot(index: BotIndex, options: BotOptions = {}) {
         content: `${why}. Try again, or build the search yourself: ${siteUrl}/set-builder/`,
       };
     }
-    await editOriginal(interaction, reply, options.fetcher);
+    try {
+      await editOriginal(interaction, reply, options.fetcher);
+    } catch {
+      // Discord refused the reply (too long, say): don't leave "thinking…" up.
+      await editOriginal(
+        interaction,
+        {
+          content: `I couldn't send that answer. Build the search yourself: ${siteUrl}/set-builder/`,
+        },
+        options.fetcher,
+      ).catch(() => {});
+    }
   }
 
   async function handle(
@@ -232,6 +254,11 @@ export function createBot(index: BotIndex, options: BotOptions = {}) {
         body,
       );
       if (!ok) return new Response("Bad request signature", { status: 401 });
+      // The signature covers the timestamp: an old one is a replay.
+      const sent = Number(request.headers.get("x-signature-timestamp"));
+      if (!(Math.abs(Date.now() / 1000 - sent) <= MAX_AGE_S)) {
+        return new Response("Stale request", { status: 401 });
+      }
       let interaction: Interaction;
       try {
         interaction = JSON.parse(body) as Interaction;

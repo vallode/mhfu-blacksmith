@@ -307,7 +307,11 @@ export default function SetBuilderClient() {
       skills: link.skills,
       rank: link.rank ?? form.rank,
       weaponSlots: link.weaponSlots ?? 0,
-      locked: link.lock.filter((h) => byHref.has(h)),
+      // A link can lock a piece per sex; only the one this hunter wears stays.
+      locked: link.lock.filter((h) => {
+        const p = byHref.get(h);
+        return p !== undefined && !cantWear(p, hunter);
+      }),
       excluded: [...new Set([...link.exclude.filter((h) => byHref.has(h)), ...named])].filter(
         (h) => !link.lock.includes(h),
       ),
@@ -441,12 +445,13 @@ export default function SetBuilderClient() {
     const draft = readDraft();
     const r = draft ? decodeSet(draft.code, tables) : null;
     if (draft && r?.ok) {
+      // A search link's hunter stays in the form: its search ran with it.
+      const linked = linkSearched.current || hasSearchLinkParams(window.location.search);
       setBuild(r.set);
-      setForm((f) => ({ ...f, hunterType: r.set.hunterType, sex: r.set.sex }));
+      if (!linked) setForm((f) => ({ ...f, hunterType: r.set.hunterType, sex: r.set.sex }));
       setSavedId(draft.savedId ?? null);
       setOrigin(draft.origin ?? "new");
       setLinkName(typeof draft.name === "string" ? draft.name : null);
-      const linked = linkSearched.current || hasSearchLinkParams(window.location.search);
       if (!linked && (r.set.pieces.some(Boolean) || r.set.decorations.length > 0)) {
         setView("editor");
       }

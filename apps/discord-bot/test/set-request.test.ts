@@ -16,6 +16,7 @@ import {
   setRequestSchema,
   type SetRequest,
 } from "../src/set-request.js";
+import { hasArmorWord } from "blacksmith/src/lib/search-link.js";
 import { index } from "./helpers.js";
 
 const empty: SetRequest = {
@@ -79,6 +80,35 @@ describe("resolveSetRequest", () => {
     assert.ok(r.excluded.every((p) => p.hunterType !== "Blademaster"));
     assert.ok(r.excluded.every((p) => /Fatalis/.test(p.name)));
     assert.deepEqual(r.unmatched, ["Nonexistent"]);
+  });
+
+  it("reads an answer with fields missing or of the wrong kind", () => {
+    const r = resolveSetRequest(index, {
+      skills: ["Evade +2", 7],
+      rank: "g-rank",
+      weaponSlots: 2.5,
+      always: null,
+      unmatched: null,
+    } as unknown as SetRequest);
+    assert.deepEqual(r.link.skills, ["Evade +2"]);
+    assert.equal(r.link.weaponSlots, undefined);
+    assert.deepEqual(r.locked, []);
+    assert.deepEqual(r.unmatched, []);
+  });
+
+  it("locks a piece for each sex when the best one is for one sex only", () => {
+    const word = armorWordList(index).find((w) => {
+      const pieces = index.armor.filter((a) => a.slot === "helmet" && hasArmorWord(a.name, [w]));
+      return pieces.some((a) => a.sex === "Male") && pieces.some((a) => a.sex === "Female");
+    });
+    assert.ok(word);
+    const r = resolveSetRequest(index, {
+      ...empty,
+      skills: ["Evade +2"],
+      always: [{ slot: "helmet", word }],
+    });
+    const sexes = r.locked.map((p) => p.sex);
+    assert.ok(sexes.includes("Both") ? sexes.length === 1 : sexes.length === 2);
   });
 
   it("locks the best piece of an armor in its slot, within the rank", () => {

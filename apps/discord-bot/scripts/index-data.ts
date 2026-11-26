@@ -306,6 +306,7 @@ function armor(): ArmorEntry[] {
         name: p.name,
         slug: slugs[i]!,
         hunterType: hunterType(p.hunter_type),
+        sex: p.sex === "Male" || p.sex === "Female" ? p.sex : "Both",
       }));
     });
   });

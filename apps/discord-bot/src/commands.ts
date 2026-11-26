@@ -51,6 +51,7 @@ export const COMMANDS = [
         name: "request",
         description: "e.g. G rank gunner set with Evade +2 and Auto-Reload, no Fatalis gear",
         required: true,
+        max_length: 500,
       },
     ],
   },

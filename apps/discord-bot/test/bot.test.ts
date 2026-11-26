@@ -3,7 +3,13 @@
  */
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { defaultSettings, encodeSettings, PRESETS, type Settings } from "randomfu/src/settings.js";
+import {
+  defaultSettings,
+  encodeSettings,
+  OPTIONS,
+  PRESETS,
+  type Settings,
+} from "randomfu/src/settings.js";
 import { createBot } from "../src/bot.js";
 import {
   InteractionType,
@@ -37,6 +43,14 @@ describe("requests", () => {
       body: await req.text(),
     });
     const res = await bot.fetch(forged, { DISCORD_PUBLIC_KEY: publicKey }, context());
+    assert.equal(res.status, 401);
+  });
+
+  it("turns away a signed request from long ago (a replay)", async () => {
+    const bot = createBot(index);
+    const old = String(Math.floor(Date.now() / 1000) - 3600);
+    const req = await signed(JSON.stringify(interaction(InteractionType.Ping, "")), old);
+    const res = await bot.fetch(req, { DISCORD_PUBLIC_KEY: publicKey }, context());
     assert.equal(res.status, 401);
   });
 
@@ -124,6 +138,29 @@ describe("/monster, /item, /weapon", () => {
 });
 
 describe("/settings", () => {
+  it("fits Discord's embed size with every option changed", async () => {
+    const settings = defaultSettings("hunt42") as unknown as Record<string, unknown>;
+    for (const o of OPTIONS) {
+      const t = o.type;
+      settings[o.key] =
+        t.kind === "boolean"
+          ? !o.default
+          : t.kind === "number"
+            ? t.max
+            : (t.choices.find((c) => c.value !== o.default)?.value ?? o.default);
+    }
+    const m = messageOf(
+      await call(command("settings", "string", encodeSettings(settings as unknown as Settings))),
+    );
+    const e = m.embeds?.[0];
+    const total =
+      (e?.title?.length ?? 0) +
+      (e?.description?.length ?? 0) +
+      (e?.fields ?? []).reduce((n, f) => n + f.name.length + f.value.length, 0);
+    assert.ok(total <= 6000, `embed is ${total} characters`);
+    assert.ok((e?.fields?.length ?? 0) <= 25);
+  });
+
   it("lists the seed, the preset and what it changes", async () => {
     const preset = PRESETS[0]!;
     const settings = { ...defaultSettings("hunt42"), ...preset.changes } as Settings;
@@ -167,6 +204,24 @@ describe("/sets", () => {
     assert.equal(url.searchParams.get("rank"), "g-rank");
     assert.deepEqual(url.searchParams.getAll("never"), ["Fatalis"]);
     assert.match(embed?.description ?? "", /\*\*For:\*\* \[Rajang\]/);
+  });
+
+  it("keeps a long request's reply inside Discord's limits", async () => {
+    const { edits } = await sets("nothing to match here ".repeat(200));
+    assert.ok((edits[0]?.content ?? "").length <= 2000);
+  });
+
+  it("replaces the thinking message when Discord refuses the reply", async () => {
+    const edits: MessageData[] = [];
+    const fetcher = (async (_url: string | URL | Request, init?: RequestInit) => {
+      edits.push(JSON.parse(String(init?.body)) as MessageData);
+      return new Response("{}", { status: edits.length === 1 ? 400 : 200 });
+    }) as typeof fetch;
+    const ctx = context();
+    await call(command("sets", "request", "Evade +2"), {}, { fetcher }, ctx);
+    await ctx.done();
+    assert.equal(edits.length, 2);
+    assert.match(edits[1]?.content ?? "", /couldn't send that answer/);
   });
 
   it("asks for a skill when it finds none", async () => {

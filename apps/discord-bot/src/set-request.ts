@@ -187,12 +187,38 @@ function wears(a: ArmorEntry, type: HunterType | null): boolean {
   return a.hunterType === "Both" || type === null || a.hunterType === type;
 }
 
+const strings = (v: unknown): string[] =>
+  Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : [];
+
+/** A model's answer with every field the shape resolveSetRequest reads. */
+function coerce(answer: unknown): SetRequest {
+  const a = (answer && typeof answer === "object" ? answer : {}) as Record<string, unknown>;
+  const slots = Number(a.weaponSlots);
+  return {
+    rank: typeof a.rank === "string" ? (a.rank as ArmorRank) : null,
+    hunterType: typeof a.hunterType === "string" ? (a.hunterType as HunterType) : null,
+    skills: strings(a.skills),
+    weaponSlots: Number.isInteger(slots) && slots >= 1 ? Math.min(3, slots) : null,
+    always: (Array.isArray(a.always) ? a.always : []).filter(
+      (x): x is { slot: ArmorSlot; word: string } =>
+        !!x &&
+        typeof x === "object" &&
+        ARMOR_SLOTS.includes((x as { slot: ArmorSlot }).slot) &&
+        typeof (x as { word: unknown }).word === "string",
+    ),
+    never: strings(a.never),
+    monster: typeof a.monster === "string" ? a.monster : null,
+    unmatched: strings(a.unmatched),
+  };
+}
+
 /**
  * Puts a model's answer in the set builder's terms, checking every name
  * against the index again (a model's output is never trusted to follow its
  * schema).
  */
-export function resolveSetRequest(index: BotIndex, req: SetRequest): ResolvedRequest {
+export function resolveSetRequest(index: BotIndex, answer: SetRequest): ResolvedRequest {
+  const req = coerce(answer);
   const skillNames = new Set(index.skills.map((s) => s.name));
   const skills = [...new Set(req.skills)].filter((s) => skillNames.has(s));
   const rank = req.rank && RANKS.includes(req.rank) ? req.rank : null;
@@ -217,10 +243,10 @@ export function resolveSetRequest(index: BotIndex, req: SetRequest): ResolvedReq
     for (const p of pieces) if (inRank(p) && wears(p, type)) excluded.set(href(p), p);
   }
 
-  const locked = new Map<ArmorSlot, ArmorEntry>();
+  const locked: ArmorEntry[] = [];
+  const lockedSlots = new Set<ArmorSlot>();
   for (const { slot, word } of req.always) {
-    // The best of them: the highest rank allowed, then the last listed (the
-    // game lists upgrades after the piece they come from).
+    if (lockedSlots.has(slot)) continue;
     const pieces = index.armor.filter(
       (a) =>
         a.slot === slot &&
@@ -229,17 +255,34 @@ export function resolveSetRequest(index: BotIndex, req: SetRequest): ResolvedReq
         hasWord(a, word) &&
         !excluded.has(href(a)),
     );
-    const best = pieces.sort((a, b) => rankOrder(a.rank) - rankOrder(b.rank)).at(-1);
-    if (best) locked.set(slot, best);
-    else unmatched.push(`${word} ${slot}`);
+    // The best of them: the highest rank allowed, then the last listed (the
+    // game lists upgrades after the piece they come from).
+    const best = (list: ArmorEntry[]) =>
+      [...list].sort((a, b) => rankOrder(a.rank) - rankOrder(b.rank)).at(-1);
+    const top = best(pieces);
+    if (!top) {
+      unmatched.push(`${word} ${slot}`);
+      continue;
+    }
+    lockedSlots.add(slot);
+    if (top.sex === "Both") {
+      locked.push(top);
+      continue;
+    }
+    // A piece only one sex wears: lock the best for each, and the set
+    // builder keeps the one the visitor's hunter can wear.
+    for (const sex of ["Male", "Female"] as const) {
+      const p = best(pieces.filter((a) => a.sex === "Both" || a.sex === sex));
+      if (p && !locked.includes(p)) locked.push(p);
+    }
   }
 
   const link: SearchLink = {
     skills,
     ...(type && { hunterType: type }),
     ...(rank && { rank }),
-    ...(req.weaponSlots && req.weaponSlots > 0 && { weaponSlots: Math.min(3, req.weaponSlots) }),
-    lock: [...locked.values()].map(href),
+    ...(req.weaponSlots && { weaponSlots: req.weaponSlots }),
+    lock: locked.map(href),
     exclude: [],
     never,
   };
@@ -248,7 +291,7 @@ export function resolveSetRequest(index: BotIndex, req: SetRequest): ResolvedReq
     link,
     path: searchLinkPath(link),
     excluded: [...excluded.values()],
-    locked: [...locked.values()],
+    locked,
     unmatched: [...new Set(unmatched)],
     monster: m ? { name: m.name, path: `/monsters/${m.category}/${m.slug}/` } : null,
   };

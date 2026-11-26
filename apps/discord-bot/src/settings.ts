@@ -56,26 +56,34 @@ export function settingsReply(
       value: `An older RandomFU (logic ${version}, now ${LOGIC_VERSION}): the same seed can make a different game`,
     });
   }
-  const room = LIMITS.fields - fields.length;
+  const title = "RandomFU settings";
+  const description =
+    changed.length === 0
+      ? "Every option at its default."
+      : `${changed.length} option${changed.length === 1 ? "" : "s"} changed from the defaults.`;
+  // Discord takes 25 fields and 6000 characters an embed; sections that
+  // don't fit are counted in the last one shown.
+  const size = (f: { name: string; value: string }) => f.name.length + f.value.length;
+  let used = title.length + description.length + fields.reduce((n, f) => n + size(f), 0);
   const sections = [...bySection];
-  sections.slice(0, room).forEach(([section, lines], i) => {
-    const rest = sections.length > room && i === room - 1 ? sections.length - room : 0;
-    fields.push({
-      name: section,
-      value: clip(
-        lines.join("\n") + (rest ? `\n…and ${rest} more sections` : ""),
-        LIMITS.fieldValue,
-      ),
-    });
-  });
+  const shown: { name: string; value: string }[] = [];
+  const tail = 40; // room for the "…and N more sections" line
+  for (const [section, lines] of sections) {
+    if (fields.length + shown.length >= LIMITS.fields) break;
+    const value = clip(lines.join("\n"), LIMITS.fieldValue - tail);
+    if (used + section.length + value.length + tail > LIMITS.embedTotal) break;
+    shown.push({ name: section, value });
+    used += section.length + value.length;
+  }
+  const rest = sections.length - shown.length;
+  const last = shown.at(-1);
+  if (rest && last) last.value += `\n…and ${rest} more section${rest === 1 ? "" : "s"}`;
+  fields.push(...shown);
   return {
     embed: {
-      title: "RandomFU settings",
+      title,
       url: randomfuUrl,
-      description:
-        changed.length === 0
-          ? "Every option at its default."
-          : `${changed.length} option${changed.length === 1 ? "" : "s"} changed from the defaults.`,
+      description,
       color: EMBED_COLOR,
       fields,
     },

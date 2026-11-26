@@ -16,7 +16,10 @@ const keys = (await crypto.subtle.generateKey({ name: "Ed25519" }, true, [
 const hex = (buf: ArrayBuffer) => Buffer.from(buf).toString("hex");
 export const publicKey = hex(await crypto.subtle.exportKey("raw", keys.publicKey));
 
-export async function signed(body: string, timestamp = "1764000000"): Promise<Request> {
+export async function signed(
+  body: string,
+  timestamp = String(Math.floor(Date.now() / 1000)),
+): Promise<Request> {
   const sig = await crypto.subtle.sign(
     "Ed25519",
     keys.privateKey,
