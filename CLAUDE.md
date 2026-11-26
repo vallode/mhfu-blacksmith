@@ -7,6 +7,9 @@ workspace:
   Its own `CLAUDE.md` covers styling.
 - `apps/randomfu`: randomfu's static web app (esbuild). Borrows the site's
   design tokens and sprites at build time (`build.mjs`).
+- `apps/discord-bot`: a Discord bot as a Cloudflare Worker on Discord's HTTP
+  interactions endpoint, answering from an index built from `data/`. Its
+  `README.md` covers setup and design.
 - `packages/mhfu-extract`: datamining pipeline from a disc image to `data/`
   and the site's `public/models/`.
 - `packages/randomfu`: the randomizer, a library with no front end of its
@@ -52,7 +55,7 @@ worktree starts without one.
 
 While iterating, run only the affected package's checks:
 `pnpm --filter <name> <script>` (`blacksmith`, `randomfu-web`,
-`mhfu-extract`, `randomfu`, `game-data`), for example
+`discord-bot`, `mhfu-extract`, `randomfu`, `game-data`), for example
 `pnpm --filter blacksmith test`. The root-wide `pnpm lint`,
 `pnpm typecheck`, `pnpm test` and `pnpm format:check` are all-or-nothing;
 `pnpm test` alone takes about 45 seconds, mostly randomfu's property tests.

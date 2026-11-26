@@ -85,6 +85,14 @@ export function embedIcon(type: string, rarity?: number | null, gem?: string | n
   return { url: `/embed/icons/${type}-${tint}.png`, width: 180, height: 180 };
 }
 
+/**
+ * An item's 180px thumbnail: its icon (/images/item-<icon>.png) tinted with
+ * its colour (--color-item-<color>), as the site draws it.
+ */
+export function itemEmbedIcon(icon: number, color: number) {
+  return { url: `/embed/icons/item-${icon}-${color}.png`, width: 180, height: 180 };
+}
+
 /** The colour the site's icons are tinted with: a gem colour, else rarity 4+; none below that. */
 export function tintFor(rarity?: number | null, gem?: string | null): string | undefined {
   if (gem && GEM_COLORS[gem]) return GEM_COLORS[gem];

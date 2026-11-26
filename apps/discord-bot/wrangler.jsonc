@@ -1,0 +1,32 @@
+// The Discord bot on Cloudflare: a Worker that is the application's
+// Interactions Endpoint URL (Developer Portal > General Information), so
+// there is no gateway process. Not deployed yet; see README.md for the
+// steps.
+{
+  "name": "mhfu-discord-bot",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-10-22",
+  // randomfu's settings module (/settings) decodes with Buffer.
+  "compatibility_flags": ["nodejs_compat"],
+  // The index the Worker bundles is generated from data/.
+  "build": { "command": "pnpm index" },
+  "vars": {
+    "SITE_URL": "https://mhfu.vallode.com",
+    "RANDOMFU_URL": "https://randomfu.vallode.com",
+    // The set search's model: deepseek-v4.1-flash through OpenCode's API
+    // (src/deepseek.ts), or a claude-*
+    // model (src/claude.ts). See eval/README.md for how they compare.
+    "NL_MODEL": "deepseek-v4.1-flash",
+  },
+  // Secrets, set with `wrangler secret put`: DISCORD_PUBLIC_KEY and the
+  // model's key, OPENCODE_API_KEY (or ANTHROPIC_API_KEY for Claude). Without
+  // it /sets only matches names as written.
+  //
+  // /sets per Discord user, per Cloudflare location (approximate): a guard
+  // on the model's bill. The namespace_id must be unique on the account
+  // (randomfu's limiter is 417001).
+  "ratelimits": [
+    { "name": "SET_LIMITER", "namespace_id": "417002", "simple": { "limit": 4, "period": 60 } },
+  ],
+  "workers_dev": true,
+}
