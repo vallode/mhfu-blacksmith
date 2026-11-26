@@ -89,12 +89,7 @@ const message = (data: MessageData): InteractionResponse => ({
 const onlyYou = (content: string): InteractionResponse => message({ content, flags: EPHEMERAL });
 
 /** The /sets reply for a resolved request. */
-export function setsMessage(
-  request: string,
-  r: ResolvedRequest,
-  siteUrl: string,
-  how: string,
-): MessageData {
+export function setsMessage(request: string, r: ResolvedRequest, siteUrl: string): MessageData {
   // The request and the model's words are the user's length, not ours.
   const unmatched = clip(r.unmatched.join(", "), 300);
   if (r.link.skills.length === 0) {
@@ -122,7 +117,6 @@ export function setsMessage(
     url: `${siteUrl}${r.path}`,
     description: clip(lines.join("\n"), LIMITS.embedDescription),
     color: EMBED_COLOR,
-    footer: { text: `${how} · The search runs in your browser` },
   };
   return { embeds: [embed], allowed_mentions: { parse: [] } };
 }
@@ -132,12 +126,12 @@ export function modelFor(
   index: BotIndex,
   env: Env,
   fetcher?: typeof fetch,
-): { translate: Translator; how: string } {
+): { translate: Translator; reader: "claude" | "deepseek" | "keywords" } {
   const model = env.NL_MODEL || DEEPSEEK_MODEL;
   if (model.startsWith("claude-") && env.ANTHROPIC_API_KEY)
     return {
       translate: claudeTranslator(index, { apiKey: env.ANTHROPIC_API_KEY, model }),
-      how: "Read by Claude",
+      reader: "claude",
     };
   if (!model.startsWith("claude-") && env.OPENCODE_API_KEY)
     return {
@@ -147,31 +141,27 @@ export function modelFor(
         baseUrl: env.NL_API_URL,
         fetcher,
       }),
-      how: "Read by DeepSeek",
+      reader: "deepseek",
     };
-  return { translate: keywordTranslator(index), how: "Matched by name" };
+  return { translate: keywordTranslator(index), reader: "keywords" };
 }
 
 export interface BotOptions {
   /** The translator for an Env; by default the NL_MODEL with its key, keywords without. */
-  translator?: (env: Env) => { translate: Translator; how: string };
+  translator?: (env: Env) => Translator;
   fetcher?: typeof fetch;
 }
 
 export function createBot(index: BotIndex, options: BotOptions = {}) {
-  const translatorFor = options.translator ?? ((env: Env) => modelFor(index, env, options.fetcher));
+  const translatorFor =
+    options.translator ?? ((env: Env) => modelFor(index, env, options.fetcher).translate);
 
   async function answerSets(interaction: Interaction, request: string, env: Env): Promise<void> {
     const siteUrl = env.SITE_URL ?? SITE_URL;
-    const { translate, how } = translatorFor(env);
+    const translate = translatorFor(env);
     let reply: MessageData;
     try {
-      reply = setsMessage(
-        request,
-        resolveSetRequest(index, await translate(request)),
-        siteUrl,
-        how,
-      );
+      reply = setsMessage(request, resolveSetRequest(index, await translate(request)), siteUrl);
     } catch (e) {
       const why = e instanceof TranslateError ? e.message : "Something went wrong reading that";
       reply = {
