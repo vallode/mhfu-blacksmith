@@ -56,6 +56,8 @@ export interface Embed {
   url?: string;
   description?: string;
   color?: number;
+  /** A small image at the embed's top right. */
+  thumbnail?: { url: string };
   fields?: { name: string; value: string; inline?: boolean }[];
   footer?: { text: string };
 }

@@ -12,6 +12,7 @@ import {
   splitDropQuantity,
 } from "blacksmith/src/lib/monster-drops.js";
 import { isHiddenQuest, questHubLabel, questHubSlug } from "blacksmith/src/lib/quests.js";
+import { itemEmbedIcon } from "blacksmith/src/lib/embed-format.js";
 import { armorSlugs, slugify } from "blacksmith/src/lib/slug.js";
 import { MONSTER_NICKNAMES } from "../src/nicknames.js";
 import type {
@@ -226,6 +227,8 @@ function items(strings: Strings): ItemEntry[] {
       name: string;
       rarity?: number;
       price?: number;
+      icon?: number;
+      color?: number;
       placeholder?: boolean;
     }[];
   }>(DATA_DIR, "items.json");
@@ -240,6 +243,8 @@ function items(strings: Strings): ItemEntry[] {
         ...(i.rarity !== undefined && { rarity: i.rarity }),
         ...(i.price !== undefined && { price: i.price }),
         slug: slugify(i.name),
+        ...(i.icon !== undefined &&
+          i.color !== undefined && { icon: itemEmbedIcon(i.icon, i.color).url }),
         drops: drops.slice(0, ITEM_SOURCES),
         dropCount: drops.length,
         rewards: rewards.slice(0, ITEM_SOURCES),
