@@ -17,6 +17,8 @@
  *   - veggie-trades.json         (the Veggie Elder's trades, see src/lib/veggie-trades.ts)
  *   - item-uses.json             (the gear whose recipes take each item, see src/lib/item-uses.ts)
  *   - awards.json                (the Guild Card awards' names and descriptions, by index)
+ *   - motion-values.json         (each weapon type's moves and motion values, see src/lib/motion-values.ts)
+ *   - hitzones.json              (every monster's cut and impact hitzones, for the damage calculator's picker)
  *   - data-manifest.json         ({ files, version })
  *   - locale-<code>.json         (game text in other languages, from data/locales;
  *                                 fetched only in that language, so outside the
@@ -25,11 +27,12 @@
  * Reuses the transform logic from src/lib (slugify, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
  *
- * Budget: asserts total public/data raw size < 2.1 MB and logs a gzip
+ * Budget: asserts total public/data raw size < 2.25 MB and logs a gzip
  * estimate (raised from 1.5 MB for quests.json, ~190 KB, from 1.6 MB for
  * item-places.json, ~80 KB, from 1.7 MB for area-maps.json, from 1.8 MB
- * for veggie-trades.json, ~10 KB, and from 1.85 MB for item-uses.json,
- * ~245 KB).
+ * for veggie-trades.json, ~10 KB, from 1.85 MB for item-uses.json,
+ * ~245 KB, and from 2.1 MB for the monsters' spawn markers on the area
+ * map, ~110 KB in quests.json).
  */
 import fs from "fs";
 import path from "path";
@@ -93,6 +96,8 @@ import {
 } from "../src/lib/item-places";
 import { buildArmorTree, buildDecorationTree, buildWeaponTree } from "../src/lib/trees";
 import { buildAreaMaps } from "../src/lib/area-maps";
+import type { MotionValuesFile } from "../src/lib/motion-values";
+import { partHitzones, type HitzoneMonster } from "../src/lib/hitzone-pick";
 import { flinchThreshold } from "../src/lib/monster-breaks";
 import { canCapture } from "../src/lib/monster-drops";
 import type { HitboxCapsule } from "../src/lib/models";
@@ -105,7 +110,7 @@ const outDir = path.join(root, "public", "data");
 const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
 
-const BUDGET_BYTES = 2.1 * 1024 * 1024;
+const BUDGET_BYTES = 2.25 * 1024 * 1024;
 
 function readJson<T>(p: string): T {
   return JSON.parse(fs.readFileSync(p, "utf-8")) as T;
@@ -537,7 +542,9 @@ const quests = fs
   .flatMap((f) => readData<{ quests: QuestRecord[] }>(dataDir, "quests", f).quests);
 const sizeRanges = monsterSizeRanges(quests);
 
-// Monsters
+// Monsters, and their cut and impact hitzones on their own for the damage
+// calculator (so it needn't load and decode every monster bundle).
+const hitzoneMonsters: HitzoneMonster[] = [];
 for (const category of MONSTER_CATEGORIES) {
   const p = path.join(dataDir, "monsters", `${category}.json`);
   if (!fs.existsSync(p)) continue;
@@ -547,7 +554,16 @@ for (const category of MONSTER_CATEGORIES) {
   );
   totalItems += items.length;
   push(`monster-${category}.json`, { kind: "monster", category, items });
+  for (const m of data.monsters) {
+    const parts = Object.entries(m.hitzones ?? {}).map(([part, v]) => ({
+      part,
+      ...partHitzones(v as Record<string, string>),
+    }));
+    if (parts.length)
+      hitzoneMonsters.push({ category, slug: slugify(m.name), name: m.name, parts });
+  }
 }
+push("hitzones.json", hitzoneMonsters);
 
 // Quests: one bundle for every hub. Items are in-game IDs (names and icons
 // come from items.json), monsters link to their pages and get their HP in
@@ -568,7 +584,7 @@ for (const category of MONSTER_CATEGORIES) {
     readData<{ items: ItemRecord[] }>(dataDir, "items.json").items,
   );
   const gathering = readData<GatheringFile>(dataDir, "gathering.json");
-  const areaMaps = buildAreaMaps(gathering);
+  const areaMaps = buildAreaMaps(gathering, quests);
   const { bundle, unresolvedItems } = encodeQuestBundle({
     quests,
     itemId: (name) => index.get(normalizeItemName(name)),
@@ -610,6 +626,9 @@ for (const category of MONSTER_CATEGORIES) {
   const awardText: AwardText[] = [];
   for (const a of awards.awards) awardText[a.id] = { name: a.name, description: a.description };
   push("awards.json", awardText);
+
+  // Each weapon type's moves and their motion values.
+  push("motion-values.json", readData<MotionValuesFile>(dataDir, "motion-values.json").weapons);
 }
 
 // Decorations

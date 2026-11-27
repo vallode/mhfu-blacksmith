@@ -3,7 +3,7 @@ import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
-import { loadGame, type GameData } from "../src/game/load.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import {
   applySettings,
@@ -14,7 +14,7 @@ import {
   type OptionKey,
   type Settings,
 } from "../src/settings.js";
-import { Edits } from "../src/edits.js";
+import { Edits } from "whetstone/src/edits.js";
 import { Rng } from "../src/rng.js";
 import {
   collectWeaponStats,
@@ -24,7 +24,12 @@ import {
   type WeaponStats,
 } from "../src/shuffles/weapon-stats.js";
 import { settingsWith } from "./settings-helper.js";
-import { buildFixtureDisc, FIXTURE_GUNNER_WEAPONS, FIXTURE_WEAPONS, tempDir } from "./fixtures.js";
+import {
+  buildFixtureDisc,
+  FIXTURE_GUNNER_WEAPONS,
+  FIXTURE_WEAPONS,
+  tempDir,
+} from "whetstone/test/fixtures.js";
 
 const STAT_KEYS = ["weapons.attack", "weapons.affinity", "weapons.element"] as const;
 

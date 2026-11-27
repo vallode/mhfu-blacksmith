@@ -16,6 +16,7 @@ import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
 import { DropGrid } from "@/components/MonsterDrops";
 import Tabs, { type Tab } from "@/components/Tabs";
+import WishlistButton from "@/components/WishlistButton";
 import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
@@ -195,7 +196,12 @@ export default function ItemDetailClient({ slug }: Props) {
     <DetailCard>
       <DetailHeader>
         <Icon type={item.type} color={item.color} size="large" alt="" />
-        <DetailName>{game.name("item", item.name)}</DetailName>
+        <DetailName className="mobile:flex-1">{game.name("item", item.name)}</DetailName>
+        <WishlistButton
+          gear={{ kind: "item", slug }}
+          name={game.name("item", item.name)}
+          className="ml-[0.4rem]"
+        />
       </DetailHeader>
 
       <DetailBody>
@@ -368,6 +374,7 @@ function GatherPlaces({
           rows={farm.map((p) => ({
             name: farmPointName(t, p.point),
             detail: farmLabel(t, p),
+            amount: amountLabel(p.amount),
             value: `${formatNumber(p.chance)}%`,
           }))}
         />

@@ -17,11 +17,11 @@ import {
   type CarveCounts,
 } from "mhfu-extract/src/monsters/rewards.js";
 import type { OvlFile } from "mhfu-extract/src/container/ovl.js";
-import type { Edits } from "../edits.js";
-import type { LoadedOverlay } from "../game/load.js";
-import type { MonsterNames } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import type { LoadedOverlay } from "whetstone/src/game/load.js";
+import type { MonsterNames } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 type Kind = "body" | "tail";
 const KINDS: readonly Kind[] = ["body", "tail"];
@@ -44,7 +44,7 @@ export function changeCarveCounts(
   gameSub: LoadedOverlay,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
-): ShuffleReport {
+): Report {
   const buf = edits.overlay(gameSub);
   const lines: { where: string; text: string }[] = [];
   for (const kind of KINDS) {

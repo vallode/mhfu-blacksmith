@@ -1,6 +1,13 @@
 /** Shared pieces of the shuffles. */
-import type { LoadedQuest } from "../game/load.js";
-import { inScope, questTier, tierKey, type Band, type Scope, type Tier } from "../game/tiers.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
+import {
+  inScope,
+  questTier,
+  tierKey,
+  type Band,
+  type Scope,
+  type Tier,
+} from "whetstone/src/game/tiers.js";
 import type { Rng } from "../rng.js";
 
 /** `items` by key, in first-seen order of keys and items. */
@@ -311,26 +318,4 @@ export function fillFromPool<S extends { quest: LoadedQuest; tier: Tier; itemId:
     inList.set(listKey(slot), seen.add(pick));
   }
   return out;
-}
-
-/** One changed slot, for the spoiler log. */
-export interface SpoilerLine {
-  /** Heading the line is listed under, e.g. a quest or a monster. */
-  where: string;
-  /** What changed, e.g. "Rathian Scale x1 (was Pin Tuna x2)". */
-  text: string;
-}
-
-export interface ShuffleReport {
-  title: string;
-  /** Short notes on what was and wasn't shuffled. */
-  notes: string[];
-  lines: SpoilerLine[];
-  /** The run log's line for it, when a slot count doesn't fit. */
-  summary?: string;
-}
-
-/** A report's line in the run log: its summary, or how many slots it changed. */
-export function reportLogLine(report: ShuffleReport): string {
-  return report.summary ?? `${report.title}: ${report.lines.length} slots`;
 }

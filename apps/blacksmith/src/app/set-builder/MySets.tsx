@@ -7,15 +7,22 @@
  * still lists (and opens with a warning).
  */
 import { useState } from "react";
+import Link from "next/link";
 import Icon from "@/components/Icon";
 import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
+import { hunterPageHref } from "@/lib/hunter-pages";
+import type { SaveEquipmentSet } from "@/lib/save-store";
 import type { SavedSet } from "@/lib/saved-sets-store";
-import { evaluateBuild } from "@/lib/set-build";
+import type { EquipmentIds } from "@/lib/schema";
+import { evaluateBuild, type BuildSet } from "@/lib/set-build";
 import { decodeSet, type CodecTables } from "@/lib/set-codec";
 import type { SearchData } from "@/lib/set-search";
 import * as ui from "@/styles/settings";
 import { PanelTitle } from "./ArmorSetView";
+import { SaveSetDetail, SaveSetSummary } from "./SaveFileSets";
+import SetNameForm from "./SetNameForm";
+import Sheet from "./Sheet";
 
 function Summary({ set, data, tables }: { set: SavedSet; data: SearchData; tables: CodecTables }) {
   const t = useT();
@@ -55,7 +62,11 @@ function Summary({ set, data, tables }: { set: SavedSet; data: SearchData; table
 
 export default function MySets({
   sets,
+  saveSets = [],
+  saveSex,
+  saveStale,
   data,
+  ids,
   tables,
   openId,
   onOpen,
@@ -64,7 +75,14 @@ export default function MySets({
   onDelete,
 }: {
   sets: SavedSet[];
+  /** The loaded save's registered sets, shown in-line and read-only. */
+  saveSets?: SaveEquipmentSet[];
+  /** The loaded save's sex, for its read-only sets. */
+  saveSex: BuildSet["sex"];
+  /** The loaded save predates equipment sets and must be loaded again. */
+  saveStale?: boolean;
   data: SearchData | null;
+  ids: EquipmentIds | null;
   tables: CodecTables | null;
   /** The saved set in the editor. */
   openId: string | null;
@@ -75,13 +93,14 @@ export default function MySets({
 }) {
   const t = useT();
   const text = t.setBuilder.mySets;
+  const saveText = t.setBuilder.saveSets;
   const [renaming, setRenaming] = useState<string | null>(null);
-  const [name, setName] = useState("");
+  const [viewing, setViewing] = useState<SaveEquipmentSet | null>(null);
 
   return (
     <div className="flex flex-col gap-[1.3rem]">
       <PanelTitle>{t.setBuilder.tabs.sets}</PanelTitle>
-      {sets.length === 0 && <p className={ui.note}>{text.empty}</p>}
+      {sets.length === 0 && saveSets.length === 0 && <p className={ui.note}>{text.empty}</p>}
       <ul className="m-0 flex list-none flex-col p-0">
         {sets.map((s) => (
           <li
@@ -92,27 +111,15 @@ export default function MySets({
             )}
           >
             {renaming === s.id ? (
-              <form
-                className="flex gap-[0.8rem]"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (name.trim()) onRename(s.id, name.trim());
+              <SetNameForm
+                initial={s.name}
+                label={text.nameLabel}
+                onSubmit={(name) => {
+                  onRename(s.id, name);
                   setRenaming(null);
                 }}
-              >
-                <input
-                  className={ui.searchInput}
-                  aria-label={text.nameLabel}
-                  value={name}
-                  maxLength={40}
-                  autoFocus
-                  onChange={(e) => setName(e.target.value)}
-                  onKeyDown={(e) => e.key === "Escape" && setRenaming(null)}
-                />
-                <button type="submit" className={ui.button}>
-                  {text.ok}
-                </button>
-              </form>
+                onCancel={() => setRenaming(null)}
+              />
             ) : (
               <span className="flex items-baseline gap-[0.8rem]">
                 <span className="min-w-0 flex-1 truncate text-sub text-white">{s.name}</span>
@@ -133,10 +140,7 @@ export default function MySets({
                 type="button"
                 className={ui.button}
                 aria-label={text.renameLabel(s.name)}
-                onClick={() => {
-                  setName(s.name);
-                  setRenaming(s.id);
-                }}
+                onClick={() => setRenaming(s.id)}
               >
                 {text.rename}
               </button>
@@ -159,7 +163,56 @@ export default function MySets({
             </div>
           </li>
         ))}
+        {saveSets.map((s) => (
+          <li
+            key={`save-${s.number}`}
+            className="flex flex-col gap-[0.6rem] border-b border-white/15 px-[0.4rem] py-[0.8rem]"
+          >
+            <span className="flex items-baseline gap-[0.8rem]">
+              <span className="min-w-0 flex-1 truncate text-sub text-white">
+                {t.setBuilder.setView.setNumber(s.number)}
+              </span>
+              <span
+                className="flex-none border border-white/25 px-[0.8rem] py-[0.2rem] text-fine text-white/60"
+                title={saveText.readOnly}
+              >
+                {saveText.badge}
+              </span>
+            </span>
+            {data && ids && tables && (
+              <SaveSetSummary set={s} data={data} ids={ids} tables={tables} sex={saveSex} />
+            )}
+            <div className={ui.actions}>
+              <button
+                type="button"
+                className={ui.button}
+                disabled={!data || !ids || !tables}
+                onClick={() => setViewing(s)}
+              >
+                {saveText.view}
+              </button>
+            </div>
+          </li>
+        ))}
       </ul>
+      {saveStale && (
+        <p className={ui.note}>
+          {saveText.stale}{" "}
+          <Link href={hunterPageHref("save")} className="text-white underline hover:text-gold">
+            {saveText.reload}
+          </Link>
+        </p>
+      )}
+      <Sheet
+        open={!!viewing}
+        onClose={() => setViewing(null)}
+        title={viewing ? t.setBuilder.setView.setNumber(viewing.number) : ""}
+        tall
+      >
+        {viewing && (
+          <SaveSetDetail set={viewing} data={data} ids={ids} tables={tables} sex={saveSex} />
+        )}
+      </Sheet>
     </div>
   );
 }

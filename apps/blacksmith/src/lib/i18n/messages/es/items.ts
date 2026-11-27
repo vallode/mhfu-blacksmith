@@ -64,7 +64,7 @@ export const items: Messages["items"] = {
     unknownQuest: (id: number) => `Misión ${id}`,
   },
   gathering: {
-    kinds: { gather: "Recolección", mine: "Minería", bug: "Bichos" },
+    kinds: { gather: "Recolección", mine: "Minería", bug: "Bichos", fish: "Pesca" },
     baseCamp: "Campamento base",
     areas: (areas: number[]) =>
       areas.length === 1 ? `zona ${areas[0]}` : `zonas ${areas.join(", ")}`,
@@ -72,7 +72,13 @@ export const items: Messages["items"] = {
   },
   farm: {
     title: "Granja Pokke",
-    spots: { mining: "Minería", insects: "Bichos", mushrooms: "Setas", honey: "Miel" },
+    spots: {
+      mining: "Minería",
+      insects: "Bichos",
+      mushrooms: "Setas",
+      honey: "Miel",
+      fishing: "Pesca",
+    },
     perQuest: (spot: string, count: string) => `${spot} · ${count} por misión`,
     points: {
       "Mining Point": "Punto de minería",
@@ -81,6 +87,8 @@ export const items: Messages["items"] = {
       "Prototype Bee Hive": "Colmena prototipo",
       "Production Bee Hive": "Colmena de producción",
       "Modified Bee Hive": "Colmena modificada",
+      "Fishing Pier": "Muelle de pesca",
+      "Casting Machine": "Máquina de pesca",
     },
     restocks: "La granja se repone tras cada misión.",
     upgradesStack:
@@ -159,7 +167,7 @@ export const items: Messages["items"] = {
     materials: "Materiales",
     whereToGo: "Adónde ir",
     empty:
-      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma, pieza de armadura o adorno para añadirlo, o añade un conjunto entero desde el Creador de conjuntos, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
+      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma, pieza de armadura, adorno u objeto para añadirlo, o añade un conjunto entero desde el Creador de conjuntos, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
     loadError: "No se pudo cargar el equipo de la lista de deseos.",
     retry: "Reintentar",
     whereToGoNote: "Los monstruos y mapas que dan más de los materiales que aún te faltan.",
@@ -171,6 +179,7 @@ export const items: Messages["items"] = {
     enoughNote: (have: string) =>
       `Tu cazador ya tiene ${have} en la caja de objetos, así que sus materiales no se cuentan.`,
     countLabel: (name: string) => `Cuántos ${name} tener`,
+    itemNote: "Se suma a Materiales junto con lo que necesite tu equipo.",
     countValue: (count: string) => `×${count}`,
     oneFewer: "Uno menos",
     oneMore: "Uno más",
@@ -193,7 +202,7 @@ export const items: Messages["items"] = {
     materialsCount: "Materiales:",
     stillToGet: (n: number, missing: string, total: string) =>
       n === 1 ? `falta ${missing} de ${total}` : `faltan ${missing} de ${total}`,
-    nothingLeft: "No queda nada por crear.",
+    nothingLeft: "No queda nada por crear ni conseguir.",
     loadSave: "Carga una partida en el Perfil de cazador para contar lo que ya tienes.",
     forGear: (names: string) => `Para ${names}`,
     more: (_n: number, count: string) => `${count} más…`,
@@ -209,7 +218,7 @@ export const items: Messages["items"] = {
       },
       shop: "Tienda",
       stageStock: (stage: number) => `En la fase ${stage}`,
-      gatherKinds: { gather: "Recolección", mine: "Minería", bug: "Bichos" },
+      gatherKinds: { gather: "Recolección", mine: "Minería", bug: "Bichos", fish: "Pesca" },
       onlyOnQuests: (n: number, count: string) =>
         n === 1 ? `solo en ${count} misión` : `solo en ${count} misiones`,
       questReward: (stars: string) => `recompensa ${stars}`,

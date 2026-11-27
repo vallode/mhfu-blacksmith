@@ -17,6 +17,7 @@ export {
   EMBED_ICON_TINTS,
   EMBED_ICON_TYPES,
   embedIcon,
+  itemEmbedIcon,
   rankLabel,
   SITE_NAME,
   THEME_COLOR,

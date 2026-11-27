@@ -106,6 +106,7 @@ export const equipment: Messages["equipment"] = {
       specialAmmo: "Mun. especial",
       coatings: "Viales",
       melodies: "Melodías",
+      motionValues: "Valores mov.",
     },
     chargeAttack: "[Ataque cargado]",
     chargeLevel: "Nv",

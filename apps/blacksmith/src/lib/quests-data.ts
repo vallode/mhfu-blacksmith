@@ -18,8 +18,14 @@ import { readData } from "game-data";
 export interface QuestSummary {
   id: number;
   hub: QuestHubSlug;
+  /** The star level the quest is listed at on its board. */
+  stars: number;
   title: string;
   goal: string | null;
+  /** The quest's map, as data/quests names it. */
+  map: string | null;
+  /** Whether the quest has recorded monster spawns on its map. */
+  hasSpawns: boolean;
 }
 
 const questDir = path.join(DATA_DIR, "quests");
@@ -35,14 +41,29 @@ export function getQuestSummaries(): QuestSummary[] {
         id: number;
         hub: string;
         rank: string | null;
+        stars: number;
         title: string | null;
         goal: string | null;
+        map: string | null;
+        large_monsters?: { spawns?: unknown[] }[];
+        small_monsters?: { spawns?: unknown[] }[];
       }[];
     };
     for (const q of quests) {
       const hub = questHubSlug(q.hub, q.rank);
+      const hasSpawns = [...(q.large_monsters ?? []), ...(q.small_monsters ?? [])].some(
+        (monster) => (monster.spawns?.length ?? 0) > 0,
+      );
       if (hub && !isHiddenQuest(q.id))
-        out.push({ id: q.id, hub, title: q.title ?? `Quest ${q.id}`, goal: q.goal });
+        out.push({
+          id: q.id,
+          hub,
+          stars: q.stars,
+          title: q.title ?? `Quest ${q.id}`,
+          goal: q.goal,
+          map: q.map,
+          hasSpawns,
+        });
     }
   }
   cache = out;

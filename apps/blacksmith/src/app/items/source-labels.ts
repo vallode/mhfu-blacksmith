@@ -53,6 +53,7 @@ export function farmPointName(t: Messages, point: string): string {
 }
 
 export function farmLabel(t: Messages, { spot, gathers, mostGathers }: FarmPlace): string {
+  if (gathers === null || mostGathers === null) return t.items.farm.spots[spot];
   const count = gathers === mostGathers ? `${gathers}` : `${gathers}-${mostGathers}`;
   return t.items.farm.perQuest(t.items.farm.spots[spot], count);
 }

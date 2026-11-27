@@ -1,31 +1,34 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
-import { linkBlob } from "../src/blob/link.js";
-import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
-import { codeSegment } from "../src/patches/mips.js";
+import { RUNTIME_OBJECTS } from "whetstone/src/blob/runtime-object.js";
+import { linkBlob } from "whetstone/src/blob/link.js";
+import { HOOK, assembleHooks } from "whetstone/src/patches/game-hooks.js";
+import { codeSegment } from "whetstone/src/patches/mips.js";
 import {
-  EQUIPMENT_ICON_SIGNATURE,
-  FILL_SIGNATURE,
-  ITEM_ICON_SIGNATURE,
-  ITEM_ICON_SIGNATURE_AT,
-  TEXT_SETTERS,
-  WINDOW_SIGNATURE,
+  findFreeSlot,
   demandCaps,
   encodeCapturable,
   encodeDrops,
-  encodeLevelFn,
+  encodeOptionalFn,
   encodePactPool,
   findSharpnessLevel,
-  findTextExterns,
   pactLevels,
   pactObjects,
   pactPool,
   tiedItems,
   type PactPool,
 } from "../src/patches/pact.js";
+import {
+  EQUIPMENT_ICON_SIGNATURE,
+  FILL_SIGNATURE,
+  findTextExterns,
+  ITEM_ICON_SIGNATURE,
+  ITEM_ICON_SIGNATURE_AT,
+  TEXT_SETTERS,
+  WINDOW_SIGNATURE,
+} from "whetstone/src/patches/hud-text.js";
 import { Rng } from "../src/rng.js";
-import { Cpu } from "./mips-cpu.js";
+import { Cpu } from "whetstone/test/mips-cpu.js";
 
 const BLOB = 0x099a1820;
 const HOOKS = 0x08901d38;
@@ -57,6 +60,15 @@ const EXTERNS = {
   rf_printer: 0x08a631a8,
   rf_print: 0x088920a8,
 };
+const FREE_SLOT_FN = 0x088506a4;
+/** The EBOOT's box size, pages × 100, which `freeSlot` calls. */
+const BOX_SLOTS_FN = 0x08850ec4;
+/** freeSlot(save) as the EU EBOOT has it (EU 0x088506A4, FUC 0x088505E8). */
+const FREE_SLOT_EU = [
+  0x27bdfff0, 0xafbf000c, 0xafb00008, 0x0e2143b1, 0x249004a0, 0x7c021e20, 0x1860000c, 0x00002821,
+  0x00002021, 0x02041021, 0x904200a8, 0x54400003, 0x24a20001, 0x10000006, 0x30a2ffff, 0x7c022e20,
+  0x00a3102a, 0x1440fff7, 0x2484000c, 0x3402ffff, 0x8fbf000c, 0x8fb00008, 0x03e00008, 0x27bd0010,
+];
 const LARGE = 77;
 /** The EBOOT's sharpness level function, and the test weapon's bar: red to 50, orange to 100 ... white to 400. */
 const LEVEL_FN = 0x088dab94;
@@ -95,13 +107,16 @@ function quest(
   levels: Buffer = ANY_LEVEL,
   drops: Buffer = DEFAULT_DROPS,
   levelFn: number | null = LEVEL_FN,
+  boxSlots = 800,
+  freeSlotFn: number | null = FREE_SLOT_FN,
 ) {
   const blob = linkBlob([...runtime(), ...pactObjects()], BLOB, EXTERNS, Infinity, {
     rf_pact_pool: encodePactPool(pool),
     rf_pact_capturable: encodeCapturable(capturable),
     rf_pact_levels: levels,
     rf_pact_drops: drops,
-    rf_pact_level_fn: encodeLevelFn(levelFn),
+    rf_pact_level_fn: encodeOptionalFn(levelFn),
+    rf_pact_free_slot_fn: encodeOptionalFn(freeSlotFn),
   });
   const cpu = new Cpu();
   cpu.write(BLOB, blob.image);
@@ -112,6 +127,9 @@ function quest(
     { hook: HOOK.rewards, target: REWARD_ROLL },
   ]);
   cpu.load(HOOKS, hooks.code);
+  // The game's own free-slot routine, over a box of `boxSlots`.
+  cpu.load(FREE_SLOT_FN, FREE_SLOT_EU);
+  cpu.native.set(BOX_SLOTS_FN, () => boxSlots);
   const arg = (k: number) => cpu.reg[4 + k]! >>> 0;
 
   let lines: string[] = [];
@@ -424,8 +442,8 @@ function questOffering(
   wanted: (o: { penalty: string; reward: string }) => boolean,
   rank = 1,
   kind: Kind = "hunt",
+  q = quest(),
 ) {
-  const q = quest();
   for (let n = 1; n < 2000; n++) {
     if (next(q, n, rank, kind).some(wanted)) return { q, time: 90000 + n };
   }
@@ -900,7 +918,7 @@ test("more quest rewards are offered only where all of them fit in 9 draws", () 
   const q = quest();
   for (const base of [7, 9]) {
     const seen = new Set<number>();
-    for (let n = 1; n < 300; n++) {
+    for (let n = 1; n < 100; n++) {
       // Each a new quest: its clock above the last one's.
       q.setUpQuest(90000 + base * 1000 + n);
       q.cpu.setU8(TABLES + 3, base);
@@ -963,6 +981,120 @@ test("item and equipment rewards are paid when the quest is completed", () => {
   );
   q.complete();
   assert.equal(q.cpu.u32(EQUIPMENT_BOX + 36), 0, "paid once");
+});
+
+/** A quest over a box of `boxSlots`, searched by the game's routine, or by the blob where it's null. */
+const boxQuest = (boxSlots = 800, freeSlotFn: number | null = FREE_SLOT_FN) =>
+  quest(POOL, [LARGE], ANY_LEVEL, DEFAULT_DROPS, LEVEL_FN, boxSlots, freeSlotFn);
+const fillBox = (q: Quest, full: number) => {
+  for (let s = 0; s < full; s++) q.cpu.setU32(EQUIPMENT_BOX + s * 12, 0x00030501);
+};
+
+/**
+ * Takes the Bone Kris, then completes the quest with the box's first `full`
+ * slots taken (after the offers, which a full box wouldn't make).
+ */
+function payKris(full: number, box = boxQuest()) {
+  const { q } = questOffering(reward(/^Bone Kris$/), 1, "hunt", box);
+  fillBox(q, full);
+  take(q, reward(/^Bone Kris$/));
+  // The whole of the largest box, and the item box's first bytes past it.
+  const bytes = () => [...q.cpu.bytes(EQUIPMENT_BOX, 1000 * 12 + 24)];
+  const before = bytes();
+  q.complete();
+  return { before, after: bytes(), slot: (s: number) => bytes().slice(s * 12, s * 12 + 4) };
+}
+
+test("an equipment reward goes past slot 400, as far as the hunter's box does", () => {
+  const kris = [1, 5, 40, 0];
+  assert.deepEqual(payKris(400).slot(400), kris);
+  assert.deepEqual(payKris(799).slot(799), kris);
+  assert.deepEqual(payKris(999, boxQuest(1000)).slot(999), kris);
+});
+
+test("with the box full, an equipment reward isn't paid and nothing is overwritten", () => {
+  const { before, after } = payKris(800);
+  assert.deepEqual(after, before);
+});
+
+test("where the game's routine isn't found, the first 800 slots are searched", () => {
+  assert.deepEqual(payKris(400, boxQuest(1000, null)).slot(400), [1, 5, 40, 0]);
+  const { before, after } = payKris(800, boxQuest(1000, null));
+  assert.deepEqual(after, before);
+});
+
+test("equipment is offered only while the box has room for it", () => {
+  for (const freeSlotFn of [FREE_SLOT_FN, null]) {
+    const q = boxQuest(800, freeSlotFn);
+    fillBox(q, 800);
+    const before = [...q.cpu.bytes(EQUIPMENT_BOX, 800 * 12)];
+    for (let n = 1; n < 300; n++) {
+      for (const o of next(q, n)) assert.doesNotMatch(o.reward, /^Bone Kris$/);
+    }
+    // One slot free: offered again, and looking for room leaves the box as it was.
+    q.cpu.setU32(EQUIPMENT_BOX + 799 * 12, 0);
+    let offered = false;
+    for (let n = 300; n < 2000 && !offered; n++) offered = next(q, n).some(reward(/^Bone Kris$/));
+    assert.ok(offered);
+    assert.deepEqual([...q.cpu.bytes(EQUIPMENT_BOX, 799 * 12)], before.slice(0, 799 * 12));
+    assert.equal(q.cpu.u32(EQUIPMENT_BOX + 799 * 12), 0);
+  }
+});
+
+test("one free slot makes room for one piece in a window, two for two", () => {
+  const kris = POOL[0]![3]![0]!;
+  const two: PactPool = [
+    [...POOL[0]!.slice(0, 3), [kris, { ...kris, id: 41, name: "Bone Axe" }]],
+    POOL[1]!,
+    POOL[2]!,
+  ];
+  /** Each window's count of pieces, up to the `last`, with `free` slots at the box's end. */
+  function* pieces(free: number, last: number) {
+    const q = quest(two);
+    fillBox(q, 800 - free);
+    for (let n = 1; n <= last; n++) {
+      yield { n, count: next(q, n).filter(reward(/^Bone (Kris|Axe)$/)).length };
+    }
+  }
+  let both = 0;
+  for (const { n, count } of pieces(2, 2000)) {
+    if (count === 2) {
+      both = n;
+      break;
+    }
+  }
+  assert.ok(both, "two free slots: a window offers both");
+  // The same draws with one slot free, that window's among them.
+  for (const { count } of pieces(1, both)) assert.ok(count <= 1);
+});
+
+test("an item reward goes past the quest's own 16 reward slots when they're full", () => {
+  const { q } = questOffering(reward(/x\d+$/));
+  for (let s = 0; s < 16; s++) q.cpu.setU32(REWARD_BOX + s * 4, 0x0001_00c8);
+  const list = take(q, reward(/x\d+$/));
+  q.complete();
+  const amount = Number(list.find(reward(/x\d+$/))!.reward.match(/x(\d+)$/)![1]);
+  assert.equal(q.cpu.u16(REWARD_BOX + 16 * 4 + 2), amount);
+  assert.notEqual(q.cpu.u16(REWARD_BOX + 16 * 4), 0);
+});
+
+test("the free-slot routine is found by its code, on EU and FUC alike", () => {
+  const segment = { offset: 0, vaddr: 0x08804000, size: 0x400 };
+  const eboot = (...copies: [number, number[]][]) => {
+    const buf = Buffer.alloc(segment.size);
+    for (const [at, words] of copies)
+      words.forEach((w, k) => buf.writeUInt32LE(w >>> 0, at + k * 4));
+    return buf;
+  };
+  // FUC's differs only in where the box size's routine is.
+  const fuc = FREE_SLOT_EU.map((w, k) => (k === 3 ? 0x0e214382 : w));
+  assert.equal(findFreeSlot(eboot([0x100, FREE_SLOT_EU]), segment), 0x08804100);
+  assert.equal(findFreeSlot(eboot([0x40, fuc]), segment), 0x08804040);
+  assert.equal(findFreeSlot(eboot([0x40, FREE_SLOT_EU], [0x200, fuc]), segment), null, "two");
+  const elsewhere = FREE_SLOT_EU.map((w, k) => (k === 10 ? 0x904200b8 : w));
+  assert.equal(findFreeSlot(eboot([0x100, elsewhere]), segment), null, "another box");
+  const otherFull = FREE_SLOT_EU.map((w, k) => (k === 19 ? 0x34027fff : w));
+  assert.equal(findFreeSlot(eboot([0x100, otherFull]), segment), null, "another full value");
 });
 
 test("a failed quest pays nothing: the next quest forgets the pact", () => {

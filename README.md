@@ -40,14 +40,17 @@ The skill activation table (`data/skills.json`, used by the set builder on `/set
 
 This is a [pnpm workspace](https://pnpm.io/workspaces):
 
-| Path                    | Package        | What it is                                                                                      |
-| ----------------------- | -------------- | ----------------------------------------------------------------------------------------------- |
-| `apps/blacksmith`       | `blacksmith`   | The MHFU Blacksmith website, a statically exported [Next.js](https://nextjs.org/) app           |
-| `apps/randomfu`         | `randomfu-web` | The randomizer as a static web app that runs in the browser, at randomfu.vallode.com            |
-| `packages/mhfu-extract` | `mhfu-extract` | Datamining pipeline: reads a disc image and emits `data/` and the site's 3D models              |
-| `packages/randomfu`     | `randomfu`     | The seeded randomizer behind `apps/randomfu`: options, shuffles, disc patching, spoiler log     |
-| `packages/game-data`    | `game-data`    | The one way into `data/`: `readData` for everything that reads it, `writeData` for writing      |
-| `data`                  |                | The game data the site is built from (JSON, validated by `data/schemas/`), shared by everything |
+| Path                    | Package         | What it is                                                                                           |
+| ----------------------- | --------------- | ---------------------------------------------------------------------------------------------------- |
+| `apps/blacksmith`       | `blacksmith`    | The MHFU Blacksmith website, a statically exported [Next.js](https://nextjs.org/) app                |
+| `apps/randomfu`         | `randomfu-web`  | The randomizer as a static web app that runs in the browser, at randomfu.vallode.com                 |
+| `apps/whetstone`        | `whetstone-web` | Whetstone as a static web app that runs in the browser                                               |
+| `apps/discord-bot`      | `discord-bot`   | A Discord bot (Cloudflare Worker) answering from the site's data, with natural-language set search   |
+| `packages/mhfu-extract` | `mhfu-extract`  | Datamining pipeline: reads a disc image and emits `data/` and the site's 3D models                   |
+| `packages/whetstone`    | `whetstone`     | Whetstone, mods patched into your own disc: camera, HUD, quality of life; disc patching, code loader |
+| `packages/randomfu`     | `randomfu`      | The seeded randomizer behind `apps/randomfu`, built on Whetstone: options, shuffles, spoiler log     |
+| `packages/game-data`    | `game-data`     | The one way into `data/`: `readData` for everything that reads it, `writeData` for writing           |
+| `data`                  |                 | The game data the site is built from (JSON, validated by `data/schemas/`), shared by everything      |
 
 Packages import each other by name (`import … from "mhfu-extract/src/container/image.js"`),
 declared as `workspace:*` dependencies.
@@ -64,18 +67,20 @@ From the repository root:
 ```sh
 pnpm install
 
-pnpm dev            # the site's dev server on http://localhost:3000
-pnpm build          # regenerate the site's data + static export to apps/blacksmith/out/
-pnpm lint           # ESLint
-pnpm typecheck      # tsc in every package
-pnpm test           # every package's tests
-pnpm format         # Prettier, for the whole repository
-pnpm format:check   # Prettier, check only
-pnpm link:cache     # link this worktree to the main checkout's datamining cache
-pnpm clean:discs    # delete disc images left in Claude Code scratchpads (--dry-run lists them)
+pnpm dev                    # the site's dev server on http://localhost:3000
+pnpm build                  # regenerate the site's data + static export to apps/blacksmith/out/
+pnpm lint                   # ESLint
+pnpm typecheck              # tsc in every package
+pnpm test                   # every package's tests
+pnpm format                 # Prettier, for the whole repository
+pnpm format:check           # Prettier, check only
+pnpm link:cache             # link this worktree to the main checkout's datamining cache
+pnpm clean:discs            # delete disc images left in Claude Code scratchpads (--dry-run lists them)
+pnpm screenshots:optimize   # oxipng the docs/screenshots captures and check 960x544
 ```
 
 Run any package's own scripts with `pnpm --filter <package> <script>`.
 More: [the site's workflow](apps/blacksmith/README.md) (data, crafting trees,
-3D models), [the game data format](packages/game-data/README.md) and
-[deployment](docs/deploying.md) (Cloudflare).
+3D models), [the game data format](packages/game-data/README.md),
+[deployment](docs/deploying.md) (Cloudflare), and [in-game
+screenshots](docs/screenshots/README.md) kept as design reference.

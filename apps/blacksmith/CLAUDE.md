@@ -15,6 +15,10 @@ and `pnpm format:check` from the repository root.
 
 Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
 
+Captures of the game's own screens, used as reference when styling, live in
+`docs/screenshots/` (see its README for what goes where). They are reference
+only and never ship with the site.
+
 ### Where styles go
 
 - **Utilities in the markup.** Put Tailwind classes on the element they style.

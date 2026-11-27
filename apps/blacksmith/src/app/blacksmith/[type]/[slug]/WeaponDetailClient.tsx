@@ -31,13 +31,14 @@ import {
 } from "@/styles/tables";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
-import ModelViewer from "@/components/ModelViewer";
+import WeaponModelViewer from "@/components/WeaponModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useWeaponModel } from "@/lib/models";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useGameText, useT } from "@/context/LanguageContext";
 import Loading from "@/components/Loading";
 import WishlistButton from "@/components/WishlistButton";
+import MotionDamage from "@/components/motion-values/MotionDamage";
 
 interface Props {
   type: WeaponType;
@@ -119,38 +120,43 @@ export default function WeaponDetailClient({ type, slug }: Props) {
   return (
     <>
       <DetailCard>
-        {/* Header: icon + name + sharpness */}
+        {/* Wider screens: one row that wraps (the rows are contents). Phones:
+            the icon and name on one row, so a 20-character name fits, clear
+            of the sheet's × above it; then the sharpness bars (if any) with
+            the model and wishlist buttons. */}
         <DetailHeader>
-          <Icon
-            type={weapon.type}
-            size="large"
-            rarity={weapon.rarity}
-            color={weapon.color}
-            alt={name}
-          />
-
-          <DetailName id="weapon_name">{name}</DetailName>
-
-          {modelUrl && (
-            <ModelButton
-              open={modelOpen}
-              onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
-              className="ml-[0.4rem]"
+          <div className="contents mobile:flex mobile:w-full mobile:items-center">
+            <Icon
+              type={weapon.type}
+              size="large"
+              rarity={weapon.rarity}
+              color={weapon.color}
+              alt={name}
             />
-          )}
-
-          <WishlistButton
-            gear={{ kind: "weapon", type, slug }}
-            name={name}
-            className={modelUrl ? undefined : "ml-[0.4rem]"}
-          />
-
-          {(weapon.sharpness || weapon.sharpness_plus) && (
-            <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:mt-[1rem] mobile:mr-auto mobile:ml-0">
-              {weapon.sharpness && <SharpnessBar values={weapon.sharpness} />}
-              {weapon.sharpness_plus && <SharpnessBar values={weapon.sharpness_plus} plus />}
-            </div>
-          )}
+            <DetailName id="weapon_name" className="mobile:flex-1">
+              {name}
+            </DetailName>
+          </div>
+          <div className="contents mobile:mt-[0.6rem] mobile:flex mobile:w-full mobile:items-center">
+            {modelUrl && (
+              <ModelButton
+                open={modelOpen}
+                onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
+                className="ml-[0.4rem] mobile:ml-auto"
+              />
+            )}
+            <WishlistButton
+              gear={{ kind: "weapon", type, slug }}
+              name={name}
+              className={modelUrl ? undefined : "ml-[0.4rem] mobile:ml-auto"}
+            />
+            {(weapon.sharpness || weapon.sharpness_plus) && (
+              <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:order-first mobile:mx-0 mobile:gap-[0.4rem]">
+                {weapon.sharpness && <SharpnessBar values={weapon.sharpness} />}
+                {weapon.sharpness_plus && <SharpnessBar values={weapon.sharpness_plus} plus />}
+              </div>
+            )}
+          </div>
         </DetailHeader>
 
         {/* Stats + requirements */}
@@ -529,6 +535,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                     </RequirementsPage>
                   ),
                 },
+                {
+                  id: "motion-values",
+                  label: tw.tabs.motionValues,
+                  content: <MotionDamage type={type} weapon={weapon} />,
+                },
               ]}
             />
           </Requirements>
@@ -536,7 +547,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
       </DetailCard>
       {modelOpen && (
         <ModelPopover title={name} onClose={() => setOpenModel(null)}>
-          <ModelViewer src={modelUrl} label={name} hunter={type} pair={type === "dual-blades"} />
+          <WeaponModelViewer
+            src={modelUrl}
+            label={name}
+            type={type}
+            pair={type === "dual-blades"}
+          />
         </ModelPopover>
       )}
     </>

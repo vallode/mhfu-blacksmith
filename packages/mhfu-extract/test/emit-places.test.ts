@@ -6,6 +6,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { emitGathering } from "../src/emit/gathering.js";
 import { emitShops } from "../src/emit/shops.js";
+import type { FishTables, FishingTables } from "../src/quests/fishing.js";
 import type { ParsedQuest } from "../src/quests/parser.js";
 import type { ShopData } from "../src/shops/shops.js";
 import { BinaryReader } from "../src/binary/reader.js";
@@ -86,7 +87,7 @@ function payload(tables: [number, number][][], areas: Record<number, Node[]>): B
 
 /** Only the fields the gathering emit reads. */
 function quest(questId: number, title = "A quest"): ParsedQuest {
-  return { header: { questId, map: TOWN }, strings: { title } } as unknown as ParsedQuest;
+  return { header: { questId, map: TOWN, rank: 0 }, strings: { title } } as unknown as ParsedQuest;
 }
 
 test("emitGathering writes each set of points once, with the quests that use it", () => {
@@ -175,8 +176,49 @@ test("emitGathering writes each set of points once, with the quests that use it"
   ]);
 });
 
+test("emitGathering adds the rank's fish table as the area's fishing point", () => {
+  const fishTables: FishTables = [
+    [{ itemId: 240, chance: 25 }],
+    [],
+    [],
+    [],
+    [],
+    [{ itemId: 242, chance: 5 }],
+  ];
+  const fishing: FishingTables = new Map([[TOWN, new Map([[1, fishTables]])]]);
+  const points = payload([[[100, POTION]]], { 1: [{ type: 0, table: 0 }] });
+  const { layouts, problems } = emitGathering(
+    [{ parsed: quest(1001), payload: points }],
+    undefined,
+    fishing,
+  );
+  assert.deepEqual(problems, []);
+  assert.deepEqual(layouts[0]!.areas[0]!.nodes, [
+    {
+      kind: "gather",
+      count: 1,
+      gathers: 3,
+      most_gathers: 6,
+      items: [{ item: "Potion", chance: 100 }],
+    },
+    {
+      kind: "fish",
+      count: 1,
+      gathers: null,
+      most_gathers: null,
+      items: [{ item: "Small Goldenfish", chance: 25 }],
+    },
+  ]);
+});
+
 test("projectToMap adds the stage's origin and scales by the map's size and zoom", () => {
-  const map = { width: 1500, depth: 3000, zoom: 1, origins: [[100, 200]] as [number, number][] };
+  const map = {
+    width: 1500,
+    depth: 3000,
+    zoom: 1,
+    stages: [1],
+    origins: [[100, 200]] as [number, number][],
+  };
   assert.deepEqual(projectToMap(map, 0, 50, 100), [15, 15]);
   const [u, v] = projectToMap({ ...map, zoom: 0.9 }, 0, 50, 100)!;
   assert.ok(Math.abs(u - 21.1) < 1e-9);
@@ -272,6 +314,7 @@ test("emitGathering places points on the map, and drops areas the map doesn't dr
         width: 1500,
         depth: 1500,
         zoom: 1,
+        stages: [1, 2, 3],
         origins: [
           [0, 0],
           [0, 0],

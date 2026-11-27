@@ -15,9 +15,9 @@ import {
   addEntries,
   entryKey,
   hasAll,
-  MAX_DECORATION_COUNT,
-  type GearRef,
-  type GearWant,
+  MAX_ENTRY_COUNT,
+  type WishlistRef,
+  type WishlistWant,
   type WishlistEntry,
 } from "./wishlist";
 
@@ -39,7 +39,9 @@ function isEntry(x: unknown): x is WishlistEntry {
       (e.made === undefined || typeof e.made === "string")
     );
   }
-  if (e.kind === "decoration") return e.count === undefined || isCount(e.count);
+  if (e.kind === "decoration" || e.kind === "item") {
+    return e.count === undefined || isCount(e.count);
+  }
   return (
     e.kind === "armor" &&
     (ARMOR_SLOTS as readonly string[]).includes(e.slot) &&
@@ -47,9 +49,9 @@ function isEntry(x: unknown): x is WishlistEntry {
   );
 }
 
-/** A decoration entry's count: a whole number from 1 to MAX_DECORATION_COUNT. */
+/** A decoration or item count: a whole number from 1 to MAX_ENTRY_COUNT. */
 export function isCount(n: unknown): n is number {
-  return Number.isInteger(n) && (n as number) >= 1 && (n as number) <= MAX_DECORATION_COUNT;
+  return Number.isInteger(n) && (n as number) >= 1 && (n as number) <= MAX_ENTRY_COUNT;
 }
 
 /** The stored list, without anything malformed or listed twice. */
@@ -130,8 +132,11 @@ function subscribe(onChange: () => void): () => void {
   };
 }
 
-/** Adds the gear (first in the list), or removes it if it's there. Returns whether it's now listed. */
-export function toggleEntry(entries: WishlistEntry[], ref: GearRef): [WishlistEntry[], boolean] {
+/** Adds the entry (first in the list), or removes it if it's there. Returns whether it's now listed. */
+export function toggleEntry(
+  entries: WishlistEntry[],
+  ref: WishlistRef,
+): [WishlistEntry[], boolean] {
   const key = entryKey(ref);
   if (entries.some((e) => entryKey(e) === key)) {
     return [entries.filter((e) => entryKey(e) !== key), false];
@@ -142,20 +147,20 @@ export function toggleEntry(entries: WishlistEntry[], ref: GearRef): [WishlistEn
 export interface Wishlist {
   /** null while prerendering (no storage to read) */
   entries: WishlistEntry[] | null;
-  has(ref: GearRef): boolean;
-  /** Adds or removes the gear; false if storage refused the write. */
-  toggle(ref: GearRef): boolean;
-  /** Whether every wanted gear is listed, each decoration at least as many times. */
-  hasAll(wants: readonly GearWant[]): boolean;
+  has(ref: WishlistRef): boolean;
+  /** Adds or removes the entry; false if storage refused the write. */
+  toggle(ref: WishlistRef): boolean;
+  /** Whether every want is listed, each decoration or item at least as many times. */
+  hasAll(wants: readonly WishlistWant[]): boolean;
   /**
-   * Adds every wanted gear not listed and raises listed decorations to the
+   * Adds every want not listed and raises listed decorations or items to the
    * count wanted (see `addEntries`). How many entries changed, or null if
    * storage refused the write.
    */
-  addAll(wants: readonly GearWant[]): number | null;
+  addAll(wants: readonly WishlistWant[]): number | null;
   /**
-   * Changes an entry's recipe, starting weapon, (decorations) count, or the
-   * furthest weapon made along its path (`made: undefined` clears it).
+   * Changes an entry's recipe, starting weapon, decoration or item count, or
+   * the furthest weapon made along its path (`made: undefined` clears it).
    */
   update(
     key: string,
@@ -174,12 +179,15 @@ export function useWishlist(): Wishlist {
   const list = entries ?? EMPTY;
 
   const has = useCallback(
-    (ref: GearRef) => list.some((e) => entryKey(e) === entryKey(ref)),
+    (ref: WishlistRef) => list.some((e) => entryKey(e) === entryKey(ref)),
     [list],
   );
-  const toggle = useCallback((ref: GearRef) => writeWishlist(toggleEntry(snapshot(), ref)[0]), []);
-  const hasAllOf = useCallback((wants: readonly GearWant[]) => hasAll(list, wants), [list]);
-  const addAll = useCallback((wants: readonly GearWant[]) => {
+  const toggle = useCallback(
+    (ref: WishlistRef) => writeWishlist(toggleEntry(snapshot(), ref)[0]),
+    [],
+  );
+  const hasAllOf = useCallback((wants: readonly WishlistWant[]) => hasAll(list, wants), [list]);
+  const addAll = useCallback((wants: readonly WishlistWant[]) => {
     const [next, changed] = addEntries(snapshot(), wants);
     if (changed === 0) return 0;
     return writeWishlist(next) ? changed : null;

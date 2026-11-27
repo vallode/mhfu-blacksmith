@@ -29,6 +29,8 @@ export const site = {
     menu: "Menu",
     loadHunter: "Load hunter",
   },
+  /** The sidebar's link to the community Discord server. */
+  discord: "Discord",
   language: {
     heading: "Language",
     label: "Language",
@@ -233,6 +235,26 @@ export const site = {
       equipment: "Equipment",
       of: (done: string, total: string) => `${done}/${total}`,
     },
+    monsterLog: {
+      note: "Every monster your save has a record for, with the counts you've slain and captured and the size records the Guild Card keeps.",
+      large: "Large monsters",
+      small: "Small monsters",
+      monster: "Monster",
+      slain: "Slain",
+      captured: "Captured",
+      sizes: "Size records",
+      largest: "Largest",
+      smallest: "Smallest",
+      /** The header's count: "18 monsters". */
+      logged: (n: number, count: string) => (n === 1 ? "1 monster" : `${count} monsters`),
+      /** A group's totals, labelled so the counts need no plural. */
+      totals: (slain: string, captured: string) => `Slain: ${slain} · Captured: ${captured}`,
+      slainTotal: (slain: string) => `Slain: ${slain}`,
+      untracked:
+        "This save was stored before monster records were read. Load the save file again to see them.",
+      empty: "No monsters hunted yet.",
+      noListed: "Your save's monster records aren't for monsters this site lists.",
+    },
     awards: {
       note: "Earned means you meet the award's requirement from what your save shows. The rest can't be read from a save yet.",
       noteGiven:
@@ -260,6 +282,44 @@ export const site = {
       note: "Quests cleared on each board, by star level.",
       level: (level: string, done: number, total: number) =>
         `${level}: ${done} of ${total} cleared`,
+    },
+    crowns: {
+      note: "Your Guild Card's largest and smallest sizes for each monster entry.",
+      largest: "Largest",
+      smallest: "Smallest",
+      hunted: "Hunted",
+      missing: "Missing",
+      complete: "Complete",
+      missingGold: "Gold crown missing",
+      missingMini: "Mini crown missing",
+      missingBoth: "Gold and mini crowns missing",
+      noRecords:
+        "This save was stored before monster records were read. Load the save file again to see your crowns.",
+      goldCutoff: (size: string) => `Gold ≥ ${size}`,
+      miniCutoff: (size: string) => `Mini ≤ ${size}`,
+      goldCount: (earned: string, total: string) => `${earned}/${total} gold crowns`,
+      miniCount: (earned: string, total: string) => `${earned}/${total} mini crowns`,
+    },
+    collection: {
+      note: "Your equipment box against the Guild Card's equipment awards: what each weapon class and armor slot still needs. Any eligible piece counts, and each box slot counts.",
+      weapons: "Weapons",
+      armor: "Armor",
+      allAwards: "All Guild Card awards",
+      ownedOf: (owned: string, needed: string) => `${owned}/${needed}`,
+      awardProgress: (done: string, total: string) => `${done}/${total}`,
+      awardLabel: (title: string, done: number, total: number) =>
+        `${title}: ${done} of ${total} complete`,
+      groupProgress: (label: string, owned: number, needed: number) =>
+        `${label}: ${owned} of ${needed} pieces`,
+      need: (n: number) => (n === 1 ? "1 more needed" : `${n} more needed`),
+      complete: "Complete",
+      missing: (n: number) => `Eligible pieces you don't own (${n})`,
+      noEquipment:
+        "This save doesn't include the equipment box, so there's no collection to show. Load a save from this version of the game to see it.",
+      loading: "Reading your equipment box…",
+      failed: "The equipment list couldn't be loaded.",
+      pieces: (n: string) => `${n} pieces`,
+      piecesLabel: (n: number) => `${n} pieces of equipment`,
     },
   },
   search: {

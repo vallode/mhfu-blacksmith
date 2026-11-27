@@ -79,6 +79,43 @@
       ],
       "areas": [
         {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 23
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 25
+                },
+                {
+                  "item": 241,
+                  "chance": 10
+                },
+                {
+                  "item": 239,
+                  "chance": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
           "area": 1,
           "nodes": [
             {
@@ -1162,6 +1199,34 @@
                   32.1
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 23
+                },
+                {
+                  "item": 230,
+                  "chance": 25
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 25
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                }
+              ]
             }
           ]
         },
@@ -1298,6 +1363,43 @@
         11220
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 20
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 20
+                },
+                {
+                  "item": 241,
+                  "chance": 15
+                },
+                {
+                  "item": 239,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -2446,6 +2548,38 @@
                   32.1
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 23
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 243,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -2584,6 +2718,43 @@
         3125
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 20
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 20
+                },
+                {
+                  "item": 241,
+                  "chance": 15
+                },
+                {
+                  "item": 239,
+                  "chance": 7
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -3732,6 +3903,38 @@
                   32.1
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 23
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 243,
+                  "chance": 8
+                }
+              ]
             }
           ]
         },
@@ -3869,6 +4072,35 @@
         4005
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 1224,
+                  "chance": 35
+                },
+                {
+                  "item": 1223,
+                  "chance": 20
+                },
+                {
+                  "item": 1219,
+                  "chance": 15
+                },
+                {
+                  "item": 234,
+                  "chance": 30
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -5237,6 +5469,34 @@
                   32.1
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 1226,
+                  "chance": 20
+                },
+                {
+                  "item": 1224,
+                  "chance": 40
+                },
+                {
+                  "item": 1223,
+                  "chance": 20
+                },
+                {
+                  "item": 1222,
+                  "chance": 10
+                },
+                {
+                  "item": 1212,
+                  "chance": 10
+                }
+              ]
             }
           ]
         },
@@ -5398,6 +5658,43 @@
         10218
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 23
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 25
+                },
+                {
+                  "item": 241,
+                  "chance": 10
+                },
+                {
+                  "item": 239,
+                  "chance": 2
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -6466,6 +6763,34 @@
                   32.1
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 23
+                },
+                {
+                  "item": 230,
+                  "chance": 25
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 25
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                }
+              ]
             }
           ]
         },
@@ -6595,6 +6920,27 @@
         21014
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -7447,6 +7793,22 @@
                   32.1
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -7785,6 +8147,34 @@
                   63.5
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 30
+                },
+                {
+                  "item": 230,
+                  "chance": 10
+                },
+                {
+                  "item": 231,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 20
+                },
+                {
+                  "item": 240,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -8027,6 +8417,30 @@
                   83
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 32
+                },
+                {
+                  "item": 233,
+                  "chance": 30
+                },
+                {
+                  "item": 235,
+                  "chance": 30
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                }
+              ]
             }
           ]
         },
@@ -8268,6 +8682,38 @@
                   128.5,
                   110.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 5
+                },
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 11
+                },
+                {
+                  "item": 233,
+                  "chance": 9
+                },
+                {
+                  "item": 235,
+                  "chance": 7
+                },
+                {
+                  "item": 241,
+                  "chance": 5
+                }
               ]
             }
           ]
@@ -9020,6 +9466,42 @@
                   63.5
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 20
+                },
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 13
+                },
+                {
+                  "item": 231,
+                  "chance": 16
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 240,
+                  "chance": 5
+                },
+                {
+                  "item": 242,
+                  "chance": 3
+                }
+              ]
             }
           ]
         },
@@ -9282,6 +9764,30 @@
                   83
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 32
+                },
+                {
+                  "item": 233,
+                  "chance": 30
+                },
+                {
+                  "item": 235,
+                  "chance": 30
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                }
+              ]
             }
           ]
         },
@@ -9531,6 +10037,38 @@
                   128.5,
                   110.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 5
+                },
+                {
+                  "item": 233,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 10
+                }
               ]
             }
           ]
@@ -10472,6 +11010,42 @@
                   63.5
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 20
+                },
+                {
+                  "item": 238,
+                  "chance": 8
+                },
+                {
+                  "item": 230,
+                  "chance": 13
+                },
+                {
+                  "item": 231,
+                  "chance": 16
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 240,
+                  "chance": 5
+                },
+                {
+                  "item": 242,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -10987,6 +11561,38 @@
                   128.5,
                   110.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 5
+                },
+                {
+                  "item": 233,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 10
+                }
               ]
             }
           ]
@@ -11980,6 +12586,30 @@
                   63.5
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 1225,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 20
+                },
+                {
+                  "item": 231,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 10
+                }
+              ]
             }
           ]
         },
@@ -12246,6 +12876,30 @@
                   83
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 1227,
+                  "chance": 50
+                },
+                {
+                  "item": 1217,
+                  "chance": 20
+                },
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 10
+                }
+              ]
             }
           ]
         },
@@ -12507,6 +13161,34 @@
                   128.5,
                   110.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 1217,
+                  "chance": 20
+                },
+                {
+                  "item": 1210,
+                  "chance": 10
+                },
+                {
+                  "item": 1223,
+                  "chance": 30
+                },
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 230,
+                  "chance": 20
+                }
               ]
             }
           ]
@@ -13337,6 +14019,22 @@
                   63.5
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -13499,6 +14197,22 @@
                   83
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -13652,6 +14366,22 @@
                   128.5,
                   110.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
               ]
             }
           ]
@@ -14044,6 +14774,43 @@
         10418
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 5
+                },
+                {
+                  "item": 232,
+                  "chance": 15
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 236,
+                  "chance": 20
+                },
+                {
+                  "item": 234,
+                  "chance": 25
+                },
+                {
+                  "item": 241,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -15139,6 +15906,47 @@
         11012
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 10
+                },
+                {
+                  "item": 238,
+                  "chance": 2
+                },
+                {
+                  "item": 232,
+                  "chance": 10
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 236,
+                  "chance": 18
+                },
+                {
+                  "item": 234,
+                  "chance": 25
+                },
+                {
+                  "item": 241,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -16429,6 +17237,47 @@
         60013
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 10
+                },
+                {
+                  "item": 238,
+                  "chance": 2
+                },
+                {
+                  "item": 232,
+                  "chance": 10
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 236,
+                  "chance": 18
+                },
+                {
+                  "item": 234,
+                  "chance": 25
+                },
+                {
+                  "item": 241,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -17737,6 +18586,43 @@
       ],
       "areas": [
         {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 1225,
+                  "chance": 15
+                },
+                {
+                  "item": 1226,
+                  "chance": 15
+                },
+                {
+                  "item": 1224,
+                  "chance": 30
+                },
+                {
+                  "item": 1223,
+                  "chance": 10
+                },
+                {
+                  "item": 1218,
+                  "chance": 5
+                },
+                {
+                  "item": 234,
+                  "chance": 25
+                }
+              ]
+            }
+          ]
+        },
+        {
           "area": 1,
           "nodes": [
             {
@@ -18862,6 +19748,27 @@
         21013
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -26205,6 +27112,38 @@
                   128.8
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 15
+                },
+                {
+                  "item": 229,
+                  "chance": 24
+                },
+                {
+                  "item": 232,
+                  "chance": 23
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 239,
+                  "chance": 3
+                }
+              ]
             }
           ]
         },
@@ -26891,6 +27830,50 @@
                   68.9
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 3
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 232,
+                  "chance": 8
+                },
+                {
+                  "item": 231,
+                  "chance": 8
+                },
+                {
+                  "item": 233,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 15
+                },
+                {
+                  "item": 234,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 240,
+                  "chance": 3
+                }
+              ]
             }
           ]
         },
@@ -27399,6 +28382,38 @@
                   43,
                   128.8
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 15
+                },
+                {
+                  "item": 229,
+                  "chance": 24
+                },
+                {
+                  "item": 232,
+                  "chance": 23
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 239,
+                  "chance": 3
+                }
               ]
             }
           ]
@@ -28042,6 +29057,50 @@
                   68.9
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 3
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 232,
+                  "chance": 8
+                },
+                {
+                  "item": 231,
+                  "chance": 8
+                },
+                {
+                  "item": 233,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 15
+                },
+                {
+                  "item": 234,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 240,
+                  "chance": 3
+                }
+              ]
             }
           ]
         },
@@ -28537,6 +29596,46 @@
                   43,
                   128.8
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 10
+                },
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 229,
+                  "chance": 18
+                },
+                {
+                  "item": 232,
+                  "chance": 18
+                },
+                {
+                  "item": 231,
+                  "chance": 11
+                },
+                {
+                  "item": 235,
+                  "chance": 8
+                },
+                {
+                  "item": 241,
+                  "chance": 7
+                },
+                {
+                  "item": 239,
+                  "chance": 3
+                }
               ]
             }
           ]
@@ -29287,6 +30386,50 @@
                   94.1,
                   68.9
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 232,
+                  "chance": 6
+                },
+                {
+                  "item": 231,
+                  "chance": 6
+                },
+                {
+                  "item": 233,
+                  "chance": 14
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 234,
+                  "chance": 13
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 240,
+                  "chance": 5
+                }
               ]
             }
           ]
@@ -29846,6 +30989,46 @@
                   128.8
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 10
+                },
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 229,
+                  "chance": 18
+                },
+                {
+                  "item": 232,
+                  "chance": 18
+                },
+                {
+                  "item": 231,
+                  "chance": 11
+                },
+                {
+                  "item": 235,
+                  "chance": 8
+                },
+                {
+                  "item": 241,
+                  "chance": 7
+                },
+                {
+                  "item": 239,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -30595,6 +31778,50 @@
                   94.1,
                   68.9
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 232,
+                  "chance": 6
+                },
+                {
+                  "item": 231,
+                  "chance": 6
+                },
+                {
+                  "item": 233,
+                  "chance": 14
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 234,
+                  "chance": 13
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 240,
+                  "chance": 5
+                }
               ]
             }
           ]
@@ -31163,6 +32390,34 @@
                   43,
                   128.8
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 20
+                },
+                {
+                  "item": 234,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 15
+                },
+                {
+                  "item": 1225,
+                  "chance": 25
+                },
+                {
+                  "item": 1226,
+                  "chance": 25
+                }
               ]
             }
           ]
@@ -31990,6 +33245,30 @@
                   68.9
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 230,
+                  "chance": 45
+                },
+                {
+                  "item": 1223,
+                  "chance": 30
+                },
+                {
+                  "item": 1216,
+                  "chance": 20
+                },
+                {
+                  "item": 1209,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -32550,6 +33829,22 @@
                   128.8
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -33019,6 +34314,22 @@
                   94.1,
                   68.9
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
               ]
             }
           ]
@@ -34652,6 +35963,42 @@
                   125.6
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 13
+                },
+                {
+                  "item": 233,
+                  "chance": 16
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 236,
+                  "chance": 10
+                },
+                {
+                  "item": 240,
+                  "chance": 8
+                }
+              ]
             }
           ]
         },
@@ -35521,6 +36868,42 @@
                   80.2,
                   125.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 13
+                },
+                {
+                  "item": 233,
+                  "chance": 16
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 236,
+                  "chance": 10
+                },
+                {
+                  "item": 240,
+                  "chance": 8
+                }
               ]
             }
           ]
@@ -36511,6 +37894,42 @@
                   80.2,
                   125.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 12
+                },
+                {
+                  "item": 233,
+                  "chance": 19
+                },
+                {
+                  "item": 235,
+                  "chance": 16
+                },
+                {
+                  "item": 236,
+                  "chance": 13
+                },
+                {
+                  "item": 240,
+                  "chance": 12
+                }
               ]
             }
           ]
@@ -37660,6 +39079,42 @@
                   80.2,
                   125.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 12
+                },
+                {
+                  "item": 233,
+                  "chance": 19
+                },
+                {
+                  "item": 235,
+                  "chance": 16
+                },
+                {
+                  "item": 236,
+                  "chance": 13
+                },
+                {
+                  "item": 240,
+                  "chance": 12
+                }
               ]
             }
           ]
@@ -38871,6 +40326,34 @@
                   125.6
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 1225,
+                  "chance": 30
+                },
+                {
+                  "item": 1224,
+                  "chance": 30
+                },
+                {
+                  "item": 1223,
+                  "chance": 20
+                },
+                {
+                  "item": 1215,
+                  "chance": 13
+                },
+                {
+                  "item": 1208,
+                  "chance": 7
+                }
+              ]
             }
           ]
         },
@@ -39797,6 +41280,42 @@
                   125.6
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 13
+                },
+                {
+                  "item": 233,
+                  "chance": 16
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 236,
+                  "chance": 10
+                },
+                {
+                  "item": 240,
+                  "chance": 8
+                }
+              ]
             }
           ]
         },
@@ -40462,6 +41981,22 @@
                   125.6
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -40865,6 +42400,39 @@
         60010
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 230,
+                  "chance": 23
+                },
+                {
+                  "item": 232,
+                  "chance": 16
+                },
+                {
+                  "item": 233,
+                  "chance": 16
+                },
+                {
+                  "item": 234,
+                  "chance": 23
+                },
+                {
+                  "item": 243,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -41476,6 +43044,34 @@
                   "chance": 10
                 }
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 8
+                },
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 242,
+                  "chance": 8
+                },
+                {
+                  "item": 243,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -41591,6 +43187,39 @@
         60029
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 230,
+                  "chance": 23
+                },
+                {
+                  "item": 232,
+                  "chance": 16
+                },
+                {
+                  "item": 233,
+                  "chance": 16
+                },
+                {
+                  "item": 234,
+                  "chance": 23
+                },
+                {
+                  "item": 243,
+                  "chance": 2
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -42223,6 +43852,34 @@
                   "chance": 10
                 }
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 8
+                },
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 242,
+                  "chance": 5
+                },
+                {
+                  "item": 243,
+                  "chance": 2
+                }
+              ]
             }
           ]
         },
@@ -42320,6 +43977,39 @@
         60032
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 230,
+                  "chance": 23
+                },
+                {
+                  "item": 232,
+                  "chance": 16
+                },
+                {
+                  "item": 233,
+                  "chance": 16
+                },
+                {
+                  "item": 234,
+                  "chance": 23
+                },
+                {
+                  "item": 243,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -42956,6 +44646,34 @@
                   "chance": 10
                 }
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 8
+                },
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 242,
+                  "chance": 8
+                },
+                {
+                  "item": 243,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -43053,6 +44771,35 @@
         10414
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 230,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 20
+                },
+                {
+                  "item": 233,
+                  "chance": 20
+                },
+                {
+                  "item": 234,
+                  "chance": 20
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -43669,6 +45416,22 @@
                   "chance": 10
                 }
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 10
+                }
+              ]
             }
           ]
         },
@@ -43761,6 +45524,43 @@
         11218
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 20
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 20
+                },
+                {
+                  "item": 241,
+                  "chance": 15
+                },
+                {
+                  "item": 239,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -44909,6 +46709,38 @@
                   32.1
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 23
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 243,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -45047,6 +46879,43 @@
         3114
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 20
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 20
+                },
+                {
+                  "item": 241,
+                  "chance": 15
+                },
+                {
+                  "item": 239,
+                  "chance": 7
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -46195,6 +48064,38 @@
                   32.1
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 23
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 233,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 243,
+                  "chance": 8
+                }
+              ]
             }
           ]
         },
@@ -46562,6 +48463,34 @@
                   63.5
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 30
+                },
+                {
+                  "item": 230,
+                  "chance": 10
+                },
+                {
+                  "item": 231,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 20
+                },
+                {
+                  "item": 240,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -46713,6 +48642,30 @@
                   52.1,
                   83.5
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 32
+                },
+                {
+                  "item": 233,
+                  "chance": 30
+                },
+                {
+                  "item": 235,
+                  "chance": 30
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                }
               ]
             }
           ]
@@ -46955,6 +48908,38 @@
                   128.5,
                   110.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 5
+                },
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 11
+                },
+                {
+                  "item": 233,
+                  "chance": 9
+                },
+                {
+                  "item": 235,
+                  "chance": 7
+                },
+                {
+                  "item": 241,
+                  "chance": 5
+                }
               ]
             }
           ]
@@ -47698,6 +49683,42 @@
                   63.5
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 20
+                },
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 13
+                },
+                {
+                  "item": 231,
+                  "chance": 16
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 240,
+                  "chance": 5
+                },
+                {
+                  "item": 242,
+                  "chance": 3
+                }
+              ]
             }
           ]
         },
@@ -47865,6 +49886,30 @@
                   52.1,
                   83.5
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 32
+                },
+                {
+                  "item": 233,
+                  "chance": 30
+                },
+                {
+                  "item": 235,
+                  "chance": 30
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                }
               ]
             }
           ]
@@ -48115,6 +50160,38 @@
                   128.5,
                   110.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 5
+                },
+                {
+                  "item": 233,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 10
+                }
               ]
             }
           ]
@@ -49053,6 +51130,42 @@
                   63.5
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 20
+                },
+                {
+                  "item": 238,
+                  "chance": 8
+                },
+                {
+                  "item": 230,
+                  "chance": 13
+                },
+                {
+                  "item": 231,
+                  "chance": 16
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 240,
+                  "chance": 5
+                },
+                {
+                  "item": 242,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -49224,6 +51337,30 @@
                   52.1,
                   83.5
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 32
+                },
+                {
+                  "item": 233,
+                  "chance": 30
+                },
+                {
+                  "item": 235,
+                  "chance": 30
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                }
               ]
             }
           ]
@@ -49474,6 +51611,38 @@
                   128.5,
                   110.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 5
+                },
+                {
+                  "item": 233,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 10
+                }
               ]
             }
           ]
@@ -50198,6 +52367,43 @@
         10417
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 5
+                },
+                {
+                  "item": 232,
+                  "chance": 15
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 236,
+                  "chance": 20
+                },
+                {
+                  "item": 234,
+                  "chance": 25
+                },
+                {
+                  "item": 241,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -51296,6 +53502,47 @@
         11223
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 10
+                },
+                {
+                  "item": 238,
+                  "chance": 2
+                },
+                {
+                  "item": 232,
+                  "chance": 10
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 236,
+                  "chance": 18
+                },
+                {
+                  "item": 234,
+                  "chance": 25
+                },
+                {
+                  "item": 241,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -52585,6 +54832,47 @@
         3224
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 10
+                },
+                {
+                  "item": 238,
+                  "chance": 2
+                },
+                {
+                  "item": 232,
+                  "chance": 10
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 236,
+                  "chance": 18
+                },
+                {
+                  "item": 234,
+                  "chance": 25
+                },
+                {
+                  "item": 241,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -58919,6 +61207,38 @@
                   128.8
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 15
+                },
+                {
+                  "item": 229,
+                  "chance": 24
+                },
+                {
+                  "item": 232,
+                  "chance": 23
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 239,
+                  "chance": 3
+                }
+              ]
             }
           ]
         },
@@ -59605,6 +61925,50 @@
                   68.9
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 3
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 232,
+                  "chance": 8
+                },
+                {
+                  "item": 231,
+                  "chance": 8
+                },
+                {
+                  "item": 233,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 15
+                },
+                {
+                  "item": 234,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 240,
+                  "chance": 3
+                }
+              ]
             }
           ]
         },
@@ -60112,6 +62476,38 @@
                   43,
                   128.8
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 15
+                },
+                {
+                  "item": 229,
+                  "chance": 24
+                },
+                {
+                  "item": 232,
+                  "chance": 23
+                },
+                {
+                  "item": 231,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 10
+                },
+                {
+                  "item": 239,
+                  "chance": 3
+                }
               ]
             }
           ]
@@ -60755,6 +63151,50 @@
                   68.9
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 3
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 232,
+                  "chance": 8
+                },
+                {
+                  "item": 231,
+                  "chance": 8
+                },
+                {
+                  "item": 233,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 15
+                },
+                {
+                  "item": 234,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 240,
+                  "chance": 3
+                }
+              ]
             }
           ]
         },
@@ -61249,6 +63689,46 @@
                   43,
                   128.8
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 10
+                },
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 229,
+                  "chance": 18
+                },
+                {
+                  "item": 232,
+                  "chance": 18
+                },
+                {
+                  "item": 231,
+                  "chance": 11
+                },
+                {
+                  "item": 235,
+                  "chance": 8
+                },
+                {
+                  "item": 241,
+                  "chance": 7
+                },
+                {
+                  "item": 239,
+                  "chance": 3
+                }
               ]
             }
           ]
@@ -61999,6 +64479,50 @@
                   94.1,
                   68.9
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 232,
+                  "chance": 6
+                },
+                {
+                  "item": 231,
+                  "chance": 6
+                },
+                {
+                  "item": 233,
+                  "chance": 14
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 234,
+                  "chance": 13
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 240,
+                  "chance": 5
+                }
               ]
             }
           ]
@@ -62559,6 +65083,46 @@
                   128.8
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 237,
+                  "chance": 10
+                },
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 229,
+                  "chance": 18
+                },
+                {
+                  "item": 232,
+                  "chance": 18
+                },
+                {
+                  "item": 231,
+                  "chance": 11
+                },
+                {
+                  "item": 235,
+                  "chance": 8
+                },
+                {
+                  "item": 241,
+                  "chance": 7
+                },
+                {
+                  "item": 239,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -63309,6 +65873,50 @@
                   68.9
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 238,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 30
+                },
+                {
+                  "item": 232,
+                  "chance": 6
+                },
+                {
+                  "item": 231,
+                  "chance": 6
+                },
+                {
+                  "item": 233,
+                  "chance": 14
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 234,
+                  "chance": 13
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 240,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -63862,6 +66470,22 @@
                   128.8
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -64331,6 +66955,22 @@
                   94.1,
                   68.9
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
               ]
             }
           ]
@@ -65479,6 +68119,42 @@
                   125.6
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 13
+                },
+                {
+                  "item": 233,
+                  "chance": 16
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 236,
+                  "chance": 10
+                },
+                {
+                  "item": 240,
+                  "chance": 8
+                }
+              ]
             }
           ]
         },
@@ -66350,6 +69026,42 @@
                   80.2,
                   125.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 20
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 13
+                },
+                {
+                  "item": 233,
+                  "chance": 16
+                },
+                {
+                  "item": 235,
+                  "chance": 13
+                },
+                {
+                  "item": 236,
+                  "chance": 10
+                },
+                {
+                  "item": 240,
+                  "chance": 8
+                }
               ]
             }
           ]
@@ -67344,6 +70056,42 @@
                   80.2,
                   125.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 12
+                },
+                {
+                  "item": 233,
+                  "chance": 19
+                },
+                {
+                  "item": 235,
+                  "chance": 16
+                },
+                {
+                  "item": 236,
+                  "chance": 13
+                },
+                {
+                  "item": 240,
+                  "chance": 12
+                }
               ]
             }
           ]
@@ -68492,6 +71240,42 @@
                   125.6
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 12
+                },
+                {
+                  "item": 233,
+                  "chance": 19
+                },
+                {
+                  "item": 235,
+                  "chance": 16
+                },
+                {
+                  "item": 236,
+                  "chance": 13
+                },
+                {
+                  "item": 240,
+                  "chance": 12
+                }
+              ]
             }
           ]
         },
@@ -69434,6 +72218,30 @@
                   85.9
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 12
+                },
+                {
+                  "item": 232,
+                  "chance": 20
+                },
+                {
+                  "item": 233,
+                  "chance": 28
+                },
+                {
+                  "item": 231,
+                  "chance": 40
+                }
+              ]
             }
           ]
         },
@@ -69902,6 +72710,38 @@
                   104.7
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 17
+                },
+                {
+                  "item": 233,
+                  "chance": 30
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 242,
+                  "chance": 8
+                },
+                {
+                  "item": 231,
+                  "chance": 32
+                }
+              ]
             }
           ]
         },
@@ -70107,6 +72947,34 @@
                   93.7,
                   104.1
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 230,
+                  "chance": 15
+                },
+                {
+                  "item": 232,
+                  "chance": 30
+                },
+                {
+                  "item": 235,
+                  "chance": 35
+                },
+                {
+                  "item": 236,
+                  "chance": 15
+                },
+                {
+                  "item": 239,
+                  "chance": 5
+                }
               ]
             }
           ]
@@ -70589,6 +73457,30 @@
                   85.9
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 12
+                },
+                {
+                  "item": 232,
+                  "chance": 20
+                },
+                {
+                  "item": 233,
+                  "chance": 28
+                },
+                {
+                  "item": 231,
+                  "chance": 40
+                }
+              ]
             }
           ]
         },
@@ -71057,6 +73949,38 @@
                   104.7
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 5
+                },
+                {
+                  "item": 230,
+                  "chance": 17
+                },
+                {
+                  "item": 233,
+                  "chance": 30
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 242,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 35
+                }
+              ]
             }
           ]
         },
@@ -71262,6 +74186,34 @@
                   93.7,
                   104.1
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 230,
+                  "chance": 15
+                },
+                {
+                  "item": 232,
+                  "chance": 30
+                },
+                {
+                  "item": 235,
+                  "chance": 38
+                },
+                {
+                  "item": 236,
+                  "chance": 15
+                },
+                {
+                  "item": 239,
+                  "chance": 2
+                }
               ]
             }
           ]
@@ -71630,6 +74582,22 @@
                   85.9
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -71942,6 +74910,22 @@
                   104.7
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -72099,6 +75083,22 @@
                   93.7,
                   104.1
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
               ]
             }
           ]
@@ -72536,6 +75536,34 @@
                   37.6
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 18
+                },
+                {
+                  "item": 232,
+                  "chance": 24
+                },
+                {
+                  "item": 233,
+                  "chance": 42
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 242,
+                  "chance": 8
+                }
+              ]
             }
           ]
         },
@@ -72652,6 +75680,34 @@
                   76.9,
                   25.2
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 230,
+                  "chance": 13
+                },
+                {
+                  "item": 232,
+                  "chance": 15
+                },
+                {
+                  "item": 233,
+                  "chance": 36
+                },
+                {
+                  "item": 236,
+                  "chance": 31
+                },
+                {
+                  "item": 239,
+                  "chance": 5
+                }
               ]
             }
           ]
@@ -73132,6 +76188,30 @@
                   45.6,
                   44.4
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 28
+                },
+                {
+                  "item": 233,
+                  "chance": 17
+                },
+                {
+                  "item": 231,
+                  "chance": 29
+                },
+                {
+                  "item": 236,
+                  "chance": 26
+                }
               ]
             }
           ]
@@ -73838,6 +76918,34 @@
                   37.6
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 18
+                },
+                {
+                  "item": 232,
+                  "chance": 24
+                },
+                {
+                  "item": 233,
+                  "chance": 45
+                },
+                {
+                  "item": 241,
+                  "chance": 8
+                },
+                {
+                  "item": 242,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -73954,6 +77062,34 @@
                   76.9,
                   25.2
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 230,
+                  "chance": 13
+                },
+                {
+                  "item": 232,
+                  "chance": 15
+                },
+                {
+                  "item": 233,
+                  "chance": 39
+                },
+                {
+                  "item": 236,
+                  "chance": 31
+                },
+                {
+                  "item": 239,
+                  "chance": 2
+                }
               ]
             }
           ]
@@ -74434,6 +77570,30 @@
                   45.6,
                   44.4
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 28
+                },
+                {
+                  "item": 233,
+                  "chance": 17
+                },
+                {
+                  "item": 231,
+                  "chance": 29
+                },
+                {
+                  "item": 236,
+                  "chance": 26
+                }
               ]
             }
           ]
@@ -75100,6 +78260,22 @@
                   37.6
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -75176,6 +78352,22 @@
                   76.9,
                   25.2
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
               ]
             }
           ]
@@ -75484,6 +78676,22 @@
                   45.6,
                   44.4
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
               ]
             }
           ]
@@ -76460,6 +79668,38 @@
                   24.2
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 23
+                },
+                {
+                  "item": 241,
+                  "chance": 12
+                },
+                {
+                  "item": 242,
+                  "chance": 8
+                },
+                {
+                  "item": 231,
+                  "chance": 28
+                },
+                {
+                  "item": 234,
+                  "chance": 24
+                },
+                {
+                  "item": 239,
+                  "chance": 5
+                }
+              ]
             }
           ]
         },
@@ -77071,6 +80311,50 @@
                 {
                   "item": 818,
                   "chance": 15
+                }
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 10
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 232,
+                  "chance": 8
+                },
+                {
+                  "item": 241,
+                  "chance": 33
+                },
+                {
+                  "item": 242,
+                  "chance": 15
+                },
+                {
+                  "item": 235,
+                  "chance": 9
+                },
+                {
+                  "item": 236,
+                  "chance": 5
+                },
+                {
+                  "item": 234,
+                  "chance": 7
+                },
+                {
+                  "item": 239,
+                  "chance": 8
                 }
               ]
             }
@@ -77835,6 +81119,38 @@
                   24.2
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 26
+                },
+                {
+                  "item": 241,
+                  "chance": 12
+                },
+                {
+                  "item": 242,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 31
+                },
+                {
+                  "item": 234,
+                  "chance": 24
+                },
+                {
+                  "item": 239,
+                  "chance": 2
+                }
+              ]
             }
           ]
         },
@@ -78444,6 +81760,54 @@
                   "chance": 15
                 }
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 12
+                },
+                {
+                  "item": 230,
+                  "chance": 5
+                },
+                {
+                  "item": 232,
+                  "chance": 8
+                },
+                {
+                  "item": 233,
+                  "chance": 2
+                },
+                {
+                  "item": 241,
+                  "chance": 38
+                },
+                {
+                  "item": 231,
+                  "chance": 9
+                },
+                {
+                  "item": 235,
+                  "chance": 9
+                },
+                {
+                  "item": 236,
+                  "chance": 5
+                },
+                {
+                  "item": 234,
+                  "chance": 7
+                },
+                {
+                  "item": 239,
+                  "chance": 5
+                }
+              ]
             }
           ]
         }
@@ -78992,6 +82356,22 @@
                   24.2
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -79353,6 +82733,22 @@
                   "chance": 100
                 }
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         }
@@ -79369,6 +82765,43 @@
         3212
       ],
       "areas": [
+        {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 14
+                },
+                {
+                  "item": 233,
+                  "chance": 25
+                },
+                {
+                  "item": 241,
+                  "chance": 5
+                },
+                {
+                  "item": 242,
+                  "chance": 5
+                },
+                {
+                  "item": 231,
+                  "chance": 24
+                },
+                {
+                  "item": 235,
+                  "chance": 27
+                }
+              ]
+            }
+          ]
+        },
         {
           "area": 1,
           "nodes": [
@@ -79877,6 +83310,34 @@
                   82.4,
                   90.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 18
+                },
+                {
+                  "item": 235,
+                  "chance": 20
+                },
+                {
+                  "item": 236,
+                  "chance": 21
+                },
+                {
+                  "item": 234,
+                  "chance": 36
+                },
+                {
+                  "item": 239,
+                  "chance": 5
+                }
               ]
             }
           ]
@@ -80555,6 +84016,43 @@
       ],
       "areas": [
         {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 14
+                },
+                {
+                  "item": 233,
+                  "chance": 25
+                },
+                {
+                  "item": 241,
+                  "chance": 5
+                },
+                {
+                  "item": 242,
+                  "chance": 2
+                },
+                {
+                  "item": 231,
+                  "chance": 27
+                },
+                {
+                  "item": 235,
+                  "chance": 27
+                }
+              ]
+            }
+          ]
+        },
+        {
           "area": 1,
           "nodes": [
             {
@@ -81054,6 +84552,34 @@
                   82.4,
                   90.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 232,
+                  "chance": 18
+                },
+                {
+                  "item": 235,
+                  "chance": 20
+                },
+                {
+                  "item": 236,
+                  "chance": 24
+                },
+                {
+                  "item": 234,
+                  "chance": 36
+                },
+                {
+                  "item": 239,
+                  "chance": 2
+                }
               ]
             }
           ]
@@ -81745,6 +85271,27 @@
       ],
       "areas": [
         {
+          "area": 0,
+          "nodes": [
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
+            }
+          ]
+        },
+        {
           "area": 1,
           "nodes": [
             {
@@ -82048,6 +85595,22 @@
                   82.4,
                   90.6
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
               ]
             }
           ]
@@ -82420,7 +85983,6 @@
       "texture": "map30",
       "quests": [
         2228,
-        3009,
         11005,
         11201,
         60026
@@ -82704,6 +86266,34 @@
                   19.1,
                   72.3
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 30
+                },
+                {
+                  "item": 236,
+                  "chance": 15
+                },
+                {
+                  "item": 231,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 25
+                }
               ]
             }
           ]
@@ -82998,6 +86588,42 @@
                   78.7,
                   10
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 234,
+                  "chance": 28
+                },
+                {
+                  "item": 231,
+                  "chance": 30
+                },
+                {
+                  "item": 230,
+                  "chance": 16
+                },
+                {
+                  "item": 233,
+                  "chance": 12
+                },
+                {
+                  "item": 241,
+                  "chance": 7
+                },
+                {
+                  "item": 242,
+                  "chance": 5
+                },
+                {
+                  "item": 243,
+                  "chance": 2
+                }
               ]
             }
           ]
@@ -83926,6 +87552,34 @@
                   72.3
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 30
+                },
+                {
+                  "item": 236,
+                  "chance": 15
+                },
+                {
+                  "item": 231,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 25
+                }
+              ]
             }
           ]
         },
@@ -84223,6 +87877,42 @@
                   78.7,
                   10
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 234,
+                  "chance": 28
+                },
+                {
+                  "item": 231,
+                  "chance": 30
+                },
+                {
+                  "item": 230,
+                  "chance": 12
+                },
+                {
+                  "item": 233,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 7
+                },
+                {
+                  "item": 242,
+                  "chance": 8
+                },
+                {
+                  "item": 243,
+                  "chance": 5
+                }
               ]
             }
           ]
@@ -84870,6 +88560,1288 @@
       "map": 30,
       "texture": "map30",
       "quests": [
+        3009
+      ],
+      "areas": [
+        {
+          "area": 1,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 179,
+                  "chance": 25
+                },
+                {
+                  "item": 175,
+                  "chance": 40
+                },
+                {
+                  "item": 176,
+                  "chance": 20
+                },
+                {
+                  "item": 178,
+                  "chance": 15
+                }
+              ],
+              "positions": [
+                [
+                  31.8,
+                  100.8
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 168,
+                  "chance": 45
+                },
+                {
+                  "item": 167,
+                  "chance": 20
+                },
+                {
+                  "item": 165,
+                  "chance": 25
+                },
+                {
+                  "item": 163,
+                  "chance": 10
+                }
+              ],
+              "positions": [
+                [
+                  39.1,
+                  108.6
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 185,
+                  "chance": 25
+                },
+                {
+                  "item": 163,
+                  "chance": 50
+                },
+                {
+                  "item": 166,
+                  "chance": 20
+                },
+                {
+                  "item": 246,
+                  "chance": 5
+                }
+              ],
+              "positions": [
+                [
+                  22.6,
+                  95.9
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 93,
+                  "chance": 40
+                },
+                {
+                  "item": 191,
+                  "chance": 37
+                },
+                {
+                  "item": 190,
+                  "chance": 8
+                },
+                {
+                  "item": 188,
+                  "chance": 15
+                }
+              ],
+              "positions": [
+                [
+                  30.4,
+                  110.1
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 2,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 139,
+                  "chance": 35
+                },
+                {
+                  "item": 137,
+                  "chance": 55
+                },
+                {
+                  "item": 200,
+                  "chance": 10
+                }
+              ],
+              "positions": [
+                [
+                  26.7,
+                  71.7
+                ]
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 8,
+              "items": [
+                {
+                  "item": 143,
+                  "chance": 10
+                },
+                {
+                  "item": 138,
+                  "chance": 15
+                },
+                {
+                  "item": 252,
+                  "chance": 20
+                },
+                {
+                  "item": 257,
+                  "chance": 15
+                },
+                {
+                  "item": 258,
+                  "chance": 20
+                },
+                {
+                  "item": 255,
+                  "chance": 10
+                },
+                {
+                  "item": 261,
+                  "chance": 7
+                },
+                {
+                  "item": 262,
+                  "chance": 3
+                }
+              ],
+              "positions": [
+                [
+                  17.4,
+                  66.7
+                ]
+              ]
+            },
+            {
+              "kind": "mine",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 201,
+                  "chance": 5
+                },
+                {
+                  "item": 219,
+                  "chance": 25
+                },
+                {
+                  "item": 153,
+                  "chance": 17
+                },
+                {
+                  "item": 205,
+                  "chance": 15
+                },
+                {
+                  "item": 206,
+                  "chance": 10
+                },
+                {
+                  "item": 213,
+                  "chance": 10
+                },
+                {
+                  "item": 214,
+                  "chance": 5
+                },
+                {
+                  "item": 224,
+                  "chance": 5
+                },
+                {
+                  "item": 947,
+                  "chance": 8
+                }
+              ],
+              "positions": [
+                [
+                  28.5,
+                  60.3
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 5,
+              "items": [
+                {
+                  "item": 67,
+                  "chance": 69
+                },
+                {
+                  "item": 68,
+                  "chance": 10
+                },
+                {
+                  "item": 189,
+                  "chance": 11
+                },
+                {
+                  "item": 382,
+                  "chance": 10
+                }
+              ],
+              "positions": [
+                [
+                  19.1,
+                  72.3
+                ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 30
+                },
+                {
+                  "item": 236,
+                  "chance": 15
+                },
+                {
+                  "item": 231,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 25
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "area": 3,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 161,
+                  "chance": 65
+                },
+                {
+                  "item": 382,
+                  "chance": 25
+                },
+                {
+                  "item": 246,
+                  "chance": 10
+                }
+              ],
+              "positions": [
+                [
+                  48.8,
+                  55.2
+                ]
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 136,
+                  "chance": 10
+                },
+                {
+                  "item": 250,
+                  "chance": 22
+                },
+                {
+                  "item": 253,
+                  "chance": 20
+                },
+                {
+                  "item": 258,
+                  "chance": 18
+                },
+                {
+                  "item": 255,
+                  "chance": 15
+                },
+                {
+                  "item": 261,
+                  "chance": 10
+                },
+                {
+                  "item": 262,
+                  "chance": 5
+                }
+              ],
+              "positions": [
+                [
+                  58.1,
+                  57.3
+                ]
+              ]
+            },
+            {
+              "kind": "mine",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 153,
+                  "chance": 15
+                },
+                {
+                  "item": 219,
+                  "chance": 28
+                },
+                {
+                  "item": 204,
+                  "chance": 10
+                },
+                {
+                  "item": 206,
+                  "chance": 13
+                },
+                {
+                  "item": 213,
+                  "chance": 10
+                },
+                {
+                  "item": 214,
+                  "chance": 8
+                },
+                {
+                  "item": 946,
+                  "chance": 15
+                },
+                {
+                  "item": 225,
+                  "chance": 1
+                }
+              ],
+              "positions": [
+                [
+                  53.8,
+                  51.4
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 171,
+                  "chance": 40
+                },
+                {
+                  "item": 187,
+                  "chance": 30
+                },
+                {
+                  "item": 186,
+                  "chance": 30
+                }
+              ],
+              "positions": [
+                [
+                  58.2,
+                  45.2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 4,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 181,
+                  "chance": 25
+                },
+                {
+                  "item": 175,
+                  "chance": 40
+                },
+                {
+                  "item": 176,
+                  "chance": 20
+                },
+                {
+                  "item": 178,
+                  "chance": 15
+                }
+              ],
+              "positions": [
+                [
+                  60.5,
+                  15.8
+                ]
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 138,
+                  "chance": 10
+                },
+                {
+                  "item": 253,
+                  "chance": 25
+                },
+                {
+                  "item": 252,
+                  "chance": 20
+                },
+                {
+                  "item": 254,
+                  "chance": 20
+                },
+                {
+                  "item": 255,
+                  "chance": 15
+                },
+                {
+                  "item": 261,
+                  "chance": 7
+                },
+                {
+                  "item": 262,
+                  "chance": 3
+                }
+              ],
+              "positions": [
+                [
+                  67.9,
+                  9.5
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 166,
+                  "chance": 35
+                },
+                {
+                  "item": 182,
+                  "chance": 25
+                },
+                {
+                  "item": 188,
+                  "chance": 15
+                },
+                {
+                  "item": 164,
+                  "chance": 5
+                },
+                {
+                  "item": 163,
+                  "chance": 20
+                }
+              ],
+              "positions": [
+                [
+                  80.7,
+                  16.8
+                ]
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 8,
+              "items": [
+                {
+                  "item": 252,
+                  "chance": 25
+                },
+                {
+                  "item": 251,
+                  "chance": 22
+                },
+                {
+                  "item": 257,
+                  "chance": 20
+                },
+                {
+                  "item": 258,
+                  "chance": 18
+                },
+                {
+                  "item": 261,
+                  "chance": 10
+                },
+                {
+                  "item": 262,
+                  "chance": 5
+                }
+              ],
+              "positions": [
+                [
+                  78.7,
+                  10
+                ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 234,
+                  "chance": 28
+                },
+                {
+                  "item": 231,
+                  "chance": 30
+                },
+                {
+                  "item": 230,
+                  "chance": 12
+                },
+                {
+                  "item": 233,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 7
+                },
+                {
+                  "item": 242,
+                  "chance": 8
+                },
+                {
+                  "item": 243,
+                  "chance": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "area": 5,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 153,
+                  "chance": 80
+                },
+                {
+                  "item": 75,
+                  "chance": 20
+                }
+              ],
+              "positions": [
+                [
+                  119.1,
+                  57.1
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 177,
+                  "chance": 45
+                },
+                {
+                  "item": 182,
+                  "chance": 40
+                },
+                {
+                  "item": 178,
+                  "chance": 15
+                }
+              ],
+              "positions": [
+                [
+                  128.6,
+                  49.5
+                ]
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 251,
+                  "chance": 20
+                },
+                {
+                  "item": 250,
+                  "chance": 10
+                },
+                {
+                  "item": 143,
+                  "chance": 15
+                },
+                {
+                  "item": 254,
+                  "chance": 10
+                },
+                {
+                  "item": 255,
+                  "chance": 30
+                },
+                {
+                  "item": 261,
+                  "chance": 10
+                },
+                {
+                  "item": 262,
+                  "chance": 5
+                }
+              ],
+              "positions": [
+                [
+                  114.6,
+                  43.6
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 163,
+                  "chance": 60
+                },
+                {
+                  "item": 168,
+                  "chance": 20
+                },
+                {
+                  "item": 165,
+                  "chance": 20
+                }
+              ],
+              "positions": [
+                [
+                  115.4,
+                  34.4
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 6,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 8,
+              "items": [
+                {
+                  "item": 161,
+                  "chance": 65
+                },
+                {
+                  "item": 382,
+                  "chance": 25
+                },
+                {
+                  "item": 246,
+                  "chance": 10
+                }
+              ],
+              "positions": [
+                [
+                  70.2,
+                  104.4
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 171,
+                  "chance": 75
+                },
+                {
+                  "item": 165,
+                  "chance": 25
+                }
+              ],
+              "positions": [
+                [
+                  84.9,
+                  106.2
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 175,
+                  "chance": 40
+                },
+                {
+                  "item": 176,
+                  "chance": 20
+                },
+                {
+                  "item": 179,
+                  "chance": 20
+                },
+                {
+                  "item": 177,
+                  "chance": 20
+                }
+              ],
+              "positions": [
+                [
+                  92.1,
+                  102.6
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 167,
+                  "chance": 50
+                },
+                {
+                  "item": 164,
+                  "chance": 10
+                },
+                {
+                  "item": 162,
+                  "chance": 40
+                }
+              ],
+              "positions": [
+                [
+                  78.9,
+                  90.3
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 7,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 8,
+              "items": [
+                {
+                  "item": 281,
+                  "chance": 27
+                },
+                {
+                  "item": 876,
+                  "chance": 25
+                },
+                {
+                  "item": 292,
+                  "chance": 30
+                },
+                {
+                  "item": 291,
+                  "chance": 8
+                },
+                {
+                  "item": 290,
+                  "chance": 10
+                }
+              ],
+              "positions": [
+                [
+                  81.9,
+                  59.1
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 177,
+                  "chance": 50
+                },
+                {
+                  "item": 175,
+                  "chance": 20
+                },
+                {
+                  "item": 176,
+                  "chance": 10
+                },
+                {
+                  "item": 178,
+                  "chance": 20
+                }
+              ],
+              "positions": [
+                [
+                  89.7,
+                  56.4
+                ]
+              ]
+            },
+            {
+              "kind": "mine",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 153,
+                  "chance": 20
+                },
+                {
+                  "item": 203,
+                  "chance": 25
+                },
+                {
+                  "item": 204,
+                  "chance": 14
+                },
+                {
+                  "item": 206,
+                  "chance": 15
+                },
+                {
+                  "item": 213,
+                  "chance": 8
+                },
+                {
+                  "item": 214,
+                  "chance": 5
+                },
+                {
+                  "item": 947,
+                  "chance": 10
+                },
+                {
+                  "item": 225,
+                  "chance": 3
+                }
+              ],
+              "positions": [
+                [
+                  73.1,
+                  47.9
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 5,
+              "most_gathers": 10,
+              "items": [
+                {
+                  "item": 94,
+                  "chance": 55
+                },
+                {
+                  "item": 292,
+                  "chance": 35
+                },
+                {
+                  "item": 95,
+                  "chance": 10
+                }
+              ],
+              "positions": [
+                [
+                  81.9,
+                  58.2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 8,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 4,
+              "items": [
+                {
+                  "item": 77,
+                  "chance": 34
+                },
+                {
+                  "item": 83,
+                  "chance": 40
+                },
+                {
+                  "item": 144,
+                  "chance": 20
+                },
+                {
+                  "item": 337,
+                  "chance": 5
+                },
+                {
+                  "item": 339,
+                  "chance": 1
+                }
+              ],
+              "positions": [
+                [
+                  58.9,
+                  82
+                ]
+              ]
+            },
+            {
+              "kind": "mine",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 204,
+                  "chance": 15
+                },
+                {
+                  "item": 202,
+                  "chance": 20
+                },
+                {
+                  "item": 205,
+                  "chance": 14
+                },
+                {
+                  "item": 206,
+                  "chance": 5
+                },
+                {
+                  "item": 213,
+                  "chance": 10
+                },
+                {
+                  "item": 214,
+                  "chance": 10
+                },
+                {
+                  "item": 946,
+                  "chance": 10
+                },
+                {
+                  "item": 947,
+                  "chance": 8
+                },
+                {
+                  "item": 224,
+                  "chance": 5
+                },
+                {
+                  "item": 225,
+                  "chance": 3
+                }
+              ],
+              "positions": [
+                [
+                  63.3,
+                  80.3
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 5,
+              "items": [
+                {
+                  "item": 58,
+                  "chance": 60
+                },
+                {
+                  "item": 63,
+                  "chance": 15
+                },
+                {
+                  "item": 291,
+                  "chance": 5
+                },
+                {
+                  "item": 818,
+                  "chance": 10
+                },
+                {
+                  "item": 865,
+                  "chance": 10
+                }
+              ],
+              "positions": [
+                [
+                  63.2,
+                  74.7
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 153,
+                  "chance": 60
+                },
+                {
+                  "item": 200,
+                  "chance": 40
+                }
+              ],
+              "positions": [
+                [
+                  58.5,
+                  74.5
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 9,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 182,
+                  "chance": 35
+                },
+                {
+                  "item": 186,
+                  "chance": 50
+                },
+                {
+                  "item": 153,
+                  "chance": 15
+                }
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 8,
+              "items": [
+                {
+                  "item": 165,
+                  "chance": 20
+                },
+                {
+                  "item": 171,
+                  "chance": 63
+                },
+                {
+                  "item": 947,
+                  "chance": 2
+                },
+                {
+                  "item": 188,
+                  "chance": 15
+                }
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 10,
+              "items": [
+                {
+                  "item": 250,
+                  "chance": 10
+                },
+                {
+                  "item": 246,
+                  "chance": 5
+                },
+                {
+                  "item": 257,
+                  "chance": 10
+                },
+                {
+                  "item": 258,
+                  "chance": 30
+                },
+                {
+                  "item": 255,
+                  "chance": 35
+                },
+                {
+                  "item": 262,
+                  "chance": 10
+                }
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 4,
+              "most_gathers": 6,
+              "items": [
+                {
+                  "item": 64,
+                  "chance": 38
+                },
+                {
+                  "item": 865,
+                  "chance": 25
+                },
+                {
+                  "item": 946,
+                  "chance": 15
+                },
+                {
+                  "item": 291,
+                  "chance": 15
+                },
+                {
+                  "item": 337,
+                  "chance": 5
+                },
+                {
+                  "item": 339,
+                  "chance": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "map": 30,
+      "texture": "map30",
+      "quests": [
         4007
       ],
       "areas": [
@@ -85144,6 +90116,34 @@
                   72.3
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 1224,
+                  "chance": 20
+                },
+                {
+                  "item": 1223,
+                  "chance": 37
+                },
+                {
+                  "item": 1222,
+                  "chance": 25
+                },
+                {
+                  "item": 1221,
+                  "chance": 15
+                },
+                {
+                  "item": 1214,
+                  "chance": 3
+                }
+              ]
             }
           ]
         },
@@ -85385,6 +90385,34 @@
                   78.7,
                   10
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 1225,
+                  "chance": 30
+                },
+                {
+                  "item": 1226,
+                  "chance": 20
+                },
+                {
+                  "item": 234,
+                  "chance": 30
+                },
+                {
+                  "item": 1224,
+                  "chance": 13
+                },
+                {
+                  "item": 1214,
+                  "chance": 7
+                }
               ]
             }
           ]
@@ -86016,8 +91044,7 @@
       "map": 30,
       "texture": "map30",
       "quests": [
-        21016,
-        61011
+        21016
       ],
       "areas": [
         {
@@ -86170,6 +91197,22 @@
                   19.1,
                   72.3
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
               ]
             }
           ]
@@ -86324,6 +91367,724 @@
                   78.7,
                   10
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "area": 5,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 5,
+              "most_gathers": 5,
+              "items": [
+                {
+                  "item": 76,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  119.1,
+                  57.1
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 5,
+              "items": [
+                {
+                  "item": 8,
+                  "chance": 90
+                }
+              ],
+              "positions": [
+                [
+                  128.6,
+                  49.5
+                ]
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 13,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  114.6,
+                  43.6
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 4,
+              "items": [
+                {
+                  "item": 145,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  115.4,
+                  34.4
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 6,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 4,
+              "items": [
+                {
+                  "item": 64,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  70.2,
+                  104.4
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 863,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  84.9,
+                  106.2
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 3,
+              "items": [
+                {
+                  "item": 181,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  92.1,
+                  102.6
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 866,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  78.9,
+                  90.3
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 7,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 869,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  81.9,
+                  59.1
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 3,
+              "items": [
+                {
+                  "item": 24,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  89.7,
+                  56.4
+                ]
+              ]
+            },
+            {
+              "kind": "mine",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 3,
+              "items": [
+                {
+                  "item": 86,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  73.1,
+                  47.9
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 3,
+              "items": [
+                {
+                  "item": 281,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  81.9,
+                  58.2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 8,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 3,
+              "items": [
+                {
+                  "item": 149,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  58.9,
+                  82
+                ]
+              ]
+            },
+            {
+              "kind": "mine",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 2,
+              "items": [
+                {
+                  "item": 872,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  63.3,
+                  80.3
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 5,
+              "items": [
+                {
+                  "item": 8,
+                  "chance": 90
+                }
+              ],
+              "positions": [
+                [
+                  63.2,
+                  74.7
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 1,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  58.5,
+                  74.5
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 9,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 5,
+              "items": [
+                {
+                  "item": 7,
+                  "chance": 90
+                }
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 72,
+                  "chance": 100
+                }
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 869,
+                  "chance": 100
+                }
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 148,
+                  "chance": 100
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "map": 30,
+      "texture": "map30",
+      "quests": [
+        61011
+      ],
+      "areas": [
+        {
+          "area": 1,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 2,
+              "items": [
+                {
+                  "item": 2,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  31.8,
+                  100.8
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 8,
+              "most_gathers": 10,
+              "items": [
+                {
+                  "item": 137,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  39.1,
+                  108.6
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 148,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  22.6,
+                  95.9
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 5,
+              "items": [
+                {
+                  "item": 7,
+                  "chance": 90
+                }
+              ],
+              "positions": [
+                [
+                  30.4,
+                  110.1
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 2,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 5,
+              "items": [
+                {
+                  "item": 867,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  26.7,
+                  71.7
+                ]
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 4,
+              "items": [
+                {
+                  "item": 865,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  17.4,
+                  66.7
+                ]
+              ]
+            },
+            {
+              "kind": "mine",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 868,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  28.5,
+                  60.3
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 3,
+              "items": [
+                {
+                  "item": 66,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  19.1,
+                  72.3
+                ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 100
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "area": 3,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 3,
+              "most_gathers": 5,
+              "items": [
+                {
+                  "item": 84,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  48.8,
+                  55.2
+                ]
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 869,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  58.1,
+                  57.3
+                ]
+              ]
+            },
+            {
+              "kind": "mine",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 871,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  53.8,
+                  51.4
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 4,
+              "items": [
+                {
+                  "item": 64,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  58.2,
+                  45.2
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "area": 4,
+          "nodes": [
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 72,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  60.5,
+                  15.8
+                ]
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 2,
+              "items": [
+                {
+                  "item": 77,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  67.9,
+                  9.5
+                ]
+              ]
+            },
+            {
+              "kind": "gather",
+              "count": 1,
+              "gathers": 2,
+              "most_gathers": 4,
+              "items": [
+                {
+                  "item": 145,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  80.7,
+                  16.8
+                ]
+              ]
+            },
+            {
+              "kind": "bug",
+              "count": 1,
+              "gathers": 1,
+              "most_gathers": 1,
+              "items": [
+                {
+                  "item": 870,
+                  "chance": 100
+                }
+              ],
+              "positions": [
+                [
+                  78.7,
+                  10
+                ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 100
+                }
               ]
             }
           ]
@@ -86979,6 +92740,34 @@
                   72.3
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 30
+                },
+                {
+                  "item": 236,
+                  "chance": 15
+                },
+                {
+                  "item": 231,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 25
+                }
+              ]
             }
           ]
         },
@@ -87272,6 +93061,42 @@
                   78.7,
                   10
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 234,
+                  "chance": 28
+                },
+                {
+                  "item": 231,
+                  "chance": 30
+                },
+                {
+                  "item": 230,
+                  "chance": 16
+                },
+                {
+                  "item": 233,
+                  "chance": 12
+                },
+                {
+                  "item": 241,
+                  "chance": 7
+                },
+                {
+                  "item": 242,
+                  "chance": 5
+                },
+                {
+                  "item": 243,
+                  "chance": 2
+                }
               ]
             }
           ]
@@ -88199,6 +94024,34 @@
                   72.3
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 10
+                },
+                {
+                  "item": 235,
+                  "chance": 30
+                },
+                {
+                  "item": 236,
+                  "chance": 15
+                },
+                {
+                  "item": 231,
+                  "chance": 20
+                },
+                {
+                  "item": 232,
+                  "chance": 25
+                }
+              ]
             }
           ]
         },
@@ -88496,6 +94349,42 @@
                   78.7,
                   10
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 234,
+                  "chance": 28
+                },
+                {
+                  "item": 231,
+                  "chance": 30
+                },
+                {
+                  "item": 230,
+                  "chance": 12
+                },
+                {
+                  "item": 233,
+                  "chance": 10
+                },
+                {
+                  "item": 241,
+                  "chance": 7
+                },
+                {
+                  "item": 242,
+                  "chance": 8
+                },
+                {
+                  "item": 243,
+                  "chance": 5
+                }
               ]
             }
           ]
@@ -89297,6 +95186,22 @@
                   72.3
                 ]
               ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
+              ]
             }
           ]
         },
@@ -89450,6 +95355,22 @@
                   78.7,
                   10
                 ]
+              ]
+            },
+            {
+              "kind": "fish",
+              "count": 1,
+              "gathers": null,
+              "most_gathers": null,
+              "items": [
+                {
+                  "item": 229,
+                  "chance": 50
+                },
+                {
+                  "item": 230,
+                  "chance": 50
+                }
               ]
             }
           ]

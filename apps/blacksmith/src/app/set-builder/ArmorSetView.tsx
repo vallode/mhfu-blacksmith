@@ -68,6 +68,15 @@ export interface SetEditing {
   isOwned?: (piece: Piece) => boolean;
 }
 
+/** A specific weapon to show in the weapon row (a save set's, not a search's slots). */
+export interface SetWeapon {
+  name: string;
+  /** Weapon type, for its icon. */
+  icon: string;
+  href: string;
+  rarity?: number | null;
+}
+
 const smallButton =
   "cursor-pointer border-none bg-transparent p-0 font-[inherit] text-fine text-white/50 hover:text-white focus-visible:text-white";
 
@@ -166,7 +175,7 @@ function EquipRow({
   );
 }
 
-/** The weapon row's slot count: "◀ OO- ▶" when editing. */
+/** The weapon row's slot count: the circles between the arrows when editing. */
 function WeaponSlots({
   count,
   decorations,
@@ -304,6 +313,7 @@ export default function ArmorSetView({
   set,
   weaponSlots,
   weaponIcon,
+  weapon,
   status,
   edit,
 }: {
@@ -311,6 +321,8 @@ export default function ArmorSetView({
     Partial<Pick<ArmorSet, "alternatives">>;
   weaponSlots: number;
   weaponIcon: string;
+  /** The actual weapon, when the set has one (a save's registered set). */
+  weapon?: SetWeapon | null;
   /** The Status panel, beside [Activate Skill]. */
   status: React.ReactNode;
   edit?: SetEditing;
@@ -334,8 +346,18 @@ export default function ArmorSetView({
       <ul className="m-0 list-none px-[0.8rem] py-0">
         <EquipRow
           bin="weapon"
-          icon={<Icon type={weaponIcon} size="mini" alt="" />}
-          name={<span className="text-white/60">{text.weapon}</span>}
+          icon={
+            <Icon type={weapon?.icon ?? weaponIcon} rarity={weapon?.rarity} size="mini" alt="" />
+          }
+          name={
+            weapon ? (
+              <Link href={weapon.href} className="hover:text-gold">
+                {game.name("weapon", weapon.name)}
+              </Link>
+            ) : (
+              <span className="text-white/60">{text.weapon}</span>
+            )
+          }
           slots={<WeaponSlots count={weaponSlots} decorations={set.decorations} edit={edit} />}
           decos={decosIn("weapon")}
           edit={edit}

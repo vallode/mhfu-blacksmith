@@ -12,6 +12,9 @@ export interface ItemSummary {
   name: string;
   slug: string;
   rarity?: number;
+  /** Icon shape and tint, from the disc (ItemRecord). */
+  icon?: number;
+  color?: number;
 }
 
 let cache: ItemSummary[] | null = null;
@@ -22,7 +25,14 @@ export function getItemSummaries(): ItemSummary[] {
   const { items } = readData<{ items: ItemRecord[] }>(DATA_DIR, "items.json");
   cache = items
     .filter((i) => !i.placeholder)
-    .map((i) => ({ id: i.id, name: i.name, slug: slugify(i.name), rarity: i.rarity }));
+    .map((i) => ({
+      id: i.id,
+      name: i.name,
+      slug: slugify(i.name),
+      rarity: i.rarity,
+      icon: i.icon,
+      color: i.color,
+    }));
   return cache;
 }
 

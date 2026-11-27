@@ -29,11 +29,11 @@ import {
 } from "mhfu-extract/src/monsters/hitzones.js";
 import { MONSTER_OVERLAY } from "mhfu-extract/src/overlay/monsters.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
-import type { Edits } from "../edits.js";
-import type { LoadedOverlay } from "../game/load.js";
-import type { MonsterNames } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import type { LoadedOverlay } from "whetstone/src/game/load.js";
+import type { MonsterNames } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 const BASE_SCALE_OFFSET = 0x40;
 /** Fire, water, ice, thunder, dragon: byte offsets in a hitzone row. */
@@ -116,9 +116,9 @@ export function randomizeMonsterStats(
   monsterName: MonsterNames,
   /** The most base HP a monster can have (`hpLimit` in `quest-monsters.ts`). */
   hpCap: (emId: number) => number = () => 0xffff,
-): ShuffleReport {
+): Report {
   const buf = edits.overlay(gameTask);
-  const lines: ShuffleReport["lines"] = [];
+  const lines: Report["lines"] = [];
   let capped = 0;
   for (const { emId, offset } of chunks) {
     const where = monsterName(emId);
@@ -214,11 +214,11 @@ export function shuffleWeaknesses(
   gameTask: LoadedOverlay,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
-): ShuffleReport {
+): Report {
   const ovl = gameTask.ovl;
   const buf = edits.overlay(gameTask);
   const done = new Map<number, number>(); // table offset -> emID that changed it
-  const lines: ShuffleReport["lines"] = [];
+  const lines: Report["lines"] = [];
 
   let skipped = 0;
   for (const { emId, offset, hitzonesShared } of chunks) {

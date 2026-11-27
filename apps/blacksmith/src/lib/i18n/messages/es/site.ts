@@ -25,6 +25,7 @@ export const site: Messages["site"] = {
     menu: "Menú",
     loadHunter: "Cargar cazador",
   },
+  discord: "Discord",
   language: {
     heading: "Idioma",
     label: "Idioma",
@@ -229,6 +230,25 @@ export const site: Messages["site"] = {
       equipment: "Equipo",
       of: (done: string, total: string) => `${done}/${total}`,
     },
+    monsterLog: {
+      note: "Todos los monstruos con un registro en tu partida, con las veces que los has abatido y capturado y los tamaños que guarda la Tarjeta del Gremio.",
+      large: "Monstruos grandes",
+      small: "Monstruos pequeños",
+      monster: "Monstruo",
+      slain: "Abatidos",
+      captured: "Capturados",
+      sizes: "Tamaños",
+      largest: "Mayor",
+      smallest: "Menor",
+      logged: (n: number, count: string) => (n === 1 ? "1 monstruo" : `${count} monstruos`),
+      totals: (slain: string, captured: string) => `Abatidos: ${slain} · Capturados: ${captured}`,
+      slainTotal: (slain: string) => `Abatidos: ${slain}`,
+      untracked:
+        "Esta partida se guardó antes de leer los registros de monstruos. Vuelve a cargar la partida para verlos.",
+      empty: "Aún no has cazado ningún monstruo.",
+      noListed:
+        "Los registros de monstruos de tu partida no son de monstruos que aparezcan en este sitio.",
+    },
     awards: {
       note: "Conseguido significa que tu partida muestra que cumples el requisito. El resto aún no se puede leer de una partida.",
       noteGiven:
@@ -256,6 +276,44 @@ export const site: Messages["site"] = {
       note: "Misiones completadas en cada tablón, por nivel de estrellas.",
       level: (level: string, done: number, total: number) =>
         `${level}: ${done} de ${total} completadas`,
+    },
+    crowns: {
+      note: "Las tallas mayor y menor de cada entrada de monstruo de tu Tarjeta del Gremio.",
+      largest: "Mayor",
+      smallest: "Menor",
+      hunted: "Cazados",
+      missing: "Falta",
+      complete: "Completo",
+      missingGold: "Falta la corona de oro",
+      missingMini: "Falta la corona mini",
+      missingBoth: "Faltan las coronas de oro y mini",
+      noRecords:
+        "Esta partida se guardó antes de leer los registros de monstruos. Vuelve a cargar la partida para ver tus coronas.",
+      goldCutoff: (size: string) => `Oro ≥ ${size}`,
+      miniCutoff: (size: string) => `Mini ≤ ${size}`,
+      goldCount: (earned: string, total: string) => `${earned}/${total} coronas de oro`,
+      miniCount: (earned: string, total: string) => `${earned}/${total} coronas mini`,
+    },
+    collection: {
+      note: "Tu caja de equipo frente a los premios de equipo de la Tarjeta del Gremio: lo que aún necesita cada tipo de arma y ranura de armadura. Cualquier pieza válida cuenta, y cada ranura de la caja cuenta.",
+      weapons: "Armas",
+      armor: "Armadura",
+      allAwards: "Todos los premios de la Tarjeta del Gremio",
+      ownedOf: (owned: string, needed: string) => `${owned}/${needed}`,
+      awardProgress: (done: string, total: string) => `${done}/${total}`,
+      awardLabel: (title: string, done: number, total: number) =>
+        `${title}: ${done} de ${total} completos`,
+      groupProgress: (label: string, owned: number, needed: number) =>
+        `${label}: ${owned} de ${needed} piezas`,
+      need: (n: number) => (n === 1 ? "Falta 1" : `Faltan ${n}`),
+      complete: "Completo",
+      missing: (n: number) => `Piezas válidas que no tienes (${n})`,
+      noEquipment:
+        "Esta partida no incluye la caja de equipo, así que no hay colección que mostrar. Carga una partida de esta versión del juego para verla.",
+      loading: "Leyendo tu caja de equipo…",
+      failed: "No se pudo cargar la lista de equipo.",
+      pieces: (n: string) => `${n} piezas`,
+      piecesLabel: (n: number) => `${n} piezas de equipo`,
     },
   },
   search: {

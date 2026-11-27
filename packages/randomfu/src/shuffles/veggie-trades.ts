@@ -8,13 +8,14 @@
  */
 import { MAP_NAMES } from "mhfu-extract/src/tables/quest-maps.js";
 import { TRADE_TABLE_MAPS, readVeggieTrades } from "mhfu-extract/src/tables/veggie-trades.js";
-import type { Edits } from "../edits.js";
-import type { LoadedOverlay } from "../game/load.js";
-import { itemName } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import type { LoadedOverlay } from "whetstone/src/game/load.js";
+import { itemName } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import { isNeverDrawn } from "../game/quest-fields.js";
-import type { Band } from "../game/tiers.js";
-import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
+import { isNeverDrawn } from "whetstone/src/game/quest-fields.js";
+import type { Band } from "whetstone/src/game/tiers.js";
+import { permuteWithinGroups } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 export type TradeMix = "elder" | "all";
 
@@ -47,7 +48,7 @@ export function shuffleTrades(
   rng: Rng,
   edits: Edits,
   gameTask: LoadedOverlay,
-): ShuffleReport {
+): Report {
   const next = permuteWithinGroups(
     slots,
     (s) => (mix === "elder" ? String(s.elder) : ""),
@@ -98,7 +99,7 @@ export function randomizeTrades(
   rng: Rng,
   edits: Edits,
   gameTask: LoadedOverlay,
-): ShuffleReport {
+): Report {
   const given = (rows: readonly TradeSlot[]) => [
     ...new Set(rows.flatMap((r) => [r.common, r.rare])),
   ];

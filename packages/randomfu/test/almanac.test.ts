@@ -3,9 +3,9 @@ import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
-import { Edits } from "../src/edits.js";
-import { loadGame, type GameData } from "../src/game/load.js";
-import { tierOrder, type Tier } from "../src/game/tiers.js";
+import { Edits } from "whetstone/src/edits.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
+import { tierOrder, type Tier } from "whetstone/src/game/tiers.js";
 import {
   almanacIntro,
   almanacStrings,
@@ -22,7 +22,7 @@ import { checkPage, textBytes, width } from "../src/hints/bookshelf.js";
 import { largeAppearances, mapLabel, recipeMaterials, tierShort } from "../src/hints/sources.js";
 import { randomize } from "../src/randomize.js";
 import { collectQuestRewardSlots } from "../src/shuffles/quest-rewards.js";
-import { buildFixtureDisc, tempDir } from "./fixtures.js";
+import { buildFixtureDisc, tempDir } from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 /** Text without its colour codes. */

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--HEAD-->
+    <title>Patch your disc — Whetstone</title>
+    <meta
+      name="description"
+      content="Patch camera, HUD and quality-of-life mods into your own Monster Hunter Freedom Unite disc image, in your browser."
+    />
+    <meta property="og:title" content="Patch your disc — Whetstone" />
+    <meta
+      property="og:description"
+      content="Camera, HUD and quality-of-life mods for Monster Hunter Freedom Unite, patched into your own disc image in your browser."
+    />
+  </head>
+  <body>
+    <!--MASTHEAD-->
+
+    <main class="frame" aria-labelledby="step-title">
+      <!-- Stays at the top of the window while the step scrolls under it. -->
+      <div class="card-head">
+        <nav class="menu-header" aria-label="Steps">
+          <h2 class="menu-title">
+            <button
+              type="button"
+              class="step-menu"
+              id="step-menu"
+              aria-expanded="false"
+              aria-controls="steps"
+            >
+              <span class="step-count" id="step-count"></span>
+              <span class="icon" id="step-icon" aria-hidden="true"></span>
+              <span id="step-title"></span>
+              <span class="caret" aria-hidden="true"></span>
+            </button>
+          </h2>
+          <ol class="step-list" id="steps" hidden></ol>
+        </nav>
+        <div class="progress" id="progress" aria-hidden="true"></div>
+      </div>
+
+      <!-- 1. The disc -->
+      <section class="panel" data-step="game" hidden>
+        <p class="intro">
+          Choose a disc image of <b>Monster Hunter Freedom Unite</b> (EU),
+          <b>Monster Hunter Portable 2nd G</b> (JP) or FUC, dumped from your own disc. It stays on
+          your computer: Whetstone runs in this page and never uploads your files.
+        </p>
+        <label class="drop" id="iso-drop">
+          <span class="drop-icon icon" style="--icon: url(images/binoculars.png)"></span>
+          <span class="drop-text">
+            <span class="drop-title" id="iso-name">Choose your disc image (.iso)</span>
+            <span class="drop-hint">or drop it here</span>
+          </span>
+          <span class="drop-mark" id="iso-mark" aria-hidden="true"></span>
+          <input type="file" id="iso" accept=".iso" class="visually-hidden" />
+        </label>
+        <p class="status" id="check-status" role="status"></p>
+      </section>
+
+      <!-- 2. Presets and shared settings -->
+      <section class="panel" data-step="start" hidden>
+        <p class="intro">
+          Start from a preset, or load settings someone shared with you. Every mod can be changed in
+          the next steps.
+        </p>
+        <div class="choices" id="presets" role="radiogroup" aria-label="Preset"></div>
+
+        <div class="choice-load" id="load">
+          <span class="choice-text">
+            <label class="choice-label" for="paste">Shared settings</label>
+            <span class="note">
+              Paste a settings string or load a settings file. Replaces every option.
+            </span>
+            <span class="row">
+              <input
+                type="text"
+                id="paste"
+                class="text-input grow"
+                placeholder="WS…"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button type="button" class="button" id="apply-paste">Load</button>
+              <button type="button" class="button" id="import">File…</button>
+              <input type="file" id="import-file" accept=".json,application/json" hidden />
+            </span>
+          </span>
+        </div>
+        <p class="note" id="preset-note"></p>
+        <p class="status" id="share-status" role="status"></p>
+        <div class="row skip">
+          <button type="button" class="button" id="download">Download ▶</button>
+          <button type="button" class="button" id="customize">Customize ▶</button>
+          <span class="note grow"
+            >Happy with these? Patch your disc now, or go through the mods.</span
+          >
+        </div>
+      </section>
+
+      <!-- The option steps are built from WHETSTONE_OPTIONS here. -->
+      <div id="option-panels"></div>
+
+      <!-- Review, share and run -->
+      <section class="panel" data-step="review" hidden>
+        <p class="intro">Check your choices, then patch. Select a step to change it.</p>
+        <dl class="summary" id="summary"></dl>
+
+        <h3 class="subheading">Share</h3>
+        <label class="field">
+          <span class="label">Settings string</span>
+          <textarea id="share" class="text-input" rows="3" readonly></textarea>
+          <span class="note"
+            >Every mod in one line. Load it in the Preset step to get the same disc again.</span
+          >
+        </label>
+        <div class="row">
+          <button type="button" class="button" id="copy">Copy</button>
+          <button type="button" class="button" id="export">Save settings file</button>
+        </div>
+        <p class="status" id="copy-status" role="status"></p>
+
+        <div class="go">
+          <button type="button" class="button primary" id="run">
+            <span class="icon" style="--icon: url(images/max.png)" aria-hidden="true"></span>
+            Patch my disc
+          </button>
+          <button type="button" class="link-button" id="dry-run">
+            <span class="icon" style="--icon: url(images/scroll.png)" aria-hidden="true"></span>
+            Preview the log first
+          </button>
+        </div>
+      </section>
+
+      <!-- The run -->
+      <section class="panel" data-step="run" hidden>
+        <p class="status big" id="run-status" role="status"></p>
+        <p class="status err" id="stale" hidden>
+          Your settings or disc changed since this run. Go back to the review and patch again to use
+          them.
+        </p>
+        <div class="downloads" id="downloads"></div>
+        <details class="log-wrap" id="log-wrap" open>
+          <summary class="subheading">Progress</summary>
+          <pre class="log" id="log" aria-live="polite"></pre>
+        </details>
+        <div id="report-wrap" hidden>
+          <h3 class="subheading">Log</h3>
+          <pre class="log report" id="report"></pre>
+        </div>
+      </section>
+
+      <div class="nav">
+        <button type="button" class="nav-button" id="back">
+          <img src="images/arrow.png" alt="" aria-hidden="true" />
+          <span>Back</span>
+        </button>
+        <p class="status nav-status" id="nav-status" role="status"></p>
+        <button type="button" class="nav-button next" id="next">
+          <span>Next</span>
+          <img src="images/arrow.png" alt="" aria-hidden="true" />
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      Whetstone runs entirely in your browser. Not affiliated with Capcom.
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

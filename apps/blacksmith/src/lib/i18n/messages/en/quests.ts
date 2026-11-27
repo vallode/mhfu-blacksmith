@@ -123,6 +123,10 @@ export const quests = {
     layout: "Layout",
     previousLayout: "Previous layout",
     nextLayout: "Next layout",
+    /** The Maps page: which quest's points and monster spawns to show. */
+    quest: "Quest",
+    previousQuest: "Previous quest",
+    nextQuest: "Next quest",
     /** Read for a selector's "2/3" count. */
     position: (n: number, total: number) => `${n} of ${total}`,
     /** A map entry for quests with their own points: "Pokke Farm Tour +2". */
@@ -139,20 +143,30 @@ export const quests = {
       gather: "Gathering",
       mine: "Mining",
       bug: "Bug catching",
+      fish: "Fishing",
     },
+    /** Monster spawns on the map, aggregated by area. */
+    monsters: "Monsters",
     /** 0 is the Base Camp, then the map's numbered areas. */
     area: (area: number) => (area === 0 ? "Base Camp" : `Area ${area}`),
     /** A point's marker, read out: "Area 3, Mining". */
     pointLabel: (area: string, kind: string) => `${area}, ${kind}`,
+    /** A monster area's marker, read out: "Area 3, 2 species". */
+    monsterAreaLabel: (area: string, species: string) => `${area}, ${species}`,
     /** The selected point's first row: "Area 3:". */
     areaHeading: (area: string) => `${area}:`,
+    /** How many kinds of monster an area has: "2 species". */
+    species: (n: string) => (n === "1" ? "1 species" : `${n} species`),
+    keepsSpawning: "Keeps spawning",
     gathers: "Gathers:",
     /** How many gathers a point gives: "2–4". */
     gatherRange: (fewest: string, most: string) => `${fewest}–${most}`,
     neverRunsOut: "Never runs out",
     /** An item's chance at a point: "35%". */
     chance: (percent: string) => `${percent}%`,
-    hint: "Select a point to see what it gives, and again to step through any that overlap.",
+    hint: "Select a point or an area's monsters to see its details.",
+    /** A map with no gathering points and no monster spawns. */
+    empty: "This map has no gathering points or monsters.",
   },
   rewards: {
     /** Reward table headings, by kind (lib/quests REWARD_KINDS). */

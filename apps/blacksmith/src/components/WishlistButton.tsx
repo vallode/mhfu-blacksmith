@@ -4,13 +4,13 @@ import { useRouter } from "next/navigation";
 import { useT } from "@/context/LanguageContext";
 import { useToast } from "@/context/ToastContext";
 import { cn } from "@/lib/cn";
-import type { GearRef } from "@/lib/wishlist";
+import type { WishlistRef } from "@/lib/wishlist";
 import { useWishlist } from "@/lib/wishlist-store";
 import WishlistStar from "./WishlistStar";
 
 /**
- * Adds the gear to the wishlist or takes it off: the game's star sprite
- * beside the item's name, grey until it's listed. Pulses green on hover like
+ * Adds the gear or item to the wishlist or takes it off: the game's star sprite
+ * beside its name, grey until it's listed. Pulses green on hover like
  * the model button beside it.
  */
 export default function WishlistButton({
@@ -18,8 +18,8 @@ export default function WishlistButton({
   name,
   className,
 }: {
-  gear: GearRef;
-  /** The gear's name in the site's language, for the toast */
+  gear: WishlistRef;
+  /** The entry's name in the site's language, for the toast */
   name: string;
   className?: string;
 }) {

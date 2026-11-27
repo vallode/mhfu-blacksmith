@@ -8,7 +8,7 @@
 import { useMemo, useState } from "react";
 import Icon from "@/components/Icon";
 import { Slots } from "@/components/DetailPanel";
-import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
+import { SelectorRow, type Choice } from "@/components/SettingRows";
 import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { ARMOR_RANKS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
@@ -19,6 +19,7 @@ import { suitsHunter, type BuildSet } from "@/lib/set-build";
 import { TORSO_UP_TREE, type DecoBin, type Deco, type Piece } from "@/lib/set-search";
 import * as ui from "@/styles/settings";
 import { binLabel } from "./ArmorSetView";
+import { ownedArmorChoices, type OwnedArmorMode } from "./SearchOptions";
 
 /** Rows shown at once; the search narrows the rest. */
 const MAX_ROWS = 150;
@@ -116,7 +117,7 @@ export function PiecePicker({
   rank,
   wanted,
   questLimit,
-  ownedOnly: ownedOnlyDefault,
+  ownedArmor: ownedArmorDefault,
   isOwned,
   onPick,
   onClose,
@@ -132,7 +133,7 @@ export function PiecePicker({
   /** Wanted skill trees, for the skill sort and highlighting. */
   wanted: string[];
   questLimit: Tier | null;
-  ownedOnly: boolean;
+  ownedArmor: OwnedArmorMode;
   /** Only with a save loaded. */
   isOwned?: (p: Piece) => boolean;
   onPick: (p: Piece | null) => void;
@@ -146,7 +147,7 @@ export function PiecePicker({
   const [query, setQuery] = useState("");
   const [rankFilter, setRankFilter] = useState<RankFilter>(rank);
   const [sort, setSort] = useState<PieceSort>(wanted.length > 0 ? "skills" : "defence");
-  const [ownedOnly, setOwnedOnly] = useState(ownedOnlyDefault && !!isOwned);
+  const [ownedArmor, setOwnedArmor] = useState<OwnedArmorMode>(isOwned ? ownedArmorDefault : "off");
   const t = useT();
   const text = t.setBuilder.pickers;
   const game = useGameText();
@@ -169,9 +170,10 @@ export function PiecePicker({
         (rankFilter === "all" || p.rank === rankFilter) &&
         suitsHunter(p, hunter.hunterType, hunter.sex) &&
         isAvailable(p.minRank, questLimit) &&
-        (!ownedOnly || isOwned?.(p)) &&
+        (ownedArmor !== "only" || isOwned?.(p)) &&
         (!q || matches(game, "armor", p, q)),
     );
+    const ownedFirst = ownedArmor === "prefer" && isOwned;
     const by: Record<PieceSort, (a: Piece, b: Piece) => number> = {
       skills: (a, b) =>
         wantedScore(b.points, wanted) - wantedScore(a.points, wanted) ||
@@ -182,7 +184,10 @@ export function PiecePicker({
     };
     return shown.sort(
       (a, b) =>
-        by[sort](a, b) || ARMOR_RANKS.indexOf(a.rank) - ARMOR_RANKS.indexOf(b.rank) || a.id - b.id,
+        (ownedFirst ? Number(!!isOwned!(b)) - Number(!!isOwned!(a)) : 0) ||
+        by[sort](a, b) ||
+        ARMOR_RANKS.indexOf(a.rank) - ARMOR_RANKS.indexOf(b.rank) ||
+        a.id - b.id,
     );
   }, [
     pieces,
@@ -190,7 +195,7 @@ export function PiecePicker({
     rankFilter,
     hunter,
     questLimit,
-    ownedOnly,
+    ownedArmor,
     isOwned,
     query,
     sort,
@@ -220,7 +225,12 @@ export function PiecePicker({
       />
       <SelectorRow label={text.sortBy} choices={sortChoices} value={sort} onChange={setSort} />
       {isOwned && (
-        <ToggleRow label={t.setBuilder.form.ownedOnly} value={ownedOnly} onChange={setOwnedOnly} />
+        <SelectorRow
+          label={t.setBuilder.form.ownedArmor}
+          choices={ownedArmorChoices(t)}
+          value={ownedArmor}
+          onChange={setOwnedArmor}
+        />
       )}
       <p className={ui.note}>
         {text.pieceCount(

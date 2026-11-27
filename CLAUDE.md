@@ -7,10 +7,22 @@ workspace:
   Its own `CLAUDE.md` covers styling.
 - `apps/randomfu`: randomfu's static web app (esbuild). Borrows the site's
   design tokens and sprites at build time (`build.mjs`).
+- `apps/whetstone`: Whetstone's static web app (esbuild). Borrows the site's
+  design tokens and sprites at build time, as `apps/randomfu` does.
+- `apps/discord-bot`: a Discord bot as a Cloudflare Worker on Discord's HTTP
+  interactions endpoint, answering from an index built from `data/`. Its
+  `README.md` covers setup and design.
 - `packages/mhfu-extract`: datamining pipeline from a disc image to `data/`
   and the site's `public/models/`.
-- `packages/randomfu`: the randomizer, a library with no front end of its
-  own; `apps/randomfu` is the only way to run it.
+- `packages/whetstone`: Whetstone, an overhaul that patches the user's own
+  disc with mods only (camera, HUD, quality of life, monster behaviour), a
+  library run by `apps/whetstone`. It holds the disc and DATA.BIN code, game
+  loading, the option machinery, the code loader and its C blob (`blob/`).
+  Its own `CLAUDE.md` covers the blob's HUD text.
+- `packages/randomfu`: the randomizer, built on Whetstone: its shuffles run
+  first, then Whetstone's `applyMods` adds the mods and links randomfu's own
+  blob features. A library with no front end of its own; `apps/randomfu` is
+  the only way to run it.
   Its own `CLAUDE.md` covers styling text written into the game.
 - `packages/game-data`: the one way into `data/`. Everything that reads the
   game data does so with its `readData`, and `build-data` writes with its
@@ -47,16 +59,42 @@ worktree starts without one.
 - Read that manifest and `extracted/` rather than searching the filesystem for
   datamining inputs.
 
-Checks, from the root: `pnpm lint`, `pnpm typecheck`, `pnpm test`,
-`pnpm format:check`. Run one package's scripts with
+While iterating, run only the affected package's checks:
 `pnpm --filter <name> <script>` (`blacksmith`, `randomfu-web`,
-`mhfu-extract`, `randomfu`, `game-data`). Never commit a disc image or an unpacked dump
-of one (see `.gitignore`).
+`whetstone-web`, `discord-bot`, `mhfu-extract`, `randomfu`, `whetstone`,
+`game-data`), for example
+`pnpm --filter blacksmith test`. The root-wide `pnpm lint`,
+`pnpm typecheck`, `pnpm test` and `pnpm format:check` are all-or-nothing;
+`pnpm test` alone takes about 45 seconds, mostly randomfu's property tests.
+Save the full set for before a PR. Never commit a disc image or an unpacked
+dump of one (see `.gitignore`).
 
 Each disc image is close to 1 GB, and nothing clears temp folders or
 session scratchpads for you. Delete every disc you write (randomized
 output, probe and test discs) once you no longer need it, before you end the
 task. `pnpm clean:discs` deletes the discs left in Claude Code scratchpads
 (`--dry-run` lists them). Tests that write files do so under `tmpdir()` and
-remove them afterwards: randomfu's `tempDir()` (`test/temp.ts`) does this
+remove them afterwards: Whetstone's `tempDir()` (`packages/whetstone/test/temp.ts`, which randomfu's
+tests use too) does this
 when the process ends, unless `KEEP_TEST_DISCS=1`.
+
+## Working efficiently
+
+Every turn re-reads the whole conversation, so fewer turns and a smaller
+context save the most time and money.
+
+- Batch independent calls in one turn: several reads, greps or `git` queries
+  together, not one per turn. Prefer one script that probes several
+  things over a run of one-line probes.
+- Read a file whole, or `grep -n` it first and then read one range. Don't
+  page through it with many small `sed -n` slices.
+- Test one file while iterating:
+  `pnpm --filter <name> exec tsx --test test/<file>.test.ts`.
+- Check pages in the browser with `read_page`, `find` or JavaScript first.
+  Take a screenshot only for visual proof, since every image stays in
+  context for the rest of the session.
+- Give Bash a `timeout` for anything that can hang (PPSSPP debugger
+  scripts, waiting on ports). For waits, use a short `until` loop with a
+  deadline, not repeated `sleep` calls.
+- Start a new session for each new task, and after a PR merges. Memory
+  carries findings forward; a long session's context does not.

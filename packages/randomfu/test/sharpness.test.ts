@@ -9,11 +9,11 @@ import {
   resolveTableOffset,
 } from "mhfu-extract/src/tables/offsets.js";
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
-import { loadGame, type GameData } from "../src/game/load.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { applySettings, OPTIONS } from "../src/settings.js";
 import { settingsWith } from "./settings-helper.js";
-import { buildFixtureDisc, FIXTURE_WEAPONS, tempDir } from "./fixtures.js";
+import { buildFixtureDisc, FIXTURE_WEAPONS, tempDir } from "whetstone/test/fixtures.js";
 
 /**
  * The fixture's sharpness table is empty, so the tests give its first four

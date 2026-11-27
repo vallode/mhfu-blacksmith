@@ -48,7 +48,7 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
 }
 
 /** The detail card's prompt with no hunter loaded: load a save file. */
-function NoHunter() {
+export function NoHunter() {
   const text = useLocale().t.site.hunter;
   return (
     <DetailCard>

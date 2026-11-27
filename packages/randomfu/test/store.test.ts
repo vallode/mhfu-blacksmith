@@ -7,7 +7,7 @@ import { parseOvl } from "mhfu-extract/src/container/ovl.js";
 import { findEquipmentStore } from "mhfu-extract/src/shops/equipment.js";
 import { findStarterGear } from "mhfu-extract/src/shops/starter.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
-import { loadGame } from "../src/game/load.js";
+import { loadGame } from "whetstone/src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import {
   ADD_TO_BOX,
@@ -22,7 +22,7 @@ import {
   FIXTURE_STORE_LISTS,
   FIXTURE_STORE_TABLE,
   tempDir,
-} from "./fixtures.js";
+} from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 const STORE_TABLE_AT = 0x780;

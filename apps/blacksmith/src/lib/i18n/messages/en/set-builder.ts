@@ -60,11 +60,12 @@ export const setBuilder = {
     /** The options in one line, under the skills. */
     summary: {
       rank: "Rank",
-      /** Beside the weapon's slots ("OO-"). */
+      /** Beside the weapon's slot circles. */
       weapon: "Wpn",
       badSkills: "bad skills allowed",
       allQuests: "all quests",
-      ownedArmor: "owned armor",
+      ownedArmorPreferred: "owned armor preferred",
+      ownedArmorOnly: "owned armor only",
     },
     allowBadSkills: "Allow bad skills",
     allowBadSkillsNote: "Keep sets that also activate a negative skill, such as Defense -20.",
@@ -78,8 +79,14 @@ export const setBuilder = {
         options,
         " page) leaves out armor and decorations that need materials from later quests. Turn on to search all of them.",
       ),
-    ownedOnly: "Owned armor only",
-    ownedOnlyNote: "Only use armor in your hunter's equipment box.",
+    ownedArmor: "Owned armor",
+    ownedArmorNote:
+      "Search all armor, put sets that use armor in your hunter's equipment box first, or only use that armor.",
+    ownedModes: {
+      off: "Any armor",
+      prefer: "Prefer owned",
+      only: "Owned only",
+    },
     /**
      * The locked pieces, under the skills; `remove` labels each one's ×.
      * `add` opens the lock sheet, a row per slot under `slotsNote`; `pick`
@@ -137,7 +144,7 @@ export const setBuilder = {
      * `progress`: the search was limited by quest progress; `locked` and
      * `excluded`: it had always used or never used pieces.
      */
-    noSets: (progress: boolean, locked: boolean, excluded: boolean): string => {
+    noSets: (progress: boolean, locked: boolean, excluded: boolean, ownedOnly: boolean): string => {
       const tips = [
         "fewer skills",
         "a higher rank",
@@ -145,6 +152,7 @@ export const setBuilder = {
         "allowing bad skills",
         ...(locked ? ["unlocking pieces"] : []),
         ...(excluded ? ["removing excluded pieces"] : []),
+        ...(ownedOnly ? ["using armor you don't own"] : []),
         ...(progress ? ["ignoring your quest progress"] : []),
       ];
       const last = tips.pop();
@@ -172,11 +180,15 @@ export const setBuilder = {
     saveAsNew: "Save as new",
     share: "Share",
     new: "New",
+    rename: "Rename",
+    renameLabel: (name: string) => `Rename ${name}`,
+    /** The rename field's aria-label. */
+    nameLabel: "Set name",
     /** The default name of a newly saved set. */
     setName: (n: number) => `Set ${n}`,
     copyName: (name: string) => `${name} (copy)`,
     saved: (name: string) => `Saved ${name}.`,
-    savedAs: (name: string) => `Saved as ${name}. Rename it in My sets.`,
+    savedAs: (name: string) => `Saved as ${name}.`,
     saveFailedTitle: "Couldn't save",
     saveFailed:
       "Your browser's storage is full or blocked. Sets are kept until you leave the page.",
@@ -374,6 +386,25 @@ export const setBuilder = {
     cantOpen: "Can't be opened in this version.",
     /** `hunterType` is translated; `defense` is formatted. */
     summary: (hunterType: string, defense: string) => `${hunterType}, Defense ${defense}`,
+  },
+
+  /** The save-file sets, shown read-only in the My sets tab. */
+  saveSets: {
+    /** The badge on a save-file set in the My sets list. */
+    badge: "Save file",
+    readOnly: "Read-only",
+    /** The read-only detail's button in My sets. */
+    view: "View",
+    stale: "This save was read before the set builder kept equipment sets.",
+    reload: "Load the save again",
+    loadingWeapon: "Loading the weapon…",
+    /** `list` is unknownWeapon/unknownPiece/unknownDecoration, joined. */
+    unknown: (list: string) =>
+      `Some equipment isn't in this version of the site, so it isn't counted: ${list}.`,
+    unknownWeapon: (id: number) => `weapon (ID ${id})`,
+    /** `slot` is the translated slot name. */
+    unknownPiece: (slot: string, id: number) => `${slot} (ID ${id})`,
+    unknownDecoration: (itemId: number) => `decoration (item ${itemId})`,
   },
 
   /** The wanted skills' chips and the skills sheet (SkillPicker). */

@@ -8,7 +8,7 @@
 import { Buffer } from "buffer";
 import { Iso9660Reader } from "mhfu-extract/src/container/iso9660.js";
 import type { RandomAccessSource } from "mhfu-extract/src/container/source.js";
-import { checkDisc } from "randomfu/src/game/load.js";
+import { checkDisc } from "whetstone/src/game/load.js";
 import { runRandomizer } from "randomfu/src/run.js";
 import { applySettings, defaultSettings } from "randomfu/src/settings.js";
 import type { Request, Response, Segment } from "./protocol.js";

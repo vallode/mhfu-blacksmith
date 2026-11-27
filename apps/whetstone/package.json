@@ -1,0 +1,26 @@
+{
+  "name": "whetstone-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Whetstone as a static web app: its camera, HUD and quality-of-life mods are patched into the user's own disc image in the browser.",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "build": "node --import tsx build.mjs",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "tsx --test test/**/*.test.ts"
+  },
+  "dependencies": {
+    "game-data": "workspace:*",
+    "mhfu-extract": "workspace:*",
+    "whetstone": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "buffer": "6.0.3",
+    "esbuild": "0.25.10",
+    "postcss": "^8.5.25",
+    "tsx": "^4.22.4",
+    "typescript": "^5"
+  }
+}

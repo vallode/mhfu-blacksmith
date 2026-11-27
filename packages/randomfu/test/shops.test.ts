@@ -4,10 +4,10 @@ import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseOvl } from "mhfu-extract/src/container/ovl.js";
-import { loadGame, type GameData } from "../src/game/load.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { findShops } from "mhfu-extract/src/shops/shops.js";
-import { isMonsterInfo, isNeverDrawn } from "../src/game/quest-fields.js";
+import { isMonsterInfo, isNeverDrawn } from "whetstone/src/game/quest-fields.js";
 import { ESSENTIALS, locateItemTable } from "../src/shuffles/shops.js";
 import {
   buildFixtureDisc,
@@ -17,7 +17,7 @@ import {
   FIXTURE_SHOP_LISTS,
   FIXTURE_SHOP_TABLES,
   tempDir,
-} from "./fixtures.js";
+} from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 const lobby = buildLobbyTask();

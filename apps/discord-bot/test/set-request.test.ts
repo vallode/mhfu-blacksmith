@@ -1,0 +1,277 @@
+/**
+ * The set search's translation step: the schema a model answers in, what
+ * the bot makes of an answer, and the DeepSeek and Claude calls (with
+ * stand-in clients, so the tests never reach an API).
+ */
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+import { modelFor } from "../src/bot.js";
+import { claudeTranslator, TranslateError } from "../src/claude.js";
+import { deepseekTranslator } from "../src/deepseek.js";
+import {
+  armorWordList,
+  keywordTranslator,
+  resolveSetRequest,
+  setRequestPrompt,
+  setRequestSchema,
+  type SetRequest,
+} from "../src/set-request.js";
+import { hasArmorWord } from "blacksmith/src/lib/search-link.js";
+import { index } from "./helpers.js";
+
+const empty: SetRequest = {
+  rank: null,
+  hunterType: null,
+  skills: [],
+  weaponSlots: null,
+  always: [],
+  never: [],
+  monster: null,
+  unmatched: [],
+};
+
+type Schema = {
+  properties: Record<string, { items?: { enum?: string[] }; anyOf?: { enum?: string[] }[] }>;
+};
+
+describe("the schema", () => {
+  const schema = setRequestSchema(index) as unknown as Schema;
+
+  it("lists the data's skills, armor words and large monsters", () => {
+    const skills = schema.properties.skills!.items!.enum!;
+    assert.ok(skills.includes("Evade +2") && skills.includes("Auto Reload"));
+    assert.ok(!skills.includes("Attack Down (Small)"), "no negative skills");
+    const words = schema.properties.never!.items!.enum!;
+    assert.ok(words.includes("Fatalis") && words.includes("Kirin"));
+    assert.ok(!words.includes("Helm"));
+    const monsters = schema.properties.monster!.anyOf![0]!.enum!;
+    assert.ok(monsters.includes("Rajang") && !monsters.includes("Velociprey"));
+  });
+
+  it("stays small enough to send with every request", () => {
+    assert.ok(armorWordList(index).length < 700);
+    const tokens = (JSON.stringify(schema).length + setRequestPrompt(index).length) / 4;
+    assert.ok(tokens < 12_000, `about ${Math.round(tokens)} tokens`);
+  });
+
+  it("gives the model the data's other spellings and nicknames", () => {
+    const prompt = setRequestPrompt(index);
+    assert.match(prompt, /Defense \(also Defence\)/);
+    assert.match(prompt, /- Rajang: Raja/);
+  });
+});
+
+describe("resolveSetRequest", () => {
+  it("drops names that aren't in the data", () => {
+    const r = resolveSetRequest(index, { ...empty, skills: ["Evade +2", "Super Mega Attack"] });
+    assert.deepEqual(r.link.skills, ["Evade +2"]);
+  });
+
+  it("names left-out armor by word and counts the pieces this search could use", () => {
+    const r = resolveSetRequest(index, {
+      ...empty,
+      skills: ["Evade +2"],
+      hunterType: "Gunner",
+      rank: "g-rank",
+      never: ["Fatalis", "Nonexistent"],
+    });
+    assert.deepEqual(r.link.never, ["Fatalis"]);
+    assert.ok(r.excluded.length > 0);
+    assert.ok(r.excluded.every((p) => p.hunterType !== "Blademaster"));
+    assert.ok(r.excluded.every((p) => /Fatalis/.test(p.name)));
+    assert.deepEqual(r.unmatched, ["Nonexistent"]);
+  });
+
+  it("reads an answer with fields missing or of the wrong kind", () => {
+    const r = resolveSetRequest(index, {
+      skills: ["Evade +2", 7],
+      rank: "g-rank",
+      weaponSlots: 2.5,
+      always: null,
+      unmatched: null,
+    } as unknown as SetRequest);
+    assert.deepEqual(r.link.skills, ["Evade +2"]);
+    assert.equal(r.link.weaponSlots, undefined);
+    assert.deepEqual(r.locked, []);
+    assert.deepEqual(r.unmatched, []);
+  });
+
+  it("locks a piece for each sex when the best one is for one sex only", () => {
+    const word = armorWordList(index).find((w) => {
+      const pieces = index.armor.filter((a) => a.slot === "helmet" && hasArmorWord(a.name, [w]));
+      return pieces.some((a) => a.sex === "Male") && pieces.some((a) => a.sex === "Female");
+    });
+    assert.ok(word);
+    const r = resolveSetRequest(index, {
+      ...empty,
+      skills: ["Evade +2"],
+      always: [{ slot: "helmet", word }],
+    });
+    const sexes = r.locked.map((p) => p.sex);
+    assert.ok(sexes.includes("Both") ? sexes.length === 1 : sexes.length === 2);
+  });
+
+  it("locks the best piece of an armor in its slot, within the rank", () => {
+    const g = resolveSetRequest(index, {
+      ...empty,
+      skills: ["Evade +2"],
+      always: [{ slot: "helmet", word: "Kirin" }],
+    });
+    assert.equal(g.locked[0]?.rank, "g-rank");
+    assert.match(g.locked[0]?.name ?? "", /^Kirin .* X$/);
+    const hr = resolveSetRequest(index, {
+      ...empty,
+      skills: ["Evade +2"],
+      rank: "high-rank",
+      always: [{ slot: "helmet", word: "Kirin" }],
+    });
+    assert.equal(hr.locked[0]?.rank, "high-rank");
+    assert.ok(hr.path.includes("lock=helmet%2Fhigh-rank%2F"));
+  });
+
+  it("links the monster a set is for", () => {
+    const r = resolveSetRequest(index, { ...empty, skills: ["Evade +2"], monster: "Rajang" });
+    assert.deepEqual(r.monster, { name: "Rajang", path: "/monsters/pelagus/rajang/" });
+  });
+});
+
+describe("keywordTranslator", () => {
+  it("finds names written as the data spells them", async () => {
+    const r = await keywordTranslator(index)(
+      "HR blademaster, Attack Up (Large) and Sharpness +1, 2 slots, no Kushala",
+    );
+    assert.equal(r.rank, "high-rank");
+    assert.equal(r.hunterType, "Blademaster");
+    assert.deepEqual(r.skills, ["Attack Up (Large)", "Sharpness +1"]);
+    assert.equal(r.weaponSlots, 2);
+    assert.deepEqual(r.never, ["Kushala"]);
+  });
+});
+
+describe("claudeTranslator", () => {
+  function fakeClient(reply: { text: string; stop_reason?: string }) {
+    const calls: Record<string, unknown>[] = [];
+    const client = {
+      beta: {
+        messages: {
+          create: async (params: Record<string, unknown>) => {
+            calls.push(params);
+            return {
+              stop_reason: reply.stop_reason ?? "end_turn",
+              content: [{ type: "text", text: reply.text }],
+            };
+          },
+        },
+      },
+    };
+    return { calls, client: client as never };
+  }
+
+  it("asks for the schema at low effort, with the prompt cached", async () => {
+    const answer: SetRequest = { ...empty, skills: ["Evade +2"], hunterType: "Gunner" };
+    const { calls, client } = fakeClient({ text: JSON.stringify(answer) });
+    const translate = claudeTranslator(index, { apiKey: "test", client });
+    assert.deepEqual(await translate("gunner, evasion +2"), answer);
+    const params = calls[0]!;
+    assert.equal(params.model, "claude-opus-5-5");
+    const config = params.output_config as {
+      effort: string;
+      format: { type: string; schema: unknown };
+    };
+    assert.equal(config.effort, "low");
+    assert.equal(config.format.type, "json_schema");
+    assert.deepEqual(config.format.schema, setRequestSchema(index));
+    const system = params.system as { cache_control?: unknown }[];
+    assert.deepEqual(system[0]?.cache_control, { type: "ephemeral" });
+    assert.deepEqual(params.messages, [{ role: "user", content: "gunner, evasion +2" }]);
+    assert.equal(params.fallbacks, "default");
+  });
+
+  it("sends Haiku without the fallback it doesn't have", async () => {
+    const { calls, client } = fakeClient({ text: JSON.stringify(empty) });
+    await claudeTranslator(index, { apiKey: "test", client, model: "claude-haiku-5-5" })("x");
+    assert.equal(calls[0]!.model, "claude-haiku-5-5");
+    assert.equal(calls[0]!.fallbacks, undefined);
+  });
+
+  it("fails clearly on a refusal or a cut-off answer", async () => {
+    const refused = fakeClient({ text: "", stop_reason: "refusal" });
+    await assert.rejects(
+      claudeTranslator(index, { apiKey: "t", client: refused.client })("x"),
+      TranslateError,
+    );
+    const cut = fakeClient({ text: '{"rank":', stop_reason: "max_tokens" });
+    await assert.rejects(
+      claudeTranslator(index, { apiKey: "t", client: cut.client })("x"),
+      TranslateError,
+    );
+  });
+});
+
+describe("deepseekTranslator", () => {
+  function fakeFetch(reply: { content: string | null; finish_reason?: string; status?: number }) {
+    const calls: { url: string; init: RequestInit }[] = [];
+    const fetcher = (async (url: string, init: RequestInit) => {
+      calls.push({ url, init });
+      return new Response(
+        JSON.stringify({
+          model: "deepseek-v4.1-flash-1017",
+          choices: [
+            { finish_reason: reply.finish_reason ?? "stop", message: { content: reply.content } },
+          ],
+        }),
+        { status: reply.status ?? 200 },
+      );
+    }) as typeof fetch;
+    return { calls, fetcher };
+  }
+
+  it("asks Flash for JSON, with the schema in the prompt", async () => {
+    const answer: SetRequest = { ...empty, skills: ["Evade +2"], hunterType: "Gunner" };
+    const { calls, fetcher } = fakeFetch({ content: JSON.stringify(answer) });
+    const translate = deepseekTranslator(index, { apiKey: "test", fetcher });
+    assert.deepEqual(await translate("gunner, evasion +2"), answer);
+    const { url, init } = calls[0]!;
+    assert.equal(url, "https://opencode.ai/inference/openai/v1/chat/completions");
+    assert.equal((init.headers as Record<string, string>).authorization, "Bearer test");
+    const body = JSON.parse(init.body as string);
+    assert.equal(body.model, "deepseek-v4.1-flash");
+    assert.deepEqual(body.response_format, { type: "json_object" });
+    assert.ok(body.messages[0].content.includes(JSON.stringify(setRequestSchema(index))));
+    assert.deepEqual(body.messages[1], { role: "user", content: "gunner, evasion +2" });
+  });
+
+  it("goes to another host when given one", async () => {
+    const { calls, fetcher } = fakeFetch({ content: JSON.stringify(empty) });
+    await deepseekTranslator(index, { apiKey: "t", baseUrl: "https://example.test/v1/", fetcher })(
+      "x",
+    );
+    assert.equal(calls[0]!.url, "https://example.test/v1/chat/completions");
+  });
+
+  it("fails clearly on a blank, cut-off or failed answer", async () => {
+    for (const reply of [
+      { content: "   " },
+      { content: '{"rank":', finish_reason: "length" },
+      { content: "not json" },
+      { content: null, status: 500 },
+    ]) {
+      const { fetcher } = fakeFetch(reply);
+      await assert.rejects(
+        deepseekTranslator(index, { apiKey: "t", fetcher })("x"),
+        TranslateError,
+      );
+    }
+  });
+});
+
+describe("modelFor", () => {
+  it("uses DeepSeek Flash by default, Claude when named, keywords without a key", () => {
+    const key = { DISCORD_PUBLIC_KEY: "" };
+    assert.equal(modelFor(index, { ...key, OPENCODE_API_KEY: "k" }).reader, "deepseek");
+    assert.equal(modelFor(index, key).reader, "keywords");
+    const claude = { ...key, NL_MODEL: "claude-haiku-5-5", OPENCODE_API_KEY: "k" };
+    assert.equal(modelFor(index, claude).reader, "keywords");
+    assert.equal(modelFor(index, { ...claude, ANTHROPIC_API_KEY: "a" }).reader, "claude");
+  });
+});

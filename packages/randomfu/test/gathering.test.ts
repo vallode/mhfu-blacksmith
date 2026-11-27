@@ -5,11 +5,16 @@ import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
-import { loadGame, type GameData } from "../src/game/load.js";
-import { isNeverDrawn } from "../src/game/quest-fields.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
+import { isNeverDrawn } from "whetstone/src/game/quest-fields.js";
 import { randomize } from "../src/randomize.js";
 import { formatSpoiler } from "../src/spoiler.js";
-import { buildFixtureDisc, buildQuestPayload, FIXTURE_QUESTS, tempDir } from "./fixtures.js";
+import {
+  buildFixtureDisc,
+  buildQuestPayload,
+  FIXTURE_QUESTS,
+  tempDir,
+} from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function load(): Promise<{ game: GameData; close: () => void }> {

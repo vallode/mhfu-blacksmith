@@ -14,7 +14,8 @@ import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
 import MonsterStatus from "@/components/MonsterStatus";
 import SmallMonsterQuests from "@/components/SmallMonsterQuests";
-import Tabs, { type Tab } from "@/components/Tabs";
+import type { Tab } from "@/components/Tabs";
+import MonsterTabs, { type MonsterTab } from "@/components/MonsterTabs";
 import { breakIndex, breakKey } from "@/lib/monster-breaks";
 import { canCapture, formatRank } from "@/lib/monster-drops";
 import { monsterRecordFor } from "@/lib/monster-ids";
@@ -307,11 +308,12 @@ export default function MonsterDetailClient({ category, slug }: Props) {
         },
       ]
     : [];
-  // One tab per rank's drop tables
-  const dropTabs: Tab[] = Object.entries(monster.drops ?? {}).map(([rank, sources]) => ({
+  // One tab per rank's drop tables; the page groups them under Drops.
+  const dropTabs: MonsterTab[] = Object.entries(monster.drops ?? {}).map(([rank, sources]) => ({
     id: rank,
     label: rankLabel(t, rank),
     content: <MonsterDrops sources={sources} />,
+    group: { id: "drops", label: t.monsters.detail.tabs.drops },
   }));
   // Crown cutoffs as the Guild Card shows sizes, to a tenth the safe way.
   const crowns =
@@ -370,7 +372,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // The loaded hunter's Guild Card counts. Captures only for monsters the
   // game gives capture rewards for.
   const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
-  const tabs = [...hitzoneTab, ...statusTab, ...dropTabs, ...questTab, ...spawnTab];
+  const tabs: MonsterTab[] = [...hitzoneTab, ...statusTab, ...dropTabs, ...questTab, ...spawnTab];
 
   return (
     <>
@@ -452,7 +454,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           <DetailRule />
           {/* Keyed on the monster so the selected tab resets when navigating */}
           {tabs.length > 0 && (
-            <Tabs key={slug} label={t.monsters.detail.tabsLabel(name)} tabs={tabs} />
+            <MonsterTabs key={slug} label={t.monsters.detail.tabsLabel(name)} tabs={tabs} />
           )}
         </DetailBody>
       </DetailCard>

@@ -22,6 +22,12 @@ import type {
 import type { MultiplierRow } from "../monsters/multipliers.js";
 import { crownChances, sizeRange, type Crowns, type SizeTables } from "../monsters/sizes.js";
 import { EQUIPMENT_NAME_TABLES, getNameResolver } from "../strings/names.js";
+import {
+  areaOfStage,
+  projectToMap,
+  type MapLayout,
+  type MapLayouts,
+} from "../tables/map-layout.js";
 import { resolveMapName } from "../tables/quest-maps.js";
 import { QUEST_PREREQUISITES } from "../tables/quest-prerequisites.js";
 import { URGENT_QUESTS } from "../tables/urgent-quests.js";
@@ -144,6 +150,24 @@ export interface EmittedMonsterSpawn {
    * `monster_size.fixed_until_flag`, it's the chance once the flag is set.
    */
   crown_chances?: Crowns;
+  /** Where it starts on the quest's area map; absent without the map tables or art there. */
+  spawns?: EmittedSpawnPoint[];
+}
+
+/** A pixel on the quest's area map, in AREA_MAP_SIZE (160) steps. */
+export interface EmittedSpawnPoint {
+  /** 0 is the Base Camp, then the map's numbered areas. */
+  area: number;
+  x: number;
+  y: number;
+}
+
+/** A small monster's record on the area map. */
+export interface EmittedSmallSpawnPoint extends EmittedSpawnPoint {
+  /** How many the record spawns there. */
+  quantity: number;
+  /** The record's quantity is 99: the species keeps coming. */
+  endless?: true;
 }
 
 /**
@@ -164,6 +188,8 @@ export interface EmittedSmallMonsterSpawn {
   total_quantity: number;
   /** Present when a spawn is marked 99, which the game uses for a species that keeps coming; those spawns are left out of the counts. */
   endless?: true;
+  /** Each of its records on the quest's area map, when the map tables place them. */
+  spawns?: EmittedSmallSpawnPoint[];
 }
 
 export interface EmittedQuestTarget {
@@ -309,32 +335,70 @@ function resolveRewardTables(tables: RewardTable[]): EmittedRewardTable[] {
   });
 }
 
+/** Points are pixels in a 160-step map, so a tenth of one is finer than the art. */
+const tenth = (n: number) => Math.round(n * 10) / 10;
+
+/**
+ * A spawn record's pixel on its map, or null when the map's tables aren't
+ * known, the stage isn't drawn on it, or the point lands off the art.
+ */
+function spawnPoint(
+  map: MapLayout | undefined,
+  stage: number,
+  x: number | undefined,
+  z: number | undefined,
+): EmittedSpawnPoint | null {
+  if (!map || x === undefined || z === undefined) return null;
+  const area = areaOfStage(map, stage);
+  if (area === null) return null;
+  const pixel = projectToMap(map, area, x, z);
+  if (!pixel || !map.onArt(pixel[0], pixel[1])) return null;
+  return { area, x: tenth(pixel[0]), y: tenth(pixel[1]) };
+}
+
+/** The map a quest is on, from its header's map ID. */
+function questMap(maps: MapLayouts | undefined, mapId: number): MapLayout | undefined {
+  return maps?.get(mapId);
+}
+
 /** Dedupes exact-duplicate (monster, quantity, power) rows — `LargeMonTable`s are occasionally repeated verbatim, same as small monster tables (see dedupeSmallMonsters). */
 function dedupeLargeMonsters(
   spawns: (MonsterSpawn & { stage: number })[],
   header: Pick<ParsedQuest["header"], "statTable" | "monSizeModifier" | "sizeVariation">,
   multipliers?: MultiplierLookup,
   sizes?: SizeTables,
+  map?: MapLayout,
 ): EmittedMonsterSpawn[] {
   const names = getNameResolver();
-  const seen = new Set<string>();
+  const byKey = new Map<string, EmittedMonsterSpawn>();
+  const seenPoints = new Set<string>();
   const out: EmittedMonsterSpawn[] = [];
   for (const spawn of spawns) {
     const monster = names.resolve("emID", spawn.monsterId);
     if (!monster) continue;
     const key = `${monster}:${spawn.quantity}:${spawn.power}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    const row = multipliers?.(spawn.monsterId, header.statTable, spawn.power);
-    const crowns =
-      sizes && crownChances(sizes, spawn.monsterId, header.monSizeModifier, header.sizeVariation);
-    out.push({
-      monster,
-      quantity: spawn.quantity,
-      power: spawn.power,
-      ...(row ? { multipliers: row } : {}),
-      ...(crowns ? { crown_chances: crowns } : {}),
-    });
+    let entry = byKey.get(key);
+    if (!entry) {
+      const row = multipliers?.(spawn.monsterId, header.statTable, spawn.power);
+      const crowns =
+        sizes && crownChances(sizes, spawn.monsterId, header.monSizeModifier, header.sizeVariation);
+      entry = {
+        monster,
+        quantity: spawn.quantity,
+        power: spawn.power,
+        ...(row ? { multipliers: row } : {}),
+        ...(crowns ? { crown_chances: crowns } : {}),
+      };
+      byKey.set(key, entry);
+      out.push(entry);
+    }
+    const point = spawnPoint(map, spawn.stage, spawn.x, spawn.z);
+    if (!point) continue;
+    const pointKey = `${point.area}:${point.x}:${point.y}`;
+    // A repeated table has the same positions; keep each point once.
+    if (seenPoints.has(`${key}|${pointKey}`)) continue;
+    seenPoints.add(`${key}|${pointKey}`);
+    (entry.spawns ??= []).push(point);
   }
   return out;
 }
@@ -350,10 +414,15 @@ const ENDLESS_QUANTITY = 99;
  * species remains: the largest quantity in any single zone, and the total
  * across the quest's distinct spawn tables.
  */
-function dedupeSmallMonsters(tables: SmallMonsterTable[]): EmittedSmallMonsterSpawn[] {
+function dedupeSmallMonsters(
+  tables: SmallMonsterTable[],
+  map?: MapLayout,
+): EmittedSmallMonsterSpawn[] {
   const names = getNameResolver();
   const seen = new Set<string>();
   const stats = new Map<string, { max: number; total: number; endless: boolean }>();
+  // Kept apart from `stats` so adding positions leaves the species order as it was.
+  const points = new Map<string, Map<string, EmittedSmallSpawnPoint>>();
   for (const table of tables) {
     const key = `${table.stageId}:${table.dataPtr}`;
     if (seen.has(key)) continue;
@@ -366,6 +435,19 @@ function dedupeSmallMonsters(tables: SmallMonsterTable[]): EmittedSmallMonsterSp
       if (spawn.quantity === ENDLESS_QUANTITY) entry.endless = true;
       else entry.quantity += spawn.quantity;
       inTable.set(monster, entry);
+
+      const point = spawnPoint(map, table.stageId, spawn.x, spawn.z);
+      if (!point) continue;
+      const speciesPoints = points.get(monster) ?? new Map<string, EmittedSmallSpawnPoint>();
+      points.set(monster, speciesPoints);
+      const endless = spawn.quantity === ENDLESS_QUANTITY;
+      const pointKey = `${point.area}:${point.x}:${point.y}:${spawn.quantity}`;
+      if (!speciesPoints.has(pointKey))
+        speciesPoints.set(pointKey, {
+          ...point,
+          quantity: spawn.quantity,
+          ...(endless ? { endless: true as const } : {}),
+        });
     }
     for (const [monster, { quantity, endless }] of inTable) {
       const row = stats.get(monster) ?? { max: 0, total: 0, endless: false };
@@ -375,12 +457,16 @@ function dedupeSmallMonsters(tables: SmallMonsterTable[]): EmittedSmallMonsterSp
       stats.set(monster, row);
     }
   }
-  return [...stats.entries()].map(([monster, { max, total, endless }]) => ({
-    monster,
-    max_quantity: max,
-    total_quantity: total,
-    ...(endless ? { endless: true as const } : {}),
-  }));
+  return [...stats.entries()].map(([monster, { max, total, endless }]) => {
+    const speciesPoints = points.get(monster);
+    return {
+      monster,
+      max_quantity: max,
+      total_quantity: total,
+      ...(endless ? { endless: true as const } : {}),
+      ...(speciesPoints && speciesPoints.size > 0 ? { spawns: [...speciesPoints.values()] } : {}),
+    };
+  });
 }
 
 /** An item's name, or an error: a loadout without one would lose it silently. */
@@ -433,18 +519,21 @@ function resolveTarget(targetId: number, targetNum: number): EmittedQuestTarget 
 /**
  * Maps one parsed `.mib` quest to the `data/quests/*.json` shape, or null for
  * an unused/disabled quest slot or a quest on no board (see `questHub`).
- * Large monsters get their stat multipliers from `multipliers`, and the
- * quest its `monster_size` from `sizes`, if given.
+ * Large monsters get their stat multipliers from `multipliers`, the quest
+ * its `monster_size` from `sizes`, and monsters their map positions from
+ * `maps`, if each is given.
  */
 export function emitQuest(
   parsed: ParsedQuest,
   multipliers?: MultiplierLookup,
   sizes?: SizeTables,
+  maps?: MapLayouts,
 ): EmittedQuest | null {
   if (isPlaceholderQuest(parsed)) return null;
   const { header } = parsed;
   const hub = questHub(header.questId);
   if (!hub) return null;
+  const map = questMap(maps, header.map);
 
   return {
     id: header.questId,
@@ -462,9 +551,9 @@ export function emitQuest(
     target: resolveTarget(header.targetId, header.targetNum),
     supplies: resolveSupplies(parsed.supplies),
     reward_tables: resolveRewardTables(parsed.rewards),
-    large_monsters: dedupeLargeMonsters(parsed.largeMonsters, header, multipliers, sizes),
+    large_monsters: dedupeLargeMonsters(parsed.largeMonsters, header, multipliers, sizes, map),
     monster_size: monsterSize(parsed, sizes),
-    small_monsters: dedupeSmallMonsters(parsed.smallMonsters),
+    small_monsters: dedupeSmallMonsters(parsed.smallMonsters, map),
     ...(parsed.arenaSets.length > 0
       ? { arena_sets: emitArenaSets(header.questId, parsed.arenaSets) }
       : {}),
@@ -495,6 +584,7 @@ export function emitQuestsFile(
   parsedQuests: ParsedQuest[],
   multipliers?: MultiplierLookup,
   sizes?: SizeTables,
+  maps?: MapLayouts,
 ): Record<string, { quests: EmittedQuest[] }> {
   const byHub: Record<QuestHub, EmittedQuest[]> = {
     village: [],
@@ -505,7 +595,7 @@ export function emitQuestsFile(
     challenge: [],
   };
   for (const parsed of parsedQuests) {
-    const emitted = emitQuest(parsed, multipliers, sizes);
+    const emitted = emitQuest(parsed, multipliers, sizes, maps);
     if (emitted) byHub[emitted.hub].push(emitted);
   }
 

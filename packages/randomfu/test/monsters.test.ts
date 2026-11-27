@@ -10,7 +10,7 @@ import {
   MONSTER_CHUNK_SIZE,
   TOLERANCE_OFFSET,
 } from "mhfu-extract/src/monsters/hitzones.js";
-import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
+import { loadGame, type GameData, type LoadedQuest } from "whetstone/src/game/load.js";
 import {
   readSpawns,
   SIZE_PERCENT_OFFSET,
@@ -22,7 +22,7 @@ import { randomize } from "../src/randomize.js";
 import type { OptionKey, Settings } from "../src/settings.js";
 import { MONSTER_FAMILIES } from "../src/shuffles/quest-monsters.js";
 import { formatSpoiler } from "../src/spoiler.js";
-import { writeEdits } from "../src/write.js";
+import { writeEdits } from "whetstone/src/write.js";
 import {
   buildFixtureDisc,
   finish,
@@ -32,7 +32,7 @@ import {
   GAME_TASK_INDEX,
   patchInMemory,
   tempDir,
-} from "./fixtures.js";
+} from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 type Changes = Partial<Record<OptionKey, boolean | number | string>>;

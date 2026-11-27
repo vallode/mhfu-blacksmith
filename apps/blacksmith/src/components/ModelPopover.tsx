@@ -52,12 +52,12 @@ const CUBE_FILL: Record<string, string> = {
 };
 
 /** The cube as SVG rects, one per run of same-coloured pixels. */
-function CubeSprite() {
+export function ModelCube({ className }: { className?: string }) {
   const width = CUBE[0].length;
   return (
     <svg
       viewBox={`0 0 ${width} ${CUBE.length}`}
-      className="h-[2.8rem] w-[2.6rem]"
+      className={cn("h-[2.8rem] w-[2.6rem]", className)}
       shapeRendering="crispEdges"
       aria-hidden
     >
@@ -97,7 +97,7 @@ export function ModelButton({ open, onClick, className }: ButtonProps) {
         className,
       )}
     >
-      <CubeSprite />
+      <ModelCube />
     </button>
   );
 }

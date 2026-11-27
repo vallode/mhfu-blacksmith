@@ -117,8 +117,9 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
   "Building `data/` from the disc".
 - `item-icons` slices the item icons out of the UI atlas into the site's
   `public/images/`. See "Items".
-- `area-maps` writes the area map textures `data/gathering.json` uses to
-  the site's `public/images/area-maps/`. See "Area maps".
+- `area-maps` writes the area map textures the cockpit has (including maps
+  with no gathering points) to the site's `public/images/area-maps/`. See
+  "Area maps".
 - `quest-probe` summarises `extract --raw`'s `raw/quests.json` for the
   open quest questions (`src/emit/quest-probe.ts`): the values the monster
   size candidates take, the header's two objective slots, each script
@@ -373,7 +374,7 @@ Getting data out of them takes a disc of each, then, per game:
 
 `EBOOT.BIN` on the disc is KIRK-encrypted. `unpack` tries, in order
 (`src/cli/eboot.ts`; steps 2 and 3 are the shared `decryptEboot` in
-`src/container/eboot.ts`, which randomfu uses too):
+`src/container/eboot.ts`, which Whetstone and randomfu use too):
 
 1. A `--eboot <path>` flag pointing at a pre-decrypted dump (e.g. from
    PPSSPP's `Debug → Dump Decrypted EBOOT.BIN`).
@@ -679,7 +680,7 @@ the extracted output.
 
 A monster's attacks are objects its class's per-frame spawner makes while
 a motion plays, each with a row (timing, power, reaction, stun) and a list
-of shapes in the hitbox records' layout (`packages/randomfu/docs/monster-ai.md`,
+of shapes in the hitbox records' layout (`packages/whetstone/docs/monster-ai.md`,
 "Attack objects", has the format). The spawners branch every which way, and
 some change the row after making the object, so `src/monsters/attacks.ts`
 runs them rather than reading them, on a small Allegrex interpreter
@@ -699,6 +700,12 @@ reads 0):
   being 30 Hz ticks), power, reaction, stun and capsules on their joints in
   the bind pose. The 3D viewer shows them while the motion playing is in
   that window.
+- **Stun**: the row's stun byte is the hunter's dizzy build-up, not the
+  monster's KO value. The hunter dizzies when the gauge reaches 50; the
+  150-tick value is the delay before the gauge drains, and the Faint skill
+  works on the gauge (`docs/dizzy.md`). Roars are `power: 0` rows in the
+  same files; most have stun 0, but the Blos roar and Rajang's motion 52
+  carry 10.
 
 Gaps, logged by `export-site`: shapes on joints 0x7D-0x7F are placed by code
 (a sweep between two frames, or the object's own position) and are skipped;
@@ -1400,6 +1407,14 @@ is deduplicated the same way for exact-duplicate `(monster, quantity, power)`
 rows. Each large monster's `multipliers` are its stat multiplier row (see
 "Monster overlays").
 
+Both lists also carry `spawns` when `src/tables/map-layout.ts` can place
+them (EU): each spawn record's `area` and pixel on the quest's area map.
+Large monster records have a stage ID (`+8`) and position (`+32`, `+40`);
+small monster records get their stage from their `SmallMonTable` and have
+the same position fields. Points the map doesn't draw (the Tower's maps,
+off-art areas) are left out, so a monster can have no `spawns` even though
+it spawns in the quest. The site's Map tab draws them as markers.
+
 Training School quests also carry `arena_sets`, the loadouts the hunter
 picks from (see "Arena sets" below). `QuestScript` isn't emitted (see
 "Quest script" below).
@@ -1407,9 +1422,10 @@ picks from (see "Arena sets" below). `QuestScript` isn't emitted (see
 ### Gathering points
 
 `src/quests/gathering.ts` reads a quest's mining, gathering and bug
-catching points, and `src/emit/gathering.ts` writes them to
-`data/gathering.json` (schema: `data/schemas/gathering.schema.json`).
-randomfu's `gathering` shuffle edits the same tables.
+catching points, and `src/emit/gathering.ts` writes them, with the
+fishing points below, to `data/gathering.json` (schema:
+`data/schemas/gathering.schema.json`). randomfu's `gathering` shuffle edits
+the same tables.
 
 - **Layout** (`quest.hexpat`): the header's `GatheringLocTblPTR` (`+28`)
   points at one u32 per area of the map (the count depends on the map,
@@ -1439,12 +1455,42 @@ u16 table, u16 most gathers, u16 type, u16 fewest gathers`), ending at
   Mushroom Goldrush!, Mountain Herb Picking). Within an area, identical
   points are one entry with a `count`.
 
+### Fishing points
+
+`src/quests/fishing.ts` reads each stage's fishing tables from its
+`overlay/stageNNN.ovl`, and `emit/gathering.ts` adds them as `fish` nodes
+under the area whose stage the map's stage list names.
+
+- **Layout**: six tables of `{ s8 weight, u8 fish }` pairs end at weight
+  -1, and the stage's pointer list points at each in `MissionRankId` order:
+  EASY, LOW, HIGH, TREASURE, TRAINING, G. Fish weights add up to 100, so
+  they're the chance per catch. `FishId` maps to the item IDs in
+  `data/items.json`; fish 0 (nothing) isn't written.
+- **Finding it**: the pointer list moves between stages, so it's found by
+  shape: six pointers into the overlay, then a zero word, each to a table
+  whose weights add up to 100. A stage with no fishing has no such list.
+- **Areas**: the stage ID list `readMapGeometry` reads is the map's area
+  order, so the same fishing spot is listed on every quest on that map and
+  rank, as part of their shared points. Fishing points are always unlimited
+  (`gathers` and `most_gathers` null).
+- **Maps**: fishing interactables' positions aren't decoded, so fish nodes
+  have no `positions` and don't draw on the area maps. Their item pages
+  still list the map, area, rank and chance.
+- **Pokke Farm**: the farm stage (`stage046.ovl`) has the same six-table
+  pointer list, but its first three are the Fishing Pier's levels. The
+  Casting Machine is a 19-row `{ u16 item, u8 chance, u8 amount }` table
+  in `game_sub.ovl`, found by its shape and 100 total. `emit/farm.ts`
+  writes both to `data/farm.json` as `fishing` points; their per-restock
+  counts aren't known, so those are null.
+
 ### Area maps
 
-`src/tables/map-layout.ts` works out where a gathering point sits on the
-map, and `emit/gathering.ts` writes it as `positions` (one pixel per point)
-and the layout's `texture`. The formula is the one the map screen draws the
-player's arrow with (EU EBOOT, around `0x8843358`), for x and z separately:
+`src/tables/map-layout.ts` works out where a gathering point or monster
+spawn sits on the map, and `emit/gathering.ts` writes it as `positions` (one
+pixel per point) and the layout's `texture`; `emit/quests.ts` writes the
+monsters into each quest's `spawns`. The formula is the one the map screen
+draws the player's arrow with (EU EBOOT, around `0x8843358`), for x and z
+separately:
 
 ```
 pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
@@ -1461,15 +1507,16 @@ pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
   list, so index 0 is the Base Camp. Stage IDs aren't in area order.
 - **Textures**: `data-bin/cockpit/map<N>.tmh`, 160x160, named by quest map
   ID. Night maps reuse the day map's (16 uses 2, 18 uses 4, 21 uses 11, 31
-  uses 30). `area-maps` writes the ones `data/gathering.json` uses to
-  `public/images/area-maps/`, so run it after `build-data`.
+  uses 30). `area-maps` writes every map texture the cockpit has, including
+  the maps with no gathering points (the small arena, the Tower's floors),
+  to `public/images/area-maps/`, so run it after `build-data`.
 - **Not placed**: the Tower's maps (14 and 15) draw their floors on separate
   pages this formula doesn't reach. A few areas aren't drawn on their map
   at all (the Desert's 11th), so an area with no point on opaque art loses
   its `positions`.
 - **Regions**: the JP addresses were found by searching the FUC disc's
   files for the EU tables' contents (`readMapGeometry` takes the region;
-  randomfu's node map uses both). `extract` still only places points for EU. On an EU disc it stops if the tables aren't where they
+  Whetstone's node map uses both). `extract` still only places points for EU. On an EU disc it stops if the tables aren't where they
   should be or a texture can't be read, rather than write data without
   positions.
 
@@ -1736,7 +1783,7 @@ Other sources checked:
     `LangPTRs`. Then come the record's strings, `StringPTRs` blocks and
     `LangPTRs`, laid out as in a quest file, with offsets from the start of
     the board file.
-  - randomfu reads them in `src/game/board.ts`.
+  - Whetstone reads them in `packages/whetstone/src/game/board.ts`.
 - **EU message files** (`quest-text-scan`, quest 10109).
   - None of the quest's whole strings is stored anywhere else as UTF-8.
   - The likely message files come in groups of five, one per language, with

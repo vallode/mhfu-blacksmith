@@ -3,12 +3,12 @@
 # the site.
 #
 # Each site is a Cloudflare Worker serving static assets, configured by its
-# app's wrangler.jsonc (apps/blacksmith, apps/randomfu). Static asset
-# requests are free and unmetered, and deploys cost nothing. The blacksmith
-# site also has a script for the set builder's pages and share links only
-# (shared sets' link embeds, src/cloudflare/worker.ts), and randomfu one for
-# its analytics events only (analytics/worker.ts); those requests count as
-# Worker requests.
+# app's wrangler.jsonc (apps/blacksmith, apps/randomfu, apps/whetstone).
+# Static asset requests are free and unmetered, and deploys cost nothing. The
+# blacksmith site also has a script for the set builder's pages and share
+# links only (shared sets' link embeds, src/cloudflare/worker.ts), and
+# randomfu one for its analytics events only (analytics/worker.ts); those
+# requests count as Worker requests. Whetstone has no script at all.
 #
 # - main deploys to production: <worker>.<subdomain>.workers.dev, plus any
 #   custom domain added to the Worker in the Cloudflare dashboard.
@@ -19,7 +19,7 @@
 #
 # Repository secrets: CLOUDFLARE_API_TOKEN, an API token made from the "Edit
 # Cloudflare Workers" template, and CLOUDFLARE_ACCOUNT_ID. Optional
-# repository variables BLACKSMITH_URL and RANDOMFU_URL (e.g.
+# repository variables BLACKSMITH_URL, RANDOMFU_URL and WHETSTONE_URL (e.g.
 # https://randomfu.vallode.com) give a site's production address once it has
 # a custom domain; the builds write it into their link previews, and it
 # defaults to the workers.dev address.
@@ -32,10 +32,11 @@ on:
         description: Site to deploy
         type: choice
         options:
-          - both
+          - all
           - blacksmith
           - randomfu
-        default: both
+          - whetstone
+        default: all
 
 permissions:
   contents: read
@@ -107,12 +108,14 @@ jobs:
           MESSAGE: Deployed from GitHub Actions by ${{ github.actor }} (${{ github.ref_name }} ${{ github.sha }})
           BLACKSMITH_URL: ${{ vars.BLACKSMITH_URL }}
           RANDOMFU_URL: ${{ vars.RANDOMFU_URL }}
+          WHETSTONE_URL: ${{ vars.WHETSTONE_URL }}
         run: |
-          for site in blacksmith randomfu; do
-            [ "$SITE" = both ] || [ "$SITE" = "$site" ] || continue
+          for site in blacksmith randomfu whetstone; do
+            [ "$SITE" = all ] || [ "$SITE" = "$site" ] || continue
             case "$site" in
               blacksmith) package=blacksmith worker=mhfu-blacksmith production_url="$BLACKSMITH_URL" ;;
               randomfu) package=randomfu-web worker=randomfu production_url="$RANDOMFU_URL" ;;
+              whetstone) package=whetstone-web worker=whetstone production_url="$WHETSTONE_URL" ;;
             esac
             echo "::group::$site"
 

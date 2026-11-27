@@ -18,7 +18,11 @@ import { MONSTER_GAME_IDS, monsterGameId } from "../src/lib/monster-ids";
 import { DATA_DIR } from "../src/lib/paths";
 import { HR_URGENT_QUESTS, hunterRankFrom } from "../src/lib/hunter-rank";
 import { AWARD_RECORD_KEYS, getSave, saveFromCharacter, setSave } from "../src/lib/save-store";
+import { buildFromSaveSet, resolveSaveSet } from "../src/lib/save-sets";
+import { buildCodecTables } from "../src/lib/set-codec";
+import { evaluateBuild } from "../src/lib/set-build";
 import { readData } from "game-data";
+import { loadShippedSetData } from "./helpers/set-data";
 
 const root = path.resolve(__dirname, "..");
 const SAVE = path.join(root, "test/fixtures/MHP2NDG.BIN");
@@ -267,6 +271,27 @@ test("equipment IDs line up: a starter kit, and whole armor sets across all five
   }
 });
 
+test("every page of the equipment box is read, to its 1000th slot", async () => {
+  // An otherwise empty, already-decrypted save with one hunter.
+  const buffer = new ArrayBuffer(0x16a0e8);
+  const view = new DataView(buffer);
+  const base = 0x1000;
+  view.setUint16(base, "A".charCodeAt(0), true);
+  const slots = [0, 399, 400, 999];
+  for (const [i, slot] of slots.entries()) {
+    const at = base + 0xa8 + slot * 12;
+    view.setUint16(at, 0x0105, false);
+    view.setUint16(at + 2, i + 1, true);
+  }
+  lastMessage = null;
+  await onmessage({ data: { buffer, region: "us" } });
+  const [hunter] = ok(message()).characters as CharacterResult[];
+  assert.deepEqual(
+    hunter.equipBox.map((s) => s.id),
+    [1, 2, 3, 4],
+  );
+});
+
 // Decorations: bytes 6–11 of each equipment slot hold up to three jewel item IDs.
 const decorationSlots = new Map(
   (
@@ -336,6 +361,140 @@ test("every decoration is a known jewel and the jewels fit the piece's slots", a
       );
     }
   }
+});
+
+// Registered equipment sets: 20 × 0x20 bytes at 0x4334, six uint16 LE
+// equipment box indexes (0xffff = empty) in weapon, legs, head, chest, arms,
+// waist order. Empty registrations are skipped but the rest keep their number.
+test("registered equipment sets keep their number, weapon, armor and decorations", async () => {
+  const [gideon, mearo] = ok(await parse("us")).characters as CharacterResult[];
+  assert.deepEqual(
+    gideon.equipmentSets.map((s) => s.number),
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  );
+  assert.deepEqual(mearo.equipmentSets, []);
+  const set = (n: number) => gideon.equipmentSets.find((s) => s.number === n)!;
+  // Set 1: the Ucamulbas Blademaster set, every armor piece two jewels.
+  // Armor comes in ARMOR_SLOTS order (helmet, plate, gauntlets, waist, leggings).
+  assert.deepEqual(
+    [set(1).weapon, ...set(1).armor].map((s) => (s ? equipName(s) : null)),
+    [
+      "Ukanlos Destructor",
+      "Ucamulbas Mask",
+      "Ucamulbas Aegis",
+      "Ucamulbas Claw",
+      "Ucamulbas Cincture",
+      "Ucamulbas Hessian",
+    ],
+  );
+  assert.deepEqual(
+    set(1).armor.map((s) => s?.decorations?.map(name)),
+    Array.from({ length: 5 }, () => ["Grinder Jewel", "Grinder Jewel"]),
+  );
+  // Set 2 is the Gunner one; set 9's weapon carries its own jewels.
+  assert.equal(set(2).weapon?.type, 6);
+  assert.equal(set(2).weapon && equipName(set(2).weapon!), "Ukanlos Bow");
+  assert.equal(set(9).weapon && equipName(set(9).weapon!), "Master's Blade G");
+  assert.deepEqual(set(9).weapon?.decorations?.map(name), ["Grinder Jewel", "Grinder Jewel"]);
+});
+
+test("a deleted registration leaves a gap in the set numbers", async () => {
+  const { decryptGameLayer, decryptPSPLayer } = await import("../public/javascript/save-cipher.js");
+  const buf = fs.readFileSync(SAVE);
+  const plain = await decryptGameLayer(
+    await decryptPSPLayer(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength), "na"),
+    "na",
+  );
+  const bytes = new Uint8Array(plain.slice(0));
+  const view = new DataView(bytes.buffer);
+  // Registration 3: mark its six indexes empty.
+  const at = 0x1000 + 0x4334 + 2 * 0x20;
+  for (let i = 0; i < 6; i++) view.setUint16(at + i * 2, 0xffff, true);
+  lastMessage = null;
+  await onmessage({ data: { buffer: bytes.slice().buffer, region: "us" } });
+  const gideon = ok(message()).characters[0] as CharacterResult;
+  assert.deepEqual(
+    gideon.equipmentSets.map((s) => s.number),
+    [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  );
+});
+
+test("stored saves keep the registered equipment sets", async () => {
+  const [gideon] = ok(await parse("us")).characters as CharacterResult[];
+  assert.deepEqual(saveFromCharacter(gideon, "us", 0).equipmentSets, gideon.equipmentSets);
+});
+
+test("a save set resolves through the set builder's game IDs", async () => {
+  const [gideon] = ok(await parse("us")).characters as CharacterResult[];
+  const { data, ids } = loadShippedSetData();
+  const tables = buildCodecTables(data, ids);
+  const set = gideon.equipmentSets.find((s) => s.number === 1)!;
+  const r = resolveSaveSet(set, ids, tables);
+  assert.equal(r.number, 1);
+  assert.deepEqual(r.weapon && [r.weapon.ref.name, r.weapon.ref.category, r.weapon.slug], [
+    "Ukanlos Destructor",
+    "great-sword",
+    "ukanlos-destructor",
+  ]);
+  assert.deepEqual(
+    r.armor.map((p) => p?.name ?? null),
+    [
+      "Ucamulbas Mask",
+      "Ucamulbas Aegis",
+      "Ucamulbas Claw",
+      "Ucamulbas Cincture",
+      "Ucamulbas Hessian",
+    ],
+  );
+  assert.equal(r.decorations.length, 10);
+  assert.ok(r.decorations.every((d) => d.deco.name === "Grinder Jewel"));
+  assert.deepEqual(r.unknown, []);
+  // The armor and jewels alone activate skills.
+  const evaluated = evaluateBuild(data, buildFromSaveSet(r, 0, "Blademaster", "Male"));
+  assert.ok(evaluated.skills.length > 0, "the set activates a skill");
+});
+
+test("a save set's weapon gives the slots for its own jewels", async () => {
+  const [gideon] = ok(await parse("us")).characters as CharacterResult[];
+  const { data, ids } = loadShippedSetData();
+  const tables = buildCodecTables(data, ids);
+  const r = resolveSaveSet(
+    gideon.equipmentSets.find((s) => s.number === 9)!,
+    ids,
+    tables,
+  );
+  assert.equal(r.weapon?.ref.name, "Master's Blade G");
+  const weapons = readData<{ weapons: { name: string; slots?: number }[] }>(
+    DATA_DIR,
+    "weapons",
+    `${r.weapon!.ref.category}.json`,
+  ).weapons;
+  const slots = weapons.find((w) => w.name === r.weapon!.ref.name)?.slots ?? 0;
+  assert.equal(slots, 2);
+  const evaluated = evaluateBuild(data, buildFromSaveSet(r, slots, "Blademaster", "Male"));
+  assert.equal(evaluated.decorations.filter((d) => d.bin === "weapon").length, 2);
+});
+
+test("equipment the site doesn't have is left out and listed", () => {
+  const { data, ids } = loadShippedSetData();
+  const tables = buildCodecTables(data, ids);
+  const r = resolveSaveSet(
+    {
+      number: 3,
+      weapon: { type: 5, id: 999999, decorations: [] },
+      armor: [{ type: 1, id: 999999, decorations: [999999] }, null, null, null, null],
+    },
+    ids,
+    tables,
+  );
+  assert.equal(r.number, 3, "the in-game number is kept");
+  assert.equal(r.weapon, null);
+  assert.deepEqual(r.armor, [null, null, null, null, null]);
+  assert.deepEqual(r.decorations, []);
+  assert.deepEqual(
+    r.unknown.map((u) => u.kind),
+    ["weapon", "armor", "decoration"],
+  );
 });
 
 // Quest flags and monster records. This save's quest bits were set with the

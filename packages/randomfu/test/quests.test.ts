@@ -4,9 +4,9 @@ import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
-import { Edits } from "../src/edits.js";
+import { Edits } from "whetstone/src/edits.js";
 import { gatheringYields } from "mhfu-extract/src/quests/gathering.js";
-import { loadGame, type GameData } from "../src/game/load.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
 import {
   deliveryTarget,
   isQuestItem,
@@ -14,7 +14,7 @@ import {
   readTerms,
   rewriteGoal,
   TICKS_PER_MINUTE,
-} from "../src/game/quest-fields.js";
+} from "whetstone/src/game/quest-fields.js";
 import { randomize } from "../src/randomize.js";
 import { Rng } from "../src/rng.js";
 import { collectDeliveries, shuffleDeliveries } from "../src/shuffles/deliveries.js";
@@ -26,7 +26,7 @@ import {
   FIXTURE_QUESTS,
   patchInMemory,
   tempDir,
-} from "./fixtures.js";
+} from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function load(): Promise<{ game: GameData; close: () => void }> {
@@ -420,7 +420,7 @@ async function writeAndReadBack(mode: string): Promise<void> {
   if (mode === "randomize") assert.ok(grew(result));
   const out = path.join(tempDir(), "out.iso");
   const original = buildFixtureDisc();
-  const { writeEdits } = await import("../src/write.js");
+  const { writeEdits } = await import("whetstone/src/write.js");
   const image = patchInMemory(original);
   writeEdits(image, game, result.edits);
   writeFileSync(out, finish(image, original));

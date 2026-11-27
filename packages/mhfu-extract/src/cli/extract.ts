@@ -12,10 +12,13 @@ import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
 import { emitCombinations } from "../emit/combinations.js";
 import { emitMonsters } from "../emit/monsters.js";
 import { emitGathering, type GatheringQuestInput } from "../emit/gathering.js";
-import { loadMapLayouts } from "../tables/map-layout.js";
+import { loadMapLayouts, readMapGeometry } from "../tables/map-layout.js";
 import { emitQuestsFile, type MultiplierLookup } from "../emit/quests.js";
+import { loadFishingTables, readFishTables, type FishTables } from "../quests/fishing.js";
 import { emitShops } from "../emit/shops.js";
 import { emitVeggieTrades } from "../emit/veggie-trades.js";
+import { emitMotionValues } from "../emit/motion-values.js";
+import { weaponMoves } from "../overlay/weapon-moves.js";
 import { emitFarm } from "../emit/farm.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
@@ -69,7 +72,14 @@ import {
 } from "../tables/offsets.js";
 import { readCombinations } from "../tables/combinations.js";
 import { readVeggieTrades } from "../tables/veggie-trades.js";
-import { readFarmTables } from "../tables/farm.js";
+import {
+  MotionTableError,
+  readHitzoneWeights,
+  readMotionTable,
+  type HitzoneWeightTables,
+  type MotionTable,
+} from "../tables/motion-values.js";
+import { FARM_STAGE_ID, readFarmTables, readFishCaster } from "../tables/farm.js";
 import {
   verifyResolverCoverage,
   type ResolverCoverageResult,
@@ -422,18 +432,22 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     };
   if (!monsters.bestiary)
     console.warn(`Warning: region "${manifest.region}" has no monster descriptions.`);
-  Object.assign(output, emitQuestsFile(quests, multiplierLookup, sizes ?? undefined));
 
   // Only EU data gets positions: the JP tables (readMapGeometry) are known, but
-  // JP's textures and positions haven't been checked against the site.
-  const maps =
-    manifest.region === "eu"
-      ? await loadMapLayouts(options.unpacked, reader, overlays.gameSub)
-      : undefined;
+  // JP's textures and positions haven't been checked against the site. The
+  // geometry still gives every map's stages, which fishing needs even where
+  // the map has no texture (the Tower).
+  const geometry = manifest.region === "eu" ? readMapGeometry(reader, overlays.gameSub) : undefined;
+  const maps = geometry
+    ? await loadMapLayouts(options.unpacked, reader, overlays.gameSub)
+    : undefined;
   if (!maps) {
     console.warn(`Warning: region "${manifest.region}" has no map tables, so no map positions.`);
   }
-  const gathering = emitGathering(payloads, maps);
+  Object.assign(output, emitQuestsFile(quests, multiplierLookup, sizes ?? undefined, maps));
+
+  const fishing = geometry ? await loadFishingTables(options.unpacked, geometry) : undefined;
+  const gathering = emitGathering(payloads, maps, fishing);
   for (const { questId, problem } of gathering.problems) {
     console.log(`Quest ${questId}: gathering points skipped (${problem}).`);
   }
@@ -460,6 +474,20 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     );
   }
 
+  // A disc whose code doesn't match skips the file; a bad overlay row fails the run.
+  let motionTables: [MotionTable, HitzoneWeightTables] | null = null;
+  try {
+    motionTables = [readMotionTable(overlays.gameTask), readHitzoneWeights(overlays.gameTask)];
+  } catch (error) {
+    if (!(error instanceof MotionTableError)) throw error;
+    console.warn(`Warning: ${error.message}; skipping motion-values.json.`);
+  }
+  if (motionTables) {
+    const [motions, weights] = motionTables;
+    console.log(`Motion values at 0x${motions.offset.toString(16)}: ${motions.rows.length} rows.`);
+    output["motion-values.json"] = emitMotionValues(motions, weaponMoves(), weights);
+  }
+
   // Only the EU disc's farm tables are known; elsewhere there's no farm.json.
   const farm = manifest.region === "eu" ? readFarmTables(reader) : null;
   if (manifest.region !== "eu") {
@@ -468,7 +496,26 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.log(
       `Pokke Farm tables at 0x${farm.offset.toString(16)}: ${farm.tables.length} points.`,
     );
-    output["farm.json"] = emitFarm(farm);
+    let pier: FishTables | null = null;
+    try {
+      const stage = parseOvl(
+        await readFile(
+          path.join(
+            options.unpacked,
+            OVERLAY_DIR,
+            `stage${String(FARM_STAGE_ID).padStart(3, "0")}.ovl`,
+          ),
+        ),
+      );
+      pier = readFishTables(stage);
+    } catch (error) {
+      console.warn(
+        `Warning: the Fishing Pier's tables weren't read: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+    const caster = readFishCaster(overlays.gameSub.reader);
+    if (!caster) console.warn("Warning: the Casting Machine's rewards weren't found.");
+    output["farm.json"] = emitFarm(farm, { pier, caster });
   } else {
     console.warn("Warning: Pokke Farm's gathering tables weren't found; skipping farm.json.");
   }

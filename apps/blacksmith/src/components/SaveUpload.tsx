@@ -47,11 +47,17 @@ const hunterItems = (c: CharacterResult) => [...c.itemChest, ...c.itemPouch];
 
 /** Whether `character` is the hunter currently stored as active. */
 function isActiveHunter(save: SaveData | null, c: CharacterResult): boolean {
-  if (!save || save.name !== c.name) return false;
+  // A save stored before equipment sets were read isn't active for this
+  // comparison: the Save file tab asks for it to be loaded again, and picking
+  // its slot is how that happens.
+  if (!save || save.equipmentSets === undefined || save.name !== c.name) return false;
   const items = hunterItems(c);
   return (
     save.items.length === items.length &&
-    save.items.every((s, i) => s.id === items[i].id && s.qty === items[i].qty)
+    save.items.every((s, i) => s.id === items[i].id && s.qty === items[i].qty) &&
+    // A box that differs, such as one stored when only part of it was read, is
+    // loaded again by picking its slot.
+    JSON.stringify(save.equipment) === JSON.stringify(c.equipBox)
   );
 }
 

@@ -54,6 +54,8 @@ export interface MapGeometry {
   width: number;
   depth: number;
   zoom: number;
+  /** Stage ID by area index (the index gathering points use), as the disc lists them; spawn records carry these IDs. */
+  stages: number[];
   /** Stage origin by area index (the index gathering points use), as `[x, z]`. */
   origins: [number, number][];
 }
@@ -81,6 +83,12 @@ export function projectToMap(
   return [axis(x, origin[0], map.width), axis(z, origin[1], map.depth)];
 }
 
+/** The area index a stage (the IDs spawn records carry) is drawn at, or null if this map doesn't have it. */
+export function areaOfStage(map: MapGeometry, stage: number): number | null {
+  const area = map.stages.indexOf(stage);
+  return area < 0 ? null : area;
+}
+
 /** Each map's size, zoom and stage origins, or throws if the tables aren't where they should be. */
 export function readMapGeometry(
   eboot: BinaryReader,
@@ -100,15 +108,17 @@ export function readMapGeometry(
     for (let map = 1; map < MAP_COUNT; map++) {
       const count = sub.u32(lists + map * 8);
       if (count === 0) continue;
-      const stages = gameSub.vaddrToOffset(sub.u32(lists + map * 8 + 4));
+      const stageList = gameSub.vaddrToOffset(sub.u32(lists + map * 8 + 4));
+      const stages = Array.from({ length: count }, (_, i) => sub.u16(stageList + i * 2));
       out.set(map, {
         width: eboot.f32(sizes + map * 8),
         depth: eboot.f32(sizes + map * 8 + 4),
         zoom: eboot.f32(zooms + map * 4),
-        origins: Array.from({ length: count }, (_, i) => {
-          const at = origins + sub.u16(stages + i * 2) * STAGE_ORIGIN_SIZE;
+        origins: stages.map((stage) => {
+          const at = origins + stage * STAGE_ORIGIN_SIZE;
           return [sub.f32(at), sub.f32(at + 4)] as [number, number];
         }),
+        stages,
       });
     }
   } catch (error) {

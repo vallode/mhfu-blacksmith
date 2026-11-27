@@ -631,6 +631,194 @@
           "chance": 5
         }
       ]
+    },
+    {
+      "spot": "fishing",
+      "gathers": null,
+      "most_gathers": null,
+      "items": [
+        {
+          "item": 229,
+          "chance": 28
+        },
+        {
+          "item": 230,
+          "chance": 30
+        },
+        {
+          "item": 231,
+          "chance": 12
+        },
+        {
+          "item": 232,
+          "chance": 13
+        },
+        {
+          "item": 233,
+          "chance": 12
+        },
+        {
+          "item": 240,
+          "chance": 3
+        },
+        {
+          "item": 244,
+          "chance": 2
+        }
+      ]
+    },
+    {
+      "spot": "fishing",
+      "gathers": null,
+      "most_gathers": null,
+      "items": [
+        {
+          "item": 231,
+          "chance": 16
+        },
+        {
+          "item": 232,
+          "chance": 25
+        },
+        {
+          "item": 233,
+          "chance": 25
+        },
+        {
+          "item": 234,
+          "chance": 8
+        },
+        {
+          "item": 235,
+          "chance": 8
+        },
+        {
+          "item": 236,
+          "chance": 8
+        },
+        {
+          "item": 240,
+          "chance": 5
+        },
+        {
+          "item": 244,
+          "chance": 5
+        }
+      ]
+    },
+    {
+      "spot": "fishing",
+      "gathers": null,
+      "most_gathers": null,
+      "items": [
+        {
+          "item": 234,
+          "chance": 30
+        },
+        {
+          "item": 235,
+          "chance": 30
+        },
+        {
+          "item": 236,
+          "chance": 29
+        },
+        {
+          "item": 240,
+          "chance": 8
+        },
+        {
+          "item": 244,
+          "chance": 3
+        }
+      ]
+    },
+    {
+      "spot": "fishing",
+      "gathers": null,
+      "most_gathers": null,
+      "items": [
+        {
+          "item": 229,
+          "chance": 3,
+          "amount": 3
+        },
+        {
+          "item": 229,
+          "chance": 5
+        },
+        {
+          "item": 230,
+          "chance": 2,
+          "amount": 3
+        },
+        {
+          "item": 230,
+          "chance": 3
+        },
+        {
+          "item": 231,
+          "chance": 4
+        },
+        {
+          "item": 232,
+          "chance": 7,
+          "amount": 2
+        },
+        {
+          "item": 232,
+          "chance": 4
+        },
+        {
+          "item": 233,
+          "chance": 7,
+          "amount": 2
+        },
+        {
+          "item": 233,
+          "chance": 4
+        },
+        {
+          "item": 234,
+          "chance": 10
+        },
+        {
+          "item": 235,
+          "chance": 10
+        },
+        {
+          "item": 236,
+          "chance": 10
+        },
+        {
+          "item": 240,
+          "chance": 9
+        },
+        {
+          "item": 243,
+          "chance": 4
+        },
+        {
+          "item": 244,
+          "chance": 5
+        },
+        {
+          "item": 239,
+          "chance": 2
+        },
+        {
+          "item": 245,
+          "chance": 5
+        },
+        {
+          "item": 470,
+          "chance": 4
+        },
+        {
+          "item": 476,
+          "chance": 2
+        }
+      ]
     }
   ]
 }

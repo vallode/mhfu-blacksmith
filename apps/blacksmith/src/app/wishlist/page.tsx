@@ -5,7 +5,7 @@ import WishlistClient from "./WishlistClient";
 export const metadata: Metadata = pageMetadata({
   title: "Wishlist",
   description:
-    "The Monster Hunter Freedom Unite weapons and armor you want to make, the materials they add up to, and the best places to get them.",
+    "The Monster Hunter Freedom Unite gear and items you want, the materials they add up to, and the best places to get them.",
   path: "/wishlist/",
 });
 

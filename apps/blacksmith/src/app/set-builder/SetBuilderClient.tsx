@@ -49,10 +49,17 @@ import {
   type DecodeError,
   type DroppedRef,
 } from "@/lib/set-codec";
+import {
+  hasArmorWord,
+  hasSearchLinkParams,
+  parseSearchLink,
+  withoutSearchLink,
+} from "@/lib/search-link";
 import { codeFromPath, sharePath } from "@/lib/set-link";
 import {
   cantWear,
   resolveWanted,
+  sameQuery,
   selectableSkills,
   type Piece,
   type SearchQuery,
@@ -71,6 +78,7 @@ import PieceChips from "./PieceChips";
 import ResultView, { type PieceActions } from "./ResultView";
 import SearchBar from "./SearchBar";
 import SetModel from "./SetModel";
+import SetNameForm from "./SetNameForm";
 import { LockNote, LockRows, withLock } from "./LockedArmor";
 import { PiecePicker } from "./Pickers";
 import { DEFAULT_FORM, OptionsSummary, SearchOptions, type Form } from "./SearchOptions";
@@ -119,31 +127,15 @@ function searchErrorText(t: Messages, e: SetSearchError): string {
   return text.crashed;
 }
 
-/** The query fields a search's results depend on, to tell whether the form has changed since. */
-const QUERY_KEYS = [
-  "skills",
-  "hunterType",
-  "sex",
-  "rank",
-  "weaponSlots",
-  "allowBadSkills",
-  "sort",
-  "progress",
-  "lockPieces",
-  "excludePieces",
-] as const;
-
-function sameQuery(a: SearchQuery, b: SearchQuery): boolean {
-  return (
-    QUERY_KEYS.every((k) => JSON.stringify(a[k] ?? null) === JSON.stringify(b[k] ?? null)) &&
-    !a.onlyPieces === !b.onlyPieces
-  );
-}
-
 function readForm(): Form {
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "null") as Partial<Form> | null;
-    return { ...DEFAULT_FORM, ...saved };
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "null") as
+      (Partial<Form> & { ownedOnly?: boolean }) | null;
+    const { ownedOnly, ...rest } = saved ?? {};
+    const form = { ...DEFAULT_FORM, ...rest };
+    // The form used to have an "Owned armor only" switch.
+    if (ownedOnly && !rest.ownedArmor) form.ownedArmor = "only";
+    return form;
   } catch {
     return DEFAULT_FORM;
   }
@@ -197,7 +189,7 @@ export default function SetBuilderClient() {
   const update = <K extends keyof Form>(key: K, value: Form[K]) =>
     setForm((f) => ({ ...f, [key]: value }));
 
-  const ownedOnly = form.ownedOnly && progress.active;
+  const ownedArmor = progress.active ? form.ownedArmor : "off";
   const { questProgress } = usePreferences().prefs;
   const questLimit = form.ignoreQuestProgress ? null : questProgress;
   const byHref = useMemo(() => new Map(data?.pieces.map((p) => [p.href, p]) ?? []), [data]);
@@ -231,6 +223,11 @@ export default function SetBuilderClient() {
    */
   const queryFor = (f: Form, noSkills = false): SearchQuery | null => {
     if (!data || (f.skills.length === 0 && !noSkills)) return null;
+    const ownedArmor = progress.active ? f.ownedArmor : "off";
+    const owned =
+      ownedArmor === "off"
+        ? undefined
+        : data.pieces.filter((p) => progress.isOwned(p.href)).map((p) => p.id);
     return {
       sort: f.sort,
       lockPieces: lockIds(f.locked, f),
@@ -242,10 +239,8 @@ export default function SetBuilderClient() {
       weaponSlots: f.weaponSlots,
       allowBadSkills: f.allowBadSkills,
       progress: f.ignoreQuestProgress ? null : questProgress,
-      onlyPieces:
-        f.ownedOnly && progress.active
-          ? data.pieces.filter((p) => progress.isOwned(p.href)).map((p) => p.id)
-          : undefined,
+      onlyPieces: ownedArmor === "only" ? owned : undefined,
+      preferPieces: ownedArmor === "prefer" ? owned : undefined,
     };
   };
   const runSearch = (f: Form = form) => {
@@ -282,6 +277,52 @@ export default function SetBuilderClient() {
       }),
   };
 
+  // Whether the address's search link has been read, and whether it ran a
+  // search (which the draft then doesn't take the page from).
+  const linkRead = useRef(false);
+  const linkSearched = useRef(false);
+  // A search link (lib/search-link.ts, from the Discord bot) fills in the
+  // search it asks for over the restored form and runs it, once the data is
+  // in. Its parameters then leave the address, so a reload keeps the
+  // visitor's edits.
+  useEffect(() => {
+    if (linkRead.current || !restored || !data) return;
+    linkRead.current = true;
+    const search = window.location.search;
+    if (!hasSearchLinkParams(search)) return;
+    const url = new URL(window.location.href);
+    url.search = withoutSearchLink(search);
+    window.history.replaceState(window.history.state, "", url);
+    const link = parseSearchLink(search);
+    if (!link) return;
+    const hunter = { hunterType: link.hunterType ?? form.hunterType, sex: form.sex };
+    // Pieces named by a word, only those the hunter could wear: the rest
+    // would only crowd the never-used list.
+    const named = data.pieces
+      .filter((p) => !cantWear(p, hunter) && hasArmorWord(p.name, link.never))
+      .map((p) => p.href);
+    const next: Form = {
+      ...form,
+      ...hunter,
+      skills: link.skills,
+      rank: link.rank ?? form.rank,
+      weaponSlots: link.weaponSlots ?? 0,
+      // A link can lock a piece per sex; only the one this hunter wears stays.
+      locked: link.lock.filter((h) => {
+        const p = byHref.get(h);
+        return p !== undefined && !cantWear(p, hunter);
+      }),
+      excluded: [...new Set([...link.exclude.filter((h) => byHref.has(h)), ...named])].filter(
+        (h) => !link.lock.includes(h),
+      ),
+    };
+    linkSearched.current = true;
+    setForm(next);
+    runSearch(next);
+    // Only once, with the form as restored.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [restored, data]);
+
   const sets = result?.sets ?? [];
   const set = sets[Math.min(index, sets.length - 1)] ?? null;
   const step = (by: 1 | -1) => setIndex((index + by + sets.length) % sets.length);
@@ -317,6 +358,8 @@ export default function SetBuilderClient() {
 
   /** The saved set the editor holds, if it was opened from (or saved to) "My sets". */
   const [savedId, setSavedId] = useState<string | null>(null);
+  /** Whether the editor's title is the set's name field. */
+  const [renaming, setRenaming] = useState(false);
   /** Where the editor's set came from, for its title. */
   const [origin, setOrigin] = useState<Origin>("new");
   /** The name a shared link gave its set, for the editor's title and saving it. */
@@ -334,6 +377,7 @@ export default function SetBuilderClient() {
       setBuild(next);
       setForm((f) => ({ ...f, hunterType: next.hunterType, sex: next.sex }));
       setSavedId(from.savedId ?? null);
+      setRenaming(false);
       setOrigin(from.origin ?? "new");
       setLinkName(from.name ?? null);
       setOpenWarnings(from.warnings ?? []);
@@ -401,12 +445,16 @@ export default function SetBuilderClient() {
     const draft = readDraft();
     const r = draft ? decodeSet(draft.code, tables) : null;
     if (draft && r?.ok) {
+      // A search link's hunter stays in the form: its search ran with it.
+      const linked = linkSearched.current || hasSearchLinkParams(window.location.search);
       setBuild(r.set);
-      setForm((f) => ({ ...f, hunterType: r.set.hunterType, sex: r.set.sex }));
+      if (!linked) setForm((f) => ({ ...f, hunterType: r.set.hunterType, sex: r.set.sex }));
       setSavedId(draft.savedId ?? null);
       setOrigin(draft.origin ?? "new");
       setLinkName(typeof draft.name === "string" ? draft.name : null);
-      if (r.set.pieces.some(Boolean) || r.set.decorations.length > 0) setView("editor");
+      if (!linked && (r.set.pieces.some(Boolean) || r.set.decorations.length > 0)) {
+        setView("editor");
+      }
     }
   }, [tables, idsError, restored, openCode]);
 
@@ -475,7 +523,10 @@ export default function SetBuilderClient() {
     const gone = savedSets.find((s) => s.id === id);
     const before = savedSets;
     storeSets(deleteSet(savedSets, id));
-    if (id === savedId) setSavedId(null);
+    if (id === savedId) {
+      setSavedId(null);
+      setRenaming(false);
+    }
     if (gone) {
       toast({
         id: "set-builder-deleted",
@@ -488,9 +539,37 @@ export default function SetBuilderClient() {
   const editorLabel = savedSet ? savedSet.name : (linkName ?? text.editor.origins[origin]);
   const editorTitle = (
     <div className="flex flex-wrap items-center gap-[0.8rem]">
-      <span className="min-w-0 flex-[1_1_20rem] truncate">
-        <PanelTitle>{editorLabel}</PanelTitle>
-      </span>
+      <div className="flex min-w-0 flex-[1_1_20rem] items-center gap-[0.8rem]">
+        {renaming && (savedSet || linkName !== null) ? (
+          <SetNameForm
+            className="flex-1"
+            initial={savedSet?.name ?? linkName ?? ""}
+            label={text.editor.nameLabel}
+            onSubmit={(name) => {
+              if (savedSet) storeSets(updateSet(savedSets, savedSet.id, { name }));
+              else setLinkName(name);
+              setRenaming(false);
+            }}
+            onCancel={() => setRenaming(false)}
+          />
+        ) : (
+          <>
+            <span className="min-w-0 truncate">
+              <PanelTitle>{editorLabel}</PanelTitle>
+            </span>
+            {(savedSet || linkName !== null) && (
+              <button
+                type="button"
+                className={textButton}
+                aria-label={text.editor.renameLabel(savedSet?.name ?? linkName ?? "")}
+                onClick={() => setRenaming(true)}
+              >
+                {text.editor.rename}
+              </button>
+            )}
+          </>
+        )}
+      </div>
       <div className={ui.actions}>
         <SetModel
           pieces={build.pieces}
@@ -604,6 +683,7 @@ export default function SetBuilderClient() {
           !!searched?.progress,
           !!searched?.lockPieces?.length,
           !!searched?.excludePieces?.length,
+          !!searched?.onlyPieces,
         )}
       </p>
     );
@@ -700,7 +780,7 @@ export default function SetBuilderClient() {
                 aria-haspopup="dialog"
                 onClick={() => setSheet("options")}
               >
-                <OptionsSummary form={form} ownedOnly={ownedOnly} />
+                <OptionsSummary form={form} ownedArmor={ownedArmor} />
                 <span className="flex-none text-white/50" aria-hidden="true">
                   {text.form.options}
                 </span>
@@ -733,7 +813,15 @@ export default function SetBuilderClient() {
                         progress={searched ? (searched.progress ?? null) : questLimit}
                         pieces={data?.pieces ?? []}
                         wantedTrees={searchedWanted}
-                        ownedOnly={searched ? !!searched.onlyPieces : ownedOnly}
+                        ownedArmor={
+                          searched
+                            ? searched.onlyPieces
+                              ? "only"
+                              : searched.preferPieces
+                                ? "prefer"
+                                : "off"
+                            : ownedArmor
+                        }
                         isOwned={isOwned}
                         weaponClass={form.weaponClass}
                         onWeaponClass={(t) => update("weaponClass", t)}
@@ -743,7 +831,7 @@ export default function SetBuilderClient() {
                         action={
                           <button
                             type="button"
-                            className={cn(secondaryButton, "gap-[0.8rem]")}
+                            className={cn(secondaryButton, "grow gap-[0.8rem]")}
                             aria-label={r.editThis}
                             title={r.editThis}
                             onClick={() =>
@@ -780,7 +868,7 @@ export default function SetBuilderClient() {
                           wanted={wanted}
                           rank={form.rank}
                           questLimit={questLimit}
-                          ownedOnly={ownedOnly}
+                          ownedArmor={ownedArmor}
                           isOwned={isOwned}
                           weaponIcon={editorWeaponIcon}
                           extraWarnings={openWarnings.map((w) => openWarningText(t, w))}
@@ -798,7 +886,11 @@ export default function SetBuilderClient() {
                   content: (
                     <MySets
                       sets={savedSets}
+                      saveSets={save?.equipmentSets}
+                      saveSex={save?.sex === "Female" ? "Female" : "Male"}
+                      saveStale={!!save && save.equipmentSets === undefined}
                       data={data}
+                      ids={ids}
                       tables={tables}
                       openId={savedId}
                       onOpen={(saved) => openCode(saved.code, { savedId: saved.id })}
@@ -868,7 +960,7 @@ export default function SetBuilderClient() {
             rank={form.rank}
             wanted={wanted}
             questLimit={questLimit}
-            ownedOnly={ownedOnly}
+            ownedArmor={ownedArmor}
             isOwned={isOwned}
             onPick={(p) => {
               lockPiece(lockSlot, p);
@@ -894,7 +986,7 @@ export default function SetBuilderClient() {
           form={form}
           update={update}
           questProgress={questProgress}
-          canOwnedOnly={progress.active}
+          canUseOwned={progress.active}
         />
       </Sheet>
     </>

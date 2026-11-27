@@ -10,17 +10,17 @@ import {
   projectToMap,
   type MapGeometry,
 } from "mhfu-extract/src/tables/map-layout.js";
-import { loadGame, type GameData } from "../src/game/load.js";
-import { questTier } from "../src/game/tiers.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
+import { questTier } from "whetstone/src/game/tiers.js";
 import {
   addNodeMap,
   collectNodePoints,
   drawNodes,
   MARKER_COLORS,
-} from "../src/patches/node-map.js";
-import { Edits } from "../src/edits.js";
+} from "whetstone/src/patches/node-map.js";
+import { Edits } from "whetstone/src/edits.js";
 import { randomize } from "../src/randomize.js";
-import { buildFixtureDisc, tempDir } from "./fixtures.js";
+import { buildFixtureDisc, tempDir } from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function withFixture(run: (game: GameData) => void): Promise<void> {
@@ -145,6 +145,7 @@ test("one set of nodes per texture, only on the art, from quests a player can ta
           width: 150000,
           depth: 150000,
           zoom: 1,
+          stages: Array.from({ length: 16 }, (_, i) => i),
           origins: Array.from({ length: 16 }, () => [0, 0] as [number, number]),
         },
       ],
@@ -196,6 +197,7 @@ test("a node just off the art is moved onto it, one further off is left out", as
           width: 150000,
           depth: 150000,
           zoom: 1,
+          stages: Array.from({ length: 16 }, (_, i) => i),
           origins: Array.from({ length: 16 }, () => [0, 0] as [number, number]),
         },
       ],

@@ -85,6 +85,14 @@ export function embedIcon(type: string, rarity?: number | null, gem?: string | n
   return { url: `/embed/icons/${type}-${tint}.png`, width: 180, height: 180 };
 }
 
+/**
+ * An item's 180px thumbnail: its icon (/images/item-<icon>.png) tinted with
+ * its colour (--color-item-<color>), as the site draws it.
+ */
+export function itemEmbedIcon(icon: number, color: number) {
+  return { url: `/embed/icons/item-${icon}-${color}.png`, width: 180, height: 180 };
+}
+
 /** The colour the site's icons are tinted with: a gem colour, else rarity 4+; none below that. */
 export function tintFor(rarity?: number | null, gem?: string | null): string | undefined {
   if (gem && GEM_COLORS[gem]) return GEM_COLORS[gem];
@@ -120,9 +128,8 @@ export const element = (name: string): string =>
   ELEMENT_EMOJI[name] ? `${ELEMENT_EMOJI[name]} ${name}` : name;
 
 /**
- * Slots as the game draws them: a circle per slot, dashes for the rest
- * ("○○—"). The set card passes "O" and "-", as the site's Slots does, since
- * its font has no ○.
+ * Slots as text for embeds and meta descriptions: a circle per slot, dashes
+ * for the rest ("○○—"). Images can't be used there.
  */
 export const slotGlyphs = (count = 0, slot = "○", none = "—"): string =>
   Array.from({ length: 3 }, (_, i) => (i < count ? slot : none)).join("");

@@ -31,6 +31,8 @@ export const monsters = {
       /** A small monster's tab: the quests with the most of it. */
       spawns: "Most plentiful",
       status: "Status",
+      /** The heading the rank drop tables group under. */
+      drops: "Drops",
     },
   },
   /** The Status tab: each status's tolerance (lib/monster-status). */
