@@ -196,7 +196,7 @@ export default function ItemDetailClient({ slug }: Props) {
     <DetailCard>
       <DetailHeader>
         <Icon type={item.type} color={item.color} size="large" alt="" />
-        <DetailName>{game.name("item", item.name)}</DetailName>
+        <DetailName className="mobile:flex-1">{game.name("item", item.name)}</DetailName>
         <WishlistButton
           gear={{ kind: "item", slug }}
           name={game.name("item", item.name)}
