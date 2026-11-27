@@ -16,7 +16,6 @@ import { loadFileList } from "mhfu-extract/src/container/filelist.js";
 import { locateIndexedImage, swizzle, unswizzle } from "mhfu-extract/src/models/tmh.js";
 import { NODE_KINDS, readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
 import {
-  hasMapTables,
   mapTextureName,
   projectToMap,
   readMapGeometry,
@@ -186,16 +185,13 @@ export function collectNodePoints(
   );
 }
 
-/** Draws the nodes onto the map textures. Needs the EU or JP disc. */
+/** Draws the nodes onto the map textures. */
 export function addNodeMap(game: GameData, edits: Edits): Report {
   const notWritten = (problem: string): Report => ({
     title: TITLE,
     notes: [`Not written: ${problem}.`],
     lines: [],
   });
-  if (!hasMapTables(game.region))
-    return notWritten("the map tables are only known on the EU and JP discs");
-
   let geometry: Map<number, MapGeometry>;
   try {
     geometry = readMapGeometry(new BinaryReader(game.eboot), game.gameSub.ovl, game.region);

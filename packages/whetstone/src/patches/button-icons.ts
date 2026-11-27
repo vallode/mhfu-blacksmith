@@ -645,10 +645,12 @@ export function redrawIcons(
   return sheets.length > 0 ? { file: out, sheets } : null;
 }
 
-/** The DATA.BIN files holding the icon sheets: `demo.tmh` and `resides.tmh`, and EU's copies. */
+/** The DATA.BIN files holding the icon sheets: `demo.tmh` and `resides.tmh`, and the EU and US discs' copies. */
+const WESTERN_SHEETS = [25, 26, 27, 28, 29, 30, 31, 32, 33, 34] as const;
 export const SHEET_FILES: Partial<Record<Region, readonly number[]>> = {
   jp: [17, 18],
-  eu: [25, 26, 27, 28, 29, 30, 31, 32, 33, 34],
+  eu: WESTERN_SHEETS,
+  us: WESTERN_SHEETS,
 };
 /** Elsewhere, the first files are searched: the system files are among them. */
 export const SCAN_FILES = 64;

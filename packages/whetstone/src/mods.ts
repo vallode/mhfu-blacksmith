@@ -304,7 +304,7 @@ export function applyMods(
     const cameraFound = !game.eboot
       ? "the EBOOT wasn't loaded"
       : cameraWanted || typeof sites !== "string"
-        ? prepareCamera(game.eboot, settings, game.region, sites)
+        ? prepareCamera(game.eboot, settings, sites)
         : null;
     if (typeof cameraFound === "string") {
       if (cameraWanted) reports.push(notApplied("Camera", cameraFound));
@@ -757,7 +757,7 @@ export function applyMods(
       if (typeof patched === "string") {
         if (cameraWanted) reports.push(notApplied("Camera", patched));
       } else {
-        if (cameraWanted) reports.push(cameraReport(settings, cameraLinked, game.region));
+        if (cameraWanted) reports.push(cameraReport(settings, cameraLinked));
         if (targetPatch) {
           targetPatch.patch(edits.eboot());
           if (targetOn) reports.push(targetCameraReport(settings));

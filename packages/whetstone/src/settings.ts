@@ -125,7 +125,6 @@ export const WHETSTONE_OPTIONS: readonly OptionDef<WhetstoneKey>[] = [
     section: "Area map",
     label: "Gathering nodes on the area map",
     help: "The map screen marks every gathering (green), mining (orange) and bug catching (yellow) point on the map.",
-    discs: "EU and JP",
     type: { kind: "boolean" },
     default: false,
   },
@@ -214,7 +213,6 @@ export const WHETSTONE_OPTIONS: readonly OptionDef<WhetstoneKey>[] = [
     label: "Camera tilt",
     help: "How D-pad up and down tilt the camera: the game's five steps, or smoothly to any angle while you hold it.",
     inGame: true,
-    discs: "EU",
     type: {
       kind: "choice",
       choices: [

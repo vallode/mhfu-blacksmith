@@ -76,6 +76,16 @@ test("assertCurrentFileNames rejects EU unpacks named before region-aware file l
   assert.doesNotThrow(() =>
     assertCurrentFileNames({ ...base, fileList: FILE_LIST_VERSION }, ".cache/mhfu"),
   );
+  // EU unpacks from version 2 named their files as today; US ones didn't.
+  assert.doesNotThrow(() => assertCurrentFileNames({ ...base, fileList: 2 }, ".cache/mhfu"));
+  const us = { ...base, region: "us" as const, discId: "ULUS10391" };
+  assert.throws(
+    () => assertCurrentFileNames({ ...us, fileList: 2 }, ".cache/mhfu"),
+    /US file names/,
+  );
+  assert.doesNotThrow(() =>
+    assertCurrentFileNames({ ...us, fileList: FILE_LIST_VERSION }, ".cache/mhfu"),
+  );
   // JP names never changed, so old JP unpacks stay valid.
   assert.doesNotThrow(() =>
     assertCurrentFileNames({ ...base, region: "jp", discId: "ULJM05500" }, ".cache/mhfu"),
