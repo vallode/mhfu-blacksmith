@@ -81,7 +81,7 @@ export default function SplitPage({ list, closeHref, children }: Props) {
         // sides like the tab bar, with its cards filled (Card's --card-fill) so
         // the list doesn't show through them. --sheet-close-room lowers the
         // detail's header (DetailHeader) clear of the ×.
-        <div className="contents mobile:fixed mobile:inset-x-0 mobile:top-[calc(env(safe-area-inset-top)+0.6rem)] mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.2rem)] mobile:z-10 mobile:flex mobile:flex-col mobile:[--card-fill:var(--color-sheet)] mobile:[--sheet-close-room:1.6rem] mobile:motion-safe:animate-sheet-in">
+        <div className="contents mobile:fixed mobile:inset-x-0 mobile:top-[calc(env(safe-area-inset-top)+0.6rem)] mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.2rem)] mobile:z-10 mobile:flex mobile:flex-col mobile:[--card-fill:var(--color-sheet)] mobile:[--sheet-close-room:2.7rem] mobile:motion-safe:animate-sheet-in">
           {children}
           {/* Over the card's top-right corner, like the 3D model's close
               button: a glyph in a 44px tap target. */}
@@ -91,7 +91,7 @@ export default function SplitPage({ list, closeHref, children }: Props) {
             scroll={false}
             aria-label={closeLabel}
             onClick={close}
-            className="absolute -top-[0.1rem] right-[1.5rem] z-20 hidden size-[4.4rem] items-center justify-center text-[3rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:flex"
+            className="absolute top-[0.9rem] right-[1.3rem] z-20 hidden size-[4.4rem] items-center justify-center text-[3rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:flex"
           >
             <span aria-hidden="true">×</span>
           </Link>
