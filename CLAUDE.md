@@ -66,3 +66,24 @@ task. `pnpm clean:discs` deletes the discs left in Claude Code scratchpads
 (`--dry-run` lists them). Tests that write files do so under `tmpdir()` and
 remove them afterwards: randomfu's `tempDir()` (`test/temp.ts`) does this
 when the process ends, unless `KEEP_TEST_DISCS=1`.
+
+## Working efficiently
+
+Every turn re-reads the whole conversation, so fewer turns and a smaller
+context save the most time and money.
+
+- Batch independent calls in one turn: several reads, greps or `git` queries
+  together, not one per turn. Prefer one script that probes several
+  things over a run of one-line probes.
+- Read a file whole, or `grep -n` it first and then read one range. Don't
+  page through it with many small `sed -n` slices.
+- Test one file while iterating:
+  `pnpm --filter <name> exec tsx --test test/<file>.test.ts`.
+- Check pages in the browser with `read_page`, `find` or JavaScript first.
+  Take a screenshot only for visual proof, since every image stays in
+  context for the rest of the session.
+- Give Bash a `timeout` for anything that can hang (PPSSPP debugger
+  scripts, waiting on ports). For waits, use a short `until` loop with a
+  deadline, not repeated `sleep` calls.
+- Start a new session for each new task, and after a PR merges. Memory
+  carries findings forward; a long session's context does not.
