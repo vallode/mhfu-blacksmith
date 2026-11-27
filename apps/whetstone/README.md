@@ -29,7 +29,10 @@ pnpm test           # unit tests (steps and presets, the browser shims, the node
 ```
 
 `.claude/launch.json`'s `whetstone` entry builds and serves `dist/` on
-port 3460. `dist/` is a plain static site: host it anywhere.
+port 3460. `dist/` is a plain static site: host it anywhere. It's
+deployed as a Cloudflare Worker with no script, configured by
+`wrangler.jsonc` here (see `docs/deploying.md` for how deploys run).
+Response headers are in `_headers`, which `build.mjs` copies into `dist/`.
 `head.html` sets every page's Content-Security-Policy: a page loads only
 its own scripts, styles and images and connects nowhere.
 

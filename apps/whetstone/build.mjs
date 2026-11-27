@@ -205,4 +205,6 @@ for (const image of [
   copyFileSync(path.join(web, image), path.join(dist, "images", image));
 }
 copyFileSync(path.join(web, "LICENSE"), path.join(dist, "LICENSE.txt"));
+// Response headers for Cloudflare (see the file).
+copyFileSync(path.join(web, "_headers"), path.join(dist, "_headers"));
 console.log(`Built ${path.relative(process.cwd(), dist)}`);
