@@ -17,6 +17,8 @@ interface Props {
   countLabel?: string;
   /** Called with the new index; wraps around at either end. */
   onChange: (index: number) => void;
+  /** Leave out the visible "2/3" count beside the label (the arrows and `countLabel` stay). */
+  hideCount?: boolean;
 }
 
 /**
@@ -33,6 +35,7 @@ export default function StepSelector({
   count,
   countLabel,
   onChange,
+  hideCount,
 }: Props) {
   const many = count > 1;
   const step = (by: 1 | -1) => onChange((index + by + count) % count);
@@ -65,12 +68,16 @@ export default function StepSelector({
       </span>
       {many && (
         <>
-          <span className="flex-none text-sub text-white tabular-nums">
-            <span aria-hidden={countLabel ? true : undefined}>
-              {index + 1}/{count}
+          {hideCount ? (
+            countLabel && <span className="sr-only">{countLabel}</span>
+          ) : (
+            <span className="flex-none text-sub text-white tabular-nums">
+              <span aria-hidden={countLabel ? true : undefined}>
+                {index + 1}/{count}
+              </span>
+              {countLabel && <span className="sr-only">{countLabel}</span>}
             </span>
-            {countLabel && <span className="sr-only">{countLabel}</span>}
-          </span>
+          )}
           <SelectorArrow
             next
             className="size-[3.2rem] flex-none"

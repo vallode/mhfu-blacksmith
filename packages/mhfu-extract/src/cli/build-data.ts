@@ -37,7 +37,14 @@ import { renameMonsters, type MonsterNameChange } from "../build/monster-names.j
 
 /** Targets copied from the disc whole, rather than merged with committed files. */
 export type CopiedTarget =
-  "quests" | "gathering" | "shops" | "combinations" | "veggie-trades" | "farm" | "awards";
+  | "quests"
+  | "gathering"
+  | "shops"
+  | "combinations"
+  | "veggie-trades"
+  | "farm"
+  | "awards"
+  | "motion-values";
 const COPIED_TARGETS: CopiedTarget[] = [
   "quests",
   "gathering",
@@ -46,13 +53,14 @@ const COPIED_TARGETS: CopiedTarget[] = [
   "veggie-trades",
   "farm",
   "awards",
+  "motion-values",
 ];
 /**
  * Copied targets `extract` skips with a warning when it can't find them: a
  * run that doesn't name them in `only` leaves them as they are instead of
  * failing.
  */
-const OPTIONAL_TARGETS: CopiedTarget[] = ["veggie-trades", "farm", "awards"];
+const OPTIONAL_TARGETS: CopiedTarget[] = ["veggie-trades", "farm", "awards", "motion-values"];
 export type BuildTarget = CategoryName | "items" | CopiedTarget;
 export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, "items", ...COPIED_TARGETS];
 
@@ -278,6 +286,9 @@ async function copiedFiles(
   if (target === "farm") return { files: ["farm.json"], name: nameFarmItems };
   // Awards refer to nothing: their text goes into data/strings as it is.
   if (target === "awards") return { files: ["awards.json"], name: (content) => content };
+  // Motion values are rows and numbers: nothing to name.
+  if (target === "motion-values")
+    return { files: ["motion-values.json"], name: (content) => content };
   if (target === "combinations")
     return { files: ["combinations.json"], name: nameCombinationItems };
   const from = path.join(extractedDir, "quests");
