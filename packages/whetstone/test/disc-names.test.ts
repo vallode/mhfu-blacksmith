@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { JP_BASE_ADDRESS } from "mhfu-extract/src/tables/offsets.js";
-import { MONSTER_NAME_INDEXES } from "mhfu-extract/src/strings/monster-names.js";
+import {
+  MONSTER_NAME_INDEXES,
+  MONSTER_NAME_INDEXES_US,
+} from "mhfu-extract/src/strings/monster-names.js";
 import { readDiscMonsterNames } from "../src/game/load.js";
 import { messageFile } from "./fixtures.js";
 
@@ -29,10 +32,10 @@ const INDEX: Record<number, number> = {
   86: 6,
 };
 
-function eboot(index: Record<number, number> = INDEX): Buffer {
+function eboot(index: Record<number, number> = INDEX, at = MONSTER_NAME_INDEXES): Buffer {
   const buf = Buffer.alloc(0x08a00000 - JP_BASE_ADDRESS);
   for (const [emId, i] of Object.entries(index))
-    buf.writeUInt16LE(i, MONSTER_NAME_INDEXES - JP_BASE_ADDRESS + Number(emId) * 2);
+    buf.writeUInt16LE(i, at - JP_BASE_ADDRESS + Number(emId) * 2);
   return buf;
 }
 
@@ -46,6 +49,19 @@ test("an EU disc's monster names are the game's, with the overlay's for its look
   assert.equal(names?.[36], "Crimson Fatalis");
   assert.equal(names?.[29], "Rocks");
   assert.equal(names?.[0], null);
+});
+
+test("a US disc's monster names are read from its own table", () => {
+  const us = eboot(INDEX, MONSTER_NAME_INDEXES_US);
+  const { names, problem } = readDiscMonsterNames(
+    dataBin(messageFile([NAMES])),
+    us,
+    MONSTER_NAME_INDEXES_US,
+  );
+  assert.equal(problem, undefined);
+  assert.equal(names?.[86], "Plum D.Hermitaur");
+  // At EU's address the US EBOOT has no names.
+  assert.equal(readDiscMonsterNames(dataBin(messageFile([NAMES])), us).names, null);
 });
 
 test("monster names that can't be read fall back to the enum, saying why", () => {

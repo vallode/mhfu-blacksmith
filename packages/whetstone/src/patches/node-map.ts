@@ -16,7 +16,6 @@ import { loadFileList } from "mhfu-extract/src/container/filelist.js";
 import { locateIndexedImage, swizzle, unswizzle } from "mhfu-extract/src/models/tmh.js";
 import { NODE_KINDS, readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
 import {
-  hasMapTables,
   mapTextureName,
   projectToMap,
   readMapGeometry,
@@ -193,9 +192,6 @@ export function addNodeMap(game: GameData, edits: Edits): Report {
     notes: [`Not written: ${problem}.`],
     lines: [],
   });
-  if (!hasMapTables(game.region))
-    return notWritten(`the map tables aren't known on the ${game.region.toUpperCase()} disc`);
-
   let geometry: Map<number, MapGeometry>;
   try {
     geometry = readMapGeometry(new BinaryReader(game.eboot), game.gameSub.ovl, game.region);

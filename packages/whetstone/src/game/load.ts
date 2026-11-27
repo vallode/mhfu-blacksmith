@@ -151,9 +151,7 @@ export function checkDisc(iso: Iso9660Reader): DiscCheck {
 export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): Promise<GameData> {
   const { region, discId, supported } = checkDisc(iso);
   if (!supported || !region || !discId) {
-    throw new Error(
-      `Unsupported disc (DISC_ID "${discId ?? "?"}"): expected MHP2G (JP) or MHFU (EU or US)`,
-    );
+    throw new Error(`Unsupported disc (DISC_ID "${discId ?? "?"}"): expected MHFU or MHP2G`);
   }
 
   const dataBinEntry = iso.stat(DATA_BIN_PATH);

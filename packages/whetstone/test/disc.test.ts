@@ -6,9 +6,11 @@ import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { decryptQuest } from "mhfu-extract/src/quests/mib.js";
 import { DataBin } from "../src/disc/databin.js";
 import { openQuestFile } from "../src/disc/quest-file.js";
+import { checkDisc } from "../src/game/load.js";
 import {
   buildDataBin,
   buildIso,
+  buildSfo,
   buildQuestEntry,
   buildQuestPayload,
   finish,
@@ -196,4 +198,15 @@ test("writeFile changes nothing when the directory has no room for the record", 
   const image = patchInMemory(iso);
   assert.throws(() => image.writeFile("/D/M.BIN", Buffer.alloc(10, 6)), /no room/);
   assert.ok(finish(image, iso).equals(iso));
+});
+
+test("checkDisc knows the EU, US and JP discs, and no other", () => {
+  const check = (discId: string) =>
+    checkDisc(
+      patchInMemory(buildIso([{ path: "PSP_GAME/PARAM.SFO", data: buildSfo(discId) }])).iso,
+    );
+  assert.deepEqual(check("ULES01213"), { region: "eu", discId: "ULES01213", supported: true });
+  assert.deepEqual(check("ULUS10391"), { region: "us", discId: "ULUS10391", supported: true });
+  assert.deepEqual(check("ULJM05500"), { region: "jp", discId: "ULJM05500", supported: true });
+  assert.deepEqual(check("ULES01500"), { region: null, discId: "ULES01500", supported: false });
 });

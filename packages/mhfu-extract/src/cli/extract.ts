@@ -323,6 +323,10 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     if (options.raw) await writeRawDumps(options.out, reader);
     output = emitAll(reader, undefined, overlays.gameTask.reader);
   } else {
+    // The US disc's tables resolve, but its text, farm, size and award tables
+    // aren't read: refuse it rather than write a partial data/.
+    if (manifest.region === "us")
+      throw new Error(`extract doesn't support the US disc yet: only JP and EU are extracted.`);
     resolver = MHP2G_PROFILE.resolverForRegion(manifest.region) ?? undefined;
     if (!resolver) {
       throw new Error(
