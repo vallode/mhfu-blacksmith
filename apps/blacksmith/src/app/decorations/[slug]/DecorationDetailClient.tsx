@@ -73,7 +73,7 @@ export default function DecorationDetailClient({ slug }: Props) {
     <DetailCard>
       <DetailHeader>
         <Icon type="decoration" size="large" color={deco.color} alt={name} />
-        <DetailName>{name}</DetailName>
+        <DetailName className="mobile:flex-1">{name}</DetailName>
         <WishlistButton gear={{ kind: "decoration", slug }} name={name} className="ml-[0.4rem]" />
       </DetailHeader>
 
