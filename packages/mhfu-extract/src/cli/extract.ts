@@ -17,6 +17,8 @@ import { emitQuestsFile, type MultiplierLookup } from "../emit/quests.js";
 import { loadFishingTables, readFishTables, type FishTables } from "../quests/fishing.js";
 import { emitShops } from "../emit/shops.js";
 import { emitVeggieTrades } from "../emit/veggie-trades.js";
+import { emitMotionValues } from "../emit/motion-values.js";
+import { weaponMoves } from "../overlay/weapon-moves.js";
 import { emitFarm } from "../emit/farm.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
@@ -70,6 +72,13 @@ import {
 } from "../tables/offsets.js";
 import { readCombinations } from "../tables/combinations.js";
 import { readVeggieTrades } from "../tables/veggie-trades.js";
+import {
+  MotionTableError,
+  readHitzoneWeights,
+  readMotionTable,
+  type HitzoneWeightTables,
+  type MotionTable,
+} from "../tables/motion-values.js";
 import { FARM_STAGE_ID, readFarmTables, readFishCaster } from "../tables/farm.js";
 import {
   verifyResolverCoverage,
@@ -463,6 +472,20 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.warn(
       "Warning: the Veggie Elder's trade tables weren't found; skipping veggie-trades.json.",
     );
+  }
+
+  // A disc whose code doesn't match skips the file; a bad overlay row fails the run.
+  let motionTables: [MotionTable, HitzoneWeightTables] | null = null;
+  try {
+    motionTables = [readMotionTable(overlays.gameTask), readHitzoneWeights(overlays.gameTask)];
+  } catch (error) {
+    if (!(error instanceof MotionTableError)) throw error;
+    console.warn(`Warning: ${error.message}; skipping motion-values.json.`);
+  }
+  if (motionTables) {
+    const [motions, weights] = motionTables;
+    console.log(`Motion values at 0x${motions.offset.toString(16)}: ${motions.rows.length} rows.`);
+    output["motion-values.json"] = emitMotionValues(motions, weaponMoves(), weights);
   }
 
   // Only the EU disc's farm tables are known; elsewhere there's no farm.json.

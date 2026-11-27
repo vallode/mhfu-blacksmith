@@ -38,6 +38,7 @@ import { usePreferences } from "@/context/PreferencesContext";
 import { useGameText, useT } from "@/context/LanguageContext";
 import Loading from "@/components/Loading";
 import WishlistButton from "@/components/WishlistButton";
+import MotionDamage from "@/components/motion-values/MotionDamage";
 
 interface Props {
   type: WeaponType;
@@ -533,6 +534,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                       </table>
                     </RequirementsPage>
                   ),
+                },
+                {
+                  id: "motion-values",
+                  label: tw.tabs.motionValues,
+                  content: <MotionDamage type={type} weapon={weapon} />,
                 },
               ]}
             />

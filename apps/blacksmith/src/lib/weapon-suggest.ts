@@ -7,6 +7,7 @@
 import { WEAPON_TYPES, type ArmorRank, type WeaponType } from "./constants";
 import { GUILD_RANKS, isAvailable, type Tier } from "./min-rank";
 import type { Weapon } from "./types";
+import { SHARPNESS_MULTIPLIERS } from "./motion-values";
 
 const GUNNER_TYPES: readonly WeaponType[] = ["light-bowgun", "heavy-bowgun", "bow"];
 
@@ -34,11 +35,10 @@ const withinRank = (needs: Tier | undefined, rank: ArmorRank) =>
   !needs || GUILD_RANKS.indexOf(needs.rank) <= GUILD_RANKS.indexOf(rank);
 
 /**
- * Raw damage multiplier of each sharpness colour, red to purple. A weapon's
+ * The raw damage multiplier of the weapon's starting sharpness. A weapon's
  * sharpness lists how long each colour lasts, so its last colour is the one
  * it starts in.
  */
-const SHARPNESS_MULTIPLIERS = [0.5, 0.75, 1, 1.125, 1.25, 1.3, 1.5];
 function sharpnessMultiplier(w: Weapon): number {
   const top = (w.sharpness ?? []).findLastIndex((n) => Number(n) > 0);
   return top < 0 ? 1 : (SHARPNESS_MULTIPLIERS[top] ?? 1);

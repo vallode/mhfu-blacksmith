@@ -7,5 +7,15 @@ import { monsters } from "./monsters";
 import { quests } from "./quests";
 import { setBuilder } from "./set-builder";
 import { items } from "./items";
+import { motionValues } from "./motion-values";
 
-export const es: Messages = { common, site, equipment, monsters, quests, setBuilder, items };
+export const es: Messages = {
+  common,
+  site,
+  equipment,
+  monsters,
+  quests,
+  setBuilder,
+  items,
+  motionValues,
+};
