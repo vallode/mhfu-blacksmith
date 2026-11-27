@@ -1,4 +1,5 @@
 import type { WeaponType } from "./constants";
+import type { ShotsFile } from "./shots";
 
 /** One hit of a move: its motion value, and Dual Blades' value in Demon Mode. */
 export interface MotionHit {
@@ -31,9 +32,13 @@ export interface MotionMove {
   hits: MotionHit[];
 }
 
-/** data/motion-values.json; public/data/motion-values.json is its `weapons`. */
-export interface MotionValuesFile {
+/**
+ * data/motion-values.json; public/data/motion-values.json is its `weapons`
+ * and public/data/shots.json its bowgun shots.
+ */
+export interface MotionValuesFile extends ShotsFile {
   demon_mode_multiplier: number;
+  /** The Bowguns have none: their calculator shows their shots (`./shots`). */
   weapons: Partial<Record<WeaponType, MotionMove[]>>;
 }
 
@@ -83,20 +88,12 @@ export const SHARPNESS_MULTIPLIERS = [0.5, 0.75, 1, 1.125, 1.25, 1.3, 1.5];
 
 /**
  * Sharpness for the gunners' melee hits, from a static read of the hit code
- * (EU game_sub 0x09C439F8), not checked in game.
- *
- * - The Bow's take none (1). The Bow's branch gives 1.3 instead to attacks
- *   whose kind (their vtable +0x18) is 5; which attacks those are is unknown.
- * - A Bowgun counts as red sharpness (0.5): the sharpness level getter
- *   (0x088DAB94) returns red unless the equipped slot's type byte (hunter
- *   +0x4E9) is 5, taken here to mean a Blademaster weapon. Its melee hit has
- *   no timing window (row bytes 21 and 22 are 0), which halves red again.
+ * (EU game_sub 0x09C439F8), not checked in game. The Bow's take none (1);
+ * its branch gives 1.3 instead to attacks whose kind (their vtable +0x18)
+ * is 5, and which attacks those are is unknown. (The Bowguns' melee bash
+ * isn't listed: their calculator shows their shots.)
  */
-export const GUNNER_MELEE_SHARPNESS: Partial<Record<WeaponType, number>> = {
-  bow: 1,
-  "light-bowgun": 0.25,
-  "heavy-bowgun": 0.25,
-};
+export const GUNNER_MELEE_SHARPNESS: Partial<Record<WeaponType, number>> = { bow: 1 };
 
 /** A monster part's cut and impact hitzones. */
 export interface PartHitzones {

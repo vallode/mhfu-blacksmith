@@ -51,7 +51,8 @@ export default function MotionDamage({ type, weapon }: { type: WeaponType; weapo
   const t = useT();
   const tm = t.motionValues;
   const { formatNumber } = useLocale();
-  const names: Record<string, string> = tm.moves[type];
+  const names: Record<string, string> =
+    (tm.moves as Partial<Record<WeaponType, Record<string, string>>>)[type] ?? {};
   const { moves: allMoves, error } = useMotionValues(type);
   const [sharpPick, setSharpPick] = useState<number>();
   const [zone, setZone] = useState(DEFAULT_HITZONE);
@@ -161,7 +162,12 @@ export default function MotionDamage({ type, weapon }: { type: WeaponType; weapo
       </div>
       <div className="flex flex-col gap-[0.8rem] border-y border-hr py-[1.2rem]">
         {monsters ? (
-          <HitzonePicker monsters={monsters} weights={weights} spot={spot} onPick={setSpot} />
+          <HitzonePicker
+            monsters={monsters}
+            valueOf={(p) => spotValue(p, weights)}
+            spot={spot}
+            onPick={setSpot}
+          />
         ) : monstersError ? (
           <p className="text-small text-negative">{tm.bestiary.loadError}</p>
         ) : (

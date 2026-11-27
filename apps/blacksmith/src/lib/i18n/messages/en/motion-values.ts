@@ -37,6 +37,17 @@ export const motionValues = {
     pickMonster: "Pick a monster for its hitzones.",
     loadError: "Couldn't load the monsters.",
   },
+  /** Bowguns: each shot the weapon loads instead of moves. */
+  shots: {
+    ammo: "Ammo",
+    /** An ammo's level, after its name: "Lv2". */
+    level: (level: string) => `Lv${level}`,
+    /** A shot that hits more than once: its value and how many times, "10 × 3". */
+    hits: (mv: string, hits: string) => `${mv} × ${hits}`,
+    /** The hitzone for the shots' elements, when no monster part is picked. */
+    elementHitzone: "Element hitzone",
+    loadError: "Couldn't load the shots.",
+  },
   /**
    * Move names, by weapon type and the move's key in data/motion-values.json.
    * The disc names none of them; these follow the community's names.
@@ -124,12 +135,6 @@ export const motionValues = {
     bow: {
       "melee-1": "Melee Attack 1",
       "melee-2": "Melee Attack 2",
-    },
-    "light-bowgun": {
-      melee: "Melee Attack",
-    },
-    "heavy-bowgun": {
-      melee: "Melee Attack",
     },
   },
 };

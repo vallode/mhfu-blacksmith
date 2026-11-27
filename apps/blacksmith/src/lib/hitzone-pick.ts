@@ -4,6 +4,7 @@
  */
 import type { MonsterCategory } from "./constants";
 import type { HitzoneWeights, PartHitzones } from "./motion-values";
+import { SHOT_ELEMENTS, type ShotHitzones } from "./shots";
 
 /** A monster with hitzones (public/data/hitzones.json), for picking the spot a hit lands on. */
 export interface HitzoneMonster {
@@ -11,20 +12,55 @@ export interface HitzoneMonster {
   slug: string;
   /** English name: a key for the game text. */
   name: string;
-  /** Its hitzone rows, in the table's order: part name (English) and its cut and impact values. */
-  parts: ({ part: string } & PartHitzones)[];
+  /** Its hitzone rows, in the table's order: part name (English) and its values. */
+  parts: ({ part: string } & PartValues)[];
 }
 
-/** A monster's part picked as the hitzone, with its cut and impact values. */
-export interface HitzoneSpot extends PartHitzones {
-  slug: string;
-  part: string;
+/** A part's hitzones: cut and impact for melee hits, shot and the elements for shots. */
+export type PartValues = PartHitzones & ShotHitzones;
+
+/** A monster's part picked as the hitzone, with its values. */
+export type HitzoneSpot = { slug: string; part: string } & PartValues;
+
+/** The monsters' data keys for the element columns. */
+const ELEMENT_KEYS = { fire: "fir", water: "wtr", thunder: "thn", ice: "ice", dragon: "drg" };
+
+/** A part's values (0 where it has none), from a monster's `hitzones`. */
+export function partHitzones(values: Record<string, string>): PartValues {
+  const n = (key: string) => Number(values[key] ?? 0) || 0;
+  return {
+    cut: n("cut"),
+    bash: n("bash"),
+    shot: n("shot"),
+    ...(Object.fromEntries(SHOT_ELEMENTS.map((e) => [e, n(ELEMENT_KEYS[e])])) as Record<
+      (typeof SHOT_ELEMENTS)[number],
+      number
+    >),
+  };
 }
 
-/** A part's cut and impact values (0 where it has none). */
-export const partHitzones = (values: Record<string, string>): PartHitzones => ({
-  cut: Number(values.cut ?? 0) || 0,
-  bash: Number(values.bash ?? 0) || 0,
+/** A part's columns in hitzones.json, after its name. */
+const PART_COLUMNS = ["cut", "bash", "shot", ...SHOT_ELEMENTS] as const;
+
+/** hitzones.json's form of a monster: each part `[name, ...PART_COLUMNS values]`, to keep it small. */
+export type PackedHitzoneMonster = Omit<HitzoneMonster, "parts"> & {
+  parts: [string, ...number[]][];
+};
+
+export const packHitzoneMonster = ({ parts, ...m }: HitzoneMonster): PackedHitzoneMonster => ({
+  ...m,
+  parts: parts.map((p) => [p.part, ...PART_COLUMNS.map((c) => p[c])]),
+});
+
+export const unpackHitzoneMonster = ({ parts, ...m }: PackedHitzoneMonster): HitzoneMonster => ({
+  ...m,
+  parts: parts.map(([part, ...values]) => ({
+    part,
+    ...(Object.fromEntries(PART_COLUMNS.map((c, i) => [c, values[i] ?? 0])) as Record<
+      (typeof PART_COLUMNS)[number],
+      number
+    >),
+  })),
 });
 
 /**

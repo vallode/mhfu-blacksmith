@@ -49,7 +49,12 @@ import { setSearchDataFromBundles } from "./set-data";
 import type { AwardText } from "./i18n/game-text";
 import type { WeaponType } from "./constants";
 import type { MotionMove, MotionValuesFile } from "./motion-values";
-import type { HitzoneMonster } from "./hitzone-pick";
+import {
+  unpackHitzoneMonster,
+  type HitzoneMonster,
+  type PackedHitzoneMonster,
+} from "./hitzone-pick";
+import type { ShotsFile } from "./shots";
 
 export type { MonsterListItem };
 
@@ -965,6 +970,42 @@ export function useMotionValues(type: WeaponType): { moves: MotionMove[] | null;
 }
 
 // ---------------------------------------------------------------------------
+// Bowgun shots: each ammo's values (see src/lib/shots.ts)
+// ---------------------------------------------------------------------------
+let shotsCache: ShotsFile | null = null;
+let shotsPromise: Promise<ShotsFile> | null = null;
+
+/** The bowgun shots' values, from shots.json. */
+export function getShots(): Promise<ShotsFile> {
+  if (shotsCache) return Promise.resolve(shotsCache);
+  shotsPromise ??= fetchJson<ShotsFile>("/data/shots.json")
+    .then((b) => (shotsCache = b))
+    .catch((e) => {
+      shotsPromise = null; // allow a retry on the next call
+      throw e;
+    });
+  return shotsPromise;
+}
+
+/** The bowgun shots' values: null while loading or on error (`error` set). */
+export function useShots(): { shots: ShotsFile | null; error: boolean } {
+  const [shots, setShots] = useState(shotsCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (shotsCache) return;
+    let cancelled = false;
+    getShots().then(
+      (b) => !cancelled && setShots(b),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { shots, error };
+}
+
+// ---------------------------------------------------------------------------
 // Hitzones: every monster's hitzone parts (the damage calculator's picker)
 // ---------------------------------------------------------------------------
 let hitzoneMonstersCache: HitzoneMonster[] | null = null;
@@ -973,8 +1014,8 @@ let hitzoneMonstersPromise: Promise<HitzoneMonster[]> | null = null;
 /** Every monster with hitzones, by type then the monster files' order (hitzones.json). */
 function getHitzoneMonsters(): Promise<HitzoneMonster[]> {
   if (hitzoneMonstersCache) return Promise.resolve(hitzoneMonstersCache);
-  hitzoneMonstersPromise ??= fetchJson<HitzoneMonster[]>("/data/hitzones.json")
-    .then((m) => (hitzoneMonstersCache = m))
+  hitzoneMonstersPromise ??= fetchJson<PackedHitzoneMonster[]>("/data/hitzones.json")
+    .then((m) => (hitzoneMonstersCache = m.map(unpackHitzoneMonster)))
     .catch((e) => {
       hitzoneMonstersPromise = null; // allow a retry on the next call
       throw e;
