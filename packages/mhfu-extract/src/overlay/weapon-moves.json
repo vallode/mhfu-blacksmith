@@ -4,7 +4,7 @@
     "Rows were tied to weapons by the code that spawns them (each weapon class's action dispatcher) and to moves by that code, the animation each plays, and community move lists (GameFAQs' MHFU weapon guide by Joritoes). The values come from the disc.",
     "A hit's count is how many times the move deals it. A demon move is one Dual Blades only do in Demon Mode.",
     "cutWeight replaces the weapon's cut hitzone weight for the move (tables/motion-values.ts, readHitzoneWeights): the Great Sword's charge code sets 110, 120 and 130 for its three levels (EU game_task 0x09BA3100). fullSpeed marks the Lance's charge, whose hits take the charge's own weights once it speeds up.",
-    "Spawned rows left out: 109 (Gunlance, 30, an alternative to the Rushing Thrust), 99 (Hunting Horn, 27, the draw attack's swing), 75 and 71 (Long Sword, the Thrust and Rising Slash again), 84 and 82 and 89 (Hunting Horn, the Jab, Swing and first recital note again), 5 and 96/97 (common motions). No code spawns rows 19, 43, 55, 56, 62, 68, 78 or 98."
+    "Spawned rows left out: 109 (Gunlance, 30, an alternative to the Rushing Thrust), 99 (Hunting Horn, 27, the draw attack's swing), 75 and 71 (Long Sword, the Thrust and Rising Slash again), 84 and 82 and 89 (Hunting Horn, the Jab, Swing and first recital note again), 5 and 96/97 (common motions), 29 (the Bowguns' melee bash: their calculator shows their shots, tables/shots.ts). No code spawns rows 19, 43, 55, 56, 62, 68, 78 or 98."
   ],
   "great-sword": [
     { "move": "vertical-slash", "hits": [{ "row": 3 }] },
@@ -116,7 +116,5 @@
   "bow": [
     { "move": "melee-1", "hits": [{ "row": 60 }] },
     { "move": "melee-2", "hits": [{ "row": 61 }] }
-  ],
-  "light-bowgun": [{ "move": "melee", "hits": [{ "row": 29 }] }],
-  "heavy-bowgun": [{ "move": "melee", "hits": [{ "row": 29 }] }]
+  ]
 }

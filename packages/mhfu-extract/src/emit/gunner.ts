@@ -87,6 +87,17 @@ const AMMO_GROUPS: [string, [string, number][]][] = [
   ],
 ];
 
+/**
+ * Every bowgun ammo in `ShotCoat` bit order, which is also the game's shot
+ * ID (a bullet's `+0x0D`, `tables/shots.ts`): its name and level (1-based).
+ */
+export const SHOT_AMMO: readonly { name: string; level: number }[] = AMMO_GROUPS.flatMap(
+  ([, ammo]) =>
+    ammo.flatMap(([name, levels]) =>
+      Array.from({ length: levels }, (_, i) => ({ name, level: i + 1 })),
+    ),
+);
+
 export const RELOAD_NAMES: readonly string[] = RELOAD_LEVELS;
 export const RECOIL_NAMES: Readonly<Record<number, string>> = Object.fromEntries(
   RECOIL_LEVELS.map((name, i) => [RECOIL_CODE_BASE + i, name]),

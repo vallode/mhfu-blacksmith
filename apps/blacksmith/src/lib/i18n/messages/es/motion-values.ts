@@ -26,6 +26,13 @@ export const motionValues: Messages["motionValues"] = {
     pickMonster: "Elige un monstruo para ver sus puntos débiles.",
     loadError: "No se pudieron cargar los monstruos.",
   },
+  shots: {
+    ammo: "Munición",
+    level: (level: string) => `Nv${level}`,
+    hits: (mv: string, hits: string) => `${mv} × ${hits}`,
+    elementHitzone: "Punto débil elemental",
+    loadError: "No se pudieron cargar los disparos.",
+  },
   moves: {
     "great-sword": {
       "vertical-slash": "Tajo vertical",
@@ -109,12 +116,6 @@ export const motionValues: Messages["motionValues"] = {
     bow: {
       "melee-1": "Ataque cuerpo a cuerpo 1",
       "melee-2": "Ataque cuerpo a cuerpo 2",
-    },
-    "light-bowgun": {
-      melee: "Ataque cuerpo a cuerpo",
-    },
-    "heavy-bowgun": {
-      melee: "Ataque cuerpo a cuerpo",
     },
   },
 };
