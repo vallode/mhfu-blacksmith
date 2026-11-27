@@ -39,7 +39,7 @@ export default function Tabs({
   label: string;
   active?: string;
   onChange?: (id: string) => void;
-  /** On phones, one row of tabs as wide as their labels (scrolling sideways if they must) instead of equal columns. */
+  /** On phones, one row of tabs as wide as their labels instead of equal columns, when they all fit. */
   oneRow?: boolean;
   /** On phones, the tab row stays at the top of the card as its content scrolls. */
   sticky?: boolean;
@@ -47,14 +47,24 @@ export default function Tabs({
   const prefix = useId();
   const list = useRef<HTMLDivElement>(null);
   const sizer = useRef<HTMLSpanElement>(null);
+  const root = useRef<HTMLDivElement>(null);
   const [columns, setColumns] = useState<number>();
+  // Whether every label fits on one row at its own width (oneRow); if not,
+  // the tabs fall back to the equal columns.
+  const [fitsRow, setFitsRow] = useState(true);
   // The narrowest column the longest label fits in, on one line.
   const longest = tabs.length > 0 ? Math.max(...tabs.map((t) => t.label.length)) : 0;
+  const totalLength = tabs.reduce((sum, t) => sum + t.label.length, 0);
   useLayoutEffect(() => {
     const el = list.current;
     const min = sizer.current;
     if (!el || !min) return;
     const fit = () => {
+      if (oneRow && longest > 0) {
+        // The sizer is `longest` cells plus a tab's 0.4rem (4px) of padding.
+        const cell = (min.offsetWidth - 4) / longest;
+        setFitsRow(totalLength * cell + tabs.length * 4 <= el.clientWidth);
+      }
       if (getComputedStyle(el).display !== "grid") return setColumns(undefined);
       const across = Math.max(1, Math.floor(el.clientWidth / min.offsetWidth));
       const rows = Math.ceil(tabs.length / across);
@@ -66,13 +76,27 @@ export default function Tabs({
     // The measuring span changes width with the font and the labels, not the strip.
     observer.observe(min);
     return () => observer.disconnect();
-  }, [tabs.length, longest]);
+    // fitsRow: rerun once the strip has switched layout, to size the columns.
+  }, [tabs.length, longest, totalLength, oneRow, fitsRow]);
   const [uncontrolled, setUncontrolled] = useState(tabs[0]?.id);
   const active = controlled ?? uncontrolled;
   const setActive = (id: string) => {
+    // From a pinned (sticky) tab row, start the new page at its top: scroll
+    // back to where the tabs sit in the page, rather than keep the old page's
+    // scroll position partway down the new one.
+    const pinned = list.current?.getBoundingClientRect().top;
+    const home = root.current?.getBoundingClientRect().top;
+    if (sticky && pinned !== undefined && home !== undefined && home < pinned - 1) {
+      let scroller = root.current?.parentElement;
+      while (scroller && !/auto|scroll/.test(getComputedStyle(scroller).overflowY)) {
+        scroller = scroller.parentElement;
+      }
+      scroller?.scrollBy(0, home - pinned);
+    }
     setUncontrolled(id);
     onChange?.(id);
   };
+  const row = oneRow && fitsRow;
   const current = tabs.find((t) => t.id === active) ?? tabs[0];
   if (!current) return null;
   const columnStyle = {
@@ -81,7 +105,7 @@ export default function Tabs({
   } as React.CSSProperties;
 
   return (
-    <div className="flex flex-col gap-[1.6rem]">
+    <div ref={root} className="flex flex-col gap-[1.6rem]">
       <div
         ref={list}
         role="tablist"
@@ -91,8 +115,7 @@ export default function Tabs({
           "relative flex flex-wrap gap-[0.4rem] border-b border-hr/50 text-small",
           "mobile:grid mobile:grid-cols-[repeat(var(--tab-cols,auto-fit),minmax(var(--tab-min),1fr))] mobile:gap-0",
           "compact:grid compact:grid-cols-[repeat(var(--tab-cols,auto-fit),minmax(var(--tab-min),1fr))] compact:gap-0",
-          oneRow &&
-            "mobile:flex mobile:[scrollbar-width:none] mobile:flex-nowrap mobile:overflow-x-auto",
+          row && "mobile:flex mobile:flex-nowrap",
           sticky && "mobile:sticky mobile:top-0 mobile:z-2 mobile:bg-(--card-fill)",
         )}
       >
@@ -106,7 +129,7 @@ export default function Tabs({
             id={`${prefix}-tab-${t.id}`}
             aria-selected={t.id === current.id}
             aria-controls={`${prefix}-panel-${t.id}`}
-            className={cn(tabButton, oneRow && "mobile:flex-auto mobile:whitespace-nowrap")}
+            className={cn(tabButton, row && "mobile:flex-auto mobile:whitespace-nowrap")}
             onClick={() => setActive(t.id)}
           >
             {t.label}

@@ -150,7 +150,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               className={modelUrl ? undefined : "ml-[0.4rem] mobile:ml-auto"}
             />
             {(weapon.sharpness || weapon.sharpness_plus) && (
-              <div className="relative ml-auto flex flex-col gap-[0.4rem] mobile:order-first mobile:mx-0 [&>*]:mobile:ml-0">
+              <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:order-first mobile:mx-0 mobile:gap-[0.4rem]">
                 {weapon.sharpness && <SharpnessBar values={weapon.sharpness} />}
                 {weapon.sharpness_plus && <SharpnessBar values={weapon.sharpness_plus} plus />}
               </div>

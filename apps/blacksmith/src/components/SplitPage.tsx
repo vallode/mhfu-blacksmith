@@ -48,20 +48,26 @@ export default function SplitPage({ list, closeHref, children }: Props) {
     router.back();
   };
 
-  // While the sheet covers the list on a phone, take the list out of the tab
-  // order and the accessibility tree, so the sheet comes next.
+  // While the sheet covers the page on a phone, take the list and the page
+  // bar above it (the split page's earlier siblings) out of the tab order and
+  // the accessibility tree, so the sheet comes next.
   useEffect(() => {
-    const covered = pageRef.current?.firstElementChild;
-    if (!closeHref || !(covered instanceof HTMLElement)) return;
+    const page = pageRef.current;
+    if (!closeHref || !page) return;
+    const covered: HTMLElement[] = [];
+    if (page.firstElementChild instanceof HTMLElement) covered.push(page.firstElementChild);
+    for (let el = page.previousElementSibling; el; el = el.previousElementSibling) {
+      if (el instanceof HTMLElement) covered.push(el);
+    }
     const phone = window.matchMedia(PHONE);
     const update = () => {
-      covered.inert = phone.matches;
+      for (const el of covered) el.inert = phone.matches;
     };
     update();
     phone.addEventListener("change", update);
     return () => {
       phone.removeEventListener("change", update);
-      covered.inert = false;
+      for (const el of covered) el.inert = false;
     };
   }, [closeHref]);
 
@@ -73,17 +79,19 @@ export default function SplitPage({ list, closeHref, children }: Props) {
         // split's right-hand pane. Phones: the sheet, over the page bar and the
         // list (fixed, so it leaves the split page) and flush with the screen's
         // sides like the tab bar, with its cards filled (Card's --card-fill) so
-        // the list doesn't show through them.
-        <div className="contents mobile:fixed mobile:inset-x-0 mobile:top-[calc(env(safe-area-inset-top)+0.6rem)] mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.2rem)] mobile:z-10 mobile:flex mobile:flex-col mobile:[--card-fill:var(--color-sheet)] mobile:motion-safe:animate-sheet-in">
+        // the list doesn't show through them. --sheet-close-room lowers the
+        // detail's header (DetailHeader) clear of the ×.
+        <div className="contents mobile:fixed mobile:inset-x-0 mobile:top-[calc(env(safe-area-inset-top)+0.6rem)] mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.2rem)] mobile:z-10 mobile:flex mobile:flex-col mobile:[--card-fill:var(--color-sheet)] mobile:[--sheet-close-room:1.6rem] mobile:motion-safe:animate-sheet-in">
           {children}
-          {/* Over the card's top-right corner, like the 3D model's close button. */}
+          {/* Over the card's top-right corner, like the 3D model's close
+              button: a glyph in a 44px tap target. */}
           <Link
             href={closeHref}
             replace
             scroll={false}
             aria-label={closeLabel}
             onClick={close}
-            className="absolute top-[0.6rem] right-[1.2rem] z-20 hidden px-2 text-[3rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:block"
+            className="absolute -top-[0.1rem] right-[1.5rem] z-20 hidden size-[4.4rem] items-center justify-center text-[3rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:flex"
           >
             <span aria-hidden="true">×</span>
           </Link>

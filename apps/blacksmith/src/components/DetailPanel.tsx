@@ -42,12 +42,13 @@ export function DetailCard({
 }
 
 /**
- * Icon + name (+ sharpness) row at the top of the panel. On phones it starts
- * a little lower, under the sheet's × (SplitPage) in the card's corner.
+ * Icon + name (+ sharpness) row at the top of the panel. In a phone's sheet
+ * it starts a little lower (--sheet-close-room, set by SplitPage), clear of
+ * the sheet's × in the card's corner.
  */
 export function DetailHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative flex min-h-[38px] flex-none flex-row flex-wrap items-center text-white no-underline mobile:mt-[1rem]">
+    <div className="relative flex min-h-[38px] flex-none flex-row flex-wrap items-center text-white no-underline mobile:mt-[var(--sheet-close-room,0px)]">
       {children}
     </div>
   );
