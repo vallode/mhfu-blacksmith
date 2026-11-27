@@ -41,10 +41,10 @@ import {
   MONSTER_CHUNK_SIZE,
   MULTIPLIER_SET_OFFSET,
 } from "mhfu-extract/src/monsters/hitzones.js";
-import type { LoadedQuest } from "../game/load.js";
-import { RECORD_TARGET_ID, recordBase, type BoardFile } from "../game/board.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
+import { RECORD_TARGET_ID, recordBase, type BoardFile } from "whetstone/src/game/board.js";
 import { GOAL_MONSTER, readGoals, writeGoal } from "../game/goals.js";
-import { DELIVERY_TYPE, QUEST_TYPE } from "../game/quest-fields.js";
+import { DELIVERY_TYPE, QUEST_TYPE } from "whetstone/src/game/quest-fields.js";
 import {
   readSpawns,
   OBJECTIVE_COUNT_OFFSET,
@@ -63,12 +63,20 @@ import {
   type QuestSpawns,
   type Spawn,
 } from "../game/spawns.js";
-import { BAND_NAMES, inScope, isPlayable, questTier, type Band, type Tier } from "../game/tiers.js";
+import {
+  BAND_NAMES,
+  inScope,
+  isPlayable,
+  questTier,
+  type Band,
+  type Tier,
+} from "whetstone/src/game/tiers.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
-import type { Edits } from "../edits.js";
-import { questLabel, type MonsterNames } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { questLabel, type MonsterNames } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import { getOrInsert, median, type ShuffleReport } from "./shuffle.js";
+import { getOrInsert, median } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 /** Variants that share their base species' skeleton, moves and overlay, by emID. */
 export const MONSTER_FAMILIES: readonly (readonly number[])[] = [
@@ -297,7 +305,7 @@ export function swapSpecies(
   /** Whether a monster's HP at a level fits (`MAX_HP`); a swap steps its level down until it does. */
   fits: (emId: number, table: number, power: number) => boolean = () => true,
 ): {
-  report: ShuffleReport;
+  report: Report;
   questsAfter: ParsedQuest[];
   /** Each changed quest's swaps (old emID -> new), by DATA.BIN index. */
   swaps: Map<number, Map<number, number>>;
@@ -335,7 +343,7 @@ export function swapSpecies(
     return median(found, "lower");
   };
 
-  const lines: ShuffleReport["lines"] = [];
+  const lines: Report["lines"] = [];
   const changed = new Map<number, Map<number, number>>();
   /** Each changed quest's new levels (old emID -> level), where the set changed. */
   const relevelled = new Map<number, Map<number, number>>();
@@ -555,7 +563,7 @@ export function randomizeDifficulty(
   monsterName: MonsterNames,
   /** Whether a monster at a level keeps its HP within `MAX_HP` (monster, quest table, level). */
   fits: (emId: number, table: number, power: number) => boolean = () => true,
-): ShuffleReport {
+): Report {
   // A level is a row of one table: the monster's set, the quest's table.
   const key = (q: QuestMonsters, emId: number) =>
     `${setOf(emId)}:${q.quest.parsed.header.statTable}` +
@@ -569,7 +577,7 @@ export function randomizeDifficulty(
     }
   }
 
-  const lines: ShuffleReport["lines"] = [];
+  const lines: Report["lines"] = [];
   let unbounded = 0;
   for (const q of list) {
     // As the species swap left them: monsters, and levels it reset.
@@ -672,14 +680,14 @@ export function randomizeSmallCounts(
   monsterName: MonsterNames,
   /** Small monsters a quest keeps at least as many of as it has (`smallMonsterFloors`). */
   keep: (quest: LoadedQuest, emId: number) => boolean = () => false,
-): ShuffleReport {
+): Report {
   let cap = 1;
   for (const q of list) {
     for (const { quantity } of q.spawns.small) {
       if (quantity < SPECIAL_COUNT) cap = Math.max(cap, quantity);
     }
   }
-  const lines: ShuffleReport["lines"] = [];
+  const lines: Report["lines"] = [];
   let held = 0;
   for (const q of list) {
     const next = new Map<Spawn, number>();
@@ -733,8 +741,8 @@ export function randomizeQuestSize(
   spread: number,
   rng: Rng,
   edits: Edits,
-): ShuffleReport {
-  const lines: ShuffleReport["lines"] = [];
+): Report {
+  const lines: Report["lines"] = [];
   for (const q of list) {
     if (q.spawns.large.length === 0) continue;
     const size = q.quest.file.payload.readUInt32LE(SIZE_PERCENT_OFFSET);
@@ -767,8 +775,8 @@ export function randomizeCrownSpread(
   mode: "random" | "wide" | "none",
   rng: Rng,
   edits: Edits,
-): ShuffleReport {
-  const lines: ShuffleReport["lines"] = [];
+): Report {
+  const lines: Report["lines"] = [];
   const label = (v: number) => {
     const [lo, hi] = SIZE_VARIATIONS[v]!;
     return lo === hi ? "none" : `${lo}-${hi}%`;

@@ -50,8 +50,8 @@ import { HUNTER_TYPE_BITS } from "mhfu-extract/src/emit/armor.js";
 import { ARMOR_SLOTS } from "mhfu-extract/src/tables/armor.js";
 import { readDecorationSkills } from "mhfu-extract/src/tables/decorations.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
-import type { Edits } from "../edits.js";
-import { tableName } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { tableName } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
 import {
   RARITY_AT,
@@ -61,7 +61,8 @@ import {
   type ArmorPiece,
   type HunterClass,
 } from "./armor.js";
-import { groupBy, permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
+import { groupBy, permuteWithinGroups } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 export type ArmorSkillMode = "shuffle" | "randomize";
 
@@ -298,7 +299,7 @@ export function randomizeArmorSkills(
   { mode, keepArmorOnly }: ArmorSkillOptions,
   rng: Rng,
   edits: Edits,
-): ShuffleReport {
+): Report {
   const pieces = readPieces(eboot, resolver);
   const decorationTrees = new Set(
     readDecorationSkills(new BinaryReader(eboot), resolver).flatMap((d) =>

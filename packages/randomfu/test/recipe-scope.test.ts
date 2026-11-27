@@ -3,10 +3,10 @@ import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
-import { loadGame, type GameData } from "../src/game/load.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { collectRecipeSlots } from "../src/shuffles/recipes.js";
-import { buildFixtureDisc, tempDir } from "./fixtures.js";
+import { buildFixtureDisc, tempDir } from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function load(): Promise<{ game: GameData; close: () => void }> {

@@ -1,16 +1,34 @@
 /**
- * Every randomizer option, described once. The web app's pages, settings
- * files and the shareable settings string all work from `OPTIONS`.
+ * Every randomizer option, described once, with Whetstone's beside them. The
+ * web app's pages, settings files and the shareable settings string all work
+ * from `OPTIONS`.
  *
  * Settings are a flat object keyed by option (`"recipes.amountSpread"`), so
  * they serialize as they are. A settings string is "RF" plus base64url JSON
  * of the seed, the logic version and every option that isn't its default:
- * with the same disc, it reproduces the same game.
+ * with the same disc, it reproduces the same game. Whetstone's options keep
+ * their keys in it, so strings made before the split still load.
  */
-import type { Scope } from "./game/tiers.js";
+import type { Scope } from "whetstone/src/game/tiers.js";
+import {
+  coerceOption,
+  decodePayload,
+  encodePayload,
+  formatOption as formatValue,
+  optionActive,
+  optionDefaults,
+  parseSettingsJson,
+  SettingsError,
+  type Action,
+  type OptionDef as AnyOptionDef,
+} from "whetstone/src/options.js";
+import { WHETSTONE_OPTIONS, type WhetstoneSettings } from "whetstone/src/settings.js";
 import { LOGIC_VERSION } from "./version.js";
 
-export interface Settings {
+export { SettingsError, type Action };
+export type { OptionType } from "whetstone/src/options.js";
+
+export interface Settings extends WhetstoneSettings {
   seed: string;
   "questRewards.mode": Mode;
   "questRewards.scope": Scope;
@@ -67,8 +85,6 @@ export interface Settings {
   "weapons.statRange": "near" | "wide" | "any";
   "weapons.sharpness": boolean;
   "weapons.sharpnessMode": "shuffle" | "new";
-  "weapons.elementMotion": boolean;
-  "weapons.elementMotionFrom": number;
   "armor.enabled": boolean;
   "armor.scope": "rarity" | "rank" | "any";
   "armor.start": "smithy" | "rank" | "any";
@@ -116,97 +132,25 @@ export interface Settings {
   "monsterStats.statusSpread": number;
   "monsterAi.branches": boolean;
   "monsterAi.branchSpread": number;
-  "monsterAi.aggression": "off" | "more" | "relentless";
-  "monsterAi.reach": "off" | "less" | "rarely";
   "weaknesses.elements": boolean;
   "weaknesses.parts": boolean;
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
-  "mods.nodeMap": boolean;
-  "paint.stays": boolean;
-  "mods.buttonIcons": "psp" | "xbox" | "nintendo" | "playstation" | "keyboard";
-  "camera.fov": "normal" | "wide" | "wider" | "widest";
-  "camera.distance": "normal" | "far" | "farther" | "farthest";
-  "camera.tilt": "steps" | "slow" | "smooth" | "fast";
-  "camera.photoMode": boolean;
-  "camera.target": "off" | "tap" | "follow";
-  "quest.endWait": "normal" | "short" | "instant";
-  "hud.monsterHp": "off" | "painted" | "always";
-  "hud.damageNumbers": "off" | "total" | "split";
-  "hud.attackHitboxes": boolean;
   "pact.enabled": boolean;
-  "poogie.enabled": boolean;
-  "elites.enabled": boolean;
-  "elites.chance": number;
   "quests.unknown": boolean;
-  "quests.keyLabel": boolean;
-  "rewards.sendAll": boolean;
-  "smithy.improvePips": boolean;
-  "farm.harvestAll": boolean;
-  "pouch.bulkCombine": boolean;
-  "monsterList.slainCaptured": boolean;
-  "boot.skip": "normal" | "title" | "village";
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
 
-export type OptionType =
-  | { kind: "boolean" }
-  | {
-      kind: "number";
-      min: number;
-      max: number;
-      step: number;
-      /** Shown as ±50%. */
-      percent?: boolean;
-      /** Shown as ±4 levels. */
-      unit?: string;
-      /** Shown as 12%: a chance in percent, not a spread. */
-      chance?: boolean;
-    }
-  | {
-      kind: "choice";
-      choices: { value: string; label: string; help: string; action?: Action }[];
-    };
-
-/**
- * What an option does to the game. A shuffle moves what's already there (items,
- * monsters, weapons, armor, skills, weak spots) to other places: nothing new is
- * made. A randomizer rolls new values (amounts, costs, prices, HP, sizes, time
- * limits). The pages tag options with it, and the presets are built on it.
- */
-export type Action = "shuffle" | "randomize";
+export type OptionDef = AnyOptionDef<OptionKey>;
 
 /** What a feature does: nothing, shuffle what's there, or randomize new values. */
 export type Mode = "off" | Action;
 
-export interface OptionDef {
-  key: OptionKey;
-  section: string;
-  label: string;
-  help: string;
-  type: OptionType;
-  default: boolean | number | string;
-  /** Shuffle or randomize: left out for options that only tune another. */
-  action?: Action;
-  /** An option that must be on for this one to matter. */
-  enabledBy?: OptionKey;
-  /** With `enabledBy` a choice: the values of it that count as on. */
-  enabledWhen?: readonly string[];
-  /** A few short points under `help`, for what doesn't fit its one or two sentences. */
-  points?: readonly string[];
-  /**
-   * Switched in game from the START menu's randomfu entry, and the save
-   * keeps that choice: the option only picks how a disc starts.
-   */
-  inGame?: true;
-  /** The discs it works on, when that isn't all of them ("EU", "EU and JP"). */
-  discs?: string;
-}
-
 const SPREAD = { kind: "number", min: 0, max: 0.95, step: 0.05, percent: true } as const;
 
-export const OPTIONS: readonly OptionDef[] = [
+/** randomfu's own options: the shuffles, randomizers and what goes with them. */
+const RANDOMIZER_OPTIONS: readonly OptionDef[] = [
   {
     key: "questRewards.mode",
     section: "Quest rewards",
@@ -1043,23 +987,6 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "weapons.sharpness",
   },
   {
-    key: "weapons.elementMotion",
-    section: "Weapons",
-    label: "Heavy hits carry more element",
-    help: "A Blademaster hit's element grows on a curve with how hard the move hits, so a slow weapon with the element its target is weak to pulls ahead of a raw one on every swing, and further the more it commits: at the default strength, a Great Sword's side slash carries 1.6 times its element, its draw slash 2.5 times, its level 3 charge 8.7 times, while quick hits (Dual Blades, Sword and Shield, light pokes) stay as they are. Status grows in step with the hit. Critical hits don't change either, as in the game. Weapon screens show the usual values.",
-    type: { kind: "boolean" },
-    default: false,
-  },
-  {
-    key: "weapons.elementMotionFrom",
-    section: "Weapons",
-    label: "Element boost starts at",
-    help: "The motion value above which a hit's element and status grow. Lower is stronger: at 26, a hit with motion value 52 carries 2.8 times its element (twice the motion value, to the power 1.5) and twice its status. Hits at or below it stay as they are: Dual Blades hits are 6 to 25, Great Sword hits 36 to 110.",
-    type: { kind: "number", min: 10, max: 40, step: 1 },
-    default: 26,
-    enabledBy: "weapons.elementMotion",
-  },
-  {
     key: "armor.enabled",
     section: "Armor",
     label: "Shuffle which armor the smithy makes",
@@ -1732,56 +1659,6 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "monsterAi.branches",
   },
   {
-    key: "monsterAi.aggression",
-    section: "Monster stats",
-    label: "Aggression",
-    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, and a large monster stands idle between moves for less time and recovers and turns faster, so it spends less time between attacks. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
-    type: {
-      kind: "choice",
-      choices: [
-        { value: "off", label: "Unchanged", help: "Monsters attack as often as they always did." },
-        {
-          value: "more",
-          label: "More aggressive",
-          help: "Each attack is twice as likely as before against the other moves, and a monster stands idle at most a second between moves and recovers from its moves and turns 50% faster.",
-        },
-        {
-          value: "relentless",
-          label: "Relentless",
-          help: "Each attack is four times as likely as before against the other moves, and a monster stands idle at most a third of a second between moves and recovers from its moves and turns twice as fast.",
-        },
-      ],
-    },
-    default: "off",
-  },
-  {
-    key: "monsterAi.reach",
-    section: "Monster stats",
-    label: "Time out of reach",
-    help: "Large monsters spend less of the fight where you can't hit them. Rathian and Rathalos and their kin, Yian Kut-Ku and Gypceros, Fatalis and Chameleos take off less often, Diablos and Monoblos dig in less often, and every large monster fights in each area for longer before it leaves mid-fight, and keeps after a hunter it lost sight of for longer before it gives up and wanders off. A flight or a burrow, once started, lasts as long as before, and every move stays possible.",
-    type: {
-      kind: "choice",
-      choices: [
-        {
-          value: "off",
-          label: "Unchanged",
-          help: "Monsters fly, dig and leave as often as they always did.",
-        },
-        {
-          value: "less",
-          label: "Less",
-          help: "Taking off and digging in are a third as likely as before against the other moves, and a monster fights in each area twice as long before it leaves (10 minutes instead of 5 for most) and keeps after a hunter it can't see twice as long.",
-        },
-        {
-          value: "rarely",
-          label: "Rarely",
-          help: "Taking off and digging in are an eighth as likely as before against the other moves, and a monster fights in each area four times as long before it leaves (up to about a quarter of an hour) and keeps after a hunter it can't see four times as long.",
-        },
-      ],
-    },
-    default: "off",
-  },
-  {
     key: "weaknesses.elements",
     section: "Weaknesses",
     label: "Shuffle elemental weaknesses",
@@ -1818,182 +1695,6 @@ export const OPTIONS: readonly OptionDef[] = [
     default: true,
   },
   {
-    key: "mods.nodeMap",
-    section: "Area map",
-    label: "Gathering nodes on the area map",
-    help: "The map screen marks every gathering (green), mining (orange) and bug catching (yellow) point on the map.",
-    discs: "EU and JP",
-    type: { kind: "boolean" },
-    default: false,
-  },
-  {
-    key: "paint.stays",
-    section: "Area map",
-    label: "Paint never wears off",
-    help: "A monster hit by a Paintball stays on the area map for the rest of the quest, instead of for ten minutes. Each painted monster keeps its own mark.",
-    type: { kind: "boolean" },
-    default: false,
-  },
-  {
-    key: "mods.buttonIcons",
-    section: "Buttons",
-    label: "Button icons",
-    help: "The buttons the game draws in its text and HUD, for playing with a controller in PPSSPP.",
-    type: {
-      kind: "choice",
-      choices: [
-        { value: "psp", label: "PSP", help: "The game's own: ○ × △ □, L, R, START and SELECT." },
-        {
-          value: "xbox",
-          label: "Xbox",
-          help: "A B X Y in their colours, LB, RB, Menu and View.",
-        },
-        {
-          value: "nintendo",
-          label: "Nintendo",
-          help: "A B X Y as a Switch has them (B below, A right), L, R, + and −.",
-        },
-        {
-          value: "playstation",
-          label: "PlayStation",
-          help: "Coloured × ○ □ △, L1, R1, Options and the touchpad.",
-        },
-        {
-          value: "keyboard",
-          label: "Keyboard",
-          help: "Keys for PPSSPP's defaults: Z X A S, Q, W, Space and Enter.",
-        },
-      ],
-    },
-    default: "psp",
-  },
-  {
-    key: "camera.fov",
-    section: "Camera",
-    label: "Field of view",
-    help: "How wide the camera sees. The edges stretch a little the wider it gets.",
-    inGame: true,
-    type: {
-      kind: "choice",
-      choices: [
-        { value: "normal", label: "Normal", help: "The game's own: 50° high, 79° across." },
-        { value: "wide", label: "Wide", help: "×1.15: 57.5° high, 88° across." },
-        {
-          value: "wider",
-          label: "Wider",
-          help: "×1.25: 62.5° high, 94° across.",
-        },
-        { value: "widest", label: "Widest", help: "×1.4: 70° high, 102° across." },
-      ],
-    },
-    default: "normal",
-  },
-  {
-    key: "camera.distance",
-    section: "Camera",
-    label: "Camera distance",
-    help: "How far behind your hunter the camera sits. Further shows more, but passes through walls more often in caves.",
-    inGame: true,
-    type: {
-      kind: "choice",
-      choices: [
-        { value: "normal", label: "Normal", help: "The game's own distance." },
-        { value: "far", label: "Far", help: "×1.15 as far back." },
-        { value: "farther", label: "Farther", help: "×1.3 as far back." },
-        { value: "farthest", label: "Farthest", help: "×1.5 as far back." },
-      ],
-    },
-    default: "normal",
-  },
-  {
-    key: "camera.tilt",
-    section: "Camera",
-    label: "Camera tilt",
-    help: "How D-pad up and down tilt the camera: the game's five steps, or smoothly to any angle while you hold it.",
-    inGame: true,
-    discs: "EU",
-    type: {
-      kind: "choice",
-      choices: [
-        { value: "steps", label: "Steps", help: "The game's own five steps." },
-        { value: "slow", label: "Slow", help: "Smooth, 30° a second." },
-        { value: "smooth", label: "Smooth", help: "Smooth, 50° a second." },
-        { value: "fast", label: "Fast", help: "Smooth, 80° a second." },
-      ],
-    },
-    default: "steps",
-  },
-  {
-    key: "camera.photoMode",
-    section: "Camera",
-    label: "Photo mode",
-    help: "In a quest, hold L and R and press START: the game freezes, the HUD goes and the camera is yours. START again to play on.",
-    points: [
-      "Stick turns it, D-pad moves it, L and R zoom",
-      "△ × up and down, □ ○ nearer and further",
-      "SELECT puts it back where it started",
-    ],
-    inGame: true,
-    type: { kind: "boolean" },
-    default: false,
-  },
-  {
-    key: "camera.target",
-    section: "Camera",
-    label: "Target camera",
-    help: "L turns the camera to face a large monster in your area, like the newer games' target camera.",
-    points: [
-      "Hold L and press D-pad left or right for the next monster",
-      "Press L twice for the game's own L",
-    ],
-    inGame: true,
-    type: {
-      kind: "choice",
-      choices: [
-        { value: "off", label: "Off", help: "L is the game's own: behind your hunter." },
-        {
-          value: "tap",
-          label: "Tap",
-          help: "L turns the camera to the monster once; then it stays where it is.",
-        },
-        {
-          value: "follow",
-          label: "Follow",
-          help: "L keeps the monster in view until you press L twice, turn the camera with the D-pad, or the monster leaves or falls.",
-        },
-      ],
-    },
-    default: "off",
-  },
-  {
-    key: "quest.endWait",
-    section: "Quest end",
-    label: "Wait after a quest",
-    help: "How long the game waits after a quest is done before the reward screen.",
-    inGame: true,
-    type: {
-      kind: "choice",
-      choices: [
-        {
-          value: "normal",
-          label: "Normal",
-          help: "The game's own: the banner, then a minute (20 s on gathering quests).",
-        },
-        {
-          value: "short",
-          label: "Short",
-          help: "The banner, then 20 s for every quest: time to carve one monster.",
-        },
-        {
-          value: "instant",
-          label: "Instant",
-          help: "Straight to the rewards: no banner wait and no time to carve.",
-        },
-      ],
-    },
-    default: "normal",
-  },
-  {
     key: "questMonsters.text",
     section: "Extras",
     label: "Rename monsters in quest text",
@@ -2002,59 +1703,6 @@ export const OPTIONS: readonly OptionDef[] = [
     default: true,
     enabledBy: "questMonsters.mode",
     enabledWhen: ["shuffle", "randomize"],
-  },
-  {
-    key: "hud.monsterHp",
-    section: "HUD",
-    label: "Monster health",
-    help: "A health gauge for each large monster in your area, under your name plate.",
-    inGame: true,
-    type: {
-      kind: "choice",
-      choices: [
-        { value: "off", label: "Off", help: "No monster gauges." },
-        {
-          value: "painted",
-          label: "On the map",
-          help: "While it shows on the map: from a Paintball hit.",
-        },
-        {
-          value: "always",
-          label: "Always",
-          help: "Every large monster in your area shows its gauge.",
-        },
-      ],
-    },
-    default: "off",
-  },
-  {
-    key: "hud.damageNumbers",
-    section: "HUD",
-    label: "Damage numbers",
-    help: "Each hit pops the damage it dealt at the part it struck: white, or orange on a weak point.",
-    inGame: true,
-    type: {
-      kind: "choice",
-      choices: [
-        { value: "off", label: "Off", help: "No damage numbers." },
-        { value: "total", label: "Total", help: "One number a hit: raw and element together." },
-        {
-          value: "split",
-          label: "Split element",
-          help: "The element's share as a second number in its colour.",
-        },
-      ],
-    },
-    default: "off",
-  },
-  {
-    key: "hud.attackHitboxes",
-    section: "HUD",
-    label: "Attack hitboxes",
-    help: "A faint red shading over every monster attack that can hit you right now, fireballs and other projectiles too. A few attacks aren't drawn.",
-    inGame: true,
-    type: { kind: "boolean" },
-    default: false,
   },
   {
     key: "pact.enabled",
@@ -2069,36 +1717,6 @@ export const OPTIONS: readonly OptionDef[] = [
     default: false,
   },
   {
-    key: "poogie.enabled",
-    section: "Poogie",
-    label: "Poogie's luck",
-    help: "Pet Poogie before a hunt and luck might be in your favor!",
-    type: { kind: "boolean" },
-    default: true,
-  },
-  {
-    key: "elites.enabled",
-    section: "Elite monsters",
-    label: "Elite monsters",
-    help: "Now and then a large monster is an elite, with a faint crimson pulse. The quest board doesn't tell.",
-    points: [
-      "+50% health, +30% damage, +10% speed, longer rages",
-      "Shorter pauses between moves, quicker turns and recoveries",
-      "An extra reward draw, +50% zenny and rarer rewards",
-    ],
-    type: { kind: "boolean" },
-    default: false,
-  },
-  {
-    key: "elites.chance",
-    section: "Elite monsters",
-    label: "Elite chance",
-    help: "Each large monster's chance of being an elite.",
-    type: { kind: "number", min: 1, max: 100, step: 1, chance: true },
-    default: 12,
-    enabledBy: "elites.enabled",
-  },
-  {
     key: "quests.unknown",
     section: "Unknown Monster?! quests",
     label: "Unknown Monster?! quests",
@@ -2106,114 +1724,19 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
   },
-  {
-    key: "quests.keyLabel",
-    section: "Key quests",
-    label: "Mark key quests",
-    help: "A yellow ★ on the Village Chief's quest cards marks the key quests that unlock the Urgent Quest.",
-    type: { kind: "boolean" },
-    default: false,
-  },
-  {
-    key: "rewards.sendAll",
-    section: "Reward screen",
-    label: "Send All to Item Box",
-    help: "The reward screen gets a Send All to Item Box row: every reward that fits, the comrade's too, in one go.",
-    type: { kind: "boolean" },
-    default: true,
-  },
-  {
-    key: "farm.harvestAll",
-    section: "Pokke Farm",
-    label: "Harvest all",
-    help: "At the farm's Item Box, △ sends everything the farm holds (field, Mining Points, Insect Thickets, Mushroom Tree, Bee Hive) to the Item Box.",
-    type: { kind: "boolean" },
-    default: true,
-  },
-  {
-    key: "pouch.bulkCombine",
-    section: "Item pouch",
-    label: "Bulk combine",
-    help: 'The item pouch\'s Combine asks how many at "Combine?": left and right pick up to what the ingredients and the pouch allow, and × on Yes combines them all at once.',
-    type: { kind: "boolean" },
-    default: true,
-  },
-  {
-    key: "smithy.improvePips",
-    section: "Improve pips",
-    label: "Mark weapons you can improve",
-    help: "In the smithy's Improve, an orange pip marks each weapon you have the materials and zenny to improve.",
-    type: { kind: "boolean" },
-    default: true,
-  },
-  {
-    key: "monsterList.slainCaptured",
-    section: "Monster List",
-    label: "Slain and captured",
-    help: "The Monster List's card shows how many of each monster you slew and how many you captured, in place of one hunted count. The save already keeps both, so old hunts count too. In English on every disc.",
-    type: { kind: "boolean" },
-    default: false,
-  },
-  {
-    key: "boot.skip",
-    section: "Boot",
-    label: "Faster start",
-    help: "Skip the language choice, logos and intro movie from power-on.",
-    type: {
-      kind: "choice",
-      choices: [
-        {
-          value: "normal",
-          label: "Normal",
-          help: "The game's own: language, notice, logos and the intro movie.",
-        },
-        {
-          value: "title",
-          label: "Title screen",
-          help: "Straight to Press START.",
-        },
-        {
-          value: "village",
-          label: "Village",
-          help: "Straight into the village with your last save. Hold START from power-on to pick another.",
-        },
-      ],
-    },
-    default: "normal",
-  },
 ];
 
-const BY_KEY = new Map(OPTIONS.map((o) => [o.key, o]));
+/**
+ * Every option: randomfu's, then Whetstone's. The pages show them by section,
+ * in this order within each (Whetstone's element-by-motion-value option after
+ * the weapon randomizers, aggression and reach after the AI reroll).
+ */
+export const OPTIONS: readonly OptionDef[] = [...RANDOMIZER_OPTIONS, ...WHETSTONE_OPTIONS];
+
+const BY_KEY: ReadonlyMap<string, AnyOptionDef> = new Map(OPTIONS.map((o) => [o.key, o]));
 
 export function defaultSettings(seed: string): Settings {
-  const settings: Record<string, unknown> = { seed };
-  for (const option of OPTIONS) settings[option.key] = option.default;
-  return settings as unknown as Settings;
-}
-
-export class SettingsError extends Error {}
-
-/** Checks one value against its option, converting strings ("true", "0.5"). */
-function coerceOption(key: string, value: unknown): Settings[OptionKey] {
-  const option = BY_KEY.get(key as OptionKey);
-  if (!option) throw new SettingsError(`Unknown setting "${key}"`);
-  const type = option.type;
-  if (type.kind === "boolean") {
-    if (value === true || value === "true" || value === "on") return true;
-    if (value === false || value === "false" || value === "off") return false;
-    throw new SettingsError(`${key} must be true or false`);
-  }
-  if (type.kind === "number") {
-    const n = typeof value === "string" ? Number(value) : value;
-    if (typeof n !== "number" || !Number.isFinite(n) || n < type.min || n > type.max) {
-      throw new SettingsError(`${key} must be a number from ${type.min} to ${type.max}`);
-    }
-    return type.step >= 1 ? Math.round(n) : n;
-  }
-  if (typeof value !== "string" || !type.choices.some((c) => c.value === value)) {
-    throw new SettingsError(`${key} must be one of ${type.choices.map((c) => c.value).join(", ")}`);
-  }
-  return value as Settings[OptionKey];
+  return { seed, ...optionDefaults(OPTIONS) } as unknown as Settings;
 }
 
 /** `base` with every key in `changes` applied and checked. */
@@ -2226,7 +1749,7 @@ export function applySettings(base: Settings, changes: Record<string, unknown>):
       }
       out.seed = value.trim();
     } else {
-      out[key] = coerceOption(key, value);
+      out[key] = coerceOption(BY_KEY.get(key), key, value);
     }
   }
   return out as unknown as Settings;
@@ -2237,11 +1760,7 @@ export function applySettings(base: Settings, changes: Record<string, unknown>):
  * choice is at `enabledWhen`), and that option is in effect too.
  */
 export function isActive(settings: Settings, option: OptionDef): boolean {
-  if (!option.enabledBy) return true;
-  const parent = BY_KEY.get(option.enabledBy)!;
-  const value = settings[option.enabledBy];
-  const on = option.enabledWhen ? option.enabledWhen.includes(String(value)) : value === true;
-  return on && isActive(settings, parent);
+  return optionActive(BY_KEY, settings as unknown as Record<string, unknown>, option);
 }
 
 /** What `settings` shuffle and randomize: every option in effect that does either, with which. */
@@ -2261,23 +1780,12 @@ export function actionsOf(settings: Settings): Map<OptionKey, Action> {
   return out;
 }
 
-// base64url by hand: the browser's Buffer has plain base64 only.
-function toBase64Url(buf: Buffer): string {
-  return buf.toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
-
-function fromBase64Url(text: string): Buffer {
-  if (!/^[A-Za-z0-9_-]*$/.test(text)) throw new SettingsError("That settings string is damaged");
-  const b64 = text.replace(/-/g, "+").replace(/_/g, "/");
-  return Buffer.from(b64 + "=".repeat((4 - (b64.length % 4)) % 4), "base64");
-}
-
 export function encodeSettings(settings: Settings): string {
   const payload: Record<string, unknown> = { v: LOGIC_VERSION, seed: settings.seed };
   for (const option of OPTIONS) {
     if (settings[option.key] !== option.default) payload[option.key] = settings[option.key];
   }
-  return `RF${toBase64Url(Buffer.from(JSON.stringify(payload), "utf8"))}`;
+  return encodePayload("RF", payload);
 }
 
 /**
@@ -2309,18 +1817,7 @@ export function withOlderDefaults(
 
 /** Decodes a settings string. `version` is the logic version it was made with. */
 export function decodeSettings(value: string): { settings: Settings; version: number } {
-  const text = value.trim();
-  if (!text.startsWith("RF")) throw new SettingsError("A settings string starts with RF");
-  let payload: unknown;
-  try {
-    payload = JSON.parse(fromBase64Url(text.slice(2)).toString("utf8"));
-  } catch {
-    throw new SettingsError("That settings string is damaged");
-  }
-  if (typeof payload !== "object" || payload === null || Array.isArray(payload)) {
-    throw new SettingsError("That settings string is damaged");
-  }
-  const { v, seed, ...options } = payload as Record<string, unknown>;
+  const { v, seed, ...options } = decodePayload("RF", value);
   if (typeof v !== "number" || typeof seed !== "string") {
     throw new SettingsError("That settings string is damaged");
   }
@@ -2332,16 +1829,7 @@ export function decodeSettings(value: string): { settings: Settings; version: nu
 
 /** Settings from a JSON file's contents: any subset of options, plus an optional seed. */
 export function settingsFromJson(text: string, seed: string): Settings {
-  let data: unknown;
-  try {
-    data = JSON.parse(text);
-  } catch (error) {
-    throw new SettingsError(`Settings file isn't valid JSON: ${(error as Error).message}`);
-  }
-  if (typeof data !== "object" || data === null || Array.isArray(data)) {
-    throw new SettingsError("Settings file must be a JSON object");
-  }
-  return applySettings(defaultSettings(seed), data as Record<string, unknown>);
+  return applySettings(defaultSettings(seed), parseSettingsJson(text));
 }
 
 /** The settings as a JSON file: every option, so it documents itself. */
@@ -2351,15 +1839,7 @@ export function settingsToJson(settings: Settings): string {
 
 /** An option's value in words: yes/no, ±50%, ±4 levels, a number, or the choice's label. */
 export function formatOption(option: OptionDef, value: Settings[OptionKey]): string {
-  const type = option.type;
-  if (type.kind === "boolean") return value ? "yes" : "no";
-  if (type.kind === "number" && type.percent) return `±${Math.round(Number(value) * 100)}%`;
-  if (type.kind === "number" && type.unit) return `±${String(value)} ${type.unit}`;
-  if (type.kind === "number" && type.chance) return `${String(value)}%`;
-  if (type.kind === "choice") {
-    return type.choices.find((c) => c.value === value)?.label ?? String(value);
-  }
-  return String(value);
+  return formatValue(option, value);
 }
 
 /** One line per option, for the spoiler log and the console. */

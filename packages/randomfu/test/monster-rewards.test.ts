@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { parseOvl } from "mhfu-extract/src/container/ovl.js";
-import { monsterKey } from "../src/game/tiers.js";
+import { monsterKey } from "whetstone/src/game/tiers.js";
 import { collectMonsterRewardSlots, collectRewardLists } from "../src/shuffles/monster-rewards.js";
-import { buildGameSub } from "./fixtures.js";
+import { buildGameSub } from "whetstone/test/fixtures.js";
 
 // The EU disc's lists at the Fatalis entries of CODE_CARVES: 1007 in high
 // rank (and the unranked, treasure and misc slots), 1055 in G.

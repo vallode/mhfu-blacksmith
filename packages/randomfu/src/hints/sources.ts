@@ -5,9 +5,15 @@
  */
 import { MAP_NAMES } from "mhfu-extract/src/tables/quest-maps.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
-import type { Edits } from "../edits.js";
-import type { GameData } from "../game/load.js";
-import { BANDS, questTier, rewardRankBand, type Band, type Tier } from "../game/tiers.js";
+import type { Edits } from "whetstone/src/edits.js";
+import type { GameData } from "whetstone/src/game/load.js";
+import {
+  BANDS,
+  questTier,
+  rewardRankBand,
+  type Band,
+  type Tier,
+} from "whetstone/src/game/tiers.js";
 import { collectRewardLists } from "../shuffles/monster-rewards.js";
 import { collectRecipeSlots } from "../shuffles/recipes.js";
 

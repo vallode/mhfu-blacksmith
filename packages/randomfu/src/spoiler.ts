@@ -2,9 +2,9 @@
  * The spoiler log: settings, then every changed slot grouped by where it
  * is, then the tier randomfu found each item at.
  */
-import type { GameData } from "./game/load.js";
-import { tierKey, tierLabel, tierOrder, type Tier } from "./game/tiers.js";
-import { itemName } from "./names.js";
+import type { GameData } from "whetstone/src/game/load.js";
+import { tierKey, tierLabel, tierOrder, type Tier } from "whetstone/src/game/tiers.js";
+import { itemName } from "whetstone/src/names.js";
 import { LOGIC_VERSION, type RandomizeResult } from "./randomize.js";
 import { describeSettings, encodeSettings, type Settings } from "./settings.js";
 

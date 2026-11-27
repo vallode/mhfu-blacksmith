@@ -39,12 +39,12 @@
 import { HUNT_FLAGS, setGoals, SLAY_FLAGS } from "../game/goals.js";
 import { Writer } from "mhfu-extract/src/quests/document.js";
 import { parseQuest, type RewardTable } from "mhfu-extract/src/quests/parser.js";
-import { decodeObjects } from "../blob/link.js";
+import { decodeObjects } from "whetstone/src/blob/link.js";
 import { UNKNOWN_QUESTS_OBJECTS } from "../blob/unknown-quests-object.js";
-import type { Edits } from "../edits.js";
+import type { Edits } from "whetstone/src/edits.js";
 import { addBoardRecord } from "../game/board-add.js";
-import { RECORD_HEADER_SIZE, RECORD_QUEST_ID, align } from "../game/board.js";
-import type { GameData, LoadedQuest } from "../game/load.js";
+import { RECORD_HEADER_SIZE, RECORD_QUEST_ID, align } from "whetstone/src/game/board.js";
+import type { GameData, LoadedQuest } from "whetstone/src/game/load.js";
 import {
   FEE,
   PENALTY,
@@ -53,11 +53,11 @@ import {
   SPAWN_BASE_CAMP,
   SPAWN_RANDOM,
   spawnValuesByMap,
-} from "../game/quest-fields.js";
+} from "whetstone/src/game/quest-fields.js";
 import { POWER_OFFSET, readSpawns, type QuestSpawns } from "../game/spawns.js";
-import { BANDS, questTier, type Band } from "../game/tiers.js";
-import { monsterNames, type MonsterNames } from "../names.js";
-import type { ShuffleReport, SpoilerLine } from "../shuffles/shuffle.js";
+import { BANDS, questTier, type Band } from "whetstone/src/game/tiers.js";
+import { monsterNames, type MonsterNames } from "whetstone/src/names.js";
+import type { Report, ReportLine } from "whetstone/src/report.js";
 import {
   collectStartPoints,
   habitat,
@@ -67,9 +67,15 @@ import {
   type Point,
   type Start,
 } from "../shuffles/quest-monsters.js";
-import { findImports } from "./code-loader.js";
-import { findQuestLoadSites, type QuestLoadSites } from "./game-hooks.js";
-import { codeSegment, findUnique, hiLo, maskWord, type Segment } from "./mips.js";
+import { findImports, SYSTEM_TIME_LOW_NID } from "whetstone/src/patches/code-loader.js";
+import { findQuestLoadSites, type QuestLoadSites } from "whetstone/src/patches/game-hooks.js";
+import {
+  codeSegment,
+  findUnique,
+  hiLo,
+  maskWord,
+  type Segment,
+} from "whetstone/src/patches/mips.js";
 
 export interface UnknownSlot {
   band: Band;
@@ -107,8 +113,6 @@ const LIST_COUNT_TAIL = [
 const LIST_TABLE_ENTRIES = 33;
 /** The town copies at most 80 quests of a star's list. */
 const BOARD_MAX = 80;
-
-export const SYSTEM_TIME_LOW_NID = 0x369ed59d;
 
 /** questType bits (the decomp's MissionFlag). */
 const SLAYING = 1 << 0;
@@ -589,7 +593,7 @@ export interface UnknownQuests {
   /** The quest loader's calls, for the hook. */
   questLoad: QuestLoadSites;
   /** Adds the board records, once the code loader is in; the report. */
-  finish: (applied: boolean) => ShuffleReport;
+  finish: (applied: boolean) => Report;
 }
 
 const TITLE = "Unknown Monster quests";
@@ -687,7 +691,7 @@ export function prepareUnknownQuests(
 export function describeTables(
   tables: readonly SlotTables[],
   monsterName: MonsterNames,
-): SpoilerLine[] {
+): ReportLine[] {
   return tables.map(({ slot, templates }) => {
     const monsters = [...new Set(templates.flatMap((t) => t.choices.map((c) => c.species)))];
     const board = slot.board === "village" ? "Village" : "Guild";

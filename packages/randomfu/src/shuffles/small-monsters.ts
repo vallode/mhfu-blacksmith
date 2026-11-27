@@ -17,10 +17,11 @@
  * small monsters but are things in the area, not creatures: they stay too.
  */
 import type { QuestDoc } from "mhfu-extract/src/quests/document.js";
-import { questLabel, type MonsterNames } from "../names.js";
+import { questLabel, type MonsterNames } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
 import { isDelivery, namedMonsters, type DocQuest } from "./quest-maps.js";
-import { getOrInsert, type ShuffleReport } from "./shuffle.js";
+import { getOrInsert } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 /** Spawned like small monsters, but part of the area: Rocks and Great Thunderbug (emIDs). */
 export const PROPS: ReadonlySet<number> = new Set([29, 56]);
@@ -57,9 +58,9 @@ export function swapSmallSpecies(
   rng: Rng,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
-): ShuffleReport {
+): Report {
   const byStage = smallByStage(list);
-  const lines: ShuffleReport["lines"] = [];
+  const lines: Report["lines"] = [];
   let deliveries = 0;
   let conflicts = 0;
   for (const entry of list) {

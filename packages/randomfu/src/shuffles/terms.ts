@@ -13,20 +13,20 @@
  * Time limits stay within the shortest and longest on the disc (20 and 50
  * minutes on the EU disc): longer ones have never been shown by the game.
  */
-import type { LoadedQuest } from "../game/load.js";
-import { boardName, questRecords, recordBase, type BoardFile } from "../game/board.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
+import { boardName, questRecords, recordBase, type BoardFile } from "whetstone/src/game/board.js";
 import {
   readTerms,
   sameTerms,
   TICKS_PER_MINUTE,
   writeTerms,
   type QuestTerms,
-} from "../game/quest-fields.js";
-import { questTier } from "../game/tiers.js";
-import type { Edits } from "../edits.js";
-import { questLabel } from "../names.js";
+} from "whetstone/src/game/quest-fields.js";
+import { questTier } from "whetstone/src/game/tiers.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { questLabel } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 export interface TermsSlot {
   quest: LoadedQuest;
@@ -61,7 +61,7 @@ export function randomizeTerms(
   rngs: { money: Rng; time: Rng },
   edits: Edits,
   boards: readonly BoardFile[] = [],
-): ShuffleReport {
+): Report {
   const factor = (rng: Rng, spread: number) => 1 - spread + rng.float() * 2 * spread;
   const limits = slots.map((s) => minutes(s.terms.timeLimit)).filter((m) => m > 0);
   const shortest = Math.min(...limits);

@@ -39,9 +39,9 @@ import {
 } from "mhfu-extract/src/tables/offsets.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import { WEAPON_TYPE_NAMES } from "mhfu-extract/src/tables/weapons.js";
-import type { Edits } from "../edits.js";
+import type { Edits } from "whetstone/src/edits.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport, SpoilerLine } from "./shuffle.js";
+import type { Report, ReportLine } from "whetstone/src/report.js";
 import { collectWeaponStats, compareWeapons, type WeaponStats } from "./weapon-stats.js";
 import { TYPE_NAMES } from "./weapons.js";
 
@@ -119,7 +119,7 @@ export function randomizeSharpness(
   mode: SharpnessMode,
   rng: Rng,
   edits: Edits,
-): ShuffleReport {
+): Report {
   const reader = new BinaryReader(eboot);
   const tableStart = resolveTableOffset("sharpnessTable", reader, resolver);
   const tableEnd = tableStart + TABLE_COUNTS.sharpnessEntries * SHARPNESS_ENTRY_SIZE;
@@ -156,7 +156,7 @@ export function randomizeSharpness(
     }
   }
 
-  const lines: { w: WeaponStats; line: SpoilerLine }[] = [];
+  const lines: { w: WeaponStats; line: ReportLine }[] = [];
   for (const b of blades) {
     const { w } = b;
     const { id, amount } = now.get(b)!;

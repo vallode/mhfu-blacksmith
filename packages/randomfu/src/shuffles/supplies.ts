@@ -24,14 +24,20 @@
  * what a hunter didn't use isn't known, so the tier logic doesn't lean on
  * them.
  */
-import type { LoadedQuest } from "../game/load.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
 import { largestQuest } from "../game/rebuild.js";
-import { isNeverDrawn, isQuestItem, readSupplySlots, SUPPLIES_PTR } from "../game/quest-fields.js";
-import { inScope, questTier, tierKey, type Scope, type Tier } from "../game/tiers.js";
-import type { Edits } from "../edits.js";
-import { itemName, questLabel } from "../names.js";
+import {
+  isNeverDrawn,
+  isQuestItem,
+  readSupplySlots,
+  SUPPLIES_PTR,
+} from "whetstone/src/game/quest-fields.js";
+import { inScope, questTier, tierKey, type Scope, type Tier } from "whetstone/src/game/tiers.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { itemName, questLabel } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import { permuteWithinScope, scopedPool, type ShuffleReport } from "./shuffle.js";
+import { permuteWithinScope, scopedPool } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 export interface SupplyRun {
   quest: LoadedQuest;
@@ -100,7 +106,7 @@ export function shuffleSupplies(
   context: SupplyContext,
   rng: Rng,
   edits: Edits,
-): ShuffleReport {
+): Report {
   const next = permuteWithinScope(
     runs,
     (r) => r.tier,
@@ -206,7 +212,7 @@ export function randomizeSupplies(
   context: RandomizeSuppliesContext,
   rng: Rng,
   edits: Edits,
-): ShuffleReport {
+): Report {
   // Sizes the game is known to handle: the largest quest and the largest box.
   const largest = largestQuest(quests);
   const largestBox = Math.max(...quests.map((q) => readSupplySlots(q.file.disc).length));

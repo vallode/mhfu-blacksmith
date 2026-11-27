@@ -4,7 +4,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import type { QuestHeader } from "mhfu-extract/src/quests/parser.js";
-import { Edits } from "../src/edits.js";
+import { Edits } from "whetstone/src/edits.js";
 import {
   questRecords,
   readBoardRecords,
@@ -13,8 +13,8 @@ import {
   rewriteRecordGoal,
   type BoardFile,
   type BoardRecord,
-} from "../src/game/board.js";
-import { loadGame, type GameData } from "../src/game/load.js";
+} from "whetstone/src/game/board.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
 import {
   deliveryTarget,
   readTerms,
@@ -22,13 +22,18 @@ import {
   TARGET_ID,
   TARGET_NUM,
   writeTerms,
-} from "../src/game/quest-fields.js";
-import { readQuestText, writeQuestText } from "../src/game/quest-text.js";
+} from "whetstone/src/game/quest-fields.js";
+import { readQuestText, writeQuestText } from "whetstone/src/game/quest-text.js";
 import { randomize } from "../src/randomize.js";
 import { Rng } from "../src/rng.js";
 import { collectDeliveries, shuffleDeliveries } from "../src/shuffles/deliveries.js";
 import { collectTermsSlots, randomizeTerms } from "../src/shuffles/terms.js";
-import { buildBoardFile, buildFixtureDisc, FIXTURE_QUESTS, tempDir } from "./fixtures.js";
+import {
+  buildBoardFile,
+  buildFixtureDisc,
+  FIXTURE_QUESTS,
+  tempDir,
+} from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 const FILE = path.join(tempDir(), "disc.iso");

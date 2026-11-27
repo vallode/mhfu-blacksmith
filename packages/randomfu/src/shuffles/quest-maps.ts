@@ -30,14 +30,14 @@
  */
 import type { QuestDoc, Spawn } from "mhfu-extract/src/quests/document.js";
 import { MAP_NAMES } from "mhfu-extract/src/tables/quest-maps.js";
-import type { Edits } from "../edits.js";
-import { RECORD_MAP, type BoardFile } from "../game/board.js";
-import type { LoadedQuest } from "../game/load.js";
-import { DELIVERY_TYPE, spawnValuesByMap } from "../game/quest-fields.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { RECORD_MAP, type BoardFile } from "whetstone/src/game/board.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
+import { DELIVERY_TYPE, spawnValuesByMap } from "whetstone/src/game/quest-fields.js";
 import { questDoc } from "../game/rebuild.js";
 import { OBJECTIVE_KIND_MONSTER } from "../game/spawns.js";
-import { questTier, type Tier } from "../game/tiers.js";
-import { questLabel, type MonsterNames } from "../names.js";
+import { questTier, type Tier } from "whetstone/src/game/tiers.js";
+import { questLabel, type MonsterNames } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
 import {
   collectStartPoints,
@@ -47,7 +47,8 @@ import {
   pointKey,
   type Start,
 } from "./quest-monsters.js";
-import { getOrInsert, groupBy, type ShuffleReport } from "./shuffle.js";
+import { getOrInsert, groupBy } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 /** A Village or Guild quest as a document. */
 export interface DocQuest {
@@ -179,7 +180,7 @@ export function moveQuests(
   fits: (entry: DocQuest, doc: QuestDoc) => boolean,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
-): { report: ShuffleReport; moved: Set<DocQuest> } {
+): { report: Report; moved: Set<DocQuest> } {
   const donors = groupBy(list, (e) => e.vanilla.header.map);
   const starts = collectStartPoints(list.map((e) => e.quest));
   /** Large monsters found on each habitat (day and night together). */
@@ -192,7 +193,7 @@ export function moveQuests(
   const spawnValues = spawnValuesByMap(list.map((e) => e.vanilla.header));
   const maps = [...donors.keys()].sort((a, b) => a - b);
 
-  const lines: ShuffleReport["lines"] = [];
+  const lines: Report["lines"] = [];
   const moved = new Set<DocQuest>();
   const stays = new Map<string, number>();
   let nowhere = 0;
@@ -289,9 +290,9 @@ export function randomizeStarts(
   rng: Rng,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
-): ShuffleReport {
+): Report {
   const starts = collectStartPoints(list.map((e) => e.quest));
-  const lines: ShuffleReport["lines"] = [];
+  const lines: Report["lines"] = [];
   for (const entry of list) {
     if (skip.has(entry)) continue;
     const placed = placeLarge(entry.doc, starts.get(entry.doc.header.map) ?? [], rng);

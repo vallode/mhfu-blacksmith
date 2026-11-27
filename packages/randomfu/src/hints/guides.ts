@@ -5,9 +5,9 @@
  * (`GuidePlan.fit`). Runs after every shuffle.
  */
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
-import type { Edits } from "../edits.js";
-import type { GameData } from "../game/load.js";
-import type { ShuffleReport } from "../shuffles/shuffle.js";
+import type { Edits } from "whetstone/src/edits.js";
+import type { GameData } from "whetstone/src/game/load.js";
+import type { Report } from "whetstone/src/report.js";
 import { planAlmanac } from "./almanac.js";
 import { planBestiary } from "./bestiary.js";
 import { shelfRoom, textBytes, writeShelf, type GuidePlan } from "./bookshelf.js";
@@ -36,7 +36,7 @@ export function writeGuides(
   seed: string,
   edits: Edits,
   which: { bestiary: boolean; almanac: boolean },
-): ShuffleReport[] {
+): Report[] {
   const plans: GuidePlan[] = [];
   if (which.bestiary) plans.push(planBestiary(game, quests, seed, edits));
   if (which.almanac) plans.push(planAlmanac(game, quests, seed, edits));

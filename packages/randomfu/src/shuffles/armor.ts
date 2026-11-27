@@ -51,10 +51,11 @@ import {
 import { ARMOR_ENTRY_SIZE, EQUIP_CREATE_ENTRY_SIZE } from "mhfu-extract/src/tables/offsets.js";
 import { equipmentCreateLayout } from "mhfu-extract/src/tables/recipes.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
-import type { Edits } from "../edits.js";
-import { tableName } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { tableName } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
+import { permuteWithinGroups } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 import { followGear, type GearEntry, type GearList } from "./store.js";
 
 export const ARMOR_SCOPES = ["rarity", "rank", "any"] as const;
@@ -180,7 +181,7 @@ export function shuffleArmor(
   edits: Edits,
   /** Equipment outside the create entries that follows the shuffle (the store, the starting box). */
   gear: GearList[],
-): ShuffleReport {
+): Report {
   const reader = new BinaryReader(eboot);
   const create = equipmentCreateLayout(reader, resolver);
   const values = armorValuesOffsets(reader, resolver);

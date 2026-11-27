@@ -10,8 +10,8 @@ import {
 } from "mhfu-extract/src/tables/offsets.js";
 import { equipmentCreateLayout } from "mhfu-extract/src/tables/recipes.js";
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
-import { EBOOT_PATH, loadGame, type GameData } from "../src/game/load.js";
-import { tierLabel } from "../src/game/tiers.js";
+import { EBOOT_PATH, loadGame, type GameData } from "whetstone/src/game/load.js";
+import { tierLabel } from "whetstone/src/game/tiers.js";
 import { randomize } from "../src/randomize.js";
 import { applySettings, defaultSettings, type Settings } from "../src/settings.js";
 import { settingsWith, type ShuffleName } from "./settings-helper.js";
@@ -19,9 +19,9 @@ import { formatSpoiler } from "../src/spoiler.js";
 import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
 import { collectRecipeSlots } from "../src/shuffles/recipes.js";
 import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
-import { writeEdits } from "../src/write.js";
+import { writeEdits } from "whetstone/src/write.js";
 import { runRandomizer } from "../src/run.js";
-import { questEndWord, STEPS, WORD } from "../src/patches/quest-end.js";
+import { questEndWord, STEPS, WORD } from "whetstone/src/patches/quest-end.js";
 import {
   assemble,
   buildFixtureDisc,
@@ -37,7 +37,7 @@ import {
   patchInMemory,
   QUEST_INDICES,
   tempDir,
-} from "./fixtures.js";
+} from "whetstone/test/fixtures.js";
 
 function settings(seed: string, ...shuffles: ShuffleName[]): Settings {
   return settingsWith(seed, shuffles);

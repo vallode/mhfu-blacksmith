@@ -23,12 +23,12 @@ import {
   weightHash,
   scriptOverlay,
   splitWeights,
-} from "../src/shuffles/monster-ai.js";
-import { MONSTER_ATTACKS } from "../src/shuffles/monster-attacks.js";
-import { MONSTER_REACH } from "../src/shuffles/monster-reach.js";
+} from "whetstone/src/patches/monster-ai.js";
+import { MONSTER_ATTACKS } from "whetstone/src/patches/monster-attacks.js";
+import { MONSTER_REACH } from "whetstone/src/patches/monster-reach.js";
 import { MONSTER_CHUNK_SIZE } from "mhfu-extract/src/monsters/hitzones.js";
-import type { Edits } from "../src/edits.js";
-import type { LoadedOverlay } from "../src/game/load.js";
+import type { Edits } from "whetstone/src/edits.js";
+import type { LoadedOverlay } from "whetstone/src/game/load.js";
 import { Rng } from "../src/rng.js";
 
 const BASE = 0x09a5f200;
