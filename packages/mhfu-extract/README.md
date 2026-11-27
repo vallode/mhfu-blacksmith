@@ -207,8 +207,7 @@ signatureOffset }` map, it searches the target buffer for each table's
   knowledge — a declarative `tables: TableDescriptor[]` list (entry
   size/count, where known) plus `resolverForRegion(region) ->
 TableAddressResolver | null`. `null` means "no support at all for this
-  region yet" (e.g. MHP2G + `us`, since no US disc is available to derive
-  anything from); a non-null resolver that throws per-table (like
+  region yet"; a non-null resolver that throws per-table (like
   `SignatureResolver` does for anything outside `EU_ALL_SIGNATURES`) means
   "partial support — some tables work, ask for one you haven't validated
   and you'll get a clear error, not a wrong answer."
@@ -251,9 +250,12 @@ in `test/game-profile.test.ts`.
 
 Open:
 
-- **US**: `resolverForRegion("us")` is `null` — no US disc to derive
-  signatures from ([#37](https://github.com/vallode/mhfu-blacksmith/issues/37), which also covers other games such as
-  MH1/MHF1).
+- **US**: `resolverForRegion("us")` is EU's signature resolver: every
+  signature resolves once on the US EBOOT, each table 0x120 bytes after
+  EU's. The US DATA.BIN's table of contents is EU's, entry for entry, so
+  `loadFileList("us")` is EU's; only the code overlays' contents differ
+  (game_sub loads 0x100 higher). `extract` itself is still only run on JP
+  and EU.
 - **EU quests**: all 551 parse
   ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)). An earlier run
   skipped 32 because its unpack named EU files with JP indices: EU quest

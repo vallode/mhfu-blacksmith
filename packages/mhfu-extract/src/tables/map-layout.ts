@@ -31,9 +31,10 @@ interface MapTableAddresses {
   origins: number;
 }
 
-/** The tables by region. JP's were found by searching its files for the EU tables' contents. */
+/** The tables by region. JP's and US's were found by searching their files for the EU tables' contents. */
 const MAP_TABLES: Partial<Record<Region, MapTableAddresses>> = {
   eu: { sizes: 0x0893887c, zooms: 0x08938a7c, stages: 0x09ce4708, origins: 0x09cdef40 },
+  us: { sizes: 0x0893899c, zooms: 0x08938b9c, stages: 0x09ce4808, origins: 0x09cdf040 },
   jp: { sizes: 0x08935dc4, zooms: 0x08935fc4, stages: 0x09cdf678, origins: 0x09cd9eb0 },
 };
 const STAGE_ORIGIN_SIZE = 32;

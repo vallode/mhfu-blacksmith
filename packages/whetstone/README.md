@@ -77,12 +77,12 @@ Guild Cards at 3 (see "Code loader"); the table says which.
 | `weapons.elementMotionFrom` | 26       | The motion value they start growing from (10 to 40; lower is stronger)                                 |
 | `monsterAi.aggression`      | `off`    | `off`, `more` (attacks ×2, idle ≤ 1 s, recoveries 50% faster) or `relentless` (×4, ⅓ s, recoveries ×2) |
 | `monsterAi.reach`           | `off`    | `off`, `less` (takeoffs and burrows ÷3, area and lost-hunter times ×2) or `rarely` (÷8, ×4)            |
-| `mods.nodeMap`              | off      | Mark gathering, mining and bug nodes on the area map pictures (EU and JP discs)                        |
+| `mods.nodeMap`              | off      | Mark gathering, mining and bug nodes on the area map pictures                                          |
 | `paint.stays`               | off      | A painted monster stays on the area map until the quest ends                                           |
 | `mods.buttonIcons`          | `psp`    | `xbox`, `nintendo`, `playstation` or `keyboard` draws that set's icons                                 |
 | `camera.fov`                | `normal` | How wide the camera sees: `wide`, `wider` or `widest`, ×1.15 to ×1.4 (caps Guild Cards)                |
 | `camera.distance`           | `normal` | How far back the camera sits: `far`, `farther` or `farthest`, ×1.15 to ×1.5 (caps Guild Cards)         |
-| `camera.tilt`               | `steps`  | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast` (EU disc only)           |
+| `camera.tilt`               | `steps`  | D-pad up/down tilt the camera smoothly while held: `slow`, `smooth` or `fast`                          |
 | `camera.photoMode`          | off      | L+R+START in a quest stops the game and hides the HUD; the camera flies free (caps Guild Cards)        |
 | `camera.target`             | off      | L turns the camera to a large monster: `tap` (once) or `follow` (keeps it in view)                     |
 | `quest.endWait`             | `normal` | The wait after a quest: `short` (20 s for every quest) or `instant` (straight to the rewards)          |
@@ -397,7 +397,7 @@ further back in the village and in quests, through area changes and a save
 reload, with no popping at the screen's edges, and both settings changed
 from the START menu. Smooth tilt was played on EU (PPSSPP, 2026-11-21), with
 `wider` and `farther`: smooth while held, as the game's left and right
-turns are. JP builds but hasn't been played.
+turns are. JP and US build but haven't been played.
 
 What the game does:
 
@@ -478,9 +478,10 @@ How Whetstone does it (`src/patches/camera.ts`, `blob/camera.c`):
   block's and preset 1 agrees with what the block kept, else preset 1 from
   the block and the others from the EBOOT's own presets (`game_presets` in
   `blob/camera.c`), exact again once the game loads the block again; the
-  pitch comes from the save or, if it has none, from the block. Only EU's
-  renderer is known to keep the level at +0x14 (`rf_camera_level`), so
-  other discs keep the game's steps and have no Camera tilt setting.
+  pitch comes from the save or, if it has none, from the block. The level
+  at +0x14 (`rf_camera_level`) was seen in EU's RAM; the code that steps it
+  and picks the preset from it, in the EBOOT and game_task, is the same on
+  the US and JP discs, struct offsets and all, so tilt is on every disc.
 
 ### Target camera
 

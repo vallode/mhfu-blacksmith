@@ -4,7 +4,7 @@
  * an EBOOT patch and blob code (`blob/camera.c`). This patches the EBOOT and
  * finds the addresses the blob uses, per disc.
  *
- * What the game does (EU addresses; JP's code is the same):
+ * What the game does (EU addresses; the US and JP code is the same):
  *
  * - The renderer behind an EBOOT global (EU 0x089CBBE4) keeps the near and
  *   far planes (+0, +4), the aspect (+8) and the vertical field of view in
@@ -56,10 +56,12 @@ export const TILT_RATES = { steps: 0, slow: 30, smooth: 50, fast: 80 } as const;
 const FOV_CHOICES = Object.keys(FOV_SCALES);
 const DISTANCE_CHOICES = Object.keys(DISTANCE_SCALES);
 const TILT_CHOICES = Object.keys(TILT_RATES);
-/** Where the renderer keeps the tilt level; seen only on EU, so tilt is EU's only. */
-const LEVEL_OFFSET: Partial<Record<string, number>> = { eu: 0x14 };
-/** Whether smooth tilt works on a disc of `region`. */
-export const tiltKnown = (region: string) => LEVEL_OFFSET[region] !== undefined;
+/**
+ * Where the renderer keeps the tilt level: seen in EU's RAM, and the code
+ * that steps it and picks the preset from it (the EBOOT's and game_task's)
+ * is the same on the US and JP discs, offsets and all.
+ */
+const LEVEL_OFFSET = 0x14;
 
 /** Whether any camera option is off the game's own. */
 export const cameraOn = (settings: WhetstoneSettings) =>
@@ -140,7 +142,6 @@ export function patchFov(eboot: Buffer, scale: number): number | string {
 export function prepareCamera(
   vanillaEboot: Buffer,
   settings: WhetstoneSettings,
-  region: string,
   sites: HookSites | string,
 ): Record<string, number> | string {
   const segment = codeSegment(vanillaEboot);
@@ -161,8 +162,8 @@ export function prepareCamera(
   }
   return {
     ...blob,
-    // The level's offset + 1, or 1 where it isn't known: an extern's address is never 0.
-    rf_camera_level: (LEVEL_OFFSET[region] ?? 0) + 1,
+    // The level's offset + 1: an extern's address is never 0 (1 would turn tilt off).
+    rf_camera_level: LEVEL_OFFSET + 1,
     rf_camera: renderer,
     rf_fov_scale: found.at + SCALE_WORD * 4,
     // The disc's choices + 1: an extern's address is never 0 (`blob/camera.c`).
@@ -175,7 +176,7 @@ export function prepareCamera(
 export const cameraObjects = () => decodeObjects(CAMERA_OBJECTS);
 
 /** What the disc starts with; `linked` when the blob is in, to move the camera back. */
-export function cameraReport(settings: WhetstoneSettings, linked: boolean, region: string): Report {
+export function cameraReport(settings: WhetstoneSettings, linked: boolean): Report {
   const fov = FOV_SCALES[settings["camera.fov"]];
   const distance = DISTANCE_SCALES[settings["camera.distance"]];
   const tilt = TILT_RATES[settings["camera.tilt"]];
@@ -188,11 +189,9 @@ export function cameraReport(settings: WhetstoneSettings, linked: boolean, regio
   }
   if (tilt) {
     notes.push(
-      !tiltKnown(region)
-        ? "Camera tilt isn't on this disc: only EU's camera is known to keep its step where it looks."
-        : linked
-          ? `D-pad up and down tilt the camera smoothly, ${tilt}° a second.`
-          : blob("Camera tilt"),
+      linked
+        ? `D-pad up and down tilt the camera smoothly, ${tilt}° a second.`
+        : blob("Camera tilt"),
     );
   }
   notes.push(

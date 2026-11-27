@@ -34,8 +34,8 @@
  * mark says so. The save keeps a copy of the block's presets as the game had
  * them, which a blob loaded again takes if it's this block's; else the
  * other presets come back as the EBOOT's own (most stages share them) until
- * the game loads the block again. Only EU's renderer is known to keep the
- * level where this looks (rf_camera_level), so tilt is off elsewhere.
+ * the game loads the block again. The renderer keeps the level at
+ * rf_camera_level - 1; an rf_camera_level of 1 turns tilt off.
  *
  * Built with the FPU (single precision only), like hitboxes.c. It makes no
  * game calls.

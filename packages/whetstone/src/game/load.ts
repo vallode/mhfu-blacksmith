@@ -17,6 +17,8 @@ import { readMessageFile } from "mhfu-extract/src/strings/messages.js";
 import {
   discMonsterNames,
   MONSTER_NAME_FILE,
+  MONSTER_NAME_INDEXES,
+  MONSTER_NAME_INDEXES_US,
   MonsterNameError,
 } from "mhfu-extract/src/strings/monster-names.js";
 import { PinnedResolver, type TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
@@ -111,6 +113,7 @@ function readBoards(region: Region, dataBin: DataBin): BoardFile[] {
 export function readDiscMonsterNames(
   dataBin: Pick<DataBin, "fileCount" | "read">,
   eboot: Buffer,
+  indexes = MONSTER_NAME_INDEXES,
 ): { names: (string | null)[] | null; problem?: string } {
   const unread = (why: string) => ({
     names: null,
@@ -122,6 +125,8 @@ export function readDiscMonsterNames(
     const names = discMonsterNames(
       new BinaryReader(eboot),
       readMessageFile(dataBin.read(MONSTER_NAME_FILE)),
+      undefined,
+      indexes,
     );
     return names ? { names } : unread(`DATA.BIN file ${MONSTER_NAME_FILE} has no monster names`);
   } catch (error) {
@@ -133,21 +138,21 @@ export function readDiscMonsterNames(
 export interface DiscCheck {
   discId: string | null;
   region: Region | null;
-  /** MHP2G (JP) or MHFU (EU): the discs Whetstone knows. */
+  /** MHP2G (JP) or MHFU (EU or US): the discs Whetstone knows. */
   supported: boolean;
 }
 
 /** Which game a disc is, from its PARAM.SFO, and whether Whetstone supports it. */
 export function checkDisc(iso: Iso9660Reader): DiscCheck {
   const { region, discId } = detectRegion(parseSfo(iso.readFile("/PSP_GAME/PARAM.SFO")));
-  return { region, discId, supported: region === "jp" || region === "eu" };
+  return { region, discId, supported: region !== null };
 }
 
 export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): Promise<GameData> {
   const { region, discId, supported } = checkDisc(iso);
   if (!supported || !region || !discId) {
     throw new Error(
-      `Unsupported disc (DISC_ID "${discId ?? "?"}"): expected MHP2G (JP) or MHFU (EU)`,
+      `Unsupported disc (DISC_ID "${discId ?? "?"}"): expected MHP2G (JP) or MHFU (EU or US)`,
     );
   }
 
@@ -192,7 +197,14 @@ export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): 
     resolver = new PinnedResolver(found, Buffer.from(eboot));
   }
 
-  const monsterNames = region === "eu" ? readDiscMonsterNames(dataBin, eboot) : null;
+  const monsterNames =
+    region === "jp"
+      ? null
+      : readDiscMonsterNames(
+          dataBin,
+          eboot,
+          region === "us" ? MONSTER_NAME_INDEXES_US : MONSTER_NAME_INDEXES,
+        );
   return {
     region,
     discId,

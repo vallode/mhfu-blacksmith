@@ -186,7 +186,7 @@ export function collectNodePoints(
   );
 }
 
-/** Draws the nodes onto the map textures. Needs the EU or JP disc. */
+/** Draws the nodes onto the map textures. */
 export function addNodeMap(game: GameData, edits: Edits): Report {
   const notWritten = (problem: string): Report => ({
     title: TITLE,
@@ -194,7 +194,7 @@ export function addNodeMap(game: GameData, edits: Edits): Report {
     lines: [],
   });
   if (!hasMapTables(game.region))
-    return notWritten("the map tables are only known on the EU and JP discs");
+    return notWritten(`the map tables aren't known on the ${game.region.toUpperCase()} disc`);
 
   let geometry: Map<number, MapGeometry>;
   try {

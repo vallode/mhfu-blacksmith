@@ -235,6 +235,13 @@ const TABLES = {
     lists: 0x09ce4708,
     origins: 0x09cdef40,
   },
+  us: {
+    sizes: 0x0893899c,
+    zooms: 0x08938b9c,
+    base: 0x09c19100,
+    lists: 0x09ce4808,
+    origins: 0x09cdf040,
+  },
   jp: {
     sizes: 0x08935dc4,
     zooms: 0x08935fc4,
@@ -290,7 +297,13 @@ test("readMapGeometry reads the JP disc's tables at their own addresses", () => 
   assert.equal(readMapGeometry(jp.eboot, jp.gameSub, "jp").get(2)!.origins[0]![1], 37000);
   // Read at EU addresses, the JP tables are out of place (or out of the file).
   assert.throws(() => readMapGeometry(jp.eboot, jp.gameSub, "eu"), /EU addresses/);
-  assert.throws(() => readMapGeometry(jp.eboot, jp.gameSub, "us"), /aren't known on the US disc/);
+  assert.throws(() => readMapGeometry(jp.eboot, jp.gameSub, "us"), /US addresses/);
+});
+
+test("readMapGeometry reads the US disc's tables at their own addresses", () => {
+  const us = mapTables({ region: "us" });
+  assert.equal(readMapGeometry(us.eboot, us.gameSub, "us").get(2)!.origins[0]![1], 37000);
+  assert.throws(() => readMapGeometry(us.eboot, us.gameSub, "eu"), /EU addresses/);
 });
 
 test("loadMapLayouts stops on a bad texture, or when there are none", async () => {
