@@ -16,7 +16,8 @@
   "dependencies": {
     "game-data": "workspace:*",
     "mhfu-extract": "workspace:*",
-    "randomfu": "workspace:*"
+    "randomfu": "workspace:*",
+    "whetstone": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22",

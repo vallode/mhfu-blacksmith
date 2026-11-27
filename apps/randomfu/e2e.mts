@@ -17,7 +17,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { runRandomizer } from "randomfu/src/run.js";
 import { applySettings, defaultSettings, encodeSettings, PRESETS } from "randomfu/src/settings.js";
-import { assemble, buildFixtureDisc, memorySource, tempDir } from "randomfu/test/fixtures.js";
+import { assemble, buildFixtureDisc, memorySource, tempDir } from "whetstone/test/fixtures.js";
 import { toDataPoint } from "./analytics/collect.js";
 import { EVENT_PATH } from "./analytics/events.js";
 

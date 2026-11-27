@@ -1,32 +1,34 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
-import { linkBlob } from "../src/blob/link.js";
-import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
-import { codeSegment } from "../src/patches/mips.js";
+import { RUNTIME_OBJECTS } from "whetstone/src/blob/runtime-object.js";
+import { linkBlob } from "whetstone/src/blob/link.js";
+import { HOOK, assembleHooks } from "whetstone/src/patches/game-hooks.js";
+import { codeSegment } from "whetstone/src/patches/mips.js";
 import {
-  EQUIPMENT_ICON_SIGNATURE,
   findFreeSlot,
-  FILL_SIGNATURE,
-  ITEM_ICON_SIGNATURE,
-  ITEM_ICON_SIGNATURE_AT,
-  TEXT_SETTERS,
-  WINDOW_SIGNATURE,
   demandCaps,
   encodeCapturable,
   encodeDrops,
   encodeOptionalFn,
   encodePactPool,
   findSharpnessLevel,
-  findTextExterns,
   pactLevels,
   pactObjects,
   pactPool,
   tiedItems,
   type PactPool,
 } from "../src/patches/pact.js";
+import {
+  EQUIPMENT_ICON_SIGNATURE,
+  FILL_SIGNATURE,
+  findTextExterns,
+  ITEM_ICON_SIGNATURE,
+  ITEM_ICON_SIGNATURE_AT,
+  TEXT_SETTERS,
+  WINDOW_SIGNATURE,
+} from "whetstone/src/patches/hud-text.js";
 import { Rng } from "../src/rng.js";
-import { Cpu } from "./mips-cpu.js";
+import { Cpu } from "whetstone/test/mips-cpu.js";
 
 const BLOB = 0x099a1820;
 const HOOKS = 0x08901d38;

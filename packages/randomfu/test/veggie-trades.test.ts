@@ -4,7 +4,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { TRADE_ROW_SIZE, VEGGIE_TRADES_JP } from "mhfu-extract/src/tables/veggie-trades.js";
-import { loadGame, type GameData } from "../src/game/load.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { collectTradeSlots, elderName } from "../src/shuffles/veggie-trades.js";
 import {
@@ -13,7 +13,7 @@ import {
   GAME_TASK_INDEX,
   TASK_LOAD,
   tempDir,
-} from "./fixtures.js";
+} from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 const FILE = path.join(tempDir(), "disc.iso");

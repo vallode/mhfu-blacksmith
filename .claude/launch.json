@@ -24,6 +24,15 @@
         "pnpm --filter randomfu-web build && cd apps/randomfu && exec pnpm dlx wrangler@4.152.0 dev --port 3459 --ip 127.0.0.1"
       ],
       "port": 3459
+    },
+    {
+      "name": "whetstone",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "pnpm --filter whetstone-web build && exec python3 -m http.server 3460 --bind 127.0.0.1 --directory apps/whetstone/dist"
+      ],
+      "port": 3460
     }
   ]
 }

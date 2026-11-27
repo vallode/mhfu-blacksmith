@@ -7,7 +7,7 @@ import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { ARMOR_SLOTS, type ArmorSlot } from "mhfu-extract/src/tables/armor.js";
 import { EQUIP_CREATE_ENTRY_SIZE } from "mhfu-extract/src/tables/offsets.js";
 import { equipmentCreateLayout } from "mhfu-extract/src/tables/recipes.js";
-import { loadGame, type GameData } from "../src/game/load.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import {
@@ -18,7 +18,7 @@ import {
   FIXTURE_ARMOR_CREATE,
   FIXTURE_RECIPES,
   tempDir,
-} from "./fixtures.js";
+} from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function load(): Promise<{ game: GameData; close: () => void }> {

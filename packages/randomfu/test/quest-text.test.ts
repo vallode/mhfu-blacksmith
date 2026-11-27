@@ -4,16 +4,16 @@ import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
-import { enumMonsterNames } from "../src/names.js";
-import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
-import { readQuestText, slotSize, writeQuestText } from "../src/game/quest-text.js";
+import { enumMonsterNames } from "whetstone/src/names.js";
+import { loadGame, type GameData, type LoadedQuest } from "whetstone/src/game/load.js";
+import { readQuestText, slotSize, writeQuestText } from "whetstone/src/game/quest-text.js";
 import { readSpawns } from "../src/game/spawns.js";
 import {
   readBoardRecords,
   RECORD_HEADER_SIZE,
   RECORD_TARGET_ID,
   recordHeader,
-} from "../src/game/board.js";
+} from "whetstone/src/game/board.js";
 import { randomize } from "../src/randomize.js";
 import type { OptionKey, Settings } from "../src/settings.js";
 import { learnNames, learnSlotNames, renameIn, splitNames } from "../src/shuffles/quest-text.js";
@@ -25,7 +25,7 @@ import {
   buildQuestPayload,
   FIXTURE_QUESTS,
   tempDir,
-} from "./fixtures.js";
+} from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 type Changes = Partial<Record<OptionKey, boolean | number | string>>;

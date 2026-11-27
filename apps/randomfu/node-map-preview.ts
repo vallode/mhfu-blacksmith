@@ -4,7 +4,7 @@
  * build.mjs works this out from data/gathering.json and puts it in the page;
  * app.ts draws it on a canvas over the site's copy of the map's texture.
  */
-import { DRAW_ORDER, type NodeKind } from "randomfu/src/patches/node-map.js";
+import { DRAW_ORDER, type NodeKind } from "whetstone/src/patches/node-map.js";
 
 /** A node, in pixels of the 160x160 texture. */
 export type PreviewPoint = [kind: NodeKind, x: number, y: number];

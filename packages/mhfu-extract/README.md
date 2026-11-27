@@ -270,7 +270,7 @@ Open:
 
 `EBOOT.BIN` on the disc is KIRK-encrypted. `unpack` tries, in order
 (`src/cli/eboot.ts`; steps 2 and 3 are the shared `decryptEboot` in
-`src/container/eboot.ts`, which randomfu uses too):
+`src/container/eboot.ts`, which Whetstone and randomfu use too):
 
 1. A `--eboot <path>` flag pointing at a pre-decrypted dump (e.g. from
    PPSSPP's `Debug → Dump Decrypted EBOOT.BIN`).
@@ -576,7 +576,7 @@ the extracted output.
 
 A monster's attacks are objects its class's per-frame spawner makes while
 a motion plays, each with a row (timing, power, reaction, stun) and a list
-of shapes in the hitbox records' layout (`packages/randomfu/docs/monster-ai.md`,
+of shapes in the hitbox records' layout (`packages/whetstone/docs/monster-ai.md`,
 "Attack objects", has the format). The spawners branch every which way, and
 some change the row after making the object, so `src/monsters/attacks.ts`
 runs them rather than reading them, on a small Allegrex interpreter
@@ -1412,7 +1412,7 @@ pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
   its `positions`.
 - **Regions**: the JP addresses were found by searching the FUC disc's
   files for the EU tables' contents (`readMapGeometry` takes the region;
-  randomfu's node map uses both). `extract` still only places points for EU. On an EU disc it stops if the tables aren't where they
+  Whetstone's node map uses both). `extract` still only places points for EU. On an EU disc it stops if the tables aren't where they
   should be or a texture can't be read, rather than write data without
   positions.
 
@@ -1679,7 +1679,7 @@ Other sources checked:
     `LangPTRs`. Then come the record's strings, `StringPTRs` blocks and
     `LangPTRs`, laid out as in a quest file, with offsets from the start of
     the board file.
-  - randomfu reads them in `src/game/board.ts`.
+  - Whetstone reads them in `packages/whetstone/src/game/board.ts`.
 - **EU message files** (`quest-text-scan`, quest 10109).
   - None of the quest's whole strings is stored anywhere else as UTF-8.
   - The likely message files come in groups of five, one per language, with

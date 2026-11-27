@@ -24,6 +24,6 @@ declare const NODE_MAP_PREVIEW: {
   size: number;
   marker: number;
   onArtAlpha: number;
-  colors: Record<import("randomfu/src/patches/node-map.js").NodeKind, [number, number, number]>;
+  colors: Record<import("whetstone/src/patches/node-map.js").NodeKind, [number, number, number]>;
   points: import("./node-map-preview.js").PreviewPoint[];
 };

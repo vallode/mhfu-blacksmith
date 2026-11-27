@@ -101,7 +101,7 @@ How it works:
 - The randomizer runs in a worker (`worker.ts`), which reads the ISO with
   `FileReaderSync`, so the shared code's synchronous reads work unchanged,
   and hands it to randomfu's `runRandomizer` (`src/run.ts`).
-- Writes go to an `OverlaySource` (randomfu's `src/disc/image.ts`): a 2 KB sector is
+- Writes go to an `OverlaySource` (Whetstone's `packages/whetstone/src/disc/image.ts`): a 2 KB sector is
   copied into memory the first time it's written. The finished ISO is a
   Blob of slices of the user's own file plus the changed sectors, so the
   disc is never copied into memory (a few MB of changes for a full run).
@@ -120,7 +120,7 @@ How it works:
   on, its default; the log and spoiler say so only when it went in),
   `?loader-demo` adds the code loader with its demo blob instead of the
   features' (Guild Cards capped at 3, 1000z on every save load, no Poogie;
-  see `packages/randomfu/docs/code-loader.md`), neither
+  see `packages/whetstone/docs/code-loader.md`), neither
   for play, and `?debug` adds research detail to the spoiler log (such as
   the monster names learned from quest text). They can go together
   (`?poogie-test&debug`).

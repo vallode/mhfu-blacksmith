@@ -7,8 +7,8 @@
  */
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { Edits } from "../src/edits.js";
-import type { GameData, LoadedOverlay, LoadedQuest } from "../src/game/load.js";
+import { Edits } from "whetstone/src/edits.js";
+import type { GameData, LoadedOverlay, LoadedQuest } from "whetstone/src/game/load.js";
 import { readSpawns } from "../src/game/spawns.js";
 import { Rng } from "../src/rng.js";
 import type { MonsterRewardSlot, RewardList } from "../src/shuffles/monster-rewards.js";

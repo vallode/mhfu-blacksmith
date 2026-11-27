@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { parseOvl } from "mhfu-extract/src/container/ovl.js";
 import { Cpu, Memory } from "mhfu-extract/src/monsters/mips.js";
-import type { Edits } from "../src/edits.js";
+import type { Edits } from "whetstone/src/edits.js";
 import {
   AFFINITY_CODE,
   ELEMENT_READS,
@@ -11,7 +11,7 @@ import {
   findAffinityCode,
   findElementReads,
   patchElementMotion,
-} from "../src/patches/element-motion.js";
+} from "whetstone/src/patches/element-motion.js";
 import { Rng } from "../src/rng.js";
 
 /** EU addresses: the code, the getter it calls, and the region's end. */

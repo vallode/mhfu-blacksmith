@@ -30,7 +30,7 @@
  * The gathering shuffle never moves a delivery quest's own item out of its
  * quest (see `randomize.ts`), so with this off every delivery still works.
  */
-import type { LoadedQuest } from "../game/load.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
 import {
   boardName,
   questRecords,
@@ -40,7 +40,7 @@ import {
   type BoardFile,
   type BoardRecord,
   type RecordText,
-} from "../game/board.js";
+} from "whetstone/src/game/board.js";
 import { gatheringYields } from "mhfu-extract/src/quests/gathering.js";
 import {
   deliveryGoal,
@@ -51,12 +51,13 @@ import {
   TARGET_ID,
   TARGET_NUM,
   type DeliveryTarget,
-} from "../game/quest-fields.js";
-import { questTier } from "../game/tiers.js";
-import type { Edits } from "../edits.js";
-import { itemName, questLabel, tableName } from "../names.js";
+} from "whetstone/src/game/quest-fields.js";
+import { questTier } from "whetstone/src/game/tiers.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { itemName, questLabel, tableName } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import { median, type ShuffleReport } from "./shuffle.js";
+import { median } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 export interface DeliveryQuest {
   quest: LoadedQuest;
@@ -147,7 +148,7 @@ export function shuffleDeliveries(
   rng: Rng,
   edits: Edits,
   boards: readonly BoardFile[] = [],
-): ShuffleReport {
+): Report {
   // How much of what its nodes give each quest asks for, from the disc as it was.
   const share = new Map<number, number>();
   for (const { quest, target } of deliveries) {

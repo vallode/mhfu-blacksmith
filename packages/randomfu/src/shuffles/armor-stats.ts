@@ -41,17 +41,12 @@ import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { defenceAtLevel } from "mhfu-extract/src/emit/armor.js";
 import { displayRarity, rankFromRarity } from "mhfu-extract/src/emit/common.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
-import type { Edits } from "../edits.js";
+import type { Edits } from "whetstone/src/edits.js";
 import type { Rng } from "../rng.js";
 import type { Mode } from "../settings.js";
 import { RARITY_AT, pieceName, readArmorPieces, spoilerPlace, type ArmorPiece } from "./armor.js";
-import {
-  RarityBounds,
-  clamp,
-  getOrInsert,
-  permuteWithinGroups,
-  type ShuffleReport,
-} from "./shuffle.js";
+import { RarityBounds, clamp, getOrInsert, permuteWithinGroups } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 const DEFENSE_AT = 12;
 const RESISTANCES_AT = 13;
@@ -138,7 +133,7 @@ export function randomizeArmorStats(
   options: ArmorStatOptions,
   rngs: Record<ArmorStat, Rng>,
   edits: Edits,
-): ShuffleReport {
+): Report {
   const reader = new BinaryReader(eboot);
   const pieces: Piece[] = readArmorPieces(eboot, resolver).map((p) => ({
     ...p,

@@ -4,7 +4,7 @@ import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { locateIndexedImage, readTmh, swizzle } from "mhfu-extract/src/models/tmh.js";
-import { loadGame } from "../src/game/load.js";
+import { loadGame } from "whetstone/src/game/load.js";
 import {
   buttonIconsTitle,
   drawSet,
@@ -14,9 +14,9 @@ import {
   SHEETS,
   SheetImage,
   sheetImages,
-} from "../src/patches/button-icons.js";
+} from "whetstone/src/patches/button-icons.js";
 import { randomize } from "../src/randomize.js";
-import { buildFixtureDisc, tempDir } from "./fixtures.js";
+import { buildFixtureDisc, tempDir } from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 const CLEAR = 0;

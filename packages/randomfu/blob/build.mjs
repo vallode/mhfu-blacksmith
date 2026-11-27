@@ -1,7 +1,9 @@
-// Compiles the blob's C sources to relocatable MIPS objects and writes them,
-// base64, into src/blob/*-object.ts, so randomfu links them per disc in Node
-// and the browser without a compiler. Needs clang with the Mips target
-// (Homebrew's llvm has it): CLANG=/path/to/clang node blob/build.mjs
+// Compiles randomfu's own blob code, the C sources here, to relocatable MIPS
+// objects and writes them, base64, into src/blob/*-object.ts, as Whetstone's
+// blob/build.mjs does for its own: randomfu links them with Whetstone's in
+// the one code loader. They include Whetstone's headers (rf.h, monsters.h).
+// Needs clang with the Mips target (Homebrew's llvm has it):
+// CLANG=/path/to/clang node blob/build.mjs
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -9,12 +11,16 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+const whetstoneBlob = path.join(
+  path.dirname(fileURLToPath(import.meta.resolve("whetstone/package.json"))),
+  "blob",
+);
 const clang =
   process.env.CLANG ??
   ["/opt/homebrew/opt/llvm/bin/clang", "/usr/local/opt/llvm/bin/clang"].find(existsSync) ??
   "clang";
 
-// MIPS II is a subset Allegrex runs; no FPU, no $gp, no PIC, no libc.
+// As Whetstone's: MIPS II is a subset Allegrex runs; no FPU, no $gp, no PIC, no libc.
 const FLAGS = [
   "--target=mipsel-unknown-none-elf",
   "-march=mips2",
@@ -30,49 +36,28 @@ const FLAGS = [
   "-mno-check-zero-division",
   "-Wall",
   "-Werror",
+  `-I${whetstoneBlob}`,
 ];
 
-// name: [sources, where the object's TS goes, extra flags]
+// name: sources; each object's TS goes in src/blob.
 const BLOBS = {
-  demo: [["demo.c"], "src/blob"],
-  runtime: [["runtime.c"], "src/blob"],
-  monsterHp: [["monster-hp.c"], "src/blob"],
-  pact: [["pact.c"], "src/blob"],
-  monsters: [["monsters.c"], "src/blob"],
-  elite: [["elite.c"], "src/blob"],
-  aggression: [["aggression.c"], "src/blob"],
-  unknownQuests: [["unknown-quests.c"], "src/blob"],
-  poogie: [["poogie.c"], "src/blob"],
-  keyQuests: [["key-quests.c"], "src/blob"],
-  damage: [["damage.c"], "src/blob"],
-  menu: [["menu.c"], "src/blob"],
-  sendAll: [["send-all.c"], "src/blob"],
-  improvePips: [["improve-pips.c"], "src/blob"],
-  harvest: [["harvest.c"], "src/blob"],
-  combine: [["combine.c"], "src/blob"],
-  // Projects 3D shapes: Allegrex's FPU, single precision only.
-  hitboxes: [["hitboxes.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
-  camera: [["camera.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
-  targetCamera: [["target-camera.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
-  questEnd: [["quest-end.c"], "src/blob"],
-  photo: [["photo.c"], "src/blob", ["-mhard-float", "-msingle-float"]],
-  linkTest: [["link-test.c"], "test"],
-  commonTest: [["test/common-a.c", "test/common-b.c"], "test", ["-fcommon"]],
+  pact: ["pact.c"],
+  unknownQuests: ["unknown-quests.c"],
 };
 
 const work = mkdtempSync(path.join(tmpdir(), "randomfu-blob-"));
 try {
-  for (const [name, [sources, dir, extra = []]] of Object.entries(BLOBS)) {
+  for (const [name, sources] of Object.entries(BLOBS)) {
     const objects = sources.map((source) => {
       const object = path.basename(source).replace(/\.c$/, ".o");
       const out = path.join(work, object);
-      execFileSync(clang, [...FLAGS, ...extra, "-c", path.join(here, source), "-o", out], {
+      execFileSync(clang, [...FLAGS, "-c", path.join(here, source), "-o", out], {
         stdio: "inherit",
       });
       return { name: object, base64: readFileSync(out).toString("base64") };
     });
     const file = name.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
-    const target = path.join(here, "..", dir, `${file}-object.ts`);
+    const target = path.join(here, "..", "src", "blob", `${file}-object.ts`);
     const constant = `${file.replace(/-/g, "_").toUpperCase()}_OBJECTS`;
     writeFileSync(
       target,

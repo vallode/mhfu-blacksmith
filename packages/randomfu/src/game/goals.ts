@@ -28,7 +28,7 @@
  * only ever given to large monsters that can be captured, and 0x201 to the
  * rest; no quest has a capture goal (0x101).
  */
-import { QUEST_TYPE } from "./quest-fields.js";
+import { QUEST_TYPE } from "whetstone/src/game/quest-fields.js";
 
 /** How many of the goals must be met to clear the quest (u8): 1 the first, 2 both. */
 export const GOALS_NEEDED = 0x6a;

@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
-    "mhfu-extract": "workspace:*"
+    "mhfu-extract": "workspace:*",
+    "whetstone": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22",

@@ -12,16 +12,16 @@
  * `randomizeGatherCounts` is separate: it rescales each node's gather counts
  * and works whether or not the items above are changed.
  */
-import type { LoadedQuest } from "../game/load.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
 import {
   ENDLESS,
   NODE_GATHERS,
   NODE_MOST_GATHERS,
   readGatheringItems,
 } from "mhfu-extract/src/quests/gathering.js";
-import { questTier, tierKey, type Scope, type Tier } from "../game/tiers.js";
-import type { Edits } from "../edits.js";
-import { itemName, questLabel } from "../names.js";
+import { questTier, tierKey, type Scope, type Tier } from "whetstone/src/game/tiers.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { itemName, questLabel } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
 import {
   permuteWithinScope,
@@ -29,8 +29,8 @@ import {
   rollChances,
   scopedPool,
   type ChanceRange,
-  type ShuffleReport,
 } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 export interface GatheringSlotRef {
   quest: LoadedQuest;
@@ -120,7 +120,7 @@ export function shuffleGathering(
   scope: Scope,
   rng: Rng,
   edits: Edits,
-): { report: ShuffleReport; after: { itemId: number; tier: Tier }[] } {
+): { report: Report; after: { itemId: number; tier: Tier }[] } {
   const next = permuteWithinScope(
     slots,
     (s) => s.tier,
@@ -182,7 +182,7 @@ export function randomizeGathering(
   context: GatheringContext,
   rng: Rng,
   edits: Edits,
-): { report: ShuffleReport; after: { itemId: number; tier: Tier }[] } {
+): { report: Report; after: { itemId: number; tier: Tier }[] } {
   const poolFor = scopedPool(context.allItems, context.tiers, options.scope);
   const items = new Map<GatheringSlotRef, number>();
 
@@ -280,7 +280,7 @@ export function randomizeGatherCounts(
   pinnedItem: (quest: LoadedQuest) => number | undefined,
   rng: Rng,
   edits: Edits,
-): ShuffleReport {
+): Report {
   const lines: { where: string; text: string }[] = [];
   let nodes = 0;
   for (const quest of quests) {

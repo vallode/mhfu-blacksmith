@@ -10,7 +10,7 @@
  */
 import { checkQuest, serializeQuest, type QuestDoc } from "mhfu-extract/src/quests/document.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
-import type { LoadedQuest } from "./load.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
 
 /** The quest's document, or null if it doesn't survive a rebuild unchanged. */
 export function questDoc(quest: LoadedQuest): QuestDoc | null {
