@@ -490,6 +490,8 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   }
   if (motionTables) {
     const [motions, weights, shots] = motionTables;
+    if (shots.explosionError)
+      console.warn(`Warning: ${shots.explosionError}; leaving out Crag and Clust S's shots.`);
     console.log(`Motion values at 0x${motions.offset.toString(16)}: ${motions.rows.length} rows.`);
     output["motion-values.json"] = {
       ...emitMotionValues(motions, weaponMoves(), weights),

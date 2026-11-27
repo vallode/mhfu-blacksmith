@@ -23,7 +23,8 @@ const DEFAULT_ELEMENT_HITZONE = 20;
 /**
  * A bowgun's damage calculator: pick the hitzone struck (a value, or a
  * monster's part from the bestiary), and each shot the weapon loads shows
- * its motion value (and hits) and the damage it deals. The weapon page's
+ * its motion value (and hits) and the damage it deals, with Crag and Clust
+ * S's explosions after their own hit. The weapon page's
  * Motion Values tab for Light and Heavy Bowguns.
  */
 export default function ShotDamage({ weapon }: { weapon: Weapon }) {
@@ -44,6 +45,8 @@ export default function ShotDamage({ weapon }: { weapon: Weapon }) {
   if (shots.length === 0) return null;
 
   const raw = weapon.raw_attack ?? 0;
+  const mvText = (mv: number, hits?: number) =>
+    hits ? ts.hits(formatNumber(mv), formatNumber(hits)) : formatNumber(mv);
   const shownZone = spot ? spot.shot : zone;
   // The hand-set steps, with a picked value between them in its place.
   const zones = HITZONES.includes(shownZone)
@@ -84,7 +87,7 @@ export default function ShotDamage({ weapon }: { weapon: Weapon }) {
             setSpot(null);
           }}
         />
-        {!spot && shots.some((s) => s.element) && (
+        {!spot && shots.some((s) => s.element || s.explosion?.element) && (
           <Choice
             label={ts.elementHitzone}
             options={ELEMENT_HITZONES.map((z) => formatNumber(z))}
@@ -122,10 +125,22 @@ export default function ShotDamage({ weapon }: { weapon: Weapon }) {
                     : undefined
                 }
               />
-              <td>
-                {s.hits
-                  ? ts.hits(formatNumber(s.motion_value), formatNumber(s.hits))
-                  : formatNumber(s.motion_value)}
+              <td
+                title={
+                  s.explosion && !s.explosion.attack_scaled ? ts.fixedExplosionHint : undefined
+                }
+              >
+                {!s.explosion
+                  ? mvText(s.motion_value, s.hits)
+                  : s.explosion.attack_scaled
+                    ? ts.explosion(
+                        mvText(s.motion_value, s.hits),
+                        mvText(s.explosion.power, s.explosion.hits),
+                      )
+                    : ts.fixedExplosion(
+                        mvText(s.motion_value, s.hits),
+                        mvText(s.explosion.power, s.explosion.hits),
+                      )}
               </td>
               <td>{formatNumber(shotDamage(raw, s, struck, file.bowgun_shot_multiplier))}</td>
             </tr>

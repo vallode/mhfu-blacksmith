@@ -1117,6 +1117,90 @@
       }
     },
     {
+      "shot": 9,
+      "ammo": "Crag S",
+      "level": 1,
+      "motion_value": 3,
+      "explosion": {
+        "power": 20,
+        "element": {
+          "type": "fire",
+          "value": 30
+        }
+      }
+    },
+    {
+      "shot": 10,
+      "ammo": "Crag S",
+      "level": 2,
+      "motion_value": 3,
+      "explosion": {
+        "power": 30,
+        "element": {
+          "type": "fire",
+          "value": 45
+        }
+      }
+    },
+    {
+      "shot": 11,
+      "ammo": "Crag S",
+      "level": 3,
+      "motion_value": 3,
+      "explosion": {
+        "power": 40,
+        "element": {
+          "type": "fire",
+          "value": 60
+        }
+      }
+    },
+    {
+      "shot": 12,
+      "ammo": "Clust S",
+      "level": 1,
+      "motion_value": 6,
+      "explosion": {
+        "power": 32,
+        "attack_scaled": true,
+        "hits": 3,
+        "element": {
+          "type": "fire",
+          "value": 2
+        }
+      }
+    },
+    {
+      "shot": 13,
+      "ammo": "Clust S",
+      "level": 2,
+      "motion_value": 6,
+      "explosion": {
+        "power": 32,
+        "attack_scaled": true,
+        "hits": 4,
+        "element": {
+          "type": "fire",
+          "value": 2
+        }
+      }
+    },
+    {
+      "shot": 14,
+      "ammo": "Clust S",
+      "level": 3,
+      "motion_value": 6,
+      "explosion": {
+        "power": 32,
+        "attack_scaled": true,
+        "hits": 5,
+        "element": {
+          "type": "fire",
+          "value": 2
+        }
+      }
+    },
+    {
       "shot": 15,
       "ammo": "Flame S",
       "level": 1,

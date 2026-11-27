@@ -1,7 +1,14 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { packHitzoneMonster, partHitzones, unpackHitzoneMonster } from "../src/lib/hitzone-pick";
-import { loadsShot, shotDamage, shotHitDamage, shotPower, type ShotValue } from "../src/lib/shots";
+import {
+  explosionHitDamage,
+  loadsShot,
+  shotDamage,
+  shotHitDamage,
+  shotPower,
+  type ShotValue,
+} from "../src/lib/shots";
 import type { Weapon } from "../src/lib/types";
 
 const ZONE = { shot: 45, fire: 10, water: 30, thunder: 0, ice: 20, dragon: 35 };
@@ -41,6 +48,36 @@ test("a hit is its power × the shot hitzone × the bowgun multiplier, plus its 
 
 test("a shot's damage is every hit's", () => {
   assert.equal(shotDamage(230, PIERCE_1, ZONE, 1.15), 3 * shotHitDamage(230, PIERCE_1, ZONE, 1.15));
+});
+
+const CRAG_1: ShotValue = {
+  shot: 9,
+  ammo: "Crag S",
+  level: 1,
+  motion_value: 3,
+  explosion: { power: 20, element: { type: "fire", value: 30 } },
+};
+const CLUST_1: ShotValue = {
+  shot: 12,
+  ammo: "Clust S",
+  level: 1,
+  motion_value: 6,
+  explosion: { power: 32, attack_scaled: true, hits: 3, element: { type: "fire", value: 2 } },
+};
+
+test("an explosion's power ignores the shot hitzone; Clust S's bomblets scale with attack", () => {
+  // Crag S: 20 whatever the attack, then fire trunc(30 × 0.10) = 3.
+  assert.equal(explosionHitDamage(230, CRAG_1.explosion!, ZONE), 23);
+  assert.equal(explosionHitDamage(400, CRAG_1.explosion!, { ...ZONE, shot: 160 }), 23);
+  // A bomblet: trunc(32 × 2.3) = 73, fire trunc(2 × 0.10) = 0.
+  assert.equal(explosionHitDamage(230, CLUST_1.explosion!, ZONE), 73);
+});
+
+test("a Crag or Clust S's damage is its hit and then its explosions", () => {
+  // trunc(trunc(3 × 2.3) × 0.45 × 1.15) = 3, then 23.
+  assert.equal(shotDamage(230, CRAG_1, ZONE, 1.15), 3 + 23);
+  // trunc(13 × 0.45 × 1.15) = 6, then 3 bomblets of 73.
+  assert.equal(shotDamage(230, CLUST_1, ZONE, 1.15), 6 + 3 * 73);
 });
 
 test("a bowgun loads a shot when its level's capacity is above 0", () => {

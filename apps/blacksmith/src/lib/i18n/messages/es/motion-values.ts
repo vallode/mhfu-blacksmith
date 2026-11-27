@@ -30,6 +30,10 @@ export const motionValues: Messages["motionValues"] = {
     ammo: "Munición",
     level: (level: string) => `Nv${level}`,
     hits: (mv: string, hits: string) => `${mv} × ${hits}`,
+    explosion: (shot: string, explosion: string) => `${shot} + ${explosion}`,
+    fixedExplosion: (shot: string, damage: string) => `${shot} + ${damage} fijo`,
+    fixedExplosionHint:
+      "La explosión causa daño fijo, sea cual sea el ataque o el punto débil de disparo.",
     elementHitzone: "Punto débil elemental",
     loadError: "No se pudieron cargar los disparos.",
   },
