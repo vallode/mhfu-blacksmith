@@ -13,6 +13,12 @@ export const equipment = {
     /** The weapon type tabs, and the page heading: "Great Sword weapons". */
     weaponTypes: "Weapon types",
     weaponsTitle: (type: string) => `${type} weapons`,
+    /** The weapon type bar over the tree card on phones (WeaponTypeBar). */
+    weaponType: "Weapon type",
+    previousWeaponType: "Previous weapon type",
+    nextWeaponType: "Next weapon type",
+    /** The bar's name button, which opens the grid of every type. */
+    chooseWeaponType: (type: string) => `Weapon type: ${type}. Choose another`,
     /** The armor slot tabs, and the page heading: "Head armor". */
     armorSlots: "Armor slots",
     armorTitle: (slot: string) => `${slot} armor`,
