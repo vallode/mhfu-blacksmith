@@ -397,7 +397,7 @@ further back in the village and in quests, through area changes and a save
 reload, with no popping at the screen's edges, and both settings changed
 from the START menu. Smooth tilt was played on EU (PPSSPP, 2026-11-21), with
 `wider` and `farther`: smooth while held, as the game's left and right
-turns are. JP and US build but haven't been played.
+turns are.
 
 What the game does:
 
