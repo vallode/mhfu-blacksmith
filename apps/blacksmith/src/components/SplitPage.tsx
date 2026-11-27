@@ -22,8 +22,8 @@ interface Props {
  * A list-and-detail page (weapons, armor, monsters): the list on the left and
  * the detail on the right. On phones, where there is room for one pane, the
  * list fills the screen and scrolls inside its card (data-fill-screen, see
- * AppShell), and an item's detail slides up over it as a sheet. Closing the
- * sheet (a tap on the dimmed list above it, which shows the ×) goes back to
+ * AppShell), and an item's detail slides up over it as a sheet, from the top
+ * of the screen down to the tab bar. Closing the sheet (its ×) goes back to
  * the list's page, where the list is still scrolled to where you left it.
  */
 export default function SplitPage({ list, closeHref, children }: Props) {
@@ -48,20 +48,26 @@ export default function SplitPage({ list, closeHref, children }: Props) {
     router.back();
   };
 
-  // While the sheet covers the list on a phone, take the list out of the tab
-  // order and the accessibility tree, so the sheet comes next.
+  // While the sheet covers the page on a phone, take the list and the page
+  // bar above it (the split page's earlier siblings) out of the tab order and
+  // the accessibility tree, so the sheet comes next.
   useEffect(() => {
-    const covered = pageRef.current?.firstElementChild;
-    if (!closeHref || !(covered instanceof HTMLElement)) return;
+    const page = pageRef.current;
+    if (!closeHref || !page) return;
+    const covered: HTMLElement[] = [];
+    if (page.firstElementChild instanceof HTMLElement) covered.push(page.firstElementChild);
+    for (let el = page.previousElementSibling; el; el = el.previousElementSibling) {
+      if (el instanceof HTMLElement) covered.push(el);
+    }
     const phone = window.matchMedia(PHONE);
     const update = () => {
-      covered.inert = phone.matches;
+      for (const el of covered) el.inert = phone.matches;
     };
     update();
     phone.addEventListener("change", update);
     return () => {
       phone.removeEventListener("change", update);
-      covered.inert = false;
+      for (const el of covered) el.inert = false;
     };
   }, [closeHref]);
 
@@ -69,31 +75,27 @@ export default function SplitPage({ list, closeHref, children }: Props) {
     <div ref={pageRef} className="split-page" data-fill-screen>
       {list}
       {closeHref ? (
-        <>
-          {/* The dimmed list above the sheet, with the × in its corner. */}
+        // Wider screens: no box of its own (contents), so the detail is the
+        // split's right-hand pane. Phones: the sheet, over the page bar and the
+        // list (fixed, so it leaves the split page) and flush with the screen's
+        // sides like the tab bar, with its cards filled (Card's --card-fill) so
+        // the list doesn't show through them. --sheet-close-room lowers the
+        // detail's header (DetailHeader) clear of the ×.
+        <div className="contents mobile:fixed mobile:inset-x-0 mobile:top-[calc(env(safe-area-inset-top)+0.6rem)] mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.2rem)] mobile:z-10 mobile:flex mobile:flex-col mobile:[--card-fill:var(--color-sheet)] mobile:[--sheet-close-room:1.6rem] mobile:motion-safe:animate-sheet-in">
+          {children}
+          {/* Over the card's top-right corner, like the 3D model's close
+              button: a glyph in a 44px tap target. */}
           <Link
             href={closeHref}
             replace
             scroll={false}
             aria-label={closeLabel}
             onClick={close}
-            className="absolute inset-0 z-9 hidden bg-black/60 mobile:block"
+            className="absolute -top-[0.1rem] right-[1.5rem] z-20 hidden size-[4.4rem] items-center justify-center text-[3rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:flex"
           >
-            <span
-              aria-hidden="true"
-              className="absolute top-[4.4rem] right-[1rem] flex size-[4rem] items-center justify-center text-[3.2rem] leading-none text-white"
-            >
-              ×
-            </span>
+            <span aria-hidden="true">×</span>
           </Link>
-          {/* Wider screens: no box of its own (contents), so the detail is the
-              split's right-hand pane. Phones: the sheet, leaving the list's
-              top rows in view, with its cards filled (Card's --card-fill) so
-              the list doesn't show through them. */}
-          <div className="contents mobile:absolute mobile:inset-x-0 mobile:top-[9rem] mobile:bottom-0 mobile:z-10 mobile:flex mobile:flex-col mobile:[--card-fill:var(--color-sheet)] mobile:motion-safe:animate-sheet-in">
-            {children}
-          </div>
-        </>
+        </div>
       ) : (
         children
       )}
