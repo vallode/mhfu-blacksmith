@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useLayoutEffect, useRef, useState } from "react";
+import { cn } from "@/lib/cn";
 
 export interface Tab {
   id: string;
@@ -31,11 +32,17 @@ export default function Tabs({
   label,
   active: controlled,
   onChange,
+  oneRow,
+  sticky,
 }: {
   tabs: Tab[];
   label: string;
   active?: string;
   onChange?: (id: string) => void;
+  /** On phones, one row of tabs as wide as their labels (scrolling sideways if they must) instead of equal columns. */
+  oneRow?: boolean;
+  /** On phones, the tab row stays at the top of the card as its content scrolls. */
+  sticky?: boolean;
 }) {
   const prefix = useId();
   const list = useRef<HTMLDivElement>(null);
@@ -80,11 +87,14 @@ export default function Tabs({
         role="tablist"
         aria-label={label}
         style={columnStyle}
-        className={[
+        className={cn(
           "relative flex flex-wrap gap-[0.4rem] border-b border-hr/50 text-small",
           "mobile:grid mobile:grid-cols-[repeat(var(--tab-cols,auto-fit),minmax(var(--tab-min),1fr))] mobile:gap-0",
           "compact:grid compact:grid-cols-[repeat(var(--tab-cols,auto-fit),minmax(var(--tab-min),1fr))] compact:gap-0",
-        ].join(" ")}
+          oneRow &&
+            "mobile:flex mobile:[scrollbar-width:none] mobile:flex-nowrap mobile:overflow-x-auto",
+          sticky && "mobile:sticky mobile:top-0 mobile:z-2 mobile:bg-(--card-fill)",
+        )}
       >
         {/* Measures --tab-min, out of the grid's flow. */}
         <span ref={sizer} aria-hidden className="invisible absolute w-(--tab-min)" />
@@ -96,7 +106,7 @@ export default function Tabs({
             id={`${prefix}-tab-${t.id}`}
             aria-selected={t.id === current.id}
             aria-controls={`${prefix}-panel-${t.id}`}
-            className={tabButton}
+            className={cn(tabButton, oneRow && "mobile:flex-auto mobile:whitespace-nowrap")}
             onClick={() => setActive(t.id)}
           >
             {t.label}
