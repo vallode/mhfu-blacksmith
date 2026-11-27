@@ -64,10 +64,16 @@ area numbers, picture URLs) is worked out in TypeScript and written into the
 script as tables; the Lua only reads the game's memory, at the addresses
 above, and picks from them.
 
-- The hunter's name is read as UTF-16 units with `r16` (`rstr` stops at the
-  first zero byte). The block counts as loaded on the name and sex byte
+- Addresses are offsets into the game's main module (`mem.main()`), which
+  both releases load at 0x08804000; pointers the game holds, like the quest
+  file's, are followed with `follow_pointer`, which gives nil for anything
+  outside a module or allocation.
+- The hunter's name is read as UTF-16 units with `read_u16` (`read_string`
+  stops at the first zero byte). The block counts as loaded on the name and sex byte
   checks of the site's `looksLikeHunter`, without its box scans; before that
   the presence says "In the menus".
+- `state = none`: it works everything out from memory on each call, so
+  there's nothing for savestates to keep.
 - It runs every 60 vblanks. PPSSPP compares the presence once a second and
   sends it at most every 4 seconds; the quest's `elapsed` is recomputed each
   time, and moves of 2 seconds or less aren't resent.

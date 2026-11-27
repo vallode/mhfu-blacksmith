@@ -15,6 +15,7 @@ test("plugin.ini: a Lua plugin for both releases", () => {
   assert.match(PLUGIN_INI, /^type = lua$/m);
   assert.match(PLUGIN_INI, /^filename = presence\.lua$/m);
   assert.match(PLUGIN_INI, /^version = 1$/m);
+  assert.match(PLUGIN_INI, /^state = none$/m);
   assert.match(PLUGIN_INI, /^ULES01213 = true$/m);
   assert.match(PLUGIN_INI, /^ULJM05500 = true$/m);
 });
@@ -43,7 +44,7 @@ test("the tables carry the names, labels and pictures", () => {
   // The Jungle's 6th stage is its area 9.
   assert.match(lua, /\[6\] = \{ name = "Jungle", areas = \{ 0, 1, 2, 3, 4, 5, 9,/);
   assert.ok(lua.includes('[139] = "In Pokke Village",'));
-  assert.ok(lua.includes("ULES01213 = { hunter = 0x999A100, mapStages = 0x9CE4708 },"));
+  assert.ok(lua.includes("ULES01213 = { hunter = 0x1196100, mapStages = 0x14E0708 },"));
   assert.ok(lua.trimEnd().endsWith("emu.every(60, update)"));
 });
 

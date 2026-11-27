@@ -7,6 +7,12 @@
  */
 import { HUNTER_ADDRESSES } from "blacksmith/src/lib/ppsspp-link";
 
+/**
+ * Where both releases' EBOOT loads: the start of the game's main module,
+ * which the plugin's addresses are relative to (PPSSPP's `mem.main()`).
+ */
+export const MAIN_MODULE = 0x08804000;
+
 /** A release the plugin knows, by PPSSPP's game ID. */
 export interface Release {
   /** The loaded hunter's character block. */

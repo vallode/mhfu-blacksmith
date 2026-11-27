@@ -7,6 +7,31 @@ import { GAME_IMAGE, SITE } from "../src/presence";
 
 // presence.lua run in Lua 5.4 against a fake PSP memory, with PPSSPP's plugin API stubbed.
 
+const MAIN = 0x08804000; // The EBOOT's module: 0x08804000 for 0x1561480 bytes.
+const MAIN_SIZE = 0x1561480;
+
+/** The part of PPSSPP's mem API the script uses: references into the main module. */
+const FAKE_MEM = `
+local r8, r16, r32 = fake_r8, fake_r16, fake_r32
+local BASE, SIZE = ${MAIN}, ${MAIN_SIZE}
+local Ref = {}
+Ref.__index = Ref
+local function ref(offset) return setmetatable({ offset = offset }, Ref) end
+Ref.__add = function(a, n) return ref(a.offset + n) end
+local function read(fn, n)
+  return function(self, delta)
+    local o = self.offset + (delta or 0)
+    if o >= 0 and o + n <= SIZE then return fn(BASE + o) end
+  end
+end
+Ref.read_u8, Ref.read_u16, Ref.read_u32 = read(r8, 1), read(r16, 2), read(r32, 4)
+function Ref:follow_pointer(delta)
+  local p = self:read_u32(delta)
+  if p ~= nil and p >= BASE and p < BASE + SIZE then return ref(p - BASE) end
+end
+mem = { main = function() return { at = function(_, offset) return ref(offset) end } end }
+`;
+
 const catalog: Catalog = {
   ids: { quests: [3201], monsters: [70], weapons: [{ table: 5, id: 1 }], maps: [6] },
   quest: () => ({ title: "Tigrex Tamer", hub: "guild", rank: "g-rank" }),
@@ -79,15 +104,16 @@ async function tick(memory: Memory, gameId = "ULES01213"): Promise<Record<string
   const sent: Record<string, unknown>[] = [];
   const timers: (() => void)[] = [];
   try {
-    lua.global.set("r8", memory.r8);
-    lua.global.set("r16", memory.r16);
-    lua.global.set("r32", memory.r32);
+    lua.global.set("fake_r8", memory.r8);
+    lua.global.set("fake_r16", memory.r16);
+    lua.global.set("fake_r32", memory.r32);
     lua.global.set("game", { ID: gameId, TITLE: "MHFU" });
     lua.global.set("emu", { every: (_: number, fn: () => void) => void timers.push(fn) });
     lua.global.set("presence", {
       set: (p: Record<string, unknown>) => void sent.push({ ...p }),
       clear: () => void sent.push({}),
     });
+    await lua.doString(FAKE_MEM);
     await lua.doString(buildScript(catalog));
     for (const fn of timers) fn();
   } finally {
