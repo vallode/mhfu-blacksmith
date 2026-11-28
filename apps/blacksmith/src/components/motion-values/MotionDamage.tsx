@@ -1,5 +1,7 @@
 "use client";
 
+import ButtonInput from "./ButtonInput";
+import { useInputColumn } from "./use-input-column";
 import Choice from "./Choice";
 import Loading from "@/components/Loading";
 import type { HitzoneState } from "./hitzone-state";
@@ -27,8 +29,9 @@ import {
   weaponAttributes,
   type Buffs,
 } from "@/lib/damage-buffs";
+import { moveInput } from "@/lib/move-inputs";
 import type { Weapon } from "@/lib/types";
-import { motionValueTable } from "@/styles/tables";
+import { motionInput, motionName, motionValueTable, underInput } from "@/styles/tables";
 
 /** The sharpness colours the weapon reaches (Sharpness +1 included). */
 function sharpnessLevels(w: Weapon): number[] {
@@ -172,7 +175,9 @@ export function MotionSettings({
  * affinity) when the weapon's affinity lands one, then a weapon with an
  * element splits the total into raw and element, each hit's truncated on
  * its own. The Lance's charge has a row as it starts and one at full
- * speed, where it weighs the hitzone more.
+ * speed, where it weighs the hitzone more. Each move's input with the
+ * default controls comes before its name, or under it where the table's
+ * card is too narrow for the column (`useInputColumn`).
  */
 export default function MotionDamage({
   type,
@@ -197,6 +202,7 @@ export default function MotionDamage({
   const names: Record<string, string> =
     (tm.moves as Partial<Record<WeaponType, Record<string, string>>>)[type] ?? {};
   const { moves: allMoves, error } = useMotionValues(type);
+  const inputs = useInputColumn(!!allMoves?.length);
 
   if (error) return <p className="text-negative">{tm.loadError}</p>;
   if (!allMoves) return <Loading>{t.common.loading}</Loading>;
@@ -226,78 +232,91 @@ export default function MotionDamage({
     });
 
   return (
-    <table className={motionValueTable}>
-      <thead>
-        <tr>
-          <th>{tm.move}</th>
-          <th>{tm.mv}</th>
-          <th>{elemental ? tm.total : tm.damage}</th>
-          {s.critColumn && (
-            <th>
-              <abbr className="no-underline" title={tm.critHint[s.critColumn]}>
-                {tm.crit[s.critColumn]}
-              </abbr>
+    <div ref={inputs.box} className="w-full">
+      <table ref={inputs.table} data-inputs={inputs.place} className={motionValueTable}>
+        <thead>
+          <tr>
+            {/* The icons say what they are; the heading is for screen readers. */}
+            <th className={motionInput}>
+              <span className="sr-only">{tm.input.label}</span>
             </th>
-          )}
-          {elemental && (
-            <>
-              <th>{tm.raw}</th>
+            <th className={motionName}>{tm.move}</th>
+            <th>{tm.mv}</th>
+            <th>{elemental ? tm.total : tm.damage}</th>
+            {s.critColumn && (
               <th>
-                <span className="text-element">
-                  {elementTypes.length === 1
-                    ? (t.common.elements[cap(elementTypes[0]!)] ?? elementTypes[0])
-                    : tm.element}
-                </span>
+                <abbr className="no-underline" title={tm.critHint[s.critColumn]}>
+                  {tm.crit[s.critColumn]}
+                </abbr>
               </th>
-            </>
-          )}
-        </tr>
-      </thead>
-      <tbody>
-        {moves
-          .flatMap((move) => {
-            const name = names[move.move] ?? move.move;
-            return move.charge_hitzone_weights
-              ? [
-                  { move, key: move.move, name: tm.chargeAt(name, tm.runUp), fullSpeed: false },
-                  {
-                    move,
-                    key: `${move.move}-full-speed`,
-                    name: tm.chargeAt(name, tm.fullSpeed),
-                    fullSpeed: true,
-                  },
-                ]
-              : [{ move, key: move.move, name, fullSpeed: false }];
-          })
-          .map(({ move, key, name, fullSpeed }) => {
-            const d = damage(move, "normal", fullSpeed);
-            // A critical that doesn't land here (red sharpness): a dash.
-            const c = s.crit === s.critColumn && s.crit && damage(move, s.crit, fullSpeed);
-            return (
-              <tr key={key}>
-                <td>{name}</td>
-                <td>
-                  <span className={muted}>{formatNumber(moveTotal(move, s.demon))}</span>
-                </td>
-                <td>{formatNumber(d.raw + d.element)}</td>
-                {s.critColumn && (
-                  <td>{c ? formatNumber(c.raw + c.element) : <span className={muted}>–</span>}</td>
-                )}
-                {elemental && (
-                  <>
+            )}
+            {elemental && (
+              <>
+                <th>{tm.raw}</th>
+                <th>
+                  <span className="text-element">
+                    {elementTypes.length === 1
+                      ? (t.common.elements[cap(elementTypes[0]!)] ?? elementTypes[0])
+                      : tm.element}
+                  </span>
+                </th>
+              </>
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {moves
+            .flatMap((move) => {
+              const name = names[move.move] ?? move.move;
+              return move.charge_hitzone_weights
+                ? [
+                    { move, key: move.move, name: tm.chargeAt(name, tm.runUp), fullSpeed: false },
+                    {
+                      move,
+                      key: `${move.move}-full-speed`,
+                      name: tm.chargeAt(name, tm.fullSpeed),
+                      fullSpeed: true,
+                    },
+                  ]
+                : [{ move, key: move.move, name, fullSpeed: false }];
+            })
+            .map(({ move, key, name, fullSpeed }) => {
+              const d = damage(move, "normal", fullSpeed);
+              // A critical that doesn't land here (red sharpness): a dash.
+              const c = s.crit === s.critColumn && s.crit && damage(move, s.crit, fullSpeed);
+              const input = moveInput(type, move.move);
+              return (
+                <tr key={key}>
+                  <td className={motionInput}>{input && <ButtonInput input={input} />}</td>
+                  <td className={motionName}>
+                    {name}
+                    {input && <ButtonInput input={input} className={underInput} />}
+                  </td>
+                  <td>
+                    <span className={muted}>{formatNumber(moveTotal(move, s.demon))}</span>
+                  </td>
+                  <td>{formatNumber(d.raw + d.element)}</td>
+                  {s.critColumn && (
                     <td>
-                      <span className={muted}>{formatNumber(d.raw)}</span>
+                      {c ? formatNumber(c.raw + c.element) : <span className={muted}>–</span>}
                     </td>
-                    <td>
-                      <span className="text-element/70">{formatNumber(d.element)}</span>
-                    </td>
-                  </>
-                )}
-              </tr>
-            );
-          })}
-      </tbody>
-    </table>
+                  )}
+                  {elemental && (
+                    <>
+                      <td>
+                        <span className={muted}>{formatNumber(d.raw)}</span>
+                      </td>
+                      <td>
+                        <span className="text-element/70">{formatNumber(d.element)}</span>
+                      </td>
+                    </>
+                  )}
+                </tr>
+              );
+            })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

@@ -38,6 +38,23 @@ export const motionValues = {
     weak: "On a negative critical: the motion value × 0.75",
   },
   loadError: "Couldn't load the motion values.",
+  /**
+   * A move's input with the default controls, before its name (under it on
+   * a narrow card): its column's heading for screen readers, a held button,
+   * and the buttons' names (their icons' alt text).
+   */
+  input: {
+    label: "Input",
+    hold: "Hold",
+    buttons: {
+      triangle: "Triangle",
+      circle: "Circle",
+      cross: "Cross",
+      r: "R",
+      select: "SELECT",
+      stick: "Analog stick",
+    },
+  },
   /** The hitzone picker: a monster's part, from a bestiary of portraits. */
   bestiary: {
     /** The part picked, after its value in the hitzone selector: "Rathalos · Head". */
