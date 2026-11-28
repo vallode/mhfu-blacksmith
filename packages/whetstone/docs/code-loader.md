@@ -73,12 +73,14 @@ into the blob have to check the header first (see below).
 Whetstone adds `WHTSTN.BIN` to the disc's root, next to `UMD_DATA.BIN`;
 the root rather than `/PSP_GAME/USRDIR` because the loader keeps its path
 in the cave, where `disc0:/WHTSTN.BIN` takes 5 words and the longer path 9.
-Its data goes at the end of the image, a record goes into the directory (which has room), and
-the volume size is updated (`PatchableImage.writeFile`). No ISO rebuild is
-needed. The record copies the shape of the directory's other files: UMD
-images name files without the `;1` version and give each an XA field, and
-PPSSPP looks names up exactly, so a `WHTSTN.BIN;1` record isn't found
-(the first demo build failed this way). A file inside DATA.BIN would need the game's decrypting, asynchronous
+Its data goes at the end of the image, a record goes into the directory
+(which has room), and the volume size is updated
+(`PatchableImage.writeFile`). No ISO rebuild is needed. The record copies
+the shape of the directory's other files (a root with no file of its own
+borrows `/PSP_GAME/PARAM.SFO`'s): UMD images name files without the `;1`
+version and give each an XA field, and PPSSPP looks names up exactly, so a
+`WHTSTN.BIN;1` record isn't found (the first demo build failed this way).
+A file inside DATA.BIN would need the game's decrypting, asynchronous
 reader. A loose file reads with plain synchronous calls the EBOOT already
 imports: it opens `disc0:/PSP_GAME/USRDIR/DATA.BIN` itself.
 

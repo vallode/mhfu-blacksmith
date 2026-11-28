@@ -1327,8 +1327,7 @@ randomfu's Hunter's Pact and Unknown Monster quests, which it hands to
   patch a disc. randomfu's own C (`packages/randomfu/blob/`) includes
   these headers and is built by its own `blob/build.mjs` the same way. The
   blob keeps its `rf_` names and `rf.h` from before the split. The file is
-  `WHTSTN.BIN`: Whetstone shortened the way the game shortens names, to
-  fit ISO 9660's 8.3.
+  `WHTSTN.BIN`.
 
 Not yet tried: receiving Guild Cards with the cap, and a save from a
 patched game on an unpatched one (its card slots 4–96 hold the blob).
