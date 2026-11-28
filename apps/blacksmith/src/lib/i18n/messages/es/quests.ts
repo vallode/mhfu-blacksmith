@@ -27,6 +27,10 @@ export const quests: Messages["quests"] = {
     starLevels: "Niveles de estrellas",
     starLevel: (stars: number, g: boolean) =>
       `${g ? "G " : ""}${stars} ${stars === 1 ? "estrella" : "estrellas"}`,
+    starLevelGroup: "Nivel de estrellas",
+    previousStarLevel: "Nivel de estrellas anterior",
+    nextStarLevel: "Siguiente nivel de estrellas",
+    chooseStarLevel: (level: string) => `Nivel de estrellas: ${level}. Elegir otro`,
     // Short, for the selector bar at the foot of the list at phone width.
     allQuests: "Todas",
     filter: "Filtro de misiones",
