@@ -70,10 +70,10 @@ into the blob have to check the header first (see below).
 
 ## Reading the file
 
-Whetstone adds `WHTSTN.BIN` to the disc's root, next to `UMD_DATA.BIN`; the root rather than `/PSP_GAME/USRDIR` because the
-loader keeps its path in the cave, where `disc0:/WHTSTN.BIN` takes 5 words
-and the longer path 9. Its data goes at the
-end of the image, a record goes into the directory (which has room), and
+Whetstone adds `WHTSTN.BIN` to the disc's root, next to `UMD_DATA.BIN`;
+the root rather than `/PSP_GAME/USRDIR` because the loader keeps its path
+in the cave, where `disc0:/WHTSTN.BIN` takes 5 words and the longer path 9.
+Its data goes at the end of the image, a record goes into the directory (which has room), and
 the volume size is updated (`PatchableImage.writeFile`). No ISO rebuild is
 needed. The record copies the shape of the directory's other files: UMD
 images name files without the `;1` version and give each an XA field, and
