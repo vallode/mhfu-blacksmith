@@ -12,7 +12,7 @@ interface WeaponNavProps {
 
 /**
  * The weapon pages' PageBar: the type as title and one tab per weapon type.
- * Phones leave it off and pick the type from the tree card's WeaponTypeBar.
+ * Phones leave it off and pick the type from the tree card's TypeBar.
  */
 export default function WeaponNav({ activeType }: WeaponNavProps) {
   const t = useT();
