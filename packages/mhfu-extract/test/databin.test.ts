@@ -73,3 +73,26 @@ test("unpackDataBin walks a synthetic TOC and decrypts each file", () => {
 test("readDataBin rejects a buffer with no valid TOC either way", () => {
   assert.throws(() => readDataBin(Buffer.alloc(4096, 0xab), "jp"), /no valid table of contents/);
 });
+
+test("readDataBin reads MHF1/MHF2 DATA.BINs through a plain TOC only", () => {
+  const SECTOR = 2048;
+  const toc = Buffer.alloc(SECTOR);
+  toc.writeUInt32LE(1, 0);
+  toc.writeUInt32LE(2, 4);
+  const file = Buffer.alloc(SECTOR, 0x5a);
+
+  const plain = readDataBin(Buffer.concat([toc, file]), "jp", "mhp2");
+  assert.equal(plain.encrypted, false);
+  assert.deepEqual(
+    plain.files.map((f) => f.data),
+    [file],
+  );
+
+  // The same container through MHFU's cipher reads for mhp2g, not for mhp2.
+  const encrypted = Buffer.concat([encryptDataBinBlock(toc, 0), encryptDataBinBlock(file, 1)]);
+  assert.equal(readDataBin(encrypted, "jp").encrypted, true);
+  assert.throws(
+    () => readDataBin(encrypted, "jp", "mhp2"),
+    /no plain table of contents.*mhp2 disc/,
+  );
+});

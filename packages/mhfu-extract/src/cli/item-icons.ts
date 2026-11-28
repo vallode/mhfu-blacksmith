@@ -10,7 +10,7 @@ import { MHP2G_PROFILE } from "../games/mhp2g.js";
 import { encodePng } from "../models/png.js";
 import { readTmh, type TmhImage } from "../models/tmh.js";
 import { ITEM_ICON_ATLAS, readItemIconRects, type IconRect } from "../tables/item-icons.js";
-import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
+import { assertMhfuUnpack, type UnpackManifest } from "./unpack.js";
 
 /** The shape whose "?" every shape no item uses shares. */
 const UNUSED_SHAPE_SPRITE = 33;
@@ -36,7 +36,7 @@ export async function runItemIcons(options: ItemIconsOptions): Promise<number> {
   const manifest = JSON.parse(
     await readFile(path.join(options.unpacked, "manifest.json"), "utf-8"),
   ) as UnpackManifest;
-  assertCurrentFileNames(manifest, options.unpacked);
+  assertMhfuUnpack(manifest, options.unpacked);
   const resolver = MHP2G_PROFILE.resolverForRegion(manifest.region);
   if (!resolver) throw new Error(`No table addresses for region "${manifest.region}".`);
 

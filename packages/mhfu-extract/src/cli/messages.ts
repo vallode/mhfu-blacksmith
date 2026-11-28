@@ -9,7 +9,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { loadFileList } from "../container/filelist.js";
 import { findMessages, readMessageFile, showMessage } from "../strings/messages.js";
-import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
+import { assertCurrentFileNames, manifestGame, type UnpackManifest } from "./unpack.js";
 
 export interface MessagesOptions {
   unpacked: string;
@@ -26,9 +26,10 @@ export async function runMessages(options: MessagesOptions): Promise<string> {
     await readFile(path.join(options.unpacked, "manifest.json"), "utf-8"),
   );
   assertCurrentFileNames(manifest, options.unpacked);
-  const rel =
-    loadFileList(manifest.region).get(options.file) ??
-    path.join("_unindexed", `${options.file}.bin`);
+  // Only MHFU's entries have names; MHF1/MHF2 unpacks are all `_unindexed/`.
+  const names =
+    manifestGame(manifest) === "mhp2g" ? loadFileList(manifest.region) : new Map<number, string>();
+  const rel = names.get(options.file) ?? path.join("_unindexed", `${options.file}.bin`);
   const tables = readMessageFile(await readFile(path.join(options.unpacked, "data-bin", rel)));
   if (!tables) throw new Error(`${options.file} (${rel}) isn't laid out like a message file`);
 

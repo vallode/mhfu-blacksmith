@@ -12,6 +12,7 @@
  * `readData`). `writeData` writes it back: records with game IDs, names and
  * quest text into `data/strings/en.json`. A second run writes nothing.
  */
+import { assertMhfuExtraction } from "./extract-mhp2.js";
 import { existsSync } from "node:fs";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -439,6 +440,7 @@ export async function copyTargets(
 }
 
 export async function runBuildData(options: BuildDataOptions): Promise<BuildDataReport> {
+  await assertMhfuExtraction(options.extracted);
   const targets = options.only ?? BUILD_TARGETS;
   const categoryNames = targets.filter(
     (t): t is CategoryName => t !== "items" && !COPIED_TARGETS.includes(t as CopiedTarget),

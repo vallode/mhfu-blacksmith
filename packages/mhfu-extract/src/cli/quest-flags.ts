@@ -8,7 +8,7 @@ import path from "node:path";
 import { loadFileList } from "../container/filelist.js";
 import { OVERLAY_DIR } from "../monsters/overlays.js";
 import { scanQuestFlags, type QuestFlagReport, type ScanFile } from "../quests/flag-scan.js";
-import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
+import { assertMhfuUnpack, type UnpackManifest } from "./unpack.js";
 
 export interface QuestFlagsOptions {
   unpacked: string;
@@ -34,7 +34,7 @@ export async function runQuestFlags(options: QuestFlagsOptions): Promise<QuestFl
   const manifest: UnpackManifest = JSON.parse(
     await readFile(path.join(options.unpacked, "manifest.json"), "utf-8"),
   );
-  assertCurrentFileNames(manifest, options.unpacked);
+  assertMhfuUnpack(manifest, options.unpacked);
   if (manifest.eboot === false) {
     throw new Error(
       `${options.unpacked} was unpacked with --skip-eboot, so it has no eboot.bin; rerun unpack with pspdecrypt on PATH or --eboot <path>.`,
