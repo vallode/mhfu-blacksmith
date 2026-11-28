@@ -703,7 +703,7 @@ export default function SetBuilderClient() {
     <>
       {/* One column on phones; from 900px up the skills and options sit
           beside the results, which get the room. */}
-      <div className="mx-auto flex w-full max-w-[64rem] flex-col gap-[1.3rem] pb-[1.6rem] min-[900px]:grid min-[900px]:max-w-[120rem] min-[900px]:grid-cols-[34rem_minmax(0,1fr)] min-[900px]:grid-rows-[auto_auto_1fr] min-[900px]:items-start min-[900px]:pt-[1.6rem] wide:grid-cols-[40rem_minmax(0,1fr)]">
+      <div className="flex w-full flex-col gap-[1.3rem] pb-[1.6rem] min-[900px]:grid min-[900px]:grid-cols-[34rem_minmax(0,1fr)] min-[900px]:grid-rows-[auto_auto_1fr] min-[900px]:items-start wide:grid-cols-[40rem_minmax(0,1fr)]">
         <CardBox className="flex-none min-[900px]:col-start-1 min-[900px]:row-start-1">
           <Card className="text-small" bodyClassName="card-py-7 gap-[1.2rem]">
             <div className="flex items-baseline justify-between">

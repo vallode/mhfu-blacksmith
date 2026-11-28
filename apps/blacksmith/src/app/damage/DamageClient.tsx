@@ -146,7 +146,7 @@ export default function DamageClient() {
     <>
       {/* From 900px up the page is the window's height: the calculator card
           fills it and scrolls inside, so picking things doesn't move it. */}
-      <div className="mx-auto flex w-full max-w-[64rem] flex-col gap-[1.3rem] pb-[1.6rem] min-[900px]:grid min-[900px]:h-full min-[900px]:max-w-[120rem] min-[900px]:grid-cols-[34rem_minmax(0,1fr)] min-[900px]:grid-rows-[minmax(0,1fr)] min-[900px]:pt-[1.6rem] wide:grid-cols-[40rem_minmax(0,1fr)]">
+      <div className="flex w-full flex-col gap-[1.3rem] pb-[1.6rem] min-[900px]:grid min-[900px]:h-full min-[900px]:grid-cols-[34rem_minmax(0,1fr)] min-[900px]:grid-rows-[minmax(0,1fr)] min-[900px]:pb-0 wide:grid-cols-[40rem_minmax(0,1fr)]">
         <CardBox className="flex-none min-[900px]:self-start">
           <Card className="text-small" bodyClassName="card-py-7 gap-[1.2rem]">
             <PanelTitle>{text.title}</PanelTitle>
