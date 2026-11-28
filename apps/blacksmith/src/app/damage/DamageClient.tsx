@@ -193,9 +193,6 @@ export default function DamageClient() {
                 ) : (
                   <span className="text-white">{text.pickWeapon}</span>
                 )}
-                <span className="flex-none text-white/50" aria-hidden="true">
-                  {text.changeWeapon}
-                </span>
               </button>
               <div aria-hidden="true" className="h-px bg-white/15" />
               <button
@@ -210,9 +207,6 @@ export default function DamageClient() {
                   <span className="whitespace-normal text-white">
                     {on.length ? on.join(", ") : text.noBuffs}
                   </span>
-                </span>
-                <span className="flex-none text-white/50" aria-hidden="true">
-                  {text.changeWeapon}
                 </span>
               </button>
               {weapon && on.length > 0 && (
@@ -251,9 +245,6 @@ export default function DamageClient() {
                     </span>
                   )}
                 </span>
-                <span className="flex-none text-white/50" aria-hidden="true">
-                  {text.changeWeapon}
-                </span>
               </button>
               {target && (
                 <>
@@ -266,9 +257,6 @@ export default function DamageClient() {
                     onClick={() => setSheet("target")}
                   >
                     <TargetSummary target={target} hitzone={hitzone} />
-                    <span className="flex-none text-white/50" aria-hidden="true">
-                      {text.changeWeapon}
-                    </span>
                   </button>
                 </>
               )}

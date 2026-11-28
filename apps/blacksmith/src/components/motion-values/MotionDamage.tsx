@@ -11,7 +11,6 @@ import {
   ELEMENT_SHARPNESS_MULTIPLIERS,
   GUNNER_MELEE_SHARPNESS,
   hasDemonMode,
-  hasFullSpeedCharge,
   hasSpiritGlow,
   moveDamage,
   moveTotal,
@@ -60,11 +59,9 @@ function motionSetup(
   const modes = {
     demon: hasDemonMode(allMoves),
     glow: hasSpiritGlow(allMoves),
-    fullSpeed: hasFullSpeedCharge(allMoves),
   };
   const demon = modes.demon && settings.demon;
   const glow = modes.glow && settings.glow;
-  const fullSpeed = modes.fullSpeed && settings.fullSpeed;
   const levels = sharpnessLevels(weapon);
   const start = startSharpness(weapon, buffs.sharpnessPlus);
   const level =
@@ -96,7 +93,6 @@ function motionSetup(
     modes,
     demon,
     glow,
-    fullSpeed,
     levels,
     level,
     melee,
@@ -110,8 +106,7 @@ function motionSetup(
 
 /**
  * How the weapon is used, beside it on the damage page: Demon Mode for Dual
- * Blades, the spirit gauge for Long Swords, the Lance's charge and the
- * sharpness colour. Each shows only where the weapon has it.
+ * Blades, the spirit gauge for Long Swords and the sharpness colour. Each shows only where the weapon has it.
  */
 export function MotionSettings({
   type,
@@ -147,14 +142,6 @@ export function MotionSettings({
           onChange={(i) => settings.setGlow(i === 1)}
         />
       )}
-      {s.modes.fullSpeed && (
-        <Choice
-          label={tm.charge}
-          options={[tm.runUp, tm.fullSpeed]}
-          index={s.fullSpeed ? 1 : 0}
-          onChange={(i) => settings.setFullSpeed(i === 1)}
-        />
-      )}
       {s.melee && (
         <Choice
           label={tm.sharpness}
@@ -184,7 +171,8 @@ export function MotionSettings({
  * total first, then the total on a critical (a negative one, below 0
  * affinity) when the weapon's affinity lands one, then a weapon with an
  * element splits the total into raw and element, each hit's truncated on
- * its own.
+ * its own. The Lance's charge has a row as it starts and one at full
+ * speed, where it weighs the hitzone more.
  */
 export default function MotionDamage({
   type,
@@ -223,7 +211,7 @@ export default function MotionDamage({
   const elementTypes = [...new Set(attributes.flatMap((a) => (a.type ? [a.type] : [])))];
   const elemental = elementTypes.length > 0;
   const dualBlades = type === "dual-blades";
-  const damage = (move: MotionMove, hit: HitKind) =>
+  const damage = (move: MotionMove, hit: HitKind, fullSpeed: boolean) =>
     moveDamage(move, {
       attack: s.attack,
       sharpness: s.sharpness,
@@ -232,7 +220,7 @@ export default function MotionDamage({
       zone: struck,
       demon: s.demon,
       glow: s.glow,
-      fullSpeed: s.fullSpeed,
+      fullSpeed,
       hit,
       defense,
     });
@@ -266,33 +254,48 @@ export default function MotionDamage({
         </tr>
       </thead>
       <tbody>
-        {moves.map((move) => {
-          const d = damage(move, "normal");
-          // A critical that doesn't land here (red sharpness): a dash.
-          const c = s.crit === s.critColumn && s.crit && damage(move, s.crit);
-          return (
-            <tr key={move.move}>
-              <td>{names[move.move] ?? move.move}</td>
-              <td>
-                <span className={muted}>{formatNumber(moveTotal(move, s.demon))}</span>
-              </td>
-              <td>{formatNumber(d.raw + d.element)}</td>
-              {s.critColumn && (
-                <td>{c ? formatNumber(c.raw + c.element) : <span className={muted}>–</span>}</td>
-              )}
-              {elemental && (
-                <>
-                  <td>
-                    <span className={muted}>{formatNumber(d.raw)}</span>
-                  </td>
-                  <td>
-                    <span className="text-element/70">{formatNumber(d.element)}</span>
-                  </td>
-                </>
-              )}
-            </tr>
-          );
-        })}
+        {moves
+          .flatMap((move) => {
+            const name = names[move.move] ?? move.move;
+            return move.charge_hitzone_weights
+              ? [
+                  { move, key: move.move, name: tm.chargeAt(name, tm.runUp), fullSpeed: false },
+                  {
+                    move,
+                    key: `${move.move}-full-speed`,
+                    name: tm.chargeAt(name, tm.fullSpeed),
+                    fullSpeed: true,
+                  },
+                ]
+              : [{ move, key: move.move, name, fullSpeed: false }];
+          })
+          .map(({ move, key, name, fullSpeed }) => {
+            const d = damage(move, "normal", fullSpeed);
+            // A critical that doesn't land here (red sharpness): a dash.
+            const c = s.crit === s.critColumn && s.crit && damage(move, s.crit, fullSpeed);
+            return (
+              <tr key={key}>
+                <td>{name}</td>
+                <td>
+                  <span className={muted}>{formatNumber(moveTotal(move, s.demon))}</span>
+                </td>
+                <td>{formatNumber(d.raw + d.element)}</td>
+                {s.critColumn && (
+                  <td>{c ? formatNumber(c.raw + c.element) : <span className={muted}>–</span>}</td>
+                )}
+                {elemental && (
+                  <>
+                    <td>
+                      <span className={muted}>{formatNumber(d.raw)}</span>
+                    </td>
+                    <td>
+                      <span className="text-element/70">{formatNumber(d.element)}</span>
+                    </td>
+                  </>
+                )}
+              </tr>
+            );
+          })}
       </tbody>
     </table>
   );
