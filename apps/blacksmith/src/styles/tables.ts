@@ -108,4 +108,6 @@ export const motionValueTable = [
   "[&_td]:py-[0.2rem] [&_td]:pl-[1.6rem] [&_td]:text-right [&_td]:whitespace-nowrap [&_td]:text-white",
   "[&_td:first-of-type]:pl-0 [&_td:first-of-type]:text-left [&_td:first-of-type]:text-stat",
   "mobile:[&_td:first-of-type]:whitespace-normal compact:[&_td:first-of-type]:whitespace-normal",
+  // Six columns (total, critical, raw and element) fit a phone with narrower gaps.
+  "mobile:[&_td]:pl-[0.6rem] mobile:[&_th]:pl-[0.6rem] compact:[&_td]:pl-[0.8rem] compact:[&_th]:pl-[0.8rem]",
 ].join(" ");

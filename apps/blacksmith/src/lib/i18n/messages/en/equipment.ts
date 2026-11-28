@@ -149,7 +149,6 @@ export const equipment = {
       specialAmmo: "Special Ammo",
       coatings: "Coatings",
       melodies: "Melodies",
-      motionValues: "Motion Values",
     },
     /** Bow charge levels. */
     chargeAttack: "[Charge Attack]",

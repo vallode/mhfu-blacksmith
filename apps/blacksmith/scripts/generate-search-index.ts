@@ -271,6 +271,17 @@ entries.push({
   elements: "",
   skills: "trade trades swap exchange",
 });
+entries.push({
+  name: "Damage Calculator",
+  slug: "damage",
+  url: "/damage/",
+  category: "page",
+  type: "ko",
+  rank: null,
+  rarity: 0,
+  elements: "",
+  skills: "damage calculator motion values hitzone buffs",
+});
 
 const outPath = path.join(root, "public", "search-data.json");
 fs.mkdirSync(path.dirname(outPath), { recursive: true });

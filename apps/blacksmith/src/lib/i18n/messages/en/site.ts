@@ -18,6 +18,7 @@ export const site = {
     veggieElder: "Veggie Elder",
     sets: "Sets",
     wishlist: "Wishlist",
+    damage: "Damage",
     hunter: "Hunter",
     options: "Options",
     home: "Home",

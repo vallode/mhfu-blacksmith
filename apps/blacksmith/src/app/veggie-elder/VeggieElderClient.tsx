@@ -21,6 +21,7 @@ import {
   StatValue,
 } from "@/components/DetailPanel";
 import Icon from "@/components/Icon";
+import ItemNav from "@/components/ItemNav";
 import Loading from "@/components/Loading";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import TreeScroll from "@/components/TreeScroll";
@@ -92,8 +93,20 @@ export default function VeggieElderClient() {
   const [picked, setPicked] = useState<number | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  if (error) return <p className="text-negative">{tv.loadError}</p>;
-  if (!bundle || !items) return <Loading>{tv.loading}</Loading>;
+  if (error)
+    return (
+      <>
+        <ItemNav active="veggie-elder" />
+        <p className="text-negative">{tv.loadError}</p>
+      </>
+    );
+  if (!bundle || !items)
+    return (
+      <>
+        <ItemNav active="veggie-elder" />
+        <Loading>{tv.loading}</Loading>
+      </>
+    );
 
   const count = bundle.elders.length;
   const { maps, rows } = bundle.elders[elder]!;
@@ -124,88 +137,91 @@ export default function VeggieElderClient() {
   };
 
   return (
-    <div className="split-page">
-      <CardBox data-tree-panel className="mobile:h-[50vh] mobile:flex-none">
-        <Card variant="weapon-tree">
-          <TreeScroll treeKey={`veggie-elder-${elder}`}>
-            <div ref={listRef} className="flex flex-col">
-              {sections.map((section) => (
-                <section key={section.key}>
-                  <h2 className={header}>{section.label}</h2>
-                  {section.rows.map(([row, give]) => {
-                    const item = items.get(give);
-                    const active = give === picked;
-                    return (
-                      <button
-                        key={row}
-                        type="button"
-                        aria-pressed={active}
-                        onClick={() => setPicked(give)}
-                        className={cn(
-                          "list-row w-full cursor-pointer border-0 text-left font-[inherit] text-white",
-                          active ? "bg-(image:--gradient-hover-glow)" : "bg-transparent",
-                        )}
-                      >
-                        <Icon type={item.type} color={item.color} />
-                        <p className="min-w-0 flex-1 truncate">{itemName(give)}</p>
-                        <p className="flex-none pr-3 text-fine text-muted">{row}</p>
-                      </button>
-                    );
-                  })}
-                </section>
-              ))}
-            </div>
-          </TreeScroll>
-          {/* Room to scroll the last rows clear of the ground selector. */}
-          <div className="flex-none" style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
-        </Card>
-        <SelectorBar
-          label={tradeMapsLabel(maps, (m) => groundName(game, m))}
-          groupLabel={tv.groundGroup}
-          previousLabel={tv.previousGround}
-          nextLabel={tv.nextGround}
-          onStep={step}
-          count={`${elder + 1}/${count}`}
-          countLabel={tv.groundOf(elder + 1, count)}
-        />
-      </CardBox>
+    <>
+      <ItemNav active="veggie-elder" />
+      <div className="split-page">
+        <CardBox data-tree-panel className="mobile:h-[50vh] mobile:flex-none">
+          <Card variant="weapon-tree">
+            <TreeScroll treeKey={`veggie-elder-${elder}`}>
+              <div ref={listRef} className="flex flex-col">
+                {sections.map((section) => (
+                  <section key={section.key}>
+                    <h2 className={header}>{section.label}</h2>
+                    {section.rows.map(([row, give]) => {
+                      const item = items.get(give);
+                      const active = give === picked;
+                      return (
+                        <button
+                          key={row}
+                          type="button"
+                          aria-pressed={active}
+                          onClick={() => setPicked(give)}
+                          className={cn(
+                            "list-row w-full cursor-pointer border-0 text-left font-[inherit] text-white",
+                            active ? "bg-(image:--gradient-hover-glow)" : "bg-transparent",
+                          )}
+                        >
+                          <Icon type={item.type} color={item.color} />
+                          <p className="min-w-0 flex-1 truncate">{itemName(give)}</p>
+                          <p className="flex-none pr-3 text-fine text-muted">{row}</p>
+                        </button>
+                      );
+                    })}
+                  </section>
+                ))}
+              </div>
+            </TreeScroll>
+            {/* Room to scroll the last rows clear of the ground selector. */}
+            <div className="flex-none" style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
+          </Card>
+          <SelectorBar
+            label={tradeMapsLabel(maps, (m) => groundName(game, m))}
+            groupLabel={tv.groundGroup}
+            previousLabel={tv.previousGround}
+            nextLabel={tv.nextGround}
+            onStep={step}
+            count={`${elder + 1}/${count}`}
+            countLabel={tv.groundOf(elder + 1, count)}
+          />
+        </CardBox>
 
-      {trade ? (
-        <DetailCard>
-          <DetailHeader>
-            <Icon
-              type={items.get(trade[1]).type}
-              color={items.get(trade[1]).color}
-              size="large"
-              alt=""
-            />
-            <DetailName>{itemName(trade[1])}</DetailName>
-          </DetailHeader>
-          <DetailBody>
-            <StatList>
-              <Stat label={tv.listNumber}>
-                <StatValue>{trade[0]}</StatValue>
-              </Stat>
-            </StatList>
-            <div className="flex flex-col gap-y-[13px] text-white">
-              <p className="whitespace-normal text-stat">{tv.heGives}</p>
-              {trade[2] === trade[3] ? (
-                <RewardRow id={trade[2]} items={items} chance={100} />
-              ) : (
-                <>
-                  <RewardRow id={trade[2]} items={items} chance={100 - bundle.rareChance} />
-                  <RewardRow id={trade[3]} items={items} chance={bundle.rareChance} rare />
-                </>
-              )}
-            </div>
-            <p className={note}>{tv.pageNote}</p>
-          </DetailBody>
-        </DetailCard>
-      ) : (
-        <NoDataCard>
-          <p className={note}>{tv.pickItem}</p>
-        </NoDataCard>
-      )}
-    </div>
+        {trade ? (
+          <DetailCard>
+            <DetailHeader>
+              <Icon
+                type={items.get(trade[1]).type}
+                color={items.get(trade[1]).color}
+                size="large"
+                alt=""
+              />
+              <DetailName>{itemName(trade[1])}</DetailName>
+            </DetailHeader>
+            <DetailBody>
+              <StatList>
+                <Stat label={tv.listNumber}>
+                  <StatValue>{trade[0]}</StatValue>
+                </Stat>
+              </StatList>
+              <div className="flex flex-col gap-y-[13px] text-white">
+                <p className="whitespace-normal text-stat">{tv.heGives}</p>
+                {trade[2] === trade[3] ? (
+                  <RewardRow id={trade[2]} items={items} chance={100} />
+                ) : (
+                  <>
+                    <RewardRow id={trade[2]} items={items} chance={100 - bundle.rareChance} />
+                    <RewardRow id={trade[3]} items={items} chance={bundle.rareChance} rare />
+                  </>
+                )}
+              </div>
+              <p className={note}>{tv.pageNote}</p>
+            </DetailBody>
+          </DetailCard>
+        ) : (
+          <NoDataCard>
+            <p className={note}>{tv.pickItem}</p>
+          </NoDataCard>
+        )}
+      </div>
+    </>
   );
 }

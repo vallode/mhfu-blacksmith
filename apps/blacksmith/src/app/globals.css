@@ -250,6 +250,9 @@
 @custom-variant mobile (@media screen and (max-width: 899px));
 @custom-variant compact (@media screen and (min-width: 900px) and (max-width: 1199px));
 @custom-variant wide (@media screen and (min-width: 1200px));
+/* Windows too short for the sidebar at full size (from 900px wide, where it shows):
+   tighter rows and no logo, so every entry fits without scrolling. */
+@custom-variant short (@media screen and (min-width: 900px) and (max-height: 839px));
 
 /* ─── Custom utilities ─────────────────────────────────────────────────────────
    Effects that are awkward as utility class strings. They work with variants

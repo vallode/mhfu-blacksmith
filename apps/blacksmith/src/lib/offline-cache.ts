@@ -56,6 +56,7 @@ export function collectStaticPageUrls(): string[] {
     "/maps/",
     "/veggie-elder/",
     "/wishlist/",
+    "/damage/",
     "/hunter/",
     "/hunter/guild-card/",
     "/hunter/awards/",
