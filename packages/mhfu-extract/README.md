@@ -502,6 +502,18 @@ Kelbi (EU disc) by drawing them over the models: the wing capsules trace
 the membranes, the legs the legs, and the rows match the parts
 `overlay/monsters.json` maps them to.
 
+The part names came from the site's old data, matched to rows by value, so
+a name can sit on a row whose capsules are somewhere else. Every monster's
+rows were drawn this way and checked against their names. Six monsters
+(three families) were renamed to where their capsules are: Nargacuga's
+"back" row is the wing blades and tail tip (`blade-tailtip`) and its "neck"
+row runs on along the back (`neck-back`); the Fatalis trio's "face", "head"
+and "neck" rows are the head, the neck and the chest, and the row the site
+called "chest" has no capsules, so it is left out; and on the two Lao-Shan
+Lungs the "shoulder" row
+is the tail and the shoulders share the back's row, where the back and
+shoulder breaks are (the two rows' values are the same).
+
 - **Collision table** (`src/monsters/collision.ts`): the chunk's
   `CollisionPTR` (`+0x50`) points into `game_task.ovl` (Kelbi) or the
   monster's own `overlay/emNN.ovl` (Rathian). Monsters without an overlay
@@ -537,8 +549,12 @@ Open questions:
   and 0x300, on joint 1 or 2) around the body's centre, on a row that
   doesn't fit the place (Rathian's on her head's row). They are probably
   body collision, so `hitboxes.ts` skips records with bit 0x4 or 0x200, and
-  logs each skip; no other record seen has either bit. The other flag bits
-  (0x1, 0x2, 0x100, 0x20000, 0x40000, 0x8000000, ...) appear on whole bodies.
+  logs each skip; no other record seen has either bit. Bit 0x20000 marks
+  what are probably attack areas, also on row 0 and skipped: a sphere of
+  radius 350 around Kushala Daora's and Teostra's (and their variants')
+  bodies, their wind and fire aura, and four at Congalala's hips, likely
+  its fart. The other flag bits (0x1, 0x2, 0x100, 0x40000, 0x8000000, ...)
+  appear on whole bodies.
 - The second u16 (0 or 1) and the rest of the flags are unknown.
 - The `.ahi` rotation format, which capsules on rotated chains would need,
   and whether the game scales a capsule's radius with its joint.
@@ -2262,8 +2278,8 @@ Monsters were added later (#35). `compare` counts them per monster: of
 83, hitzones agreed on 73 and drops on 30 of the 75 with mapped drops.
 Per part, 389 of 400 mapped hitzone parts agreed. The 11 that didn't (10
 monsters, 18 values) are one-to-one row matches 1–4 values off, e.g.
-Fatalis chest cut 30 vs 10; the site's Bullfango row is the disc's
-Bulldrome row. Per group, 601 of 695 mapped drop groups agreed. Of the 94
+Fatalis chest cut 30 vs 10 (a row with no capsules, since left out, see
+"Monster hitboxes"); the site's Bullfango row is the disc's Bulldrome row. Per group, 601 of 695 mapped drop groups agreed. Of the 94
 that didn't, 7 differ only in an amount, 24 only in chances and 63 in
 items. On the disc every mapped list sums to 100; 26 of the 94 site lists
 don't, others miss an entry (Hypnocatrice's high-rank capture lacks its 6%

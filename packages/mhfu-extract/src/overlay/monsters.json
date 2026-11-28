@@ -756,9 +756,9 @@
         "belly": [0, 5],
         "back": [0, 2],
         "weak-spot": [0, 3],
-        "shoulder": [0, 4],
+        "shoulder": [0, 2],
         "leg": [0, 6],
-        "tail": [0, 2]
+        "tail": [0, 4]
       },
       "drops": {
         "low rank": {
@@ -782,9 +782,9 @@
         "belly": [0, 5],
         "back": [0, 2],
         "weak-spot": [0, 3],
-        "shoulder": [0, 4],
+        "shoulder": [0, 2],
         "leg": [0, 6],
-        "tail": [0, 2]
+        "tail": [0, 4]
       }
     },
     {
@@ -814,13 +814,12 @@
       "name": "Fatalis",
       "file": "monsters/elder-dragon.json",
       "hitzones": {
-        "face": [0, 0],
-        "head": [0, 1],
+        "head": [0, 0],
+        "neck": [0, 1],
         "back-tail": [0, 2],
-        "neck": [0, 3],
+        "chest": [0, 3],
         "wings": [0, 5],
-        "belly-legs": [0, 6],
-        "chest": [0, 4]
+        "belly-legs": [0, 6]
       },
       "drops": {
         "high rank": {
@@ -846,13 +845,12 @@
       "name": "Crimson Fatalis",
       "file": "monsters/elder-dragon.json",
       "hitzones": {
-        "face": [0, 0],
-        "head": [0, 1],
+        "head": [0, 0],
+        "neck": [0, 1],
         "back-tail": [0, 2],
-        "neck": [0, 3],
+        "chest": [0, 3],
         "wings": [0, 5],
-        "belly-legs": [0, 6],
-        "chest": [0, 4]
+        "belly-legs": [0, 6]
       },
       "drops": {
         "high rank": {
@@ -878,13 +876,12 @@
       "name": "White Fatalis",
       "file": "monsters/elder-dragon.json",
       "hitzones": {
-        "face": [0, 0],
-        "head": [0, 1],
+        "head": [0, 0],
+        "neck": [0, 1],
         "back-tail": [0, 2],
-        "neck": [0, 3],
+        "chest": [0, 3],
         "wings": [0, 5],
-        "belly-legs": [0, 6],
-        "chest": [0, 4]
+        "belly-legs": [0, 6]
       },
       "drops": {
         "high rank": {
@@ -1545,9 +1542,9 @@
       "hitzones": {
         "head": [0, 0],
         "head-rage": [1, 0],
-        "neck": [0, 1],
+        "neck-back": [0, 1],
         "belly": [0, 2],
-        "back": [0, 3],
+        "blade-tailtip": [0, 3],
         "tail": [0, 4],
         "front-legs": [0, 5],
         "hind-legs": [0, 6]
