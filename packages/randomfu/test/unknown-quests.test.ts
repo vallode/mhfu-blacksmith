@@ -1,14 +1,14 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import type { RewardTable } from "mhfu-extract/src/quests/parser.js";
-import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
-import { decodeObjects, linkBlob } from "../src/blob/link.js";
+import { RUNTIME_OBJECTS } from "whetstone/src/blob/runtime-object.js";
+import { decodeObjects, linkBlob } from "whetstone/src/blob/link.js";
 import { addBoardRecord } from "../src/game/board-add.js";
-import { readBoardRecords } from "../src/game/board.js";
-import { spawnValuesByMap } from "../src/game/quest-fields.js";
-import type { LoadedQuest } from "../src/game/load.js";
-import { enumMonsterNames as monsterName } from "../src/names.js";
-import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
+import { readBoardRecords } from "whetstone/src/game/board.js";
+import { spawnValuesByMap } from "whetstone/src/game/quest-fields.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
+import { enumMonsterNames as monsterName } from "whetstone/src/names.js";
+import { HOOK, assembleHooks } from "whetstone/src/patches/game-hooks.js";
 import {
   UNKNOWN_SLOTS,
   encodeTables,
@@ -19,7 +19,7 @@ import {
   unknownQuestsObjects,
   type SlotTables,
 } from "../src/patches/unknown-quests.js";
-import { Cpu } from "./mips-cpu.js";
+import { Cpu } from "whetstone/test/mips-cpu.js";
 
 const BLOB = 0x099a1820;
 const HOOKS = 0x08901d38;

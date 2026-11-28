@@ -7,13 +7,13 @@
  * Progress goes to `log`.
  */
 import type { RandomAccessSource } from "mhfu-extract/src/container/source.js";
-import { OverlaySource, PatchableImage, type ImageSegment } from "./disc/image.js";
-import { loadGame } from "./game/load.js";
+import { OverlaySource, PatchableImage, type ImageSegment } from "whetstone/src/disc/image.js";
+import { loadGame } from "whetstone/src/game/load.js";
 import { randomize } from "./randomize.js";
 import { describeSettings, encodeSettings, type Settings } from "./settings.js";
-import { reportLogLine } from "./shuffles/shuffle.js";
+import { reportLogLine } from "whetstone/src/report.js";
 import { formatSpoiler } from "./spoiler.js";
-import { writeEdits } from "./write.js";
+import { writeEdits } from "whetstone/src/write.js";
 
 export type Log = (line: string) => void;
 

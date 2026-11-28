@@ -35,7 +35,7 @@ import {
 } from "mhfu-extract/src/tables/recipes.js";
 import type { NameTable } from "mhfu-extract/src/strings/names.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
-import { isNeverDrawn } from "../game/quest-fields.js";
+import { isNeverDrawn } from "whetstone/src/game/quest-fields.js";
 import {
   BANDS,
   inScope,
@@ -44,11 +44,12 @@ import {
   tierOrder,
   type Scope,
   type Tier,
-} from "../game/tiers.js";
-import type { Edits } from "../edits.js";
+} from "whetstone/src/game/tiers.js";
+import type { Edits } from "whetstone/src/edits.js";
 import type { Rng } from "../rng.js";
-import { itemName, tableName } from "../names.js";
-import { permuteWithinScope, scopedPool, type ShuffleReport } from "./shuffle.js";
+import { itemName, tableName } from "whetstone/src/names.js";
+import { permuteWithinScope, scopedPool } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 const CRAFT_SLOTS = 4;
 
@@ -162,7 +163,7 @@ export function randomizeRecipes(
   options: RecipeOptions,
   rng: { materials: Rng; amounts: Rng },
   edits: Edits,
-): { report: ShuffleReport; assigned: AssignedSlot[] } {
+): { report: Report; assigned: AssignedSlot[] } {
   const notes: string[] = [];
   const items = slots.map((slot) => slot.itemId);
   let assigned: AssignedSlot[] = [];

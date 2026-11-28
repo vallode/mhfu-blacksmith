@@ -10,7 +10,8 @@ import { monsters } from "./monsters";
 import { quests } from "./quests";
 import { setBuilder } from "./set-builder";
 import { items } from "./items";
+import { motionValues } from "./motion-values";
 
-export const en = { common, site, equipment, monsters, quests, setBuilder, items };
+export const en = { common, site, equipment, monsters, quests, setBuilder, items, motionValues };
 
 export type Messages = typeof en;

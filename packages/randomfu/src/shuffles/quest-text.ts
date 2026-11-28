@@ -25,8 +25,8 @@
  * is listed in the spoiler. Pronouns and other words that depend on the
  * monster ("she", "sie") aren't changed.
  */
-import type { LoadedQuest } from "../game/load.js";
-import { boardName, readRecordText, type BoardFile } from "../game/board.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
+import { boardName, readRecordText, type BoardFile } from "whetstone/src/game/board.js";
 import {
   readQuestText,
   SLOT_LANGUAGES,
@@ -34,10 +34,11 @@ import {
   writeQuestText,
   type QuestText,
   type TextBlock,
-} from "../game/quest-text.js";
-import type { Edits } from "../edits.js";
-import { questLabel, type MonsterNames } from "../names.js";
-import { getOrInsert, type ShuffleReport } from "./shuffle.js";
+} from "whetstone/src/game/quest-text.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { questLabel, type MonsterNames } from "whetstone/src/names.js";
+import { getOrInsert } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 const MONSTERS = STRING_FIELDS.indexOf("monsters");
 const GOAL = STRING_FIELDS.indexOf("goal");
@@ -313,9 +314,9 @@ export function renameQuestText(
   monsterName: MonsterNames,
   boards: readonly BoardFile[] = [],
   debug = false,
-): ShuffleReport {
+): Report {
   const { slots, texts } = learnNames(quests);
-  const lines: ShuffleReport["lines"] = [];
+  const lines: Report["lines"] = [];
   let renamed = 0;
   let kept = 0;
   for (const quest of quests) {

@@ -16,9 +16,9 @@
  */
 import { findEquipmentStore, storeEntries } from "mhfu-extract/src/shops/equipment.js";
 import { findStarterGear } from "mhfu-extract/src/shops/starter.js";
-import type { Edits } from "../edits.js";
-import type { LoadedOverlay } from "../game/load.js";
-import type { ShuffleReport, SpoilerLine } from "./shuffle.js";
+import type { Edits } from "whetstone/src/edits.js";
+import type { LoadedOverlay } from "whetstone/src/game/load.js";
+import type { Report, ReportLine } from "whetstone/src/report.js";
 
 export type GearTitle = "Smithy store" | "Starting equipment";
 
@@ -39,7 +39,7 @@ export interface GearList {
   /** IDs must be below this to fit where they're written. */
   maxId: number;
   /** Spoiler lines, as the shuffles add them. */
-  lines: SpoilerLine[];
+  lines: ReportLine[];
   /** Notes the shuffles add to the list's spoiler section. */
   notes: string[];
 }
@@ -137,7 +137,7 @@ const NOTES: Record<GearTitle, { found: string[]; missing: string }> = {
 };
 
 /** The spoiler section for the list titled `title`, or for its absence when `list` is null. */
-export function gearReport(title: GearTitle, list: GearList | null): ShuffleReport {
+export function gearReport(title: GearTitle, list: GearList | null): Report {
   const notes = NOTES[title];
   return {
     title,

@@ -11,10 +11,10 @@
 import { OvlFile } from "mhfu-extract/src/container/ovl.js";
 import { findShops, readTable, type ShopList } from "mhfu-extract/src/shops/shops.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
-import type { Edits } from "../edits.js";
-import type { GameData } from "../game/load.js";
-import { monsterKey, monsterStars, tierOrder, type Tier } from "../game/tiers.js";
-import { monsterNames, tableName } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import type { GameData } from "whetstone/src/game/load.js";
+import { monsterKey, monsterStars, tierOrder, type Tier } from "whetstone/src/game/tiers.js";
+import { monsterNames, tableName } from "whetstone/src/names.js";
 import { collectGatheringSlots } from "../shuffles/gathering.js";
 import { collectQuestRewardSlots } from "../shuffles/quest-rewards.js";
 import {

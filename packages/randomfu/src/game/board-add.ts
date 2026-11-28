@@ -20,7 +20,7 @@ import {
   align,
   readBoardRecords,
   type BoardRecord,
-} from "./board.js";
+} from "whetstone/src/game/board.js";
 
 const STRING_FIELDS = 6;
 

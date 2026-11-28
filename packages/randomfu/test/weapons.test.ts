@@ -20,7 +20,7 @@ import {
   TableResolutionError,
   type TableAddressResolver,
 } from "mhfu-extract/src/tables/resolver.js";
-import { loadGame, type GameData } from "../src/game/load.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import type { Settings } from "../src/settings.js";
 import { settingsWith } from "./settings-helper.js";
@@ -33,7 +33,7 @@ import {
   FIXTURE_WEAPON_CREATE,
   FIXTURE_WEAPONS,
   tempDir,
-} from "./fixtures.js";
+} from "whetstone/test/fixtures.js";
 
 function settings(seed: string, mix: "same-type" | "any-type" = "same-type"): Settings {
   return settingsWith(seed, ["weapons"], { "weapons.mix": mix });

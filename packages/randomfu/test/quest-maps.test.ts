@@ -10,11 +10,11 @@ import {
 } from "mhfu-extract/src/quests/document.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { sampleDoc, spawn } from "mhfu-extract/test/quest-document-sample.js";
-import { enumMonsterNames } from "../src/names.js";
-import { Edits } from "../src/edits.js";
-import type { BoardFile } from "../src/game/board.js";
+import { enumMonsterNames } from "whetstone/src/names.js";
+import { Edits } from "whetstone/src/edits.js";
+import type { BoardFile } from "whetstone/src/game/board.js";
 import { itemSources, lostSources } from "../src/game/first-tiers.js";
-import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
+import { loadGame, type GameData, type LoadedQuest } from "whetstone/src/game/load.js";
 import { largestQuest, rebuildQuest } from "../src/game/rebuild.js";
 import { Rng } from "../src/rng.js";
 import {
@@ -27,8 +27,8 @@ import {
 import { randomize } from "../src/randomize.js";
 import type { RewardList } from "../src/shuffles/monster-rewards.js";
 import { swapSmallSpecies } from "../src/shuffles/small-monsters.js";
-import { writeEdits } from "../src/write.js";
-import { buildFixtureDisc, finish, patchInMemory, tempDir } from "./fixtures.js";
+import { writeEdits } from "whetstone/src/write.js";
+import { buildFixtureDisc, finish, patchInMemory, tempDir } from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 // emIDs: large Rathian 1, Yian Kut-Ku 6, Pink Rathian 37, Diablos 14; small

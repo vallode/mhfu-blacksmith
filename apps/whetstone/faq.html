@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--HEAD-->
+    <title>FAQ — Whetstone</title>
+    <meta
+      name="description"
+      content="Questions about Whetstone, the Monster Hunter Freedom Unite overhaul: which discs work, saves, settings and RandomFU."
+    />
+    <meta property="og:title" content="FAQ — Whetstone" />
+    <meta
+      property="og:description"
+      content="Which discs work, what happens to your save, settings strings, and how Whetstone and RandomFU fit together."
+    />
+  </head>
+  <body>
+    <!--MASTHEAD-->
+
+    <main class="frame page" aria-labelledby="page-title">
+      <div class="page-head">
+        <h2 class="page-title" id="page-title">Questions</h2>
+      </div>
+
+      <section class="faq" aria-labelledby="faq-start">
+        <h3 class="subheading" id="faq-start">Getting started</h3>
+
+        <h4 class="question" id="discs">Which discs work?</h4>
+        <p class="answer">
+          <b>Monster Hunter Freedom Unite</b> (ULES01213), <b>Monster Hunter Portable 2nd G</b>
+          (ULJM05500) and FUC. Every mod works on all of them.
+        </p>
+
+        <h4 class="question" id="upload">Is my disc uploaded anywhere?</h4>
+        <p class="answer">
+          No. Whetstone runs in the page and patches a copy of your disc in your browser. The page
+          talks to no server, and counts nothing.
+        </p>
+
+        <h4 class="question" id="where">What can I play it on?</h4>
+        <p class="answer"><b>PPSSPP</b>.</p>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-play">
+        <h3 class="subheading" id="faq-play">Playing</h3>
+
+        <h4 class="question" id="save">What happens to my save?</h4>
+        <p class="answer">
+          <b>Back up your save file</b>, as with any mod. Your hunter and items are unchanged; the
+          choices you make in game are kept in your save.
+        </p>
+
+        <h4 class="question" id="in-game">Can I change settings once I'm playing?</h4>
+        <p class="answer">
+          Some of them. Press START in a quest: the menu's last entry, <b>Whetstone</b>, opens a
+          framed window in the game's own style for the camera, monster health, damage numbers,
+          attack hitboxes and the wait after a quest. The other mods are written into the disc, so
+          changing those means patching a new one.
+        </p>
+
+        <h4 class="question" id="friends">Can I play with friends?</h4>
+        <p class="answer">
+          Not together: every disc Whetstone makes is offline, so it can't play ad hoc or join a
+          server.
+        </p>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-settings">
+        <h3 class="subheading" id="faq-settings">Settings</h3>
+
+        <h4 class="question" id="share">How do I share my settings?</h4>
+        <p class="answer">
+          The Review step shows a settings string, starting <code>WS</code>, that holds every mod:
+          copy it, or save it as a file. Load either in the Preset step.
+        </p>
+
+        <h4 class="question" id="log">What's the log?</h4>
+        <p class="answer">
+          A list of what went into your disc, mod by mod. It downloads with the disc, and
+          <b>Preview the log first</b> shows it without making one.
+        </p>
+
+        <h4 class="question" id="randomfu">How is it related to RandomFU?</h4>
+        <p class="answer">
+          <a href="https://randomfu.vallode.com">RandomFU</a>, the Monster Hunter Freedom Unite
+          randomizer, is built on Whetstone: it has every mod here, beside its shuffles. Use
+          Whetstone for the mods alone.
+        </p>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-more">
+        <h3 class="subheading" id="faq-more">More</h3>
+
+        <h4 class="question" id="bugs">Something went wrong. Where do I report it?</h4>
+        <p class="answer">
+          Open an issue on
+          <a href="https://github.com/vallode/mhfu-blacksmith/issues">GitHub</a>, with your settings
+          string and which disc you used.
+        </p>
+
+        <h4 class="question" id="source">Is it open source?</h4>
+        <p class="answer">
+          Yes, under the GPL (<a href="LICENSE.txt">licence</a>). It lives alongside the
+          <a href="https://mhfu.vallode.com">MHFU Blacksmith</a> site, in
+          <a href="https://github.com/vallode/mhfu-blacksmith">one repository</a>.
+        </p>
+      </section>
+
+      <div class="page-actions">
+        <a class="button primary" href="build.html">
+          <span class="icon" style="--icon: url(images/max.png)" aria-hidden="true"></span>
+          Patch your disc
+        </a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      Whetstone runs entirely in your browser. Not affiliated with Capcom.
+    </footer>
+  </body>
+</html>

@@ -40,6 +40,7 @@ for (const game of DATA_GAMES) {
     ["Pokke Farm", "farm", optional("farm.json")],
     ["Guild Card awards", "award", optional("awards.json")],
     ["skills", "skill", optional("skills.json")],
+    ["motion values", "motion-values", optional("motion-values.json")],
     ["string tables", "strings", jsonFiles("strings")],
     ["locales", "locale", fs.existsSync(path.join(gameDir, "locales")) ? jsonFiles("locales") : []],
   ];

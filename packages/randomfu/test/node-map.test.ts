@@ -10,17 +10,17 @@ import {
   projectToMap,
   type MapGeometry,
 } from "mhfu-extract/src/tables/map-layout.js";
-import { loadGame, type GameData } from "../src/game/load.js";
-import { questTier } from "../src/game/tiers.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
+import { questTier } from "whetstone/src/game/tiers.js";
 import {
   addNodeMap,
   collectNodePoints,
   drawNodes,
   MARKER_COLORS,
-} from "../src/patches/node-map.js";
-import { Edits } from "../src/edits.js";
+} from "whetstone/src/patches/node-map.js";
+import { Edits } from "whetstone/src/edits.js";
 import { randomize } from "../src/randomize.js";
-import { buildFixtureDisc, tempDir } from "./fixtures.js";
+import { buildFixtureDisc, tempDir } from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function withFixture(run: (game: GameData) => void): Promise<void> {

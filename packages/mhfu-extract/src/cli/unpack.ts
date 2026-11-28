@@ -12,15 +12,17 @@ import { detectRegion, parseSfo, type Region } from "../container/sfo.js";
 import { unpackEboot } from "./eboot.js";
 
 /** Bumped when unpack's file naming changes; see UnpackManifest.fileList. */
-export const FILE_LIST_VERSION = 2;
+export const FILE_LIST_VERSION = 3;
+/** The first version naming each region's files as today: 2 named EU's, 3 US's (as EU's). */
+const NAMED_SINCE: Record<Region, number> = { jp: 1, eu: 2, us: 3 };
 
 /**
  * Throw if `manifest` comes from an unpack whose file names are stale: an EU
- * (or US) disc unpacked before region-aware naming. Anything reading files by
+ * or US disc unpacked before its files were named by its own file list. Anything reading files by
  * path (export-site, extract's quests) would silently read the wrong files.
  */
 export function assertCurrentFileNames(manifest: UnpackManifest, dir: string): void {
-  if (manifest.region !== "jp" && (manifest.fileList ?? 1) < FILE_LIST_VERSION) {
+  if ((manifest.fileList ?? 1) < NAMED_SINCE[manifest.region]) {
     throw new Error(
       `${dir} was unpacked before DATA.BIN files were named per region, so its ${manifest.region.toUpperCase()} file names are wrong ` +
         `(e.g. weapon/we020.pac holds the real we000). Delete it and run unpack again.`,

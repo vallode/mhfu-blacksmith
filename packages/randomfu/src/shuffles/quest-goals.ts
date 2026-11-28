@@ -39,8 +39,8 @@
  * quest board's records keep their own copy of the goals and the goal line,
  * and get the same. The quest's description and title are left as they are.
  */
-import type { BoardFile } from "../game/board.js";
-import { questRecords, readRecordText, recordBase } from "../game/board.js";
+import type { BoardFile } from "whetstone/src/game/board.js";
+import { questRecords, readRecordText, recordBase } from "whetstone/src/game/board.js";
 import {
   CAPTURE_FLAGS,
   GOAL_CAPTURE,
@@ -57,22 +57,22 @@ import {
   writeQuestKind,
   type Goal,
 } from "../game/goals.js";
-import type { LoadedQuest } from "../game/load.js";
-import { QUEST_TYPE } from "../game/quest-fields.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
+import { QUEST_TYPE } from "whetstone/src/game/quest-fields.js";
 import {
   readQuestText,
   STRING_FIELDS,
   writeQuestText,
   type QuestText,
-} from "../game/quest-text.js";
+} from "whetstone/src/game/quest-text.js";
 import { readSpawns } from "../game/spawns.js";
-import { questTier } from "../game/tiers.js";
-import type { Edits } from "../edits.js";
-import { questLabel, type MonsterNames } from "../names.js";
+import { questTier } from "whetstone/src/game/tiers.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { questLabel, type MonsterNames } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
 import { SPECIAL_COUNT } from "./quest-monsters.js";
 import { PROPS } from "./small-monsters.js";
-import type { ShuffleReport } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 export interface GoalOptions {
   /** Goals can ask for a capture. */
@@ -293,10 +293,10 @@ export function randomizeGoals(
   edits: Edits,
   monsterName: MonsterNames,
   boards: readonly BoardFile[] = [],
-): ShuffleReport {
+): Report {
   const capturable = capturableMonsters(disc);
   const plurals = learnPlurals(disc);
-  const lines: ShuffleReport["lines"] = [];
+  const lines: Report["lines"] = [];
   const kinds = new Map<string, number>();
   let eligible = 0;
   let changed = 0;

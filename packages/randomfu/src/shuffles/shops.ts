@@ -41,12 +41,12 @@ import {
   resolveTableOffset,
 } from "mhfu-extract/src/tables/offsets.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
-import type { LoadedOverlay } from "../game/load.js";
-import { GUIDES, isMonsterInfo, isNeverDrawn } from "../game/quest-fields.js";
-import type { Edits } from "../edits.js";
-import { itemName } from "../names.js";
+import type { LoadedOverlay } from "whetstone/src/game/load.js";
+import { GUIDES, isMonsterInfo, isNeverDrawn } from "whetstone/src/game/quest-fields.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { itemName } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 /** Items shops keep selling with `keepEssentials`. */
 export const ESSENTIALS: readonly number[] = [
@@ -377,7 +377,7 @@ export function randomizeShops(
   rng: Rng,
   edits: Edits,
   lobby: LoadedOverlay,
-): { report: ShuffleReport; sold: number[] } {
+): { report: Report; sold: number[] } {
   const included = data.tables.filter((t) => options.special || !t.special);
   // The guides always stay on sale, where they are.
   const pinned = new Set([...GUIDES, ...(options.keepEssentials ? ESSENTIALS : [])]);
@@ -462,7 +462,7 @@ export function randomizeShops(
     high: "shop items and anything first found in Low or High Rank",
     any: "any item in the game",
   };
-  const report: ShuffleReport = {
+  const report: Report = {
     title: "Shop stock",
     notes: [
       `Each item a shop sells is replaced by one drawn from ${poolText[options.pool]}, the same in every stage of that shop.`,
@@ -531,7 +531,7 @@ export function randomizeShopPrices(
   table: ItemTable | null,
   rng: { prices: Rng; stacks: Rng },
   edits: Edits,
-): ShuffleReport | null {
+): Report | null {
   if ((options.priceSpread !== null || options.stackSpread !== null) && !table) {
     throw new Error("Shop prices and carry limits need the decrypted EBOOT");
   }

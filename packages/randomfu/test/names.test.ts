@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { enumMonsterNames, monsterNames } from "../src/names.js";
+import { enumMonsterNames, monsterNames } from "whetstone/src/names.js";
 
 test("monsters take the disc's names where it has them, else monster.enum's", () => {
   const disc: (string | null)[] = Array.from({ length: 90 }, () => null);

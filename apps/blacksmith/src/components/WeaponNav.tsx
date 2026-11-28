@@ -10,7 +10,10 @@ interface WeaponNavProps {
   activeType: WeaponType;
 }
 
-/** The weapon pages' PageBar: the type as title and one tab per weapon type. */
+/**
+ * The weapon pages' PageBar: the type as title and one tab per weapon type.
+ * Phones leave it off and pick the type from the tree card's TypeBar.
+ */
 export default function WeaponNav({ activeType }: WeaponNavProps) {
   const t = useT();
   // Remember the weapon type so the sidebar's "Weapons" entry reopens it.
@@ -20,6 +23,7 @@ export default function WeaponNav({ activeType }: WeaponNavProps) {
 
   return (
     <PageBar
+      hideOnPhone
       title={t.equipment.nav.weaponsTitle(t.common.weaponTypes[activeType])}
       tabs={
         <PageTabs label={t.equipment.nav.weaponTypes}>

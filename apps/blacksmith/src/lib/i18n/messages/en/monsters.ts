@@ -8,6 +8,12 @@ export const monsters = {
     title: (category: string) => `${category} monsters`,
     /** The type tabs' accessible name. */
     types: "Monster types",
+    /** The monster type bar over the list card on phones (TypeBar). */
+    type: "Monster type",
+    previousType: "Previous monster type",
+    nextType: "Next monster type",
+    /** The bar's name button, which opens the grid of every type. */
+    chooseType: (type: string) => `Monster type: ${type}. Choose another`,
   },
   detail: {
     notFound: "Not found.",

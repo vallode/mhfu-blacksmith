@@ -27,9 +27,9 @@
  */
 import { OvlFile } from "mhfu-extract/src/container/ovl.js";
 import { readMessageFile } from "mhfu-extract/src/strings/messages.js";
-import type { Edits } from "../edits.js";
-import type { GameData } from "../game/load.js";
-import type { ShuffleReport } from "../shuffles/shuffle.js";
+import type { Edits } from "whetstone/src/edits.js";
+import type { GameData } from "whetstone/src/game/load.js";
+import type { Report } from "whetstone/src/report.js";
 
 /** The EU message files with the bookshelf text: English, French, German, Italian, Spanish. */
 export const BOOKSHELF_FILES_EU = [4781, 4782, 4783, 4784, 4785];
@@ -227,7 +227,7 @@ export const stringCount = (articles: readonly Article[]) =>
 export interface GuidePlan {
   title: string;
   articles: readonly Article[];
-  fit(bytes: number): { texts: string[]; report: ShuffleReport };
+  fit(bytes: number): { texts: string[]; report: Report };
 }
 
 /** A guide to write: a run of articles, and each one's title then its pages. */

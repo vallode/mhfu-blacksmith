@@ -27,7 +27,13 @@ const GAME_DIR = path.join(DATA, GAME);
 /** Every data file in the repository's data/, as paths inside it. */
 function dataFiles(): string[] {
   const top = ["items.json", "decorations.json", "skills.json", "gathering.json", "shops.json"];
-  top.push("veggie-trades.json", "combinations.json", "farm.json", "awards.json");
+  top.push(
+    "veggie-trades.json",
+    "combinations.json",
+    "farm.json",
+    "awards.json",
+    "motion-values.json",
+  );
   const dirs = ["weapons", "armor", "monsters", "quests"].flatMap((dir) =>
     readdirSync(path.join(GAME_DIR, dir))
       .filter((f) => f.endsWith(".json"))

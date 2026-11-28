@@ -5,6 +5,7 @@ import { ItemAreaMap } from "@/components/AreaMap";
 import {
   DetailBody,
   DetailCard,
+  DetailActions,
   DetailHeader,
   DetailName,
   DetailRule,
@@ -196,12 +197,10 @@ export default function ItemDetailClient({ slug }: Props) {
     <DetailCard>
       <DetailHeader>
         <Icon type={item.type} color={item.color} size="large" alt="" />
-        <DetailName>{game.name("item", item.name)}</DetailName>
-        <WishlistButton
-          gear={{ kind: "item", slug }}
-          name={game.name("item", item.name)}
-          className="ml-[0.4rem]"
-        />
+        <DetailName className="mobile:flex-1">{game.name("item", item.name)}</DetailName>
+        <DetailActions>
+          <WishlistButton gear={{ kind: "item", slug }} name={game.name("item", item.name)} />
+        </DetailActions>
       </DetailHeader>
 
       <DetailBody>

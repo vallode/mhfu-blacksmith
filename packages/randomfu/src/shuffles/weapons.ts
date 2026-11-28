@@ -64,10 +64,11 @@ import {
   type WeaponTypeName,
 } from "mhfu-extract/src/tables/weapons.js";
 import { EQUIPMENT_CATEGORY } from "mhfu-extract/src/shops/equipment.js";
-import type { Edits } from "../edits.js";
-import { tableName } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { tableName } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
+import { permuteWithinGroups } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 import { followGear, type GearList } from "./store.js";
 
 export const WEAPON_MIXES = ["same-type", "any-type"] as const;
@@ -137,7 +138,7 @@ export function shuffleWeapons(
   edits: Edits,
   /** Equipment outside the create entries that follows the shuffle (the store, the starting box). */
   gear: GearList[],
-): ShuffleReport {
+): Report {
   const reader = new BinaryReader(eboot);
   const create = equipmentCreateLayout(reader, resolver);
   const upgrade = equipmentUpgradeLayout(reader, resolver);

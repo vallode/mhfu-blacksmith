@@ -12,7 +12,10 @@ interface ArmorNavProps {
   rank?: ArmorRank;
 }
 
-/** The armor pages' PageBar: one tab per armor slot. */
+/**
+ * The armor pages' PageBar: one tab per armor slot. On a slot's pages phones
+ * leave it off and pick the slot from the tree card's TypeBar.
+ */
 export default function ArmorNav({ activeSlot, rank = "low-rank" }: ArmorNavProps) {
   const t = useT();
   // Remember this page for the main menu's Armor entry.
@@ -22,6 +25,7 @@ export default function ArmorNav({ activeSlot, rank = "low-rank" }: ArmorNavProp
 
   return (
     <PageBar
+      hideOnPhone={!!activeSlot}
       title={
         activeSlot
           ? t.equipment.nav.armorTitle(t.common.armorSlots[activeSlot])

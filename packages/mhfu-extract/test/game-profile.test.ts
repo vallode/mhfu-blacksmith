@@ -13,8 +13,8 @@ test("MHP2G_PROFILE.resolverForRegion('jp') matches tableOffset() exactly for ev
   assert.equal(resolver, MHP2G_JP_RESOLVER);
 });
 
-test("MHP2G_PROFILE.resolverForRegion('us') is null — no US disc available to derive addresses/signatures from", () => {
-  assert.equal(MHP2G_PROFILE.resolverForRegion("us"), null);
+test("MHP2G_PROFILE.resolverForRegion('us') is EU's signature resolver: the same tables, found by their bytes", () => {
+  assert.equal(MHP2G_PROFILE.resolverForRegion("us"), MHP2G_EU_RESOLVER);
 });
 
 test("MHP2G_PROFILE declares every JP table in its tables list, with entry shape for the ones we know", () => {

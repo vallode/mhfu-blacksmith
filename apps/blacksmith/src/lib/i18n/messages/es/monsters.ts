@@ -4,6 +4,10 @@ export const monsters: Messages["monsters"] = {
   nav: {
     title: (category: string) => `Monstruos: ${category}`,
     types: "Tipos de monstruo",
+    type: "Tipo de monstruo",
+    previousType: "Tipo de monstruo anterior",
+    nextType: "Siguiente tipo de monstruo",
+    chooseType: (type: string) => `Tipo de monstruo: ${type}. Elegir otro`,
   },
   detail: {
     notFound: "No encontrado.",

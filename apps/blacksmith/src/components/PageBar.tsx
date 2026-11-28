@@ -16,6 +16,11 @@ interface PageBarProps {
   tabs?: React.ReactNode;
   /** Page actions at the right-hand end. */
   actions?: React.ReactNode;
+  /**
+   * Leaves the bar and its divider off on phones, where the page shows its
+   * own navigation instead (the weapon tree's type bar). The heading stays.
+   */
+  hideOnPhone?: boolean;
 }
 
 /**
@@ -23,18 +28,23 @@ interface PageBarProps {
  * actions at the right-hand end, then the tiled divider. App-wide navigation
  * (home, other sections, search) lives in the sidebar, not here.
  */
-export default function PageBar({ title, tabs, actions }: PageBarProps) {
+export default function PageBar({ title, tabs, actions, hideOnPhone }: PageBarProps) {
   return (
     <>
-      <header className="flex min-h-[52px] w-full flex-none items-center gap-x-2">
+      <h1 className="sr-only">{title}</h1>
+
+      <header
+        className={cn(
+          "flex min-h-[52px] w-full flex-none items-center gap-x-2",
+          hideOnPhone && "mobile:hidden",
+        )}
+      >
         {tabs}
 
         {actions && <div className="ml-auto flex flex-none items-center">{actions}</div>}
-
-        <h1 className="sr-only">{title}</h1>
       </header>
 
-      <BorderRule />
+      <BorderRule className={cn(hideOnPhone && "mobile:hidden")} />
     </>
   );
 }

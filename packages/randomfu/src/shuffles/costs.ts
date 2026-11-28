@@ -29,10 +29,10 @@ import {
   resolveTableOffset,
 } from "mhfu-extract/src/tables/offsets.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
-import type { Edits } from "../edits.js";
-import { itemName, tableName } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { itemName, tableName } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 export interface PriceSlot {
   name: string;
@@ -96,7 +96,7 @@ export function randomizeCosts(
   spread: number,
   rng: Rng,
   edits: Edits,
-): ShuffleReport {
+): Report {
   const buf = edits.eboot();
   const lines = slots.map((slot) => {
     const factor = 1 - spread + rng.float() * 2 * spread;

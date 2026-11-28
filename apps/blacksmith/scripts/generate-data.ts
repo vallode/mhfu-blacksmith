@@ -17,6 +17,9 @@
  *   - veggie-trades.json         (the Veggie Elder's trades, see src/lib/veggie-trades.ts)
  *   - item-uses.json             (the gear whose recipes take each item, see src/lib/item-uses.ts)
  *   - awards.json                (the Guild Card awards' names and descriptions, by index)
+ *   - motion-values.json         (each weapon type's moves and motion values, see src/lib/motion-values.ts)
+ *   - shots.json                 (the bowgun shots' values, see src/lib/shots.ts)
+ *   - hitzones.json              (every monster's cut, impact, shot and element hitzones, for the damage calculator's picker)
  *   - data-manifest.json         ({ files, version })
  *   - locale-<code>.json         (game text in other languages, from data/mhfu/locales;
  *                                 fetched only in that language, so outside the
@@ -94,6 +97,9 @@ import {
 } from "../src/lib/item-places";
 import { buildArmorTree, buildDecorationTree, buildWeaponTree } from "../src/lib/trees";
 import { buildAreaMaps } from "../src/lib/area-maps";
+import type { MotionValuesFile } from "../src/lib/motion-values";
+import type { ShotsFile } from "../src/lib/shots";
+import { packHitzoneMonster, partHitzones, type HitzoneMonster } from "../src/lib/hitzone-pick";
 import { flinchThreshold } from "../src/lib/monster-breaks";
 import { canCapture } from "../src/lib/monster-drops";
 import type { HitboxCapsule } from "../src/lib/models";
@@ -538,7 +544,9 @@ const quests = fs
   .flatMap((f) => readData<{ quests: QuestRecord[] }>(dataDir, GAME, "quests", f).quests);
 const sizeRanges = monsterSizeRanges(quests);
 
-// Monsters
+// Monsters, and their hitzones on their own for the damage
+// calculator (so it needn't load and decode every monster bundle).
+const hitzoneMonsters: HitzoneMonster[] = [];
 for (const category of MONSTER_CATEGORIES) {
   const p = path.join(GAME_DATA_DIR, "monsters", `${category}.json`);
   if (!fs.existsSync(p)) continue;
@@ -548,7 +556,16 @@ for (const category of MONSTER_CATEGORIES) {
   );
   totalItems += items.length;
   push(`monster-${category}.json`, { kind: "monster", category, items });
+  for (const m of data.monsters) {
+    const parts = Object.entries(m.hitzones ?? {}).map(([part, v]) => ({
+      part,
+      ...partHitzones(v as Record<string, string>),
+    }));
+    if (parts.length)
+      hitzoneMonsters.push({ category, slug: slugify(m.name), name: m.name, parts });
+  }
 }
+push("hitzones.json", hitzoneMonsters.map(packHitzoneMonster));
 
 // Quests: one bundle for every hub. Items are in-game IDs (names and icons
 // come from items.json), monsters link to their pages and get their HP in
@@ -611,6 +628,14 @@ for (const category of MONSTER_CATEGORIES) {
   const awardText: AwardText[] = [];
   for (const a of awards.awards) awardText[a.id] = { name: a.name, description: a.description };
   push("awards.json", awardText);
+
+  // Each weapon type's moves and their motion values, and the bowgun shots'.
+  const motionValues = readData<MotionValuesFile>(dataDir, GAME, "motion-values.json");
+  push("motion-values.json", motionValues.weapons);
+  push("shots.json", {
+    bowgun_shot_multiplier: motionValues.bowgun_shot_multiplier,
+    shots: motionValues.shots,
+  } satisfies ShotsFile);
 }
 
 // Decorations

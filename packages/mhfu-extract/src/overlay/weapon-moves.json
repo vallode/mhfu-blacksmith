@@ -1,0 +1,120 @@
+{
+  "_comment": [
+    "Each weapon type's attacks, as rows of game_task's motion value table (tables/motion-values.ts). The disc names none of them: the moves and their names are hand-made.",
+    "Rows were tied to weapons by the code that spawns them (each weapon class's action dispatcher) and to moves by that code, the animation each plays, and community move lists (GameFAQs' MHFU weapon guide by Joritoes). The values come from the disc.",
+    "A hit's count is how many times the move deals it. A demon move is one Dual Blades only do in Demon Mode.",
+    "cutWeight replaces the weapon's cut hitzone weight for the move (tables/motion-values.ts, readHitzoneWeights): the Great Sword's charge code sets 110, 120 and 130 for its three levels (EU game_task 0x09BA3100). fullSpeed marks the Lance's charge, whose hits take the charge's own weights once it speeds up.",
+    "Spawned rows left out: 109 (Gunlance, 30, an alternative to the Rushing Thrust), 99 (Hunting Horn, 27, the draw attack's swing), 75 and 71 (Long Sword, the Thrust and Rising Slash again), 84 and 82 and 89 (Hunting Horn, the Jab, Swing and first recital note again), 5 and 96/97 (common motions), 29 (the Bowguns' melee bash: their calculator shows their shots, tables/shots.ts). No code spawns rows 19, 43, 55, 56, 62, 68, 78 or 98."
+  ],
+  "great-sword": [
+    { "move": "vertical-slash", "hits": [{ "row": 3 }] },
+    { "move": "side-slash", "hits": [{ "row": 2 }] },
+    { "move": "upswing", "hits": [{ "row": 1 }] },
+    { "move": "charge-1", "cutWeight": 110, "hits": [{ "row": 91 }] },
+    { "move": "charge-2", "cutWeight": 120, "hits": [{ "row": 92 }] },
+    { "move": "charge-3", "cutWeight": 130, "hits": [{ "row": 93 }] },
+    { "move": "kick", "hits": [{ "row": 4 }] }
+  ],
+  "long-sword": [
+    { "move": "step-slash", "hits": [{ "row": 57 }] },
+    { "move": "vertical-slash", "hits": [{ "row": 58 }] },
+    { "move": "thrust", "hits": [{ "row": 74 }] },
+    { "move": "rising-slash", "hits": [{ "row": 72 }] },
+    { "move": "fade-slash", "hits": [{ "row": 59 }] },
+    { "move": "spirit-slash-1", "hits": [{ "row": 69 }] },
+    { "move": "spirit-slash-2", "hits": [{ "row": 73 }] },
+    { "move": "spirit-slash-3", "hits": [{ "row": 76 }, { "row": 77 }, { "row": 80 }] },
+    { "move": "spirit-slash-empty", "hits": [{ "row": 79 }] }
+  ],
+  "sword-and-shield": [
+    { "move": "jumping-slash", "hits": [{ "row": 22 }] },
+    { "move": "slash", "hits": [{ "row": 21 }] },
+    { "move": "horizontal-slash", "hits": [{ "row": 25 }] },
+    { "move": "shield-bash-combo", "hits": [{ "row": 26 }, { "row": 27 }] },
+    { "move": "roundslash", "hits": [{ "row": 23 }] },
+    { "move": "rising-slash", "hits": [{ "row": 30 }] },
+    { "move": "guard-slash", "hits": [{ "row": 24 }] },
+    { "move": "guard-rising-slash", "hits": [{ "row": 100 }] }
+  ],
+  "dual-blades": [
+    { "move": "combo-1", "hits": [{ "row": 37 }] },
+    { "move": "combo-2", "hits": [{ "row": 38 }, { "row": 39 }] },
+    { "move": "combo-3", "hits": [{ "row": 40 }, { "row": 41 }, { "row": 42 }] },
+    { "move": "roundslash", "hits": [{ "row": 45 }, { "row": 46 }, { "row": 47 }] },
+    {
+      "move": "lunging-slash",
+      "hits": [
+        { "row": 101 },
+        { "row": 102 },
+        { "row": 103 },
+        { "row": 104 },
+        { "row": 105 },
+        { "row": 106 }
+      ]
+    },
+    { "move": "rising-slash", "hits": [{ "row": 44 }] },
+    {
+      "move": "demon-roundslash",
+      "demon": true,
+      "hits": [
+        { "row": 45 },
+        { "row": 46 },
+        { "row": 47 },
+        { "row": 52 },
+        { "row": 53 },
+        { "row": 54 }
+      ]
+    },
+    {
+      "move": "demon-dance",
+      "demon": true,
+      "hits": [{ "row": 48 }, { "row": 49, "count": 8 }, { "row": 107 }, { "row": 108 }]
+    }
+  ],
+  "hammer": [
+    { "move": "draw-attack", "hits": [{ "row": 34 }] },
+    { "move": "overhead-smash-1", "hits": [{ "row": 7 }] },
+    { "move": "overhead-smash-2", "hits": [{ "row": 33 }] },
+    { "move": "upswing", "hits": [{ "row": 32 }] },
+    { "move": "side-smash", "hits": [{ "row": 6 }] },
+    { "move": "charge-1", "hits": [{ "row": 8 }] },
+    { "move": "charge-2", "hits": [{ "row": 8 }, { "row": 9 }] },
+    { "move": "superpound", "hits": [{ "row": 10 }, { "row": 11 }] },
+    {
+      "move": "spinning-bludgeon",
+      "hits": [{ "row": 12 }, { "row": 13 }, { "row": 14 }, { "row": 15 }]
+    }
+  ],
+  "hunting-horn": [
+    { "move": "swing", "hits": [{ "row": 81 }] },
+    { "move": "jab", "hits": [{ "row": 83 }] },
+    { "move": "overhead-smash", "hits": [{ "row": 85 }, { "row": 86 }] },
+    { "move": "recital-start", "hits": [{ "row": 94 }] },
+    { "move": "recital-note-1", "hits": [{ "row": 88 }] },
+    { "move": "recital-note-2", "hits": [{ "row": 87 }] },
+    { "move": "recital-note-3", "hits": [{ "row": 90 }] },
+    { "move": "recital-end", "hits": [{ "row": 95 }] }
+  ],
+  "lance": [
+    { "move": "draw-attack", "hits": [{ "row": 20 }] },
+    { "move": "forward-thrust", "hits": [{ "row": 16 }] },
+    { "move": "forward-thrust-3", "hits": [{ "row": 36 }] },
+    { "move": "upward-thrust", "hits": [{ "row": 28 }] },
+    { "move": "upward-thrust-3", "hits": [{ "row": 35 }] },
+    { "move": "guard-thrust", "hits": [{ "row": 18 }] },
+    { "move": "charge", "fullSpeed": true, "hits": [{ "row": 17 }] },
+    { "move": "charge-finisher", "hits": [{ "row": 31 }] }
+  ],
+  "gunlance": [
+    { "move": "draw-attack", "hits": [{ "row": 65 }] },
+    { "move": "forward-thrust", "hits": [{ "row": 63 }] },
+    { "move": "forward-thrust-3", "hits": [{ "row": 66 }] },
+    { "move": "upward-thrust", "hits": [{ "row": 64 }] },
+    { "move": "guard-thrust", "hits": [{ "row": 67 }] },
+    { "move": "rushing-thrust", "hits": [{ "row": 70 }] }
+  ],
+  "bow": [
+    { "move": "melee-1", "hits": [{ "row": 60 }] },
+    { "move": "melee-2", "hits": [{ "row": 61 }] }
+  ]
+}

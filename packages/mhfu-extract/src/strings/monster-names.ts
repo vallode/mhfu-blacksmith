@@ -1,5 +1,6 @@
 /**
- * Monster names from the disc (EU).
+ * Monster names from the disc (EU; the US disc has the same tables 0x120
+ * bytes later).
  *
  * The EBOOT has two `u16[90]` tables by emID of string indexes into English
  * message file 19's table 0. `0x089AC65C` gives each monster its species'
@@ -24,6 +25,8 @@ export const MONSTER_NAME_FILE = 19;
 export const MONSTER_NAME_TABLE = 0;
 /** `u16` by emID: the name's index in that table; 0 = none. */
 export const MONSTER_NAME_INDEXES = 0x089ac710;
+/** The same table on the US disc. */
+export const MONSTER_NAME_INDEXES_US = 0x089ac830;
 const MONSTER_COUNT = 90;
 /** The game's placeholders for emIDs that aren't monsters (0; 10 and 74). */
 const PLACEHOLDERS = new Set(["NO DATA", "dummy"]);
@@ -45,10 +48,11 @@ export function readMonsterNames(
   eboot: BinaryReader,
   baseAddress: number,
   table: MessageTable,
+  indexes = MONSTER_NAME_INDEXES,
 ): (string | null)[] {
-  const offset = MONSTER_NAME_INDEXES - baseAddress;
+  const offset = indexes - baseAddress;
   if (offset < 0 || offset + MONSTER_COUNT * 2 > eboot.length)
-    throw new MonsterNameError(`0x${MONSTER_NAME_INDEXES.toString(16)} is outside the EBOOT`);
+    throw new MonsterNameError(`0x${indexes.toString(16)} is outside the EBOOT`);
   return Array.from({ length: MONSTER_COUNT }, (_, emId) => {
     const index = eboot.u16(offset + emId * 2);
     if (index === 0) return null;
@@ -93,7 +97,7 @@ export function siteMonsterNames(
 }
 
 /**
- * The site's monster names from an EU disc: its EBOOT's name table read
+ * The site's monster names from an EU or US disc: its EBOOT's name table read
  * against message file 19's tables (`readMessageFile`). Null if there is
  * no name table to read; throws `MonsterNameError` if the EBOOT's table
  * doesn't read or the overlay no longer fits it. `extract` and randomfu
@@ -103,8 +107,9 @@ export function discMonsterNames(
   eboot: BinaryReader,
   messages: readonly MessageTable[] | null,
   entries: readonly MonsterNameOverlay[] = MONSTER_NAME_OVERLAY,
+  indexes = MONSTER_NAME_INDEXES,
 ): (string | null)[] | null {
   const table = messages?.[MONSTER_NAME_TABLE];
   if (!table) return null;
-  return siteMonsterNames(readMonsterNames(eboot, JP_BASE_ADDRESS, table), entries);
+  return siteMonsterNames(readMonsterNames(eboot, JP_BASE_ADDRESS, table, indexes), entries);
 }

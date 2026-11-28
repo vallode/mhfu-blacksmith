@@ -47,3 +47,8 @@ test("EU quest discovery finds all 551 quests at their shifted indices", () => {
   assert.deepEqual(quests[0], { index: 4791, path: "mission_jpn/m00001.mib" });
   assert.equal(quests.at(-1)!.path, "mission_jpn/m50003.mib");
 });
+
+test("US indices are EU's: the US disc's table of contents is EU's, entry for entry", () => {
+  assert.deepEqual([...loadFileList("us")], [...loadFileList("eu")]);
+  assert.notDeepEqual([...loadFileList("us")], [...loadFileList("jp")]);
+});

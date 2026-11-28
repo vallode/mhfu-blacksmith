@@ -3,10 +3,10 @@ import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
-import { loadGame } from "../src/game/load.js";
+import { loadGame } from "whetstone/src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { collectCarveCounts } from "../src/shuffles/carve-counts.js";
-import { buildFixtureDisc, patchInMemory, tempDir } from "./fixtures.js";
+import { buildFixtureDisc, patchInMemory, tempDir } from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function run(changes: Record<string, string | number>) {

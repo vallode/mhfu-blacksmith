@@ -49,10 +49,11 @@ import {
   type WeaponTypeName,
 } from "mhfu-extract/src/tables/weapons.js";
 import { blademasterAffinity } from "mhfu-extract/src/emit/weapons.js";
-import type { Edits } from "../edits.js";
-import { tableName } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import { tableName } from "whetstone/src/names.js";
 import type { Rng } from "../rng.js";
-import { RarityBounds, clamp, type ShuffleReport, type SpoilerLine } from "./shuffle.js";
+import { RarityBounds, clamp } from "./shuffle.js";
+import type { Report, ReportLine } from "whetstone/src/report.js";
 import { TYPE_NAMES } from "./weapons.js";
 
 /** A stat field in a weapon record: its offset in the record and how it's stored. */
@@ -343,7 +344,7 @@ export function randomizeWeaponStats(
   spreads: WeaponStatSpreads,
   rngs: { attack: Rng; affinity: Rng; element: Rng; elementKind: Rng; slots: Rng },
   edits: Edits,
-): ShuffleReport {
+): Report {
   const buf = edits.eboot();
   const range = STAT_RANGES[spreads.range];
   const typeBounds = (value: (w: WeaponStats) => number | null) =>
@@ -363,7 +364,7 @@ export function randomizeWeaponStats(
   const shown = (w: WeaponStats, attack: number) =>
     w.classMod > 0 ? Math.round((attack * w.classMod) / 100) : attack;
   const factor = (spread: number, rng: Rng) => 1 - spread + rng.float() * 2 * spread;
-  const changed: { w: WeaponStats; line: SpoilerLine }[] = [];
+  const changed: { w: WeaponStats; line: ReportLine }[] = [];
 
   // Every weapon draws from each stream whether or not the value can move,
   // so a weapon's roll depends only on the seed and its place in the table.

@@ -1,0 +1,20 @@
+{
+  "name": "whetstone",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Overhaul for Monster Hunter Freedom Unite / Portable 2nd G: camera, HUD and quality-of-life mods patched into the user's own disc image. randomfu builds on it.",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "test": "tsx --test test/**/*.test.ts",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "mhfu-extract": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "tsx": "^4.22.4",
+    "typescript": "^5"
+  }
+}

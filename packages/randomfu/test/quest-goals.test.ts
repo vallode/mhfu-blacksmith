@@ -7,8 +7,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
-import { Edits } from "../src/edits.js";
-import { readBoardRecords, recordBase, readRecordText, type BoardFile } from "../src/game/board.js";
+import { Edits } from "whetstone/src/edits.js";
+import {
+  readBoardRecords,
+  recordBase,
+  readRecordText,
+  type BoardFile,
+} from "whetstone/src/game/board.js";
 import {
   CAPTURE_FLAGS,
   GOAL_CAPTURE,
@@ -21,9 +26,9 @@ import {
   TYPE_SLAY,
   type Goal,
 } from "../src/game/goals.js";
-import type { GameData, LoadedQuest } from "../src/game/load.js";
-import { QUEST_TYPE } from "../src/game/quest-fields.js";
-import { readQuestText } from "../src/game/quest-text.js";
+import type { GameData, LoadedQuest } from "whetstone/src/game/load.js";
+import { QUEST_TYPE } from "whetstone/src/game/quest-fields.js";
+import { readQuestText } from "whetstone/src/game/quest-text.js";
 import { readSpawns } from "../src/game/spawns.js";
 import { namedMonsters } from "../src/shuffles/quest-maps.js";
 import { parseQuest as parseDoc } from "mhfu-extract/src/quests/document.js";
@@ -35,7 +40,7 @@ import {
   type GoalOptions,
 } from "../src/shuffles/quest-goals.js";
 import { Rng } from "../src/rng.js";
-import { buildBoardFile, buildQuestPayload, type FixtureQuest } from "./fixtures.js";
+import { buildBoardFile, buildQuestPayload, type FixtureQuest } from "whetstone/test/fixtures.js";
 
 const RATHIAN = 1;
 const KUT_KU = 6;

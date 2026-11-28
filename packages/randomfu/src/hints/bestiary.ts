@@ -19,10 +19,10 @@ import {
 } from "mhfu-extract/src/monsters/hitzones.js";
 import { MONSTER_OVERLAY } from "mhfu-extract/src/overlay/monsters.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
-import type { Edits } from "../edits.js";
-import type { GameData } from "../game/load.js";
-import type { Tier } from "../game/tiers.js";
-import { monsterNames, type MonsterNames } from "../names.js";
+import type { Edits } from "whetstone/src/edits.js";
+import type { GameData } from "whetstone/src/game/load.js";
+import type { Tier } from "whetstone/src/game/tiers.js";
+import { monsterNames, type MonsterNames } from "whetstone/src/names.js";
 import {
   checkPage,
   fitLine,

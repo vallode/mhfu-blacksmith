@@ -14,20 +14,20 @@
  */
 import { classifyRewardTable } from "mhfu-extract/src/emit/quests.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
-import { isNeverDrawn } from "../game/quest-fields.js";
-import type { LoadedQuest } from "../game/load.js";
-import { questTier, tierKey, type Scope, type Tier } from "../game/tiers.js";
-import type { Edits } from "../edits.js";
+import { isNeverDrawn } from "whetstone/src/game/quest-fields.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
+import { questTier, tierKey, type Scope, type Tier } from "whetstone/src/game/tiers.js";
+import type { Edits } from "whetstone/src/edits.js";
 import type { Rng } from "../rng.js";
-import { itemName, questLabel } from "../names.js";
+import { itemName, questLabel } from "whetstone/src/names.js";
 import {
   permuteWithinScope,
   reconcile,
   rollChances,
   scopedPool,
   type ChanceRange,
-  type ShuffleReport,
 } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 const REWARD_ITEM_SIZE = 6;
 const REWARD_TABLE_SIZE = 8;
@@ -127,7 +127,7 @@ export function shuffleQuestRewards(
   scope: Scope,
   rng: Rng,
   edits: Edits,
-): { report: ShuffleReport; after: { itemId: number; tier: Tier }[] } {
+): { report: Report; after: { itemId: number; tier: Tier }[] } {
   const next = permuteWithinScope(
     slots,
     (s) => s.tier,
@@ -216,7 +216,7 @@ export function randomizeQuestRewards(
   context: RewardContext,
   rng: Rng,
   edits: Edits,
-): { report: ShuffleReport; after: { itemId: number; tier: Tier }[] } {
+): { report: Report; after: { itemId: number; tier: Tier }[] } {
   const lists = listsOf(slots);
   // Sizes the game is known to handle: the longest list of each kind.
   const largest: Record<RewardKind, number> = { main: 1, extra: 1, conditional: 1 };
@@ -412,7 +412,7 @@ export function randomizeRewardDraws(
   spread: number,
   rng: Rng,
   edits: Edits,
-): ShuffleReport {
+): Report {
   const taken = quests
     .filter((q) => questTier(q.parsed))
     .map((quest) => ({ quest, tables: mainTables(edits.questNow(quest)) }));

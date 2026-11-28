@@ -58,6 +58,7 @@ export type FileKind =
   | { kind: "combinations" }
   | { kind: "farm" }
   | { kind: "awards" }
+  | { kind: "motion-values" }
   /** Not a file: built from the weapon and armor records (`equipmentIds`). */
   | { kind: "equipment-ids" };
 
@@ -81,6 +82,7 @@ export function fileKind(rel: string): FileKind | null {
     "combinations.json": { kind: "combinations" },
     "farm.json": { kind: "farm" },
     "awards.json": { kind: "awards" },
+    "motion-values.json": { kind: "motion-values" },
     "equipment-ids.json": { kind: "equipment-ids" },
   };
   return top[p] ?? null;
@@ -359,6 +361,9 @@ export function hydrate(kind: FileKind, raw: Doc, s: HydrateStrings): Doc {
           description: en.name("award_description", a.id),
         })),
       };
+    // Rows and numbers, and moves the site names itself: nothing to name.
+    case "motion-values":
+      return raw;
     case "equipment-ids":
       throw new Error("equipment-ids.json is built from the records; use equipmentIds()");
   }
@@ -771,6 +776,8 @@ export function dehydrate(
         },
         strings,
       };
+    case "motion-values":
+      return { raw: named, strings };
     case "equipment-ids":
       throw new Error("equipment-ids.json is built from the records; it can't be written");
   }

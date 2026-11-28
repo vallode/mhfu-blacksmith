@@ -268,10 +268,10 @@ describe("deepseekTranslator", () => {
 describe("modelFor", () => {
   it("uses DeepSeek Flash by default, Claude when named, keywords without a key", () => {
     const key = { DISCORD_PUBLIC_KEY: "" };
-    assert.equal(modelFor(index, { ...key, OPENCODE_API_KEY: "k" }).how, "Read by DeepSeek");
-    assert.equal(modelFor(index, key).how, "Matched by name");
+    assert.equal(modelFor(index, { ...key, OPENCODE_API_KEY: "k" }).reader, "deepseek");
+    assert.equal(modelFor(index, key).reader, "keywords");
     const claude = { ...key, NL_MODEL: "claude-haiku-5-5", OPENCODE_API_KEY: "k" };
-    assert.equal(modelFor(index, claude).how, "Matched by name");
-    assert.equal(modelFor(index, { ...claude, ANTHROPIC_API_KEY: "a" }).how, "Read by Claude");
+    assert.equal(modelFor(index, claude).reader, "keywords");
+    assert.equal(modelFor(index, { ...claude, ANTHROPIC_API_KEY: "a" }).reader, "claude");
   });
 });

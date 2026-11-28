@@ -5,7 +5,7 @@ import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { OvlFile } from "mhfu-extract/src/container/ovl.js";
 import { readMessageFile } from "mhfu-extract/src/strings/messages.js";
-import { enumMonsterNames } from "../src/names.js";
+import { enumMonsterNames } from "whetstone/src/names.js";
 import {
   addAppearances,
   BESTIARY_NAME,
@@ -26,7 +26,7 @@ import {
   unlockArticle,
   width,
 } from "../src/hints/bookshelf.js";
-import { loadGame } from "../src/game/load.js";
+import { loadGame } from "whetstone/src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import {
   buildFixtureDisc,
@@ -36,7 +36,7 @@ import {
   fixtureHp,
   messageFile,
   tempDir,
-} from "./fixtures.js";
+} from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 /** Text without its colour codes. */

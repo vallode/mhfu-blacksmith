@@ -145,6 +145,40 @@ importers:
       randomfu:
         specifier: workspace:*
         version: link:../../packages/randomfu
+      whetstone:
+        specifier: workspace:*
+        version: link:../../packages/whetstone
+    devDependencies:
+      '@types/node':
+        specifier: ^22
+        version: 22.19.19
+      buffer:
+        specifier: 6.0.3
+        version: 6.0.3
+      esbuild:
+        specifier: 0.25.10
+        version: 0.25.10
+      postcss:
+        specifier: ^8.5.25
+        version: 8.5.25
+      tsx:
+        specifier: ^4.22.4
+        version: 4.22.4
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  apps/whetstone:
+    dependencies:
+      game-data:
+        specifier: workspace:*
+        version: link:../../packages/game-data
+      mhfu-extract:
+        specifier: workspace:*
+        version: link:../../packages/mhfu-extract
+      whetstone:
+        specifier: workspace:*
+        version: link:../../packages/whetstone
     devDependencies:
       '@types/node':
         specifier: ^22
@@ -201,6 +235,25 @@ importers:
         version: 5.9.3
 
   packages/randomfu:
+    dependencies:
+      mhfu-extract:
+        specifier: workspace:*
+        version: link:../mhfu-extract
+      whetstone:
+        specifier: workspace:*
+        version: link:../whetstone
+    devDependencies:
+      '@types/node':
+        specifier: ^22
+        version: 22.19.19
+      tsx:
+        specifier: ^4.22.4
+        version: 4.22.4
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  packages/whetstone:
     dependencies:
       mhfu-extract:
         specifier: workspace:*

@@ -10,7 +10,7 @@ import { collectGatheringSlots } from "../shuffles/gathering.js";
 import { collectMonsterRewardSlots, type RewardList } from "../shuffles/monster-rewards.js";
 import { collectQuestRewardSlots } from "../shuffles/quest-rewards.js";
 import { getOrInsert } from "../shuffles/shuffle.js";
-import type { LoadedQuest } from "./load.js";
+import type { LoadedQuest } from "whetstone/src/game/load.js";
 import {
   coarsen,
   itemTiers,
@@ -22,7 +22,7 @@ import {
   type Band,
   type Tier,
   type TierMode,
-} from "./tiers.js";
+} from "whetstone/src/game/tiers.js";
 
 export interface ItemSources {
   /** Each item's earliest tier: quest rewards, monster rewards and gathering. */

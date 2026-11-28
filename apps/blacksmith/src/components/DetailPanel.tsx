@@ -41,19 +41,49 @@ export function DetailCard({
   );
 }
 
-/** Icon + name (+ sharpness) row at the top of the panel. */
+/**
+ * Icon + name (+ sharpness) row at the top of the panel. In a phone's sheet
+ * it starts a little lower (--sheet-close-room, set by SplitPage), clear of
+ * the sheet's × in the card's corner.
+ */
 export function DetailHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative flex min-h-[38px] flex-none flex-row flex-wrap items-center text-white no-underline">
+    <div className="relative flex min-h-[38px] flex-none flex-row flex-wrap items-center text-white no-underline mobile:mt-[var(--sheet-close-room,0px)]">
+      {children}
+    </div>
+  );
+}
+
+/**
+ * The header's buttons (3D model, wishlist), after the name. In a phone's
+ * sheet they float up beside the sheet's ×, in the room DetailHeader leaves
+ * above itself for it (bottom-full), centred on the × and just left of it
+ * (SplitPage's × reaches 3.7rem into the card's content), so the name keeps
+ * the whole row.
+ */
+export function DetailActions({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="ml-[0.4rem] flex flex-none items-center mobile:in-data-sheet:absolute mobile:in-data-sheet:right-[3.7rem] mobile:in-data-sheet:bottom-full mobile:in-data-sheet:mb-[0.4rem]">
       {children}
     </div>
   );
 }
 
 /** The item's name in the header; wraps (mid-word if it must) when it doesn't fit on a phone. */
-export function DetailName({ children, id }: { children: React.ReactNode; id?: string }) {
+export function DetailName({
+  children,
+  id,
+  className,
+}: {
+  children: React.ReactNode;
+  id?: string;
+  className?: string;
+}) {
   return (
-    <p id={id} className="min-w-0 wrap-anywhere whitespace-normal mobile:leading-[1.25]">
+    <p
+      id={id}
+      className={cn("min-w-0 wrap-anywhere whitespace-normal mobile:leading-[1.25]", className)}
+    >
       {children}
     </p>
   );
@@ -78,7 +108,11 @@ export function NoDataCard({ children }: { children?: React.ReactNode }) {
 
 /** Everything below the header. */
 export function DetailBody({ children }: { children: React.ReactNode }) {
-  return <div className="mt-[2rem] flex flex-none flex-col gap-[1.3rem] text-stat">{children}</div>;
+  return (
+    <div className="mt-[2rem] flex flex-none flex-col gap-[1.3rem] text-stat mobile:mt-[1.4rem]">
+      {children}
+    </div>
+  );
 }
 
 /** Divider between sections of the panel. */
@@ -94,7 +128,8 @@ export function StatList({ children, armor }: { children: React.ReactNode; armor
   return (
     <div
       className={cn(
-        "flex flex-col gap-y-[13px]",
+        // Tighter on phones, where the sheet has the height of a phone screen.
+        "flex flex-col gap-y-[13px] mobile:gap-y-[0.9rem]",
         "[&>div]:flex [&>div]:gap-[0.5rem] [&>div]:leading-none",
         armor &&
           "grid grid-cols-[repeat(auto-fill,minmax(calc(17*var(--cell)),1fr))] gap-x-[1.6rem]",
@@ -291,7 +326,9 @@ export function RequirementsPage({
 /**
  * The requirements pages (materials, ammo, melodies, …) as tabs, like the
  * monster pages. Pages that don't apply are passed as `false` and dropped;
- * a single page is shown without a tab row.
+ * a single page is shown without a tab row. On phones the tabs are one row
+ * that stays at the top of the sheet as it scrolls, so the other pages are a
+ * tap away from anywhere in the list.
  */
 export function RequirementTabs({
   tabs,
@@ -305,7 +342,7 @@ export function RequirementTabs({
   if (pages.length === 1) return <>{pages[0]!.content}</>;
   return (
     <div className="min-w-0 flex-1">
-      <Tabs tabs={pages} label={label} />
+      <Tabs tabs={pages} label={label} oneRow sticky />
     </div>
   );
 }

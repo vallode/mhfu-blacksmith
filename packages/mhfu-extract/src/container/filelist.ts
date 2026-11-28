@@ -4,7 +4,7 @@
  *
  * filelist.csv indexes the JP disc's DATA.BIN. The EU disc's TOC has extra
  * entries (localized text etc.) that shift later files, so EU indices go
- * through `filelist-eu.json`. Other regions fall back to the JP indices.
+ * through `filelist-eu.json`. The US disc's TOC is EU's, entry for entry.
  */
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -29,10 +29,10 @@ interface RegionAlignment {
   segments: { eu: number; jp: number; count: number }[];
 }
 
-/** Map a region's DATA.BIN indices to vendored paths. JP (and regions without an alignment yet) use filelist.csv as-is. */
+/** Map a region's DATA.BIN indices to vendored paths. JP uses filelist.csv as-is; US and EU go through the EU alignment. */
 export function loadFileList(region: Region = "jp"): Map<number, string> {
-  if (region !== "eu") return loadJpFileList();
-  const cached = regionCache.get(region);
+  if (region === "jp") return loadJpFileList();
+  const cached = regionCache.get("eu");
   if (cached) return cached;
   const jp = loadJpFileList();
   const alignment = euAlignment as RegionAlignment;
@@ -43,7 +43,7 @@ export function loadFileList(region: Region = "jp"): Map<number, string> {
       if (filePath !== undefined) map.set(segment.eu + i, filePath);
     }
   }
-  regionCache.set(region, map);
+  regionCache.set("eu", map);
   return map;
 }
 

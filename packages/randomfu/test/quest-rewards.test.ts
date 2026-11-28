@@ -3,17 +3,17 @@ import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
-import { loadGame, type GameData } from "../src/game/load.js";
-import { isNeverDrawn } from "../src/game/quest-fields.js";
-import { tierKey, type Tier } from "../src/game/tiers.js";
+import { loadGame, type GameData } from "whetstone/src/game/load.js";
+import { isNeverDrawn } from "whetstone/src/game/quest-fields.js";
+import { tierKey, type Tier } from "whetstone/src/game/tiers.js";
 import { randomize } from "../src/randomize.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { Rng } from "../src/rng.js";
 import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
 import { collectQuestRewardSlots } from "../src/shuffles/quest-rewards.js";
 import { permuteWithinScope, reconcile } from "../src/shuffles/shuffle.js";
-import { writeEdits } from "../src/write.js";
-import { buildFixtureDisc, finish, patchInMemory, tempDir } from "./fixtures.js";
+import { writeEdits } from "whetstone/src/write.js";
+import { buildFixtureDisc, finish, patchInMemory, tempDir } from "whetstone/test/fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function load(file: string): Promise<{ game: GameData; close: () => void }> {

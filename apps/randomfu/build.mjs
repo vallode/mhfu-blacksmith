@@ -35,7 +35,7 @@ import {
   MARKER_COLORS,
   MARKER_SIZE,
   ON_ART_ALPHA,
-} from "randomfu/src/patches/node-map.js";
+} from "whetstone/src/patches/node-map.js";
 import { nodeMapPoints } from "./node-map-preview.ts";
 
 const web = path.dirname(fileURLToPath(import.meta.url));

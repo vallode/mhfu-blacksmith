@@ -140,13 +140,10 @@ export const MHP2G_PROFILE: GameProfile = {
       case "jp":
         return MHP2G_JP_RESOLVER;
       case "eu":
-        return MHP2G_EU_RESOLVER;
       case "us":
-        // No US disc available to derive addresses or signatures from yet —
-        // see README's "Region support" section. Returning null (rather
-        // than an empty SignatureResolver) makes "not supported at all"
-        // distinguishable from "supported, but only for some tables".
-        return null;
+        // EU's signatures are raw gameplay bytes, so they find the same
+        // tables on the US disc (each 0x120 bytes later than EU's).
+        return MHP2G_EU_RESOLVER;
     }
   },
 };

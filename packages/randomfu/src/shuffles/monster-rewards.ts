@@ -32,7 +32,7 @@ import {
   type RewardRank,
   type TablePair,
 } from "mhfu-extract/src/monsters/rewards.js";
-import { isNeverDrawn } from "../game/quest-fields.js";
+import { isNeverDrawn } from "whetstone/src/game/quest-fields.js";
 import {
   monsterKey,
   rewardRankBand,
@@ -40,19 +40,19 @@ import {
   type Band,
   type Scope,
   type Tier,
-} from "../game/tiers.js";
-import type { LoadedOverlay } from "../game/load.js";
-import type { Edits } from "../edits.js";
+} from "whetstone/src/game/tiers.js";
+import type { LoadedOverlay } from "whetstone/src/game/load.js";
+import type { Edits } from "whetstone/src/edits.js";
 import type { Rng } from "../rng.js";
-import { itemName, type MonsterNames } from "../names.js";
+import { itemName, type MonsterNames } from "whetstone/src/names.js";
 import {
   permuteWithinScope,
   reconcile,
   rollChances,
   scopedPool,
   type ChanceRange,
-  type ShuffleReport,
 } from "./shuffle.js";
+import type { Report } from "whetstone/src/report.js";
 
 const NONE = 0xffff;
 
@@ -266,7 +266,7 @@ export function shuffleMonsterRewards(
   gameSub: LoadedOverlay,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
-): { report: ShuffleReport; after: { itemId: number; tier: Tier }[] } {
+): { report: Report; after: { itemId: number; tier: Tier }[] } {
   // Carves have no amount, so they only trade with carves.
   const next = permuteWithinScope(
     slots,
@@ -349,7 +349,7 @@ export function randomizeMonsterRewards(
   gameSub: LoadedOverlay,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
-): { report: ShuffleReport; after: { itemId: number; tier: Tier }[] } {
+): { report: Report; after: { itemId: number; tier: Tier }[] } {
   const poolFor = scopedPool(
     context.allItems.filter((i) => !isNeverDrawn(i)),
     context.tiers,
