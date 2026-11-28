@@ -118,15 +118,13 @@ test("randomize leaves a disc's maps alone when its map tables don't check out",
   });
 });
 
-test("a disc with no known map tables is left alone and says why", async () => {
+test("a disc whose map tables aren't at its region's addresses is left alone and says why", async () => {
   await withFixture((game) => {
+    // The JP fixture read as a US disc: every region has map tables, these don't check out.
     const us: GameData = { ...game, region: "us" };
     const edits = new Edits(us);
     const report = addNodeMap(us, edits);
-    assert.match(
-      report.notes[0]!,
-      /Not written: the map tables are only known on the EU and JP discs/,
-    );
+    assert.match(report.notes[0]!, /Not written: the map tables aren't at their US addresses/);
     assert.equal(edits.files.size, 0);
   });
 });
