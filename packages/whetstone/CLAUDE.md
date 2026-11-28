@@ -26,5 +26,4 @@ its own `~C` colour codes. These aren't the bookshelf rules in
   `~B` button icons; the plain one doesn't.
 - Text the blob writes is English on every disc.
 - Keep the blob's `rf_` names and `rf.h`: they're from before the split.
-  The disc file is `WHTSTN.BIN`, Whetstone shortened the way the game
-  shortens names ("Wht Fatalis", "DetachedStnTail") to fit ISO 9660's 8.3.
+  The disc file is `WHTSTN.BIN`.

@@ -4,7 +4,13 @@ import { test } from "node:test";
 import type { Edits } from "../src/edits.js";
 import { decodeObjects, linkBlob } from "../src/blob/link.js";
 import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
-import { HOOK, assemblePickHook, writePickHook, type PickSite } from "../src/patches/game-hooks.js";
+import {
+  HOOK,
+  assembleHookGate,
+  assembleHooks,
+  writePickHook,
+  type PickSite,
+} from "../src/patches/game-hooks.js";
 import { SAVE_DATA } from "../src/patches/guild-card-space.js";
 import type { Segment } from "../src/patches/mips.js";
 import {
@@ -138,7 +144,7 @@ test("Poogie's luck says why when a signature is missing or ambiguous", () => {
   assert.match(String(preparePoogieLuck(noRewards, editsFor(noRewards).edits)), /doesn't match/);
 });
 
-test("hook 5 points the picker's first two words at its stub", () => {
+test("hook 5 points the picker's first two words at its entry", () => {
   const eboot = Buffer.alloc(16, 0xaa);
   const segment: Segment = { offset: 4, vaddr: 0x08804400, size: 12 };
   writePickHook(eboot, segment, { picker: 0x08804400, prologue: [0, 0] }, 0x08901d00);
@@ -150,7 +156,7 @@ test("hook 5 points the picker's first two words at its stub", () => {
 
 /*
  * The blob in the test CPU: the game's picker (a stand-in that returns
- * GAME_PICK), its first words pointed at hook 5's stub, the RNG answered from
+ * GAME_PICK), its first words pointed at hook 5's entry in the gate, the RNG answered from
  * `rolls`, and the save struct with its flags and Whetstone's save data.
  */
 const BLOB = 0x099a1820;
@@ -158,7 +164,9 @@ const SAVE_STRUCT = 0x09999c60;
 const SAVE_VAR = 0x089cc438;
 const RNG_STATE = 0x08a70000;
 const GAME_PICKER = 0x08804400;
-const PICK_STUB = 0x08901d00;
+const GATE = 0x08901d00;
+/** The hook code, which the code loader links into the blob. */
+const HOOK_CODE = 0x09110000;
 const WALK = 0x08805000;
 const LIST = 0x09100000;
 const LIST_HEADER = 0x09100400;
@@ -191,10 +199,14 @@ function machine(options: { objects?: "runtime" | "poogie" | "none"; testRolls?:
     prologue: [GAME_PICKER_CODE[0]!, GAME_PICKER_CODE[1]!],
   };
   cpu.load(GAME_PICKER, GAME_PICKER_CODE);
+  const hooks = assembleHooks(HOOK_CODE, BLOB, [], undefined, undefined, [], [], site);
+  const table = HOOK_CODE + hooks.code.length * 4;
+  cpu.load(HOOK_CODE, [...hooks.code, ...hooks.sites]);
+  const gate = assembleHookGate(GATE, BLOB, table, [], undefined, undefined, [], [], site);
+  cpu.load(GATE, gate.code);
   const patched = Buffer.from(Uint32Array.from(GAME_PICKER_CODE).buffer);
-  writePickHook(patched, { offset: 0, vaddr: GAME_PICKER, size: patched.length }, site, PICK_STUB);
+  writePickHook(patched, { offset: 0, vaddr: GAME_PICKER, size: patched.length }, site, gate.pick!);
   cpu.write(GAME_PICKER, patched);
-  cpu.load(PICK_STUB, assemblePickHook(PICK_STUB, BLOB, site));
   cpu.setU32(SAVE_VAR, SAVE_STRUCT);
   cpu.setU32(RNG_CONTEXT, RNG_STATE);
 

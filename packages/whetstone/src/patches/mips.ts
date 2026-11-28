@@ -157,6 +157,14 @@ export class Assembler {
       (_pc, base) => ((0x09 << 26) | (reg << 21) | (reg << 16) | (address(base) & 0xffff)) >>> 0,
     );
   }
+  /** A label's address as a data word; needs `link(base)`. */
+  wordOf(label: string): void {
+    this.items.push((_pc, base) => {
+      const target = this.labels.get(label);
+      if (target === undefined) throw new Error(`No label ${label}`);
+      return (base + target * 4) >>> 0;
+    });
+  }
   /** How many words so far. */
   get length(): number {
     return this.items.length;

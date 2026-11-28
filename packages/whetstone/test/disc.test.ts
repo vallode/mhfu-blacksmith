@@ -117,6 +117,26 @@ test("writeFile names a new file as the directory's other files are named", () =
   source.close();
 });
 
+test("writeFile names a root file like PARAM.SFO when the root has no file", () => {
+  const iso = buildIso([{ path: "PSP_GAME/PARAM.SFO", data: Buffer.alloc(100, 1) }], {
+    umd: true,
+  });
+  const image = patchInMemory(iso);
+  image.writeFile("/WHTSTN.BIN", Buffer.alloc(10, 6));
+  const file = writeTemp("umd-root.iso", finish(image, iso));
+
+  const { iso: reader, source } = openDiscImage(file);
+  assert.ok(reader.readFile("/WHTSTN.BIN").equals(Buffer.alloc(10, 6)));
+  const root = source.read(source.read(16 * SECTOR + 156 + 2, 4).readUInt32LE(0) * SECTOR, SECTOR);
+  const records: Buffer[] = [];
+  for (let at = 0; root[at]! > 0; at += root[at]!) records.push(root.subarray(at, at + root[at]!));
+  const r = records.find((x) => x.toString("latin1", 33, 33 + x[32]!) === "WHTSTN.BIN")!;
+  assert.ok(r, "named WHTSTN.BIN, without a version");
+  assert.equal(r[0], 33 + 10 + 1 + UMD_FILE_XA.length);
+  assert.ok(r.subarray(r[0]! - UMD_FILE_XA.length).equals(UMD_FILE_XA));
+  source.close();
+});
+
 test("DataBin reads files lazily and re-encrypts them to the same bytes", () => {
   const files = new Map<number, Buffer>([
     [0, Buffer.from("first")],

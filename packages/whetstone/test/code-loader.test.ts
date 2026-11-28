@@ -33,7 +33,6 @@ import {
   PAD_READ_SIGNATURE,
   assembleHookGate,
   assembleHooks,
-  assemblePickHook,
   findPadSites,
   type MenuSites,
 } from "../src/patches/game-hooks.js";
@@ -440,6 +439,23 @@ test("addCodeLoader with only the pad hook and the picker: Poogie's luck needs n
   const eboot = g.edits.eboot();
   assert.equal(eboot.readUInt32LE(at(0xe00)), 0x08000000 | (pickAt >>> 2), "j stub");
   assert.equal(eboot.readUInt32LE(at(0xe04)), 0, "nop");
+  // The jump lands in the cave's gate, in the EBOOT, not in the blob's room;
+  // the gate's target for it is the three fallback words, back to the picker.
+  const blobAddress = Number(/ at (0x[0-9a-f]+), loader/.exec(report.summary ?? "")?.[1]);
+  assert.ok(pickAt >= g.VADDR && pickAt < g.VADDR + eboot.length - g.OFFSET, "in the EBOOT");
+  assert.ok(pickAt < blobAddress, "not in the blob");
+  const words = Array.from({ length: (eboot.length - g.OFFSET) / 4 }, (_, k) =>
+    eboot.readUInt32LE(g.OFFSET + k * 4),
+  );
+  const fallback = words.findIndex(
+    (w, k) =>
+      k * 4 + g.VADDR > pickAt &&
+      w === 0x27bdffe0 &&
+      words[k + 1] === (0x08000000 | ((picker + 8) >>> 2)) &&
+      words[k + 2] === 0xafbf001c,
+  );
+  assert.notEqual(fallback, -1, "the gate's fallback runs the replaced words");
+  assert.ok(words.includes(g.VADDR + fallback * 4), "the gate's target for the picker");
   const ctrlCall = eboot.readUInt32LE(at(0xd80 + 0x14));
   assert.equal(ctrlCall >>> 26, 0x03);
   assert.notEqual(
@@ -610,7 +626,6 @@ test("the cave holds the loader with every hook and the START menus", () => {
     ...{ saveStruct: 0x09999c60, blob: 0x099a1820, room: 0x60000, build: 1 },
     ...{ memcpy: 0x08800000, memset: 0x08800010, imports },
   }).code.length;
-  const pick = assemblePickHook(0, 0x099a1820, { picker: 0x08872654, prologue: [0, 0] }).length;
   const call = (target: number) => ({ call: 0x08810000, target });
   const menus: MenuSites[] = [MENU.quest, MENU.village].map((menu) => ({
     ...{ menu, entry: 11, placeholder: 0x78, label: call(0x09a63198) },
@@ -621,7 +636,14 @@ test("the cave holds the loader with every hook and the START menus", () => {
     target: 0x08840000 + hook * 0x100,
   }));
   // The hook code is in the blob; the cave has its gate, three words a call.
-  const gate = (o: { card?: boolean; load?: boolean; hit?: boolean; menus?: boolean }) =>
+  const pick = { picker: 0x08872654, prologue: [0x27bdffe0, 0xafbf001c] } as const;
+  const gate = (o: {
+    card?: boolean;
+    load?: boolean;
+    hit?: boolean;
+    menus?: boolean;
+    pick?: boolean;
+  }) =>
     assembleHookGate(
       0,
       0x099a1820,
@@ -632,9 +654,15 @@ test("the cave holds the loader with every hook and the START menus", () => {
       o.menus ? menus : [],
       // Send All to Item Box's label call and the target camera's.
       o.menus ? [call(0x08810100), call(0x08810200)] : [],
+      o.pick ? pick : undefined,
     ).code.length;
-  const all = loader + pick + gate({ card: true, load: true, hit: true, menus: true });
+  const all = loader + gate({ card: true, load: true, hit: true, menus: true, pick: true });
   // Room to spare for more hooks: randomize leaves the menus out when they don't fit.
   assert.ok(all + 40 <= free, `every option on: ${all} of ${free} words`);
   assert.equal(gate({}), 18 + 3 * base.length, "the gate, and three words a call");
+  assert.equal(
+    gate({ pick: true }) - gate({}),
+    6,
+    "the picker: an entry, a target, its two words and a jump",
+  );
 });

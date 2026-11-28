@@ -17,6 +17,8 @@ const PVD_VOLUME_SIZE = 80;
 /** Directory record fields, both-endian u32: extent LBA and data length. */
 const RECORD_LBA = 2;
 const RECORD_SIZE = 10;
+/** A file whose record shape `writeFile` copies into a directory with none. */
+const TEMPLATE_PATH = "/PSP_GAME/PARAM.SFO";
 
 /** One piece of a finished image: a byte range of the original, or new bytes. */
 export type ImageSegment =
@@ -238,8 +240,9 @@ export class PatchableImage {
     if (records.some((r) => nameOf(r).replace(/;1$/, "").toUpperCase() === name)) {
       return this.replaceFile(path, data);
     }
-    const fileRecord = records.find((r) => (r[25]! & 0x02) === 0);
-    if (!fileRecord) throw new Error(`${dirPath} has no file to copy a record from`);
+    // A directory with no file of its own (a root holding only PSP_GAME)
+    // borrows PARAM.SFO's, which every UMD game has.
+    const fileRecord = records.find((r) => (r[25]! & 0x02) === 0) ?? this.recordOf(TEMPLATE_PATH);
 
     // The data goes at the end of the image; nothing is written until the
     // directory is known to have room for its record.
@@ -284,6 +287,13 @@ export class PatchableImage {
     this.setVolumeSize((end + padded.length) / SECTOR_SIZE);
     this.file.write(dir.lba * SECTOR_SIZE, packed);
     return { path, moved: true, lba, size: data.length };
+  }
+
+  /** A file's directory record, as it is on the image. */
+  private recordOf(path: string): Buffer {
+    const entry = this.stat(path);
+    const length = this.file.read(entry.recordOffset, 1)[0]!;
+    return Buffer.from(this.file.read(entry.recordOffset, length));
   }
 
   private rootDirectory(): DirEntry {

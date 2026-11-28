@@ -1304,7 +1304,7 @@ randomfu's Hunter's Pact and Unknown Monster quests, which it hands to
 - **Loading.** Loading a save or making a new character overwrites the
   slots. The EBOOT's two save-load copies and the new character's card
   clear call a loader in the cave instead; it makes the game's call, then
-  reads `/PSP_GAME/USRDIR/WHTSTN.BIN` over the slots with `sceIoOpen` and
+  reads `/WHTSTN.BIN` (at the disc's root) over the slots with `sceIoOpen` and
   `sceIoRead`, checks its header, syncs the caches and calls the blob's
   `rf_init`.
 - **Game hooks.** Game calls go through a gate in the cave to stubs in the
@@ -1327,8 +1327,7 @@ randomfu's Hunter's Pact and Unknown Monster quests, which it hands to
   patch a disc. randomfu's own C (`packages/randomfu/blob/`) includes
   these headers and is built by its own `blob/build.mjs` the same way. The
   blob keeps its `rf_` names and `rf.h` from before the split. The file is
-  `WHTSTN.BIN`: Whetstone shortened the way the game shortens names, to
-  fit ISO 9660's 8.3.
+  `WHTSTN.BIN`.
 
 Not yet tried: receiving Guild Cards with the cap, and a save from a
 patched game on an unpatched one (its card slots 4–96 hold the blob).
