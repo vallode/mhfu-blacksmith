@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Motion values file",
-  "description": "Each weapon type's attacks and their hits' motion values: the percentage of the weapon's raw attack a hit deals before sharpness and hitzones. The values are game_task's Blademaster attack table (packages/mhfu-extract/src/tables/motion-values.ts); which rows make up which move is hand-made (src/overlay/weapon-moves.json).",
+  "description": "Each weapon type's attacks and their hits' motion values: the percentage of the weapon's raw attack a hit deals before sharpness and hitzones. The values are game_task's Blademaster attack table (packages/mhfu-extract/src/tables/motion-values.ts); which rows make up which move is hand-made (src/overlay/weapon-moves.json). The bowgun shots are game_task's shot tables (src/tables/shots.ts).",
   "type": "object",
-  "required": ["demon_mode_multiplier", "weapons"],
+  "required": ["demon_mode_multiplier", "weapons", "bowgun_shot_multiplier", "shots"],
   "additionalProperties": false,
   "properties": {
     "demon_mode_multiplier": {
@@ -17,9 +17,86 @@
         "type": "array",
         "items": { "$ref": "#/definitions/move" }
       }
+    },
+    "bowgun_shot_multiplier": {
+      "type": "number",
+      "description": "A bowgun's shots deal this times their physical damage"
+    },
+    "shots": {
+      "type": "array",
+      "description": "The bowgun ammo that deals damage through the shot hitzone, by shot ID, with what Crag and Clust S burst into",
+      "items": { "$ref": "#/definitions/shot" }
     }
   },
   "definitions": {
+    "shot": {
+      "type": "object",
+      "required": ["shot", "ammo", "level", "motion_value"],
+      "additionalProperties": false,
+      "properties": {
+        "shot": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 31,
+          "description": "The game's shot ID: the ammo's bit in the weapons' ammo lists"
+        },
+        "ammo": { "type": "string", "description": "The ammo's name, as the weapons' ammo lists give it" },
+        "level": { "type": "integer", "minimum": 1 },
+        "motion_value": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255,
+          "description": "The shot's power before true attack / 100 scales it"
+        },
+        "hits": {
+          "type": "integer",
+          "minimum": 2,
+          "description": "How many times it hits: a pierce shot's hits, Pellet S's pellets"
+        },
+        "element": {
+          "type": "object",
+          "required": ["type", "value"],
+          "additionalProperties": false,
+          "properties": {
+            "type": { "enum": ["fire", "water", "thunder", "ice", "dragon"] },
+            "value": { "type": "integer", "minimum": 1, "maximum": 255 },
+            "attack_scaled": {
+              "const": true,
+              "description": "True attack / 100 scales the value, as it does the motion value"
+            }
+          }
+        },
+        "explosion": {
+          "type": "object",
+          "description": "What it bursts into after it hits (Crag S's explosion, Clust S's bomblets): fixed damage whatever the shot hitzone, without the bowgun multiplier, plus its element on that element's hitzone",
+          "required": ["power"],
+          "additionalProperties": false,
+          "properties": {
+            "power": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 255,
+              "description": "Its damage, or with attack_scaled a motion value that true attack / 100 scales"
+            },
+            "attack_scaled": { "const": true },
+            "hits": {
+              "type": "integer",
+              "minimum": 2,
+              "description": "How many there are: Clust S's bomblets"
+            },
+            "element": {
+              "type": "object",
+              "required": ["type", "value"],
+              "additionalProperties": false,
+              "properties": {
+                "type": { "enum": ["fire", "water", "thunder", "ice", "dragon"] },
+                "value": { "type": "integer", "minimum": 1, "maximum": 255 }
+              }
+            }
+          }
+        }
+      }
+    },
     "move": {
       "type": "object",
       "required": ["move", "hitzone_weights", "hits"],

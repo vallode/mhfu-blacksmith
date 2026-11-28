@@ -18,6 +18,7 @@ import { loadFishingTables, readFishTables, type FishTables } from "../quests/fi
 import { emitShops } from "../emit/shops.js";
 import { emitVeggieTrades } from "../emit/veggie-trades.js";
 import { emitMotionValues } from "../emit/motion-values.js";
+import { emitShots } from "../emit/shots.js";
 import { weaponMoves } from "../overlay/weapon-moves.js";
 import { emitFarm } from "../emit/farm.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
@@ -79,6 +80,7 @@ import {
   type HitzoneWeightTables,
   type MotionTable,
 } from "../tables/motion-values.js";
+import { readShots, type ShotTables } from "../tables/shots.js";
 import { FARM_STAGE_ID, readFarmTables, readFishCaster } from "../tables/farm.js";
 import {
   verifyResolverCoverage,
@@ -479,17 +481,26 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   }
 
   // A disc whose code doesn't match skips the file; a bad overlay row fails the run.
-  let motionTables: [MotionTable, HitzoneWeightTables] | null = null;
+  let motionTables: [MotionTable, HitzoneWeightTables, ShotTables] | null = null;
   try {
-    motionTables = [readMotionTable(overlays.gameTask), readHitzoneWeights(overlays.gameTask)];
+    motionTables = [
+      readMotionTable(overlays.gameTask),
+      readHitzoneWeights(overlays.gameTask),
+      readShots(overlays.gameTask),
+    ];
   } catch (error) {
     if (!(error instanceof MotionTableError)) throw error;
     console.warn(`Warning: ${error.message}; skipping motion-values.json.`);
   }
   if (motionTables) {
-    const [motions, weights] = motionTables;
+    const [motions, weights, shots] = motionTables;
+    if (shots.explosionError)
+      console.warn(`Warning: ${shots.explosionError}; leaving out Crag and Clust S's shots.`);
     console.log(`Motion values at 0x${motions.offset.toString(16)}: ${motions.rows.length} rows.`);
-    output["motion-values.json"] = emitMotionValues(motions, weaponMoves(), weights);
+    output["motion-values.json"] = {
+      ...emitMotionValues(motions, weaponMoves(), weights),
+      ...emitShots(shots.shots),
+    };
   }
 
   // Only the EU disc's farm tables are known; elsewhere there's no farm.json.

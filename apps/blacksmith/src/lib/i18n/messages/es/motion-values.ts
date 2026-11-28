@@ -26,6 +26,17 @@ export const motionValues: Messages["motionValues"] = {
     pickMonster: "Elige un monstruo para ver sus puntos débiles.",
     loadError: "No se pudieron cargar los monstruos.",
   },
+  shots: {
+    ammo: "Munición",
+    level: (level: string) => `Nv${level}`,
+    hits: (mv: string, hits: string) => `${mv} × ${hits}`,
+    explosion: (shot: string, explosion: string) => `${shot} + ${explosion}`,
+    fixedExplosion: (shot: string, damage: string) => `${shot} + ${damage} fijo`,
+    fixedExplosionHint:
+      "La explosión causa daño fijo, sea cual sea el ataque o el punto débil de disparo.",
+    elementHitzone: "Punto débil elemental",
+    loadError: "No se pudieron cargar los disparos.",
+  },
   moves: {
     "great-sword": {
       "vertical-slash": "Tajo vertical",
@@ -109,12 +120,6 @@ export const motionValues: Messages["motionValues"] = {
     bow: {
       "melee-1": "Ataque cuerpo a cuerpo 1",
       "melee-2": "Ataque cuerpo a cuerpo 2",
-    },
-    "light-bowgun": {
-      melee: "Ataque cuerpo a cuerpo",
-    },
-    "heavy-bowgun": {
-      melee: "Ataque cuerpo a cuerpo",
     },
   },
 };

@@ -18,7 +18,8 @@
  *   - item-uses.json             (the gear whose recipes take each item, see src/lib/item-uses.ts)
  *   - awards.json                (the Guild Card awards' names and descriptions, by index)
  *   - motion-values.json         (each weapon type's moves and motion values, see src/lib/motion-values.ts)
- *   - hitzones.json              (every monster's cut and impact hitzones, for the damage calculator's picker)
+ *   - shots.json                 (the bowgun shots' values, see src/lib/shots.ts)
+ *   - hitzones.json              (every monster's cut, impact, shot and element hitzones, for the damage calculator's picker)
  *   - data-manifest.json         ({ files, version })
  *   - locale-<code>.json         (game text in other languages, from data/locales;
  *                                 fetched only in that language, so outside the
@@ -97,7 +98,8 @@ import {
 import { buildArmorTree, buildDecorationTree, buildWeaponTree } from "../src/lib/trees";
 import { buildAreaMaps } from "../src/lib/area-maps";
 import type { MotionValuesFile } from "../src/lib/motion-values";
-import { partHitzones, type HitzoneMonster } from "../src/lib/hitzone-pick";
+import type { ShotsFile } from "../src/lib/shots";
+import { packHitzoneMonster, partHitzones, type HitzoneMonster } from "../src/lib/hitzone-pick";
 import { flinchThreshold } from "../src/lib/monster-breaks";
 import { canCapture } from "../src/lib/monster-drops";
 import type { HitboxCapsule } from "../src/lib/models";
@@ -542,7 +544,7 @@ const quests = fs
   .flatMap((f) => readData<{ quests: QuestRecord[] }>(dataDir, "quests", f).quests);
 const sizeRanges = monsterSizeRanges(quests);
 
-// Monsters, and their cut and impact hitzones on their own for the damage
+// Monsters, and their hitzones on their own for the damage
 // calculator (so it needn't load and decode every monster bundle).
 const hitzoneMonsters: HitzoneMonster[] = [];
 for (const category of MONSTER_CATEGORIES) {
@@ -563,7 +565,7 @@ for (const category of MONSTER_CATEGORIES) {
       hitzoneMonsters.push({ category, slug: slugify(m.name), name: m.name, parts });
   }
 }
-push("hitzones.json", hitzoneMonsters);
+push("hitzones.json", hitzoneMonsters.map(packHitzoneMonster));
 
 // Quests: one bundle for every hub. Items are in-game IDs (names and icons
 // come from items.json), monsters link to their pages and get their HP in
@@ -627,8 +629,13 @@ push("hitzones.json", hitzoneMonsters);
   for (const a of awards.awards) awardText[a.id] = { name: a.name, description: a.description };
   push("awards.json", awardText);
 
-  // Each weapon type's moves and their motion values.
-  push("motion-values.json", readData<MotionValuesFile>(dataDir, "motion-values.json").weapons);
+  // Each weapon type's moves and their motion values, and the bowgun shots'.
+  const motionValues = readData<MotionValuesFile>(dataDir, "motion-values.json");
+  push("motion-values.json", motionValues.weapons);
+  push("shots.json", {
+    bowgun_shot_multiplier: motionValues.bowgun_shot_multiplier,
+    shots: motionValues.shots,
+  } satisfies ShotsFile);
 }
 
 // Decorations

@@ -1040,36 +1040,247 @@
           }
         ]
       }
-    ],
-    "light-bowgun": [
-      {
-        "move": "melee",
-        "hitzone_weights": {
-          "cut": 100,
-          "impact": 100
-        },
-        "hits": [
-          {
-            "row": 29,
-            "motion_value": 2
-          }
-        ]
-      }
-    ],
-    "heavy-bowgun": [
-      {
-        "move": "melee",
-        "hitzone_weights": {
-          "cut": 100,
-          "impact": 100
-        },
-        "hits": [
-          {
-            "row": 29,
-            "motion_value": 2
-          }
-        ]
-      }
     ]
-  }
+  },
+  "bowgun_shot_multiplier": 1.15,
+  "shots": [
+    {
+      "shot": 0,
+      "ammo": "Normal S",
+      "level": 1,
+      "motion_value": 6
+    },
+    {
+      "shot": 1,
+      "ammo": "Normal S",
+      "level": 2,
+      "motion_value": 12
+    },
+    {
+      "shot": 2,
+      "ammo": "Normal S",
+      "level": 3,
+      "motion_value": 10
+    },
+    {
+      "shot": 3,
+      "ammo": "Pierce S",
+      "level": 1,
+      "motion_value": 10,
+      "hits": 3
+    },
+    {
+      "shot": 4,
+      "ammo": "Pierce S",
+      "level": 2,
+      "motion_value": 9,
+      "hits": 4
+    },
+    {
+      "shot": 5,
+      "ammo": "Pierce S",
+      "level": 3,
+      "motion_value": 8,
+      "hits": 5
+    },
+    {
+      "shot": 6,
+      "ammo": "Pellet S",
+      "level": 1,
+      "motion_value": 5,
+      "hits": 3,
+      "element": {
+        "type": "water",
+        "value": 5
+      }
+    },
+    {
+      "shot": 7,
+      "ammo": "Pellet S",
+      "level": 2,
+      "motion_value": 5,
+      "hits": 4,
+      "element": {
+        "type": "water",
+        "value": 4
+      }
+    },
+    {
+      "shot": 8,
+      "ammo": "Pellet S",
+      "level": 3,
+      "motion_value": 5,
+      "hits": 5,
+      "element": {
+        "type": "water",
+        "value": 4
+      }
+    },
+    {
+      "shot": 9,
+      "ammo": "Crag S",
+      "level": 1,
+      "motion_value": 3,
+      "explosion": {
+        "power": 20,
+        "element": {
+          "type": "fire",
+          "value": 30
+        }
+      }
+    },
+    {
+      "shot": 10,
+      "ammo": "Crag S",
+      "level": 2,
+      "motion_value": 3,
+      "explosion": {
+        "power": 30,
+        "element": {
+          "type": "fire",
+          "value": 45
+        }
+      }
+    },
+    {
+      "shot": 11,
+      "ammo": "Crag S",
+      "level": 3,
+      "motion_value": 3,
+      "explosion": {
+        "power": 40,
+        "element": {
+          "type": "fire",
+          "value": 60
+        }
+      }
+    },
+    {
+      "shot": 12,
+      "ammo": "Clust S",
+      "level": 1,
+      "motion_value": 6,
+      "explosion": {
+        "power": 32,
+        "attack_scaled": true,
+        "hits": 3,
+        "element": {
+          "type": "fire",
+          "value": 2
+        }
+      }
+    },
+    {
+      "shot": 13,
+      "ammo": "Clust S",
+      "level": 2,
+      "motion_value": 6,
+      "explosion": {
+        "power": 32,
+        "attack_scaled": true,
+        "hits": 4,
+        "element": {
+          "type": "fire",
+          "value": 2
+        }
+      }
+    },
+    {
+      "shot": 14,
+      "ammo": "Clust S",
+      "level": 3,
+      "motion_value": 6,
+      "explosion": {
+        "power": 32,
+        "attack_scaled": true,
+        "hits": 5,
+        "element": {
+          "type": "fire",
+          "value": 2
+        }
+      }
+    },
+    {
+      "shot": 15,
+      "ammo": "Flame S",
+      "level": 1,
+      "motion_value": 7,
+      "element": {
+        "type": "fire",
+        "value": 45,
+        "attack_scaled": true
+      }
+    },
+    {
+      "shot": 16,
+      "ammo": "Water S",
+      "level": 1,
+      "motion_value": 5,
+      "hits": 3,
+      "element": {
+        "type": "water",
+        "value": 15,
+        "attack_scaled": true
+      }
+    },
+    {
+      "shot": 17,
+      "ammo": "ThunderS",
+      "level": 1,
+      "motion_value": 5,
+      "hits": 3,
+      "element": {
+        "type": "thunder",
+        "value": 15,
+        "attack_scaled": true
+      }
+    },
+    {
+      "shot": 18,
+      "ammo": "Freeze S",
+      "level": 1,
+      "motion_value": 5,
+      "hits": 3,
+      "element": {
+        "type": "ice",
+        "value": 15,
+        "attack_scaled": true
+      }
+    },
+    {
+      "shot": 19,
+      "ammo": "Dragon S",
+      "level": 1,
+      "motion_value": 1,
+      "hits": 5,
+      "element": {
+        "type": "dragon",
+        "value": 64
+      }
+    },
+    {
+      "shot": 22,
+      "ammo": "PoisnS",
+      "level": 1,
+      "motion_value": 10
+    },
+    {
+      "shot": 23,
+      "ammo": "PoisnS",
+      "level": 2,
+      "motion_value": 15
+    },
+    {
+      "shot": 24,
+      "ammo": "Para S",
+      "level": 1,
+      "motion_value": 10
+    },
+    {
+      "shot": 25,
+      "ammo": "Para S",
+      "level": 2,
+      "motion_value": 15
+    }
+  ]
 }

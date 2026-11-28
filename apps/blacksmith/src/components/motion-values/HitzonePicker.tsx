@@ -5,9 +5,13 @@ import Choice from "./Choice";
 import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { MONSTER_CATEGORIES } from "@/lib/constants";
-import { hitzoneHeat, spotValue, type HitzoneMonster, type HitzoneSpot } from "@/lib/hitzone-pick";
+import {
+  hitzoneHeat,
+  type HitzoneMonster,
+  type HitzoneSpot,
+  type PartValues,
+} from "@/lib/hitzone-pick";
 import { partLabel } from "@/lib/i18n/monster-labels";
-import type { HitzoneWeights } from "@/lib/motion-values";
 
 // Some monsters have no art; keep the layout and hide the broken-image glyph.
 const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
@@ -27,13 +31,13 @@ export function useMonsterName() {
  */
 export default function HitzonePicker({
   monsters,
-  weights,
+  valueOf,
   spot,
   onPick,
 }: {
   monsters: HitzoneMonster[];
-  /** The weapon's hitzone weights, which pick the column each part shows. */
-  weights: HitzoneWeights;
+  /** The value each part shows: the column, or weighted columns, the weapon's hits use. */
+  valueOf: (part: PartValues) => number;
   spot: HitzoneSpot | null;
   onPick: (spot: HitzoneSpot) => void;
 }) {
@@ -84,15 +88,15 @@ export default function HitzonePicker({
         <div className="flex flex-col gap-[0.6rem]">
           <p className="text-main text-gold">{monsterName(monster)}</p>
           <div className="flex flex-wrap gap-[0.6rem]">
-            {monster.parts.map(({ part, cut, bash }) => {
-              const value = spotValue({ cut, bash }, weights);
+            {monster.parts.map(({ part, ...values }) => {
+              const value = valueOf(values);
               const picked = spot?.slug === monster.slug && spot.part === part;
               return (
                 <button
                   key={part}
                   type="button"
                   aria-pressed={picked}
-                  onClick={() => onPick({ slug: monster.slug, part, cut, bash })}
+                  onClick={() => onPick({ slug: monster.slug, part, ...values })}
                   className={cn(
                     "flex items-center gap-[0.8rem] border-l-[0.4rem] px-[1rem] py-[0.4rem] text-sub",
                     picked ? "bg-accent text-white" : "bg-selector hover:bg-selector-lit",

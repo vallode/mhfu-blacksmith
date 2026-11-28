@@ -20,7 +20,7 @@
  *
  * The other tables the copier is given (bowgun shots, gunlance shells,
  * Felyne comrades, …) sit after this one, each followed by its own
- * pointer, as this one is; they are not read here.
+ * pointer, as this one is; the bowgun shots' is read by `tables/shots.ts`.
  *
  * The table is found from the builder's code, not its address: the copier
  * call right after the builder reads `+0x0D` (`MOTION_TABLE_CALL`), whose
@@ -211,7 +211,12 @@ export interface HitzoneWeightTables {
 /** Weapon classes the weights table holds, `WEAPON_TYPE_NAMES` order. */
 export const WEAPON_CLASS_COUNT = 11;
 
-function findCode(ovl: OvlFile, code: readonly { word: number; mask: number }[], what: string) {
+/** The file offset of the one place `code` (masked words) matches; throws on none or several. */
+export function findCode(
+  ovl: OvlFile,
+  code: readonly { word: number; mask: number }[],
+  what: string,
+) {
   const { reader } = ovl;
   const found: number[] = [];
   const last = reader.length - code.length * 4;

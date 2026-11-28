@@ -40,6 +40,7 @@ import { useGameText, useT } from "@/context/LanguageContext";
 import Loading from "@/components/Loading";
 import WishlistButton from "@/components/WishlistButton";
 import MotionDamage from "@/components/motion-values/MotionDamage";
+import ShotDamage from "@/components/motion-values/ShotDamage";
 
 interface Props {
   type: WeaponType;
@@ -534,7 +535,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                 {
                   id: "motion-values",
                   label: tw.tabs.motionValues,
-                  content: <MotionDamage type={type} weapon={weapon} />,
+                  content:
+                    type === "light-bowgun" || type === "heavy-bowgun" ? (
+                      <ShotDamage weapon={weapon} />
+                    ) : (
+                      <MotionDamage type={type} weapon={weapon} />
+                    ),
                 },
               ]}
             />
