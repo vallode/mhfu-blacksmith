@@ -16,7 +16,7 @@ test("writeEdits adds disc files, with an edited EBOOT, and reads them back", as
   const eboot = edits.eboot();
   eboot.writeUInt8(eboot.readUInt8(eboot.length - 1) ^ 0xff, eboot.length - 1);
   const blob = Buffer.from("RFU1 a blob that isn't sector sized");
-  edits.discFile("/PSP_GAME/USRDIR/WHTSTN.BIN", blob);
+  edits.discFile("/WHTSTN.BIN", blob);
 
   const summary = writeEdits(image, game, edits);
   assert.equal(summary.discFiles, 1);
@@ -26,8 +26,24 @@ test("writeEdits adds disc files, with an edited EBOOT, and reads them back", as
   const file = path.join(tempDir(), "out.iso");
   writeFileSync(file, finish(image, original));
   const { iso, source } = openDiscImage(file);
-  assert.ok(iso.readFile("/PSP_GAME/USRDIR/WHTSTN.BIN").equals(blob));
+  assert.ok(iso.readFile("/WHTSTN.BIN").equals(blob));
   assert.ok(iso.readFile(EBOOT_PATH).equals(eboot));
   assert.equal(source.read(16 * 2048, 2048).readUInt32LE(80), source.totalBytes / 2048);
+  source.close();
+});
+
+test("writeEdits adds a root file to a disc whose root holds no file, shaped like PARAM.SFO", async () => {
+  const original = buildFixtureDisc({ noUmdData: true });
+  const image = patchInMemory(original);
+  const game = await loadGame(image.source, image.iso);
+  const edits = new Edits(game);
+  const blob = Buffer.from("RFU1 a blob on a root with only PSP_GAME");
+  edits.discFile("/WHTSTN.BIN", blob);
+  writeEdits(image, game, edits);
+
+  const file = path.join(tempDir(), "out.iso");
+  writeFileSync(file, finish(image, original));
+  const { iso, source } = openDiscImage(file);
+  assert.ok(iso.readFile("/WHTSTN.BIN").equals(blob));
   source.close();
 });

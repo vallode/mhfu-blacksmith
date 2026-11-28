@@ -19,18 +19,19 @@
  *   `sceKernelDcacheWritebackAll` and `sceKernelIcacheInvalidateAll`. Their
  *   stubs are found by NID through the module info.
  *
- * The patch adds `WHTSTN.BIN` to `/PSP_GAME/USRDIR` and puts a loader in
+ * The patch adds `WHTSTN.BIN` to the disc's root and puts a loader in
  * the Guild Card cave. Each of the three sites above calls the loader instead
  * of `memcpy`/`memset`; the loader makes the game's call, then reads the file
- * over the freed slots, checks its header (magic, size, and the build id the
- * patch baked in), syncs the caches and calls the blob's `rf_init(reason,
+ * over the freed slots, checks its header (its size, and the build id the
+ * patch baked in, which hashes the rest of the image, magic included), syncs
+ * the caches and calls the blob's `rf_init(reason,
  * save, blob)`. A file that's missing or doesn't match leaves the header's
  * magic zeroed, so game hooks into the blob can tell it isn't there.
  *
  * Everything is found by code signatures, which match the EU and JP (FUC)
  * EBOOTs, and nothing is patched if one doesn't match.
  */
-import { BLOB_MAGIC, HEADER, linkBlob } from "../blob/link.js";
+import { HEADER, linkBlob } from "../blob/link.js";
 import type { Edits } from "../edits.js";
 import type { LoadedOverlay } from "../game/load.js";
 import type { Report } from "../report.js";
@@ -38,7 +39,6 @@ import {
   HOOK,
   assembleHookGate,
   assembleHooks,
-  assemblePickHook,
   hookCode,
   writeHitCall,
   writeMenuCalls,
@@ -79,8 +79,8 @@ import {
 } from "./mips.js";
 
 /** The blob's file on the disc, and the path the loader opens. */
-export const BLOB_ISO_PATH = "/PSP_GAME/USRDIR/WHTSTN.BIN";
-export const BLOB_DEVICE_PATH = "disc0:/PSP_GAME/USRDIR/WHTSTN.BIN";
+export const BLOB_ISO_PATH = "/WHTSTN.BIN";
+export const BLOB_DEVICE_PATH = "disc0:/WHTSTN.BIN";
 
 /** `rf_init`'s first argument. */
 export const REASON = { saveLoaded: 0, newGame: 1 } as const;
@@ -184,22 +184,20 @@ export interface LoaderAddresses {
 }
 
 /**
- * The loader at `at`: the path string, then `load(reason)` and the two entry
+ * The loader at `at`: the path string, the status words, then the two entry
  * points the game's call sites jump to instead of `memcpy` and `memset`.
+ * Each makes the game's call, then loads in the same frame: it reads the file
+ * over the blob's room, checks it, and runs `rf_init`.
  */
 export function assembleLoader(
   at: number,
   addresses: LoaderAddresses,
 ): { code: number[]; afterLoad: number; afterNewGame: number; status: number } {
   const a = new Assembler();
-  const { zero, v0, a0, a1, a2, t0, t1, t9 } = R;
+  const { zero, v0, a0, a1, a2, t0, t1, t8, t9 } = R;
   const [s0, s1, s2, s3] = S;
   const move = (rd: number, rs: number) => a.r(rs, zero, rd, 0, ADDU);
   const nop = () => a.emit(0);
-  const li = (reg: number, value: number) => {
-    a.i(LUI, zero, reg, value >>> 16);
-    a.i(ORI, reg, reg, value & 0xffff);
-  };
   const la = (reg: number, address: number) => {
     a.i(LUI, zero, reg, hi16(address));
     a.i(ADDIU, reg, reg, address & 0xffff);
@@ -214,29 +212,21 @@ export function assembleLoader(
   for (let k = 0; k < STATUS_WORDS; k++) a.emit(0);
   const status = at + a.offsetOf("status") * 4;
 
-  // Entry points: make the game's call, then load. `$v0` is kept for the caller.
+  // Entry points: the game's function in $t9 and the reason in $t8.
   for (const [label, original, reason] of [
     ["afterLoad", addresses.memcpy, REASON.saveLoaded],
     ["afterNewGame", addresses.memset, REASON.newGame],
   ] as const) {
     a.label(label);
-    a.i(ADDIU, SP, SP, -16);
-    a.i(SW, SP, RA, 12);
-    a.jal(original);
-    nop();
-    a.i(SW, SP, v0, 8);
-    a.jalLabel("load");
-    a.i(ADDIU, zero, a0, reason);
-    a.i(LW, SP, v0, 8);
-    a.i(LW, SP, RA, 12);
-    a.r(RA, zero, zero, 0, JR);
-    a.i(ADDIU, SP, SP, 16);
+    la(t9, original);
+    a.branch(BEQ, zero, zero, "load");
+    a.i(ADDIU, zero, t8, reason);
   }
 
-  // load(reason): read the file over the blob's room, check it, run rf_init.
-  // Its frame leaves sp+0..15 free: blob code is O32, whose callees may store
-  // their arguments in the caller's frame there.
-  const frame = { read: 16, s3: 20, s2: 24, s1: 28, s0: 32, ra: 36, size: 40 } as const;
+  // The game's call with its arguments as they came, then the load. The frame
+  // keeps the call's $v0 for the caller and leaves sp+0..15 free: blob code
+  // is O32, whose callees may store their arguments in the caller's frame.
+  const frame = { v0: 16, s3: 20, s2: 24, s1: 28, s0: 32, ra: 36, size: 40 } as const;
   const saved = [
     [RA, frame.ra],
     [s0, frame.s0],
@@ -247,43 +237,40 @@ export function assembleLoader(
   a.label("load");
   a.i(ADDIU, SP, SP, -frame.size);
   for (const [reg, offset] of saved) a.i(SW, SP, reg, offset);
-  move(s2, a0);
-  la(t0, status);
-  a.i(LW, t0, t1, STATUS.runs);
+  a.r(t9, zero, RA, 0, JALR);
+  move(s2, t8);
+  a.i(SW, SP, v0, frame.v0);
+  la(s0, status);
+  a.i(LW, s0, t1, STATUS.runs);
   a.i(ADDIU, t1, t1, 1);
-  a.i(SW, t0, t1, STATUS.runs);
-  a.i(SW, t0, a0, STATUS.reason);
+  a.i(SW, s0, t1, STATUS.runs);
+  a.i(SW, s0, s2, STATUS.reason);
   a.i(ADDIU, zero, t1, -1);
-  a.i(SW, t0, t1, STATUS.read);
-  la(s0, addresses.saveStruct);
+  a.i(SW, s0, t1, STATUS.read);
   la(s1, addresses.blob);
   la(a0, at);
   a.i(ADDIU, zero, a1, PSP_O_RDONLY);
   a.jal(imports.sceIoOpen);
   move(a2, zero);
-  la(t0, status);
-  a.i(SW, t0, v0, STATUS.open);
+  a.i(SW, s0, v0, STATUS.open);
   a.branch(REGIMM, v0, BLTZ, "missing");
   move(s3, v0);
   move(a0, s3);
   move(a1, s1);
-  li(a2, addresses.room);
+  a.i(LUI, zero, a2, addresses.room >>> 16);
   a.jal(imports.sceIoRead);
-  nop();
-  la(t0, status);
-  a.i(SW, t0, v0, STATUS.read);
-  a.i(SW, SP, v0, frame.read);
-  a.jal(imports.sceIoClose);
+  a.i(ORI, a2, a2, addresses.room & 0xffff);
+  a.i(SW, s0, v0, STATUS.read);
   move(a0, s3);
-  // The whole file, and a header that matches: magic, size and build.
-  a.i(LW, SP, t0, frame.read);
-  a.i(LW, s1, t1, HEADER.size);
-  a.branch(BNE, t0, t1, "missing");
-  a.i(LW, s1, t0, HEADER.magic);
-  li(t1, BLOB_MAGIC);
-  a.branch(BNE, t0, t1, "missing");
+  a.jal(imports.sceIoClose);
+  move(s3, v0);
+  // The whole file, from this build: the build id hashes the rest of the
+  // image, magic included, so a file whose id matches carries the magic.
+  a.i(LW, s1, t0, HEADER.size);
+  a.branch(BNE, s3, t0, "missing");
   a.i(LW, s1, t0, HEADER.build);
-  li(t1, addresses.build);
+  a.i(LUI, zero, t1, addresses.build >>> 16);
+  a.i(ORI, t1, t1, addresses.build & 0xffff);
   a.branch(BNE, t0, t1, "missing");
   nop();
   // New code: write the data cache back, then drop stale instructions.
@@ -293,13 +280,14 @@ export function assembleLoader(
   nop();
   a.i(LW, s1, t9, HEADER.init);
   move(a0, s2);
-  move(a1, s0);
+  la(a1, addresses.saveStruct);
   a.r(t9, zero, RA, 0, JALR);
   move(a2, s1);
   a.branch(BEQ, zero, zero, "done");
-  nop();
+  a.i(LW, SP, v0, frame.v0);
   a.label("missing");
   a.i(SW, s1, zero, HEADER.magic);
+  a.i(LW, SP, v0, frame.v0);
   a.label("done");
   for (const [reg, offset] of saved) a.i(LW, SP, reg, offset);
   a.r(RA, zero, zero, 0, JR);
@@ -418,7 +406,7 @@ export function addCodeLoader(
   ];
   const questLoader = hooks?.questLoad?.sites.loader;
   const hit = hooks?.hit?.target;
-  const hookArgs = [calls, questLoader, hit, hooks?.menus, hooks?.calls] as const;
+  const hookArgs = [calls, questLoader, hit, hooks?.menus, hooks?.calls, hooks?.pick] as const;
   // The hook code goes in the blob, its entries by site after it; the cave
   // keeps only the gate to it.
   let hookTable = 0;
@@ -451,8 +439,8 @@ export function addCodeLoader(
   };
   const words = assembleLoader(0, addresses).code.length;
   const hookWords = hooks ? assembleHookGate(0, blobAddress, 0, ...hookArgs).code.length : 0;
-  const pickWords = hooks?.pick ? assemblePickHook(0, blobAddress, hooks.pick).length : 0;
-  const caveWords = words + hookWords + pickWords;
+  const caveWords = words + hookWords;
+  const caveFree = space.freeCaveWords;
   if (caveWords > space.freeCaveWords) {
     return skipped(`the loader needs ${caveWords} cave words, and ${space.freeCaveWords} are free`);
   }
@@ -500,11 +488,9 @@ export function addCodeLoader(
       }
     }
     hooksAt = `, hooks ${hex(hookAt)}`;
-    if (hooks.pick) {
-      const pickAt = space.allocateCave(pickWords);
-      space.writeCave(pickAt, assemblePickHook(pickAt, blobAddress, hooks.pick));
-      writePickHook(out, segment, hooks.pick, pickAt);
-      hooksAt += `, picker ${hex(pickAt)}`;
+    if (hooks.pick && hookStubs.pick !== undefined) {
+      writePickHook(out, segment, hooks.pick, hookStubs.pick);
+      hooksAt += `, picker ${hex(hookStubs.pick)}`;
     }
   }
   return {
@@ -515,6 +501,6 @@ export function addCodeLoader(
       `Guild Cards are capped at ${space.kept}. A ${blob.image.length}-byte blob from ${BLOB_ISO_PATH} is loaded at ${hex(blobAddress)} after every save load and new game.`,
     ],
     lines: [],
-    summary: `${TITLE}: on (blob ${blob.image.length} of ${room} bytes at ${hex(blobAddress)}, loader ${hex(at)}${hooksAt}, status ${hex(loader.status)}, build ${hex(blob.build)})`,
+    summary: `${TITLE}: on (blob ${blob.image.length} of ${room} bytes at ${hex(blobAddress)}, loader ${hex(at)}${hooksAt}, status ${hex(loader.status)}, build ${hex(blob.build)}, cave ${caveWords} of ${caveFree} words)`,
   };
 }

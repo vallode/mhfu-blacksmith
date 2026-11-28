@@ -62,16 +62,19 @@ blob back every time. The EBOOT has three places that do this:
 0x6A938 bytes is exactly the persistent part, `+0x4A0..+0x6ADD8`. The
 same copy in the other direction (save into the file buffer) is how the
 game saves, and isn't hooked. Each `jal` is pointed at an entry in the
-cave that makes the game's call, then runs `load(reason)`. The delay slot
-still sets the third argument, and `$v0` is passed back unchanged.
+cave that makes the game's call, then loads in the same frame. The delay
+slot still sets the third argument, and `$v0` is passed back unchanged.
 
 Before any save is loaded (the title screen), there's no blob. Game hooks
 into the blob have to check the header first (see below).
 
 ## Reading the file
 
-Whetstone adds `WHTSTN.BIN` to `/PSP_GAME/USRDIR` (Whetstone shortened the way the game shortens names, "Wht" and "Stn", to
-fit ISO 9660's 8.3): its data goes at the
+Whetstone adds `WHTSTN.BIN` to the disc's root (Whetstone shortened the
+way the game shortens names, "Wht" and "Stn", to fit ISO 9660's 8.3), next
+to `UMD_DATA.BIN`; the root rather than `/PSP_GAME/USRDIR` because the
+loader keeps its path in the cave, where `disc0:/WHTSTN.BIN` takes 5 words
+and the longer path 9. Its data goes at the
 end of the image, a record goes into the directory (which has room), and
 the volume size is updated (`PatchableImage.writeFile`). No ISO rebuild is
 needed. The record copies the shape of the directory's other files: UMD
@@ -81,14 +84,17 @@ PPSSPP looks names up exactly, so a `WHTSTN.BIN;1` record isn't found
 reader. A loose file reads with plain synchronous calls the EBOOT already
 imports: it opens `disc0:/PSP_GAME/USRDIR/DATA.BIN` itself.
 
-The loader takes 107 cave words, path, status and both entries included,
-which leaves 169 for other features. The game hooks (below) take 51 more. `load(reason)`:
+The loader takes 81 cave words, path, status and both entries included.
+Each entry puts the game's function in `$t9` and the reason in `$t8` and
+branches to one body, which makes the game's call and then, in the same
+frame, loads:
 
-1. `sceIoOpen("disc0:/PSP_GAME/USRDIR/WHTSTN.BIN", O_RDONLY)`, then
-   `sceIoRead` it over the freed slots (at most the room) and `sceIoClose`.
+1. `sceIoOpen("disc0:/WHTSTN.BIN", O_RDONLY)`, then `sceIoRead` it over
+   the freed slots (at most the room) and `sceIoClose`.
 2. It checks that the bytes read equal the header's size, and that the
-   magic and build id match what was baked into the loader. On any
-   failure, it zeroes the magic and returns.
+   build id matches what was baked into the loader. The build id hashes
+   the rest of the image, magic included, so the magic isn't checked
+   separately. On any failure, it zeroes the magic and returns.
 3. `sceKernelDcacheWritebackAll`, `sceKernelIcacheInvalidateAll`.
 4. It calls `rf_init(reason, save, blob)`, where `reason` is 0 for a save
    load and 1 for a new game.
@@ -147,7 +153,9 @@ With the blob's magic word there, the gate jumps to the site's stub through
 a table in the blob; without it, to the game's function from the gate's own
 table, as if the game had called it. So the cave holds 18 words of gate and
 3 a call (`test/code-loader.test.ts` keeps every hook with the START menus
-well inside it), and a stub can be any size. The gate keeps the call's
+well inside it), and a stub can be any size. With every option on, the
+loader and the gate take 162 of the cave's 276 words; the code loader's
+build log line says how many a disc used (`cave n of m words`). The gate keeps the call's
 arguments and `$ra`, using only `$t4`-`$t7` (the game is EABI, which passes
 a 5th to 8th argument in `$t0`-`$t3`).
 
@@ -201,12 +209,14 @@ it by then. The main loop's `jal padRead` (the one between `lui` and
 the printer's reset) gives the pad and printer globals.
 
 Hook 5 isn't a call but a function: the picker's first two words (its
-`addiu $sp` and `sw $ra`) become `j stub; nop`. The stub (19 words) checks
-the blob's magic and header entry like `dispatch`, then calls `rf_hook5`
-with the picker's `$a0` and `$a1` in a 32-byte frame and returns its `$v0`
-to the picker's caller; without it, it runs the two words and jumps to the
-picker's third. The picker only calls the RNG, so the temporaries the stub
-uses are free. One feature defines `rf_hook5` (`blob/poogie.c`).
+`addiu $sp` and `sw $ra`) become `j entry; nop`, the entry being the
+gate's for it. Its fallback in the gate's table isn't the game's function
+but three words after the table: the two the jump replaced and a jump to
+the picker's third, so the picker costs the cave 6 words. Its stub in the
+blob checks the header entry like `dispatch`, then calls `rf_hook5` with
+the picker's `$a0` and `$a1` in a 32-byte frame and returns its `$v0` to
+the picker's caller; without `rf_hook5`, it runs the same three words. The
+picker only calls the RNG, so the temporaries the stub uses are free. One feature defines `rf_hook5` (`blob/poogie.c`).
 
 In the blob, `blob/runtime.c` defines `rf_init` and `rf_hook0`…, and
 features register callbacks with `rf_on(RF_HOOK_*, fn)` from their init
