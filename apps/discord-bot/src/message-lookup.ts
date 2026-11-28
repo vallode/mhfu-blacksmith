@@ -20,6 +20,7 @@ import {
   ResponseType,
   type ActionRow,
   type Button,
+  type DiscordMessage,
   type Embed,
   type Interaction,
   type InteractionResponse,
@@ -39,7 +40,7 @@ const PREFIX = "look:";
 
 /**
  * Single words that are everyday English as well as a name: they count
- * only when they're the whole message.
+ * only when the message names nothing else.
  */
 const COMMON_WORDS = new Set([
   "bone",
@@ -170,10 +171,9 @@ const keyOf = (f: Found) => `${f.kind}:${entryLink(f.kind, f.entry, "").key}`;
 
 /**
  * The monsters, items and weapons `text` names, in the order it names
- * them, at most `limit`. Where names overlap the one covering more words
- * wins, then the one typed more fully, then monsters before items before
- * weapons, then the shorter name; no words count twice, and no entry comes
- * up twice. Past the limit, the names nearer the start win.
+ * them, at most `limit` (the first named). Where names overlap the one
+ * covering more words wins (pick); no words count twice, and no entry
+ * comes up twice.
  */
 export function findInText(index: BotIndex, text: string, limit = MAX_MATCHES): Found[] {
   const words = normalize(text).split(" ").filter(Boolean);
@@ -184,11 +184,25 @@ export function findInText(index: BotIndex, text: string, limit = MAX_MATCHES): 
     for (const spelling of t.get(head) ?? []) {
       const m = matchAt(words, i, spelling);
       if (!m) continue;
-      const one = m.end - i === 1 && spelling.tokens.length === 1;
-      if (one && COMMON_WORDS.has(spelling.compact) && words.length > 1) continue;
       candidates.push({ found: spelling.found, start: i, spelling, ...m });
     }
   }
+  const common = (c: Candidate) =>
+    c.end - c.start === 1 && c.spelling.tokens.length === 1 && COMMON_WORDS.has(c.spelling.compact);
+  const named = pick(
+    candidates.filter((c) => !common(c)),
+    words.length,
+  );
+  const chosen = named.length ? named : pick(candidates.filter(common), words.length);
+  return chosen.slice(0, limit).map((c) => c.found);
+}
+
+/**
+ * The candidates that don't overlap, the better first where they do (more
+ * words, then typed more fully, then monsters before items before weapons,
+ * then the shorter name); an entry once. In the message's order.
+ */
+function pick(candidates: Candidate[], words: number): Candidate[] {
   candidates.sort(
     (a, b) =>
       b.end - b.start - (a.end - a.start) ||
@@ -198,11 +212,10 @@ export function findInText(index: BotIndex, text: string, limit = MAX_MATCHES): 
       a.spelling.length - b.spelling.length ||
       a.spelling.order - b.spelling.order,
   );
-  const taken = new Array<boolean>(words.length).fill(false);
+  const taken = new Array<boolean>(words).fill(false);
   const seen = new Set<string>();
   const chosen: Candidate[] = [];
   for (const c of candidates) {
-    if (chosen.length >= limit) break;
     const key = keyOf(c.found);
     if (seen.has(key)) continue;
     let free = true;
@@ -212,7 +225,7 @@ export function findInText(index: BotIndex, text: string, limit = MAX_MATCHES): 
     seen.add(key);
     chosen.push(c);
   }
-  return chosen.sort((a, b) => a.start - b.start).map((c) => c.found);
+  return chosen.sort((a, b) => a.start - b.start);
 }
 
 const titleCase = (slug: string) =>
@@ -376,17 +389,19 @@ export function postLookup(
     .map((p) => lookupReply(index, p!.kind, p!.key, siteUrl, assetUrl))
     .filter((r) => r !== null);
   if (!replies.length) {
-    return {
-      type: ResponseType.ChannelMessage,
-      data: {
-        content: "That lookup is out of date. Run it on the message again.",
-        flags: EPHEMERAL,
-      },
-    };
+    // Post all reads its entries off the answer's buttons; without them it
+    // can't tell what was found.
+    const why =
+      all && !posts.length
+        ? "I couldn't read that answer's buttons. Post them one at a time, or run the lookup again."
+        : "That lookup is out of date. Run it on the message again.";
+    return { type: ResponseType.ChannelMessage, data: { content: why, flags: EPHEMERAL } };
   }
   const head = answering(interaction, messageId);
   if (replies.length === 1) {
     const reply = replies[0]!;
+    // A Components V2 reply can't carry text: post it as it is.
+    if (isV2(reply)) return { type: ResponseType.ChannelMessage, data: reply };
     return {
       type: ResponseType.ChannelMessage,
       data: {
@@ -396,10 +411,15 @@ export function postLookup(
       },
     };
   }
-  // One message for them all: their links and embeds, within Discord's limits.
+  // One message for them all: their links and embeds, within Discord's
+  // limits. Anything else a reply has (its own buttons, a Components V2
+  // layout) belongs to that reply alone and is left out; a V2 reply, with
+  // nothing but components, can't join in.
   const embeds: Embed[] = [];
   let total = 0;
-  for (const e of replies.flatMap((r) => r.embeds)) {
+  const joined = replies.filter((r) => !isV2(r));
+  if (!joined.length) return { type: ResponseType.ChannelMessage, data: replies[0]! };
+  for (const e of joined.flatMap((r) => r.embeds ?? [])) {
     const size = embedSize(e);
     if (embeds.length >= LIMITS.embeds || total + size > LIMITS.embedTotal) break;
     embeds.push(e);
@@ -408,12 +428,18 @@ export function postLookup(
   return {
     type: ResponseType.ChannelMessage,
     data: {
-      content: [head, ...replies.map((r) => r.content)].filter(Boolean).join("\n"),
+      content: [head, ...joined.map((r) => r.content)].filter(Boolean).join("\n"),
       embeds,
       allowed_mentions: { parse: [] },
     },
   };
 }
+
+/** Discord's flag for a message laid out in components, with no content or embeds. */
+const COMPONENTS_V2 = 1 << 15;
+
+const isV2 = (reply: object) =>
+  ((("flags" in reply && Number(reply.flags)) || 0) & COMPONENTS_V2) !== 0;
 
 function embedSize(e: Embed): number {
   return (
@@ -421,6 +447,30 @@ function embedSize(e: Embed): number {
     (e.description?.length ?? 0) +
     (e.footer?.text.length ?? 0) +
     (e.fields ?? []).reduce((n, f) => n + f.name.length + f.value.length, 0)
+  );
+}
+
+/**
+ * What a message says: its text, or with none a forwarded message's, or
+ * else its embeds' (another bot's answer).
+ */
+export function messageText(m: DiscordMessage): string {
+  const embedText = (embeds: readonly Embed[] = []) =>
+    embeds
+      .flatMap((e) => [
+        e.title,
+        e.description,
+        ...(e.fields ?? []).flatMap((f) => [f.name, f.value]),
+      ])
+      .filter(Boolean)
+      .join("\n");
+  const forwarded = m.message_snapshots?.map((s) => s.message) ?? [];
+  return (
+    [m.content, ...forwarded.map((f) => f.content)].filter((t) => t?.trim()).join("\n") ||
+    [m.embeds, ...forwarded.map((f) => f.embeds)]
+      .map((e) => embedText(e))
+      .filter(Boolean)
+      .join("\n")
   );
 }
 
@@ -441,8 +491,8 @@ export function messageLookup(
     data.name === MESSAGE_LOOKUP
   ) {
     const id = data.target_id ?? "";
-    const text = data.resolved?.messages?.[id]?.content ?? "";
-    return lookupRows(index, id, text, siteUrl, assetUrl);
+    const target = data.resolved?.messages?.[id];
+    return lookupRows(index, id, target ? messageText(target) : "", siteUrl, assetUrl);
   }
   if (
     interaction.type === InteractionType.MessageComponent &&

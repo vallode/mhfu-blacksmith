@@ -14,7 +14,7 @@ import {
   type MessageData,
 } from "../src/discord.js";
 import { lookupReply } from "../src/lookup.js";
-import { findInText, MAX_MATCHES, MESSAGE_LOOKUP } from "../src/message-lookup.js";
+import { findInText, MAX_MATCHES, MESSAGE_LOOKUP, messageText } from "../src/message-lookup.js";
 import { call, index } from "./helpers.js";
 
 const SITE = "https://mhfu.vallode.com";
@@ -35,9 +35,9 @@ describe("finding names in a message", () => {
 
   it("finds nothing in a message that names nothing", () => {
     assert.deepEqual(names("any tips for this quest? i keep carting"), []);
-    // Everyday words that are also items count only on their own.
-    assert.deepEqual(names("the map shows a stone near the net"), []);
-    assert.deepEqual(names("map"), ["Map"]);
+    // Everyday words that are also items count only when nothing else is named.
+    assert.deepEqual(names("rathian plate, it's on the map"), ["Rathian Plate"]);
+    assert.deepEqual(names("where do i get stone"), ["Stone"]);
   });
 
   it("lets the longer name have overlapping words, and counts a name once", () => {
@@ -53,6 +53,25 @@ describe("finding names in a message", () => {
     const found = names("rath, narga, kush, teo, raja, tigrex and khezu");
     assert.equal(found.length, MAX_MATCHES);
     assert.deepEqual(found, ["Rathalos", "Nargacuga", "Kushala Daora", "Teostra", "Rajang"]);
+    // A longer name later on doesn't push out one named earlier.
+    assert.deepEqual(names("rath, narga, kush, teo, raja, then rathian plate").at(-1), "Rajang");
+  });
+
+  it("reads a forwarded message, or embeds, when there's no text", () => {
+    assert.equal(
+      messageText({
+        id: "1",
+        content: "",
+        message_snapshots: [{ message: { content: "bone g?" } }],
+      }),
+      "bone g?",
+    );
+    const text = messageText({
+      id: "1",
+      content: "",
+      embeds: [{ title: "Rathian Plate", fields: [{ name: "Drops", value: "Rathian" }] }],
+    });
+    assert.deepEqual(names(text), ["Rathian Plate", "Rathian"]);
   });
 });
 
@@ -165,5 +184,9 @@ describe("the message command", () => {
       assert.equal(stale.flags, EPHEMERAL, id);
       assert.equal(stale.embeds, undefined, id);
     }
+    // Post all without the answer's buttons to read says so.
+    const blind = messageOf(await call(press({}, buttons(answer).at(-1)!.custom_id)));
+    assert.equal(blind.flags, EPHEMERAL);
+    assert.match(blind.content ?? "", /couldn't read that answer's buttons/);
   });
 });

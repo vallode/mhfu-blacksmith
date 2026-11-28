@@ -19,7 +19,7 @@ It finds up to five names in the message, loosely spelled ("where do i farm
 rath plates?? still running bone g" finds Rathian Plate and Bone G):
 nicknames, plurals, words typed short and names run together count, the
 longer of two overlapping names wins, and everyday words that are also items
-("map", "stone") count only on their own. Only you see the answer: a row for
+("map", "stone") count only when nothing else is named. Only you see the answer: a row for
 each, linked to its page, with an item's best source, a weapon's type,
 attack and rarity, or a monster's type and weakness. Its buttons post that
 entry's usual `/monster`, `/item` or `/weapon` reply in the channel, under a

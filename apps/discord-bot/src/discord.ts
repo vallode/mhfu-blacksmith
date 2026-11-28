@@ -89,6 +89,9 @@ export interface DiscordMessage {
   channel_id?: string;
   content?: string;
   author?: DiscordUser;
+  embeds?: Embed[];
+  /** A forwarded message's copy of what it forwards. */
+  message_snapshots?: { message: { content?: string; embeds?: Embed[] } }[];
   components?: ActionRow[];
 }
 
