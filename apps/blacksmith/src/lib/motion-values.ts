@@ -72,10 +72,6 @@ export const hasDemonMode = (moves: MotionMove[]) =>
 export const hasSpiritGlow = (moves: MotionMove[]) =>
   moves.some((m) => m.glow_hitzone_weights !== undefined);
 
-/** Whether a move hits harder once its charge runs at full speed (the Lance's charge). */
-export const hasFullSpeedCharge = (moves: MotionMove[]) =>
-  moves.some((m) => m.charge_hitzone_weights !== undefined);
-
 /** A move's hitzone weights, with the spirit gauge glowing or the charge at full speed where asked. */
 export const moveWeights = (
   move: MotionMove,

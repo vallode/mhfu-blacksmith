@@ -11,10 +11,10 @@ export const motionValues = {
   /** Long Sword: the values with the spirit gauge glowing or not. */
   spiritGauge: "Spirit Gauge",
   glowing: "Glowing",
-  /** Lance: the charge's values while it starts or once it runs at full speed. */
-  charge: "Charge",
-  runUp: "Run-up",
-  fullSpeed: "Full speed",
+  /** Lance: the charge's rows, as it starts and once it runs at full speed: "Charge (run-up)". */
+  chargeAt: (move: string, speed: string) => `${move} (${speed})`,
+  runUp: "run-up",
+  fullSpeed: "full speed",
   /** Selector arrows. */
   previous: "Previous",
   next: "Next",
@@ -38,6 +38,23 @@ export const motionValues = {
     weak: "On a negative critical: the motion value × 0.75",
   },
   loadError: "Couldn't load the motion values.",
+  /**
+   * A move's input with the default controls, before its name (under it on
+   * a narrow card): its column's heading for screen readers, a held button,
+   * and the buttons' names (their icons' alt text).
+   */
+  input: {
+    label: "Input",
+    hold: "Hold",
+    buttons: {
+      triangle: "Triangle",
+      circle: "Circle",
+      cross: "Cross",
+      r: "R",
+      select: "SELECT",
+      stick: "Analog stick",
+    },
+  },
   /** The hitzone picker: a monster's part, from a bestiary of portraits. */
   bestiary: {
     /** The part picked, after its value in the hitzone selector: "Rathalos · Head". */
@@ -54,7 +71,6 @@ export const motionValues = {
     title: "Damage Calculator",
     weapon: "Weapon",
     pickWeapon: "Pick a weapon",
-    changeWeapon: "Change",
     /** The weapon picker's search field. */
     searchWeapons: "Search weapons",
     searchPlaceholder: "Name",

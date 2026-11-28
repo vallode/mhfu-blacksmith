@@ -1709,6 +1709,8 @@ export interface FixtureDiscOptions {
    * files. Off by default, so the other tests' disc stays as it is.
    */
   text?: boolean;
+  /** Leave UMD_DATA.BIN out, so the root holds no file, only PSP_GAME. */
+  noUmdData?: boolean;
 }
 
 export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
@@ -1741,6 +1743,15 @@ export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
     { path: "PSP_GAME/PARAM.SFO", data: buildSfo("ULJM05500") },
     { path: "PSP_GAME/SYSDIR/EBOOT.BIN", data: fixtureEboot(options) },
     { path: "PSP_GAME/USRDIR/DATA.BIN", data: dataBin },
+    // Every UMD has it at the root, where Whetstone's file goes.
+    ...(options.noUmdData
+      ? []
+      : [
+          {
+            path: "UMD_DATA.BIN",
+            data: Buffer.from("ULJM-05500|0000000000000001|0001|G", "latin1"),
+          },
+        ]),
   ]);
 }
 

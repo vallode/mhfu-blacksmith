@@ -8,7 +8,7 @@ import { useShots } from "@/lib/client-data";
 import { buffedAttack, type Buffs } from "@/lib/damage-buffs";
 import { loadsShot, shotDamage, SHOT_ELEMENTS, type ShotHitzones } from "@/lib/shots";
 import type { Weapon } from "@/lib/types";
-import { motionValueTable } from "@/styles/tables";
+import { motionName, motionValueTable } from "@/styles/tables";
 
 /**
  * A bowgun's damage table: each shot the weapon loads, its motion value (and
@@ -61,7 +61,7 @@ export default function ShotDamage({
     <table className={motionValueTable}>
       <thead>
         <tr>
-          <th>{ts.ammo}</th>
+          <th className={motionName}>{ts.ammo}</th>
           <th>{tm.mv}</th>
           <th>{tm.damage}</th>
         </tr>
@@ -70,6 +70,7 @@ export default function ShotDamage({
         {shots.map((s) => (
           <tr key={s.shot}>
             <AmmoName
+              className={motionName}
               name={s.ammo}
               suffix={
                 file.shots.some((o) => o.ammo === s.ammo && o.level > 1)

@@ -583,6 +583,8 @@ export interface HookEntries {
   menus: MenuStubs[];
   /** Each of `calls`' entry. */
   calls: number[];
+  /** The picker's entry (hook 5), which its first word jumps to. */
+  pick?: number;
 }
 
 /**
@@ -595,7 +597,8 @@ function hookSiteList(
   hit: number | undefined,
   menus: readonly MenuSites[],
   calls: readonly HookCall[],
-): { label: string; target: number }[] {
+  pick: PickSite | undefined,
+): ({ label: string; target: number } | { label: string; fallback: "pickGame" })[] {
   const phases = Object.keys(MENU_PHASE) as (keyof typeof MENU_PHASE)[];
   return [
     ...originals.map(({ target }, k) => ({ label: `stub${k}`, target })),
@@ -610,6 +613,9 @@ function hookSiteList(
       phases.map((phase) => ({ label: `menu${k}${phase}`, target: menu[phase].target })),
     ),
     ...calls.map(({ target }, k) => ({ label: `call${k}`, target })),
+    // The picker isn't called but jumped to: its fallback runs the two words
+    // its jump replaced (the gate's `pickGame`).
+    ...(pick === undefined ? [] : [{ label: "pick", fallback: "pickGame" as const }]),
   ];
 }
 
@@ -620,6 +626,7 @@ function hookEntries(
   hit: number | undefined,
   menus: readonly MenuSites[],
   calls: readonly HookCall[],
+  pick: PickSite | undefined,
 ): HookEntries {
   return {
     stubs: originals.map((_, k) => addressOf(`stub${k}`)),
@@ -634,6 +641,7 @@ function hookEntries(
       draw: addressOf(`menu${k}draw`),
     })),
     calls: calls.map((_, k) => addressOf(`call${k}`)),
+    ...(pick !== undefined && { pick: addressOf("pick") }),
   };
 }
 
@@ -654,6 +662,7 @@ export function assembleHooks(
   hit?: number,
   menus: readonly MenuSites[] = [],
   calls: readonly HookCall[] = [],
+  pick?: PickSite,
 ): HookEntries & { code: number[]; sites: number[] } {
   const a = new Assembler();
   const { zero, v0, a0, a1, a2, t0, t1, t2, t3, t4, t9 } = R;
@@ -802,6 +811,31 @@ export function assembleHooks(
     for (let k = 0; k < game.length; k++) a.emit(game[k] ?? 0);
   }
 
+  if (pick !== undefined) {
+    // Hook 5, the picker: its first two words jump here through the gate,
+    // which has checked the blob's magic. With `rf_hook5` defined it calls
+    // that in a 32-byte frame (the O32 code may use sp+0..15) with the
+    // picker's $a0 and $a1 and returns its $v0 to the picker's caller;
+    // otherwise it runs the two words and goes on at the picker's third. The
+    // picker is a leaf of the game's (it only calls the RNG), so the
+    // temporaries are free at its entry.
+    a.label("pick");
+    a.i(LUI, zero, t0, hi16(blob));
+    a.i(ADDIU, t0, t0, blob & 0xffff);
+    a.i(LW, t0, t9, HEADER.hooks + HOOK.pick * 4);
+    a.branch(BEQ, t9, zero, "pickGame");
+    nop();
+    a.i(ADDIU, SP, SP, -32);
+    a.i(SW, SP, RA, 24);
+    a.r(t9, zero, RA, 0, JALR);
+    nop();
+    a.i(LW, SP, RA, 24);
+    a.r(RA, zero, zero, 0, JR);
+    a.i(ADDIU, SP, SP, 32);
+    a.label("pickGame");
+    emitPickFallback(a, pick);
+  }
+
   a.label("dispatch");
   emitBlobCheck(a, blob, "none");
   a.r(zero, a1, t3, 2, SLL);
@@ -819,8 +853,8 @@ export function assembleHooks(
   const addressOf = (label: string) => at + a.offsetOf(label) * 4;
   return {
     code,
-    ...hookEntries(addressOf, originals, questLoader, hit, menus, calls),
-    sites: hookSiteList(originals, questLoader, hit, menus, calls).map(({ label }) =>
+    ...hookEntries(addressOf, originals, questLoader, hit, menus, calls, pick),
+    sites: hookSiteList(originals, questLoader, hit, menus, calls, pick).map(({ label }) =>
       addressOf(label),
     ),
   };
@@ -844,11 +878,12 @@ export function assembleHookGate(
   hit?: number,
   menus: readonly MenuSites[] = [],
   calls: readonly HookCall[] = [],
+  pick?: PickSite,
 ): HookEntries & { code: number[] } {
   const a = new Assembler();
   const { zero, t4, t5, t6, t7 } = R;
   const nop = () => a.emit(0);
-  const sites = hookSiteList(originals, questLoader, hit, menus, calls);
+  const sites = hookSiteList(originals, questLoader, hit, menus, calls, pick);
   for (const [k, { label }] of sites.entries()) {
     a.label(label);
     a.branch(BEQ, zero, zero, "gate");
@@ -869,12 +904,26 @@ export function assembleHookGate(
   a.r(t6, zero, zero, 0, JR);
   nop();
   a.label("targets");
-  for (const { target } of sites) a.emit(target);
+  for (const site of sites) {
+    if ("fallback" in site) a.wordOf(site.fallback);
+    else a.emit(site.target);
+  }
+  if (pick !== undefined) {
+    a.label("pickGame");
+    emitPickFallback(a, pick);
+  }
   const addressOf = (label: string) => at + a.offsetOf(label) * 4;
   return {
     code: a.link(at),
-    ...hookEntries(addressOf, originals, questLoader, hit, menus, calls),
+    ...hookEntries(addressOf, originals, questLoader, hit, menus, calls, pick),
   };
+}
+
+/** The picker's two words its jump replaced, then on at its third. */
+function emitPickFallback(a: Assembler, pick: PickSite): void {
+  a.emit(pick.prologue[0]);
+  a.j(pick.picker + 8);
+  a.emit(pick.prologue[1]);
 }
 
 /** A START menu's hook 8 stubs, by the call each takes. */
@@ -898,37 +947,7 @@ export function writeMenuCalls(
   }
 }
 
-/**
- * Hook 5's stub at `at`: with the blob loaded and its `rf_hook5` defined, it
- * calls that in a 32-byte frame (the O32 code may use `sp+0..15`) with the
- * picker's `$a0` and `$a1` and returns its `$v0` to the picker's caller.
- * Otherwise it runs the picker's first two words and jumps to the third. The
- * picker is a leaf of the game's (it only calls the RNG), so the
- * temporaries are free at its entry.
- */
-export function assemblePickHook(at: number, blob: number, site: PickSite): number[] {
-  const a = new Assembler();
-  const { zero, t0, t9 } = R;
-  const nop = () => a.emit(0);
-  emitBlobCheck(a, blob, "game");
-  a.i(LW, t0, t9, HEADER.hooks + HOOK.pick * 4);
-  a.branch(BEQ, t9, zero, "game");
-  nop();
-  a.i(ADDIU, SP, SP, -32);
-  a.i(SW, SP, RA, 24);
-  a.r(t9, zero, RA, 0, JALR);
-  nop();
-  a.i(LW, SP, RA, 24);
-  a.r(RA, zero, zero, 0, JR);
-  a.i(ADDIU, SP, SP, 32);
-  a.label("game");
-  a.emit(site.prologue[0]);
-  a.j(site.picker + 8);
-  a.emit(site.prologue[1]);
-  return a.link(at);
-}
-
-/** Points the picker's first two words at hook 5's stub. */
+/** Points the picker's first two words at hook 5's entry in the gate. */
 export function writePickHook(eboot: Buffer, segment: Segment, site: PickSite, stub: number): void {
   const offset = segment.offset + (site.picker - segment.vaddr);
   eboot.writeUInt32LE(((0x02 << 26) | ((stub >>> 2) & 0x03ffffff)) >>> 0, offset);
