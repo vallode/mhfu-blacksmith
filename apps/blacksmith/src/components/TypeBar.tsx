@@ -1,13 +1,16 @@
 "use client";
 
 /**
- * The weapon type on phones: the game's "◀ Sword and Shield ▶" selector over
- * the top of the weapon tree card. It stands in for the page bar's row of
- * type icons, which on a phone scrolls sideways, takes a row of its own and
- * never names the type. The arrows step through the types; the name opens a
- * grid of every type below the bar, in the blue in-game frame. Escape or a
- * click outside closes it. Wider screens keep the page bar and show none of
- * this.
+ * A section's types on phones: the game's "◀ Sword and Shield ▶" selector
+ * over the top of the tree card, for the weapon types, armor slots and
+ * monster types. It stands in for the page bar's row of type icons, which on
+ * a phone scrolls sideways, takes a row of its own and never names the type.
+ * The arrows step through the types; the name opens a grid of every type
+ * below the bar, in the blue in-game frame. Escape or a click outside closes
+ * it. Wider screens keep the page bar and show none of this.
+ *
+ * The card under it starts with a `TypeBarSpace`, so its rows start (and
+ * scroll into view) below the bar.
  */
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -15,21 +18,56 @@ import { useRouter } from "next/navigation";
 import Card from "./Card";
 import Icon from "./Icon";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
-import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
-import { useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 
-const typeHref = (type: WeaponType) => `/blacksmith/${type}/`;
+/** For the tree card's body: rows scroll into view below the bar on phones. */
+export const typeBarScrollPadding = "mobile:scroll-pt-[60px]";
 
-export default function WeaponTypeBar({ type }: { type: WeaponType }) {
-  const t = useT();
-  const nav = t.equipment.nav;
+/** The room the bar takes at the top of the tree card, on phones only. */
+export function TypeBarSpace() {
+  return (
+    <div
+      className="hidden flex-none mobile:block"
+      style={{ height: SELECTOR_BAR_HEIGHT }}
+      aria-hidden="true"
+    />
+  );
+}
+
+interface Props<T extends string> {
+  /** Every type, in order; also each type's icon. */
+  types: readonly T[];
+  current: T;
+  href: (type: T) => string;
+  name: (type: T) => string;
+  /** Monster type icons (/images/monsters/), not equipment ones. */
+  monster?: boolean;
+  labels: {
+    /** The bar's group, e.g. "Weapon type". */
+    group: string;
+    previous: string;
+    next: string;
+    /** The name button, which opens the grid: "Weapon type: Bow. Choose another". */
+    choose: (name: string) => string;
+    /** The grid, e.g. "Weapon types". */
+    grid: string;
+  };
+}
+
+export default function TypeBar<T extends string>({
+  types,
+  current,
+  href,
+  name,
+  monster,
+  labels,
+}: Props<T>) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const gridRef = useRef<HTMLElement>(null);
-  const name = t.common.weaponTypes[type];
+  const currentName = name(current);
 
   // A click anywhere else closes the grid.
   useEffect(() => {
@@ -48,9 +86,9 @@ export default function WeaponTypeBar({ type }: { type: WeaponType }) {
   }, [open]);
 
   const step = (by: 1 | -1) => {
-    const index = WEAPON_TYPES.indexOf(type);
+    const index = types.indexOf(current);
     setOpen(false);
-    router.push(typeHref(WEAPON_TYPES[(index + by + WEAPON_TYPES.length) % WEAPON_TYPES.length]));
+    router.push(href(types[(index + by + types.length) % types.length]));
   };
 
   return (
@@ -59,9 +97,9 @@ export default function WeaponTypeBar({ type }: { type: WeaponType }) {
     <div ref={rootRef} className="hidden mobile:contents">
       <SelectorBar
         edge="top"
-        groupLabel={nav.weaponType}
-        previousLabel={nav.previousWeaponType}
-        nextLabel={nav.nextWeaponType}
+        groupLabel={labels.group}
+        previousLabel={labels.previous}
+        nextLabel={labels.next}
         onStep={step}
         label={
           <button
@@ -69,12 +107,18 @@ export default function WeaponTypeBar({ type }: { type: WeaponType }) {
             type="button"
             aria-haspopup="true"
             aria-expanded={open}
-            aria-label={nav.chooseWeaponType(name)}
+            aria-label={labels.choose(currentName)}
             onClick={() => setOpen((o) => !o)}
             className="flex h-[56px] w-full min-w-0 cursor-pointer items-center text-left text-stat"
           >
-            <Icon type={type} size="mini" nav active />
-            <span className="min-w-0 truncate">{name}</span>
+            {/* Monster sprites are drawn at their own 36px, the only size
+                their tint mask lines up with (see iconStyle). */}
+            {monster ? (
+              <Icon type={current} size="large" monster nav active className="m-0 mr-[6px]" />
+            ) : (
+              <Icon type={current} size="mini" nav active />
+            )}
+            <span className="min-w-0 truncate">{currentName}</span>
             <img
               src="/images/arrow.png"
               alt=""
@@ -101,7 +145,7 @@ export default function WeaponTypeBar({ type }: { type: WeaponType }) {
           <Card scroll frame="blue" className="flex-auto" bodyClassName="card-p-[1.6rem]">
             <nav
               ref={gridRef}
-              aria-label={nav.weaponTypes}
+              aria-label={labels.grid}
               className="grid grid-cols-3 gap-1"
               onKeyDown={(event) => {
                 if (event.key !== "Escape") return;
@@ -110,22 +154,31 @@ export default function WeaponTypeBar({ type }: { type: WeaponType }) {
                 buttonRef.current?.focus();
               }}
             >
-              {WEAPON_TYPES.map((option) => (
+              {types.map((option) => (
                 <Link
                   key={option}
-                  href={typeHref(option)}
-                  aria-current={option === type ? "page" : undefined}
+                  href={href(option)}
+                  aria-current={option === current ? "page" : undefined}
                   onClick={() => setOpen(false)}
                   className={cn(
                     "flex min-h-[8.4rem] flex-col items-center justify-start gap-1 px-1 pt-2 pb-3 text-center text-fine leading-tight text-white",
                     "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white focus-visible:outline-solid",
-                    option === type
+                    option === current
                       ? "bg-(image:--gradient-hover-glow)"
                       : "hover:bg-(image:--gradient-hover-glow)",
                   )}
                 >
-                  <Icon type={option} size="large" nav active={option === type} className="mr-0" />
-                  {t.common.weaponTypes[option]}
+                  {/* Centred in the cell: monster icons keep their 52px slot
+                      with an even margin. */}
+                  <Icon
+                    type={option}
+                    size="large"
+                    monster={monster}
+                    nav
+                    active={option === current}
+                    className={monster ? "m-[8px]" : "mr-0"}
+                  />
+                  {name(option)}
                 </Link>
               ))}
             </nav>

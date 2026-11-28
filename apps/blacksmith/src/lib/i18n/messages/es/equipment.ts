@@ -13,6 +13,10 @@ export const equipment: Messages["equipment"] = {
     chooseWeaponType: (type: string) => `Tipo de arma: ${type}. Elegir otro`,
     armorSlots: "Partes de armadura",
     armorTitle: (slot: string) => `Armadura: ${slot}`,
+    armorSlot: "Parte de armadura",
+    previousArmorSlot: "Parte de armadura anterior",
+    nextArmorSlot: "Siguiente parte de armadura",
+    chooseArmorSlot: (slot: string) => `Parte de armadura: ${slot}. Elegir otra`,
   },
   tree: {
     nothingYet: "Nada de esto está aún al alcance de tu progreso de misiones.",

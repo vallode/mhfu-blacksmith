@@ -13,7 +13,7 @@ export const equipment = {
     /** The weapon type tabs, and the page heading: "Great Sword weapons". */
     weaponTypes: "Weapon types",
     weaponsTitle: (type: string) => `${type} weapons`,
-    /** The weapon type bar over the tree card on phones (WeaponTypeBar). */
+    /** The weapon type bar over the tree card on phones (TypeBar). */
     weaponType: "Weapon type",
     previousWeaponType: "Previous weapon type",
     nextWeaponType: "Next weapon type",
@@ -22,6 +22,11 @@ export const equipment = {
     /** The armor slot tabs, and the page heading: "Head armor". */
     armorSlots: "Armor slots",
     armorTitle: (slot: string) => `${slot} armor`,
+    /** The armor slot bar over the tree card on phones (TypeBar). */
+    armorSlot: "Armor slot",
+    previousArmorSlot: "Previous armor slot",
+    nextArmorSlot: "Next armor slot",
+    chooseArmorSlot: (slot: string) => `Armor slot: ${slot}. Choose another`,
   },
   /** The tree sidebars. */
   tree: {

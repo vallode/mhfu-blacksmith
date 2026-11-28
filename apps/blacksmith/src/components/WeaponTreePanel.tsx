@@ -2,7 +2,8 @@
 
 /**
  * The weapon tree sidebar card, with the sort bar (TreeSortBar) over its
- * bottom and, on phones, the weapon type bar (WeaponTypeBar) over its top. The bar's menu picks the view (the upgrade tree, or the weapons
+ * bottom and, on phones, the weapon type bar (TypeBar) over its top. The
+ * bar's menu picks the view (the upgrade tree, or the weapons
  * listed by element or by rarity) and the filters: element, and with a
  * hunter loaded the hunter filter. Rows that don't match the filters are
  * dimmed in place, so the tree's lines and indentation never move.
@@ -15,7 +16,7 @@ import TreeScroll, { shownRows, TreeBranch } from "./TreeScroll";
 import TreeSortBar, { type SortSection } from "./TreeSortBar";
 import WeaponTreeGroups from "./WeaponTreeGroups";
 import WeaponTreeRow from "./WeaponTreeRow";
-import WeaponTypeBar from "./WeaponTypeBar";
+import TypeBar, { TypeBarSpace, typeBarScrollPadding } from "./TypeBar";
 import { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
 import { useVisibleTree } from "@/hooks/useVisibleTree";
 import { useHunterProgress } from "@/context/HunterProgressContext";
@@ -45,7 +46,7 @@ import {
   writeTreeView,
 } from "@/lib/tree-filter-store";
 import type { WeaponTreeNode } from "@/lib/types";
-import type { WeaponType } from "@/lib/constants";
+import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import { useT } from "@/context/LanguageContext";
 
 interface Props {
@@ -158,12 +159,8 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
     // Takes the tree card's place in .split-page.
     <CardBox data-tree-panel>
       {/* On phones the rows start, and scroll into view, below the type bar. */}
-      <Card variant="weapon-tree" bodyClassName="mobile:scroll-pt-[60px]">
-        <div
-          className="hidden flex-none mobile:block"
-          style={{ height: SELECTOR_BAR_HEIGHT }}
-          aria-hidden="true"
-        />
+      <Card variant="weapon-tree" bodyClassName={typeBarScrollPadding}>
+        <TypeBarSpace />
         {/* Each view keeps its own scroll position. */}
         <TreeScroll
           key={view}
@@ -198,7 +195,19 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
         </TreeScroll>
       </Card>
 
-      <WeaponTypeBar type={type} />
+      <TypeBar
+        types={WEAPON_TYPES}
+        current={type}
+        href={(option) => `/blacksmith/${option}/`}
+        name={(option) => t.common.weaponTypes[option]}
+        labels={{
+          group: t.equipment.nav.weaponType,
+          previous: t.equipment.nav.previousWeaponType,
+          next: t.equipment.nav.nextWeaponType,
+          choose: t.equipment.nav.chooseWeaponType,
+          grid: t.equipment.nav.weaponTypes,
+        }}
+      />
 
       {result && (
         <TreeSortBar

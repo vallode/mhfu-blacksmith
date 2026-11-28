@@ -5,12 +5,14 @@
  * of the weapon tree's filter bar: All ranks, Low, High, G Rank (see
  * armor-rank-filter-store). On a piece's page it only filters the tree; on a
  * rank's list page it goes to that rank's page, so the page and tree agree.
+ * On phones the armor slot bar (TypeBar) sits over its top.
  */
 import { useRouter } from "next/navigation";
 import Card from "./Card";
 import CardBox from "./CardBox";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
-import { ARMOR_RANKS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
+import TypeBar, { TypeBarSpace, typeBarScrollPadding } from "./TypeBar";
+import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
 import { prefetchBundle } from "@/lib/client-data";
 import { useT } from "@/context/LanguageContext";
 import {
@@ -48,12 +50,26 @@ export default function ArmorTreePanel({ slot, rank, slug, filter, children }: P
 
   return (
     <CardBox data-tree-panel>
-      <Card variant="weapon-tree">
+      <Card variant="weapon-tree" bodyClassName={typeBarScrollPadding}>
+        <TypeBarSpace />
         {children}
         {/* Room to scroll the last rows clear of the rank bar. flex-none: the
             card is a flex column, and an empty item would shrink to nothing. */}
         <div className="flex-none" style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
       </Card>
+      <TypeBar
+        types={ARMOR_SLOTS}
+        current={slot}
+        href={(option) => `/armorsmith/${option}/${rank}/`}
+        name={(option) => t.common.armorSlots[option]}
+        labels={{
+          group: t.equipment.nav.armorSlot,
+          previous: t.equipment.nav.previousArmorSlot,
+          next: t.equipment.nav.nextArmorSlot,
+          choose: t.equipment.nav.chooseArmorSlot,
+          grid: t.equipment.nav.armorSlots,
+        }}
+      />
       <SelectorBar
         label={filter === "all" ? tt.allRanks : t.common.ranks[filter]}
         groupLabel={tt.rankGroup}

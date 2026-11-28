@@ -11,6 +11,7 @@ import MonsterNav from "@/components/MonsterNav";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import SplitPage from "@/components/SplitPage";
 import TreeScroll from "@/components/TreeScroll";
+import TypeBar, { TypeBarSpace, typeBarScrollPadding } from "@/components/TypeBar";
 import { useLocale } from "@/context/LanguageContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
@@ -60,7 +61,8 @@ function CountBadge({ label, children }: { label: string; children: React.ReactN
  * The monsters of one type, down the left of the type's pages. With a hunter
  * loaded (and Hunt records on), a selector under the list picks out the
  * monsters they have captured or hunted: those show their count, and the rest
- * are dimmed in place.
+ * are dimmed in place. On phones the monster type bar (TypeBar) sits over its
+ * top.
  */
 function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: string }) {
   const { items: siblings } = useMonsterList(category);
@@ -98,9 +100,11 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
     ReactDOM.preload(`/images/monsters/${m.slug}.png`, { as: "image" });
   }
   return (
-    // Above the card (z-1) so the filter bar and its arrows draw over the frame.
-    <CardBox data-tree-panel={!!records || undefined}>
-      <Card variant="weapon-tree">
+    // Above the card (z-1) so the selector bars and their arrows draw over the
+    // frame.
+    <CardBox data-tree-panel>
+      <Card variant="weapon-tree" bodyClassName={typeBarScrollPadding}>
+        <TypeBarSpace />
         <TreeScroll treeKey={`monsters-${category}`} activeSlug={slug}>
           {rows?.map((m) => (
             <Link
@@ -146,6 +150,20 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
           {records && <div style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />}
         </TreeScroll>
       </Card>
+      <TypeBar
+        types={MONSTER_CATEGORIES}
+        current={category}
+        href={(option) => `/monsters/${option}/`}
+        name={(option) => t.common.monsterCategories[option]}
+        monster
+        labels={{
+          group: t.monsters.nav.type,
+          previous: t.monsters.nav.previousType,
+          next: t.monsters.nav.nextType,
+          choose: t.monsters.nav.chooseType,
+          grid: t.monsters.nav.types,
+        }}
+      />
       {records && total && (
         <SelectorBar
           label={tl.filters[filter]}

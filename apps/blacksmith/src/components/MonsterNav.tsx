@@ -10,7 +10,10 @@ interface MonsterNavProps {
   activeCategory?: MonsterCategory;
 }
 
-/** The bestiary's PageBar: one tab per monster type. */
+/**
+ * The bestiary's PageBar: one tab per monster type. On a type's pages phones
+ * leave it off and pick the type from the list card's TypeBar.
+ */
 export default function MonsterNav({ activeCategory }: MonsterNavProps) {
   const t = useT();
   // Remember the monster type so the main menu's "Monsters" entry reopens it.
@@ -20,6 +23,7 @@ export default function MonsterNav({ activeCategory }: MonsterNavProps) {
 
   return (
     <PageBar
+      hideOnPhone={!!activeCategory}
       title={
         activeCategory
           ? t.monsters.nav.title(t.common.monsterCategories[activeCategory])
