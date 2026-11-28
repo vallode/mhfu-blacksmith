@@ -30,7 +30,10 @@
 # OPENCODE_API_KEY) live on the Worker, set once with `wrangler secret put`.
 # Then its commands are registered with Discord, globally, which takes the
 # repository variable DISCORD_APPLICATION_ID and the secret
-# DISCORD_BOT_TOKEN; without them that step is skipped with a warning.
+# DISCORD_BOT_TOKEN; without them that step is skipped with a warning. The
+# bot's job runs in the discord-bot environment, which only main may use, and
+# DISCORD_BOT_TOKEN is that environment's secret: a run from another branch
+# can't read it, even with its own copy of this file.
 name: Deploy to Cloudflare
 
 on:
@@ -58,16 +61,29 @@ permissions:
 concurrency:
   group: cloudflare-deploy-${{ github.ref }}
 
+env:
+  WRANGLER_VERSION: 4.152.0
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      subdomain: ${{ steps.account.outputs.subdomain }}
     env:
-      WRANGLER_VERSION: 4.152.0
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
       - name: Check the secrets
+        env:
+          SITE: ${{ inputs.site }}
+          BRANCH: ${{ github.ref_name }}
         run: |
+          # The bot has one Discord application and no previews: a branch
+          # would replace what everyone's server answers with.
+          if [ "$SITE" = discord-bot ] && [ "$BRANCH" != main ]; then
+            echo "::error::The Discord bot deploys from main only."
+            exit 1
+          fi
           for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID; do
             if [ -z "${!name}" ]; then
               echo "::error::The $name secret isn't set."
@@ -158,40 +174,51 @@ jobs:
             echo "::endgroup::"
             echo "Deployed $site from $BRANCH to $url" | tee -a "$GITHUB_STEP_SUMMARY"
           done
+          if [ "$BRANCH" != main ] && [ "$SITE" = all ]; then
+            echo "Skipped the Discord bot: it deploys from main only." | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+
+  # After the site, so the cards the bot's index names are the ones it serves.
+  discord-bot:
+    needs: deploy
+    if: (inputs.site == 'all' || inputs.site == 'discord-bot') && github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    environment: discord-bot
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
 
       - name: Deploy the Discord bot
-        id: bot
-        if: inputs.site == 'all' || inputs.site == 'discord-bot'
         env:
-          SITE: ${{ inputs.site }}
-          BRANCH: ${{ github.ref_name }}
-          SUBDOMAIN: ${{ steps.account.outputs.subdomain }}
+          SUBDOMAIN: ${{ needs.deploy.outputs.subdomain }}
           MESSAGE: Deployed from GitHub Actions by ${{ github.actor }} (${{ github.ref_name }} ${{ github.sha }})
         run: |
-          # The bot has one Discord application and no previews: a branch
-          # would replace what everyone's server answers with.
-          if [ "$BRANCH" != main ]; then
-            if [ "$SITE" = discord-bot ]; then
-              echo "::error::The Discord bot deploys from main only."
-              exit 1
-            fi
-            echo "Skipped the Discord bot: it deploys from main only." | tee -a "$GITHUB_STEP_SUMMARY"
-            exit 0
-          fi
           # wrangler.jsonc's build command writes the bot's index first.
           pnpm dlx "wrangler@$WRANGLER_VERSION" deploy --cwd apps/discord-bot --message "$MESSAGE"
-          echo "deployed=true" >> "$GITHUB_OUTPUT"
           echo "Deployed the Discord bot to https://mhfu-discord-bot.$SUBDOMAIN.workers.dev/" | tee -a "$GITHUB_STEP_SUMMARY"
 
       # After the deploy, so a new command reaches a Worker that answers it.
       - name: Register the Discord bot's commands
-        if: steps.bot.outputs.deployed == 'true' && inputs.register
+        if: inputs.register
         env:
           DISCORD_APPLICATION_ID: ${{ vars.DISCORD_APPLICATION_ID }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
         run: |
           if [ -z "$DISCORD_APPLICATION_ID" ] || [ -z "$DISCORD_BOT_TOKEN" ]; then
-            echo "::warning::Set the DISCORD_APPLICATION_ID variable and the DISCORD_BOT_TOKEN secret to register the bot's commands."
+            echo "::warning::Set the DISCORD_APPLICATION_ID variable and the discord-bot environment's DISCORD_BOT_TOKEN secret to register the bot's commands."
             exit 0
           fi
           set -o pipefail

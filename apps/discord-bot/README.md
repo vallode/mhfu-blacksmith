@@ -76,7 +76,8 @@ way, the model choice and what it costs.
 2. Add credits and make an API key in the OpenCode console
    (https://opencode.ai/console), for its pay-as-you-go models; an OpenCode
    Go key doesn't work outside opencode. Deploy the Worker (Actions > Deploy
-   to Cloudflare > Run workflow on main, with `discord-bot`; or
+   to Cloudflare > Run workflow on main, with `discord-bot` and **Register
+   the Discord bot's commands** unticked, since it can't answer them yet; or
    `npx wrangler deploy` from this directory) and give it its secrets:
 
    ```sh
@@ -97,9 +98,12 @@ way, the model choice and what it costs.
 5. Invite the bot with the `applications.commands` scope (OAuth2 > URL
    Generator).
 6. For the workflow to register the commands after each deploy, add the
-   application ID as the repository variable `DISCORD_APPLICATION_ID` and
-   the bot token as the secret `DISCORD_BOT_TOKEN` (Settings > Secrets and
-   variables > Actions). It registers them globally.
+   application ID as the repository variable `DISCORD_APPLICATION_ID`
+   (Settings > Secrets and variables > Actions), and the bot token as the
+   secret `DISCORD_BOT_TOKEN` of the `discord-bot` environment (Settings >
+   Environments), with its deployment branches limited to `main`. Keep the
+   token out of the repository's own secrets, which every branch's runs can
+   read. It registers them globally.
 
 After that, Deploy to Cloudflare deploys the bot from main and registers its
 commands: on its own (`discord-bot`), or after the site with `all`, which
