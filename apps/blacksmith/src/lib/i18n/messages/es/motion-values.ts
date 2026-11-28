@@ -29,6 +29,18 @@ export const motionValues: Messages["motionValues"] = {
     weak: "Con un crítico negativo: el valor de movimiento × 0,75",
   },
   loadError: "No se pudieron cargar los valores de movimiento.",
+  input: {
+    label: "Botones",
+    hold: "Mantén",
+    buttons: {
+      triangle: "Triángulo",
+      circle: "Círculo",
+      cross: "Equis",
+      r: "R",
+      select: "SELECT",
+      stick: "Stick analógico",
+    },
+  },
   bestiary: {
     spot: (monster: string, part: string) => `${monster} · ${part}`,
     type: "Tipo",

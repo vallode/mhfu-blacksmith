@@ -29,11 +29,19 @@ const AMMO_TINT: Record<string, number> = {
 };
 
 /** An ammo table's name cell: the shot icon, then the name (and `suffix`, its level say). */
-export default function AmmoName({ name, suffix }: { name: string; suffix?: React.ReactNode }) {
+export default function AmmoName({
+  name,
+  suffix,
+  className,
+}: {
+  name: string;
+  suffix?: React.ReactNode;
+  className?: string;
+}) {
   const t = useT();
   const tint = AMMO_TINT[name];
   return (
-    <td>
+    <td className={className}>
       <div className="flex items-center">
         {tint !== undefined && <Icon type="item-26" color={`item-${tint}`} />}
         {t.equipment.weapon.ammo[name] ?? name}

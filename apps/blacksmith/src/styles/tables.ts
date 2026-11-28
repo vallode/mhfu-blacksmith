@@ -97,17 +97,36 @@ export const monsterLogTable = [
 ].join(" ");
 
 /**
- * The motion value calculator: the move's name, taking the slack, then its
- * motion value and damage right-aligned. Names stay on one line except on a
- * phone or a compact screen.
+ * The motion value calculator: the move's name (its cells marked
+ * `motionName`), taking the slack, then its motion value and damage
+ * right-aligned. Names stay on one line except on a phone or a compact
+ * screen, or with the inputs under them. A move's
+ * input can come before its name (`motionInput`), or with
+ * `data-inputs="under"` on the table under it (`underInput`) instead.
  */
 export const motionValueTable = [
   "h-min w-full border-collapse text-sub leading-[1.25] tabular-nums mobile:text-small compact:text-small",
   "[&_th]:pb-[0.4rem] [&_th]:pl-[1.6rem] [&_th]:text-right [&_th]:align-bottom [&_th]:font-normal [&_th]:whitespace-nowrap [&_th]:text-warm",
-  "[&_th:first-of-type]:w-full [&_th:first-of-type]:pl-0 [&_th:first-of-type]:text-left [&_th:first-of-type]:text-gold",
+  "[&_th.name]:w-full [&_th.name]:text-left [&_th.name]:text-gold",
   "[&_td]:py-[0.2rem] [&_td]:pl-[1.6rem] [&_td]:text-right [&_td]:whitespace-nowrap [&_td]:text-white",
-  "[&_td:first-of-type]:pl-0 [&_td:first-of-type]:text-left [&_td:first-of-type]:text-stat",
-  "mobile:[&_td:first-of-type]:whitespace-normal compact:[&_td:first-of-type]:whitespace-normal",
+  "[&_td.name]:text-left [&_td.name]:text-stat",
+  "mobile:[&_td.name]:whitespace-normal compact:[&_td.name]:whitespace-normal",
+  "[&_td.input]:text-left [&_td.input]:align-middle [&_.under]:hidden",
+  // The inputs under the names: their column goes, and the names start at the edge.
+  "[&[data-inputs=under]_.input]:hidden [&[data-inputs=under]_.name]:pl-0 [&[data-inputs=under]_.under]:block",
+  // There the names may wrap too, at any width.
+  "[&[data-inputs=under]_td.name]:whitespace-normal",
+  // The row's first cell, the name or the input before it, starts at the edge.
+  "[&_:is(th,td):first-child]:pl-0",
   // Six columns (total, critical, raw and element) fit a phone with narrower gaps.
   "mobile:[&_td]:pl-[0.6rem] mobile:[&_th]:pl-[0.6rem] compact:[&_td]:pl-[0.8rem] compact:[&_th]:pl-[0.8rem]",
 ].join(" ");
+
+/** The name column's cells in `motionValueTable`. */
+export const motionName = "name";
+
+/** The input column's cells in `motionValueTable`, before the name: left-aligned, the names lined up after it. */
+export const motionInput = "input";
+
+/** A move's input under its name in `motionValueTable`, shown with `data-inputs="under"`. */
+export const underInput = "under";
