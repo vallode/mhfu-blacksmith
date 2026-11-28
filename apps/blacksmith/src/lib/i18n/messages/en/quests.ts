@@ -34,6 +34,12 @@ export const quests = {
     /** A star level tab, read out: "3 stars", "G 1 star". */
     starLevel: (stars: number, g: boolean) =>
       `${g ? "G " : ""}${stars} ${stars === 1 ? "star" : "stars"}`,
+    /** The star level bar over the quest list on phones (TypeBar). */
+    starLevelGroup: "Star level",
+    previousStarLevel: "Previous star level",
+    nextStarLevel: "Next star level",
+    /** The bar's name button, which opens the grid of every level. */
+    chooseStarLevel: (level: string) => `Star level: ${level}. Choose another`,
     /** The filter at the bottom of the list, showing every quest. */
     allQuests: "All quests",
     filter: "Quest filter",
