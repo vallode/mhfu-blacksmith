@@ -3,7 +3,8 @@
  * them (bot.ts) and scripts/register-commands.ts sends this list to Discord.
  * Descriptions are what Discord shows under each command.
  */
-import { OptionType } from "./discord.js";
+import { CommandType, OptionType } from "./discord.js";
+import { MESSAGE_LOOKUP } from "./message-lookup.js";
 
 const nameOption = (description: string) => ({
   type: OptionType.String,
@@ -54,6 +55,12 @@ export const COMMANDS = [
         max_length: 500,
       },
     ],
+  },
+  {
+    // Right-click a message > Apps: what it names, looked up (message-lookup.ts).
+    type: CommandType.Message,
+    name: MESSAGE_LOOKUP,
+    description: "",
   },
 ] as const;
 

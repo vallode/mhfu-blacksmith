@@ -5,13 +5,27 @@ Cloudflare Worker set as the application's **Interactions Endpoint URL**:
 Discord POSTs each slash command and autocomplete keystroke to it and takes
 the response as the reply, so there's no gateway process to keep running.
 
-| Command             | Reply                                                                                    |
-| ------------------- | ---------------------------------------------------------------------------------------- |
-| `/monster name:`    | Type, base HP, weaknesses, breakable parts and crowns, and the page link (which unfurls) |
-| `/item name:`       | Its icon, the best monster drops and quest rewards with their chances, rarity and price  |
-| `/weapon name:`     | Attack, affinity, element, slots and rarity, and the page link                           |
-| `/settings string:` | A RandomFU settings string's seed, preset and every option it changes                    |
-| `/sets request:`    | A plain-English request as a set builder search: a link that opens with it filled in     |
+| Command               | Reply                                                                                    |
+| --------------------- | ---------------------------------------------------------------------------------------- |
+| `/monster name:`      | Type, base HP, weaknesses, breakable parts and crowns, and the page link (which unfurls) |
+| `/item name:`         | Its icon, the best monster drops and quest rewards with their chances, rarity and price  |
+| `/weapon name:`       | Attack, affinity, element, slots and rarity, and the page link                           |
+| `/settings string:`   | A RandomFU settings string's seed, preset and every option it changes                    |
+| `/sets request:`      | A plain-English request as a set builder search: a link that opens with it filled in     |
+| Look up in Blacksmith | On any message (right-click › Apps): the monsters, items and weapons it names            |
+
+**Look up in Blacksmith** answers someone's question without retyping it.
+It finds up to five names in the message, loosely spelled ("where do i farm
+rath plates?? still running bone g" finds Rathian Plate and Bone G):
+nicknames, plurals, words typed short and names run together count, the
+longer of two overlapping names wins, and everyday words that are also items
+("map", "stone") count only when nothing else is named. Only you see the answer: a row for
+each, linked to its page, with an item's best source, a weapon's type,
+attack and rarity, or a monster's type and weakness. Its buttons post that
+entry's usual `/monster`, `/item` or `/weapon` reply in the channel, under a
+link to the message it answers, or all of them in one. Discord sends the
+message's text with the command, so the bot needs no message content intent.
+It's `src/message-lookup.ts`.
 
 `name` autocompletes: by name, the data's other spellings and the community's
 nicknames (`src/nicknames.ts`: "Raja", "Kush", "Fatty"). Large monsters come
