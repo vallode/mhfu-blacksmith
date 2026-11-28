@@ -7,6 +7,7 @@ import AmmoName from "@/components/AmmoName";
 import {
   DetailBody,
   DetailCard,
+  DetailActions,
   DetailHeader,
   DetailName,
   DetailRule,
@@ -136,27 +137,22 @@ export default function WeaponDetailClient({ type, slug }: Props) {
             <DetailName id="weapon_name" className="mobile:flex-1">
               {name}
             </DetailName>
+            <DetailActions>
+              {modelUrl && (
+                <ModelButton
+                  open={modelOpen}
+                  onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
+                />
+              )}
+              <WishlistButton gear={{ kind: "weapon", type, slug }} name={name} />
+            </DetailActions>
           </div>
-          <div className="contents mobile:mt-[0.6rem] mobile:flex mobile:w-full mobile:items-center">
-            {modelUrl && (
-              <ModelButton
-                open={modelOpen}
-                onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
-                className="ml-[0.4rem] mobile:ml-auto"
-              />
-            )}
-            <WishlistButton
-              gear={{ kind: "weapon", type, slug }}
-              name={name}
-              className={modelUrl ? undefined : "ml-[0.4rem] mobile:ml-auto"}
-            />
-            {(weapon.sharpness || weapon.sharpness_plus) && (
-              <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:order-first mobile:mx-0 mobile:gap-[0.4rem]">
-                {weapon.sharpness && <SharpnessBar values={weapon.sharpness} />}
-                {weapon.sharpness_plus && <SharpnessBar values={weapon.sharpness_plus} plus />}
-              </div>
-            )}
-          </div>
+          {(weapon.sharpness || weapon.sharpness_plus) && (
+            <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:mt-[0.6rem] mobile:ml-0 mobile:gap-[0.4rem]">
+              {weapon.sharpness && <SharpnessBar values={weapon.sharpness} />}
+              {weapon.sharpness_plus && <SharpnessBar values={weapon.sharpness_plus} plus />}
+            </div>
+          )}
         </DetailHeader>
 
         {/* Stats + requirements */}

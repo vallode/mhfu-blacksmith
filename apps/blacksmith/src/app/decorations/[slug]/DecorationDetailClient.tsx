@@ -5,6 +5,7 @@ import Icon from "@/components/Icon";
 import {
   DetailBody,
   DetailCard,
+  DetailActions,
   DetailHeader,
   DetailName,
   DetailRule,
@@ -74,7 +75,9 @@ export default function DecorationDetailClient({ slug }: Props) {
       <DetailHeader>
         <Icon type="decoration" size="large" color={deco.color} alt={name} />
         <DetailName className="mobile:flex-1">{name}</DetailName>
-        <WishlistButton gear={{ kind: "decoration", slug }} name={name} className="ml-[0.4rem]" />
+        <DetailActions>
+          <WishlistButton gear={{ kind: "decoration", slug }} name={name} />
+        </DetailActions>
       </DetailHeader>
 
       <DetailBody>
