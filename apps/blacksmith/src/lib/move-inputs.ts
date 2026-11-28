@@ -40,7 +40,7 @@ export function parseInput(text: string): MoveInput {
 
 /**
  * Each move's input with the game's default controls (Type 1), by weapon
- * type and the move's key in data/motion-values.json: △ ○ × R SELECT,
+ * type and the move's key in data/mhfu/motion-values.json: △ ○ × R SELECT,
  * ↑ the analog stick pushed. A step after "×" follows a roll; a draw attack
  * is done moving with the weapon sheathed. The disc doesn't list them; they
  * follow GameFAQs' MHFU guides (DS31's Melee Damage FAQ, Darksun45230's
