@@ -11,10 +11,10 @@ export const motionValues = {
   /** Long Sword: the values with the spirit gauge glowing or not. */
   spiritGauge: "Spirit Gauge",
   glowing: "Glowing",
-  /** Lance: the charge's values while it starts or once it runs at full speed. */
-  charge: "Charge",
-  runUp: "Run-up",
-  fullSpeed: "Full speed",
+  /** Lance: the charge's rows, as it starts and once it runs at full speed: "Charge (run-up)". */
+  chargeAt: (move: string, speed: string) => `${move} (${speed})`,
+  runUp: "run-up",
+  fullSpeed: "full speed",
   /** Selector arrows. */
   previous: "Previous",
   next: "Next",
@@ -54,7 +54,6 @@ export const motionValues = {
     title: "Damage Calculator",
     weapon: "Weapon",
     pickWeapon: "Pick a weapon",
-    changeWeapon: "Change",
     /** The weapon picker's search field. */
     searchWeapons: "Search weapons",
     searchPlaceholder: "Name",
