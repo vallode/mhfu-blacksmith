@@ -80,8 +80,12 @@ export default function SplitPage({ list, closeHref, children }: Props) {
         // list (fixed, so it leaves the split page) and flush with the screen's
         // sides like the tab bar, with its cards filled (Card's --card-fill) so
         // the list doesn't show through them. --sheet-close-room lowers the
-        // detail's header (DetailHeader) clear of the ×.
-        <div className="contents mobile:fixed mobile:inset-x-0 mobile:top-[calc(env(safe-area-inset-top)+0.6rem)] mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.2rem)] mobile:z-10 mobile:flex mobile:flex-col mobile:[--card-fill:var(--color-sheet)] mobile:[--sheet-close-room:2.7rem] mobile:motion-safe:animate-sheet-in">
+        // detail's header (DetailHeader) clear of the ×; data-sheet moves its
+        // buttons (DetailActions) up beside it.
+        <div
+          data-sheet
+          className="contents mobile:fixed mobile:inset-x-0 mobile:top-[calc(env(safe-area-inset-top)+0.6rem)] mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.2rem)] mobile:z-10 mobile:flex mobile:flex-col mobile:[--card-fill:var(--color-sheet)] mobile:[--sheet-close-room:2.7rem] mobile:motion-safe:animate-sheet-in"
+        >
           {children}
           {/* Over the card's top-right corner, like the 3D model's close
               button: a glyph in a 44px tap target. */}

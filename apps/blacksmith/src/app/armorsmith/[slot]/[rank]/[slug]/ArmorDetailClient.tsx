@@ -5,6 +5,7 @@ import Icon from "@/components/Icon";
 import {
   DetailBody,
   DetailCard,
+  DetailActions,
   DetailHeader,
   DetailName,
   DetailRule,
@@ -70,18 +71,15 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
           <div className="contents mobile:flex mobile:w-full mobile:items-center">
             <Icon type={slot} size="large" alt={name} />
             <DetailName className="mobile:flex-1">{name}</DetailName>
-            {modelKey && (
-              <ModelButton
-                open={modelOpen}
-                onClick={() => setOpenModel(modelOpen ? null : modelKey)}
-                className="ml-[0.4rem]"
-              />
-            )}
-            <WishlistButton
-              gear={{ kind: "armor", slot, rank, slug }}
-              name={name}
-              className={modelKey ? undefined : "ml-[0.4rem]"}
-            />
+            <DetailActions>
+              {modelKey && (
+                <ModelButton
+                  open={modelOpen}
+                  onClick={() => setOpenModel(modelOpen ? null : modelKey)}
+                />
+              )}
+              <WishlistButton gear={{ kind: "armor", slot, rank, slug }} name={name} />
+            </DetailActions>
           </div>
           {(piece.sex || piece.hunter_type) && (
             <div className="ml-[1.6rem] flex flex-wrap gap-x-[1.6rem] mobile:ml-0">

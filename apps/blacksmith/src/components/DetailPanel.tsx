@@ -54,6 +54,21 @@ export function DetailHeader({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * The header's buttons (3D model, wishlist), after the name. In a phone's
+ * sheet they float up beside the sheet's ×, in the room DetailHeader leaves
+ * above itself for it (bottom-full), centred on the × and just left of it
+ * (SplitPage's × reaches 3.7rem into the card's content), so the name keeps
+ * the whole row.
+ */
+export function DetailActions({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="ml-[0.4rem] flex flex-none items-center mobile:in-data-sheet:absolute mobile:in-data-sheet:right-[3.7rem] mobile:in-data-sheet:bottom-full mobile:in-data-sheet:mb-[0.4rem]">
+      {children}
+    </div>
+  );
+}
+
 /** The item's name in the header; wraps (mid-word if it must) when it doesn't fit on a phone. */
 export function DetailName({
   children,
