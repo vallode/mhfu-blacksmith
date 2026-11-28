@@ -65,6 +65,8 @@ export const motionValues: Messages["motionValues"] = {
     attack: "Ataque",
     affinity: "Afinidad",
     trueAttack: "Ataque real",
+    effectiveRaw: "Ataque efectivo",
+    effectiveRawHint: "Ataque real × el multiplicador del filo × (1 + 0,25 × afinidad)",
     /** The target row and its sheet: a monster's part, or a hitzone set by hand. */
     target: "Objetivo",
     targetLabel: "Cambiar el objetivo",

@@ -88,8 +88,11 @@ export const motionValues = {
     /** The summary line's attack and affinity with buffs. */
     attack: "Attack",
     affinity: "Affinity",
-    /** Under the buffs: the weapon's true attack, then with them. */
+    /** At the foot of the calculator card: the weapon's true attack, then with buffs. */
     trueAttack: "True attack",
+    /** Beside it, for blademasters: true attack × sharpness × affinity, in the sharpness picked. */
+    effectiveRaw: "Effective raw",
+    effectiveRawHint: "True attack × the sharpness multiplier × (1 + 0.25 × affinity)",
     /** The target row and its sheet: a monster's part, or a hitzone set by hand. */
     target: "Target",
     targetLabel: "Change the target",
