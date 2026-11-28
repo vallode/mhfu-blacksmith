@@ -4,6 +4,7 @@
  * WebAssembly, no HTMLRewriter), so the routing is tested in Node
  * (test/worker-routes.test.ts).
  */
+import { parseDetailCardPath, type DetailCardKind } from "../lib/detail-card";
 import { SHARE_PARAM } from "../lib/set-codec";
 import { codeFromPath } from "../lib/set-link";
 
@@ -15,6 +16,8 @@ export const OEMBED_PATH = "/set-builder/oembed.json";
 export type Route =
   /** Not the script's to answer: the static asset, as it is. */
   | { kind: "asset" }
+  /** A weapon, item or drops card (`/embed/cards/<kind>/<key>.png`, detail-card.ts). */
+  | { kind: "detail-card"; card: DetailCardKind; key: string }
   /** The set's card image (`CARD_PATH?s=<code>`). */
   | { kind: "card"; code: string }
   /** The set's oEmbed file (`OEMBED_PATH?s=<code>`). */
@@ -28,6 +31,8 @@ export type Route =
 
 export function route(url: URL, method: string): Route {
   if (method !== "GET" && method !== "HEAD") return { kind: "asset" };
+  const detail = parseDetailCardPath(url.pathname);
+  if (detail) return { kind: "detail-card", card: detail.kind, key: detail.key };
   const pathCode = codeFromPath(url.pathname);
   if (pathCode) return { kind: "page", code: pathCode, shareLink: true };
   const code = url.searchParams.get(SHARE_PARAM);

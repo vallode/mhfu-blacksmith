@@ -7,6 +7,9 @@
  *   and randomfu's settings module;
  * - "Look up in Blacksmith" on a message, and its Post buttons
  *   (message-lookup.ts);
+ * - a press of a monster reply's tab buttons, or a pick from its rank menu,
+ *   by editing that reply (or, for someone other than who asked, with a
+ *   copy only they see);
  * - /sets with a deferred reply ("thinking…"), since the model can take
  *   longer than the 3 seconds Discord waits, edited into the answer once
  *   the request is translated. Each user gets a few per minute (SET_LIMITER).
@@ -29,7 +32,14 @@ import {
   type InteractionResponse,
   type MessageData,
 } from "./discord.js";
-import { autocomplete, EMBED_COLOR, lookupReply, type LookupKind } from "./lookup.js";
+import {
+  autocomplete,
+  EMBED_COLOR,
+  lookupReply,
+  monsterView,
+  parseMonsterComponent,
+  type LookupKind,
+} from "./lookup.js";
 import { messageLookup } from "./message-lookup.js";
 import {
   keywordTranslator,
@@ -207,6 +217,26 @@ export function createBot(index: BotIndex, options: BotOptions = {}) {
 
     const looked = messageLookup(index, interaction, siteUrlOf(env), assetUrlOf(env));
     if (looked) return looked;
+
+    if (interaction.type === InteractionType.MessageComponent) {
+      const asked = parseMonsterComponent(
+        interaction.data?.custom_id ?? "",
+        interaction.data?.values,
+      );
+      const m = asked && index.monsters.find((e) => e.id === asked.id);
+      if (!asked || !m) return onlyYou("That button is from an older reply. Ask again.");
+      const view = monsterView(m, asked.tab, asked.rank, {
+        site: siteUrlOf(env),
+        assets: assetUrlOf(env),
+      });
+      // The reply is the asker's: anyone else gets the tab to themselves.
+      const owner = interaction.message?.interaction_metadata?.user.id;
+      if (owner && owner !== userOf(interaction)?.id) return message({ ...view, flags: EPHEMERAL });
+      return {
+        type: ResponseType.UpdateMessage,
+        data: { allowed_mentions: { parse: [] }, ...view },
+      };
+    }
 
     if (interaction.type !== InteractionType.ApplicationCommand)
       return onlyYou("I don't know that one.");

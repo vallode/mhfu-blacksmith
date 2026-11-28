@@ -17,6 +17,10 @@
  *   Discord the line above the title ("G-Rank Blademaster Set"), like the
  *   detail pages' static ones.
  *
+ * - `/embed/cards/<kind>/<key>.png?v=<version>`: a weapon, item or drops
+ *   card (src/lib/detail-card.ts), drawn the same way from the contents the
+ *   build wrote, and cached the same way.
+ *
  * Anything else, or a code that doesn't open, gets the page as it is. Which
  * of these a request gets is decided in routes.ts.
  */
@@ -25,6 +29,19 @@ import resvgWasm from "@resvg/resvg-wasm/index_bg.wasm";
 import satori, { init as initSatori } from "satori/wasm";
 import initYoga from "yoga-wasm-web";
 import yogaWasm from "yoga-wasm-web/dist/yoga.wasm";
+import {
+  DETAIL_CARD_ASSETS_PATH,
+  cardImagePaths,
+  detailCardDataPath,
+  detailCardPath,
+  detailCardTree,
+  detailCardVersion,
+  type DetailCardAssets,
+  type DetailCardKind,
+  type DropsCard,
+  type ItemCard,
+  type WeaponCard,
+} from "../lib/detail-card";
 import { SITE_NAME } from "../lib/embed-format";
 import {
   CARD,
@@ -135,6 +152,113 @@ const loadCardAssets = once(async (env: Env, origin: string) => {
   ];
   return { fonts, assets };
 });
+
+type DetailCard = WeaponCard | ItemCard | DropsCard;
+
+/** A kind of card's contents, by key; one load per isolate. */
+const detailCardData: Record<
+  DetailCardKind,
+  (env: Env, origin: string) => Promise<Record<string, DetailCard>>
+> = {
+  weapons: once(loadDetailCardData("weapons")),
+  items: once(loadDetailCardData("items")),
+  drops: once(loadDetailCardData("drops")),
+};
+function loadDetailCardData(kind: DetailCardKind) {
+  return async (env: Env, origin: string) =>
+    (await (await asset(env, origin, detailCardDataPath(kind))).json()) as Record<
+      string,
+      DetailCard
+    >;
+}
+
+const loadDetailAssets = once(
+  async (env: Env, origin: string) =>
+    (await (await asset(env, origin, DETAIL_CARD_ASSETS_PATH)).json()) as DetailCardAssets,
+);
+
+/** Site images as data: URIs, kept for the isolate's life (the icons are a few KB each). */
+const imageCache = new Map<string, Promise<string>>();
+function imageUri(env: Env, origin: string, path: string): Promise<string> {
+  let uri = imageCache.get(path);
+  if (!uri) {
+    uri = asset(env, origin, path)
+      .then((r) => r.arrayBuffer())
+      .then((buf) => {
+        const bytes = new Uint8Array(buf);
+        let bin = "";
+        for (let i = 0; i < bytes.length; i += 0x8000) {
+          bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+        }
+        return `data:image/png;base64,${btoa(bin)}`;
+      });
+    uri.catch(() => imageCache.delete(path));
+    imageCache.set(path, uri);
+  }
+  return uri;
+}
+
+/** A card's tree as a PNG, at the card's size. */
+async function render(tree: unknown, fonts: Awaited<ReturnType<typeof loadCardAssets>>["fonts"]) {
+  // satori's types want a React element; the tree is the same shape.
+  const svg = await satori(tree as ReactNode, { width: CARD.width, height: CARD.height, fonts });
+  return new Resvg(svg).render().asPng();
+}
+
+/** A weapon, item or drops card, from Cloudflare's cache or drawn now (as cardResponse). */
+async function detailCardResponse(
+  env: Env,
+  ctx: ExecutionContext,
+  url: URL,
+  kind: DetailCardKind,
+  key: string,
+): Promise<Response> {
+  let card: DetailCard | undefined;
+  try {
+    const cards = await detailCardData[kind](env, url.origin);
+    // Own keys only: "constructor" is a path segment too.
+    card = Object.hasOwn(cards, key) ? cards[key] : undefined;
+  } catch (e) {
+    return unavailable("the card data", e);
+  }
+  if (!card) return new Response("Not found", { status: 404 });
+  const version = detailCardVersion(card);
+  const canonical = new URL(detailCardPath(kind, key), url.origin);
+  canonical.searchParams.set("v", version);
+  const cacheKey = new Request(canonical);
+
+  const cache = caches.default;
+  let res = await cache.match(cacheKey);
+  if (!res) {
+    let png: Uint8Array;
+    try {
+      const [{ fonts }, assets, images] = await Promise.all([
+        loadCardAssets(env, url.origin),
+        loadDetailAssets(env, url.origin),
+        Promise.all(
+          cardImagePaths(kind, card).map(async (p) => [p, await imageUri(env, url.origin, p)]),
+        ).then(Object.fromEntries),
+        initResvgOnce(),
+        initSatoriOnce(),
+      ]);
+      png = await render(detailCardTree(kind, card, assets, images), fonts);
+    } catch (e) {
+      return unavailable("the card", e);
+    }
+    res = new Response(png as Uint8Array<ArrayBuffer>, {
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=31536000, immutable",
+      },
+    });
+    ctx.waitUntil(cache.put(cacheKey, res.clone()));
+  }
+  // A link to another version still gets the current card, but not for long.
+  if (url.searchParams.get("v") === version) return res;
+  const headers = new Headers(res.headers);
+  headers.set("Cache-Control", "public, max-age=3600");
+  return new Response(res.body, { status: res.status, headers });
+}
 
 /** The card for a set, as a PNG. */
 async function drawCard(
@@ -300,6 +424,9 @@ const worker = {
     const url = new URL(request.url);
     const target = route(url, request.method);
     if (target.kind === "asset") return env.ASSETS.fetch(request);
+    if (target.kind === "detail-card") {
+      return detailCardResponse(env, ctx, url, target.card, target.key);
+    }
     const { code } = target;
 
     if (target.kind === "card") return cardResponse(env, ctx, url, code);

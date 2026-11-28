@@ -9,6 +9,7 @@ import {
   EPHEMERAL,
   InteractionType,
   ResponseType,
+  type Button,
   type Interaction,
   type InteractionResponse,
   type MessageData,
@@ -109,7 +110,9 @@ function messageOf(r: InteractionResponse): MessageData {
   return (r as { data: MessageData }).data;
 }
 
-const buttons = (m: MessageData) => (m.components ?? []).flatMap((r) => r.components);
+// The answer's buttons are all plain buttons with custom_ids.
+const buttons = (m: MessageData) =>
+  (m.components ?? []).flatMap((r) => r.components) as (Button & { custom_id: string })[];
 const JUMP = "-# ↪ Answering [this message](<https://discord.com/channels/700/800/900>)";
 
 describe("the message command", () => {
@@ -159,10 +162,13 @@ describe("the message command", () => {
     assert.deepEqual(post.allowed_mentions, { parse: [] });
   });
 
-  it("keeps a monster's page link in the post, for its preview", async () => {
+  it("posts a monster with its card and its tab buttons", async () => {
     const answer = messageOf(await call(lookUp("rath")));
     const post = messageOf(await call(press(answer, buttons(answer)[0]!.custom_id)));
-    assert.equal(post.content, `${JUMP}\n${SITE}/monsters/flying-wyvern/rathalos/`);
+    const usual = lookupReply(index, "monster", "Rathalos", SITE)!;
+    assert.equal(post.content, JUMP);
+    assert.ok(post.embeds?.[0]?.image);
+    assert.deepEqual(post.components, usual.components);
   });
 
   it("posts them all in one reply", async () => {

@@ -5,14 +5,20 @@ Cloudflare Worker set as the application's **Interactions Endpoint URL**:
 Discord POSTs each slash command and autocomplete keystroke to it and takes
 the response as the reply, so there's no gateway process to keep running.
 
-| Command               | Reply                                                                                    |
-| --------------------- | ---------------------------------------------------------------------------------------- |
-| `/monster name:`      | Type, base HP, weaknesses, breakable parts and crowns, and the page link (which unfurls) |
-| `/item name:`         | Its icon, the best monster drops and quest rewards with their chances, rarity and price  |
-| `/weapon name:`       | Attack, affinity, element, slots and rarity, and the page link                           |
-| `/settings string:`   | A RandomFU settings string's seed, preset and every option it changes                    |
-| `/sets request:`      | A plain-English request as a set builder search: a link that opens with it filled in     |
-| Look up in Blacksmith | On any message (right-click › Apps): the monsters, items and weapons it names            |
+| Command               | Reply                                                                                   |
+| --------------------- | --------------------------------------------------------------------------------------- |
+| `/monster name:`      | The monster page's card, with Hitzones, Drops and Quests buttons and the page link      |
+| `/item name:`         | The item's card: the best monster drops and quest rewards with their chances            |
+| `/weapon name:`       | The weapon's card: stats, sharpness, upgrades and materials; links to its page and tree |
+| `/settings string:`   | A RandomFU settings string's seed, preset and every option it changes                   |
+| `/sets request:`      | A plain-English request as a set builder search: a link that opens with it filled in    |
+| Look up in Blacksmith | On any message (right-click › Apps): the monsters, items and weapons it names           |
+
+Each reply is an embed with the site's card as its image, the game icon in
+its author line and the bar in the rarity's colour. A monster's buttons swap
+the card for its drops (one card per rank, picked from a menu, High Rank
+first) or its quests by board. Buttons edit the reply for whoever asked and
+send anyone else a copy only they see.
 
 **Look up in Blacksmith** answers someone's question without retyping it.
 It finds up to five names in the message, loosely spelled ("where do i farm
@@ -36,7 +42,13 @@ before small ones that match as well.
 - `scripts/index-data.ts` builds the search index from `data/` with
   game-data's `readData`, and the site's own slug functions, so every link is
   a page's address. It's generated (`pnpm index`) and bundled into the
-  Worker; the whole script is about 240 KB gzipped.
+  Worker; the whole script is about 290 KB gzipped.
+- The cards are the site's. Monster cards are drawn at build time
+  (`generate-embeds`); weapon, item and drops cards are drawn on request by
+  the site's Worker from data the build writes (`src/lib/detail-card.ts` in
+  `apps/blacksmith`) and cached. The index stores each card's path with a
+  version taken from what it shows, so Discord fetches it again only when it
+  changes.
 - `src/bot.ts` checks each request's Ed25519 signature against the
   application's public key, then answers it. `/settings` decodes with
   randomfu's own settings module.
@@ -94,8 +106,11 @@ Run the Worker locally behind a tunnel and point a test application's
 Interactions Endpoint URL at the tunnel. Secrets go in `.dev.vars`
 (`DISCORD_PUBLIC_KEY=…`, `OPENCODE_API_KEY=…`). `pnpm --filter blacksmith
 generate-embeds` draws the embed images into the site's `public/`. The Worker
-serves them itself, so `ASSET_URL` takes thumbnails from the tunnel and links
-still go to the live site:
+serves them itself, so `ASSET_URL` takes icons and monster cards from the
+tunnel and links still go to the live site. The weapon, item and drops cards
+come from the site's Worker, not from `public/`, so they only show once the
+site is deployed with the same data (point `ASSET_URL` at the live site to
+see them):
 
 ```sh
 cloudflared tunnel --url http://localhost:8787
