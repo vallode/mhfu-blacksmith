@@ -1,6 +1,6 @@
-# Build the sites and deploy them to Cloudflare, on demand: Actions > Deploy
-# to Cloudflare > Run workflow, picking the branch in "Use workflow from" and
-# the site.
+# Build the sites and the Discord bot and deploy them to Cloudflare, on
+# demand: Actions > Deploy to Cloudflare > Run workflow, picking the branch in
+# "Use workflow from" and what to deploy.
 #
 # Each site is a Cloudflare Worker serving static assets, configured by its
 # app's wrangler.jsonc (apps/blacksmith, apps/randomfu, apps/whetstone).
@@ -23,20 +23,33 @@
 # https://randomfu.vallode.com) give a site's production address once it has
 # a custom domain; the builds write it into their link previews, and it
 # defaults to the workers.dev address.
+#
+# The Discord bot (apps/discord-bot) deploys from main only, after the
+# blacksmith site: its index names the site's cards by version, so the two go
+# out together under "all". Its own secrets (DISCORD_PUBLIC_KEY,
+# OPENCODE_API_KEY) live on the Worker, set once with `wrangler secret put`.
+# Then its commands are registered with Discord, globally, which takes the
+# repository variable DISCORD_APPLICATION_ID and the secret
+# DISCORD_BOT_TOKEN; without them that step is skipped with a warning.
 name: Deploy to Cloudflare
 
 on:
   workflow_dispatch:
     inputs:
       site:
-        description: Site to deploy
+        description: What to deploy
         type: choice
         options:
           - all
           - blacksmith
           - randomfu
           - whetstone
+          - discord-bot
         default: all
+      register:
+        description: Register the Discord bot's commands after deploying it
+        type: boolean
+        default: true
 
 permissions:
   contents: read
@@ -145,3 +158,41 @@ jobs:
             echo "::endgroup::"
             echo "Deployed $site from $BRANCH to $url" | tee -a "$GITHUB_STEP_SUMMARY"
           done
+
+      - name: Deploy the Discord bot
+        id: bot
+        if: inputs.site == 'all' || inputs.site == 'discord-bot'
+        env:
+          SITE: ${{ inputs.site }}
+          BRANCH: ${{ github.ref_name }}
+          SUBDOMAIN: ${{ steps.account.outputs.subdomain }}
+          MESSAGE: Deployed from GitHub Actions by ${{ github.actor }} (${{ github.ref_name }} ${{ github.sha }})
+        run: |
+          # The bot has one Discord application and no previews: a branch
+          # would replace what everyone's server answers with.
+          if [ "$BRANCH" != main ]; then
+            if [ "$SITE" = discord-bot ]; then
+              echo "::error::The Discord bot deploys from main only."
+              exit 1
+            fi
+            echo "Skipped the Discord bot: it deploys from main only." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          # wrangler.jsonc's build command writes the bot's index first.
+          pnpm dlx "wrangler@$WRANGLER_VERSION" deploy --cwd apps/discord-bot --message "$MESSAGE"
+          echo "deployed=true" >> "$GITHUB_OUTPUT"
+          echo "Deployed the Discord bot to https://mhfu-discord-bot.$SUBDOMAIN.workers.dev/" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      # After the deploy, so a new command reaches a Worker that answers it.
+      - name: Register the Discord bot's commands
+        if: steps.bot.outputs.deployed == 'true' && inputs.register
+        env:
+          DISCORD_APPLICATION_ID: ${{ vars.DISCORD_APPLICATION_ID }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+        run: |
+          if [ -z "$DISCORD_APPLICATION_ID" ] || [ -z "$DISCORD_BOT_TOKEN" ]; then
+            echo "::warning::Set the DISCORD_APPLICATION_ID variable and the DISCORD_BOT_TOKEN secret to register the bot's commands."
+            exit 0
+          fi
+          set -o pipefail
+          pnpm --filter discord-bot register | tee -a "$GITHUB_STEP_SUMMARY"
