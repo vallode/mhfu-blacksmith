@@ -8,6 +8,7 @@ import CardBox from "@/components/CardBox";
 import PageBar, { PageTabs } from "@/components/PageBar";
 import Icon from "@/components/Icon";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
+import TypeBar, { TypeBarSpace, typeBarScrollPadding } from "@/components/TypeBar";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useGameText, useT } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
@@ -144,6 +145,8 @@ export function QuestBoardsShell({ children }: { children: React.ReactNode }) {
  * selected level's quests down the left (under a row back to the boards), with a selector at the bottom of
  * the card (like the weapon tree's filter bar) that filters them by type,
  * and the selected quest (or a prompt to pick one) on the right. A board
+ * On phones the star levels move from the page bar to a TypeBar over the
+ * top of the list card. A board
  * of downloaded quests (`DOWNLOADED_QUEST_HUBS`), with few quests, has no tabs: it lists every
  * quest, each with its star level, and its selector filters by rank too. With a
  * hunter loaded, the quests they have cleared are marked CLEAR!!, like the
@@ -212,6 +215,11 @@ export default function QuestHubShell({
   // The list's scroll container is the card's body around it.
   const scrollToTop = () => listRef.current?.parentElement?.scrollTo({ top: 0 });
 
+  const showLevel = (s: number) => {
+    setStars(s);
+    scrollToTop();
+  };
+
   const step = (by: 1 | -1) => {
     setChosen(filters[(index + by + filters.length) % filters.length] ?? null);
     scrollToTop();
@@ -225,7 +233,10 @@ export default function QuestHubShell({
 
   return (
     <>
+      {/* Phones leave it off: a board's star levels are in the list card's
+          TypeBar, and a board of downloaded quests has no tabs to show. */}
       <PageBar
+        hideOnPhone
         title={t.board.title(t.hubs[hub])}
         tabs={
           !single &&
@@ -237,10 +248,7 @@ export default function QuestHubShell({
                   hub={hub}
                   stars={s}
                   active={s === current}
-                  onSelect={() => {
-                    setStars(s);
-                    scrollToTop();
-                  }}
+                  onSelect={() => showLevel(s)}
                 />
               ))}
             </PageTabs>
@@ -251,7 +259,8 @@ export default function QuestHubShell({
       <div className="split-page">
         {/* Above the card (z-1) so the bar and its arrows draw over the frame. */}
         <CardBox data-tree-panel>
-          <Card variant="weapon-tree">
+          <Card variant="weapon-tree" bodyClassName={single ? undefined : typeBarScrollPadding}>
+            {!single && <TypeBarSpace />}
             {/* Inset 13px, like the lists in TreeScroll (items, decorations). */}
             <div ref={listRef} className="flex flex-col pl-[13px]">
               <BoardBackRow hub={hub} />
@@ -286,6 +295,43 @@ export default function QuestHubShell({
               />
             )}
           </Card>
+          {!single && current !== undefined && (
+            <TypeBar
+              types={levels}
+              current={current}
+              onSelect={showLevel}
+              name={(s) => {
+                const level = questStarLevel(hub, s);
+                return t.board.starLevel(level.stars, level.g);
+              }}
+              icon={(_, place) =>
+                place === "bar" ? (
+                  <img
+                    src="/images/star.png"
+                    alt=""
+                    className="mr-[1rem] aspect-[13/14] w-[26px] flex-none pixelated"
+                  />
+                ) : (
+                  // The grid's 52px icon slot, with the star at three times
+                  // its pixels.
+                  <span className="flex size-[52px] items-center justify-center">
+                    <img
+                      src="/images/star.png"
+                      alt=""
+                      className="aspect-[13/14] w-[39px] pixelated"
+                    />
+                  </span>
+                )
+              }
+              labels={{
+                group: t.board.starLevelGroup,
+                previous: t.board.previousStarLevel,
+                next: t.board.nextStarLevel,
+                choose: t.board.chooseStarLevel,
+                grid: t.board.starLevels,
+              }}
+            />
+          )}
           {filters.length > 1 && (
             <SelectorBar
               label={filterLabel}

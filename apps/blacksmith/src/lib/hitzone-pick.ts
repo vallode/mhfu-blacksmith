@@ -83,3 +83,14 @@ export function hitzoneHeat(value: number): string {
   if (value < 70) return "var(--color-warm)";
   return "var(--color-negative)";
 }
+
+/** Hand-set hitzone values to step through, 5 to 160 in fives (monsters' raw hitzones run 10 to 160). */
+export const HITZONES = Array.from({ length: 32 }, (_, i) => (i + 1) * 5);
+export const DEFAULT_HITZONE = 45;
+/** Hand-set element hitzone values, 0 to 100 in fives. */
+export const ELEMENT_HITZONES = Array.from({ length: 21 }, (_, i) => i * 5);
+export const DEFAULT_ELEMENT_HITZONE = 20;
+
+/** The hand-set steps, with a value between them (a picked part's) in its place. */
+export const stepsWith = (steps: number[], value: number) =>
+  steps.includes(value) ? steps : [...steps, value].sort((a, b) => a - b);

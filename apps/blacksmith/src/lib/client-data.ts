@@ -951,8 +951,11 @@ export function getMotionValues(): Promise<MotionValuesBundle> {
   return motionValuesPromise;
 }
 
-/** A weapon type's moves: null while loading or on error (`error` set). */
-export function useMotionValues(type: WeaponType): { moves: MotionMove[] | null; error: boolean } {
+/** A weapon type's moves: null without a type, while loading or on error (`error` set). */
+export function useMotionValues(type: WeaponType | null): {
+  moves: MotionMove[] | null;
+  error: boolean;
+} {
   const [bundle, setBundle] = useState(motionValuesCache);
   const [error, setError] = useState(false);
   useEffect(() => {
@@ -966,7 +969,7 @@ export function useMotionValues(type: WeaponType): { moves: MotionMove[] | null;
       cancelled = true;
     };
   }, []);
-  return { moves: bundle ? (bundle[type] ?? []) : null, error };
+  return { moves: bundle && type ? (bundle[type] ?? []) : null, error };
 }
 
 // ---------------------------------------------------------------------------

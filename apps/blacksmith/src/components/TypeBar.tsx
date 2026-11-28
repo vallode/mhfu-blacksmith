@@ -2,8 +2,8 @@
 
 /**
  * A section's types on phones: the game's "◀ Sword and Shield ▶" selector
- * over the top of the tree card, for the weapon types, armor slots and
- * monster types. It stands in for the page bar's row of type icons, which on
+ * over the top of the tree card, for the weapon types, armor slots, monster
+ * types and a quest board's star levels. It stands in for the page bar's row of type icons, which on
  * a phone scrolls sideways, takes a row of its own and never names the type.
  * The arrows step through the types; the name opens a grid of every type
  * below the bar, in the blue in-game frame. Escape or a click outside closes
@@ -34,14 +34,19 @@ export function TypeBarSpace() {
   );
 }
 
-interface Props<T extends string> {
-  /** Every type, in order; also each type's icon. */
+interface Props<T extends string | number> {
+  /** Every type, in order; also each type's icon, unless `icon` draws it. */
   types: readonly T[];
   current: T;
-  href: (type: T) => string;
+  /** Each type's page. Without it, picking a type calls `onSelect`. */
+  href?: (type: T) => string;
+  /** Picks a type on the same page (a quest board's star level). */
+  onSelect?: (type: T) => void;
   name: (type: T) => string;
   /** Monster type icons (/images/monsters/), not equipment ones. */
   monster?: boolean;
+  /** Draws a type's icon instead of its sprite: in the bar, or larger in the grid. */
+  icon?: (type: T, place: "bar" | "grid", active: boolean) => React.ReactNode;
   labels: {
     /** The bar's group, e.g. "Weapon type". */
     group: string;
@@ -54,12 +59,14 @@ interface Props<T extends string> {
   };
 }
 
-export default function TypeBar<T extends string>({
+export default function TypeBar<T extends string | number>({
   types,
   current,
   href,
+  onSelect,
   name,
   monster,
+  icon,
   labels,
 }: Props<T>) {
   const router = useRouter();
@@ -88,7 +95,12 @@ export default function TypeBar<T extends string>({
   const step = (by: 1 | -1) => {
     const index = types.indexOf(current);
     setOpen(false);
-    router.push(href(types[(index + by + types.length) % types.length]));
+    pick(types[(index + by + types.length) % types.length]);
+  };
+
+  const pick = (type: T) => {
+    if (href) router.push(href(type));
+    else onSelect?.(type);
   };
 
   return (
@@ -113,10 +125,19 @@ export default function TypeBar<T extends string>({
           >
             {/* Monster sprites are drawn at their own 36px, the only size
                 their tint mask lines up with (see iconStyle). */}
-            {monster ? (
-              <Icon type={current} size="large" monster nav active className="m-0 mr-[6px]" />
+            {icon ? (
+              icon(current, "bar", true)
+            ) : monster ? (
+              <Icon
+                type={String(current)}
+                size="large"
+                monster
+                nav
+                active
+                className="m-0 mr-[6px]"
+              />
             ) : (
-              <Icon type={current} size="mini" nav active />
+              <Icon type={String(current)} size="mini" nav active />
             )}
             <span className="min-w-0 truncate">{currentName}</span>
             <img
@@ -154,33 +175,59 @@ export default function TypeBar<T extends string>({
                 buttonRef.current?.focus();
               }}
             >
-              {types.map((option) => (
-                <Link
-                  key={option}
-                  href={href(option)}
-                  aria-current={option === current ? "page" : undefined}
-                  onClick={() => setOpen(false)}
-                  className={cn(
-                    "flex min-h-[8.4rem] flex-col items-center justify-start gap-1 px-1 pt-2 pb-3 text-center text-fine leading-tight text-white",
-                    "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white focus-visible:outline-solid",
-                    option === current
-                      ? "bg-(image:--gradient-hover-glow)"
-                      : "hover:bg-(image:--gradient-hover-glow)",
-                  )}
-                >
-                  {/* Centred in the cell: monster icons keep their 52px slot
-                      with an even margin. */}
-                  <Icon
-                    type={option}
-                    size="large"
-                    monster={monster}
-                    nav
-                    active={option === current}
-                    className={monster ? "m-[8px]" : "mr-0"}
-                  />
-                  {name(option)}
-                </Link>
-              ))}
+              {types.map((option) => {
+                const active = option === current;
+                const className = cn(
+                  "flex min-h-[8.4rem] cursor-pointer flex-col items-center justify-start gap-1 px-1 pt-2 pb-3 text-center text-fine leading-tight text-white",
+                  "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white focus-visible:outline-solid",
+                  active
+                    ? "bg-(image:--gradient-hover-glow)"
+                    : "hover:bg-(image:--gradient-hover-glow)",
+                );
+                const content = (
+                  <>
+                    {/* Centred in the cell: monster icons keep their 52px slot
+                        with an even margin. */}
+                    {icon ? (
+                      icon(option, "grid", active)
+                    ) : (
+                      <Icon
+                        type={String(option)}
+                        size="large"
+                        monster={monster}
+                        nav
+                        active={active}
+                        className={monster ? "m-[8px]" : "mr-0"}
+                      />
+                    )}
+                    {name(option)}
+                  </>
+                );
+                return href ? (
+                  <Link
+                    key={option}
+                    href={href(option)}
+                    aria-current={active ? "page" : undefined}
+                    onClick={() => setOpen(false)}
+                    className={className}
+                  >
+                    {content}
+                  </Link>
+                ) : (
+                  <button
+                    key={option}
+                    type="button"
+                    aria-current={active ? "true" : undefined}
+                    onClick={() => {
+                      setOpen(false);
+                      onSelect?.(option);
+                    }}
+                    className={className}
+                  >
+                    {content}
+                  </button>
+                );
+              })}
             </nav>
           </Card>
         </div>

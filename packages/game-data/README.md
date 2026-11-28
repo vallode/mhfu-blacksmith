@@ -27,15 +27,15 @@ by every game (`schemasDir`).
 is each game's config: the facts about the game the site and the
 extractor share.
 
-| field               | MHFU                                                                                                              |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `weaponClasses`     | the 11 weapon types in menu order, each with its table, class multiplier and motion file                          |
-| `armorSlots`        | helmet, plate, gauntlets, waist, leggings                                                                         |
-| `ranks`             | low, high and G rank                                                                                              |
-| `monsterCategories` | the 9 categories, in the site's order                                                                             |
-| `questHubs`         | Village, the three Guild ranks, Training School, Treasure Hunting, then the downloaded Event and Challenge boards |
-| `sections`          | which parts of the site the game has: decorations, maps, Veggie Elder, Pokke Farm, the hunter save import, …      |
-| `save`              | the save file (`MHP2NDG.BIN`) and which parser reads it                                                           |
+| field               | MHFU                                                                                                                 |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `weaponClasses`     | the 11 weapon types in menu order, each with its table, class multiplier and motion file                             |
+| `armorSlots`        | helmet, plate, gauntlets, waist, leggings                                                                            |
+| `ranks`             | low, high and G rank                                                                                                 |
+| `monsterCategories` | the 9 categories, in the site's order                                                                                |
+| `questHubs`         | Village, the three Guild ranks, Training School, Treasure Hunting, then the downloaded Event and Challenge boards    |
+| `sections`          | which parts of the site the game has: decorations, maps, Veggie Elder, Pokke Farm, damage, the hunter save import, … |
+| `save`              | the save file (`MHP2NDG.BIN`) and which parser reads it                                                              |
 
 A game lists only what it has, and turns off the sections it lacks (MHF1,
 for one, is expected to have no G rank and no decorations). Labels, icons

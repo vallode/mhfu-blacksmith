@@ -1,7 +1,8 @@
 // The Discord bot on Cloudflare: a Worker that is the application's
 // Interactions Endpoint URL (Developer Portal > General Information), so
-// there is no gateway process. Not deployed yet; see README.md for the
-// steps.
+// there is no gateway process. Deployed from main by the Deploy to
+// Cloudflare workflow (.github/workflows/cloudflare-deploy.yml); see
+// README.md for the first-time setup.
 {
   "name": "mhfu-discord-bot",
   "main": "src/worker.ts",

@@ -21,7 +21,10 @@ const BASE = 0x09a5f200;
  * address in its `lui`/`addiu`), then a table of `values` (row 0 empty)
  * followed by the pointer to it, as on the EU disc.
  */
-function gameTask(values: number[], options: { calls?: number; badPointer?: boolean } = {}) {
+function gameTask(
+  values: number[],
+  options: { calls?: number; badPointer?: boolean; shapes?: number[] } = {},
+) {
   const callAt = OVL_HEADER_SIZE + 0x40;
   const tableAt = 0x400;
   const pointerAt = tableAt + (values.length + 1) * MOTION_ROW_SIZE;
@@ -48,7 +51,15 @@ function gameTask(values: number[], options: { calls?: number; badPointer?: bool
     buf[row] = 0x50; // delay, which the reader ignores
     buf[row + 2] = mv;
     buf[row + 3] = 1;
+    buf[row + 10] = options.shapes?.[i] ?? 0;
   });
+  // Two hitbox shapes, on joints 18 and 14, their pointers padded up to the table.
+  if (options.shapes) {
+    buf[0x200] = 18;
+    buf[0x210] = 14;
+    buf.writeUInt32LE(BASE + 0x200, tableAt - 0x10);
+    buf.writeUInt32LE(BASE + 0x210, tableAt - 0x0c);
+  }
   buf.writeUInt32LE(options.badPointer ? BASE + tableAt + 5 : BASE + tableAt, pointerAt);
   return parseOvl(buf);
 }
@@ -155,7 +166,11 @@ test("Demon Mode is the game's single-precision 1.35, truncated", () => {
 });
 
 test("moves take their hits' values from the table, and Dual Blades their Demon Mode values", () => {
-  const table = readMotionTable(gameTask([46, 18, 6]));
+  const table = readMotionTable(gameTask([46, 18, 6], { shapes: [0, 0, 1] }));
+  assert.deepEqual(
+    table.rows.map((r) => r.joint),
+    [18, 18, 18, 14],
+  );
   const out = emitMotionValues(
     table,
     {
@@ -212,8 +227,8 @@ test("moves take their hits' values from the table, and Dual Blades their Demon 
       demon: true,
       hitzone_weights: { cut: 100, impact: 0 },
       hits: [
-        { row: 2, motion_value: 18, demon_mode: 24 },
-        { row: 3, motion_value: 6, demon_mode: 8, count: 8 },
+        { row: 2, motion_value: 18, demon_mode: 24, blade: 1 },
+        { row: 3, motion_value: 6, demon_mode: 8, blade: 2, count: 8 },
       ],
     },
   ]);

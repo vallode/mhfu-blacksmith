@@ -9,6 +9,7 @@ export const items: Messages["items"] = {
     noMatch: "Ningún objeto coincide.",
     // "Todas las categorías" doesn't fit the selector bar at phone width.
     allCategories: "Todos los objetos",
+    pages: "Páginas de objetos",
     categoryGroup: "Categoría de objeto",
     previousCategory: "Categoría anterior",
     nextCategory: "Categoría siguiente",

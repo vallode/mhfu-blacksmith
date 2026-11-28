@@ -31,6 +31,7 @@ interface SearchEntry {
 /** Pages in the index that aren't one thing's page, by slug: their name in `site.nav`. */
 const PAGE_NAMES: Record<string, keyof Messages["site"]["nav"]> = {
   "veggie-elder": "veggieElder",
+  damage: "damage",
 };
 
 /** An entry's name in the site's language (its English name where there's none). */

@@ -65,6 +65,8 @@ export interface GameSections {
   /** The armor set builder. */
   setBuilder: boolean;
   wishlist: boolean;
+  /** The damage calculator, from the game's motion values. */
+  damage: boolean;
   /** Loading a hunter's save file. */
   hunterImport: boolean;
 }
@@ -168,6 +170,7 @@ const MHFU = {
     pokkeFarm: true,
     setBuilder: true,
     wishlist: true,
+    damage: true,
     hunterImport: true,
   },
   save: { fileName: "MHP2NDG.BIN", format: "mhp2g" },

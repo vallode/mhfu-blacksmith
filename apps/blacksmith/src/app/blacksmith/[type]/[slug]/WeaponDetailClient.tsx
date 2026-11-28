@@ -39,8 +39,7 @@ import { usePreferences } from "@/context/PreferencesContext";
 import { useGameText, useT } from "@/context/LanguageContext";
 import Loading from "@/components/Loading";
 import WishlistButton from "@/components/WishlistButton";
-import MotionDamage from "@/components/motion-values/MotionDamage";
-import ShotDamage from "@/components/motion-values/ShotDamage";
+import DamageButton from "@/components/DamageButton";
 
 interface Props {
   type: WeaponType;
@@ -145,6 +144,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
                 />
               )}
+              <DamageButton weapon={{ type, slug }} />
               <WishlistButton gear={{ kind: "weapon", type, slug }} name={name} />
             </DetailActions>
           </div>
@@ -531,16 +531,6 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                       </table>
                     </RequirementsPage>
                   ),
-                },
-                {
-                  id: "motion-values",
-                  label: tw.tabs.motionValues,
-                  content:
-                    type === "light-bowgun" || type === "heavy-bowgun" ? (
-                      <ShotDamage weapon={weapon} />
-                    ) : (
-                      <MotionDamage type={type} weapon={weapon} />
-                    ),
                 },
               ]}
             />

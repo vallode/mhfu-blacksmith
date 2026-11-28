@@ -10,6 +10,8 @@ export const items = {
     noMatch: "No items match.",
     /** The selector bar's label while the filter searches every category. */
     allCategories: "All categories",
+    /** The section's tabs: the item list and the Veggie Elder (ItemNav). */
+    pages: "Item pages",
     categoryGroup: "Item category",
     previousCategory: "Previous category",
     nextCategory: "Next category",

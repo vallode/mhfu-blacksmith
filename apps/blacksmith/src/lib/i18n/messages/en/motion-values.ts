@@ -24,7 +24,19 @@ export const motionValues = {
   sharpness: "Sharpness",
   sharpnessColors: ["Red", "Orange", "Yellow", "Green", "Blue", "White", "Purple"],
   hitzone: "Hitzone",
+  /** The hitzone for the weapon's element, when no monster part is picked: "Fire hitzone". */
+  elementHitzone: (element: string) => `${element} hitzone`,
   damage: "Damage",
+  /** With an element, the damage columns: raw, the element's (headed by its name, or this for two), and both. */
+  raw: "Raw",
+  element: "Element",
+  total: "Total",
+  /** The damage table's column on a critical hit (a negative one, below 0 affinity), and its hint. */
+  crit: { critical: "Crit", weak: "−Crit" },
+  critHint: {
+    critical: "On a critical hit: the motion value × 1.25",
+    weak: "On a negative critical: the motion value × 0.75",
+  },
   loadError: "Couldn't load the motion values.",
   /** The hitzone picker: a monster's part, from a bestiary of portraits. */
   bestiary: {
@@ -36,6 +48,105 @@ export const motionValues = {
     /** Under the portraits, before a monster is picked. */
     pickMonster: "Pick a monster for its hitzones.",
     loadError: "Couldn't load the monsters.",
+  },
+  /** /damage/: the calculator's page, with a weapon picker and the hunter's buffs. */
+  page: {
+    title: "Damage Calculator",
+    weapon: "Weapon",
+    pickWeapon: "Pick a weapon",
+    changeWeapon: "Change",
+    /** The weapon picker's search field. */
+    searchWeapons: "Search weapons",
+    searchPlaceholder: "Name",
+    noWeapons: "No weapon matches.",
+    /** Before a weapon is picked. */
+    empty: "Pick a weapon to see what each of its moves deals.",
+    loadError: "Couldn't load the weapons.",
+    /** The weapon page's button to this page. */
+    open: "Damage calculator",
+    /** The buffs row and its sheet. */
+    buffs: "Buffs",
+    buffsLabel: "Change the buffs",
+    noBuffs: "No buffs",
+    clear: "Clear",
+    /** The summary line's attack and affinity with buffs. */
+    attack: "Attack",
+    affinity: "Affinity",
+    /** Under the buffs: the weapon's true attack, then with them. */
+    trueAttack: "True attack",
+    /** The target row and its sheet: a monster's part, or a hitzone set by hand. */
+    target: "Target",
+    targetLabel: "Change the target",
+    handSet: "Set by hand",
+    /** The quest row and its sheet: the quest's defense multiplier scales the damage. */
+    quest: "Quest",
+    questLabel: "Change the quest",
+    noQuest: "No quest",
+    questBoard: "Board",
+    searchQuests: "Search quests",
+    searchQuestsPlaceholder: "Name or monster",
+    noQuests: "No quest matches.",
+    stars: (n: string) => `${n}★`,
+    /** Under the quest: the monster whose multiplier applies, and it. */
+    defense: (monster: string, value: string) => `${monster} defense ×${value}`,
+  },
+  /** The buffs sheet's rows and choices. */
+  buffs: {
+    skills: "Skills",
+    items: "Items",
+    horn: "Hunting Horn",
+    attackSkill: "Attack",
+    attackSkills: {
+      none: "None",
+      "up-s": "Attack Up (Small)",
+      "up-m": "Attack Up (Medium)",
+      "up-l": "Attack Up (Large)",
+      "down-s": "Attack Down (Small)",
+      "down-m": "Attack Down (Medium)",
+      "down-l": "Attack Down (Large)",
+    },
+    attackSkillNote: "Edgemaster counts as Attack Up (Large).",
+    affinitySkill: "Expert",
+    affinitySkills: {
+      none: "None",
+      "up-1": "Reckless Abandon +1",
+      "up-2": "Reckless Abandon +2",
+      "up-3": "Reckless Abandon +3",
+      "down-1": "Reckless Abandon -1",
+      "down-2": "Reckless Abandon -2",
+      "down-3": "Reckless Abandon -3",
+    },
+    lowHealth: "Low health",
+    lowHealths: {
+      none: "None",
+      adrenaline: "Adrenaline+2",
+      heroics: "Felyne Heroics",
+      worry: "Worry",
+    },
+    lowHealthNote:
+      "Adrenaline+2 and Worry work at 40% health or less, Felyne Heroics at 10 health or less.",
+    elementAttack: "Element Attack Up",
+    sharpnessPlus: "Sharpness +1",
+    /** The item rows; the items' own names come from the game text. */
+    demondrug: "Demondrug",
+    seed: "Seed",
+    none: "None",
+    seedNote: "Only the last one used counts.",
+    hornAttack: "Attack Up",
+    hornAttacks: {
+      none: "None",
+      s: "Attack Up (S)",
+      "s-again": "Attack Up (S) again",
+      l: "Attack Up (L)",
+      "l-again": "Attack Up (L) again",
+    },
+    hornAttackNote: "Playing the song again while it lasts makes it stronger.",
+    hornElement: "Elemental Attack Up",
+    hornElements: {
+      none: "None",
+      once: "Elemental Attack Up",
+      again: "Elemental Attack Up again",
+    },
   },
   /** Bowguns: each shot the weapon loads instead of moves. */
   shots: {

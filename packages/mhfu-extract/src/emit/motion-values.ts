@@ -14,6 +14,9 @@ import {
 } from "../tables/motion-values.js";
 import { WEAPON_TYPE_NAMES } from "../tables/weapons.js";
 
+/** The Dual Blades' joint whose hits carry a dual-element weapon's first element. */
+const FIRST_BLADE_JOINT = 18;
+
 /** The weapon type whose motion values Demon Mode raises. */
 export const DEMON_MODE_TYPE = "dual-blades";
 
@@ -24,6 +27,12 @@ export interface EmittedHit {
   demon_mode?: number;
   /** How many times the move deals it, when more than once. */
   count?: number;
+  /**
+   * Dual Blades only: the blade it strikes with, 1 or 2, which carries a
+   * dual-element weapon's first or second element (its hitbox's joint: 18
+   * for the first).
+   */
+  blade?: 1 | 2;
 }
 
 export interface EmittedMove {
@@ -77,7 +86,15 @@ export function emitMotionValues(
         return {
           row,
           motion_value: found.motionValue,
-          ...(type === DEMON_MODE_TYPE ? { demon_mode: demonModeValue(found.motionValue) } : {}),
+          ...(type === DEMON_MODE_TYPE
+            ? {
+                demon_mode: demonModeValue(found.motionValue),
+                // No blade when the shape's joint is unknown: the site takes the first attribute.
+                ...(found.joint === null
+                  ? {}
+                  : { blade: found.joint === FIRST_BLADE_JOINT ? (1 as const) : (2 as const) }),
+              }
+            : {}),
           ...(count && count > 1 ? { count } : {}),
         };
       }),

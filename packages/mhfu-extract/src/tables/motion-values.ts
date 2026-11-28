@@ -57,12 +57,44 @@ export const MOTION_TABLE_CALL: readonly { word: number; mask: number }[] = [
   { word: 0x24e70000, mask: 0xffff0000 },
 ];
 
+/** Row byte holding the hitbox shape (the attack's `+0x26`). */
+const SHAPE = 10;
+
+/**
+ * The joint of each hitbox shape: the shapes' pointer table sits right
+ * before the motion table (EU 0x09BFBEA8, zero-padded to it), each pointer
+ * to a shape whose first byte is its joint.
+ */
+function readShapeJoints(ovl: OvlFile, table: number): number[] {
+  const { reader } = ovl;
+  let start = table;
+  // Back over the padding, then over the pointers.
+  while (start > ovl.loadBase && reader.u32(ovl.vaddrToOffset(start - 4)) === 0) start -= 4;
+  while (start > ovl.loadBase && ovl.isOwnVaddr(reader.u32(ovl.vaddrToOffset(start - 4))))
+    start -= 4;
+  const joints: number[] = [];
+  for (let at = start; at < table; at += 4) {
+    const p = reader.u32(ovl.vaddrToOffset(at));
+    if (!ovl.isOwnVaddr(p)) break;
+    joints.push(reader.u8(ovl.vaddrToOffset(p)));
+  }
+  return joints;
+}
+
 export interface MotionRow {
   /** The row's index: what an attack's `+0x0D` holds. */
   row: number;
   motionValue: number;
   /** How another hunter it hits reacts (1 flinch, 2 trip, 3 sent flying, as far as seen). */
   reaction: number;
+  /**
+   * The joint its hitbox follows (row byte 10, an index into the hitbox
+   * shapes, whose first byte is the joint), or null if the shape isn't in
+   * the table. Dual Blades: joint 18 is the blade that carries a
+   * dual-element weapon's first element, any other the second (EU game_task
+   * 0x09B68A44).
+   */
+  joint: number | null;
 }
 
 export interface MotionTable {
@@ -105,6 +137,7 @@ export function readMotionTable(ovl: OvlFile): MotionTable {
   const count = size / MOTION_ROW_SIZE;
   for (let i = 0; i < MOTION_ROW_SIZE; i++)
     if (reader.u8(offset + i) !== 0) throw new MotionTableError("motion table row 0 isn't empty");
+  const shapes = readShapeJoints(ovl, table);
   const rows: MotionRow[] = [];
   for (let row = 0; row < count; row++) {
     const at = offset + row * MOTION_ROW_SIZE;
@@ -112,6 +145,7 @@ export function readMotionTable(ovl: OvlFile): MotionTable {
       row,
       motionValue: reader.u8(at + MOTION_VALUE),
       reaction: reader.u8(at + REACTION),
+      joint: shapes[reader.u8(at + SHAPE)] ?? null,
     });
   }
   return { call, offset, rows };

@@ -4,6 +4,7 @@
  * code (packages/mhfu-extract `tables/shots.ts`), not checked in game, and
  * leaves out skills, rapid fire, the monster's state and the quest's defense.
  */
+import { defended } from "./motion-values";
 import type { Weapon } from "./types";
 
 /** The element columns of a monster part's hitzones. */
@@ -38,7 +39,7 @@ export interface ShotExplosion {
   element?: { type: ShotElement; value: number };
 }
 
-/** public/data/shots.json: data/motion-values.json's shots. */
+/** public/data/shots.json: data/mhfu/motion-values.json's shots. */
 export interface ShotsFile {
   bowgun_shot_multiplier: number;
   shots: ShotValue[];
@@ -106,6 +107,14 @@ export const shotDamage = (
   s: ShotValue,
   zone: ShotHitzones,
   multiplier: number,
+  /** The quest's defense multiplier for the monster, on each hit. */
+  defense = 1,
 ) =>
-  shotHitDamage(trueAttack, s, zone, multiplier) * (s.hits ?? 1) +
-  (s.explosion ? explosionHitDamage(trueAttack, s.explosion, zone) * (s.explosion.hits ?? 1) : 0);
+  defended(shotHitDamage(trueAttack, s, zone, multiplier), defense) * (s.hits ?? 1) +
+  (s.explosion
+    ? // A fixed explosion (Crag S's) is left unscaled, as it ignores attack
+      // and hitzone; whether the game applies the defense to it is unchecked.
+      (s.explosion.attack_scaled
+        ? defended(explosionHitDamage(trueAttack, s.explosion, zone), defense)
+        : explosionHitDamage(trueAttack, s.explosion, zone)) * (s.explosion.hits ?? 1)
+    : 0);
