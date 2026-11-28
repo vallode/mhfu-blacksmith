@@ -213,6 +213,11 @@ test("buildSiteAttacks places shapes and turns ticks into motion frames", () => 
   const row = new Uint8Array(0x18);
   row.set([3, 4, 25, 1]);
   row[0x14] = 6;
+  row[0x08] = 30;
+  // Fire, and the always-set bit 0; poison 25.
+  row[0x09] = 0x05;
+  row[0x0c] = 0x02;
+  row[0x0e] = 25;
   const spawn = (shapes: AttackSpawn["shapes"]): AttackSpawn => ({
     slot: 5,
     frame: 20,
@@ -246,6 +251,10 @@ test("buildSiteAttacks places shapes and turns ticks into motion frames", () => 
       power: 25,
       reaction: 1,
       stun: 6,
+      guard: 30,
+      elements: ["fire"],
+      statuses: ["poison"],
+      statusValue: 25,
       capsules: [
         { joint: 1, radius: 8, start: [10, 0, 0], end: [10, 10, 0] },
         { joint: 1, radius: 4, start: [11, 2, 1], end: [11, 2, 1] },
@@ -258,6 +267,10 @@ test("buildSiteAttacks places shapes and turns ticks into motion frames", () => 
       power: 25,
       reaction: 1,
       stun: 6,
+      guard: 30,
+      elements: ["fire"],
+      statuses: ["poison"],
+      statusValue: 25,
       capsules: [{ joint: 1, radius: 8, start: [10, 0, 0], end: [10, 10, 0] }],
     },
   ]);

@@ -611,9 +611,17 @@ reads 0):
 - **Site file**: `export-site` writes `public/models/monsters/emNN.attacks.json`:
   per attack, its motion slot, the frames (60 fps) it can hit in
   (`frame + 2·delay` up to `frame + 2·(delay + duration)`, delay and duration
-  being 30 Hz ticks), power, reaction, stun and capsules on their joints in
-  the bind pose. The 3D viewer shows them while the motion playing is in
-  that window.
+  being 30 Hz ticks), power, reaction, stun, guard knockback, elements and
+  statuses with their buildup, and capsules on their joints in the bind
+  pose. The 3D viewer shows them while the motion playing is in that window,
+  and the monster page's Attacks tab lists each motion's hits.
+- **Row bytes** (`docs/monster-attacks.md`): 0x08 guard knockback; 0x09
+  element bits (`ELEMENT_BITS`: 0x04 fire, 0x10 water, 0x20 dragon, 0x40
+  thunder, 0x80 ice); 0x0C and 0x0D status bits (`STATUS_BITS`: 0x0C 1
+  sleep, 2 poison, 4 paralysis; 0x0D 2 snowman, 4 soiled, 0x10 defense
+  down) with the buildup in 0x0E. They were named by matching the rows'
+  numbers to the Monster Hunter Wiki's per-attack figures
+  (vallode/mhfu-blacksmith#122).
 - **Stun**: the row's stun byte is the hunter's dizzy build-up, not the
   monster's KO value. The hunter dizzies when the gauge reaches 50; the
   150-tick value is the delay before the gauge drains, and the Faint skill

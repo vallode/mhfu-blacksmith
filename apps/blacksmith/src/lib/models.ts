@@ -231,6 +231,12 @@ export interface MonsterAttack {
   reaction: number;
   /** The hunter's dizzy (faint) build-up; the gauge dizzies at 50. */
   stun: number;
+  /** Guard knockback (absent in files exported before it was added). */
+  guard?: number;
+  /** Elements it deals ("fire", …) and statuses it inflicts ("poison", …), with their buildup. */
+  elements?: string[];
+  statuses?: string[];
+  statusValue?: number;
   /** Its shapes, each on a joint (the model's `bone_<joint>`), placed in the bind pose. */
   capsules: {
     joint: number;

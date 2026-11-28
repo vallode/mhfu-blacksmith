@@ -10,6 +10,7 @@ import ModelViewer, { type ModelAttack, type ModelCapsule } from "@/components/M
 import HitzoneControls, { type HitzonePart } from "@/components/HitzoneControls";
 import MonsterBreaks from "@/components/MonsterBreaks";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
+import MonsterAttacks from "@/components/MonsterAttacks";
 import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
 import MonsterStatus from "@/components/MonsterStatus";
@@ -299,6 +300,15 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           },
         ]
       : [];
+  const attackTab: Tab[] = attacks?.length
+    ? [
+        {
+          id: "attacks",
+          label: t.monsters.detail.tabs.attacks,
+          content: <MonsterAttacks attacks={attacks} />,
+        },
+      ]
+    : [];
   const statusTab: Tab[] = monster.tolerances
     ? [
         {
@@ -372,7 +382,14 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // The loaded hunter's Guild Card counts. Captures only for monsters the
   // game gives capture rewards for.
   const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
-  const tabs: MonsterTab[] = [...hitzoneTab, ...statusTab, ...dropTabs, ...questTab, ...spawnTab];
+  const tabs: MonsterTab[] = [
+    ...hitzoneTab,
+    ...statusTab,
+    ...attackTab,
+    ...dropTabs,
+    ...questTab,
+    ...spawnTab,
+  ];
 
   return (
     <>
