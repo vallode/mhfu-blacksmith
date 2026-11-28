@@ -10,6 +10,7 @@ import { useLocale, useT } from "@/context/LanguageContext";
 import { useMotionValues } from "@/lib/client-data";
 import type { WeaponType } from "@/lib/constants";
 import {
+  effectiveRaw,
   ELEMENT_SHARPNESS_MULTIPLIERS,
   GUNNER_MELEE_SHARPNESS,
   hasDemonMode,
@@ -25,6 +26,7 @@ import {
 import {
   buffedAffinity,
   buffedAttack,
+  rolledAffinity,
   hitElement,
   weaponAttributes,
   type Buffs,
@@ -75,13 +77,13 @@ function motionSetup(
         : levels.at(-1)!;
   const gunnerSharpness = GUNNER_MELEE_SHARPNESS[type];
   const melee = gunnerSharpness === undefined;
-  const affinityAt = (l: number) =>
-    buffedAffinity(Number.parseInt(weapon.affinity ?? "0", 10) || 0, buffs, l);
+  const weaponAffinity = Number.parseInt(weapon.affinity ?? "0", 10) || 0;
+  const affinityAt = (l: number) => buffedAffinity(weaponAffinity, buffs, l);
   const kindOf = (a: number): Exclude<HitKind, "normal"> | null =>
     a > 0 ? "critical" : a < 0 ? "weak" : null;
-  // Affinity is rolled only above red sharpness (+0x5F2 above 0), so the
-  // Bow's melee hits, at the gunners' level 0, never land a critical.
-  const crit = melee && level > 0 ? kindOf(affinityAt(level)) : null;
+  // Affinity isn't rolled in red sharpness, nor for the Bow's melee hits.
+  const affinity = rolledAffinity(weaponAffinity, buffs, melee ? level : null);
+  const crit = kindOf(affinity);
   // The critical's column stays at every sharpness the weapon reaches, so
   // the table keeps its layout: its kind is the first colour's that lands one.
   const critColumn = melee
@@ -99,6 +101,7 @@ function motionSetup(
     levels,
     level,
     melee,
+    affinity,
     crit,
     critColumn,
     sharpness: gunnerSharpness ?? SHARPNESS_MULTIPLIERS[level]!,
@@ -164,6 +167,56 @@ export function MotionSettings({
         />
       )}
     </div>
+  );
+}
+
+/**
+ * At the foot of the damage page's card, under the sharpness picked: the
+ * weapon's true attack (the weapon's, then with buffs and the spirit glow,
+ * when they change it) and, for a blademaster weapon, its effective raw in
+ * the sharpness picked. The Bow and the Bowguns take no sharpness or roll no
+ * affinity in the calculator, so they show only the true attack.
+ */
+export function AttackSummary({
+  type,
+  weapon,
+  buffs,
+  settings,
+}: {
+  type: WeaponType;
+  weapon: Weapon;
+  buffs: Buffs;
+  settings: WeaponSettings;
+}) {
+  const t = useT();
+  const text = t.motionValues.page;
+  const { formatNumber } = useLocale();
+  const { moves } = useMotionValues(type);
+  const s = moves?.length ? motionSetup(moves, type, weapon, buffs, settings) : null;
+  const raw = weapon.raw_attack ?? 0;
+  // Until the motion values load (or if they don't), as the table: the
+  // Long Sword's spirit glow, when set.
+  const attack =
+    s?.attack ?? buffedAttack(raw, buffs, { spiritGlow: settings.glow && type === "long-sword" });
+  return (
+    <p className="m-0 flex flex-wrap gap-x-[1.2rem] border-t border-white/15 px-[0.4rem] pt-[0.8rem] text-fine text-parchment">
+      <span>
+        {text.trueAttack}{" "}
+        <span className="text-white">
+          {attack !== raw ? `${formatNumber(raw)} → ${formatNumber(attack)}` : formatNumber(raw)}
+        </span>
+      </span>
+      {s?.melee && (
+        <span>
+          <abbr className="no-underline" title={text.effectiveRawHint}>
+            {text.effectiveRaw}
+          </abbr>{" "}
+          <span className="text-white">
+            {formatNumber(Math.round(effectiveRaw(attack, s.sharpness, s.affinity)))}
+          </span>
+        </span>
+      )}
+    </p>
   );
 }
 

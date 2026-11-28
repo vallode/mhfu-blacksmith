@@ -14,7 +14,10 @@ import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
-import MotionDamage, { MotionSettings } from "@/components/motion-values/MotionDamage";
+import MotionDamage, {
+  AttackSummary,
+  MotionSettings,
+} from "@/components/motion-values/MotionDamage";
 import ShotDamage from "@/components/motion-values/ShotDamage";
 import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { useHitzoneState } from "@/components/motion-values/hitzone-state";
@@ -29,7 +32,7 @@ import { weakestPart } from "@/components/motion-values/HitzonePicker";
 import { getQuests, useHitzoneMonsters, useWeaponOrNull } from "@/lib/client-data";
 import type { Quest } from "@/lib/quests";
 import { cn } from "@/lib/cn";
-import { buffedAttack, NO_BUFFS, type Buffs } from "@/lib/damage-buffs";
+import { NO_BUFFS, type Buffs } from "@/lib/damage-buffs";
 import {
   parseWeaponKey,
   readDamageState,
@@ -209,20 +212,6 @@ export default function DamageClient() {
                   </span>
                 </span>
               </button>
-              {weapon && on.length > 0 && (
-                <p className="m-0 px-[0.4rem] pb-[0.4rem] text-fine text-parchment">
-                  {text.trueAttack}{" "}
-                  <span className="text-white">
-                    {formatNumber(weapon.raw_attack ?? 0)} →{" "}
-                    {formatNumber(
-                      buffedAttack(weapon.raw_attack ?? 0, buffs, {
-                        // As the table: the Long Sword's spirit glow, when set.
-                        spiritGlow: settings.glow && weaponRef?.type === "long-sword",
-                      }),
-                    )}
-                  </span>
-                </p>
-              )}
               <div aria-hidden="true" className="h-px bg-white/15" />
               <button
                 type="button"
@@ -263,6 +252,14 @@ export default function DamageClient() {
             </div>
             {weapon && weaponRef && !shots && (
               <MotionSettings
+                type={weaponRef.type}
+                weapon={weapon}
+                buffs={buffs}
+                settings={settings}
+              />
+            )}
+            {weapon && weaponRef && (
+              <AttackSummary
                 type={weaponRef.type}
                 weapon={weapon}
                 buffs={buffs}

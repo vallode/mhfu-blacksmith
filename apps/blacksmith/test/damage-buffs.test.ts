@@ -6,6 +6,7 @@ import {
   hitElement,
   hitElementValue,
   NO_BUFFS,
+  rolledAffinity,
   weaponAttributes,
   type Buffs,
 } from "../src/lib/damage-buffs";
@@ -13,6 +14,7 @@ import { readData } from "game-data";
 import { parseBuffs, parseWeaponKey, damageHref } from "../src/lib/damage-store";
 import {
   affinityMotion,
+  effectiveRaw,
   elementHitDamage,
   moveDamage,
   type MotionMove,
@@ -52,6 +54,29 @@ test("a critical hit scales the motion value, truncated", () => {
   assert.equal(affinityMotion(19, "critical"), 23);
   assert.equal(affinityMotion(19, "weak"), 14);
   assert.equal(affinityMotion(19, "normal"), 19);
+});
+
+test("effective raw weighs true attack by sharpness and affinity, capped at ±100%", () => {
+  assert.equal(effectiveRaw(200, 1.25, 0), 250);
+  // 200 × 1.25 × (1 + 0.25 × 0.3) = 268.75
+  assert.equal(effectiveRaw(200, 1.25, 30), 268.75);
+  assert.equal(effectiveRaw(200, 1, -20), 190);
+  assert.equal(effectiveRaw(200, 1, 150), 250);
+});
+
+test("affinity rolls only above red sharpness, with blue's and white's bonus", () => {
+  const expert = buffs({ affinitySkill: "up-1" });
+  // Red sharpness and a gunner's melee hit roll none.
+  assert.equal(rolledAffinity(20, expert, 0), 0);
+  assert.equal(rolledAffinity(20, expert, null), 0);
+  assert.equal(rolledAffinity(-20, NO_BUFFS, 0), 0);
+  assert.equal(rolledAffinity(20, expert, 3), 30);
+  assert.equal(rolledAffinity(20, expert, 4), 35);
+  assert.equal(rolledAffinity(20, expert, 5), 40);
+  // Negative affinity takes no sharpness bonus.
+  assert.equal(rolledAffinity(-20, NO_BUFFS, 5), -20);
+  // 300 in white (× 1.3) at 40%: 300 × 1.3 × 1.1 = 429
+  assert.equal(Math.round(effectiveRaw(300, 1.3, rolledAffinity(20, expert, 5))), 429);
 });
 
 test("element is a tenth of the shown value, scaled by skills and Dual Blades", () => {

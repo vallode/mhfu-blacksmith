@@ -137,6 +137,14 @@ export function buffedAffinity(weapon: number, b: Buffs, sharpness: number | nul
   return a + (sharpness === 4 ? 5 : sharpness >= 5 ? 10 : 0);
 }
 
+/**
+ * The affinity a hit rolls: none (0) in red sharpness, as the game rolls it
+ * only above red (+0x5F2 above 0), or for a gunner's melee hit (`sharpness`
+ * null, at the gunners' level 0).
+ */
+export const rolledAffinity = (weapon: number, b: Buffs, sharpness: number | null): number =>
+  sharpness === null || sharpness === 0 ? 0 : buffedAffinity(weapon, b, sharpness);
+
 /** Dual Blades' element: × 0.7 on every hit, and again on rows 101 to 108 (Lunging Slash, Demon Dance's last two). */
 export const DUAL_BLADES_ELEMENT = 0.7;
 const TWICE_SCALED_ROWS = [101, 108] as const;

@@ -146,6 +146,16 @@ export function affinityMotion(mv: number, kind: HitKind): number {
   return Math.min(255, Math.trunc(f(mv * f(kind === "critical" ? 1.25 : 0.75))));
 }
 
+/**
+ * Effective raw: the true attack a hit would carry on average, for comparing
+ * weapons and buffs, not a figure the game works out. True attack × the
+ * raw sharpness multiplier × (1 + 0.25 × affinity), affinity capped at
+ * ±100%: a critical adds a quarter, a negative one takes a quarter. Pass 0
+ * affinity where it doesn't roll (red sharpness).
+ */
+export const effectiveRaw = (attack: number, sharpness: number, affinity: number) =>
+  attack * sharpness * (1 + (0.25 * Math.max(-100, Math.min(100, affinity))) / 100);
+
 /** A weapon's element as a hit carries it: the type and a tenth of the shown value, after skills. */
 export interface HitElement {
   type: "fire" | "water" | "thunder" | "ice" | "dragon";
