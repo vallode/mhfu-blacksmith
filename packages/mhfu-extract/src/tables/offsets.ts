@@ -41,6 +41,8 @@ export const JP_TABLE_ADDRESSES = {
   dualAttributeWeapons: 0x08976c54,
   decorationValues: 0x0899fb18,
   itemTable: 0x0899a238,
+  /** Read by tables/skill-activations.ts; found on FUC and EU, not in eboot.hexpat. */
+  skillActivations: 0x089b2d00,
 } as const;
 
 export type TableName = keyof typeof JP_TABLE_ADDRESSES;
@@ -69,6 +71,8 @@ export const TABLE_COUNTS = {
   items: 1261,
   modelToWeaponType: 553,
   dualAttributeWeapons: 15,
+  /** Skill trees 2 to 99, then a 0xFF row. */
+  skillActivations: 98,
 } as const;
 
 export const WEAPON_BM_ENTRY_SIZE = 24;
@@ -80,6 +84,7 @@ export const SHARPNESS_ENTRY_SIZE = 14;
 export const EQUIP_CREATE_ENTRY_SIZE = 26;
 export const EQUIP_UPGRADE_ENTRY_SIZE = 28;
 export const DUAL_ATTRIBUTE_ENTRY_SIZE = 10;
+export const SKILL_ACTIVATION_ENTRY_SIZE = 7;
 
 /**
  * JP's resolver, expressed via the resolution-strategy abstraction

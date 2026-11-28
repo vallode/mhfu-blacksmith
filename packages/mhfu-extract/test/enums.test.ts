@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { isPlaceholderName, loadEnums, lookupName } from "../src/strings/enums.js";
+import {
+  isPlaceholderName,
+  loadEnums,
+  lookupName,
+  skillEffectNames,
+} from "../src/strings/enums.js";
 import { getNameResolver } from "../src/strings/names.js";
 import { TABLE_COUNTS } from "../src/tables/offsets.js";
 
@@ -42,4 +47,16 @@ test("getNameResolver resolves real names end-to-end via the enum bootstrap", ()
   assert.equal(resolver.source, "mhp2g-patterns-enum");
   assert.equal(resolver.resolve("WepBMID", 1), "Carbalite Sword");
   assert.equal(resolver.resolve("HeadArmorID", 0), null);
+});
+
+test("skillEffectNames reads the commented-out skill block, in the game's order", () => {
+  const names = skillEffectNames();
+  assert.equal(names.length, 218);
+  assert.equal(names[0], "No Skill");
+  assert.deepEqual(names.slice(76, 79), [
+    "Attack Up (Small)",
+    "Attack Up (Medium)",
+    "Attack Up (Large)",
+  ]);
+  assert.equal(names[217], "Auto-Reload");
 });

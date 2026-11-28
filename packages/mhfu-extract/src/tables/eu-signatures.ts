@@ -198,6 +198,15 @@ const DUAL_ATTRIBUTE_WEAPONS_EU: TableSignature = {
   signatureOffset: 0,
 };
 
+const SKILL_ACTIVATIONS_EU: TableSignature = {
+  // skillActivations (tables/skill-activations.ts) — first 3 rows (21
+  // bytes, SKILL_ACTIVATION_ENTRY_SIZE=7: Paralysis, Sleep, Faint). Real EU
+  // offset 0x1b6114, FUC static offset 0x1b12b4 (+0x4e60). Full 98-row
+  // table and its 0xFF row diffed byte-for-byte identical.
+  signature: Buffer.from("020303030102020306060604050504090909070808", "hex"),
+  signatureOffset: 0,
+};
+
 const DECORATION_VALUES_EU: TableSignature = {
   // decorationValues (tables/decorations.ts) — first entry (24 bytes,
   // ITEM_ENTRY_SIZE), same shift bucket as itemTable (unsurprising — this
@@ -258,6 +267,7 @@ export const EU_TABLE_SIGNATURES: Readonly<Record<string, TableSignature>> = {
   dualAttributeWeapons: DUAL_ATTRIBUTE_WEAPONS_EU,
   decorationValues: DECORATION_VALUES_EU,
   bowgunModTable: BOWGUN_MOD_TABLE_POOL_EU,
+  skillActivations: SKILL_ACTIVATIONS_EU,
 };
 
 /**

@@ -105,3 +105,28 @@ export function lookupName(
   if (name === undefined || isPlaceholderName(name)) return null;
   return name.trim();
 }
+
+let effectCache: string[] | null = null;
+
+/**
+ * The skills a skill tree turns on, by activation index (0 "No Skill" to
+ * 217 "Auto-Reload"), as `tables/skill-activations.ts` refers to them. The
+ * pattern only has them as a commented-out `str skill[220]` block under
+ * "// Skills 2" in equip.enum; they match the EU message file's table 0
+ * from entry 906, in order.
+ */
+export function skillEffectNames(): string[] {
+  if (effectCache) return effectCache;
+  const text = readFileSync(path.join(VENDOR_DIR, "equip.enum"), "utf-8");
+  const start = text.indexOf("// Skills 2");
+  const end = text.indexOf("// };", start);
+  if (start < 0 || end < 0) throw new Error('enums: no "// Skills 2" block in equip.enum');
+  const names = [...text.slice(start, end).matchAll(/^\/\/\s*"((?:[^"\\]|\\.)*)"/gm)].map((m) =>
+    m[1]!.trim(),
+  );
+  if (names[0] !== "No Skill" || names.length !== 218) {
+    throw new Error(`enums: the skill block has ${names.length} names, not 218 from "No Skill"`);
+  }
+  effectCache = names;
+  return names;
+}
