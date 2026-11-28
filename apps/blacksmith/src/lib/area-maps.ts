@@ -1,8 +1,8 @@
 /**
- * A quest's map and its gathering points: data/gathering.json's positions,
+ * A quest's map and its gathering points: data/mhfu/gathering.json's positions,
  * by quest ID, plus an empty map for a quest whose map has no points. Pure,
  * so scripts/generate-data.ts writes it into public/data/area-maps.json and
- * the tests build it from data/.
+ * the tests build it from data/mhfu/.
  */
 import { areaNumber } from "./area-numbers";
 import type { GatherKind, GatheringFile } from "./item-places";
@@ -11,7 +11,7 @@ import type { GatherKind, GatheringFile } from "./item-places";
 export const AREA_MAP_SIZE = 160;
 
 /**
- * Maps with a texture but no gathering points, so data/gathering.json has no
+ * Maps with a texture but no gathering points, so data/mhfu/gathering.json has no
  * layout to name it by. Their quests still get a Map tab, and arena monsters
  * keep their markers.
  */

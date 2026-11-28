@@ -28,12 +28,12 @@ import {
   type SearchResult,
   type SkillTreeData,
 } from "../src/lib/set-search";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 import { loadShippedSetData } from "./helpers/set-data";
 import { readData } from "game-data";
 
 const dataDir = DATA_DIR;
-const readJson = <T>(file: string): T => readData(dataDir, file) as T;
+const readJson = <T>(file: string): T => readData(dataDir, GAME, file) as T;
 
 const trees = readJson<{ skills: SkillTreeData[] }>("skills.json").skills;
 
@@ -124,7 +124,7 @@ function assertSetValid(
 }
 
 describe("skill table", () => {
-  test("every armor and decoration skill tree is in data/skills.json", () => {
+  test("every armor and decoration skill tree is in data/mhfu/skills.json", () => {
     const names = treeNameIndex(trees);
     const missing = new Set<string>();
     for (const slot of ARMOR_SLOTS) {

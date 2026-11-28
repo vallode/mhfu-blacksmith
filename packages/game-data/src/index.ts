@@ -34,7 +34,9 @@ export {
   StringTable,
   clearStringsCache,
   compareKeys,
+  gameDataDir,
   readStringsDoc,
+  schemasDir,
   serializeStrings,
   stringsPath,
   type AliasKind,
@@ -42,4 +44,20 @@ export {
   type StringsDoc,
 } from "./strings.js";
 export { importLegacy, type Imported, type LegacyIdSources } from "./legacy.js";
+export {
+  DATA_GAMES,
+  GAME_CODES,
+  GAMES,
+  MHFU_GAME,
+  gameConfig,
+  isGameCode,
+  weaponTypesOf,
+  type DataGameCode,
+  type GameCode,
+  type GameConfig,
+  type GameSections,
+  type QuestHub,
+  type SaveFormat,
+  type WeaponClass,
+} from "./games.js";
 export { RECOIL_CODE_BASE, RECOIL_LEVELS, RELOAD_LEVELS } from "./gunner.js";

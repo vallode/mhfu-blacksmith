@@ -53,7 +53,10 @@ test("a texture's nodes from every layout on it, once, in the patch's draw order
 });
 
 test("the Great Forest, which the preview shows, has nodes of every kind on its picture", () => {
-  const points = nodeMapPoints(readData<GatheringLayouts>(dataDir, "gathering.json"), "map30");
+  const points = nodeMapPoints(
+    readData<GatheringLayouts>(dataDir, "mhfu", "gathering.json"),
+    "map30",
+  );
   for (const kind of ["gather", "mine", "bug"])
     assert.ok(
       points.some((p) => p[0] === kind),

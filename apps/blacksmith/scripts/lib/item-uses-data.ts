@@ -1,5 +1,5 @@
 /**
- * Every item's uses (src/lib/item-uses.ts) from the gear in data/: the
+ * Every item's uses (src/lib/item-uses.ts) from the gear in data/mhfu/: the
  * weapons, armor and decorations with their recipes and the weapons' tree
  * parents. Shared by scripts/generate-data.ts and the tests.
  */
@@ -11,21 +11,25 @@ import { buildWeaponTree } from "../../src/lib/trees";
 import type { ArmorPiece, Decoration, Weapon } from "../../src/lib/types";
 import { treeParents } from "../../src/lib/wishlist";
 import { readData } from "game-data";
+import { GAME } from "../../src/lib/paths";
 
 export function itemUsesFromData(dataDir: string): Map<number, ItemUse[]> {
   const { index } = buildItemNameIndex(
-    readData<{ items: ItemRecord[] }>(dataDir, "items.json").items,
+    readData<{ items: ItemRecord[] }>(dataDir, GAME, "items.json").items,
   );
   return buildItemUses(
     {
       weapons: WEAPON_TYPES.map((type) => ({
         type,
-        items: readData<{ weapons: Weapon[] }>(dataDir, "weapons", `${type}.json`).weapons.map(
-          (w) => ({ ...w, slug: slugify(w.name) }),
-        ),
+        items: readData<{ weapons: Weapon[] }>(
+          dataDir,
+          GAME,
+          "weapons",
+          `${type}.json`,
+        ).weapons.map((w) => ({ ...w, slug: slugify(w.name) })),
       })),
       armor: ARMOR_SLOTS.flatMap((slot) => {
-        const all = readData<{ armor: ArmorPiece[] }>(dataDir, "armor", `${slot}.json`).armor;
+        const all = readData<{ armor: ArmorPiece[] }>(dataDir, GAME, "armor", `${slot}.json`).armor;
         return ARMOR_RANKS.map((rank) => {
           // Slugged per slot and rank, as the armor bundles are.
           const pieces = all.filter((p) => p.rank === rank);
@@ -35,6 +39,7 @@ export function itemUsesFromData(dataDir: string): Map<number, ItemUse[]> {
       }),
       decorations: readData<{ decorations: Decoration[] }>(
         dataDir,
+        GAME,
         "decorations.json",
       ).decorations.map((d) => ({ ...d, slug: slugify(d.name) })),
       parents: treeParents(WEAPON_TYPES.map(buildWeaponTree)),

@@ -1,5 +1,5 @@
 /**
- * Encodes data/quests/*.json into the compact public/data/quests.json bundle
+ * Encodes data/mhfu/quests/*.json into the compact public/data/quests.json bundle
  * (shape and decoder: src/lib/quests.ts). Item names become in-game item IDs
  * (names and icons then come from items.json); monster names link to monster
  * pages; strings and identical reward tables are stored once.
@@ -23,7 +23,7 @@ import {
   type QuestsBundle,
 } from "../../src/lib/quests";
 
-/** One data/quests/*.json quest, as far as the bundle reads it. */
+/** One data/mhfu/quests/*.json quest, as far as the bundle reads it. */
 export interface QuestRecord {
   id: number;
   hub: string;

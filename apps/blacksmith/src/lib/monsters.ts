@@ -5,7 +5,7 @@ import { monsterGameId } from "./monster-ids";
 import type { MonsterLogMonster } from "./monster-log";
 import { slugify } from "./slug";
 import type { Monster } from "./types";
-import { DATA_DIR } from "./paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "./paths";
 import { cached } from "./data-cache";
 import { readData } from "game-data";
 
@@ -22,10 +22,10 @@ export function getMonsters(category: MonsterCategory): Monster[] {
 }
 
 function loadMonsters(category: MonsterCategory): Monster[] {
-  const filePath = path.join(dataDir, "monsters", `${category}.json`);
+  const filePath = path.join(GAME_DATA_DIR, "monsters", `${category}.json`);
   if (!fs.existsSync(filePath)) return [];
 
-  const raw = readData<{ monsters: Monster[] }>(dataDir, "monsters", `${category}.json`);
+  const raw = readData<{ monsters: Monster[] }>(dataDir, GAME, "monsters", `${category}.json`);
 
   return raw.monsters.map((m) => ({
     ...m,
@@ -57,7 +57,7 @@ export function getMonsterLogMonsters(): MonsterLogMonster[] {
 }
 
 /**
- * The game IDs of the small monsters, from `data/monsters`' `small` flag.
+ * The game IDs of the small monsters, from `data/mhfu/monsters`' `small` flag.
  * The Guild Card keeps their kills apart from the large monsters': a few
  * thousand Kelbi would swamp the hunts that matter.
  */

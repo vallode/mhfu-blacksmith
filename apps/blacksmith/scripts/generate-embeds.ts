@@ -75,7 +75,7 @@ import {
 } from "../src/lib/detail-card";
 import { buildDetailCardData, detailCardSpriteNames } from "../src/lib/detail-card-data";
 import { GEM_COLORS } from "../src/lib/embed-format";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 import { readData } from "game-data";
 import { readSetSearchData } from "./lib/set-data";
 
@@ -228,7 +228,7 @@ async function writeIcons() {
   const { colors, items } = readData<{
     colors: string[];
     items: { icon?: number; color?: number; placeholder?: boolean }[];
-  }>(DATA_DIR, "items.json");
+  }>(DATA_DIR, GAME, "items.json");
   const combos = new Set(
     items.flatMap((i) =>
       !i.placeholder && i.icon !== undefined && i.color !== undefined

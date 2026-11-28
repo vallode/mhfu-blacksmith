@@ -11,7 +11,7 @@
  * so the two stay in step.
  *
  * The Quality of life step's preview of the gathering-node map takes its nodes from
- * data/gathering.json and the marker look from randomfu's patch
+ * data/mhfu/gathering.json and the marker look from randomfu's patch
  * (node-map-preview.ts), and its map picture from the site's public/.
  *
  * The pages' link-preview tags get the site's absolute address, and the
@@ -52,7 +52,7 @@ const nodeMapPreview = {
   marker: MARKER_SIZE,
   onArtAlpha: ON_ART_ALPHA,
   colors: MARKER_COLORS,
-  points: nodeMapPoints(readData(dataDir, "gathering.json"), previewTexture),
+  points: nodeMapPoints(readData(dataDir, "mhfu", "gathering.json"), previewTexture),
 };
 
 /** The commit the build is made from, which every analytics event carries. */

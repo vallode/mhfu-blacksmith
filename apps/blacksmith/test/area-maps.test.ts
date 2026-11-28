@@ -11,7 +11,7 @@ import {
   nextSelection,
 } from "../src/lib/area-maps";
 import type { GatheringFile } from "../src/lib/item-places";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { readData } from "game-data";
 
 const items = [{ item: "Herb", chance: 100 }];
@@ -154,12 +154,13 @@ test("buildAreaMaps gives every quest a map, even without gathering points", () 
 });
 
 test("every committed position is inside its texture, and the texture exists", () => {
-  const file = readData(DATA_DIR, "gathering.json") as GatheringFile;
-  const quests = readdirSync(path.join(DATA_DIR, "quests"))
+  const file = readData(DATA_DIR, GAME, "gathering.json") as GatheringFile;
+  const quests = readdirSync(path.join(GAME_DATA_DIR, "quests"))
     .filter((name) => name.endsWith(".json"))
     .flatMap(
       (name) =>
-        readData<{ quests: { id: number; map: string | null }[] }>(DATA_DIR, "quests", name).quests,
+        readData<{ quests: { id: number; map: string | null }[] }>(DATA_DIR, GAME, "quests", name)
+          .quests,
     );
   const bundle = buildAreaMaps(file, quests);
   assert.ok(bundle.maps.length > 50);
@@ -176,12 +177,13 @@ test("every committed position is inside its texture, and the texture exists", (
 });
 
 test("every quest on a known map gets an area map, with points or not", () => {
-  const file = readData(DATA_DIR, "gathering.json") as GatheringFile;
-  const quests = readdirSync(path.join(DATA_DIR, "quests"))
+  const file = readData(DATA_DIR, GAME, "gathering.json") as GatheringFile;
+  const quests = readdirSync(path.join(GAME_DATA_DIR, "quests"))
     .filter((name) => name.endsWith(".json"))
     .flatMap(
       (name) =>
-        readData<{ quests: { id: number; map: string | null }[] }>(DATA_DIR, "quests", name).quests,
+        readData<{ quests: { id: number; map: string | null }[] }>(DATA_DIR, GAME, "quests", name)
+          .quests,
     );
   const bundle = buildAreaMaps(file, quests);
   for (const quest of quests) {

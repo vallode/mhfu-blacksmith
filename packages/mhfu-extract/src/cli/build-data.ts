@@ -1,7 +1,7 @@
 /**
  * `build-data` subcommand: rewrites committed `data/` files from `extract`
  * output. Equipment categories are merged field by field
- * (`build/merge.ts`); item stats are written into `data/items.json` by ID
+ * (`build/merge.ts`); item stats are written into `data/mhfu/items.json` by ID
  * (`build/items.ts`); quests, gathering points and shops have no committed
  * counterpart and are copied through, with each item under its game name.
  * Prints, and optionally writes, a report of every value the disc
@@ -10,12 +10,14 @@
  *
  * Everything here works on the named view of `data/` (game-data's
  * `readData`). `writeData` writes it back: records with game IDs, names and
- * quest text into `data/strings/en.json`. A second run writes nothing.
+ * quest text into `data/mhfu/strings/en.json`. A second run writes nothing.
  */
 import { existsSync } from "node:fs";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { readData, writeData } from "game-data";
+import { gameDataDir, readData, writeData } from "game-data";
+import { GAME } from "../game.js";
+
 import { CATEGORIES, CATEGORY_NAMES, type CategoryName } from "../build/categories.js";
 import { loadInputs, type Unpaired } from "../build/compare.js";
 import { discMaterialId, loadSiteIndex, type SiteIndex } from "../build/ids.js";
@@ -94,7 +96,7 @@ export interface CategoryBuildReport {
   filesWritten: string[];
 }
 
-/** Item stats (rarity, carry limit, price, icon, colour) written into `data/items.json`. */
+/** Item stats (rarity, carry limit, price, icon, colour) written into `data/mhfu/items.json`. */
 export interface ItemsBuildReport {
   changes: ItemStatChange[];
   /** Committed items the disc has no entry for, left as they were. */
@@ -137,7 +139,7 @@ interface QuestItem {
 }
 
 /**
- * An item entry under its game name (`data/items.json`). `extract` names
+ * An item entry under its game name (`data/mhfu/items.json`). `extract` names
  * items from the `ItemID` enum, which only differs from `items.json` on a
  * few Japanese promo tickets.
  */
@@ -254,7 +256,7 @@ interface ItemRef {
 
 /**
  * Names every item in a `combinations.json` by its ID in
- * `data/items.json`; `extract` names them from the `ItemID` enum.
+ * `data/mhfu/items.json`; `extract` names them from the `ItemID` enum.
  */
 export function nameCombinationItems(content: unknown, site: SiteIndex): unknown {
   const rename = (ref: ItemRef): ItemRef => {
@@ -284,7 +286,7 @@ async function copiedFiles(
   if (target === "veggie-trades")
     return { files: ["veggie-trades.json"], name: nameVeggieTradeItems };
   if (target === "farm") return { files: ["farm.json"], name: nameFarmItems };
-  // Awards refer to nothing: their text goes into data/strings as it is.
+  // Awards refer to nothing: their text goes into data/mhfu/strings as it is.
   if (target === "awards") return { files: ["awards.json"], name: (content) => content };
   // Motion values are rows and numbers: nothing to name.
   if (target === "motion-values")
@@ -298,7 +300,7 @@ async function copiedFiles(
   return { files: files.map((f) => path.join("quests", f)), name: nameQuestItems };
 }
 
-/** Renames `data/strings` monsters to the names `extract` read from the disc. */
+/** Renames `data/mhfu/strings` monsters to the names `extract` read from the disc. */
 async function buildMonsterNames(options: BuildDataOptions): Promise<MonsterNameChange[]> {
   const source = await readJsonOrNull(path.join(options.extracted, "monster-names.json"));
   if (!source) {
@@ -314,13 +316,13 @@ async function buildMonsterNames(options: BuildDataOptions): Promise<MonsterName
   );
 }
 
-/** Writes the disc's item stats into `data/items.json`. */
+/** Writes the disc's item stats into `data/mhfu/items.json`. */
 async function buildItems(options: BuildDataOptions): Promise<ItemsBuildReport> {
   const source = await readJsonOrNull(path.join(options.extracted, "items.json"));
   if (!source) throw new Error(`items.json is missing from ${options.extracted}; rerun extract`);
   const { items, colors } = source as { items: EmittedItem[]; colors?: string[] };
-  const merged = mergeItemStats(readData(options.data, "items.json"), items, colors);
-  const filesWritten = writeData(options.data, "items.json", merged.content, {
+  const merged = mergeItemStats(readData(options.data, GAME, "items.json"), items, colors);
+  const filesWritten = writeData(options.data, GAME, "items.json", merged.content, {
     dryRun: options.dryRun,
   });
   return { changes: merged.changes, missing: merged.missing, filesWritten };
@@ -342,7 +344,7 @@ async function copyTarget(
       continue;
     }
     if (!source) throw new Error(`${rel} is missing from ${options.extracted}; rerun extract`);
-    writeData(options.data, rel, name(source, site), { dryRun: options.dryRun });
+    writeData(options.data, GAME, rel, name(source, site), { dryRun: options.dryRun });
     written.push(rel);
   }
   return written;
@@ -397,10 +399,11 @@ async function buildCategories(
     const filesWritten: string[] = [];
     for (const [file, items] of result.files) {
       // build-data rewrites committed files; it doesn't create new ones.
-      if (!existsSync(path.join(options.data, file))) continue;
-      const original = readData<Record<string, unknown>>(options.data, file);
+      if (!existsSync(path.join(gameDataDir(options.data, GAME), file))) continue;
+      const original = readData<Record<string, unknown>>(options.data, GAME, file);
       const written = writeData(
         options.data,
+        GAME,
         file,
         { ...original, [category.arrayKey]: items },
         { dryRun: options.dryRun },

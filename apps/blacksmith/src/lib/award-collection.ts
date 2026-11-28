@@ -11,7 +11,7 @@ import type { WeaponType } from "./constants";
 import type { EquipmentIds } from "./schema";
 import type { EquipSlot } from "./save-store";
 
-/** The awards' indexes in AWARDS and data/awards.json. */
+/** The awards' indexes in AWARDS and data/mhfu/awards.json. */
 export const ARTISAN_HAMMER_AWARD = 22;
 export const ARTISAN_MITTEN_AWARD = 46;
 export const ARTISAN_HAMMER_NEEDED = 4;

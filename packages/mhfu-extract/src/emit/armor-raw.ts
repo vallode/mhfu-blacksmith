@@ -1,6 +1,6 @@
 /**
  * `extract --raw`: a numbers-only dump of every `ArmorValue` struct, for
- * correlating raw fields against committed `data/armor/*.json` without
+ * correlating raw fields against committed `data/mhfu/armor/*.json` without
  * shipping disc bytes (vallode/mhfu-blacksmith#10, max defence; and the
  * `sex`/`hunter_type` recheck).
  *

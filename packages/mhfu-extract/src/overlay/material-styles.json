@@ -1,5 +1,5 @@
 {
-  "$comment": "Icon styles picked by hand, keyed by data/items.json ID; see build/material-styles.ts. Most are items whose only committed style is the placeholder bone/white, picked from what the item is; items with no fitting icon mask (tools, ammo, books) use ukwn. Real bones (Bone, Brute/Giant/Stout/Massive Bone, Master's Skull, Bone Husks) keep bone/white and aren't listed. The Lobstershells (split between claw and shell) follow the site's convention for shells, e.g. King Lobster Shl and Hermitaur Shell are shell.",
+  "$comment": "Icon styles picked by hand, keyed by data/mhfu/items.json ID; see build/material-styles.ts. Most are items whose only committed style is the placeholder bone/white, picked from what the item is; items with no fitting icon mask (tools, ammo, books) use ukwn. Real bones (Bone, Brute/Giant/Stout/Massive Bone, Master's Skull, Bone Husks) keep bone/white and aren't listed. The Lobstershells (split between claw and shell) follow the site's convention for shells, e.g. King Lobster Shl and Hermitaur Shell are shell.",
   "styles": {
     "1": { "name": "Book of Combos 1", "type": "ukwn", "color": "white" },
     "5": { "name": "Book of Combos 5", "type": "ukwn", "color": "white" },

@@ -1,6 +1,7 @@
 "use client";
 
 import { useT } from "@/context/LanguageContext";
+import { SITE_GAME } from "@/lib/constants";
 import PageBar, { PageTab, PageTabs } from "./PageBar";
 
 /**
@@ -16,12 +17,14 @@ export default function ItemNav({ active }: { active: "items" | "veggie-elder" }
       tabs={
         <PageTabs label={t.items.list.pages}>
           <PageTab href="/items/" label={nav.items} icon="fluid" active={active === "items"} />
-          <PageTab
-            href="/veggie-elder/"
-            label={nav.veggieElder}
-            icon="mushroom"
-            active={active === "veggie-elder"}
-          />
+          {SITE_GAME.sections.veggieElder && (
+            <PageTab
+              href="/veggie-elder/"
+              label={nav.veggieElder}
+              icon="mushroom"
+              active={active === "veggie-elder"}
+            />
+          )}
         </PageTabs>
       }
     />

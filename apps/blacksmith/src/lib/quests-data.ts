@@ -1,6 +1,6 @@
 /**
  * Build-time quest lookups for static params and page metadata, read from
- * data/quests/*.json. Pages render from public/data/quests.json on the client.
+ * data/mhfu/quests/*.json. Pages render from public/data/quests.json on the client.
  */
 import fs from "fs";
 import path from "path";
@@ -12,7 +12,7 @@ import {
   type QuestAppearance,
   type QuestHubSlug,
 } from "./quests";
-import { DATA_DIR } from "./paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "./paths";
 import { readData } from "game-data";
 
 export interface QuestSummary {
@@ -22,13 +22,13 @@ export interface QuestSummary {
   stars: number;
   title: string;
   goal: string | null;
-  /** The quest's map, as data/quests names it. */
+  /** The quest's map, as data/mhfu/quests names it. */
   map: string | null;
   /** Whether the quest has recorded monster spawns on its map. */
   hasSpawns: boolean;
 }
 
-const questDir = path.join(DATA_DIR, "quests");
+const questDir = path.join(GAME_DATA_DIR, "quests");
 
 let cache: QuestSummary[] | null = null;
 
@@ -36,7 +36,7 @@ export function getQuestSummaries(): QuestSummary[] {
   if (cache) return cache;
   const out: QuestSummary[] = [];
   for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) {
-    const { quests } = readData(DATA_DIR, "quests", file) as {
+    const { quests } = readData(DATA_DIR, GAME, "quests", file) as {
       quests: {
         id: number;
         hub: string;
@@ -80,7 +80,7 @@ let huntStars: Map<string, HuntStars> | null = null;
 export function getHuntStars(name: string): HuntStars {
   huntStars ??= huntStarsByMonster(
     ["village.json", "guild.json"].flatMap(
-      (file) => readData<{ quests: QuestAppearance[] }>(DATA_DIR, "quests", file).quests,
+      (file) => readData<{ quests: QuestAppearance[] }>(DATA_DIR, GAME, "quests", file).quests,
     ),
   );
   return huntStars.get(name) ?? {};

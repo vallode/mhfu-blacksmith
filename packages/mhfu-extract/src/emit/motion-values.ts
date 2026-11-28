@@ -1,5 +1,5 @@
 /**
- * `data/motion-values.json` (schema: `data/schemas/motion-values.schema.json`):
+ * `data/mhfu/motion-values.json` (schema: `data/schemas/motion-values.schema.json`):
  * each weapon type's moves (`overlay/weapon-moves.json`) with their hits'
  * motion values from the disc's table (`tables/motion-values.ts`), and,
  * for Dual Blades, what each hit becomes in Demon Mode.

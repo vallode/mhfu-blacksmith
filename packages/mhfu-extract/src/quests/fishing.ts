@@ -1,6 +1,6 @@
 /**
  * Fishing points: each stage overlay's fish tables, by mission rank, and the
- * stage-to-area mapping `data/gathering.json` uses to place them.
+ * stage-to-area mapping `data/mhfu/gathering.json` uses to place them.
  *
  * A stage overlay ends its data with six `{ s8 weight, u8 fish }` tables and
  * a pointer to each, in `MissionRankId` order: EASY, LOW, HIGH, TREASURE,

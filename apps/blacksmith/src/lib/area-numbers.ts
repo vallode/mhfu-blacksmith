@@ -1,5 +1,5 @@
 /**
- * The number the game's map art prints for an area. data/gathering.json
+ * The number the game's map art prints for an area. data/mhfu/gathering.json
  * numbers areas by their place in the map's stage list, which isn't that
  * number on every map (the Jungle's 6th stage is its area 9). The table is
  * read off the textures by scripts/generate-area-numbers.ts; a map without

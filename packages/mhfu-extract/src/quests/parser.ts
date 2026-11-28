@@ -327,7 +327,7 @@ function readQuestStringsAt(reader: BinaryReader, ptr: number): QuestStrings {
  * text) — this disc apparently never populated distinct EU-locale text.
  *
  * The slot names (`LANG_SLOTS`) are quest.hexpat's field names. On the EU
- * disc the first slot is confirmed English (the committed `data/quests/`
+ * disc the first slot is confirmed English (the committed `data/mhfu/quests/`
  * text); which of the other four holds German, French, Spanish and Italian
  * is only the hexpat's word, so `locales` checks each with a language guess
  * (locales/quests.ts).

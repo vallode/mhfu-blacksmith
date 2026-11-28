@@ -11,7 +11,7 @@ import type { Weapon } from "./types";
 export type ShotElement = "fire" | "water" | "thunder" | "ice" | "dragon";
 export const SHOT_ELEMENTS: readonly ShotElement[] = ["fire", "water", "thunder", "ice", "dragon"];
 
-/** A bowgun ammo that deals damage (data/motion-values.json `shots`). */
+/** A bowgun ammo that deals damage (data/mhfu/motion-values.json `shots`). */
 export interface ShotValue {
   /** The game's shot ID. */
   shot: number;
@@ -39,7 +39,7 @@ export interface ShotExplosion {
   element?: { type: ShotElement; value: number };
 }
 
-/** public/data/shots.json: data/motion-values.json's shots. */
+/** public/data/shots.json: data/mhfu/motion-values.json's shots. */
 export interface ShotsFile {
   bowgun_shot_multiplier: number;
   shots: ShotValue[];

@@ -14,7 +14,7 @@
  * so the two stay in step.
  *
  * The Quality of life step's preview of the gathering-node map takes its
- * nodes from data/gathering.json and the marker look from Whetstone's patch
+ * nodes from data/mhfu/gathering.json and the marker look from Whetstone's patch
  * (node-map-preview.ts), and its map picture from the site's public/.
  *
  *   pnpm build
@@ -50,7 +50,7 @@ const nodeMapPreview = {
   marker: MARKER_SIZE,
   onArtAlpha: ON_ART_ALPHA,
   colors: MARKER_COLORS,
-  points: nodeMapPoints(readData(dataDir, "gathering.json"), previewTexture),
+  points: nodeMapPoints(readData(dataDir, "mhfu", "gathering.json"), previewTexture),
 };
 
 mkdirSync(dist, { recursive: true });

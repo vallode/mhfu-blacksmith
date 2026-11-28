@@ -117,7 +117,7 @@ const AWARD_COUNT = 48;
 //
 // Bytes 4–5 are 0 on every weapon and nonzero on upgraded armor (likely the
 // armor's upgrade level; not decoded yet). Bytes 6–11 are the attached
-// decorations: three u16 LE item IDs (data/items.json), 0 for an empty slot.
+// decorations: three u16 LE item IDs (data/mhfu/items.json), 0 for an empty slot.
 // Checked against the real save in test/fixtures: two Grinder Jewels (968,
 // 1 slot each) sit in each of six 2-slot pieces, and every other slot is 0.
 const EQUIP_SLOT_SIZE = 12;

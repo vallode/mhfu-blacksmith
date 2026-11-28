@@ -1,10 +1,10 @@
 /**
- * Build-time list for the Maps page, read from data/gathering.json: each map
+ * Build-time list for the Maps page, read from data/mhfu/gathering.json: each map
  * that the game draws, with the layouts (item sets, which differ by rank and
  * quest board) it has. A day and night the game draws alike are one map. Pages
  * render the points from public/data/area-maps.json.
  */
-import { DATA_DIR } from "./paths";
+import { DATA_DIR, GAME } from "./paths";
 import { readData } from "game-data";
 import type { GatheringFile } from "./item-places";
 import { groupBy } from "./item-sources";
@@ -91,7 +91,7 @@ let cache: MapEntry[] | null = null;
 
 export function getMapEntries(): MapEntry[] {
   if (cache) return cache;
-  const gathering = readData<GatheringFile>(DATA_DIR, "gathering.json");
+  const gathering = readData<GatheringFile>(DATA_DIR, GAME, "gathering.json");
   const summaries = getQuestSummaries();
   const hubOf = new Map(summaries.map((q) => [q.id, q.hub]));
   const boardsOf = (ids: number[]): QuestHubSlug[] => {

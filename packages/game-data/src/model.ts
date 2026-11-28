@@ -4,7 +4,7 @@
  *
  * On disk, records carry their game `id` and refer to each other by ID:
  * a weapon's `improve_from: 3`, a material `{ "item": 84, "amount": 2 }`, a
- * quest's `{ "monster": 87 }`. Names are in `data/strings/<lang>.json`
+ * quest's `{ "monster": 87 }`. Names are in `data/<game>/strings/<lang>.json`
  * (strings.ts).
  *
  * `hydrate` puts the English names back where the records had them before

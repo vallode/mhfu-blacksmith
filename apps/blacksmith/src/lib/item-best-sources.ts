@@ -8,7 +8,7 @@
 import { readData } from "game-data";
 import { MONSTER_CATEGORIES } from "./constants";
 import { formatRank, parseDropSource, splitDropQuantity } from "./monster-drops";
-import { DATA_DIR } from "./paths";
+import { DATA_DIR, GAME } from "./paths";
 import { isHiddenQuest, questHubLabel, questHubSlug, questStarLevel } from "./quests";
 import type { CardDropWay, CardItemDrop, CardItemReward } from "./detail-card";
 
@@ -117,7 +117,7 @@ export function itemBestSources(): Map<
           Record<string, { name: string; chance: string; quantity?: number }[]>
         >;
       }[];
-    }>(DATA_DIR, "monsters", `${category}.json`);
+    }>(DATA_DIR, GAME, "monsters", `${category}.json`);
     for (const m of monsters)
       for (const [rank, tables] of Object.entries(m.drops ?? {}))
         for (const [source, drops] of Object.entries(tables)) {
@@ -146,7 +146,7 @@ export function itemBestSources(): Map<
         title?: string;
         reward_tables: { items: { item: string; chance: number; amount: number }[] }[];
       }[];
-    }>(DATA_DIR, "quests", `${file}.json`);
+    }>(DATA_DIR, GAME, "quests", `${file}.json`);
     for (const q of quests) {
       if (isHiddenQuest(q.id) || !q.title) continue;
       const where = questWhere(q.hub, q.rank, q.stars);

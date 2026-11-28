@@ -173,7 +173,7 @@ export default withPWA({
       {
         // Data bundles: precached by workbox, but also serve the manual
         // offline cache the "Download for offline" button populates.
-        // Game text in other languages (data/locales): outside the precache,
+        // Game text in other languages (data/mhfu/locales): outside the precache,
         // so no revision busts it. NetworkFirst picks up a re-extracted file on
         // the next visit online and still serves the cached one offline.
         urlPattern: /\/data\/locale-[a-z]+\.json$/,

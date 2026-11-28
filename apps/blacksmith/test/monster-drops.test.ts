@@ -1,10 +1,10 @@
-/** The drop-table text helpers (lib/monster-drops.ts) on the shapes found in data/monsters. */
+/** The drop-table text helpers (lib/monster-drops.ts) on the shapes found in data/mhfu/monsters. */
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { describe, test } from "node:test";
 import { readData } from "game-data";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import type { Monster } from "../src/lib/types";
 import {
   canCapture,
@@ -30,11 +30,11 @@ describe("canCapture", () => {
 
   // The data build flags capturable monsters with it (the bundles' `ca`),
   // so a renamed capture source would quietly empty the lists' Captured filter.
-  test("finds the capturable monsters in data/monsters", () => {
+  test("finds the capturable monsters in data/mhfu/monsters", () => {
     const monsters = new Map(
       fs
-        .readdirSync(path.join(DATA_DIR, "monsters"))
-        .flatMap((f) => readData<{ monsters: Monster[] }>(DATA_DIR, "monsters", f).monsters)
+        .readdirSync(path.join(GAME_DATA_DIR, "monsters"))
+        .flatMap((f) => readData<{ monsters: Monster[] }>(DATA_DIR, GAME, "monsters", f).monsters)
         .map((m) => [m.name, m]),
     );
     for (const name of ["Rathian", "Yian Kut-Ku", "Tigrex", "Nargacuga", "Plesioth"]) {

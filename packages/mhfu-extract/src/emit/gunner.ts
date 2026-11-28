@@ -5,7 +5,7 @@
  *
  * Every mapping below was derived by correlating the raw EU (ULES01213)
  * structs from `extract --raw` against the committed
- * `data/weapons/{light-bowgun,heavy-bowgun,bow}.json`:
+ * `data/mhfu/weapons/{light-bowgun,heavy-bowgun,bow}.json`:
  *
  * - Ammo: `BulletCharge` selects the `BGShotTable` row and the
  *   `ShotCoatings` bit for each ammo type says whether the gun can load it;

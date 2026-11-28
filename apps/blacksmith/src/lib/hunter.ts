@@ -5,6 +5,7 @@
  * "Hunter"), which of those to offer, and where a weapon rides on the
  * skeleton.
  */
+import { SITE_GAME } from "@/lib/constants";
 import { fetchMotions, type MotionClip } from "@/lib/motions";
 
 const HUNTER_DIR = "/models/hunter";
@@ -21,19 +22,9 @@ export const HUNTER_BARE_FEMALE_MODEL = `${HUNTER_DIR}/hunter-bare-female.glb`;
 export const JOINT = { CHEST: 10, LEFT_HAND: 14, RIGHT_HAND: 18 } as const;
 
 /** The game's weapon class of each site weapon type: `motion/wNN_tbl.bin`. */
-export const WEAPON_CLASS: Record<string, number> = {
-  "great-sword": 0,
-  "heavy-bowgun": 1,
-  hammer: 2,
-  lance: 3,
-  "sword-and-shield": 4,
-  "light-bowgun": 5,
-  "dual-blades": 6,
-  "long-sword": 7,
-  "hunting-horn": 8,
-  gunlance: 9,
-  bow: 10,
-};
+export const WEAPON_CLASS: Record<string, number> = Object.fromEntries(
+  SITE_GAME.weaponClasses.map((w) => [w.slug, w.motionClass]),
+);
 
 /**
  * What a hunter clip is, for its name in the viewer: the idles (standing

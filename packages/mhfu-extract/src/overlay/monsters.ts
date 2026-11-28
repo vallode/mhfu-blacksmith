@@ -1,6 +1,6 @@
 /**
  * Presentation for disc monsters (vallode/mhfu-blacksmith#35), from
- * `monsters.json`: each site monster's emID, site name, `data/monsters`
+ * `monsters.json`: each site monster's emID, site name, `data/mhfu/monsters`
  * file, and which disc slot each committed hitzone part and drop group
  * shows. The disc has part and break numbers, not names, and no drop-group
  * labels, so these come from the committed data, matched against the EU

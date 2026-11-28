@@ -21,7 +21,7 @@ import { embedIcon, itemEmbedIcon, titleCase } from "./embed-format";
 import { itemBestSources } from "./item-best-sources";
 import { parseDropSource, splitDropQuantity } from "./monster-drops";
 import { getMonsters } from "./monsters";
-import { DATA_DIR, REPO_ROOT } from "./paths";
+import { DATA_DIR, GAME, REPO_ROOT } from "./paths";
 import { slugify } from "./slug";
 import type { Material, Weapon } from "./types";
 import { getWeapons } from "./weapons";
@@ -140,7 +140,7 @@ function itemCards(): Record<string, ItemCard> {
       color?: number;
       placeholder?: boolean;
     }[];
-  }>(DATA_DIR, "items.json");
+  }>(DATA_DIR, GAME, "items.json");
   const out: Record<string, ItemCard> = {};
   for (const i of items) {
     if (i.placeholder) continue;

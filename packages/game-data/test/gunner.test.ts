@@ -11,6 +11,7 @@ test("every bowgun's recoil and reload is a known level", () => {
   for (const file of ["light-bowgun.json", "heavy-bowgun.json"]) {
     const { weapons } = readData<{ weapons: { id: number; recoil: string; reload: string }[] }>(
       DATA,
+      "mhfu",
       "weapons",
       file,
     );

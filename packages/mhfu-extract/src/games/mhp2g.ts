@@ -100,7 +100,7 @@ export const MHP2G_JP_RESOLVER: TableAddressResolver = new StaticOffsetResolver(
 export const MHP2G_EU_RESOLVER: TableAddressResolver = new SignatureResolver(EU_ALL_SIGNATURES);
 
 /**
- * Every table `emit/*.ts` actually reads to produce `data/*.json`'s
+ * Every table `emit/*.ts` actually reads to produce `data/mhfu/*.json`'s
  * equipment output (weapons/armor/decorations/recipes) — i.e. exactly what
  * a region's resolver needs to cover before `cli/extract.ts` trusts it for
  * real output. `armorValuesHead`/etc are `tables/armor.ts`'s

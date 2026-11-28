@@ -1,5 +1,5 @@
 /**
- * Orchestrates every emit/* module into the full set of data/*.json-shaped
+ * Orchestrates every emit/* module into the full set of data/mhfu/*.json-shaped
  * files, keyed by their path relative to the repo's data/ directory. This is
  * a pure transform (BinaryReader in, in-memory JSON-shaped objects out) —
  * writing to disk is a separate, explicit step via writeEmitOutput() so
@@ -62,7 +62,7 @@ function groupWeaponsByType(weapons: EmittedWeapon[]): Map<WeaponTypeName, Emitt
 
 /**
  * Runs every emit/* module against one decrypted EBOOT and returns the full
- * data/*.json-shaped output (equipment and item stats — quests, gathering
+ * data/mhfu/*.json-shaped output (equipment and item stats — quests, gathering
  * points and shops are separate, see cli/extract.ts). `resolver` is optional and defaults to JP's static
  * addresses (`tableOffset()`, unchanged pre-existing behavior); pass e.g.
  * `MHP2G_PROFILE.resolverForRegion("eu")` (games/mhp2g.ts) to read the same

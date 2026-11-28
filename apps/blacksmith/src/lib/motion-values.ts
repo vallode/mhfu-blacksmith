@@ -35,7 +35,7 @@ export interface MotionMove {
 }
 
 /**
- * data/motion-values.json; public/data/motion-values.json is its `weapons`
+ * data/mhfu/motion-values.json; public/data/motion-values.json is its `weapons`
  * and public/data/shots.json its bowgun shots.
  */
 export interface MotionValuesFile extends ShotsFile {

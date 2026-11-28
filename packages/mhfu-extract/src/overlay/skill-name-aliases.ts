@@ -29,7 +29,7 @@
  *   first pass because it didn't pair 1:1; with armor matched by ID it
  *   does (10 of 10).
  * - `decorations`: typos and spelling variants in the committed
- *   `data/decorations.json` that each have exactly one obvious `SkillID`
+ *   `data/mhfu/decorations.json` that each have exactly one obvious `SkillID`
  *   counterpart (`"Everlasting"` -> `"Everlastng"`, `"NormalS up"` ->
  *   `"NormalS Up"`). Committed decorations mostly use the `SkillID`
  *   spelling already (`Defense`, `Capacity`, `Constitutn`, ...). The

@@ -15,7 +15,7 @@
  * them (src/lib/models.ts). Keys are the site's own names.
  *
  * Monsters map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the vendored
- * monster.enum, matched to `data/monsters/*.json` by name. Weapons and armor
+ * monster.enum, matched to `data/mhfu/monsters/*.json` by name. Weapons and armor
  * map through the EBOOT: each weapon/armor table entry (indexed by the game's
  * equipment ID, named in game-data's equipment-ids.json view) holds the model ID of its
  * `weapon/weNNN.pac` or `player/<m|f>/<folder>/...pac`. That needs a
@@ -126,7 +126,8 @@ import {
   type WeaponTypeName,
 } from "../tables/weapons.js";
 import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
-import { readData, readRawData, readStringsDoc } from "game-data";
+import { gameDataDir, readData, readRawData, readStringsDoc } from "game-data";
+import { GAME } from "../game.js";
 
 export interface ExportSiteOptions {
   /** An `unpack` output directory (containing `data-bin/`, and `eboot.bin` for weapons/armor). */
@@ -678,13 +679,18 @@ class Converter {
   }
 }
 
-/** The site's monsters: emID -> name (`data/strings`). */
+/** The site's monsters: emID -> name (`data/mhfu/strings`). */
 async function siteMonsters(dataDir: string): Promise<Map<number, string>> {
-  const names = (readStringsDoc(dataDir).monster ?? {}) as Record<string, string>;
+  const names = (readStringsDoc(dataDir, GAME).monster ?? {}) as Record<string, string>;
   const out = new Map<number, string>();
-  const dir = path.join(dataDir, "monsters");
+  const dir = path.join(gameDataDir(dataDir, GAME), "monsters");
   for (const file of (await readdir(dir)).filter((f) => f.endsWith(".json"))) {
-    const { monsters } = readRawData<{ monsters: { id: number }[] }>(dataDir, "monsters", file);
+    const { monsters } = readRawData<{ monsters: { id: number }[] }>(
+      dataDir,
+      GAME,
+      "monsters",
+      file,
+    );
     for (const { id } of monsters) if (names[id]) out.set(id, names[id]);
   }
   return out;
@@ -1141,7 +1147,7 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
   const ebootPath = path.join(options.unpacked, "eboot.bin");
   if (await exists(ebootPath)) {
     const reader = new BinaryReader(await readFile(ebootPath));
-    const ids = readData<EquipmentIds>(options.data, "equipment-ids.json");
+    const ids = readData<EquipmentIds>(options.data, GAME, "equipment-ids.json");
     if (await exists(path.join(options.unpacked, "data-bin", "weapon"))) {
       manifest.weapons = await exportWeapons(reader, unpackManifest.region, ids, converter);
     }

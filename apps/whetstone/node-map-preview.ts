@@ -1,7 +1,7 @@
 /**
  * The Quality of life step's preview of "Gathering nodes on the area map"
  * (`mods.nodeMap`): one map's nodes, sorted as Whetstone's patch draws them.
- * build.mjs works this out from data/gathering.json and puts it in the page;
+ * build.mjs works this out from data/mhfu/gathering.json and puts it in the page;
  * app.ts draws it on a canvas over the site's copy of the map's texture.
  */
 import { DRAW_ORDER, type NodeKind } from "whetstone/src/patches/node-map.js";
@@ -9,7 +9,7 @@ import { DRAW_ORDER, type NodeKind } from "whetstone/src/patches/node-map.js";
 /** A node, in pixels of the 160x160 texture. */
 export type PreviewPoint = [kind: NodeKind, x: number, y: number];
 
-/** The part of data/gathering.json this reads. */
+/** The part of data/mhfu/gathering.json this reads. */
 export interface GatheringLayouts {
   layouts: {
     texture?: string | null;

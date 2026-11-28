@@ -16,7 +16,7 @@
  *
  * Checked against the EU disc: `rarity` + 1 equals the community item
  * lists' rarity on 1016 of 1017 items they have it for (the other,
- * DragonslyrJewel, matches `data/decorations.json`); `stackLimit` is Potion
+ * DragonslyrJewel, matches `data/mhfu/decorations.json`); `stackLimit` is Potion
  * 10, Whetstone 20, Pierce S Lv1 60, materials 99; `price` is the general
  * store's buy price (Herb 20z, Potion 66z, Whetstone 80z). The u32 at +16
  * is a tenth of `price` on items that can be sold (Herb 2, Rathalos Ruby

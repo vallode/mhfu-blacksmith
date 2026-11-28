@@ -1,6 +1,6 @@
 /**
  * Shared derived-value transforms used across every emit/*.ts module —
- * turning raw disc bytes into the display-ready values `data/*.json`
+ * turning raw disc bytes into the display-ready values `data/mhfu/*.json`
  * expects. Each transform's derivation is documented at its definition;
  * see also `packages/mhfu-extract/README.md`'s "Derived values" section for
  * the consolidated writeup with the real-EBOOT evidence.
@@ -14,7 +14,7 @@ export type Rank = "low-rank" | "high-rank" | "g-rank";
 /**
  * `data/`'s `rank` field from a piece's *display* rarity (post `+1`, see
  * `displayRarity()`). Breakpoints confirmed against every rarity value
- * actually used in the committed `data/armor/*.json`: rarity 1-5 is always
+ * actually used in the committed `data/mhfu/armor/*.json`: rarity 1-5 is always
  * "low-rank", 6-8 "high-rank", 9-10 "g-rank", with no exceptions.
  */
 export function rankFromRarity(displayRarity: number): Rank {
@@ -110,7 +110,7 @@ export function formatSignedAmount(amount: number): string {
  *
  * A handful of items have *two* `EquipCreate` entries sharing one
  * `equipId` (confirmed against real decoration data: 24 duplicated
- * `equipId`s, closely matching the ~22 decorations `data/decorations.json`
+ * `equipId`s, closely matching the ~22 decorations `data/mhfu/decorations.json`
  * already lists an `alternative_create_mats` for) — an alternate recipe.
  * Callers should treat entries[0] as the primary recipe and entries[1] (if
  * present) as the alternative.

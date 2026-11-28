@@ -1,6 +1,6 @@
 /**
  * The game's own names and quest text in other languages
- * (`data/locales/<code>.json`, copied to `public/data/locale-<code>.json` by
+ * (`data/mhfu/locales/<code>.json`, copied to `public/data/locale-<code>.json` by
  * scripts/generate-data.ts). Names are keyed by their English name, which the
  * site already uses as the identity of materials, skills and gear; quest
  * text is keyed by quest ID, and award text by the award's index. Anything
@@ -20,7 +20,7 @@ export const GAME_TEXT_KINDS = [
 
 export type GameTextKind = (typeof GAME_TEXT_KINDS)[number];
 
-/** A quest's board text, as `data/quests/*.json` has it in English. */
+/** A quest's board text, as `data/mhfu/quests/*.json` has it in English. */
 export interface QuestText {
   title: string;
   goal: string;
@@ -31,7 +31,7 @@ export interface QuestText {
 
 export const QUEST_TEXT_FIELDS = ["title", "goal", "fail", "details", "client"] as const;
 
-/** A Guild Card award's text, as `data/awards.json` has it in English. */
+/** A Guild Card award's text, as `data/mhfu/awards.json` has it in English. */
 export interface AwardText {
   name: string;
   description: string;

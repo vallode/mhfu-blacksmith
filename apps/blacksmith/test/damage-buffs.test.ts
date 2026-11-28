@@ -18,7 +18,7 @@ import {
   type MotionMove,
   type StruckZone,
 } from "../src/lib/motion-values";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 
 const buffs = (b: Partial<Buffs>): Buffs => ({ ...NO_BUFFS, ...b });
 
@@ -155,6 +155,7 @@ test("the data's Dual Blades combos strike with one blade, then the other", () =
   // break the left-right alternation of the first combo strings.
   const bundle = readData<{ weapons: Record<string, MotionMove[]> }>(
     DATA_DIR,
+    GAME,
     "motion-values.json",
   );
   const blades = (move: string) =>

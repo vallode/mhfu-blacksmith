@@ -7,7 +7,7 @@ import { encodeQuestBundle, type QuestRecord } from "../scripts/lib/quest-bundle
 import { ITEM_CATEGORIES, itemCategory } from "../src/lib/item-categories";
 import { buildItemSources, groupBy, itemHref, type SourceMonster } from "../src/lib/item-sources";
 import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { decodeQuests } from "../src/lib/quests";
 import { slugify } from "../src/lib/slug";
 import type { Monster } from "../src/lib/types";
@@ -162,7 +162,7 @@ describe("item pages", () => {
   });
 
   test("every item has its own page slug, and every monster drop resolves to an item", () => {
-    const { items } = readData(DATA_DIR, "items.json") as {
+    const { items } = readData(DATA_DIR, GAME, "items.json") as {
       items: ItemRecord[];
     };
     const slugs = items.filter((i) => !i.placeholder).map((i) => slugify(i.name));
@@ -170,8 +170,8 @@ describe("item pages", () => {
 
     const { index } = buildItemNameIndex(items);
     const unresolved: string[] = [];
-    for (const file of fs.readdirSync(path.join(DATA_DIR, "monsters"))) {
-      const { monsters } = readData(DATA_DIR, "monsters", file) as { monsters: Monster[] };
+    for (const file of fs.readdirSync(path.join(GAME_DATA_DIR, "monsters"))) {
+      const { monsters } = readData(DATA_DIR, GAME, "monsters", file) as { monsters: Monster[] };
       for (const m of monsters)
         for (const sources of Object.values(m.drops ?? {}))
           for (const drops of Object.values(sources))
@@ -184,7 +184,7 @@ describe("item pages", () => {
 
 describe("item categories", () => {
   test("every real item is in exactly one category", () => {
-    const { items } = readData(DATA_DIR, "items.json") as {
+    const { items } = readData(DATA_DIR, GAME, "items.json") as {
       items: ItemRecord[];
     };
     for (const item of items) {

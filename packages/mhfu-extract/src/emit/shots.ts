@@ -1,5 +1,5 @@
 /**
- * The bowgun shots in `data/motion-values.json` (`tables/shots.ts`): each
+ * The bowgun shots in `data/mhfu/motion-values.json` (`tables/shots.ts`): each
  * ammo that deals damage through the shot hitzone, with its motion value,
  * hits and element, and for Crag and Clust S what they burst into. Crag
  * and Clust S are left out when their explosions couldn't be read, as most

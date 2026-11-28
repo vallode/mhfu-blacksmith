@@ -1,9 +1,9 @@
 /**
- * `data/combinations.json`-shaped output from the EBOOT's combination tables
+ * `data/mhfu/combinations.json`-shaped output from the EBOOT's combination tables
  * (`tables/combinations.ts`): every Combination List entry with its
  * ingredients, result, success rate and how many it makes, plus the Books of
  * Combos and their rate bonuses. Items are named through the `ItemID` enum;
- * `build-data` renames them to `data/items.json`'s names by ID.
+ * `build-data` renames them to `data/mhfu/items.json`'s names by ID.
  */
 import { getNameResolver } from "../strings/names.js";
 import {

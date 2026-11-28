@@ -17,7 +17,7 @@ import {
 } from "../src/lib/item-places";
 import { buildAreaMaps } from "../src/lib/area-maps";
 import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { readData } from "game-data";
 
 const ITEM_IDS: Record<string, number> = { "Iron Ore": 1, Potion: 2, "Mountain Herbs": 3 };
@@ -290,7 +290,7 @@ describe("item places", () => {
   });
 
   test("every gathered or sold item in data/ resolves to an item", () => {
-    const read = <T>(file: string) => readData(DATA_DIR, file) as T;
+    const read = <T>(file: string) => readData(DATA_DIR, GAME, file) as T;
     const { index } = buildItemNameIndex(read<{ items: ItemRecord[] }>("items.json").items);
     const missing = new Set<string>();
     const resolve = (name: string) => {
@@ -299,7 +299,7 @@ describe("item places", () => {
       return id;
     };
     const all = fs
-      .readdirSync(path.join(DATA_DIR, "quests"))
+      .readdirSync(path.join(GAME_DATA_DIR, "quests"))
       .flatMap((f) => read<{ quests: typeof quests }>(path.join("quests", f)).quests);
     const real = buildItemPlaces(
       read<GatheringFile>("gathering.json"),
@@ -324,7 +324,7 @@ describe("item places", () => {
     );
     // Iron Ore is mined on many maps, and the general store sells Potions from the start.
     assert.ok(real.get(index.get(normalizeItemName("Iron Ore"))!)!.gathering.length > 10);
-    // The fish account items come from fishing points (data/gathering.json's fish nodes).
+    // The fish account items come from fishing points (data/mhfu/gathering.json's fish nodes).
     const fishing = (name: string) =>
       real
         .get(index.get(normalizeItemName(name))!)!

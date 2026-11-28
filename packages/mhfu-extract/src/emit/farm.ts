@@ -1,6 +1,6 @@
 /**
  * Maps Pokke Farm's gathering tables (`tables/farm.ts`) onto
- * `data/farm.json` (schema: `data/schemas/farm.schema.json`): one entry per
+ * `data/mhfu/farm.json` (schema: `data/schemas/farm.schema.json`): one entry per
  * Mining Point, Insect Thicket, Mushroom Tree and Bee Hive, in the EBOOT's
  * order, with how many times each is drawn from per restock and its items'
  * chances.

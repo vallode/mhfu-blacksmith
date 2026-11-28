@@ -114,7 +114,7 @@ export const items = {
   },
   shops: {
     title: "Shops",
-    /** Shop names, by data/shops.json's name. Unlisted ones stay as they are. */
+    /** Shop names, by data/mhfu/shops.json's name. Unlisted ones stay as they are. */
     names: {
       "Village general store": "Village general store",
       Peddler: "Peddler",

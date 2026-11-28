@@ -10,6 +10,7 @@ import { encodePng } from "../models/png.js";
 import { readTmh } from "../models/tmh.js";
 import { mapTextureFile } from "../tables/map-layout.js";
 import { readData } from "game-data";
+import { GAME } from "../game.js";
 
 export interface AreaMapsOptions {
   /** An `unpack` output directory. */
@@ -21,7 +22,11 @@ export interface AreaMapsOptions {
 }
 
 export async function runAreaMaps(options: AreaMapsOptions): Promise<number> {
-  const { layouts } = readData<{ layouts: { texture?: string }[] }>(options.data, "gathering.json");
+  const { layouts } = readData<{ layouts: { texture?: string }[] }>(
+    options.data,
+    GAME,
+    "gathering.json",
+  );
   const textures = new Set(layouts.flatMap((layout) => layout.texture ?? []));
   // Maps with no gathering points aren't in gathering.json: write their
   // textures too, as their quests still show a map.

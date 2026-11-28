@@ -6,7 +6,7 @@ in `apps/blacksmith/public/models/monsters/emNN.attacks.json`
 (`src/monsters/attacks.ts`); the mechanics were read from `game_task.ovl`
 and `game_sub.ovl`.
 
-The English skill tree for the status is `data/strings/en.json`'s `Faint`
+The English skill tree for the status is `data/mhfu/strings/en.json`'s `Faint`
 (4), with Faint Negated at +15, Faint Prob Halved at +10 and Faint
 Duration(x2) at -10.
 

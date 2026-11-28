@@ -1,7 +1,7 @@
 /**
  * Each monster's hitbox file (`public/models/monsters/emNN.hitboxes.json`,
  * written by packages/mhfu-extract `export-site`) names its capsules by the
- * hitzone parts in `data/monsters`. A part renamed in the data without a new
+ * hitzone parts in `data/mhfu/monsters`. A part renamed in the data without a new
  * export would leave the 3D legend on the old name.
  */
 import assert from "node:assert/strict";
@@ -9,10 +9,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { readData } from "game-data";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 
 const MODELS = path.resolve(__dirname, "..", "public", "models");
-const TYPES = fs.readdirSync(path.join(DATA_DIR, "monsters")).filter((f) => f.endsWith(".json"));
+const TYPES = fs
+  .readdirSync(path.join(GAME_DATA_DIR, "monsters"))
+  .filter((f) => f.endsWith(".json"));
 /** Monster name -> its model's NN, as the site finds the file (`lib/models.ts`). */
 const MODEL_IDS = JSON.parse(
   fs.readFileSync(path.join(MODELS, "manifest", "monsters.json"), "utf8"),
@@ -28,7 +30,7 @@ test("every hitbox capsule is named by its monster's hitzone parts", () => {
   for (const file of TYPES) {
     const { monsters } = readData<{
       monsters: { name: string; hitzones?: Record<string, unknown> }[];
-    }>(DATA_DIR, "monsters", file);
+    }>(DATA_DIR, GAME, "monsters", file);
     for (const monster of monsters) {
       const nn = MODEL_IDS[monster.name];
       const hitboxes = path.join(

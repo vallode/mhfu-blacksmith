@@ -14,7 +14,7 @@ import {
 } from "../src/lib/awards";
 import { ARTISAN_WEAPONS } from "../src/lib/award-weapons";
 import { MONSTER_GAME_IDS, monsterGameId, type MonsterName } from "../src/lib/monster-ids";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 import { questHubSlug, type Quest } from "../src/lib/quests";
 import type { MonsterRecord, SaveData } from "../src/lib/save-store";
 import type { EquipmentIds } from "../src/lib/schema";
@@ -42,10 +42,10 @@ const QUESTS = [
 ];
 
 describe("AWARDS", () => {
-  test("lists the game's 48 awards, each once, with their text in data/awards.json", () => {
+  test("lists the game's 48 awards, each once, with their text in data/mhfu/awards.json", () => {
     assert.equal(AWARDS.length, 48);
     assert.equal(new Set(AWARDS.map((a) => a.id)).size, 48);
-    const { awards } = readData(DATA_DIR, "awards.json") as {
+    const { awards } = readData(DATA_DIR, GAME, "awards.json") as {
       awards: { id: number; name: string; description: string }[];
     };
     assert.deepEqual(
@@ -83,7 +83,7 @@ describe("AWARDS", () => {
 /** The site's quests, from data/: enough of each for selectQuests. */
 function siteQuests(): Quest[] {
   return ["village", "guild", "training-school", "treasure-hunting"].flatMap((file) => {
-    const { quests } = readData(DATA_DIR, `quests/${file}.json`) as {
+    const { quests } = readData(DATA_DIR, GAME, `quests/${file}.json`) as {
       quests: { id: number; hub: string; rank: string | null; stars: number }[];
     };
     return quests.map((q) => quest(q.id, questHubSlug(q.hub, q.rank)!, q.stars));

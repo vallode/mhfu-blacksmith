@@ -14,7 +14,7 @@ const IDS: Record<string, number> = {
   "elder bone": 287,
   ticket: 381,
 };
-// Game names (data/items.json) by ID.
+// Game names (data/mhfu/items.json) by ID.
 const NAMES = new Map([
   [543, "FireWyvern Claw"],
   [294, "Brute Bone"],

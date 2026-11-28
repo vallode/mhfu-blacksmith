@@ -1,5 +1,5 @@
 /**
- * In-game item IDs (data/items.json) and the name resolution that links them to
+ * In-game item IDs (data/mhfu/items.json) and the name resolution that links them to
  * the material names used in recipe/drop data. Shared by scripts/generate-data.ts
  * (builds the items bundle) and scripts/validate.ts (checks every material
  * resolves).
@@ -12,7 +12,7 @@
  */
 export const ITEM_NAME_LENGTH = 16;
 
-/** One entry of data/items.json (see data/schemas/item.schema.json). */
+/** One entry of data/mhfu/items.json (see data/schemas/item.schema.json). */
 export interface ItemRecord {
   id: number;
   name: string;
@@ -71,8 +71,8 @@ export function buildItemNameIndex(items: ItemRecord[]): {
 }
 
 /**
- * Decorations whose name in data/decorations.json is spelled differently from
- * their item in data/items.json (the game's shortened item names).
+ * Decorations whose name in data/mhfu/decorations.json is spelled differently from
+ * their item in data/mhfu/items.json (the game's shortened item names).
  */
 export const DECORATION_ITEM_ALIASES: Record<string, string> = {
   "Constitutn Jewel": "ConstitutnJewel",

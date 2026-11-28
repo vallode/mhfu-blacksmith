@@ -1,14 +1,14 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readData } from "game-data";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 import { armorVersionKey, groupArmorVersions } from "../src/lib/armor-versions";
 import type { ArmorRank } from "../src/lib/constants";
 
 const names = (slot: string, name: string) => {
   const { armor } = readData<{
     armor: { name: string; rank: ArmorRank; rarity: number; sex?: string }[];
-  }>(DATA_DIR, "armor", `${slot}.json`);
+  }>(DATA_DIR, GAME, "armor", `${slot}.json`);
   const families = groupArmorVersions(armor.map((a) => ({ ...a, slug: "" })));
   return families.find((f) => f.versions.some((v) => v.name === name))?.versions.map((v) => v.name);
 };

@@ -16,7 +16,7 @@ import { ARMOR_SLOT_TABLE_NAMES_EU, EU_TABLE_SIGNATURES } from "../src/tables/eu
 import { EQUIP_CREATE_ENTRY_SIZE, JP_BASE_ADDRESS, tableOffset } from "../src/tables/offsets.js";
 import { fixtureReader } from "./helpers.js";
 
-const DATA_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../../data/armor");
+const DATA_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), "../../../data");
 
 const SITE_FILE: Record<ArmorSlot, string> = {
   head: "helmet",
@@ -72,9 +72,9 @@ const EU_ARRAY_OFFSET: Record<ArmorSlot, number> = {
 const FIXTURE_SIZE = 0x180000;
 
 function committed(slot: ArmorSlot, name: string) {
-  const file = readData(path.dirname(DATA_DIR), "armor", `${SITE_FILE[slot]}.json`);
+  const file = readData(DATA_DIR, "mhfu", "armor", `${SITE_FILE[slot]}.json`);
   const entry = file.armor.find((a: { name: string }) => a.name === name);
-  assert.ok(entry, `${name} should be in data/armor/${SITE_FILE[slot]}.json`);
+  assert.ok(entry, `${name} should be in data/mhfu/armor/${SITE_FILE[slot]}.json`);
   return entry;
 }
 

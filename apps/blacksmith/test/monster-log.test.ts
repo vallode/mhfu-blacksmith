@@ -140,7 +140,7 @@ test("loggedMonsterCount counts the site's monsters with a record", () => {
   assert.equal(loggedMonsterCount(undefined), null);
 });
 
-test("the log's monsters come from data/monsters, all with a game ID and their sizes", () => {
+test("the log's monsters come from data/mhfu/monsters, all with a game ID and their sizes", () => {
   const monsters = getMonsterLogMonsters();
   assert.ok(monsters.length > 0);
   assert.ok(

@@ -58,7 +58,7 @@ export interface CollectionAwardGroup {
 
 /** One equipment collection award and the hunter's progress towards it. */
 export interface CollectionAward {
-  /** Its index in AWARDS and data/awards.json. */
+  /** Its index in AWARDS and data/mhfu/awards.json. */
   index: number;
   groups: CollectionAwardGroup[];
   /** Types whose count is already met. */

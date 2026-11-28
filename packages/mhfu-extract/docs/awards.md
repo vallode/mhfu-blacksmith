@@ -82,10 +82,10 @@ it was stepped through in PPSSPP; the doubtful points are marked.
 ### In `data/`
 
 `extract` reads both runs (`src/strings/awards.ts`) and writes
-`awards.json`; `build-data --only awards` turns it into `data/awards.json`
+`awards.json`; `build-data --only awards` turns it into `data/mhfu/awards.json`
 (one record per award, only its `id`) and the strings `award` and
 `award_description`, by index. `locales` writes the French, German,
-Italian and Spanish text into each `data/locales/<code>.json`'s `award`
+Italian and Spanish text into each `data/mhfu/locales/<code>.json`'s `award`
 section, where it differs from English. The site's Awards page shows these,
 and `apps/blacksmith/src/lib/awards.ts` holds only each award's rule.
 

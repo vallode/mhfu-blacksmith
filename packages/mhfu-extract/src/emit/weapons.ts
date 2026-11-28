@@ -1,8 +1,8 @@
 /**
- * Maps raw weapon tables onto `data/weapons/*.json`'s schema shape.
+ * Maps raw weapon tables onto `data/mhfu/weapons/*.json`'s schema shape.
  *
  * Confirmed end-to-end against a real JP EBOOT + the committed
- * `data/weapons/*.json` across all 11 weapon types (hundreds of weapons):
+ * `data/mhfu/weapons/*.json` across all 11 weapon types (hundreds of weapons):
  * `WepBMID`/`WepGunID` direct-array-index naming, `modelToWeaponType`
  * classification, `attack`/`element`/`status` scaling, `improve_from`/
  * `improve_to`, and `create_mats`/`improve_mats` all matched with zero or
@@ -163,7 +163,7 @@ interface UpgradeGraph {
 /**
  * `data/`'s committed convention uses a bare string when a weapon has
  * exactly one upgrade source, and an array only for 2+ (confirmed directly,
- * e.g. `data/weapons/great-sword.json`'s `"Buster Sword+"` ->
+ * e.g. `data/mhfu/weapons/great-sword.json`'s `"Buster Sword+"` ->
  * `improve_from: "Buster Sword"`); the schema's `oneOf` permits both
  * shapes. Matching this convention exactly eliminates format-only `diff`
  * noise without changing any actual data.
@@ -224,7 +224,7 @@ export interface EmittedWeapon {
  * add 5 points to positive affinity when `sharpnessAmount` is 4, and 10
  * when it is 5 or 6. Zero and negative affinity never change, and gunner
  * weapons have no `sharpnessAmount`. Derived by correlating every raw
- * struct on the EU disc against `data/weapons/*.json`: 106 of the 108
+ * struct on the EU disc against `data/mhfu/weapons/*.json`: 106 of the 108
  * positive-affinity weapons at amount 4–6 follow it, and 52 of the 53 at
  * amount 0–3 show no bonus. No other struct field (rarity, the unknown bytes)
  * separates the cases. This is a correlation, not a read of the game's

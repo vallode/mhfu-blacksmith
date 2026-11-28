@@ -1,5 +1,5 @@
 /**
- * Maps raw `ArmorValue` structs onto the `data/armor/*.json` schema shape.
+ * Maps raw `ArmorValue` structs onto the `data/mhfu/armor/*.json` schema shape.
  *
  * Naming is direct array-index: `ArmorValues.head[i]` is `HeadArmorID[i]`,
  * and its recipe is the `EquipmentCreateTable.head` entry with

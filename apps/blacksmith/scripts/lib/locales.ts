@@ -1,5 +1,5 @@
 /**
- * Builds public/data/locale-<code>.json from data/locales/<code>.json: the
+ * Builds public/data/locale-<code>.json from data/<game>/locales/<code>.json: the
  * game's names, quest text and award text in other languages (see
  * src/lib/i18n/game-text.ts). Entries whose English key the site doesn't have
  * are dropped with a warning, since nothing would ever look them up (a
@@ -7,16 +7,17 @@
  */
 import fs from "fs";
 import path from "path";
-import { readData } from "game-data";
+import { gameDataDir, readData } from "game-data";
 import { GAME_TEXT_KINDS, type GameLocale, type GameTextKind } from "../../src/lib/i18n/game-text";
 
 type Json = unknown;
 
 /**
  * A file under `dataDir`, read through game-data: game records come back in
- * their named view (names from data/strings), anything else as it is.
+ * their named view (names from data/mhfu/strings), anything else as it is.
  */
-const readJson = (dataDir: string, p: string): Json => readData(dataDir, path.relative(dataDir, p));
+const readJson = (dataDir: string, game: string, p: string): Json =>
+  readData(dataDir, game, path.relative(gameDataDir(dataDir, game), p));
 
 const jsonFilesIn = (dir: string): string[] =>
   fs.existsSync(dir)
@@ -39,28 +40,30 @@ function collect(node: Json, keys: readonly string[], out: Set<string>): Set<str
   return out;
 }
 
-const listOf = (dataDir: string, file: string, key: string): Json[] =>
-  ((readJson(dataDir, file) as Record<string, Json[]>)[key] ?? []) as Json[];
+const listOf = (dataDir: string, game: string, file: string, key: string): Json[] =>
+  ((readJson(dataDir, game, file) as Record<string, Json[]>)[key] ?? []) as Json[];
 
 /** The English names each kind of locale entry can translate. */
-export function englishNames(dataDir: string): Record<GameTextKind, Set<string>> {
+export function englishNames(dataDir: string, game: string): Record<GameTextKind, Set<string>> {
   const names = (files: string[], key: string) =>
-    new Set(files.flatMap((f) => listOf(dataDir, f, key)).map((x) => (x as { name: string }).name));
-  const weaponFiles = jsonFilesIn(path.join(dataDir, "weapons"));
-  const armorFiles = jsonFilesIn(path.join(dataDir, "armor"));
-  const monsterFiles = jsonFilesIn(path.join(dataDir, "monsters"));
-  const questFiles = jsonFilesIn(path.join(dataDir, "quests"));
-  const decorations = path.join(dataDir, "decorations.json");
+    new Set(
+      files.flatMap((f) => listOf(dataDir, game, f, key)).map((x) => (x as { name: string }).name),
+    );
+  const weaponFiles = jsonFilesIn(path.join(gameDataDir(dataDir, game), "weapons"));
+  const armorFiles = jsonFilesIn(path.join(gameDataDir(dataDir, game), "armor"));
+  const monsterFiles = jsonFilesIn(path.join(gameDataDir(dataDir, game), "monsters"));
+  const questFiles = jsonFilesIn(path.join(gameDataDir(dataDir, game), "quests"));
+  const decorations = path.join(gameDataDir(dataDir, game), "decorations.json");
   const everything = [
     ...weaponFiles,
     ...armorFiles,
     ...monsterFiles,
     ...questFiles,
     decorations,
-    path.join(dataDir, "items.json"),
-  ].map((f) => readJson(dataDir, f));
+    path.join(gameDataDir(dataDir, game), "items.json"),
+  ].map((f) => readJson(dataDir, game, f));
 
-  const skills = readJson(dataDir, path.join(dataDir, "skills.json")) as {
+  const skills = readJson(dataDir, game, path.join(gameDataDir(dataDir, game), "skills.json")) as {
     skills: { tree: string; aliases?: string[]; skills: { name: string }[] }[];
   };
   const skillNames = new Set<string>();
@@ -71,7 +74,12 @@ export function englishNames(dataDir: string): Record<GameTextKind, Set<string>>
   }
   // Armor and decorations name skill trees in their own spellings.
   for (const file of [...armorFiles, decorations]) {
-    for (const piece of listOf(dataDir, file, file === decorations ? "decorations" : "armor")) {
+    for (const piece of listOf(
+      dataDir,
+      game,
+      file,
+      file === decorations ? "decorations" : "armor",
+    )) {
       for (const s of (piece as { skills?: (string | { name: string })[] }).skills ?? []) {
         skillNames.add(typeof s === "string" ? s.replace(/ [+-]?\d+$/, "") : s.name);
         if (typeof s === "string") skillNames.add(s);
@@ -88,7 +96,7 @@ export function englishNames(dataDir: string): Record<GameTextKind, Set<string>>
     item: everything.reduce<Set<string>>((set, d) => collect(d, ["name", "item"], set), new Set()),
     skill: skillNames,
     map: questFiles.reduce<Set<string>>(
-      (set, f) => collect(readJson(dataDir, f), ["map"], set),
+      (set, f) => collect(readJson(dataDir, game, f), ["map"], set),
       new Set(),
     ),
   };
@@ -101,24 +109,24 @@ export interface LocaleBundle {
   warnings: string[];
 }
 
-export function buildLocaleBundles(dataDir: string): LocaleBundle[] {
-  const files = jsonFilesIn(path.join(dataDir, "locales"));
+export function buildLocaleBundles(dataDir: string, game: string): LocaleBundle[] {
+  const files = jsonFilesIn(path.join(gameDataDir(dataDir, game), "locales"));
   if (files.length === 0) return [];
-  const english = englishNames(dataDir);
+  const english = englishNames(dataDir, game);
   const questIds = new Set(
-    jsonFilesIn(path.join(dataDir, "quests"))
-      .flatMap((f) => listOf(dataDir, f, "quests"))
+    jsonFilesIn(path.join(gameDataDir(dataDir, game), "quests"))
+      .flatMap((f) => listOf(dataDir, game, f, "quests"))
       .map((q) => String((q as { id: number }).id)),
   );
   const awardIds = new Set(
-    listOf(dataDir, path.join(dataDir, "awards.json"), "awards").map((a) =>
+    listOf(dataDir, game, path.join(gameDataDir(dataDir, game), "awards.json"), "awards").map((a) =>
       String((a as { id: number }).id),
     ),
   );
 
   return files.map((file) => {
     const code = path.basename(file, ".json");
-    const source = readJson(dataDir, file) as GameLocale;
+    const source = readJson(dataDir, game, file) as GameLocale;
     const out: GameLocale = {};
     const warnings: string[] = [];
     let entries = 0;
@@ -149,7 +157,7 @@ export function buildLocaleBundles(dataDir: string): LocaleBundle[] {
         if (questIds.has(id)) kept[id] = text;
       }
       if (unknown.length > 0) {
-        warnings.push(`${code}: ${unknown.length} quest ID(s) not in data/quests, dropped`);
+        warnings.push(`${code}: ${unknown.length} quest ID(s) not in data/mhfu/quests, dropped`);
       }
       if (Object.keys(kept).length > 0) out.quest = kept;
       entries += Object.keys(kept).length;
@@ -162,7 +170,9 @@ export function buildLocaleBundles(dataDir: string): LocaleBundle[] {
         if (awardIds.has(id)) kept[id] = text;
       }
       if (unknown.length > 0) {
-        warnings.push(`${code}: ${unknown.length} award ID(s) not in data/awards.json, dropped`);
+        warnings.push(
+          `${code}: ${unknown.length} award ID(s) not in data/mhfu/awards.json, dropped`,
+        );
       }
       if (Object.keys(kept).length > 0) out.award = kept;
       entries += Object.keys(kept).length;

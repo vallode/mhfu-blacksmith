@@ -9,11 +9,11 @@ import { ENGLISH } from "../src/lib/i18n/game-text";
 import type { GatheringFile } from "../src/lib/item-places";
 import { mapIconSrc } from "../src/lib/maps";
 import { getMapEntries, type MapEntry } from "../src/lib/maps-data";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { isHiddenQuest } from "../src/lib/quests";
 import { readData } from "game-data";
 
-const readJson = (file: string) => readData(DATA_DIR, file);
+const readJson = (file: string) => readData(DATA_DIR, GAME, file);
 /** The name the Maps page lists a map by, in English. */
 const shownName = (entry: MapEntry) =>
   entry.bothTimes ? groundName(ENGLISH, entry.map) : entry.map;
@@ -69,7 +69,7 @@ test("a day and night drawn alike are one map, with each layout listed once", ()
   for (const map of ["Jungle", "Desert", "Volcano"]) {
     assert.ok(names.includes(`${map} (Day)`) && names.includes(`${map} (Night)`), map);
   }
-  const gathering = readData<GatheringFile>(DATA_DIR, "gathering.json");
+  const gathering = readData<GatheringFile>(DATA_DIR, GAME, "gathering.json");
   const listed = new Set(entries.flatMap((entry) => entry.layouts.flatMap((l) => l.questIds)));
   // The page leaves out a layout it has no points to draw.
   const missing = gathering.layouts
@@ -92,7 +92,7 @@ test("a day and night drawn alike are one map, with each layout listed once", ()
 
 test("every map in data/ has an icon that exists", () => {
   const maps = new Set<string>();
-  for (const file of fs.readdirSync(path.join(DATA_DIR, "quests"))) {
+  for (const file of fs.readdirSync(path.join(GAME_DATA_DIR, "quests"))) {
     const { quests } = readJson(path.join("quests", file)) as { quests: { map: string | null }[] };
     for (const q of quests) {
       if (q.map) maps.add(q.map);

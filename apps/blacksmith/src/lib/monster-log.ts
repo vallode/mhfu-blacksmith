@@ -13,7 +13,7 @@ export interface MonsterLogMonster {
   name: string;
   slug: string;
   category: MonsterCategory;
-  /** The game's small monsters (data/monsters' `small`). */
+  /** The game's small monsters (data/mhfu/monsters' `small`). */
   small: boolean;
   /** The size at 100 percent, as the Guild Card shows sizes. Absent without one. */
   baseSize?: number;

@@ -175,7 +175,7 @@ export interface CompactDecoration {
   cm?: MatTuple[];
   am?: MatTuple[]; // alternative_create_mats: the jewel's second recipe
   mr?: MinRankTuple; // earliest quest progress needed to make it
-  i?: number; // in-game item ID (data/items.json)
+  i?: number; // in-game item ID (data/mhfu/items.json)
 }
 
 // ---------------------------------------------------------------------------

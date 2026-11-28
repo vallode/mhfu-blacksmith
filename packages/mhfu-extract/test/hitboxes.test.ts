@@ -302,15 +302,15 @@ test("export-site writes hitboxes next to a monster's model and removes stale on
     const out = path.join(root, "public");
     await mkdir(path.join(unpacked, "data-bin", "emmodel"), { recursive: true });
     await mkdir(path.join(unpacked, "data-bin", "overlay"), { recursive: true });
-    await mkdir(path.join(data, "monsters"), { recursive: true });
-    await mkdir(path.join(data, "strings"), { recursive: true });
+    await mkdir(path.join(data, "mhfu", "monsters"), { recursive: true });
+    await mkdir(path.join(data, "mhfu", "strings"), { recursive: true });
     await mkdir(path.join(out, "monsters"), { recursive: true });
     await writeFile(
       path.join(unpacked, "manifest.json"),
       JSON.stringify({ region: "jp", discId: "ULJM05500", isoPath: "", fileCount: 0 }),
     );
     await writeFile(
-      path.join(data, "monsters", "test.json"),
+      path.join(data, "mhfu", "monsters", "test.json"),
       JSON.stringify({
         monsters: [
           { id: 1, type: "test" },
@@ -319,7 +319,7 @@ test("export-site writes hitboxes next to a monster's model and removes stale on
       }),
     );
     await writeFile(
-      path.join(data, "strings", "en.json"),
+      path.join(data, "mhfu", "strings", "en.json"),
       JSON.stringify({ monster: { "1": "Rathian", "3": "Kelbi" } }),
     );
     const model = pac([skeleton(RATHIAN_JOINTS), pmo()]);

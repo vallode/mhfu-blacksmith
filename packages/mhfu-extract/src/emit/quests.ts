@@ -1,5 +1,5 @@
 /**
- * Maps `ParsedQuest` (src/quests/parser.ts) onto the data/quests/*.json
+ * Maps `ParsedQuest` (src/quests/parser.ts) onto the data/mhfu/quests/*.json
  * schema shape (data/schemas/quest.schema.json).
  *
  * Every numeric/structured field below is either a raw disc value or
@@ -199,7 +199,7 @@ export interface EmittedQuestTarget {
 
 export interface EmittedArenaEquipment {
   slot: ArenaSlot;
-  /** The slot's equipment ID, as in data/armor and data/weapons. */
+  /** The slot's equipment ID, as in data/mhfu/armor and data/mhfu/weapons. */
   id: number;
   /** The disc's name for it; training-only gear has no record in data/ to name it. */
   name: string | null;
@@ -517,7 +517,7 @@ function resolveTarget(targetId: number, targetNum: number): EmittedQuestTarget 
 }
 
 /**
- * Maps one parsed `.mib` quest to the `data/quests/*.json` shape, or null for
+ * Maps one parsed `.mib` quest to the `data/mhfu/quests/*.json` shape, or null for
  * an unused/disabled quest slot or a quest on no board (see `questHub`).
  * Large monsters get their stat multipliers from `multipliers`, the quest
  * its `monster_size` from `sizes`, and monsters their map positions from
@@ -576,10 +576,10 @@ export const QUEST_HUB_TO_FILE: Record<QuestHub, string> = {
   challenge: "quests/challenge.json",
 };
 
-/** Boards whose quests are downloaded, not on the disc: no file without them, so an extract without `--dlc` leaves `data/` alone. */
+/** Boards whose quests are downloaded, not on the disc: no file without them, so an extract without `--dlc` leaves `data/mhfu/` alone. */
 export const DOWNLOADED_HUBS: ReadonlySet<QuestHub> = new Set(["event", "challenge"]);
 
-/** Maps every parsed quest into the `data/quests/*.json`-shaped output, grouped by hub, dropping unused slots. */
+/** Maps every parsed quest into the `data/mhfu/quests/*.json`-shaped output, grouped by hub, dropping unused slots. */
 export function emitQuestsFile(
   parsedQuests: ParsedQuest[],
   multipliers?: MultiplierLookup,

@@ -188,7 +188,7 @@ export const motionValues = {
     loadError: "Couldn't load the shots.",
   },
   /**
-   * Move names, by weapon type and the move's key in data/motion-values.json.
+   * Move names, by weapon type and the move's key in data/mhfu/motion-values.json.
    * The disc names none of them; these follow the community's names.
    */
   moves: {

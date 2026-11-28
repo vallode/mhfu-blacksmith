@@ -1,6 +1,6 @@
 /**
- * Where an item can be gathered or bought: data/gathering.json's points,
- * data/farm.json's Pokke Farm points and data/shops.json's stock, indexed
+ * Where an item can be gathered or bought: data/mhfu/gathering.json's points,
+ * data/mhfu/farm.json's Pokke Farm points and data/mhfu/shops.json's stock, indexed
  * by in-game item ID. Pure, so
  * scripts/generate-data.ts writes it into public/data/item-places.json and
  * the tests build it from data/.
@@ -11,7 +11,7 @@ import { DOWNLOADED_QUEST_HUBS, isHiddenQuest, questHubLabel, questHubSlug } fro
 
 export type GatherKind = "gather" | "mine" | "bug" | "fish";
 
-/** data/gathering.json (data/schemas/gathering.schema.json). */
+/** data/mhfu/gathering.json (data/schemas/gathering.schema.json). */
 export interface GatheringFile {
   layouts: {
     map: string;
@@ -31,7 +31,7 @@ export interface GatheringFile {
   }[];
 }
 
-/** data/shops.json (data/schemas/shop.schema.json). */
+/** data/mhfu/shops.json (data/schemas/shop.schema.json). */
 export interface ShopsFile {
   shops: {
     name: string;
@@ -42,7 +42,7 @@ export interface ShopsFile {
 
 export type FarmSpot = "mining" | "insects" | "mushrooms" | "honey" | "fishing";
 
-/** data/farm.json (data/schemas/farm.schema.json). */
+/** data/mhfu/farm.json (data/schemas/farm.schema.json). */
 export interface FarmFile {
   points: {
     name: string;
@@ -107,7 +107,7 @@ export interface FarmPlace {
 
 export interface ItemPlaces {
   gathering: GatherPlace[];
-  /** In data/farm.json's order */
+  /** In data/mhfu/farm.json's order */
   farm: FarmPlace[];
   shops: ShopPlace[];
 }

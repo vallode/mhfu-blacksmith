@@ -3,9 +3,9 @@ import { test } from "node:test";
 import { readData } from "game-data";
 import type { MotionValuesFile } from "../src/lib/motion-values";
 import { MOVE_INPUTS, parseInput } from "../src/lib/move-inputs";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 
-const file = readData<MotionValuesFile>(DATA_DIR, "motion-values.json");
+const file = readData<MotionValuesFile>(DATA_DIR, GAME, "motion-values.json");
 
 test("inputs read as steps of buttons pressed together", () => {
   assert.deepEqual(parseInput("△"), [{ buttons: ["triangle"] }]);

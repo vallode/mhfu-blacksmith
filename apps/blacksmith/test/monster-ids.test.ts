@@ -4,30 +4,30 @@ import path from "node:path";
 import { test } from "node:test";
 import { huntTotals, MONSTER_GAME_IDS, monsterRecordFor } from "../src/lib/monster-ids";
 import { getSmallMonsterIds } from "../src/lib/monsters";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { readData, readRawData } from "game-data";
 
-const siteMonsters = fs.readdirSync(path.join(DATA_DIR, "monsters")).flatMap((f) =>
+const siteMonsters = fs.readdirSync(path.join(GAME_DATA_DIR, "monsters")).flatMap((f) =>
   (
-    readData(DATA_DIR, "monsters", f).monsters as {
+    readData(DATA_DIR, GAME, "monsters", f).monsters as {
       name: string;
     }[]
   ).map((m) => m.name),
 );
 
-/** Every monster in data/monsters, with the disc's small flag (raw, so it keeps IDs). */
-const monsterData = fs.readdirSync(path.join(DATA_DIR, "monsters")).flatMap(
+/** Every monster in data/mhfu/monsters, with the disc's small flag (raw, so it keeps IDs). */
+const monsterData = fs.readdirSync(path.join(GAME_DATA_DIR, "monsters")).flatMap(
   (f) =>
-    readRawData(DATA_DIR, "monsters", f).monsters as {
+    readRawData(DATA_DIR, GAME, "monsters", f).monsters as {
       id: number;
       small?: boolean;
     }[],
 );
 
 /** Every spawn in the quests, which the game marks as small or large (raw, so monsters stay IDs). */
-const quests = fs.readdirSync(path.join(DATA_DIR, "quests")).flatMap(
+const quests = fs.readdirSync(path.join(GAME_DATA_DIR, "quests")).flatMap(
   (f) =>
-    readRawData(DATA_DIR, "quests", f).quests as {
+    readRawData(DATA_DIR, GAME, "quests", f).quests as {
       large_monsters: { monster: number }[];
       small_monsters: { monster: number }[];
     }[],
@@ -40,7 +40,7 @@ test("every site monster has one game monster ID, and no ID is shared", () => {
   assert.ok(ids.every((id) => id > 0 && id < 90));
 });
 
-test("data/monsters marks exactly the monsters quests spawn only as small monsters", () => {
+test("data/mhfu/monsters marks exactly the monsters quests spawn only as small monsters", () => {
   const marked = monsterData
     .filter((m) => m.small)
     .map((m) => m.id)

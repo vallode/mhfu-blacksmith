@@ -1,5 +1,5 @@
 /**
- * `locales` subcommand: writes `data/locales/<code>.json` for every
+ * `locales` subcommand: writes `data/mhfu/locales/<code>.json` for every
  * language found on an `unpack`ed disc. See README, "Localized text".
  *
  * - Quest board text from every `LangPTRs` slot (locales/quests.ts): German,
@@ -14,6 +14,8 @@
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { gameDataDir } from "game-data";
+import { GAME } from "../game.js";
 import {
   loadLocaleSchema,
   LOCALE_CODES,
@@ -51,7 +53,7 @@ export interface LocalesOptions {
   unpacked: string;
   /** The repo's `data/` directory (for the site's names and the schema). */
   data: string;
-  /** Where the locale files go; defaults to `<data>/locales`. */
+  /** Where the locale files go; defaults to `<data>/mhfu/locales`. */
   out?: string;
   /** Don't search for name tables (quest text only). */
   skipNames?: boolean;
@@ -101,7 +103,7 @@ function printSlots(slots: QuestSlotReport[]): void {
 
 export async function runLocales(options: LocalesOptions): Promise<LocalesResult> {
   const manifest = await readManifest(options.unpacked);
-  const outDir = options.out ?? path.join(options.data, "locales");
+  const outDir = options.out ?? path.join(gameDataDir(options.data, GAME), "locales");
   const source = sourceLabel(manifest.region, manifest.discId, new Date());
 
   console.log(`Reading quests (${manifest.region.toUpperCase()} disc ${manifest.discId})...`);

@@ -15,7 +15,7 @@ const ctx: FieldContext = {
 const HITZONES: FieldSpec = { field: "hitzones", kind: "hitzones" };
 const DROPS: FieldSpec = { field: "drops", kind: "drops" };
 
-// Item IDs (data/items.json).
+// Item IDs (data/mhfu/items.json).
 const GIAPREY_SCALE = 340;
 const GIAPREY_HIDE = 342;
 const SM_MONSTER_BONE = 281;

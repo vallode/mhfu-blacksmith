@@ -202,7 +202,7 @@ test("emitCombinations numbers the list from 1 and flags alchemy, bomb and trap 
   ]);
 });
 
-test("nameCombinationItems renames items to data/items.json's names by ID", () => {
+test("nameCombinationItems renames items to data/mhfu/items.json's names by ID", () => {
   const site = {
     items: new Map([
       [7, { id: 7, name: "Potion", name_jp: "回復薬" }],

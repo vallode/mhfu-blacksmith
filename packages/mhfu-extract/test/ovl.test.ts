@@ -157,7 +157,7 @@ test("monster chunks are found on EU and lead to HitzoneTbl lists and rows", () 
   const rathian = chunks[1]!;
   assert.equal(rathian.hitzones?.length, 1);
   assert.equal(rathian.hitzones[0]!.length, 7);
-  // Matches data/monsters/flying-wyvern.json's Rathian "head" and "neck".
+  // Matches data/mhfu/monsters/flying-wyvern.json's Rathian "head" and "neck".
   assert.deepEqual(rathian.hitzones[0]![0], {
     lead: 100,
     values: {
@@ -280,7 +280,7 @@ test("reward tables are found by their pointer runs and lead to each monster's l
   const carves = readCarveTables(ovl, location.carves);
   const giaprey = carves[34]!;
   assert.equal(giaprey.emId, 35);
-  // data/monsters/bird-wyvern.json: Giaprey low-rank body carves.
+  // data/mhfu/monsters/bird-wyvern.json: Giaprey low-rank body carves.
   assert.deepEqual(giaprey.body.low, [
     { chance: 52, itemId: 340 },
     { chance: 30, itemId: 342 },
@@ -293,7 +293,7 @@ test("reward tables are found by their pointer runs and lead to each monster's l
   assert.equal(caps.length, 1);
   assert.equal(caps[0]!.emId, 1);
   assert.equal(caps[0]!.type, CAPTURE_TYPE);
-  // data/monsters/flying-wyvern.json: Rathian low-rank capture.
+  // data/mhfu/monsters/flying-wyvern.json: Rathian low-rank capture.
   assert.deepEqual(caps[0]!.ranks.low, [
     { chance: 36, itemId: 526, amount: 1 },
     { chance: 52, itemId: 520, amount: 2 },
@@ -305,7 +305,7 @@ test("reward tables are found by their pointer runs and lead to each monster's l
 test("readUnindexedCarves reads the carve lists no bodytailshiny index reaches, by pointer", () => {
   const ovl = buildGameSub();
   const lists = readUnindexedCarves(ovl, locateRewardTables(ovl)!.carves);
-  // data/monsters/elder-dragon.json: Fatalis high-rank body carves.
+  // data/mhfu/monsters/elder-dragon.json: Fatalis high-rank body carves.
   assert.deepEqual(lists[FATALIS_CARVES.pointer], [
     { chance: 42, itemId: 778 },
     { chance: 50, itemId: 780 },

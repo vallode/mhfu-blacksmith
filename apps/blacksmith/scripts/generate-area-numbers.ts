@@ -1,6 +1,6 @@
 /**
  * Works out the number the game's map art prints for each of a map's areas.
- * data/gathering.json numbers areas by their place in the map's stage list,
+ * data/mhfu/gathering.json numbers areas by their place in the map's stage list,
  * which isn't the number on the art (the Jungle's 6th stage is its area 9),
  * so this reads the numerals off each texture (white glyphs in
  * public/images/area-maps/) and pairs every area with its nearest numeral,
@@ -12,7 +12,7 @@ import fs from "fs";
 import path from "path";
 import sharp from "sharp";
 import { readData } from "game-data";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 import type { GatheringFile } from "../src/lib/item-places";
 
 /** Pixels: what an area with no numeral of its own costs, against its nearest one. */
@@ -265,7 +265,7 @@ function assign(cost: number[][]): number[] {
 }
 
 async function main() {
-  const { layouts } = readData<GatheringFile>(DATA_DIR, "gathering.json");
+  const { layouts } = readData<GatheringFile>(DATA_DIR, GAME, "gathering.json");
   const out: Record<string, number[]> = {};
   const centroids = new Map<string, Map<number, [number, number][]>>();
   for (const layout of layouts) {

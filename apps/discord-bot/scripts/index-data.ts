@@ -6,6 +6,7 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { readData, readRawData } from "game-data";
+import { MHFU_GAME } from "game-data/games";
 import { detailCardUrl } from "blacksmith/src/lib/detail-card.js";
 import {
   buildDetailCardData,
@@ -39,6 +40,9 @@ import type {
   WeaponEntry,
 } from "../src/types.js";
 import { ITEM_SOURCES } from "../src/types.js";
+
+/** The game the bot answers for. */
+const GAME = MHFU_GAME.code;
 
 export const DATA_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../data");
 
@@ -118,11 +122,13 @@ function monsters(strings: Strings): MonsterEntry[] {
   return MONSTER_CATEGORIES.flatMap((category) => {
     const named = readData<{ monsters: MonsterRecord[] }>(
       DATA_DIR,
+      GAME,
       "monsters",
       `${category}.json`,
     ).monsters;
     const raw = readRawData<{ monsters: { id: number }[] }>(
       DATA_DIR,
+      GAME,
       "monsters",
       `${category}.json`,
     ).monsters;
@@ -173,7 +179,7 @@ function questsByMonster(): Map<string, MonsterQuest[]> {
   for (const file of QUEST_FILES) {
     const { quests } = readData<{
       quests: (QuestAppearance & { title?: string })[];
-    }>(DATA_DIR, "quests", `${file}.json`);
+    }>(DATA_DIR, GAME, "quests", `${file}.json`);
     for (const q of quests) {
       const hub = questHubSlug(q.hub, q.rank);
       if (!hub || isHiddenQuest(q.id) || !q.title) continue;
@@ -221,7 +227,7 @@ function items(strings: Strings): ItemEntry[] {
       color?: number;
       placeholder?: boolean;
     }[];
-  }>(DATA_DIR, "items.json");
+  }>(DATA_DIR, GAME, "items.json");
   return items
     .filter((i) => !i.placeholder)
     .map((i) => {
@@ -259,7 +265,7 @@ function weapons(): WeaponEntry[] {
         color?: string | null;
         elements?: { name: string; attack: number }[] | null;
       }[];
-    }>(DATA_DIR, "weapons", `${type}.json`).weapons.map((w) => {
+    }>(DATA_DIR, GAME, "weapons", `${type}.json`).weapons.map((w) => {
       const slug = slugify(w.name);
       const card = cards[`${type}/${slug}`];
       const tint = tintFor(w.rarity, w.color);
@@ -283,7 +289,7 @@ function weapons(): WeaponEntry[] {
 function skills(): SkillEntry[] {
   const { skills } = readData<{
     skills: { tree: string; aliases?: string[]; skills: { name: string; points: number }[] }[];
-  }>(DATA_DIR, "skills.json");
+  }>(DATA_DIR, GAME, "skills.json");
   return skills
     .filter((t) => t.tree !== "Torso Inc")
     .flatMap((t) =>
@@ -304,7 +310,7 @@ function armor(): ArmorEntry[] {
   return ARMOR_SLOTS.flatMap((slot) => {
     const all = readData<{
       armor: { name: string; rank: string; sex?: string; hunter_type?: string }[];
-    }>(DATA_DIR, "armor", `${slot}.json`).armor;
+    }>(DATA_DIR, GAME, "armor", `${slot}.json`).armor;
     return ARMOR_RANKS.flatMap((rank) => {
       const pieces = all.filter((p) => p.rank === rank);
       const slugs = armorSlugs(pieces);
@@ -321,7 +327,7 @@ function armor(): ArmorEntry[] {
 }
 
 export function buildIndex(): BotIndex {
-  const strings = readData<Strings>(DATA_DIR, "strings", "en.json");
+  const strings = readData<Strings>(DATA_DIR, GAME, "strings", "en.json");
   return {
     monsters: monsters(strings),
     items: items(strings),

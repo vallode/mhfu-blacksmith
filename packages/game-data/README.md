@@ -8,12 +8,39 @@ Nothing parses the files itself.
 ```ts
 import { readData } from "game-data";
 
-const { weapons } = readData<{ weapons: Weapon[] }>(DATA_DIR, "weapons", "bow.json");
+const { weapons } = readData<{ weapons: Weapon[] }>(DATA_DIR, "mhfu", "weapons", "bow.json");
 weapons[3].improve_from; // "Hunter's Bow III"
 ```
 
 Each caller passes its own `data/` directory (the site's `DATA_DIR`,
-mhfu-extract's `--data`).
+mhfu-extract's `--data`), then the game, then the file's path in that
+game's data.
+
+## Games
+
+Each game's data is in its own directory: `data/<game>/`, records and
+`strings/` both (`gameDataDir(dataDir, game)`). The game codes are `mhf1`,
+`mhf2` and `mhfu`; only `mhfu` has data so far. `data/schemas/` is shared
+by every game (`schemasDir`).
+
+`games.ts` (`game-data/games`, pure, so the site's client code imports it)
+is each game's config: the facts about the game the site and the
+extractor share.
+
+| field               | MHFU                                                                                                                 |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `weaponClasses`     | the 11 weapon types in menu order, each with its table, class multiplier and motion file                             |
+| `armorSlots`        | helmet, plate, gauntlets, waist, leggings                                                                            |
+| `ranks`             | low, high and G rank                                                                                                 |
+| `monsterCategories` | the 9 categories, in the site's order                                                                                |
+| `questHubs`         | Village, the three Guild ranks, Training School, Treasure Hunting, then the downloaded Event and Challenge boards    |
+| `sections`          | which parts of the site the game has: decorations, maps, Veggie Elder, Pokke Farm, damage, the hunter save import, … |
+| `save`              | the save file (`MHP2NDG.BIN`) and which parser reads it                                                              |
+
+A game lists only what it has, and turns off the sections it lacks (MHF1,
+for one, is expected to have no G rank and no decorations). Labels, icons
+and other display details stay in the site. `GAMES` holds the games with
+data, `DATA_GAMES` their codes, and `GAME_CODES` every code a URL can name.
 
 ## The layout
 
@@ -37,7 +64,7 @@ per-language string tables.
 
 The weapon and armor IDs are the ones a save's equipment box and the set
 builder's share codes use. They used to be listed in
-`data/equipment-ids.json`; now each record carries its own. `readData(dir,
+`data/equipment-ids.json`; now each record carries its own. `readData(dir, game,
 "equipment-ids.json")` still returns that list, built from the records.
 
 References:
@@ -52,7 +79,7 @@ References:
   (`{ "skill": 36, "points": 1 }`).
 - **Quests:** `map: 11`, items by ID, `{ "monster": 87, "quantity": 1 }`.
   A large or small monster's `spawns` are pixels on the quest's area map
-  (160 across), shared with `data/gathering.json`'s `positions`; `area` 0 is
+  (160 across), shared with `data/mhfu/gathering.json`'s `positions`; `area` 0 is
   the Base Camp. A small monster's points also carry `quantity` and, for
   one that keeps coming, `endless`.
   A Training School quest's `arena_sets` name gear by slot and ID,
@@ -68,7 +95,8 @@ References:
 - **Awards:** a record is only its `id`; the award's name and the game's
   description of it are under `award` and `award_description`.
 
-**Names are in `data/strings/<lang>.json`**, by kind and ID:
+**Names are in `data/<game>/strings/<lang>.json`** (MHFU's in
+`data/mhfu/strings/`), by kind and ID:
 
 ```json
 {
@@ -90,7 +118,7 @@ References:
 quest text (from the disc) and the site's hand-written monster
 descriptions. Another language lists what it has and falls back to
 English (`StringTable`). `ja.json` holds the Japanese item names so far.
-`stringsPath(dataDir, lang)` is the one place the path is spelled out.
+`stringsPath(dataDir, game, lang)` is the one place the path is spelled out.
 
 **Spellings.** Where a reference should show another English spelling
 than the name, it carries `alias: n`: the n-th English alias. Monsters'

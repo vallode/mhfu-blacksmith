@@ -15,7 +15,7 @@ export interface MonsterEntry {
   name: string;
   /** Other spellings: the data's own, then the community's nicknames (nicknames.ts). */
   aliases: string[];
-  /** data/monsters/<category>.json, and the page's path segment. */
+  /** data/mhfu/monsters/<category>.json, and the page's path segment. */
   category: string;
   slug: string;
   small: boolean;
@@ -102,7 +102,7 @@ export interface ItemReward {
 }
 
 export interface WeaponEntry {
-  /** data/weapons/<type>.json, and the page's path segment ("long-sword"). */
+  /** data/mhfu/weapons/<type>.json, and the page's path segment ("long-sword"). */
   type: string;
   name: string;
   slug: string;

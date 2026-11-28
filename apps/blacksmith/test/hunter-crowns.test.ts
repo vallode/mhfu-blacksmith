@@ -6,7 +6,7 @@ import { MONSTER_CATEGORIES } from "../src/lib/constants";
 import { CROWN_GROUPS, cardSize, crownCutoff } from "../src/lib/crowns";
 import { crownProgress, type CrownGroupMonster } from "../src/lib/hunter-crowns";
 import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 import type { MonsterRecord } from "../src/lib/save-store";
 import { slugify } from "../src/lib/slug";
 import type { Monster } from "../src/lib/types";
@@ -115,7 +115,7 @@ describe("crownProgress", () => {
 
 describe("the crown groups against the site's monsters", () => {
   const monsters = MONSTER_CATEGORIES.flatMap((category) =>
-    readData<{ monsters: Monster[] }>(DATA_DIR, "monsters", `${category}.json`).monsters.map(
+    readData<{ monsters: Monster[] }>(DATA_DIR, GAME, "monsters", `${category}.json`).monsters.map(
       (monster) => ({
         name: monster.name,
         slug: slugify(monster.name),

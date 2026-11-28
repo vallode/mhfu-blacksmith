@@ -1,9 +1,9 @@
 /**
  * Build-time item lookups for static params and page metadata, read from
- * data/items.json. Pages render from public/data/items.json on the client.
+ * data/mhfu/items.json. Pages render from public/data/items.json on the client.
  */
 import type { ItemRecord } from "./items";
-import { DATA_DIR } from "./paths";
+import { DATA_DIR, GAME } from "./paths";
 import { slugify } from "./slug";
 import { readData } from "game-data";
 
@@ -22,7 +22,7 @@ let cache: ItemSummary[] | null = null;
 /** Every real item (placeholders left out), by ID. */
 export function getItemSummaries(): ItemSummary[] {
   if (cache) return cache;
-  const { items } = readData<{ items: ItemRecord[] }>(DATA_DIR, "items.json");
+  const { items } = readData<{ items: ItemRecord[] }>(DATA_DIR, GAME, "items.json");
   cache = items
     .filter((i) => !i.placeholder)
     .map((i) => ({

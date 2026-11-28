@@ -123,7 +123,7 @@ export interface HuntTotals {
  * captures. The Guild Card shows them apart: a few thousand Kelbi would
  * swamp the large monsters' hunts.
  *
- * `smallMonsterIds` is the game's own small-monster set (`data/monsters`'
+ * `smallMonsterIds` is the game's own small-monster set (`data/mhfu/monsters`'
  * `small` flag, src/lib/monsters). IDs the site has no page for count as
  * large, so a second Yama Tsukami's hunts still show.
  */
