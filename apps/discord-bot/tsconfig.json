@@ -10,7 +10,10 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    // The site's modules the index reads (scripts/index-data.ts) import
+    // each other's types through the site's alias.
+    "paths": { "@/*": ["../blacksmith/src/*"] }
   },
   "include": ["src/**/*.ts", "scripts/**/*.ts", "test/**/*.ts", "eval/**/*.ts"]
 }

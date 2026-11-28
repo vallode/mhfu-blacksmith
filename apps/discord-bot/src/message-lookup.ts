@@ -24,6 +24,7 @@ import {
   type Embed,
   type Interaction,
   type InteractionResponse,
+  type MessageData,
 } from "./discord.js";
 import { EMBED_COLOR, entryLink, lookupReply, type LookupKind } from "./lookup.js";
 import { normalize } from "./match.js";
@@ -380,13 +381,15 @@ export function postLookup(
   const messageId = all ? id.slice(`${PREFIX}all:`.length) : (parsePost(id)?.message ?? "");
   // Post all takes the entries from the other buttons on the same answer.
   const ids = all
-    ? (interaction.message?.components ?? []).flatMap((r) => r.components.map((b) => b.custom_id))
+    ? (interaction.message?.components ?? []).flatMap((r) =>
+        r.components.map((b) => b.custom_id ?? ""),
+      )
     : [id];
   const posts = ids.map(parsePost).filter((p) => p !== null && p.message === messageId);
   const replies = posts
     // Only keys still in the index: lookupReply would match anything else by name.
     .filter((p) => known(index, p!.kind, p!.key))
-    .map((p) => lookupReply(index, p!.kind, p!.key, siteUrl, assetUrl))
+    .map((p): MessageData | null => lookupReply(index, p!.kind, p!.key, siteUrl, assetUrl))
     .filter((r) => r !== null);
   if (!replies.length) {
     // Post all reads its entries off the answer's buttons; without them it

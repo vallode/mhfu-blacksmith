@@ -10,7 +10,7 @@ export const API = "https://discord.com/api/v10";
 export const InteractionType = {
   Ping: 1,
   ApplicationCommand: 2,
-  /** A button press. */
+  /** A press of a reply's button, or a pick from its menu. */
   MessageComponent: 3,
   Autocomplete: 4,
 } as const;
@@ -21,21 +21,26 @@ export const CommandType = {
   Message: 3,
 } as const;
 
+export const ResponseType = {
+  Pong: 1,
+  ChannelMessage: 4,
+  DeferredChannelMessage: 5,
+  /** Edits the message whose button was pressed. */
+  UpdateMessage: 7,
+  AutocompleteResult: 8,
+} as const;
+
 export const ComponentType = {
   ActionRow: 1,
   Button: 2,
+  StringSelect: 3,
 } as const;
 
 export const ButtonStyle = {
   Primary: 1,
   Secondary: 2,
-} as const;
-
-export const ResponseType = {
-  Pong: 1,
-  ChannelMessage: 4,
-  DeferredChannelMessage: 5,
-  AutocompleteResult: 8,
+  /** Opens `url`; no interaction. */
+  Link: 5,
 } as const;
 
 export const OptionType = {
@@ -65,9 +70,10 @@ export interface Interaction {
     type?: number;
     target_id?: string;
     resolved?: { messages?: Record<string, DiscordMessage> };
-    /** A button press: the button's custom_id. */
+    /** A button press or menu pick: the component's custom_id, and the menu's picks. */
     custom_id?: string;
     component_type?: number;
+    values?: string[];
   };
   guild_id?: string;
   channel_id?: string;
@@ -93,18 +99,8 @@ export interface DiscordMessage {
   /** A forwarded message's copy of what it forwards. */
   message_snapshots?: { message: { content?: string; embeds?: Embed[] } }[];
   components?: ActionRow[];
-}
-
-export interface Button {
-  type: typeof ComponentType.Button;
-  style: number;
-  label: string;
-  custom_id: string;
-}
-
-export interface ActionRow {
-  type: typeof ComponentType.ActionRow;
-  components: Button[];
+  /** Who ran the command the message answers, or pressed the button that sent it. */
+  interaction_metadata?: { user: DiscordUser };
 }
 
 export interface Embed {
@@ -112,15 +108,41 @@ export interface Embed {
   url?: string;
   description?: string;
   color?: number;
+  /** The small line above the title, with an icon. */
+  author?: { name: string; icon_url?: string };
   /** A small image at the embed's top right. */
   thumbnail?: { url: string };
+  /** A large image under the fields. */
+  image?: { url: string };
   fields?: { name: string; value: string; inline?: boolean }[];
   footer?: { text: string };
+}
+
+export interface Button {
+  type: typeof ComponentType.Button;
+  style: number;
+  label: string;
+  custom_id?: string;
+  url?: string;
+  disabled?: boolean;
+}
+
+export interface StringSelect {
+  type: typeof ComponentType.StringSelect;
+  custom_id: string;
+  options: { label: string; value: string; default?: boolean }[];
+  placeholder?: string;
+}
+
+export interface ActionRow {
+  type: typeof ComponentType.ActionRow;
+  components: (Button | StringSelect)[];
 }
 
 export interface MessageData {
   content?: string;
   embeds?: Embed[];
+  /** Rows of buttons (up to five a row) or one menu a row. */
   components?: ActionRow[];
   flags?: number;
   allowed_mentions?: { parse: string[] };
@@ -130,6 +152,7 @@ export type InteractionResponse =
   | { type: typeof ResponseType.Pong }
   | { type: typeof ResponseType.ChannelMessage; data: MessageData }
   | { type: typeof ResponseType.DeferredChannelMessage; data?: { flags?: number } }
+  | { type: typeof ResponseType.UpdateMessage; data: MessageData }
   | {
       type: typeof ResponseType.AutocompleteResult;
       data: { choices: { name: string; value: string }[] };
@@ -143,9 +166,10 @@ export const LIMITS = {
   fieldValue: 1024,
   fields: 25,
   embeds: 10,
-  buttonLabel: 80,
   /** Every title, description, field and footer of an embed together. */
   embedTotal: 6000,
+  buttonLabel: 80,
+  customId: 100,
 } as const;
 
 /** `s` cut to `max` characters, with an ellipsis if it was longer. */
