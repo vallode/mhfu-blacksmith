@@ -5,6 +5,8 @@
  * - autocomplete keystrokes with the best matching names;
  * - /monster, /item, /weapon and /settings at once, from the bundled index
  *   and randomfu's settings module;
+ * - "Look up in Blacksmith" on a message, and its Post buttons
+ *   (message-lookup.ts);
  * - /sets with a deferred reply ("thinking…"), since the model can take
  *   longer than the 3 seconds Discord waits, edited into the answer once
  *   the request is translated. Each user gets a few per minute (SET_LIMITER).
@@ -28,6 +30,7 @@ import {
   type MessageData,
 } from "./discord.js";
 import { autocomplete, EMBED_COLOR, lookupReply, type LookupKind } from "./lookup.js";
+import { messageLookup } from "./message-lookup.js";
 import {
   keywordTranslator,
   resolveSetRequest,
@@ -69,6 +72,9 @@ const RANDOMFU_URL = "https://randomfu.vallode.com";
 
 /** How far a request's signed timestamp may be from now, in seconds. */
 const MAX_AGE_S = 5 * 60;
+
+const siteUrlOf = (env: Env) => env.SITE_URL ?? SITE_URL;
+const assetUrlOf = (env: Env) => env.ASSET_URL ?? siteUrlOf(env);
 
 const LOOKUPS: readonly LookupKind[] = ["monster", "item", "weapon"];
 
@@ -198,6 +204,9 @@ export function createBot(index: BotIndex, options: BotOptions = {}) {
         data: { choices: kind ? autocomplete(index, kind, typed) : [] },
       };
     }
+
+    const looked = messageLookup(index, interaction, siteUrlOf(env), assetUrlOf(env));
+    if (looked) return looked;
 
     if (interaction.type !== InteractionType.ApplicationCommand)
       return onlyYou("I don't know that one.");

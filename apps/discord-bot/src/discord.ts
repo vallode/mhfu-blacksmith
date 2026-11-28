@@ -10,7 +10,25 @@ export const API = "https://discord.com/api/v10";
 export const InteractionType = {
   Ping: 1,
   ApplicationCommand: 2,
+  /** A button press. */
+  MessageComponent: 3,
   Autocomplete: 4,
+} as const;
+
+/** An application command's kind: a slash command or a message's right-click menu. */
+export const CommandType = {
+  ChatInput: 1,
+  Message: 3,
+} as const;
+
+export const ComponentType = {
+  ActionRow: 1,
+  Button: 2,
+} as const;
+
+export const ButtonStyle = {
+  Primary: 1,
+  Secondary: 2,
 } as const;
 
 export const ResponseType = {
@@ -39,7 +57,22 @@ export interface Interaction {
   application_id: string;
   type: number;
   token: string;
-  data?: { name: string; options?: CommandOption[] };
+  data?: {
+    /** A command's name; a button press has none. */
+    name?: string;
+    options?: CommandOption[];
+    /** CommandType: a message command names its target message. */
+    type?: number;
+    target_id?: string;
+    resolved?: { messages?: Record<string, DiscordMessage> };
+    /** A button press: the button's custom_id. */
+    custom_id?: string;
+    component_type?: number;
+  };
+  guild_id?: string;
+  channel_id?: string;
+  /** A button press: the message the button is on. */
+  message?: DiscordMessage;
   /** In a server. */
   member?: { user: DiscordUser };
   /** In a DM. */
@@ -49,6 +82,26 @@ export interface Interaction {
 export interface DiscordUser {
   id: string;
   username: string;
+}
+
+export interface DiscordMessage {
+  id: string;
+  channel_id?: string;
+  content?: string;
+  author?: DiscordUser;
+  components?: ActionRow[];
+}
+
+export interface Button {
+  type: typeof ComponentType.Button;
+  style: number;
+  label: string;
+  custom_id: string;
+}
+
+export interface ActionRow {
+  type: typeof ComponentType.ActionRow;
+  components: Button[];
 }
 
 export interface Embed {
@@ -65,6 +118,7 @@ export interface Embed {
 export interface MessageData {
   content?: string;
   embeds?: Embed[];
+  components?: ActionRow[];
   flags?: number;
   allowed_mentions?: { parse: string[] };
 }
@@ -85,6 +139,8 @@ export const LIMITS = {
   embedDescription: 4096,
   fieldValue: 1024,
   fields: 25,
+  embeds: 10,
+  buttonLabel: 80,
   /** Every title, description, field and footer of an embed together. */
   embedTotal: 6000,
 } as const;

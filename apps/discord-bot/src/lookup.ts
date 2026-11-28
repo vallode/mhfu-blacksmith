@@ -193,3 +193,22 @@ export function lookupReply(
   const content = kind === "monster" && !(entry as MonsterEntry).small ? url : "";
   return { content, embeds: [embed] };
 }
+
+/**
+ * How another reply points at an entry: its key (which lookupReply takes),
+ * its page and its thumbnail.
+ */
+export function entryLink(
+  kind: LookupKind,
+  entry: unknown,
+  siteUrl: string,
+  assetUrl = siteUrl,
+): { key: string; url: string; icon?: string } {
+  const k = KINDS[kind] as Kind<unknown>;
+  const icon = k.icon?.(entry);
+  return {
+    key: k.key(entry),
+    url: `${siteUrl}${k.path(entry)}`,
+    ...(icon && { icon: `${assetUrl}${icon}` }),
+  };
+}
