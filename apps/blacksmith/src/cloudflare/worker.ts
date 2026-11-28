@@ -215,7 +215,9 @@ async function detailCardResponse(
 ): Promise<Response> {
   let card: DetailCard | undefined;
   try {
-    card = (await detailCardData[kind](env, url.origin))[key];
+    const cards = await detailCardData[kind](env, url.origin);
+    // Own keys only: "constructor" is a path segment too.
+    card = Object.hasOwn(cards, key) ? cards[key] : undefined;
   } catch (e) {
     return unavailable("the card data", e);
   }

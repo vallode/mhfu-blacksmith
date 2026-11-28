@@ -18,6 +18,7 @@ import { monsterCardUrl } from "blacksmith/src/lib/monster-card.js";
 import { getMonsters } from "blacksmith/src/lib/monsters.js";
 import {
   isHiddenQuest,
+  QUEST_HUB_SLUGS,
   questHref,
   questHubSlug,
   type QuestAppearance,
@@ -168,7 +169,7 @@ const QUEST_FILES = [
 
 /** Every quest a monster is a large monster or the target in, by name: board order, then stars. */
 function questsByMonster(): Map<string, MonsterQuest[]> {
-  const out = new Map<string, MonsterQuest[]>();
+  const out = new Map<string, { quest: MonsterQuest; hub: number; stars: number; id: number }[]>();
   for (const file of QUEST_FILES) {
     const { quests } = readData<{
       quests: (QuestAppearance & { title?: string })[];
@@ -183,16 +184,27 @@ function questsByMonster(): Map<string, MonsterQuest[]> {
       for (const name of names) {
         const list = out.get(name) ?? [];
         list.push({
-          board: where.slice(0, star),
-          stars: where.slice(star + 1),
-          title: q.title,
-          path: questHref({ hub, id: q.id }),
+          quest: {
+            board: where.slice(0, star),
+            stars: where.slice(star + 1),
+            title: q.title,
+            path: questHref({ hub, id: q.id }),
+          },
+          hub: QUEST_HUB_SLUGS.indexOf(hub),
+          stars: q.stars,
+          id: q.id,
         });
         out.set(name, list);
       }
     }
   }
-  return out;
+  // As the site's questsWithMonster: by board, then stars, then ID.
+  return new Map(
+    [...out].map(([name, list]) => [
+      name,
+      list.sort((a, b) => a.hub - b.hub || a.stars - b.stars || a.id - b.id).map((e) => e.quest),
+    ]),
+  );
 }
 
 function items(strings: Strings): ItemEntry[] {
