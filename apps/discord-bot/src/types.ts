@@ -26,6 +26,24 @@ export interface MonsterEntry {
   breaks: string[];
   description?: string;
   crowns?: { mini: number; silver: number; gold: number };
+  /** Its page's large card (hitzones, status, crowns, quest stars), a path on the site. */
+  card?: string;
+  /** Its portrait on the scroll, a path on the site. */
+  icon?: string;
+  /** Its drops card at each rank it has a drop table for, in rank order. */
+  dropRanks: { rank: string; label: string; card: string }[];
+  /** The quests it's hunted in, by board and star level. */
+  quests: MonsterQuest[];
+}
+
+export interface MonsterQuest {
+  /** "Village", "Guild LR", "Guild HR", "Guild G", "Training School" */
+  board: string;
+  /** "★5", "G★2" */
+  stars: string;
+  title: string;
+  /** Its page, a path on the site. */
+  path: string;
 }
 
 export interface ItemEntry {
@@ -47,6 +65,8 @@ export interface ItemEntry {
   rewards: ItemReward[];
   /** How many quest reward tables give it in all. */
   rewardCount: number;
+  /** Its card (sources at a glance), a path on the site. */
+  card?: string;
 }
 
 /** How many of an item's drops and rewards the index keeps. */
@@ -92,6 +112,12 @@ export interface WeaponEntry {
   rarity?: number;
   /** "Thunder 180", "Poison 200" */
   elements: string[];
+  /** Its card, a path on the site. */
+  card?: string;
+  /** Its framed icon in its rarity's colour, a path on the site. */
+  icon?: string;
+  /** The embed's colour: the site's rarity colour, from rarity 4. */
+  color?: number;
 }
 
 export interface SkillEntry {

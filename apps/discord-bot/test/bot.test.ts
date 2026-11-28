@@ -99,38 +99,53 @@ describe("autocomplete", () => {
 });
 
 describe("/monster, /item, /weapon", () => {
-  it("links the monster's page, which unfurls, with a short embed", async () => {
+  it("puts the monster's card in its embed, with its tabs", async () => {
     const m = messageOf(await call(command("monster", "name", "rath")));
-    assert.equal(m.content, "https://mhfu.vallode.com/monsters/flying-wyvern/rathalos/");
+    assert.equal(m.content, undefined);
     const embed = m.embeds?.[0];
     assert.equal(embed?.title, "Rathalos");
-    assert.ok(embed?.fields?.some((f) => f.name === "Weak to" && f.value.includes("Ice")));
+    assert.equal(embed?.url, "https://mhfu.vallode.com/monsters/flying-wyvern/rathalos/");
+    assert.match(
+      embed?.image?.url ?? "",
+      /^https:\/\/mhfu\.vallode\.com\/embed\/cards\/monsters\/rathalos\.png\?v=/,
+    );
+    assert.deepEqual(embed?.author, {
+      name: "Flying Wyvern · Large monster",
+      icon_url: "https://mhfu.vallode.com/embed/icons/monster-rathalos.png",
+    });
+    // The card says what the fields used to.
+    assert.equal(embed?.fields, undefined);
+    const buttons = m.components?.[0]?.components ?? [];
+    assert.deepEqual(
+      buttons.map((b) => [b.type === 2 && b.label, b.type === 2 && !!b.disabled]),
+      [
+        ["Hitzones", true],
+        ["Drops", false],
+        ["Quests", false],
+        ["Page", false],
+      ],
+    );
   });
 
-  it("leads an item's embed with where it drops and the chances", async () => {
+  it("leads an item's embed with its card, its rarity and price above the title", async () => {
     const m = messageOf(await call(command("item", "name", "Rathalos Scale")));
-    const fields = m.embeds?.[0]?.fields ?? [];
-    assert.equal(fields[0]?.name, "Monster drops");
-    // One line per monster and ranks, its ways in it; carve counts left out.
-    const [lr, early] = (fields[0]?.value ?? "").split("\n");
-    assert.match(lr ?? "", /^\*\*Rathalos\*\* LR: break head \d+%, tail carves /);
-    assert.match(early ?? "", /^\*\*Rathalos\*\* LR ★1-2: /);
-    assert.doesNotMatch(fields[0]?.value ?? "", /×3/);
-    assert.match(fields[1]?.value ?? "", /^\*\*[^*]+\*\* (Guild LR|Village) ★\d: \d+%/);
-    assert.ok(fields.every((f) => f.name !== "Japanese" && f.name !== "Rarity"));
-    // Rarity and price under the title, the stripe in the rarity's colour.
-    assert.equal(m.embeds?.[0]?.description, "-# Rarity 4 · Sells for 4,900z");
-    assert.equal(m.embeds?.[0]?.color, 0x52f152);
-    assert.equal(
-      m.embeds?.[0]?.thumbnail?.url,
-      "https://mhfu.vallode.com/embed/icons/item-23-1.png",
+    const embed = m.embeds?.[0];
+    assert.deepEqual(embed?.author, {
+      name: "Rarity 4 · Sells for 4,900z",
+      icon_url: "https://mhfu.vallode.com/embed/icons/item-23-1.png",
+    });
+    assert.equal(embed?.color, 0x52f152);
+    assert.match(
+      embed?.image?.url ?? "",
+      /^https:\/\/mhfu\.vallode\.com\/embed\/cards\/items\/rathalos-scale\.png\?v=\d+\.\w+$/,
     );
   });
 
   it("takes the images from ASSET_URL, the links still from the site", async () => {
     const env = { ASSET_URL: "https://test.example" };
     const embed = messageOf(await call(command("item", "name", "Rathalos Scale"), env)).embeds?.[0];
-    assert.equal(embed?.thumbnail?.url, "https://test.example/embed/icons/item-23-1.png");
+    assert.match(embed?.image?.url ?? "", /^https:\/\/test\.example\/embed\/cards\/items\//);
+    assert.equal(embed?.author?.icon_url, "https://test.example/embed/icons/item-23-1.png");
     assert.match(embed?.url ?? "", /^https:\/\/mhfu\.vallode\.com\//);
   });
 
@@ -139,19 +154,87 @@ describe("/monster, /item, /weapon", () => {
     assert.equal(it.embeds?.[0]?.url, "https://mhfu.vallode.com/items/book-of-combos-1/");
   });
 
-  it("links weapons under their type", async () => {
+  it("links weapons under their type, the stripe in their rarity's colour", async () => {
     const w = messageOf(await call(command("weapon", "name", "Demon Halberd")));
-    assert.equal(
-      w.embeds?.[0]?.url,
+    const embed = w.embeds?.[0];
+    assert.equal(embed?.url, "https://mhfu.vallode.com/blacksmith/long-sword/demon-halberd/");
+    assert.equal(embed?.author?.name, "Rarity 7 · Long Sword");
+    assert.equal(embed?.color, 0xff9661);
+    assert.match(
+      embed?.image?.url ?? "",
+      /\/embed\/cards\/weapons\/long-sword\/demon-halberd\.png\?v=/,
+    );
+    const links = w.components?.[0]?.components.map((b) => b.type === 2 && b.url);
+    assert.deepEqual(links, [
       "https://mhfu.vallode.com/blacksmith/long-sword/demon-halberd/",
-    );
-    assert.ok(
-      w.embeds?.[0]?.fields?.some((f) => f.name === "Element" && f.value === "Thunder 180"),
-    );
+      "https://mhfu.vallode.com/blacksmith/long-sword/",
+    ]);
   });
 
   it("tells only the asker when nothing matches", async () => {
     const m = messageOf(await call(command("monster", "name", "zzzzqqq")));
+    assert.equal(m.flags, 1 << 6);
+  });
+});
+
+describe("a monster's tabs", () => {
+  const rathalos = index.monsters.find((m) => m.name === "Rathalos")!;
+  const press = (customId: string, by = "42", values?: string[]) => ({
+    ...interaction(InteractionType.MessageComponent, ""),
+    data: { custom_id: customId, component_type: values ? 3 : 2, ...(values && { values }) },
+    member: { user: { id: by, username: "hunter" } },
+    message: { id: "9", interaction_metadata: { user: { id: "42", username: "hunter" } } },
+  });
+  const updated = (r: InteractionResponse): MessageData => {
+    assert.equal(r.type, ResponseType.UpdateMessage);
+    return (r as { data: MessageData }).data;
+  };
+
+  it("opens Drops at High Rank, with a menu of the other ranks", async () => {
+    const m = updated(await call(press(`mt:${rathalos.id}:drops`)));
+    assert.equal(m.embeds?.[0]?.title, "Rathalos · High Rank drops");
+    assert.match(
+      m.embeds?.[0]?.image?.url ?? "",
+      /\/embed\/cards\/drops\/rathalos\/high-rank\.png\?v=/,
+    );
+    const menu = m.components?.[1]?.components[0];
+    assert.equal(menu?.type, 3);
+    assert.deepEqual(
+      menu?.type === 3 && menu.options.map((o) => [o.value, !!o.default]),
+      rathalos.dropRanks.map((r) => [r.rank, r.rank === "high-rank"]),
+    );
+  });
+
+  it("shows the rank the menu picks", async () => {
+    const m = updated(await call(press(`mr:${rathalos.id}`, "42", ["g-rank"])));
+    assert.equal(m.embeds?.[0]?.title, "Rathalos · G Rank drops");
+    assert.match(m.embeds?.[0]?.image?.url ?? "", /\/drops\/rathalos\/g-rank\.png/);
+  });
+
+  it("lists the quests it's hunted in, by board, linked", async () => {
+    const m = updated(await call(press(`mt:${rathalos.id}:quests`)));
+    const fields = m.embeds?.[0]?.fields ?? [];
+    assert.equal(fields[0]?.name, "Village");
+    assert.match(
+      fields[0]?.value ?? "",
+      /^★\d \[[^\]]+\]\(https:\/\/mhfu\.vallode\.com\/quests\/village\/\d+\/\)/,
+    );
+    assert.ok(fields.every((f) => f.value.length <= 1024));
+  });
+
+  it("goes back to the card", async () => {
+    const m = updated(await call(press(`mt:${rathalos.id}:card`)));
+    assert.match(m.embeds?.[0]?.image?.url ?? "", /\/embed\/cards\/monsters\/rathalos\.png/);
+  });
+
+  it("gives anyone but the asker a copy of their own", async () => {
+    const m = messageOf(await call(press(`mt:${rathalos.id}:drops`, "7")));
+    assert.equal(m.flags, 1 << 6);
+    assert.equal(m.embeds?.[0]?.title, "Rathalos · High Rank drops");
+  });
+
+  it("answers a button it doesn't know", async () => {
+    const m = messageOf(await call(press("zz:1")));
     assert.equal(m.flags, 1 << 6);
   });
 });

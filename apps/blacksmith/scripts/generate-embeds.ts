@@ -67,6 +67,14 @@ import { initWasm, Resvg } from "@resvg/resvg-wasm";
 import satori from "satori";
 import type { ReactNode } from "react";
 import { getWeapons } from "../src/lib/weapons";
+import {
+  DETAIL_CARD_ASSETS_PATH,
+  DETAIL_CARD_KINDS,
+  detailCardDataPath,
+  type DetailCardAssets,
+} from "../src/lib/detail-card";
+import { buildDetailCardData, detailCardSpriteNames } from "../src/lib/detail-card-data";
+import { GEM_COLORS } from "../src/lib/embed-format";
 import { DATA_DIR } from "../src/lib/paths";
 import { readData } from "game-data";
 import { readSetSearchData } from "./lib/set-data";
@@ -430,6 +438,42 @@ async function writeMonsterCards() {
   return count;
 }
 
+/**
+ * What the Worker draws weapon, item and drops cards from (src/lib/detail-card.ts):
+ * each kind's contents, and the frame and sprites the cards name.
+ */
+async function writeDetailCards() {
+  const data = buildDetailCardData();
+  for (const kind of DETAIL_CARD_KINDS) {
+    const file = path.join(publicDir, detailCardDataPath(kind));
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, JSON.stringify(data[kind]));
+  }
+  const sprites: DetailCardAssets["sprites"] = {};
+  for (const name of detailCardSpriteNames(data)) {
+    // A material's sprite is its icon and gem colour ("claw-yellow"); the
+    // rest are the image of that name.
+    const [, base, color] = name.match(/^(.*)-([a-z]+)$/) ?? [];
+    const tinted = base && color && (color === "plain" || GEM_COLORS[color]);
+    const file = path.join(publicDir, "images", `${tinted ? base : name}.png`);
+    if (!fs.existsSync(file)) continue;
+    sprites[name] = await tintedSprite(
+      file,
+      tinted && color !== "plain" ? GEM_COLORS[color] : undefined,
+    );
+  }
+  const assets: DetailCardAssets = {
+    frame: dataUri(await drawFrame(CARD.width, CARD.height)),
+    sprites,
+  };
+  fs.writeFileSync(path.join(publicDir, DETAIL_CARD_ASSETS_PATH), JSON.stringify(assets));
+  return (
+    Object.keys(data.weapons).length +
+    Object.keys(data.items).length +
+    Object.keys(data.drops).length
+  );
+}
+
 async function main() {
   fs.rmSync(outDir, { recursive: true, force: true });
   const icons = await writeIcons();
@@ -437,8 +481,9 @@ async function main() {
   const setEntries = writeSetData();
   const cardSprites = await writeSetCard();
   const monsterCards = await writeMonsterCards();
+  const detailCards = await writeDetailCards();
   console.log(
-    `Wrote ${icons} embed icons, ${oembeds} oEmbed files, set data for ${setEntries} pieces and decorations, the set card with ${cardSprites} sprites and ${monsterCards} monster cards to public/embed/`,
+    `Wrote ${icons} embed icons, ${oembeds} oEmbed files, set data for ${setEntries} pieces and decorations, the set card with ${cardSprites} sprites, ${monsterCards} monster cards and data for ${detailCards} weapon, item and drops cards to public/embed/`,
   );
 }
 

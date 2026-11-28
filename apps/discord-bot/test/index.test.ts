@@ -24,6 +24,24 @@ describe("the index", () => {
     assert.equal(new Set(hrefs).size, hrefs.length);
   });
 
+  it("gives every weapon and item its card, and monsters theirs at each rank", () => {
+    for (const w of index.weapons) {
+      assert.match(
+        w.card ?? "",
+        new RegExp(`^/embed/cards/weapons/${w.type}/${w.slug}\\.png\\?v=`),
+      );
+    }
+    for (const it of index.items) assert.match(it.card ?? "", /^\/embed\/cards\/items\//);
+    const rathian = index.monsters.find((m) => m.name === "Rathian")!;
+    assert.deepEqual(
+      rathian.dropRanks.map((r) => r.rank),
+      ["low-rank-1-2", "low-rank", "high-rank", "g-rank"],
+    );
+    assert.ok(
+      index.monsters.every((m) => m.card?.startsWith(`/embed/cards/monsters/${m.slug}.png?v=`)),
+    );
+  });
+
   it("names only monsters the data has in its nicknames", () => {
     const names = new Set(index.monsters.map((m) => m.name));
     for (const name of Object.keys(MONSTER_NICKNAMES)) assert.ok(names.has(name), name);
