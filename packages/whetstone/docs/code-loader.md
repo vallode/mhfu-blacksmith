@@ -70,9 +70,7 @@ into the blob have to check the header first (see below).
 
 ## Reading the file
 
-Whetstone adds `WHTSTN.BIN` to the disc's root (Whetstone shortened the
-way the game shortens names, "Wht" and "Stn", to fit ISO 9660's 8.3), next
-to `UMD_DATA.BIN`; the root rather than `/PSP_GAME/USRDIR` because the
+Whetstone adds `WHTSTN.BIN` to the disc's root, next to `UMD_DATA.BIN`; the root rather than `/PSP_GAME/USRDIR` because the
 loader keeps its path in the cave, where `disc0:/WHTSTN.BIN` takes 5 words
 and the longer path 9. Its data goes at the
 end of the image, a record goes into the directory (which has room), and
