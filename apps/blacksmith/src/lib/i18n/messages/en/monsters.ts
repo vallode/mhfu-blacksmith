@@ -158,6 +158,8 @@ export const monsters = {
       "chest-broken": "Chest-Broken",
       "wing-membrane": "Wing-Membrane",
       "head-rage": "Head-Rage",
+      "neck-back": "Neck-Back",
+      "blade-tailtip": "Blade-Tailtip",
       fin: "Fin",
       other: "Other",
     } as Record<string, string>,

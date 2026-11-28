@@ -37,10 +37,20 @@ const round = (v: number) => Math.round(v * 10) / 10;
  * damage: every monster exported so far has one or two (flags 5 and 0x300,
  * on joint 1 or 2) around the body's centre, on a row that doesn't fit the
  * place (Rathian's on row 0, her head's). No damage capsule seen has bit
- * 0x4 or 0x200; the other bits (0x1, 0x2, 0x100, 0x20000, 0x40000, ...)
- * appear on whole bodies and are kept. Each skip is logged.
+ * 0x4 or 0x200; the other bits (0x1, 0x2, 0x100, 0x40000, ...) appear on
+ * whole bodies and are kept. Each skip is logged.
  */
 export const BODY_COLLISION_FLAG_BITS = 0x204;
+
+/**
+ * Flag bit of spheres that are probably attack areas, not hitzones. On the
+ * EU disc only these have it, all on row 0 (the head's): one sphere of
+ * radius 350 around the body of Kushala Daora and Rusted Kushala Daora (the
+ * wind) and of Teostra and Lunastra (the fire aura), and four of radius 90
+ * at the hips of Congalala and Emerald Congalala (likely the fart). Each skip
+ * is logged.
+ */
+export const AURA_FLAG_BIT = 0x20000;
 
 /** A joint's bind-pose frame without rotation: where it is, and its scale along each axis. */
 export interface JointFrame {
@@ -129,6 +139,12 @@ export function buildSiteHitboxes(
     if (record.flags & BODY_COLLISION_FLAG_BITS) {
       skipped.push(
         `record ${i}: flags 0x${record.flags.toString(16)} mark body collision (joint ${record.joint}, row ${record.row})`,
+      );
+      return;
+    }
+    if (record.flags & AURA_FLAG_BIT) {
+      skipped.push(
+        `record ${i}: flags 0x${record.flags.toString(16)} mark an aura (joint ${record.joint}, row ${record.row})`,
       );
       return;
     }

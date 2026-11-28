@@ -51,6 +51,11 @@ describe("matching", () => {
 describe("the commands", () => {
   it("fit Discord's rules for names and descriptions", () => {
     for (const c of COMMANDS) {
+      if ("type" in c) {
+        // A context menu command: any name Discord shows in the menu, no description.
+        assert.ok(c.name.length <= 32 && c.description === "", c.name);
+        continue;
+      }
       assert.match(c.name, /^[a-z]{1,32}$/);
       assert.ok(c.description.length <= 100, c.name);
       for (const o of c.options) assert.ok(o.description.length <= 100, `${c.name} ${o.name}`);
