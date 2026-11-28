@@ -21,6 +21,8 @@ interface NavItem {
   icon: string;
   /** Pages under this path light the entry up. */
   match: string;
+  /** Another path that lights it up: a page the section's own tabs reach. */
+  alsoMatch?: string;
   /** Plain link; entries with a `section` open the page last viewed there. */
   href?: string;
   section?: MenuSection;
@@ -62,13 +64,20 @@ const NAV_GROUPS: NavItem[][] = [
       mini: true,
     },
     { label: "quests", icon: "ticket", match: "/quests/", section: "quests", tab: true },
-    { label: "items", icon: "fluid", match: "/items/", href: "/items/" },
+    // Items also covers the Veggie Elder's trades (ItemNav's tabs).
+    {
+      label: "items",
+      icon: "fluid",
+      match: "/items/",
+      alsoMatch: "/veggie-elder/",
+      href: "/items/",
+    },
     { label: "maps", icon: "item-29", match: "/maps/", href: "/maps/" },
-    { label: "veggieElder", icon: "mushroom", match: "/veggie-elder/", href: "/veggie-elder/" },
   ],
   [
     { label: "sets", icon: "plate", match: "/set-builder/", href: "/set-builder/", mini: true },
     { label: "wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/" },
+    { label: "damage", icon: "ko", match: "/damage/", href: "/damage/" },
   ],
 ];
 const OPTIONS_NAV: NavItem = {
@@ -78,6 +87,10 @@ const OPTIONS_NAV: NavItem = {
   href: "/options/",
 };
 const NAV = NAV_GROUPS.flat();
+
+/** Whether the page is in the entry's section. */
+const isActive = (item: NavItem, pathname: string) =>
+  pathname.startsWith(item.match) || (!!item.alsoMatch && pathname.startsWith(item.alsoMatch));
 const HUNTER_MATCH = "/hunter/";
 
 const COLLAPSED_KEY = "sidebar-collapsed";
@@ -117,7 +130,7 @@ function useNavHrefs(pathname: string): (item: NavItem) => string {
 // A sidebar entry, like a row in the trees and lists: plain white text with
 // the green glow on hover. The current page's entry holds the glow still.
 const sidebarRow = cn(
-  "group relative flex h-[4.4rem] flex-none cursor-pointer items-center gap-4 border-none bg-transparent px-6 text-left whitespace-nowrap text-white",
+  "group relative flex h-[4.4rem] flex-none cursor-pointer items-center gap-4 border-none bg-transparent px-6 text-left whitespace-nowrap text-white short:h-[3.6rem]",
   "hover:hover-glow focus-visible:hover-glow focus-visible:outline-none",
 );
 const sidebarRowActive = "bg-(image:--gradient-hover-glow)";
@@ -149,7 +162,7 @@ function HunterRow({
       href={HUNTER_MATCH}
       title={railLabel ? [label, rank].filter(Boolean).join(" · ") : undefined}
       aria-current={active ? "page" : undefined}
-      className={cn(sidebarRow, "h-[5.2rem]", active && sidebarRowActive)}
+      className={cn(sidebarRow, "h-[5.2rem] short:h-[4.4rem]", active && sidebarRowActive)}
     >
       {/* Lit green while a hunter is loaded, like the chosen slot on the hunter page. */}
       <Icon type="coin" nav active={active || !!save} className={rowIcon} />
@@ -202,7 +215,10 @@ function SidebarContents({
       <AfterLoadLink
         href={hrefFor(WEAPONS_NAV)}
         aria-label={t.nav.home}
-        className={cn("mx-6 mt-2 mb-4 block flex-none", rail("wide:hidden", "compact:hidden"))}
+        className={cn(
+          "mx-6 mt-2 mb-4 block flex-none short:hidden",
+          rail("wide:hidden", "compact:hidden"),
+        )}
       >
         <img className="h-auto w-full" src="/images/blacksmith.png" alt={t.logoAlt} />
       </AfterLoadLink>
@@ -210,9 +226,9 @@ function SidebarContents({
       <nav className="flex flex-col" aria-label={t.nav.main}>
         {NAV_GROUPS.map((group, i) => (
           <Fragment key={i}>
-            {i > 0 && <hr className="mx-6 my-[1rem] h-[3px] w-auto" />}
+            {i > 0 && <hr className="mx-6 my-[1rem] h-[3px] w-auto short:my-[0.6rem]" />}
             {group.map((item) => {
-              const active = pathname.startsWith(item.match);
+              const active = isActive(item, pathname);
               return (
                 <AfterLoadLink
                   key={item.match}
@@ -341,7 +357,7 @@ function TabBar({
   // "Monsters" fits a fifth of a phone's width.
   const label = "text-fine leading-none tracking-normal";
   const tabs = NAV.filter((item) => item.tab);
-  const inTab = tabs.some((item) => pathname.startsWith(item.match));
+  const inTab = tabs.some((item) => isActive(item, pathname));
 
   return (
     // Dips 1.8rem (the frame's band) under the bottom of the screen, like the
@@ -360,7 +376,7 @@ function TabBar({
         bodyClassName="flex-row items-stretch card-p-[2.4rem] [&>*]:mb-[env(safe-area-inset-bottom)]"
       >
         {tabs.map((item) => {
-          const active = !menuOpen && pathname.startsWith(item.match);
+          const active = !menuOpen && isActive(item, pathname);
           return (
             <AfterLoadLink
               key={item.match}

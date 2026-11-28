@@ -168,6 +168,10 @@
           "type": "integer",
           "minimum": 2,
           "description": "How many times the move deals this hit"
+        },
+        "blade": {
+          "enum": [1, 2],
+          "description": "Dual Blades only: the blade the hit strikes with, which carries a dual-element weapon's first or second element"
         }
       }
     }

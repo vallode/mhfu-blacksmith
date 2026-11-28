@@ -14,6 +14,7 @@ export const site: Messages["site"] = {
     veggieElder: "Anciano Vegetal",
     sets: "Conjuntos",
     wishlist: "Lista de deseos",
+    damage: "Daño",
     hunter: "Cazador",
     options: "Opciones",
     home: "Inicio",

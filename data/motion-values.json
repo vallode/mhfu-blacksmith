@@ -378,7 +378,8 @@
           {
             "row": 37,
             "motion_value": 18,
-            "demon_mode": 24
+            "demon_mode": 24,
+            "blade": 1
           }
         ]
       },
@@ -392,12 +393,14 @@
           {
             "row": 38,
             "motion_value": 10,
-            "demon_mode": 13
+            "demon_mode": 13,
+            "blade": 1
           },
           {
             "row": 39,
             "motion_value": 8,
-            "demon_mode": 10
+            "demon_mode": 10,
+            "blade": 2
           }
         ]
       },
@@ -411,17 +414,20 @@
           {
             "row": 40,
             "motion_value": 6,
-            "demon_mode": 8
+            "demon_mode": 8,
+            "blade": 1
           },
           {
             "row": 41,
             "motion_value": 12,
-            "demon_mode": 16
+            "demon_mode": 16,
+            "blade": 2
           },
           {
             "row": 42,
             "motion_value": 18,
-            "demon_mode": 24
+            "demon_mode": 24,
+            "blade": 1
           }
         ]
       },
@@ -435,17 +441,20 @@
           {
             "row": 45,
             "motion_value": 15,
-            "demon_mode": 20
+            "demon_mode": 20,
+            "blade": 1
           },
           {
             "row": 46,
             "motion_value": 10,
-            "demon_mode": 13
+            "demon_mode": 13,
+            "blade": 2
           },
           {
             "row": 47,
             "motion_value": 6,
-            "demon_mode": 8
+            "demon_mode": 8,
+            "blade": 1
           }
         ]
       },
@@ -459,32 +468,38 @@
           {
             "row": 101,
             "motion_value": 7,
-            "demon_mode": 9
+            "demon_mode": 9,
+            "blade": 1
           },
           {
             "row": 102,
             "motion_value": 7,
-            "demon_mode": 9
+            "demon_mode": 9,
+            "blade": 2
           },
           {
             "row": 103,
             "motion_value": 7,
-            "demon_mode": 9
+            "demon_mode": 9,
+            "blade": 1
           },
           {
             "row": 104,
             "motion_value": 7,
-            "demon_mode": 9
+            "demon_mode": 9,
+            "blade": 2
           },
           {
             "row": 105,
             "motion_value": 7,
-            "demon_mode": 9
+            "demon_mode": 9,
+            "blade": 1
           },
           {
             "row": 106,
             "motion_value": 7,
-            "demon_mode": 9
+            "demon_mode": 9,
+            "blade": 2
           }
         ]
       },
@@ -498,7 +513,8 @@
           {
             "row": 44,
             "motion_value": 19,
-            "demon_mode": 25
+            "demon_mode": 25,
+            "blade": 2
           }
         ]
       },
@@ -513,32 +529,38 @@
           {
             "row": 45,
             "motion_value": 15,
-            "demon_mode": 20
+            "demon_mode": 20,
+            "blade": 1
           },
           {
             "row": 46,
             "motion_value": 10,
-            "demon_mode": 13
+            "demon_mode": 13,
+            "blade": 2
           },
           {
             "row": 47,
             "motion_value": 6,
-            "demon_mode": 8
+            "demon_mode": 8,
+            "blade": 1
           },
           {
             "row": 52,
             "motion_value": 15,
-            "demon_mode": 20
+            "demon_mode": 20,
+            "blade": 1
           },
           {
             "row": 53,
             "motion_value": 10,
-            "demon_mode": 13
+            "demon_mode": 13,
+            "blade": 2
           },
           {
             "row": 54,
             "motion_value": 6,
-            "demon_mode": 8
+            "demon_mode": 8,
+            "blade": 1
           }
         ]
       },
@@ -553,23 +575,27 @@
           {
             "row": 48,
             "motion_value": 25,
-            "demon_mode": 33
+            "demon_mode": 33,
+            "blade": 2
           },
           {
             "row": 49,
             "motion_value": 6,
             "demon_mode": 8,
+            "blade": 2,
             "count": 8
           },
           {
             "row": 107,
             "motion_value": 15,
-            "demon_mode": 20
+            "demon_mode": 20,
+            "blade": 1
           },
           {
             "row": 108,
             "motion_value": 15,
-            "demon_mode": 20
+            "demon_mode": 20,
+            "blade": 2
           }
         ]
       }

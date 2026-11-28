@@ -8,6 +8,8 @@ export interface MotionHit {
   demon_mode?: number;
   /** How many times the move deals this hit, when more than once. */
   count?: number;
+  /** Dual Blades: the blade it strikes with, which carries a dual-element weapon's first or second element. */
+  blade?: 1 | 2;
 }
 
 /**
@@ -114,3 +116,103 @@ export const weightedHitzone = (zone: PartHitzones, w: HitzoneWeights) =>
  */
 export const hitDamage = (trueAttack: number, mv: number, sharpness: number, hitzone: number) =>
   Math.floor((trueAttack * mv * sharpness * hitzone) / 10000);
+
+/**
+ * Element damage multiplier of each sharpness colour, red to purple (EU
+ * game_sub 0x09CF9754, beside the raw table). The Bow's melee hits take 1,
+ * as their raw sharpness.
+ */
+export const ELEMENT_SHARPNESS_MULTIPLIERS = [0.25, 0.5, 0.75, 1, 1.0625, 1.125, 1.2];
+
+/** Single-precision, as the game's floats. */
+const f = Math.fround;
+
+/**
+ * One hit's element damage on a part: its element (a tenth of what the
+ * game shows) × the part's hitzone for that element / 100 × the element
+ * sharpness multiplier, truncated (EU game_sub 0x09C43458: the reads at
+ * 0x09C4383C, the sum at 0x09C44700). It adds to the raw damage, which is
+ * truncated on its own.
+ */
+export const elementHitDamage = (element: number, hitzone: number, sharpness: number) =>
+  Math.trunc(f(f(sharpness) * f(f(element) * f(hitzone / 100))));
+
+/** Affinity's effect on a hit's motion value: a critical hit, or a negative one. */
+export type HitKind = "normal" | "critical" | "weak";
+
+/**
+ * A motion value after affinity: × 1.25 for a critical hit, × 0.75 for a
+ * negative one, in floats and stored back as a byte (EU game_task's swing
+ * builder, from 0x09B687C4). Element doesn't change.
+ */
+export function affinityMotion(mv: number, kind: HitKind): number {
+  if (kind === "normal") return mv;
+  return Math.min(255, Math.trunc(f(mv * f(kind === "critical" ? 1.25 : 0.75))));
+}
+
+/** A weapon's element as a hit carries it: the type and a tenth of the shown value, after skills. */
+export interface HitElement {
+  type: "fire" | "water" | "thunder" | "ice" | "dragon";
+  value: number;
+}
+
+/** A part's hitzones for a move's hits: cut, impact and each element. */
+export type StruckZone = PartHitzones & Record<HitElement["type"], number>;
+
+/**
+ * A hit's damage times the quest's defense multiplier for the monster,
+ * truncated (community formula, not traced in the game).
+ */
+export const defended = (damage: number, defense: number) =>
+  defense === 1 ? damage : Math.trunc(f(damage * f(defense)));
+
+/**
+ * A move's damage on a part, each hit's raw and element damage truncated
+ * on their own and summed over its hits: the raw share and the element's.
+ * `elementOf` gives the element a hit carries (a dual-element weapon's
+ * differs by blade), or null.
+ */
+export function moveDamage(
+  move: MotionMove,
+  {
+    attack,
+    sharpness,
+    elementSharpness,
+    elementOf,
+    zone,
+    demon = false,
+    glow = false,
+    fullSpeed = false,
+    hit = "normal",
+    defense = 1,
+  }: {
+    attack: number;
+    sharpness: number;
+    elementSharpness: number;
+    elementOf: (hit: MotionHit) => HitElement | null;
+    zone: StruckZone;
+    demon?: boolean;
+    glow?: boolean;
+    fullSpeed?: boolean;
+    hit?: HitKind;
+    /** The quest's defense multiplier for the monster: each hit's damage times it, truncated. */
+    defense?: number;
+  },
+): { raw: number; element: number } {
+  const weighted = weightedHitzone(zone, moveWeights(move, { glow, fullSpeed }));
+  let raw = 0;
+  let element = 0;
+  for (const h of move.hits) {
+    const n = h.count ?? 1;
+    const r = hitDamage(attack, affinityMotion(hitValue(h, demon), hit), sharpness, weighted);
+    const e = elementOf(h);
+    const el = e ? elementHitDamage(e.value, zone[e.type], elementSharpness) : 0;
+    // The defense multiplies the hit's sum; the raw part shows scaled on its
+    // own, and the element takes the rest, so the two still add up.
+    const total = defended(r + el, defense);
+    const rawPart = Math.min(defended(r, defense), total);
+    raw += n * rawPart;
+    element += n * (total - rawPart);
+  }
+  return { raw, element };
+}
