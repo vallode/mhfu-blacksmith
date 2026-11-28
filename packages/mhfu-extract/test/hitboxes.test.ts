@@ -180,6 +180,7 @@ test("buildSiteHitboxes places capsules in model space and names them by hitzone
         { ...WING, joint: 1, row: 0, flags: 0x08000002 }, // a head's flags
         { ...WING, joint: 0, row: 0, flags: 5 }, // Rathian's body-centre sphere
         { ...WING, joint: 7 },
+        { ...WING, joint: 0, row: 0, flags: 0x20000 }, // Kushala Daora's wind
       ]),
     ),
     0,
@@ -208,6 +209,7 @@ test("buildSiteHitboxes places capsules in model space and names them by hitzone
     "record 2: no size (radius 0)",
     "record 5: flags 0x5 mark body collision (joint 0, row 0)",
     "record 6: joint 7 has a rotated bone in its chain",
+    "record 7: flags 0x20000 mark an aura (joint 0, row 0)",
   ]);
 });
 

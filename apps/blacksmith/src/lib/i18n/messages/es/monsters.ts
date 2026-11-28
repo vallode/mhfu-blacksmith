@@ -125,6 +125,8 @@ export const monsters: Messages["monsters"] = {
       "chest-broken": "Pecho roto",
       "wing-membrane": "Membrana alar",
       "head-rage": "Cabeza furiosa",
+      "neck-back": "Cuello/lomo",
+      "blade-tailtip": "Cuchillas/cola",
       fin: "Aleta",
       other: "Otro",
     },
